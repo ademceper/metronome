@@ -16,7 +16,12 @@
       "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
     },
     "apps/keycloakify-starter": {
-      "entry": ["src/kc.gen.tsx", "src/login/KcPageStory.tsx"],
+      "entry": [
+        "src/kc.gen.tsx",
+        "src/login/KcPageStory.tsx",
+        "src/login/i18n.ts",
+        "src/login/KcContext.ts"
+      ],
       "project": ["src/**/*.{ts,tsx}"],
       "vite": true,
       "storybook": true
