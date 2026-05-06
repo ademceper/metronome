@@ -4,7 +4,12 @@
     ".": {
       "entry": ["biome.json", "lefthook.yml"]
     },
-    "apps/web": {
+    "apps/web-user": {
+      "project": ["**/*.{ts,tsx}"],
+      "next": true,
+      "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
+    },
+    "apps/web-admin": {
       "project": ["**/*.{ts,tsx}"],
       "next": true,
       "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
