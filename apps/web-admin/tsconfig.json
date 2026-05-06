@@ -1,7 +1,6 @@
 {
   "extends": "@metronome/ts-cfg/vite.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@metronome/ui/*": ["../../packages/ui/src/*"]

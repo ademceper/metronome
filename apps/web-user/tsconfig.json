@@ -1,7 +1,6 @@
 {
   "extends": "@metronome/ts-cfg/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
       "@metronome/ui/*": ["../../packages/ui/src/*"]

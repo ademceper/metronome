@@ -1,7 +1,6 @@
 {
   "extends": "@metronome/ts-cfg/react-library.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@metronome/ui/*": ["./src/*"]
     }
