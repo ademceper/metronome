@@ -7,13 +7,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
-    "@workspace/ui": "workspace:*",
+    "@metronome/ui": "workspace:*",
     "next": "16.1.6",
     "next-themes": "^0.4.6",
     "react": "^19.2.4",
@@ -24,9 +22,7 @@
     "@types/node": "^25.1.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "@workspace/eslint-config": "workspace:^",
-    "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9.39.2",
+    "@metronome/ts-cfg": "workspace:*",
     "typescript": "^5.9.3"
   }
 }

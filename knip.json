@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": ["biome.json", "lefthook.yml"]
+    },
+    "apps/web": {
+      "project": ["**/*.{ts,tsx}"],
+      "next": true,
+      "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
+    },
+    "packages/ui": {
+      "entry": ["src/components/*.tsx", "src/lib/*.ts", "src/styles/*.css"],
+      "project": ["src/**/*.{ts,tsx}"],
+      "ignoreDependencies": [
+        "@tailwindcss/postcss",
+        "@turbo/gen",
+        "@phosphor-icons/react",
+        "next-themes",
+        "zod"
+      ]
+    },
+    "packages/ts-cfg": {
+      "entry": ["*.json"],
+      "ignoreDependencies": ["next"]
+    }
+  }
+}

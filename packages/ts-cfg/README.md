@@ -1,3 +1,3 @@
-# `@workspace/typescript-config`
+# `@metronome/ts-cfg`
 
 Shared typescript configuration for the workspace.

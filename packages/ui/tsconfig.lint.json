@@ -1,5 +1,5 @@
 {
-  "extends": "@workspace/typescript-config/react-library.json",
+  "extends": "@metronome/ts-cfg/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },

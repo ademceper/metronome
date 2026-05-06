@@ -14,8 +14,8 @@
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "utils": "@workspace/ui/lib/utils",
-    "ui": "@workspace/ui/components"
+    "utils": "@metronome/ui/lib/utils",
+    "ui": "@metronome/ui/components"
   },
   "rtl": true,
   "menuColor": "default",
