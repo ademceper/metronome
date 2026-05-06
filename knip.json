@@ -17,13 +17,7 @@
     "packages/ui": {
       "entry": ["src/components/*.tsx", "src/lib/*.ts", "src/styles/*.css"],
       "project": ["src/**/*.{ts,tsx}"],
-      "ignoreDependencies": [
-        "@tailwindcss/postcss",
-        "@turbo/gen",
-        "@phosphor-icons/react",
-        "next-themes",
-        "zod"
-      ]
+      "ignoreDependencies": ["@tailwindcss/postcss", "@turbo/gen", "zod"]
     },
     "packages/ts-cfg": {
       "entry": ["*.json"],
