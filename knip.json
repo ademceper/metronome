@@ -15,7 +15,7 @@
       "next": true,
       "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
     },
-    "apps/keycloakify-starter": {
+    "apps/auth": {
       "entry": [
         "src/kc.gen.tsx",
         "src/login/KcPageStory.tsx",

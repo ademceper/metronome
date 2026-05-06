@@ -33,7 +33,7 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
-  apps/keycloakify-starter:
+  apps/auth:
     dependencies:
       keycloakify:
         specifier: ^11.15.0
@@ -45,6 +45,9 @@ importers:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
     devDependencies:
+      '@metronome/ts-cfg':
+        specifier: workspace:*
+        version: link:../../packages/ts-cfg
       '@storybook/react':
         specifier: ^8.1.10
         version: 8.6.18(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(storybook@8.6.18)(typescript@5.9.3)

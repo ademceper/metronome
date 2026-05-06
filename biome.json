@@ -96,7 +96,7 @@
       }
     },
     {
-      "includes": ["apps/keycloakify-starter/**"],
+      "includes": ["apps/auth/**"],
       "linter": {
         "rules": {
           "complexity": {
