@@ -11,9 +11,9 @@
       "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
     },
     "apps/web-admin": {
-      "project": ["**/*.{ts,tsx}"],
-      "next": true,
-      "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
+      "project": ["src/**/*.{ts,tsx}"],
+      "vite": true,
+      "ignoreDependencies": ["tailwindcss", "@phosphor-icons/react"]
     },
     "apps/auth": {
       "entry": [
