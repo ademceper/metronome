@@ -1,5 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignoreExportsUsedInFile": true,
   "workspaces": {
     ".": {
       "entry": ["biome.json", "lefthook.yml"]
@@ -13,6 +14,12 @@
       "project": ["**/*.{ts,tsx}"],
       "next": true,
       "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
+    },
+    "apps/keycloakify-starter": {
+      "entry": ["src/kc.gen.tsx", "src/login/KcPageStory.tsx"],
+      "project": ["src/**/*.{ts,tsx}"],
+      "vite": true,
+      "storybook": true
     },
     "packages/ui": {
       "entry": ["src/components/*.tsx", "src/lib/*.ts", "src/styles/*.css"],

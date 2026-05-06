@@ -94,6 +94,27 @@
           }
         }
       }
+    },
+    {
+      "includes": ["apps/keycloakify-starter/**"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noBannedTypes": "off",
+            "noUselessTypeConstraint": "off"
+          },
+          "a11y": {
+            "useHtmlLang": "off"
+          },
+          "correctness": {
+            "noUnusedVariables": "off"
+          },
+          "suspicious": {
+            "noEmptyBlockStatements": "off",
+            "noExplicitAny": "off"
+          }
+        }
+      }
     }
   ]
 }
