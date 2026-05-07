@@ -38,22 +38,12 @@ export default function LinkIdpAction(
         <div className={kcClsx("kcFormGroupClass")}>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <Input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonLargeClass"
-              )}
               name="continue"
               id="kc-continue"
               type="submit"
               value={msgStr("doContinue")}
             />
             <Input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonDefaultClass",
-                "kcButtonLargeClass"
-              )}
               name="cancel-aia"
               id="kc-cancel"
               type="submit"

@@ -44,7 +44,6 @@ export default function LoginResetOtp(
                 <Fragment key={otpCredential.id}>
                   <Input
                     id={`kc-otp-credential-${index}`}
-                    className={kcClsx("kcLoginOTPListInputClass")}
                     type="radio"
                     name="selectedCredentialId"
                     value={otpCredential.id}
@@ -82,12 +81,6 @@ export default function LoginResetOtp(
               >
                 <Input
                   id="kc-otp-reset-form-submit"
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonBlockClass",
-                    "kcButtonLargeClass"
-                  )}
                   type="submit"
                   value={msgStr("doSubmit")}
                 />

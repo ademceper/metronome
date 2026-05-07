@@ -71,22 +71,11 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <Input
               disabled={!isFormSubmittable}
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                !isAppInitiatedAction && "kcButtonBlockClass",
-                "kcButtonLargeClass"
-              )}
               type="submit"
               value={msgStr("doSubmit")}
             />
             {isAppInitiatedAction && (
               <Button
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonDefaultClass",
-                  "kcButtonLargeClass"
-                )}
                 type="submit"
                 name="cancel-aia"
                 value="true"

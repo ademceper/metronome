@@ -41,12 +41,6 @@ export default function LogoutConfirm(
             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
               <Input
                 tabIndex={0}
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass"
-                )}
                 name="confirmLogout"
                 id="kc-logout"
                 type="submit"

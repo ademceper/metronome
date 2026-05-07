@@ -35,7 +35,6 @@ export default function SelectAuthenticator(
           {auth.authenticationSelections.map((authenticationSelection, i) => (
             <Button
               key={i}
-              className={kcClsx("kcSelectAuthListItemClass")}
               type="submit"
               name="authenticationExecution"
               value={authenticationSelection.authExecId}

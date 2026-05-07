@@ -70,27 +70,15 @@ export default function LoginRecoveryAuthnCodeConfig(
 
       {/* actions */}
       <div className={kcClsx("kcRecoveryCodesActions")}>
-        <Button
-          id="printRecoveryCodes"
-          className={clsx("pf-c-button", "pf-m-link")}
-          type="button"
-        >
+        <Button id="printRecoveryCodes" type="button">
           <i className="pficon-print" aria-hidden="true" />{" "}
           {msg("recovery-codes-print")}
         </Button>
-        <Button
-          id="downloadRecoveryCodes"
-          className={clsx("pf-c-button", "pf-m-link")}
-          type="button"
-        >
+        <Button id="downloadRecoveryCodes" type="button">
           <i className="pficon-save" aria-hidden="true" />{" "}
           {msg("recovery-codes-download")}
         </Button>
-        <Button
-          id="copyRecoveryCodes"
-          className={clsx("pf-c-button", "pf-m-link")}
-          type="button"
-        >
+        <Button id="copyRecoveryCodes" type="button">
           <i className="pficon-blueprint" aria-hidden="true" />{" "}
           {msg("recovery-codes-copy")}
         </Button>
@@ -99,7 +87,6 @@ export default function LoginRecoveryAuthnCodeConfig(
       {/* confirmation checkbox */}
       <div className={kcClsx("kcFormOptionsClass")}>
         <Input
-          className={kcClsx("kcCheckInputClass")}
           type="checkbox"
           id="kcRecoveryCodesConfirmationCheck"
           name="kcRecoveryCodesConfirmationCheck"
@@ -145,22 +132,12 @@ export default function LoginRecoveryAuthnCodeConfig(
           <>
             <Input
               type="submit"
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonLargeClass"
-              )}
               id="saveRecoveryAuthnCodesBtn"
               value={msgStr("recovery-codes-action-complete")}
               disabled
             />
             <Button
               type="submit"
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonDefaultClass",
-                "kcButtonLargeClass"
-              )}
               id="cancelRecoveryAuthnCodesBtn"
               name="cancel-aia"
               value="true"
@@ -171,12 +148,6 @@ export default function LoginRecoveryAuthnCodeConfig(
         ) : (
           <Input
             type="submit"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonPrimaryClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass"
-            )}
             id="saveRecoveryAuthnCodesBtn"
             value={msgStr("recovery-codes-action-complete")}
             disabled

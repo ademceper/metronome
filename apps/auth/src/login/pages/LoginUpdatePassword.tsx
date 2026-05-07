@@ -58,7 +58,6 @@ export default function LoginUpdatePassword(
                 type="password"
                 id="password-new"
                 name="password-new"
-                className={kcClsx("kcInputClass")}
                 autoComplete="new-password"
                 aria-invalid={messagesPerField.existsError(
                   "password",
@@ -99,7 +98,6 @@ export default function LoginUpdatePassword(
                 type="password"
                 id="password-confirm"
                 name="password-confirm"
-                className={kcClsx("kcInputClass")}
                 autoComplete="new-password"
                 aria-invalid={messagesPerField.existsError(
                   "password",
@@ -123,27 +121,9 @@ export default function LoginUpdatePassword(
         <div className={kcClsx("kcFormGroupClass")}>
           <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <Input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                !isAppInitiatedAction && "kcButtonBlockClass",
-                "kcButtonLargeClass"
-              )}
-              type="submit"
-              value={msgStr("doSubmit")}
-            />
+            <Input type="submit" value={msgStr("doSubmit")} />
             {isAppInitiatedAction && (
-              <Button
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonDefaultClass",
-                  "kcButtonLargeClass"
-                )}
-                type="submit"
-                name="cancel-aia"
-                value="true"
-              >
+              <Button type="submit" name="cancel-aia" value="true">
                 {msg("doCancel")}
               </Button>
             )}
@@ -197,7 +177,6 @@ function PasswordWrapper(props: {
       {children}
       <Button
         type="button"
-        className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
           isPasswordRevealed ? "hidePassword" : "showPassword"
         )}

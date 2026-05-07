@@ -121,7 +121,6 @@ export default function LoginConfigTotp(
               id="totp"
               name="totp"
               autoComplete="off"
-              className={kcClsx("kcInputClass")}
               aria-invalid={messagesPerField.existsError("totp")}
             />
 
@@ -160,7 +159,6 @@ export default function LoginConfigTotp(
               id="userLabel"
               name="userLabel"
               autoComplete="off"
-              className={kcClsx("kcInputClass")}
               aria-invalid={messagesPerField.existsError("userLabel")}
             />
             {messagesPerField.existsError("userLabel") && (
@@ -182,24 +180,9 @@ export default function LoginConfigTotp(
 
         {isAppInitiatedAction ? (
           <>
-            <Input
-              type="submit"
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonLargeClass"
-              )}
-              id="saveTOTPBtn"
-              value={msgStr("doSubmit")}
-            />
+            <Input type="submit" id="saveTOTPBtn" value={msgStr("doSubmit")} />
             <Button
               type="submit"
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonDefaultClass",
-                "kcButtonLargeClass",
-                "kcButtonLargeClass"
-              )}
               id="cancelTOTPBtn"
               name="cancel-aia"
               value="true"
@@ -208,16 +191,7 @@ export default function LoginConfigTotp(
             </Button>
           </>
         ) : (
-          <Input
-            type="submit"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonPrimaryClass",
-              "kcButtonLargeClass"
-            )}
-            id="saveTOTPBtn"
-            value={msgStr("doSubmit")}
-          />
+          <Input type="submit" id="saveTOTPBtn" value={msgStr("doSubmit")} />
         )}
       </form>
     </Template>

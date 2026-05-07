@@ -50,7 +50,6 @@ export default function LoginOauth2DeviceVerifyUserCode(
               name="device_user_code"
               autoComplete="off"
               type="text"
-              className={kcClsx("kcInputClass")}
             />
           </div>
         </div>
@@ -62,15 +61,7 @@ export default function LoginOauth2DeviceVerifyUserCode(
 
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <div className={kcClsx("kcFormButtonsWrapperClass")}>
-              <Input
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonLargeClass"
-                )}
-                type="submit"
-                value={msgStr("doSubmit")}
-              />
+              <Input type="submit" value={msgStr("doSubmit")} />
             </div>
           </div>
         </div>

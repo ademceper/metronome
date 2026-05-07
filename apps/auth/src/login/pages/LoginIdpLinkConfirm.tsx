@@ -33,12 +33,6 @@ export default function LoginIdpLinkConfirm(
         <div className={kcClsx("kcFormGroupClass")}>
           <Button
             type="submit"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass"
-            )}
             name="submitAction"
             id="updateProfile"
             value="updateProfile"
@@ -47,12 +41,6 @@ export default function LoginIdpLinkConfirm(
           </Button>
           <Button
             type="submit"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass"
-            )}
             name="submitAction"
             id="linkAccount"
             value="linkAccount"

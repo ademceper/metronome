@@ -327,7 +327,6 @@ function PasswordWrapper(props: {
       {children}
       <Button
         type="button"
-        className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
           isPasswordRevealed ? "hidePassword" : "showPassword"
         )}
@@ -386,7 +385,6 @@ function InputTag(
 
           return valueOrValues
         })()}
-        className={kcClsx("kcInputClass")}
         aria-invalid={
           displayableErrors.find((error) => error.fieldIndex === fieldIndex) !==
           undefined
@@ -606,7 +604,6 @@ function InputTagSelects(props: InputFieldByTypeProps) {
             id={`${attribute.name}-${option}`}
             name={attribute.name}
             value={option}
-            className={classInput}
             aria-invalid={props.displayableErrors.length !== 0}
             disabled={attribute.readOnly}
             checked={

@@ -58,7 +58,6 @@ export default function LoginResetPassword(
               type="text"
               id="username"
               name="username"
-              className={kcClsx("kcInputClass")}
               defaultValue={auth.attemptedUsername ?? ""}
               aria-invalid={messagesPerField.existsError("username")}
             />
@@ -84,16 +83,7 @@ export default function LoginResetPassword(
           </div>
 
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <Input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass"
-              )}
-              type="submit"
-              value={msgStr("doSubmit")}
-            />
+            <Input type="submit" value={msgStr("doSubmit")} />
           </div>
         </div>
       </form>

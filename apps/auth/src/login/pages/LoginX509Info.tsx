@@ -84,11 +84,6 @@ export default function LoginX509Info(
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <div className={kcClsx("kcFormButtonsWrapperClass")}>
               <Input
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonLargeClass"
-                )}
                 name="login"
                 id="kc-login"
                 type="submit"
@@ -96,11 +91,6 @@ export default function LoginX509Info(
               />
               {x509.formData.isUserEnabled && (
                 <Input
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonDefaultClass",
-                    "kcButtonLargeClass"
-                  )}
                   name="cancel"
                   id="kc-cancel"
                   type="submit"

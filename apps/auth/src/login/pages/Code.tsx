@@ -35,11 +35,7 @@ export default function Code(
         {code.success ? (
           <>
             <p>{msg("copyCodeInstruction")}</p>
-            <Input
-              id="code"
-              className={kcClsx("kcTextareaClass")}
-              defaultValue={code.code}
-            />
+            <Input id="code" defaultValue={code.code} />
           </>
         ) : (
           code.error && (

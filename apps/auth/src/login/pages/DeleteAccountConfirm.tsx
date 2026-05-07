@@ -53,22 +53,9 @@ export default function DeleteAccountConfirm(
           {msg("finalDeletionConfirmation")}
         </p>
         <div id="kc-form-buttons">
-          <Input
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonPrimaryClass",
-              "kcButtonLargeClass"
-            )}
-            type="submit"
-            value={msgStr("doConfirmDelete")}
-          />
+          <Input type="submit" value={msgStr("doConfirmDelete")} />
           {triggered_from_aia && (
             <Button
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonDefaultClass",
-                "kcButtonLargeClass"
-              )}
               style={{ marginLeft: "calc(100% - 220px)" }}
               type="submit"
               name="cancel-aia"

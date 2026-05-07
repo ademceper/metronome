@@ -179,12 +179,6 @@ export default function WebauthnAuthenticate(
               id={authButtonId}
               type="button"
               value={msgStr("webauthn-doAuthenticate")}
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass"
-              )}
             />
           </div>
         </div>

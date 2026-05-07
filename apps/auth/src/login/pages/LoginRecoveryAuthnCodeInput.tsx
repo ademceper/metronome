@@ -57,7 +57,6 @@ export default function LoginRecoveryAuthnCodeInput(
               aria-invalid={messagesPerField.existsError("recoveryCodeInput")}
               autoComplete="off"
               type="text"
-              className={kcClsx("kcInputClass")}
             />
             {messagesPerField.existsError("recoveryCodeInput") && (
               <span
@@ -81,12 +80,6 @@ export default function LoginRecoveryAuthnCodeInput(
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <Input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass"
-              )}
               name="login"
               id="kc-login"
               type="submit"

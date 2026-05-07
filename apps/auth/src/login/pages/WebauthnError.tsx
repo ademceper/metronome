@@ -52,12 +52,6 @@ export default function WebauthnError(
           document.getElementById("kc-error-credential-form").requestSubmit()
         }}
         type="button"
-        className={kcClsx(
-          "kcButtonClass",
-          "kcButtonPrimaryClass",
-          "kcButtonBlockClass",
-          "kcButtonLargeClass"
-        )}
         name="try-again"
         id="kc-try-again"
         value={msgStr("doTryAgain")}
@@ -71,12 +65,6 @@ export default function WebauthnError(
         >
           <Button
             type="submit"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass"
-            )}
             id="cancelWebAuthnAIA"
             name="cancel-aia"
             value="true"

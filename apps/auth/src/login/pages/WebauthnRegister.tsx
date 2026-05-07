@@ -71,12 +71,6 @@ export default function WebauthnRegister(
       </form>
       <Input
         type="submit"
-        className={kcClsx(
-          "kcButtonClass",
-          "kcButtonPrimaryClass",
-          "kcButtonBlockClass",
-          "kcButtonLargeClass"
-        )}
         id={authButtonId}
         value={msgStr("doRegisterSecurityKey")}
       />
@@ -90,12 +84,6 @@ export default function WebauthnRegister(
         >
           <Button
             type="submit"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass"
-            )}
             id="cancelWebAuthnAIA"
             name="cancel-aia"
             value="true"

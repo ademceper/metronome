@@ -82,7 +82,6 @@ export default function LoginPassword(
                 <Input
                   tabIndex={0}
                   id="password"
-                  className={kcClsx("kcInputClass")}
                   name="password"
                   type="password"
                   autoComplete="on"
@@ -120,12 +119,6 @@ export default function LoginPassword(
             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
               <Input
                 tabIndex={0}
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass"
-                )}
                 name="login"
                 id="kc-login"
                 type="submit"
@@ -170,12 +163,6 @@ export default function LoginPassword(
           <Input
             id={webAuthnButtonId}
             type="button"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass"
-            )}
             value={msgStr("passkey-doAuthenticate")}
           />
         </>
@@ -202,7 +189,6 @@ function PasswordWrapper(props: {
       {children}
       <Button
         type="button"
-        className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
           isPasswordRevealed ? "hidePassword" : "showPassword"
         )}

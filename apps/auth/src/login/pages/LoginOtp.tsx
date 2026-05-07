@@ -48,7 +48,6 @@ export default function LoginOtp(
                 <Fragment key={index}>
                   <Input
                     id={`kc-otp-credential-${index}`}
-                    className={kcClsx("kcLoginOTPListInputClass")}
                     type="radio"
                     name="selectedCredentialId"
                     value={otpCredential.id}
@@ -93,7 +92,6 @@ export default function LoginOtp(
               name="otp"
               autoComplete="off"
               type="text"
-              className={kcClsx("kcInputClass")}
               aria-invalid={messagesPerField.existsError("totp")}
             />
             {messagesPerField.existsError("totp") && (
@@ -115,12 +113,6 @@ export default function LoginOtp(
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <Input
-              className={kcClsx(
-                "kcButtonClass",
-                "kcButtonPrimaryClass",
-                "kcButtonBlockClass",
-                "kcButtonLargeClass"
-              )}
               name="login"
               id="kc-login"
               type="submit"

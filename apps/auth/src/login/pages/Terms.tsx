@@ -30,24 +30,12 @@ export default function Terms(
       <div id="kc-terms-text">{msg("termsText")}</div>
       <form className="form-actions" action={url.loginAction} method="POST">
         <Input
-          className={kcClsx(
-            "kcButtonClass",
-            "kcButtonClass",
-            "kcButtonClass",
-            "kcButtonPrimaryClass",
-            "kcButtonLargeClass"
-          )}
           name="accept"
           id="kc-accept"
           type="submit"
           value={msgStr("doAccept")}
         />
         <Input
-          className={kcClsx(
-            "kcButtonClass",
-            "kcButtonDefaultClass",
-            "kcButtonLargeClass"
-          )}
           name="cancel"
           id="kc-decline"
           type="submit"

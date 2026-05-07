@@ -98,22 +98,12 @@ export default function LoginOauthGrant(
             <div id="kc-form-buttons">
               <div className={kcClsx("kcFormButtonsWrapperClass")}>
                 <Input
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonLargeClass"
-                  )}
                   name="accept"
                   id="kc-login"
                   type="submit"
                   value={msgStr("doYes")}
                 />
                 <Input
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonDefaultClass",
-                    "kcButtonLargeClass"
-                  )}
                   name="cancel"
                   id="kc-cancel"
                   type="submit"

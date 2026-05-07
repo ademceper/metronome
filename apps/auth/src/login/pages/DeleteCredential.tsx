@@ -35,22 +35,12 @@ export default function DeleteCredential(
       </div>
       <form className="form-actions" action={url.loginAction} method="POST">
         <Input
-          className={kcClsx(
-            "kcButtonClass",
-            "kcButtonPrimaryClass",
-            "kcButtonLargeClass"
-          )}
           name="accept"
           id="kc-accept"
           type="submit"
           value={msgStr("doConfirmDelete")}
         />
         <Input
-          className={kcClsx(
-            "kcButtonClass",
-            "kcButtonDefaultClass",
-            "kcButtonLargeClass"
-          )}
           name="cancel-aia"
           value={msgStr("doCancel")}
           id="kc-decline"

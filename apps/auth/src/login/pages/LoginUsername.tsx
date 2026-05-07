@@ -141,7 +141,6 @@ export default function LoginUsername(
                   <Input
                     tabIndex={2}
                     id="username"
-                    className={kcClsx("kcInputClass")}
                     name="username"
                     defaultValue={login.username ?? ""}
                     type="text"
@@ -188,12 +187,6 @@ export default function LoginUsername(
                 <Input
                   tabIndex={4}
                   disabled={isLoginButtonDisabled}
-                  className={kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonBlockClass",
-                    "kcButtonLargeClass"
-                  )}
                   name="login"
                   id="kc-login"
                   type="submit"
@@ -240,12 +233,6 @@ export default function LoginUsername(
           <Input
             id={webAuthnButtonId}
             type="button"
-            className={kcClsx(
-              "kcButtonClass",
-              "kcButtonDefaultClass",
-              "kcButtonBlockClass",
-              "kcButtonLargeClass"
-            )}
             value={msgStr("passkey-doAuthenticate")}
           />
         </>

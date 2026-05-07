@@ -208,7 +208,6 @@ export default function LoginPasskeysConditionalAuthenticate(
                       tabIndex={0}
                       id="username"
                       aria-invalid={messagesPerField.existsError("username")}
-                      className={kcClsx("kcInputClass")}
                       name="username"
                       defaultValue={login.username ?? ""}
                       autoComplete="username webauthn"
@@ -236,12 +235,6 @@ export default function LoginPasskeysConditionalAuthenticate(
                 id={authButtonId}
                 type="button"
                 value={msgStr("passkey-doAuthenticate")}
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass"
-                )}
               />
             </div>
           </div>

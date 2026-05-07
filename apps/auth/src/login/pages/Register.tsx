@@ -4,7 +4,6 @@ import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
-import { clsx } from "keycloakify/tools/clsx"
 import type { JSX } from "keycloakify/tools/JSX"
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot"
 import { useLayoutEffect, useState } from "react"
@@ -127,15 +126,6 @@ export default function Register(props: RegisterProps) {
           recaptchaAction !== undefined ? (
             <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
               <Button
-                className={clsx(
-                  kcClsx(
-                    "kcButtonClass",
-                    "kcButtonPrimaryClass",
-                    "kcButtonBlockClass",
-                    "kcButtonLargeClass"
-                  ),
-                  "g-recaptcha"
-                )}
                 data-sitekey={recaptchaSiteKey}
                 data-callback="onSubmitRecaptcha"
                 data-action={recaptchaAction}
@@ -151,12 +141,6 @@ export default function Register(props: RegisterProps) {
                   !isFormSubmittable ||
                   (termsAcceptanceRequired && !areTermsAccepted)
                 }
-                className={kcClsx(
-                  "kcButtonClass",
-                  "kcButtonPrimaryClass",
-                  "kcButtonBlockClass",
-                  "kcButtonLargeClass"
-                )}
                 type="submit"
                 value={msgStr("doRegister")}
               />
@@ -199,7 +183,6 @@ function TermsAcceptance(props: {
             type="checkbox"
             id="termsAccepted"
             name="termsAccepted"
-            className={kcClsx("kcCheckboxInputClass")}
             checked={areTermsAccepted}
             onChange={(e) => onAreTermsAcceptedValueChange(e.target.checked)}
             aria-invalid={messagesPerField.existsError("termsAccepted")}

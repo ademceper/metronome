@@ -75,10 +75,6 @@ export default function SelectOrganization(
               <li key={alias}>
                 <Button
                   id={`organization-${alias}`}
-                  className={kcClsx(
-                    "kcFormSocialAccountListButtonClass",
-                    shouldDisplayGrid && "kcFormSocialAccountGridItem"
-                  )}
                   type="button"
                   onClick={onOrganizationClick(alias)}
                   disabled={isSubmitting}
