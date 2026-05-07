@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useScript } from "keycloakify/login/pages/WebauthnAuthenticate.useScript"
@@ -55,23 +56,23 @@ export default function WebauthnAuthenticate(
     >
       <div id="kc-form-webauthn" className={kcClsx("kcFormClass")}>
         <form id="webauth" action={url.loginAction} method="post">
-          <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-          <input
+          <Input type="hidden" id="clientDataJSON" name="clientDataJSON" />
+          <Input
             type="hidden"
             id="authenticatorData"
             name="authenticatorData"
           />
-          <input type="hidden" id="signature" name="signature" />
-          <input type="hidden" id="credentialId" name="credentialId" />
-          <input type="hidden" id="userHandle" name="userHandle" />
-          <input type="hidden" id="error" name="error" />
+          <Input type="hidden" id="signature" name="signature" />
+          <Input type="hidden" id="credentialId" name="credentialId" />
+          <Input type="hidden" id="userHandle" name="userHandle" />
+          <Input type="hidden" id="error" name="error" />
         </form>
         <div className={clsx(kcClsx("kcFormGroupClass"), "no-bottom-margin")}>
           {authenticators && (
             <>
               <form id="authn_select" className={kcClsx("kcFormClass")}>
                 {authenticators.authenticators.map((authenticator) => (
-                  <input
+                  <Input
                     type="hidden"
                     name="authn_use_chk"
                     value={authenticator.credentialId}
@@ -174,7 +175,7 @@ export default function WebauthnAuthenticate(
             </>
           )}
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               id={authButtonId}
               type="button"
               value={msgStr("webauthn-doAuthenticate")}

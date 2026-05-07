@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import type { Attribute } from "keycloakify/login/KcContext"
 import type { KcClsx } from "keycloakify/login/lib/kcClsx"
 import {
@@ -265,7 +267,7 @@ function InputFieldByType(props: InputFieldByTypeProps) {
     // NOTE: Unfortunately, keycloak won't let you define input type="hidden" in the Admin Console.
     // sometimes in the future it might.
     case "hidden":
-      return <input type="hidden" name={attribute.name} value={valueOrValues} />
+      return <Input type="hidden" name={attribute.name} value={valueOrValues} />
     case "textarea":
       return <TextareaTag {...props} />
     case "select":
@@ -323,7 +325,7 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
         className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
@@ -340,7 +342,7 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }
@@ -362,7 +364,7 @@ function InputTag(
 
   return (
     <>
-      <input
+      <Input
         type={(() => {
           const { inputType } = attribute.annotations
 
@@ -503,7 +505,7 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
     <>
       {hasRemove && (
         <>
-          <button
+          <Button
             id={`kc-remove${idPostfix}`}
             type="button"
             className="pf-c-button pf-m-inline pf-m-link"
@@ -516,12 +518,12 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
             }
           >
             {msg("remove")}
-          </button>
+          </Button>
           {hasAdd ? <>&nbsp;|&nbsp;</> : null}
         </>
       )}
       {hasAdd && (
-        <button
+        <Button
           id={`kc-add${idPostfix}`}
           type="button"
           className="pf-c-button pf-m-inline pf-m-link"
@@ -534,7 +536,7 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
           }
         >
           {msg("addValue")}
-        </button>
+        </Button>
       )}
     </>
   )
@@ -599,7 +601,7 @@ function InputTagSelects(props: InputFieldByTypeProps) {
     <>
       {options.map((option) => (
         <div key={option} className={classDiv}>
-          <input
+          <Input
             type={inputType}
             id={`${attribute.name}-${option}`}
             name={attribute.name}

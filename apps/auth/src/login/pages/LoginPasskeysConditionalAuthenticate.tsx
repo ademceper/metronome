@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { useScript } from "keycloakify/login/pages/LoginPasskeysConditionalAuthenticate.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -61,12 +62,12 @@ export default function LoginPasskeysConditionalAuthenticate(
       }
     >
       <form id="webauth" action={url.loginAction} method="post">
-        <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-        <input type="hidden" id="authenticatorData" name="authenticatorData" />
-        <input type="hidden" id="signature" name="signature" />
-        <input type="hidden" id="credentialId" name="credentialId" />
-        <input type="hidden" id="userHandle" name="userHandle" />
-        <input type="hidden" id="error" name="error" />
+        <Input type="hidden" id="clientDataJSON" name="clientDataJSON" />
+        <Input type="hidden" id="authenticatorData" name="authenticatorData" />
+        <Input type="hidden" id="signature" name="signature" />
+        <Input type="hidden" id="credentialId" name="credentialId" />
+        <Input type="hidden" id="userHandle" name="userHandle" />
+        <Input type="hidden" id="error" name="error" />
       </form>
 
       <div
@@ -79,7 +80,7 @@ export default function LoginPasskeysConditionalAuthenticate(
             <>
               <form id="authn_select" className={kcClsx("kcFormClass")}>
                 {authenticators.authenticators.map((authenticator, i) => (
-                  <input
+                  <Input
                     key={i}
                     type="hidden"
                     name="authn_use_chk"
@@ -203,7 +204,7 @@ export default function LoginPasskeysConditionalAuthenticate(
                     >
                       {msg("passkey-autofill-select")}
                     </label>
-                    <input
+                    <Input
                       tabIndex={0}
                       id="username"
                       aria-invalid={messagesPerField.existsError("username")}
@@ -231,7 +232,7 @@ export default function LoginPasskeysConditionalAuthenticate(
               className={kcClsx("kcFormButtonsClass")}
               style={{ display: "none" }}
             >
-              <input
+              <Input
                 id={authButtonId}
                 type="button"
                 value={msgStr("passkey-doAuthenticate")}

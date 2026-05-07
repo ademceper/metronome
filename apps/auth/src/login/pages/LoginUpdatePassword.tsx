@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -52,7 +54,7 @@ export default function LoginUpdatePassword(
               i18n={i18n}
               passwordInputId="password-new"
             >
-              <input
+              <Input
                 type="password"
                 id="password-new"
                 name="password-new"
@@ -93,7 +95,7 @@ export default function LoginUpdatePassword(
               i18n={i18n}
               passwordInputId="password-confirm"
             >
-              <input
+              <Input
                 type="password"
                 id="password-confirm"
                 name="password-confirm"
@@ -121,7 +123,7 @@ export default function LoginUpdatePassword(
         <div className={kcClsx("kcFormGroupClass")}>
           <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonPrimaryClass",
@@ -132,7 +134,7 @@ export default function LoginUpdatePassword(
               value={msgStr("doSubmit")}
             />
             {isAppInitiatedAction && (
-              <button
+              <Button
                 className={kcClsx(
                   "kcButtonClass",
                   "kcButtonDefaultClass",
@@ -143,7 +145,7 @@ export default function LoginUpdatePassword(
                 value="true"
               >
                 {msg("doCancel")}
-              </button>
+              </Button>
             )}
           </div>
         </div>
@@ -162,7 +164,7 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
+            <Input
               type="checkbox"
               id="logout-sessions"
               name="logout-sessions"
@@ -193,7 +195,7 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
         className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
@@ -210,7 +212,7 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -34,7 +35,7 @@ export default function Code(
         {code.success ? (
           <>
             <p>{msg("copyCodeInstruction")}</p>
-            <input
+            <Input
               id="code"
               className={kcClsx("kcTextareaClass")}
               defaultValue={code.code}

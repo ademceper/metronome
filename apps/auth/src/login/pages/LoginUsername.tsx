@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { useScript } from "keycloakify/login/pages/LoginUsername.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -137,7 +138,7 @@ export default function LoginUsername(
                         ? msg("usernameOrEmail")
                         : msg("email")}
                   </label>
-                  <input
+                  <Input
                     tabIndex={2}
                     id="username"
                     className={kcClsx("kcInputClass")}
@@ -169,7 +170,7 @@ export default function LoginUsername(
                   {realm.rememberMe && !usernameHidden && (
                     <div className="checkbox">
                       <label>
-                        <input
+                        <Input
                           tabIndex={3}
                           id="rememberMe"
                           name="rememberMe"
@@ -184,7 +185,7 @@ export default function LoginUsername(
               </div>
 
               <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-                <input
+                <Input
                   tabIndex={4}
                   disabled={isLoginButtonDisabled}
                   className={kcClsx(
@@ -206,16 +207,16 @@ export default function LoginUsername(
       {enableWebAuthnConditionalUI && (
         <>
           <form id="webauth" action={url.loginAction} method="post">
-            <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-            <input
+            <Input type="hidden" id="clientDataJSON" name="clientDataJSON" />
+            <Input
               type="hidden"
               id="authenticatorData"
               name="authenticatorData"
             />
-            <input type="hidden" id="signature" name="signature" />
-            <input type="hidden" id="credentialId" name="credentialId" />
-            <input type="hidden" id="userHandle" name="userHandle" />
-            <input type="hidden" id="error" name="error" />
+            <Input type="hidden" id="signature" name="signature" />
+            <Input type="hidden" id="credentialId" name="credentialId" />
+            <Input type="hidden" id="userHandle" name="userHandle" />
+            <Input type="hidden" id="error" name="error" />
           </form>
 
           {authenticators !== undefined &&
@@ -223,7 +224,7 @@ export default function LoginUsername(
               <>
                 <form id="authn_select" className={kcClsx("kcFormClass")}>
                   {authenticators.authenticators.map((authenticator, i) => (
-                    <input
+                    <Input
                       key={i}
                       type="hidden"
                       name="authn_use_chk"
@@ -236,7 +237,7 @@ export default function LoginUsername(
             )}
           <br />
 
-          <input
+          <Input
             id={webAuthnButtonId}
             type="button"
             className={kcClsx(

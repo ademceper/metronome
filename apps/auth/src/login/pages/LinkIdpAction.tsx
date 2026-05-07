@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -36,7 +37,7 @@ export default function LinkIdpAction(
       >
         <div className={kcClsx("kcFormGroupClass")}>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonPrimaryClass",
@@ -47,7 +48,7 @@ export default function LinkIdpAction(
               type="submit"
               value={msgStr("doContinue")}
             />
-            <input
+            <Input
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonDefaultClass",

@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
@@ -71,7 +73,7 @@ export default function UpdateEmail(props: UpdateEmailProps) {
           <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
 
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               disabled={!isFormSubmittable}
               className={kcClsx(
                 "kcButtonClass",
@@ -83,7 +85,7 @@ export default function UpdateEmail(props: UpdateEmailProps) {
               value={msgStr("doSubmit")}
             />
             {isAppInitiatedAction && (
-              <button
+              <Button
                 className={kcClsx(
                   "kcButtonClass",
                   "kcButtonDefaultClass",
@@ -94,7 +96,7 @@ export default function UpdateEmail(props: UpdateEmailProps) {
                 value="true"
               >
                 {msg("doCancel")}
-              </button>
+              </Button>
             )}
           </div>
         </div>
@@ -113,7 +115,7 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
+            <Input
               type="checkbox"
               id="logout-sessions"
               name="logout-sessions"

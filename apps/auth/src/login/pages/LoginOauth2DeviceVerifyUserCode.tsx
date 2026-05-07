@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -44,7 +45,7 @@ export default function LoginOauth2DeviceVerifyUserCode(
           </div>
 
           <div className={kcClsx("kcInputWrapperClass")}>
-            <input
+            <Input
               id="device-user-code"
               name="device_user_code"
               autoComplete="off"
@@ -61,7 +62,7 @@ export default function LoginOauth2DeviceVerifyUserCode(
 
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
             <div className={kcClsx("kcFormButtonsWrapperClass")}>
-              <input
+              <Input
                 className={kcClsx(
                   "kcButtonClass",
                   "kcButtonPrimaryClass",

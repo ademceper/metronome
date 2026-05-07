@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
@@ -67,7 +68,7 @@ export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
             <div className={kcClsx("kcFormOptionsWrapperClass")} />
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonPrimaryClass",

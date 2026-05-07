@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -45,7 +46,7 @@ export default function LoginOtp(
             <div className={kcClsx("kcInputWrapperClass")}>
               {otpLogin.userOtpCredentials.map((otpCredential, index) => (
                 <Fragment key={index}>
-                  <input
+                  <Input
                     id={`kc-otp-credential-${index}`}
                     className={kcClsx("kcLoginOTPListInputClass")}
                     type="radio"
@@ -87,7 +88,7 @@ export default function LoginOtp(
             </label>
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
-            <input
+            <Input
               id="otp"
               name="otp"
               autoComplete="off"
@@ -113,7 +114,7 @@ export default function LoginOtp(
             <div className={kcClsx("kcFormOptionsWrapperClass")}></div>
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonPrimaryClass",

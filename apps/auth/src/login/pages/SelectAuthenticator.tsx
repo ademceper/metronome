@@ -1,3 +1,4 @@
+import { Button } from "@metronome/ui/components/button"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -32,7 +33,7 @@ export default function SelectAuthenticator(
       >
         <div className={kcClsx("kcSelectAuthListClass")}>
           {auth.authenticationSelections.map((authenticationSelection, i) => (
-            <button
+            <Button
               key={i}
               className={kcClsx("kcSelectAuthListItemClass")}
               type="submit"
@@ -59,7 +60,7 @@ export default function SelectAuthenticator(
               <div className={kcClsx("kcSelectAuthListItemArrowClass")}>
                 <i className={kcClsx("kcSelectAuthListItemArrowIconClass")} />
               </div>
-            </button>
+            </Button>
           ))}
         </div>
       </form>

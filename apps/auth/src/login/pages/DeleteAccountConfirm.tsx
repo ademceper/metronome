@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -51,7 +53,7 @@ export default function DeleteAccountConfirm(
           {msg("finalDeletionConfirmation")}
         </p>
         <div id="kc-form-buttons">
-          <input
+          <Input
             className={kcClsx(
               "kcButtonClass",
               "kcButtonPrimaryClass",
@@ -61,7 +63,7 @@ export default function DeleteAccountConfirm(
             value={msgStr("doConfirmDelete")}
           />
           {triggered_from_aia && (
-            <button
+            <Button
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonDefaultClass",
@@ -73,7 +75,7 @@ export default function DeleteAccountConfirm(
               value="true"
             >
               {msgStr("doCancel")}
-            </button>
+            </Button>
           )}
         </div>
       </form>

@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -124,7 +126,7 @@ export default function Register(props: RegisterProps) {
           !recaptchaVisible &&
           recaptchaAction !== undefined ? (
             <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-              <button
+              <Button
                 className={clsx(
                   kcClsx(
                     "kcButtonClass",
@@ -140,11 +142,11 @@ export default function Register(props: RegisterProps) {
                 type="submit"
               >
                 {msg("doRegister")}
-              </button>
+              </Button>
             </div>
           ) : (
             <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-              <input
+              <Input
                 disabled={
                   !isFormSubmittable ||
                   (termsAcceptanceRequired && !areTermsAccepted)
@@ -193,7 +195,7 @@ function TermsAcceptance(props: {
       </div>
       <div className="form-group">
         <div className={kcClsx("kcLabelWrapperClass")}>
-          <input
+          <Input
             type="checkbox"
             id="termsAccepted"
             name="termsAccepted"

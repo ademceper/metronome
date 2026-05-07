@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -53,7 +54,7 @@ export default function LoginResetPassword(
             </label>
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
-            <input
+            <Input
               type="text"
               id="username"
               name="username"
@@ -83,7 +84,7 @@ export default function LoginResetPassword(
           </div>
 
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               className={kcClsx(
                 "kcButtonClass",
                 "kcButtonPrimaryClass",

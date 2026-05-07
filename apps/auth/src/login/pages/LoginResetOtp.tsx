@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { Fragment } from "react"
@@ -41,7 +42,7 @@ export default function LoginResetOtp(
             {configuredOtpCredentials.userOtpCredentials.map(
               (otpCredential, index) => (
                 <Fragment key={otpCredential.id}>
-                  <input
+                  <Input
                     id={`kc-otp-credential-${index}`}
                     className={kcClsx("kcLoginOTPListInputClass")}
                     type="radio"
@@ -79,7 +80,7 @@ export default function LoginResetOtp(
                 id="kc-form-buttons"
                 className={kcClsx("kcFormButtonsClass")}
               >
-                <input
+                <Input
                   id="kc-otp-reset-form-submit"
                   className={kcClsx(
                     "kcButtonClass",

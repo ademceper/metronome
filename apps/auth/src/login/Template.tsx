@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { useInitialize } from "keycloakify/login/Template.useInitialize"
@@ -74,7 +76,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     kcClsx("kcLocaleDropDownClass")
                   )}
                 >
-                  <button
+                  <Button
                     tabIndex={0}
                     id="kc-current-locale-link"
                     aria-label={msgStr("languages")}
@@ -83,7 +85,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                     aria-controls="language-switch1"
                   >
                     {currentLanguage.label}
-                  </button>
+                  </Button>
                   <ul
                     tabIndex={-1}
                     aria-labelledby="kc-current-locale-link"
@@ -197,7 +199,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                 method="post"
               >
                 <div className={kcClsx("kcFormGroupClass")}>
-                  <input type="hidden" name="tryAnotherWay" value="on" />
+                  <Input type="hidden" name="tryAnotherWay" value="on" />
                   <a
                     href="#"
                     id="try-another-way"

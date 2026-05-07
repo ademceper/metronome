@@ -1,3 +1,4 @@
+import { Button } from "@metronome/ui/components/button"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -35,7 +36,7 @@ export default function LoginIdpLinkConfirmOverride(
         </a>
         <br />
         <br />
-        <button
+        <Button
           type="submit"
           className={kcClsx(
             "kcButtonClass",
@@ -48,7 +49,7 @@ export default function LoginIdpLinkConfirmOverride(
           value="confirmOverride"
         >
           {msg("confirmOverrideIdpContinue", idpDisplayName)}
-        </button>
+        </Button>
       </form>
     </Template>
   )

@@ -35,6 +35,9 @@ importers:
 
   apps/auth:
     dependencies:
+      '@metronome/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       keycloakify:
         specifier: ^11.15.0
         version: 11.15.3

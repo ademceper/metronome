@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 /**
  * Password step (login-password.ftl) for flows where username is already captured.
  * Adds conditional WebAuthn passkey authenticate section when enabled.
@@ -77,7 +79,7 @@ export default function LoginPassword(
                 i18n={i18n}
                 passwordInputId="password"
               >
-                <input
+                <Input
                   tabIndex={0}
                   id="password"
                   className={kcClsx("kcInputClass")}
@@ -116,7 +118,7 @@ export default function LoginPassword(
               </div>
             </div>
             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-              <input
+              <Input
                 tabIndex={0}
                 className={kcClsx(
                   "kcButtonClass",
@@ -137,23 +139,23 @@ export default function LoginPassword(
       {enableWebAuthnConditionalUI && (
         <>
           <form id="webauth" action={url.loginAction} method="post">
-            <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-            <input
+            <Input type="hidden" id="clientDataJSON" name="clientDataJSON" />
+            <Input
               type="hidden"
               id="authenticatorData"
               name="authenticatorData"
             />
-            <input type="hidden" id="signature" name="signature" />
-            <input type="hidden" id="credentialId" name="credentialId" />
-            <input type="hidden" id="userHandle" name="userHandle" />
-            <input type="hidden" id="error" name="error" />
+            <Input type="hidden" id="signature" name="signature" />
+            <Input type="hidden" id="credentialId" name="credentialId" />
+            <Input type="hidden" id="userHandle" name="userHandle" />
+            <Input type="hidden" id="error" name="error" />
           </form>
 
           {authenticators !== undefined &&
             authenticators.authenticators.length !== 0 && (
               <form id="authn_select" className={kcClsx("kcFormClass")}>
                 {authenticators.authenticators.map((authenticator, i) => (
-                  <input
+                  <Input
                     key={i}
                     type="hidden"
                     name="authn_use_chk"
@@ -165,7 +167,7 @@ export default function LoginPassword(
             )}
           <br />
 
-          <input
+          <Input
             id={webAuthnButtonId}
             type="button"
             className={kcClsx(
@@ -198,7 +200,7 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
         className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
@@ -215,7 +217,7 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }

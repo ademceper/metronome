@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
@@ -67,7 +69,7 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
             <div className={kcClsx("kcFormOptionsWrapperClass")} />
           </div>
           <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-            <input
+            <Input
               disabled={!isFormSubmittable}
               className={kcClsx(
                 "kcButtonClass",
@@ -79,7 +81,7 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
               value={msgStr("doSubmit")}
             />
             {isAppInitiatedAction && (
-              <button
+              <Button
                 className={kcClsx(
                   "kcButtonClass",
                   "kcButtonDefaultClass",
@@ -91,7 +93,7 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
                 formNoValidate
               >
                 {msg("doCancel")}
-              </button>
+              </Button>
             )}
           </div>
         </div>

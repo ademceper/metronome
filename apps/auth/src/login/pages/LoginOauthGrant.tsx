@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -88,7 +89,7 @@ export default function LoginOauthGrant(
           ))}
 
         <form className="form-actions" action={url.oauthAction} method="POST">
-          <input type="hidden" name="code" value={oauth.code} />
+          <Input type="hidden" name="code" value={oauth.code} />
           <div className={kcClsx("kcFormGroupClass")}>
             <div id="kc-form-options">
               <div className={kcClsx("kcFormOptionsWrapperClass")}></div>
@@ -96,7 +97,7 @@ export default function LoginOauthGrant(
 
             <div id="kc-form-buttons">
               <div className={kcClsx("kcFormButtonsWrapperClass")}>
-                <input
+                <Input
                   className={kcClsx(
                     "kcButtonClass",
                     "kcButtonPrimaryClass",
@@ -107,7 +108,7 @@ export default function LoginOauthGrant(
                   type="submit"
                   value={msgStr("doYes")}
                 />
-                <input
+                <Input
                   className={kcClsx(
                     "kcButtonClass",
                     "kcButtonDefaultClass",

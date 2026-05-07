@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 /**
  * Combined Username + Password login page (login.ftl) with optional WebAuthn passkey support.
  * Renders standard login form plus conditional passkey authenticator section.
@@ -149,7 +151,7 @@ export default function Login(
                         ? msg("usernameOrEmail")
                         : msg("email")}
                   </label>
-                  <input
+                  <Input
                     tabIndex={2}
                     id="username"
                     className={kcClsx("kcInputClass")}
@@ -191,7 +193,7 @@ export default function Login(
                   i18n={i18n}
                   passwordInputId="password"
                 >
-                  <input
+                  <Input
                     tabIndex={3}
                     id="password"
                     className={kcClsx("kcInputClass")}
@@ -224,7 +226,7 @@ export default function Login(
                   {realm.rememberMe && !usernameHidden && (
                     <div className="checkbox">
                       <label>
-                        <input
+                        <Input
                           tabIndex={5}
                           id="rememberMe"
                           name="rememberMe"
@@ -248,13 +250,13 @@ export default function Login(
               </div>
 
               <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-                <input
+                <Input
                   type="hidden"
                   id="id-hidden-input"
                   name="credentialId"
                   value={auth.selectedCredential}
                 />
-                <input
+                <Input
                   tabIndex={7}
                   disabled={isLoginButtonDisabled}
                   className={kcClsx(
@@ -276,16 +278,16 @@ export default function Login(
       {enableWebAuthnConditionalUI && (
         <>
           <form id="webauth" action={url.loginAction} method="post">
-            <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-            <input
+            <Input type="hidden" id="clientDataJSON" name="clientDataJSON" />
+            <Input
               type="hidden"
               id="authenticatorData"
               name="authenticatorData"
             />
-            <input type="hidden" id="signature" name="signature" />
-            <input type="hidden" id="credentialId" name="credentialId" />
-            <input type="hidden" id="userHandle" name="userHandle" />
-            <input type="hidden" id="error" name="error" />
+            <Input type="hidden" id="signature" name="signature" />
+            <Input type="hidden" id="credentialId" name="credentialId" />
+            <Input type="hidden" id="userHandle" name="userHandle" />
+            <Input type="hidden" id="error" name="error" />
           </form>
 
           {authenticators !== undefined &&
@@ -293,7 +295,7 @@ export default function Login(
               <>
                 <form id="authn_select" className={kcClsx("kcFormClass")}>
                   {authenticators.authenticators.map((authenticator, i) => (
-                    <input
+                    <Input
                       key={i}
                       type="hidden"
                       name="authn_use_chk"
@@ -306,7 +308,7 @@ export default function Login(
             )}
           <br />
 
-          <input
+          <Input
             id={webAuthnButtonId}
             type="button"
             className={kcClsx(
@@ -339,7 +341,7 @@ function PasswordWrapper(props: {
   return (
     <div className={kcClsx("kcInputGroup")}>
       {children}
-      <button
+      <Button
         type="button"
         className={kcClsx("kcFormPasswordVisibilityButtonClass")}
         aria-label={msgStr(
@@ -356,7 +358,7 @@ function PasswordWrapper(props: {
           )}
           aria-hidden
         />
-      </button>
+      </Button>
     </div>
   )
 }

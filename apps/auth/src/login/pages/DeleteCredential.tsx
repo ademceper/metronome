@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -33,7 +34,7 @@ export default function DeleteCredential(
         {msg("deleteCredentialMessage", credentialLabel)}
       </div>
       <form className="form-actions" action={url.loginAction} method="POST">
-        <input
+        <Input
           className={kcClsx(
             "kcButtonClass",
             "kcButtonPrimaryClass",
@@ -44,7 +45,7 @@ export default function DeleteCredential(
           type="submit"
           value={msgStr("doConfirmDelete")}
         />
-        <input
+        <Input
           className={kcClsx(
             "kcButtonClass",
             "kcButtonDefaultClass",

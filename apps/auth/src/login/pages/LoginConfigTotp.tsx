@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -114,7 +116,7 @@ export default function LoginConfigTotp(
             <span className="required">*</span>
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
-            <input
+            <Input
               type="text"
               id="totp"
               name="totp"
@@ -134,13 +136,13 @@ export default function LoginConfigTotp(
               />
             )}
           </div>
-          <input
+          <Input
             type="hidden"
             id="totpSecret"
             name="totpSecret"
             value={totp.totpSecret}
           />
-          {mode && <input type="hidden" id="mode" value={mode} />}
+          {mode && <Input type="hidden" id="mode" value={mode} />}
         </div>
 
         <div className={kcClsx("kcFormGroupClass")}>
@@ -153,7 +155,7 @@ export default function LoginConfigTotp(
             )}
           </div>
           <div className={kcClsx("kcInputWrapperClass")}>
-            <input
+            <Input
               type="text"
               id="userLabel"
               name="userLabel"
@@ -180,7 +182,7 @@ export default function LoginConfigTotp(
 
         {isAppInitiatedAction ? (
           <>
-            <input
+            <Input
               type="submit"
               className={kcClsx(
                 "kcButtonClass",
@@ -190,7 +192,7 @@ export default function LoginConfigTotp(
               id="saveTOTPBtn"
               value={msgStr("doSubmit")}
             />
-            <button
+            <Button
               type="submit"
               className={kcClsx(
                 "kcButtonClass",
@@ -203,10 +205,10 @@ export default function LoginConfigTotp(
               value="true"
             >
               {msg("doCancel")}
-            </button>
+            </Button>
           </>
         ) : (
-          <input
+          <Input
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -232,7 +234,7 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
+            <Input
               type="checkbox"
               id="logout-sessions"
               name="logout-sessions"

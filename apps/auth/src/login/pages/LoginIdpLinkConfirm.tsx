@@ -1,3 +1,4 @@
+import { Button } from "@metronome/ui/components/button"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -30,7 +31,7 @@ export default function LoginIdpLinkConfirm(
     >
       <form id="kc-register-form" action={url.loginAction} method="post">
         <div className={kcClsx("kcFormGroupClass")}>
-          <button
+          <Button
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -43,8 +44,8 @@ export default function LoginIdpLinkConfirm(
             value="updateProfile"
           >
             {msg("confirmLinkIdpReviewProfile")}
-          </button>
-          <button
+          </Button>
+          <Button
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -57,7 +58,7 @@ export default function LoginIdpLinkConfirm(
             value="linkAccount"
           >
             {msg("confirmLinkIdpContinue", idpAlias)}
-          </button>
+          </Button>
         </div>
       </form>
     </Template>

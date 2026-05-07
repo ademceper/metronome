@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useScript } from "keycloakify/login/pages/WebauthnRegister.useScript"
@@ -46,28 +48,28 @@ export default function WebauthnRegister(
         method="post"
       >
         <div className={kcClsx("kcFormGroupClass")}>
-          <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
-          <input
+          <Input type="hidden" id="clientDataJSON" name="clientDataJSON" />
+          <Input
             type="hidden"
             id="attestationObject"
             name="attestationObject"
           />
-          <input
+          <Input
             type="hidden"
             id="publicKeyCredentialId"
             name="publicKeyCredentialId"
           />
-          <input
+          <Input
             type="hidden"
             id="authenticatorLabel"
             name="authenticatorLabel"
           />
-          <input type="hidden" id="transports" name="transports" />
-          <input type="hidden" id="error" name="error" />
+          <Input type="hidden" id="transports" name="transports" />
+          <Input type="hidden" id="error" name="error" />
           <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
         </div>
       </form>
-      <input
+      <Input
         type="submit"
         className={kcClsx(
           "kcButtonClass",
@@ -86,7 +88,7 @@ export default function WebauthnRegister(
           id="kc-webauthn-settings-form"
           method="post"
         >
-          <button
+          <Button
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -99,7 +101,7 @@ export default function WebauthnRegister(
             value="true"
           >
             {msg("doCancel")}
-          </button>
+          </Button>
         </form>
       )}
     </Template>
@@ -116,7 +118,7 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
+            <Input
               type="checkbox"
               id="logout-sessions"
               name="logout-sessions"

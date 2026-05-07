@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useEffect, useState } from "react"
 import type { I18n } from "../i18n"
@@ -44,25 +45,25 @@ export default function SamlPostForm(
         ref={setHtmlFormElement}
       >
         {samlPost.SAMLRequest && (
-          <input
+          <Input
             type="hidden"
             name="SAMLRequest"
             value={samlPost.SAMLRequest}
           />
         )}
         {samlPost.SAMLResponse && (
-          <input
+          <Input
             type="hidden"
             name="SAMLResponse"
             value={samlPost.SAMLResponse}
           />
         )}
         {samlPost.relayState && (
-          <input type="hidden" name="RelayState" value={samlPost.relayState} />
+          <Input type="hidden" name="RelayState" value={samlPost.relayState} />
         )}
         <noscript>
           <p>{msg("saml.post-form.js-disabled")}</p>
-          <input type="submit" value={msgStr("doContinue")} />
+          <Input type="submit" value={msgStr("doContinue")} />
         </noscript>
       </form>
     </Template>

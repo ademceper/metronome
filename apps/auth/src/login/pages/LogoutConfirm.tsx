@@ -1,3 +1,4 @@
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -32,13 +33,13 @@ export default function LogoutConfirm(
           action={url.logoutConfirmAction}
           method="POST"
         >
-          <input type="hidden" name="session_code" value={logoutConfirm.code} />
+          <Input type="hidden" name="session_code" value={logoutConfirm.code} />
           <div className={kcClsx("kcFormGroupClass")}>
             <div id="kc-form-options">
               <div className={kcClsx("kcFormOptionsWrapperClass")}></div>
             </div>
             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-              <input
+              <Input
                 tabIndex={0}
                 className={kcClsx(
                   "kcButtonClass",

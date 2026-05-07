@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -32,14 +34,14 @@ export default function WebauthnError(
         action={url.loginAction}
         method="post"
       >
-        <input
+        <Input
           type="hidden"
           id="executionValue"
           name="authenticationExecution"
         />
-        <input type="hidden" id="isSetRetry" name="isSetRetry" />
+        <Input type="hidden" id="isSetRetry" name="isSetRetry" />
       </form>
-      <input
+      <Input
         tabIndex={0}
         onClick={() => {
           // @ts-expect-error: Trusted Keycloak's code
@@ -67,7 +69,7 @@ export default function WebauthnError(
           id="kc-webauthn-settings-form"
           method="post"
         >
-          <button
+          <Button
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -80,7 +82,7 @@ export default function WebauthnError(
             value="true"
           >
             {msgStr("doCancel")}
-          </button>
+          </Button>
         </form>
       )}
     </Template>

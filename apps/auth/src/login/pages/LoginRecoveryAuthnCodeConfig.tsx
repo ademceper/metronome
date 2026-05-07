@@ -1,3 +1,5 @@
+import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx"
 import { useScript } from "keycloakify/login/pages/LoginRecoveryAuthnCodeConfig.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -68,35 +70,35 @@ export default function LoginRecoveryAuthnCodeConfig(
 
       {/* actions */}
       <div className={kcClsx("kcRecoveryCodesActions")}>
-        <button
+        <Button
           id="printRecoveryCodes"
           className={clsx("pf-c-button", "pf-m-link")}
           type="button"
         >
           <i className="pficon-print" aria-hidden="true" />{" "}
           {msg("recovery-codes-print")}
-        </button>
-        <button
+        </Button>
+        <Button
           id="downloadRecoveryCodes"
           className={clsx("pf-c-button", "pf-m-link")}
           type="button"
         >
           <i className="pficon-save" aria-hidden="true" />{" "}
           {msg("recovery-codes-download")}
-        </button>
-        <button
+        </Button>
+        <Button
           id="copyRecoveryCodes"
           className={clsx("pf-c-button", "pf-m-link")}
           type="button"
         >
           <i className="pficon-blueprint" aria-hidden="true" />{" "}
           {msg("recovery-codes-copy")}
-        </button>
+        </Button>
       </div>
 
       {/* confirmation checkbox */}
       <div className={kcClsx("kcFormOptionsClass")}>
-        <input
+        <Input
           className={kcClsx("kcCheckInputClass")}
           type="checkbox"
           id="kcRecoveryCodesConfirmationCheck"
@@ -118,19 +120,19 @@ export default function LoginRecoveryAuthnCodeConfig(
         id="kc-recovery-codes-settings-form"
         method="post"
       >
-        <input
+        <Input
           type="hidden"
           name="generatedRecoveryAuthnCodes"
           value={
             recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesAsString
           }
         />
-        <input
+        <Input
           type="hidden"
           name="generatedAt"
           value={recoveryAuthnCodesConfigBean.generatedAt}
         />
-        <input
+        <Input
           type="hidden"
           id="userLabel"
           name="userLabel"
@@ -141,7 +143,7 @@ export default function LoginRecoveryAuthnCodeConfig(
 
         {isAppInitiatedAction ? (
           <>
-            <input
+            <Input
               type="submit"
               className={kcClsx(
                 "kcButtonClass",
@@ -152,7 +154,7 @@ export default function LoginRecoveryAuthnCodeConfig(
               value={msgStr("recovery-codes-action-complete")}
               disabled
             />
-            <button
+            <Button
               type="submit"
               className={kcClsx(
                 "kcButtonClass",
@@ -164,10 +166,10 @@ export default function LoginRecoveryAuthnCodeConfig(
               value="true"
             >
               {msg("recovery-codes-action-cancel")}
-            </button>
+            </Button>
           </>
         ) : (
-          <input
+          <Input
             type="submit"
             className={kcClsx(
               "kcButtonClass",
@@ -195,7 +197,7 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
       <div className={kcClsx("kcFormOptionsWrapperClass")}>
         <div className="checkbox">
           <label>
-            <input
+            <Input
               type="checkbox"
               id="logout-sessions"
               name="logout-sessions"
