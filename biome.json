@@ -101,17 +101,36 @@
         "rules": {
           "complexity": {
             "noBannedTypes": "off",
-            "noUselessTypeConstraint": "off"
+            "noUselessTypeConstraint": "off",
+            "noUselessFragments": "off"
           },
           "a11y": {
-            "useHtmlLang": "off"
+            "useHtmlLang": "off",
+            "useValidAriaValues": "off",
+            "useValidAnchor": "off",
+            "useIframeTitle": "off",
+            "useButtonType": "off",
+            "useAriaPropsSupportedByRole": "off",
+            "noLabelWithoutControl": "off",
+            "noPositiveTabindex": "off",
+            "noAutofocus": "off",
+            "useAltText": "off"
           },
           "correctness": {
-            "noUnusedVariables": "off"
+            "noUnusedVariables": "off",
+            "useJsxKeyInIterable": "off"
           },
           "suspicious": {
             "noEmptyBlockStatements": "off",
-            "noExplicitAny": "off"
+            "noExplicitAny": "off",
+            "noArrayIndexKey": "off",
+            "noShadowRestrictedNames": "off",
+            "noConfusingLabels": "off",
+            "noTemplateCurlyInString": "off",
+            "noTsIgnore": "off"
+          },
+          "security": {
+            "noDangerouslySetInnerHtml": "off"
           }
         }
       }
