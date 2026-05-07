@@ -1,0 +1,40 @@
+{
+  "name": "keycloak",
+  "version": "0.0.1",
+  "description": "Keycloakify theme",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "keycloakify start-keycloak --keycloak-version 26",
+    "dev:vite": "vite",
+    "build": "tsc && vite build",
+    "build-keycloak-theme": "pnpm build && keycloakify build",
+    "storybook": "storybook dev -p 6006",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@icons-pack/react-simple-icons": "^13.13.0",
+    "@metronome/ui": "workspace:*",
+    "@phosphor-icons/react": "^2.1.10",
+    "keycloakify": "^11.15.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@metronome/ts-cfg": "workspace:*",
+    "@storybook/react": "^8.1.10",
+    "@storybook/react-vite": "^8.1.10",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.2.1",
+    "postcss": "^8.4.47",
+    "storybook": "^8.1.10",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
+    "vite": "^5.0.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

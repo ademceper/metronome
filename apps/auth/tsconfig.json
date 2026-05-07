@@ -1,4 +1,0 @@
-{
-  "extends": "@metronome/ts-cfg/vite.json",
-  "include": ["src", "vite.config.ts"]
-}

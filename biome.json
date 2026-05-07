@@ -96,7 +96,7 @@
       }
     },
     {
-      "includes": ["apps/auth/**"],
+      "includes": ["apps/keycloak/**"],
       "linter": {
         "rules": {
           "complexity": {
@@ -114,7 +114,8 @@
             "noLabelWithoutControl": "off",
             "noPositiveTabindex": "off",
             "noAutofocus": "off",
-            "useAltText": "off"
+            "useAltText": "off",
+            "noSvgWithoutTitle": "off"
           },
           "correctness": {
             "noUnusedVariables": "off",

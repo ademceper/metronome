@@ -1,0 +1,6 @@
+/dist_keycloak
+/storybook-static
+/.rendered
+
+# keycloakify cache
+.keycloakify

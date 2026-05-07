@@ -1,6 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreExportsUsedInFile": true,
+  "ignore": ["infrastructure/**"],
   "workspaces": {
     ".": {
       "entry": ["biome.json", "lefthook.yml"]
@@ -15,7 +16,7 @@
       "vite": true,
       "ignoreDependencies": ["tailwindcss", "@phosphor-icons/react"]
     },
-    "apps/auth": {
+    "apps/keycloak": {
       "entry": [
         "src/kc.gen.tsx",
         "src/login/KcPageStory.tsx",
@@ -25,7 +26,7 @@
       "project": ["src/**/*.{ts,tsx}"],
       "vite": true,
       "storybook": true,
-      "ignoreDependencies": ["tailwindcss"]
+      "ignoreDependencies": ["tailwindcss", "postcss", "@tailwindcss/postcss"]
     },
     "packages/ui": {
       "entry": ["src/components/*.tsx", "src/lib/*.ts", "src/styles/*.css"],
