@@ -1,11 +1,15 @@
+import { Alert, AlertDescription } from "@metronome/ui/components/alert"
 import { Button } from "@metronome/ui/components/button"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@metronome/ui/components/card"
 import { Input } from "@metronome/ui/components/input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
-import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import { useInitialize } from "keycloakify/login/Template.useInitialize"
 import type { TemplateProps } from "keycloakify/login/TemplateProps"
-import { clsx } from "keycloakify/tools/clsx"
-import { useSetClassName } from "keycloakify/tools/useSetClassName"
 import { useEffect } from "react"
 import type { I18n } from "./i18n"
 import type { KcContext } from "./KcContext"
@@ -19,18 +23,13 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     socialProvidersNode = null,
     infoNode = null,
     documentTitle,
-    bodyClassName,
     kcContext,
     i18n,
     doUseDefaultCss,
-    classes,
     children,
   } = props
 
-  const { kcClsx } = getKcClsx({ doUseDefaultCss, classes })
-
   const { msg, msgStr, currentLanguage, enabledLanguages } = i18n
-
   const { realm, auth, url, message, isAppInitiatedAction } = kcContext
 
   useEffect(() => {
@@ -38,197 +37,113 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
       documentTitle ?? msgStr("loginTitle", realm.displayName || realm.name)
   }, [realm.name, realm.displayName, msgStr, documentTitle])
 
-  useSetClassName({
-    qualifiedName: "html",
-    className: kcClsx("kcHtmlClass"),
-  })
-
-  useSetClassName({
-    qualifiedName: "body",
-    className: bodyClassName ?? kcClsx("kcBodyClass"),
-  })
-
   const { isReadyToRender } = useInitialize({ kcContext, doUseDefaultCss })
 
   if (!isReadyToRender) {
     return null
   }
 
+  const alertVariant = message?.type === "error" ? "destructive" : "default"
+
   return (
-    <div className={kcClsx("kcLoginClass")}>
-      <div id="kc-header" className={kcClsx("kcHeaderClass")}>
-        <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
-          {msg("loginTitleHtml", realm.displayNameHtml || realm.name)}
-        </div>
-      </div>
-      <div className={kcClsx("kcFormCardClass")}>
-        <header className={kcClsx("kcFormHeaderClass")}>
-          {enabledLanguages.length > 1 && (
-            <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
-              <div
-                id="kc-locale-wrapper"
-                className={kcClsx("kcLocaleWrapperClass")}
-              >
-                <div
-                  id="kc-locale-dropdown"
-                  className={clsx(
-                    "menu-button-links",
-                    kcClsx("kcLocaleDropDownClass")
-                  )}
+    <div className="flex min-h-svh flex-col items-center justify-center bg-background p-6">
+      <div className="w-full max-w-md space-y-4">
+        {realm.displayNameHtml || realm.name ? (
+          <p className="text-center font-medium text-muted-foreground text-sm">
+            {realm.displayName || realm.name}
+          </p>
+        ) : null}
+
+        <Card>
+          <CardHeader className="space-y-3">
+            {enabledLanguages.length > 1 && (
+              <div className="flex justify-end">
+                {/* biome-ignore lint/a11y/useSemanticElements: native select is fine here */}
+                <select
+                  aria-label={msgStr("languages")}
+                  className="rounded-md border border-input bg-transparent px-2 py-1 text-sm"
+                  defaultValue={currentLanguage.languageTag}
+                  onChange={(event) => {
+                    const target = enabledLanguages.find(
+                      (lang) => lang.languageTag === event.target.value
+                    )
+                    if (target) {
+                      window.location.href = target.href
+                    }
+                  }}
                 >
-                  <Button
-                    tabIndex={0}
-                    id="kc-current-locale-link"
-                    aria-label={msgStr("languages")}
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    aria-controls="language-switch1"
-                  >
-                    {currentLanguage.label}
-                  </Button>
-                  <ul
-                    tabIndex={-1}
-                    aria-labelledby="kc-current-locale-link"
-                    aria-activedescendant=""
-                    id="language-switch1"
-                    className={kcClsx("kcLocaleListClass")}
-                  >
-                    {enabledLanguages.map(({ languageTag, label, href }, i) => (
-                      <li
-                        key={languageTag}
-                        className={kcClsx("kcLocaleListItemClass")}
-                        role="none"
-                      >
-                        <a
-                          role="menuitem"
-                          id={`language-${i + 1}`}
-                          className={kcClsx("kcLocaleItemClass")}
-                          href={href}
-                        >
-                          {label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  {enabledLanguages.map(({ languageTag, label }) => (
+                    <option key={languageTag} value={languageTag}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
               </div>
-            </div>
-          )}
-          {(() => {
-            const node = !(auth?.showUsername && !auth.showResetCredentials) ? (
-              <h1 id="kc-page-title">{headerNode}</h1>
-            ) : (
-              <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
-                <label id="kc-attempted-username">
-                  {auth.attemptedUsername}
-                </label>
+            )}
+
+            {auth?.showUsername && !auth.showResetCredentials ? (
+              <div className="space-y-1 text-center">
+                <p className="font-medium">{auth.attemptedUsername}</p>
                 <a
-                  id="reset-login"
                   href={url.loginRestartFlowUrl}
-                  aria-label={msgStr("restartLoginTooltip")}
+                  className="text-primary text-sm hover:underline"
                 >
-                  <div className="kc-login-tooltip">
-                    <i className={kcClsx("kcResetFlowIcon")}></i>
-                    <span className="kc-tooltip-text">
-                      {msg("restartLoginTooltip")}
-                    </span>
-                  </div>
+                  {msg("restartLoginTooltip")}
                 </a>
               </div>
-            )
+            ) : (
+              <CardTitle className="text-center text-xl">
+                {headerNode}
+              </CardTitle>
+            )}
 
-            if (displayRequiredFields) {
-              return (
-                <div className={kcClsx("kcContentWrapperClass")}>
-                  <div
-                    className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}
-                  >
-                    <span className="subtitle">
-                      <span className="required">*</span>
-                      {msg("requiredFields")}
-                    </span>
-                  </div>
-                  <div className="col-md-10">{node}</div>
-                </div>
-              )
-            }
+            {displayRequiredFields && (
+              <p className="text-center text-muted-foreground text-xs">
+                <span className="text-destructive">*</span>{" "}
+                {msg("requiredFields")}
+              </p>
+            )}
+          </CardHeader>
 
-            return node
-          })()}
-        </header>
-        <div id="kc-content">
-          <div id="kc-content-wrapper">
-            {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
+          <CardContent className="space-y-4">
             {displayMessage &&
               message !== undefined &&
               (message.type !== "warning" || !isAppInitiatedAction) && (
-                <div
-                  className={clsx(
-                    `alert-${message.type}`,
-                    kcClsx("kcAlertClass"),
-                    `pf-m-${message?.type === "error" ? "danger" : message.type}`
-                  )}
-                >
-                  <div className="pf-c-alert__icon">
-                    {message.type === "success" && (
-                      <span className={kcClsx("kcFeedbackSuccessIcon")}></span>
-                    )}
-                    {message.type === "warning" && (
-                      <span className={kcClsx("kcFeedbackWarningIcon")}></span>
-                    )}
-                    {message.type === "error" && (
-                      <span className={kcClsx("kcFeedbackErrorIcon")}></span>
-                    )}
-                    {message.type === "info" && (
-                      <span className={kcClsx("kcFeedbackInfoIcon")}></span>
-                    )}
-                  </div>
-                  <span
-                    className={kcClsx("kcAlertTitleClass")}
+                <Alert variant={alertVariant}>
+                  <AlertDescription
+                    // biome-ignore lint/security/noDangerouslySetInnerHtml: keycloak message is sanitized
                     dangerouslySetInnerHTML={{
                       __html: kcSanitize(message.summary),
                     }}
                   />
-                </div>
+                </Alert>
               )}
+
             {children}
+
             {auth?.showTryAnotherWayLink && (
               <form
                 id="kc-select-try-another-way-form"
                 action={url.loginAction}
                 method="post"
+                className="text-center"
               >
-                <div className={kcClsx("kcFormGroupClass")}>
-                  <Input type="hidden" name="tryAnotherWay" value="on" />
-                  <a
-                    href="#"
-                    id="try-another-way"
-                    onClick={(event) => {
-                      document.forms[
-                        "kc-select-try-another-way-form" as never
-                      ].requestSubmit()
-                      event.preventDefault()
-                      return false
-                    }}
-                  >
-                    {msg("doTryAnotherWay")}
-                  </a>
-                </div>
+                <Input type="hidden" name="tryAnotherWay" value="on" />
+                <Button type="submit" variant="link">
+                  {msg("doTryAnotherWay")}
+                </Button>
               </form>
             )}
+
             {socialProvidersNode}
-            {displayInfo && (
-              <div id="kc-info" className={kcClsx("kcSignUpClass")}>
-                <div
-                  id="kc-info-wrapper"
-                  className={kcClsx("kcInfoAreaWrapperClass")}
-                >
-                  {infoNode}
-                </div>
+
+            {displayInfo && infoNode ? (
+              <div className="border-t pt-4 text-center text-muted-foreground text-sm">
+                {infoNode}
               </div>
-            )}
-          </div>
-        </div>
+            ) : null}
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
