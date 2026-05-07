@@ -34,7 +34,6 @@ export default function WebauthnError(
 
       <div className="space-y-2">
         <Button
-          size="lg"
           tabIndex={4}
           type="button"
           name="try-again"
@@ -62,7 +61,6 @@ export default function WebauthnError(
             method="POST"
           >
             <Button
-              size="lg"
               type="submit"
               variant="outline"
               id="cancelWebAuthnAIA"

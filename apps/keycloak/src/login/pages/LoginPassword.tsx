@@ -118,7 +118,6 @@ export default function LoginPassword(
             )}
 
           <Button
-            size="lg"
             id={webAuthnButtonId}
             type="button"
             variant="outline"

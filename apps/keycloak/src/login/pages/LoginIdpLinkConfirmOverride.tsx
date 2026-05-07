@@ -35,7 +35,6 @@ export default function LoginIdpLinkConfirmOverride(
           </AnimatedLink>
         </p>
         <Button
-          size="lg"
           type="submit"
           className="w-full"
           name="submitAction"

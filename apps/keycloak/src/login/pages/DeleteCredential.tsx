@@ -34,7 +34,6 @@ export default function DeleteCredential(
             label={msgStr("doConfirmDelete")}
           />
           <Button
-            size="lg"
             type="submit"
             variant="outline"
             name="cancel-aia"

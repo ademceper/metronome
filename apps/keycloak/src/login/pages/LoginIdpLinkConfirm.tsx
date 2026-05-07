@@ -28,7 +28,6 @@ export default function LoginIdpLinkConfirm(
         className="space-y-3"
       >
         <Button
-          size="lg"
           type="submit"
           variant="outline"
           className="w-full"
@@ -39,7 +38,6 @@ export default function LoginIdpLinkConfirm(
           {msg("confirmLinkIdpReviewProfile")}
         </Button>
         <Button
-          size="lg"
           type="submit"
           className="w-full"
           name="submitAction"

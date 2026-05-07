@@ -82,11 +82,10 @@ export default function LoginOauthGrant(
         <form action={url.oauthAction} method="POST" className="space-y-3">
           <input type="hidden" name="code" value={oauth.code} />
           <div className="grid grid-cols-2 gap-2">
-            <Button size="lg" name="accept" id="kc-login" type="submit">
+            <Button name="accept" id="kc-login" type="submit">
               {msgStr("doYes")}
             </Button>
             <Button
-              size="lg"
               variant="outline"
               name="cancel"
               id="kc-cancel"

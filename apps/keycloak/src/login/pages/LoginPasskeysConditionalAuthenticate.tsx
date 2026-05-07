@@ -197,7 +197,6 @@ export default function LoginPasskeysConditionalAuthenticate(
             )}
             <div id="kc-form-passkey-button" style={{ display: "none" }}>
               <Button
-                size="lg"
                 id={authButtonId}
                 type="button"
                 autoFocus

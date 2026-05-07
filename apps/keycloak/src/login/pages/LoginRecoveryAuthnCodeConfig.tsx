@@ -139,7 +139,6 @@ export default function LoginRecoveryAuthnCodeConfig(
         {isAppInitiatedAction ? (
           <div className="flex flex-col gap-2">
             <Button
-              size="lg"
               type="submit"
               id="saveRecoveryAuthnCodesBtn"
               disabled
@@ -148,7 +147,6 @@ export default function LoginRecoveryAuthnCodeConfig(
               {msgStr("recovery-codes-action-complete")}
             </Button>
             <Button
-              size="lg"
               type="submit"
               variant="outline"
               id="cancelRecoveryAuthnCodesBtn"
@@ -160,7 +158,6 @@ export default function LoginRecoveryAuthnCodeConfig(
           </div>
         ) : (
           <Button
-            size="lg"
             type="submit"
             id="saveRecoveryAuthnCodesBtn"
             disabled

@@ -70,7 +70,6 @@ export default function UpdateEmail(props: UpdateEmailProps) {
           <KcSubmit label={msgStr("doSubmit")} disabled={!isFormSubmittable} />
           {isAppInitiatedAction && (
             <Button
-              size="lg"
               type="submit"
               variant="outline"
               name="cancel-aia"

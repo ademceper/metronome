@@ -28,16 +28,10 @@ export default function Terms(
           method="POST"
           className="grid grid-cols-2 gap-2"
         >
-          <Button size="lg" type="submit" name="accept" id="kc-accept">
+          <Button type="submit" name="accept" id="kc-accept">
             {msgStr("doAccept")}
           </Button>
-          <Button
-            size="lg"
-            type="submit"
-            name="cancel"
-            id="kc-decline"
-            variant="outline"
-          >
+          <Button type="submit" name="cancel" id="kc-decline" variant="outline">
             {msgStr("doDecline")}
           </Button>
         </form>

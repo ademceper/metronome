@@ -66,7 +66,7 @@ export default function SamlPostForm(
           <p className="text-muted-foreground text-sm">
             {msg("saml.post-form.js-disabled")}
           </p>
-          <Button size="lg" type="submit" className="w-full">
+          <Button type="submit" className="w-full">
             {msgStr("doContinue")}
           </Button>
         </noscript>

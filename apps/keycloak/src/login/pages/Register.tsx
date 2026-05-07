@@ -116,7 +116,6 @@ export default function Register(props: RegisterProps) {
         !recaptchaVisible &&
         recaptchaAction !== undefined ? (
           <Button
-            size="lg"
             type="submit"
             className="g-recaptcha w-full"
             data-sitekey={recaptchaSiteKey}
