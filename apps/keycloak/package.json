@@ -5,7 +5,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "keycloakify start-keycloak --keycloak-version 26",
+    "dev": "pnpm build-keycloak-theme && mkdir -p ../../infrastructure/keycloak/data/import && cp .keycloakify/realm-kc-26.json ../../infrastructure/keycloak/data/import/ && KC_BOOTSTRAP_ADMIN_USERNAME=admin KC_BOOTSTRAP_ADMIN_PASSWORD=admin ../../infrastructure/keycloak/bin/kc.sh start-dev --import-realm",
     "dev:vite": "vite",
     "build": "tsc && vite build",
     "build-keycloak-theme": "pnpm build && keycloakify build",
