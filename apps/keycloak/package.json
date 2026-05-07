@@ -5,7 +5,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "pnpm build-keycloak-theme && mkdir -p ../../infrastructure/keycloak/data/import && cp .keycloakify/realm-kc-26.json ../../infrastructure/keycloak/data/import/ && KC_BOOTSTRAP_ADMIN_USERNAME=admin KC_BOOTSTRAP_ADMIN_PASSWORD=admin ../../infrastructure/keycloak/bin/kc.sh start-dev --import-realm",
+    "dev": "docker compose -f ../../infrastructure/docker-compose.yml up -d --wait postgres && pnpm build-keycloak-theme && mkdir -p ../../infrastructure/keycloak/data/import && cp .keycloakify/realm-kc-26.json ../../infrastructure/keycloak/data/import/ && cp node_modules/keycloakify/src/bin/start-keycloak/keycloakify-logging-*.jar ../../infrastructure/keycloak/providers/ && (until curl -sfo /dev/null http://localhost:8080/realms/master/.well-known/openid-configuration; do sleep 2; done; ../../infrastructure/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user admin --password admin && ../../infrastructure/keycloak/bin/kcadm.sh update realms/master -s loginTheme=metronome) & KC_BOOTSTRAP_ADMIN_USERNAME=admin KC_BOOTSTRAP_ADMIN_PASSWORD=admin ../../infrastructure/keycloak/bin/kc.sh start-dev --import-realm",
     "dev:vite": "vite",
     "build": "tsc && vite build",
     "build-keycloak-theme": "pnpm build && keycloakify build",
