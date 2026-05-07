@@ -7,17 +7,17 @@
     ".": {
       "entry": ["biome.json", "lefthook.yml"]
     },
-    "apps/web-user": {
+    "apps/user": {
       "project": ["**/*.{ts,tsx}"],
       "next": true,
       "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
     },
-    "apps/web-admin": {
+    "apps/admin": {
       "project": ["src/**/*.{ts,tsx}"],
       "vite": true,
       "ignoreDependencies": ["tailwindcss", "@phosphor-icons/react"]
     },
-    "apps/keycloak": {
+    "apps/auth": {
       "entry": [
         "src/kc.gen.tsx",
         "src/login/KcPageStory.tsx",

@@ -33,7 +33,50 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
-  apps/keycloak:
+  apps/admin:
+    dependencies:
+      '@metronome/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@phosphor-icons/react':
+        specifier: ^2.1.10
+        version: 2.1.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
+    devDependencies:
+      '@metronome/ts-cfg':
+        specifier: workspace:*
+        version: link:../../packages/ts-cfg
+      '@tailwindcss/vite':
+        specifier: ^4.1.18
+        version: 4.2.4(vite@5.4.21(@types/node@25.2.3)(lightningcss@1.32.0))
+      '@types/react':
+        specifier: ^19.2.10
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^4.2.1
+        version: 4.7.0(vite@5.4.21(@types/node@25.2.3)(lightningcss@1.32.0))
+      tailwindcss:
+        specifier: ^4.1.18
+        version: 4.2.4
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vite:
+        specifier: ^5.0.8
+        version: 5.4.21(@types/node@25.2.3)(lightningcss@1.32.0)
+
+  apps/auth:
     dependencies:
       '@icons-pack/react-simple-icons':
         specifier: ^13.13.0
@@ -91,50 +134,7 @@ importers:
         specifier: ^5.0.8
         version: 5.4.21(@types/node@25.2.3)(lightningcss@1.32.0)
 
-  apps/web-admin:
-    dependencies:
-      '@metronome/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-      '@phosphor-icons/react':
-        specifier: ^2.1.10
-        version: 2.1.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      next-themes:
-        specifier: ^0.4.6
-        version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      react:
-        specifier: ^19.2.4
-        version: 19.2.4
-      react-dom:
-        specifier: ^19.2.4
-        version: 19.2.4(react@19.2.4)
-    devDependencies:
-      '@metronome/ts-cfg':
-        specifier: workspace:*
-        version: link:../../packages/ts-cfg
-      '@tailwindcss/vite':
-        specifier: ^4.1.18
-        version: 4.2.4(vite@5.4.21(@types/node@25.2.3)(lightningcss@1.32.0))
-      '@types/react':
-        specifier: ^19.2.10
-        version: 19.2.14
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.14)
-      '@vitejs/plugin-react':
-        specifier: ^4.2.1
-        version: 4.7.0(vite@5.4.21(@types/node@25.2.3)(lightningcss@1.32.0))
-      tailwindcss:
-        specifier: ^4.1.18
-        version: 4.1.18
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-      vite:
-        specifier: ^5.0.8
-        version: 5.4.21(@types/node@25.2.3)(lightningcss@1.32.0)
-
-  apps/web-user:
+  apps/user:
     dependencies:
       '@metronome/ui':
         specifier: workspace:*

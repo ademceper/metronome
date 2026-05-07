@@ -1,5 +1,5 @@
 {
-  "name": "keycloak",
+  "name": "auth",
   "version": "0.0.1",
   "description": "Keycloakify theme",
   "type": "module",

@@ -96,7 +96,7 @@
       }
     },
     {
-      "includes": ["apps/keycloak/**"],
+      "includes": ["apps/auth/**"],
       "linter": {
         "rules": {
           "complexity": {
