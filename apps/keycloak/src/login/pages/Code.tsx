@@ -49,7 +49,7 @@ export default function Code(
                 id="code"
                 defaultValue={code.code}
                 readOnly
-                className="pr-12 text-center"
+                className="h-12 pr-12 text-center"
               />
               <button
                 type="button"
