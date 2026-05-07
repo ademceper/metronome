@@ -2,8 +2,8 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreExportsUsedInFile": true,
   "ignore": ["infrastructure/**"],
-  "ignoreBinaries": ["sleep", "go"],
-  "ignoreWorkspaces": ["apps/server/*"],
+  "ignoreBinaries": ["sleep"],
+  "ignoreWorkspaces": ["apps/server/*", "apps/mobile"],
   "workspaces": {
     ".": {
       "entry": ["biome.json", "lefthook.yml"]
@@ -38,6 +38,11 @@
     "packages/ts-cfg": {
       "entry": ["*.json"],
       "ignoreDependencies": ["next"]
+    },
+    "packages/uim": {
+      "entry": ["src/components/ui/*.tsx", "src/lib/*.ts"],
+      "project": ["src/**/*.{ts,tsx}"],
+      "ignoreDependencies": ["@rn-primitives/types"]
     }
   }
 }

@@ -9,7 +9,10 @@ pnpm + Turborepo monorepo. `packageManager: pnpm@9.15.9`, Node `>=20`. Workspace
 - **apps/user** — Next.js 16 app (RSC, `next dev --turbopack`).
 - **apps/admin** — Vite + React 19 SPA (no RSC).
 - **apps/auth** — Keycloakify v11 theme (Vite + React 19) themed `metronome`. The dev script also boots a local Keycloak server (see below).
-- **packages/ui** — `@metronome/ui`, the shadcn-style component library shared by all apps. Exports `./components/*`, `./lib/*`, `./hooks/*`, `./globals.css`, and `./postcss.config`. shadcn style is `radix-nova`, base color `neutral`, icon library `phosphor`.
+- **apps/mobile** — Expo SDK 55 + React Native 0.83 + expo-router. Styled with NativeWind v4 (Tailwind v3 + `tailwindcss-animate`); shadcn-style primitives are vendored locally under `components/ui` (rn-reusables / new-york style). Self-contained — does **not** consume `@metronome/ui` (web-only RSC). Tailwind tokens live in `apps/mobile/global.css`, separate from web's v4 stack.
+- **apps/server/&lt;svc&gt;** — 14 Go (Fiber v2) microservices, ports 3001–3014. See "Go services" below.
+- **packages/ui** — `@metronome/ui`, the shadcn-style component library shared by all **web** apps. Exports `./components/*`, `./lib/*`, `./hooks/*`, `./globals.css`, and `./postcss.config`. shadcn style is `radix-nova`, base color `neutral`, icon library `phosphor`.
+- **packages/uim** — `@metronome/uim`, the React Native counterpart for `apps/mobile` (NativeWind + rn-reusables). Exports `./components/*`, `./lib/*`, `./hooks/*`. Disjoint from `packages/ui` because RSC/DOM primitives don't run on RN.
 - **packages/ts-cfg** — `@metronome/ts-cfg` shared `tsconfig` presets: `base.json`, `nextjs.json`, `vite.json`, `react-library.json`. The base is strict + `noUncheckedIndexedAccess`. Every app/package extends one of these.
 
 ## Common commands

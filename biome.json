@@ -12,11 +12,14 @@
       "!**/node_modules",
       "!**/.next",
       "!**/.turbo",
+      "!**/.expo",
       "!**/dist",
       "!**/coverage",
       "!**/.pnpm-store",
       "!**/pnpm-lock.yaml",
-      "!**/next-env.d.ts"
+      "!**/next-env.d.ts",
+      "!apps/mobile/global.css",
+      "!packages/uim/global.css"
     ]
   },
   "formatter": {
@@ -75,6 +78,16 @@
     }
   },
   "overrides": [
+    {
+      "includes": ["apps/mobile/**", "packages/uim/**"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useSortedClasses": "off"
+          }
+        }
+      }
+    },
     {
       "includes": ["packages/ui/src/components/**"],
       "linter": {
