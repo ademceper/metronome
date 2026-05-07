@@ -65,6 +65,7 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
           <KcSubmit label={msgStr("doSubmit")} disabled={!isFormSubmittable} />
           {isAppInitiatedAction && (
             <Button
+              size="xl"
               type="submit"
               variant="outline"
               name="cancel-aia"

@@ -141,8 +141,8 @@ export function KcSubmit({ label, className, ...rest }: KcSubmitProps) {
   return (
     <Button
       type="submit"
-      size="lg"
-      className={cn("h-12 w-full", className)}
+      size="xl"
+      className={cn("w-full", className)}
       {...rest}
     >
       {label}

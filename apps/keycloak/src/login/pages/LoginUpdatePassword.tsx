@@ -86,6 +86,7 @@ export default function LoginUpdatePassword(
           <div className="grid grid-cols-2 gap-2">
             <KcSubmit label={msgStr("doSubmit")} />
             <Button
+              size="xl"
               type="submit"
               variant="outline"
               name="cancel-aia"

@@ -140,6 +140,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           >
             <input type="hidden" name="tryAnotherWay" value="on" />
             <Button
+              size="xl"
               type="button"
               variant="link"
               className="px-0"

@@ -60,7 +60,7 @@ export default function FrontchannelLogout(
           ))}
         </ul>
         {logout.logoutRedirectUri !== undefined && (
-          <Button asChild className="w-full">
+          <Button size="xl" asChild className="w-full">
             <a id="continue" href={logout.logoutRedirectUri}>
               {msg("doContinue")}
             </a>

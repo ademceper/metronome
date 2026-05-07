@@ -56,7 +56,7 @@ export default function WebauthnRegister(
       </form>
 
       <div className="space-y-2">
-        <Button type="submit" id={authButtonId} className="w-full">
+        <Button size="xl" type="submit" id={authButtonId} className="w-full">
           {msgStr("doRegisterSecurityKey")}
         </Button>
 
@@ -67,6 +67,7 @@ export default function WebauthnRegister(
             method="POST"
           >
             <Button
+              size="xl"
               type="submit"
               variant="outline"
               id="cancelWebAuthnAIA"

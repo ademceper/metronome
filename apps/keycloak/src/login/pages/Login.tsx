@@ -85,6 +85,7 @@ export default function Login(
               {social.providers.map((p) => (
                 <li key={p.alias}>
                   <Button
+                    size="xl"
                     asChild
                     variant="outline"
                     className="relative w-full justify-center text-sm"
@@ -227,6 +228,7 @@ export default function Login(
             )}
 
           <Button
+            size="xl"
             id={webAuthnButtonId}
             type="button"
             variant="outline"

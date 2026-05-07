@@ -139,7 +139,13 @@ export default function WebauthnAuthenticate(
           </>
         )}
 
-        <Button id={authButtonId} type="button" autoFocus className="w-full">
+        <Button
+          size="xl"
+          id={authButtonId}
+          type="button"
+          autoFocus
+          className="w-full"
+        >
           {msgStr("webauthn-doAuthenticate")}
         </Button>
       </div>

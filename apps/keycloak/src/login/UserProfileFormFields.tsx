@@ -495,6 +495,7 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
     <div className="flex items-center gap-2">
       {hasRemove && (
         <Button
+          size="xl"
           id={`kc-remove${idPostfix}`}
           type="button"
           variant="link"
@@ -512,6 +513,7 @@ function AddRemoveButtonsMultiValuedAttribute(props: {
       )}
       {hasAdd && (
         <Button
+          size="xl"
           id={`kc-add${idPostfix}`}
           type="button"
           variant="link"

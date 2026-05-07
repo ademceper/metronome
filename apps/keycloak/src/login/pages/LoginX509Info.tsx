@@ -56,6 +56,7 @@ export default function LoginX509Info(
           <div className="grid grid-cols-2 gap-2">
             <KcSubmit name="login" id="kc-login" label={msgStr("doContinue")} />
             <Button
+              size="xl"
               type="submit"
               variant="outline"
               name="cancel"

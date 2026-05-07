@@ -164,6 +164,7 @@ export default function LoginConfigTotp(
           <div className="grid grid-cols-2 gap-2">
             <KcSubmit id="saveTOTPBtn" label={msgStr("doSubmit")} />
             <Button
+              size="xl"
               type="submit"
               variant="outline"
               id="cancelTOTPBtn"

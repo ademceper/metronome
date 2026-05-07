@@ -64,6 +64,7 @@ export default function LoginRecoveryAuthnCodeConfig(
 
       <div className="flex flex-wrap items-center gap-2">
         <Button
+          size="xl"
           id="printRecoveryCodes"
           type="button"
           variant="link"
@@ -73,6 +74,7 @@ export default function LoginRecoveryAuthnCodeConfig(
           {msg("recovery-codes-print")}
         </Button>
         <Button
+          size="xl"
           id="downloadRecoveryCodes"
           type="button"
           variant="link"
@@ -82,6 +84,7 @@ export default function LoginRecoveryAuthnCodeConfig(
           {msg("recovery-codes-download")}
         </Button>
         <Button
+          size="xl"
           id="copyRecoveryCodes"
           type="button"
           variant="link"
@@ -139,6 +142,7 @@ export default function LoginRecoveryAuthnCodeConfig(
         {isAppInitiatedAction ? (
           <div className="flex flex-col gap-2">
             <Button
+              size="xl"
               type="submit"
               id="saveRecoveryAuthnCodesBtn"
               disabled
@@ -147,6 +151,7 @@ export default function LoginRecoveryAuthnCodeConfig(
               {msgStr("recovery-codes-action-complete")}
             </Button>
             <Button
+              size="xl"
               type="submit"
               variant="outline"
               id="cancelRecoveryAuthnCodesBtn"
@@ -158,6 +163,7 @@ export default function LoginRecoveryAuthnCodeConfig(
           </div>
         ) : (
           <Button
+            size="xl"
             type="submit"
             id="saveRecoveryAuthnCodesBtn"
             disabled

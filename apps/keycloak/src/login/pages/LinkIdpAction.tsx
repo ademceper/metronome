@@ -31,6 +31,7 @@ export default function LinkIdpAction(
             label={msgStr("doContinue")}
           />
           <Button
+            size="xl"
             type="submit"
             variant="outline"
             name="cancel-aia"
