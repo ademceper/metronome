@@ -62,7 +62,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
 
   const { i18n } = useI18n({ kcContext })
 
-  const common = { i18n, classes, Template, doUseDefaultCss: true } as const
+  const common = { i18n, classes, Template, doUseDefaultCss: false } as const
   const profileForm = { UserProfileFormFields, doMakeUserConfirmPassword }
 
   return (
