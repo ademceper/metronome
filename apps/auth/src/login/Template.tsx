@@ -43,7 +43,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     <div className="flex min-h-svh flex-col items-center justify-center bg-background p-6">
       <div className="w-full max-w-sm space-y-6">
         {realm.displayName || realm.name ? (
-          <p className="text-center font-medium text-muted-foreground text-sm">
+          <p className="text-center font-climate-crisis text-2xl tracking-wide">
             {realm.displayName || realm.name}
           </p>
         ) : null}
