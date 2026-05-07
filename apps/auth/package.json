@@ -22,10 +22,12 @@
     "@metronome/ts-cfg": "workspace:*",
     "@storybook/react": "^8.1.10",
     "@storybook/react-vite": "^8.1.10",
+    "@tailwindcss/vite": "^4.1.18",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.2.1",
     "storybook": "^8.1.10",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },

@@ -24,7 +24,8 @@
       ],
       "project": ["src/**/*.{ts,tsx}"],
       "vite": true,
-      "storybook": true
+      "storybook": true,
+      "ignoreDependencies": ["tailwindcss"]
     },
     "packages/ui": {
       "entry": ["src/components/*.tsx", "src/lib/*.ts", "src/styles/*.css"],
