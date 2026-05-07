@@ -134,6 +134,34 @@ importers:
         specifier: ^5.0.8
         version: 5.4.21(@types/node@25.2.3)(lightningcss@1.32.0)
 
+  apps/server/account: {}
+
+  apps/server/admin: {}
+
+  apps/server/campaign: {}
+
+  apps/server/card: {}
+
+  apps/server/corporate: {}
+
+  apps/server/fast: {}
+
+  apps/server/fraud: {}
+
+  apps/server/identity: {}
+
+  apps/server/integration: {}
+
+  apps/server/notification: {}
+
+  apps/server/onboarding: {}
+
+  apps/server/reconciliation: {}
+
+  apps/server/reporting: {}
+
+  apps/server/transaction: {}
+
   apps/user:
     dependencies:
       '@metronome/ui':

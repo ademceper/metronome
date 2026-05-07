@@ -2,7 +2,8 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignoreExportsUsedInFile": true,
   "ignore": ["infrastructure/**"],
-  "ignoreBinaries": ["sleep"],
+  "ignoreBinaries": ["sleep", "go"],
+  "ignoreWorkspaces": ["apps/server/*"],
   "workspaces": {
     ".": {
       "entry": ["biome.json", "lefthook.yml"]
