@@ -13,9 +13,6 @@ import { Banner, Flex, FlexItem } from "../shared/@patternfly/react-core";
 import { Warning as ExclamationTriangleIcon } from "@phosphor-icons/react"
 import { useWhoAmI } from "./context/whoami/WhoAmI";
 import { useTranslation } from "react-i18next";
-
-import style from "./banners.module.css";
-
 type WarnBannerProps = {
   msg: string;
   className?: string;
@@ -30,7 +27,7 @@ const WarnBanner = ({ msg, className }: WarnBannerProps) => {
     <Banner
       screenReaderText={t(msg)}
       variant="gold"
-      className={className || style.banner}
+      className={className || ""}
     >
       <Flex
         spaceItems={{ default: "spaceItemsSm" }}

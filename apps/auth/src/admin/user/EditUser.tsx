@@ -72,8 +72,6 @@ import { UserParams, UserTab, toUser } from "./routes/User";
 import { toUsers } from "./routes/Users";
 import { isLightweightUser } from "./utils";
 import { extractUserProfileErrorMessages } from "./utils/user-profile";
-
-import "./user-section.css";
 import { AdminEvents } from "../events/AdminEvents";
 
 export default function EditUser() {

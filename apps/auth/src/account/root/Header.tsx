@@ -23,8 +23,6 @@ import { useHref } from "react-router-dom";
 import { AccountEnvironment } from "..";
 import { joinPath } from "../utils/joinPath";
 
-import style from "./header.module.css";
-
 const ReferrerLink = () => {
   const { environment } = useEnvironment<AccountEnvironment>();
   const { t } = useTranslation();

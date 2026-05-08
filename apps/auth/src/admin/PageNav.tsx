@@ -27,9 +27,6 @@ import { Environment } from "./environment";
 import { toPage } from "./page/routes";
 import { routes } from "./routes";
 import useIsFeatureEnabled, { Feature } from "./utils/useIsFeatureEnabled";
-
-import "./page-nav.css";
-
 type LeftNavProps = {
   title: string;
   path: string;

@@ -29,9 +29,6 @@ import helpUrls from "../help-urls";
 import useToggle from "../utils/useToggle";
 import { RevocationModal } from "./RevocationModal";
 import SessionsTable from "./SessionsTable";
-
-import "./SessionsSection.css";
-
 type FilterType = "ALL" | "REGULAR" | "OFFLINE";
 
 type SessionFilterProps = {

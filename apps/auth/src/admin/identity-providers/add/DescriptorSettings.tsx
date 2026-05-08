@@ -21,9 +21,6 @@ import {
   TextControl,
 } from "../../../shared/keycloak-ui-shared";
 import { DefaultSwitchControl } from "../../components/SwitchControl";
-
-import "./discovery-settings.css";
-
 type DescriptorSettingsProps = {
   readOnly: boolean;
 };

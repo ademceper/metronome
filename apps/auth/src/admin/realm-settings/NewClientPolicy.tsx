@@ -60,9 +60,6 @@ import {
   toEditClientPolicy,
 } from "./routes/EditClientPolicy";
 import { toEditClientPolicyCondition } from "./routes/EditCondition";
-
-import "./realm-settings-section.css";
-
 type FormFields = Required<ClientPolicyRepresentation>;
 
 const defaultValues: FormFields = {

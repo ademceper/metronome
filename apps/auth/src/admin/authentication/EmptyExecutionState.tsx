@@ -24,9 +24,6 @@ import type { AuthenticationProviderRepresentation } from "@keycloak/keycloak-ad
 import { ListEmptyState } from "../../shared/keycloak-ui-shared";
 import { AddStepModal } from "./components/modals/AddStepModal";
 import { AddSubFlowModal, Flow } from "./components/modals/AddSubFlowModal";
-
-import "./empty-execution-state.css";
-
 const SECTIONS = ["addExecution", "addSubFlow"] as const;
 type SectionType = (typeof SECTIONS)[number] | undefined;
 

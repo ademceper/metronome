@@ -38,9 +38,6 @@ import { toUser } from "../user/routes/User";
 import { emailRegexPattern } from "../util";
 import { useCurrentUser } from "../utils/useCurrentUser";
 import useToggle from "../utils/useToggle";
-
-import "./realm-settings-section.css";
-
 type RealmSettingsEmailTabProps = {
   realm: RealmRepresentation;
   save: (realm: RealmRepresentation) => void;

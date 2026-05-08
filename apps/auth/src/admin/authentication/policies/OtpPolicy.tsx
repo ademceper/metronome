@@ -36,9 +36,6 @@ import { FormAccess } from "../../components/form/FormAccess";
 import { TimeSelectorControl } from "../../components/time-selector/TimeSelectorControl";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useLocaleSort from "../../utils/useLocaleSort";
-
-import "./otp-policy.css";
-
 const POLICY_TYPES = ["totp", "hotp"] as const;
 const OTP_HASH_ALGORITHMS = ["SHA1", "SHA256", "SHA512"] as const;
 const NUMBER_OF_DIGITS = [6, 8] as const;

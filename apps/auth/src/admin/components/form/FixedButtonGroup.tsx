@@ -15,9 +15,6 @@ import {
   ActionGroupProps,
   Button,
 } from "../../../shared/@patternfly/react-core";
-
-import style from "./fixed-buttons.module.css";
-
 type FixedButtonGroupProps = ActionGroupProps & {
   name: string;
   save?: () => void;
@@ -41,7 +38,7 @@ export const FixedButtonsGroup = ({
 }: FixedButtonGroupProps) => {
   const { t } = useTranslation();
   return (
-    <ActionGroup className={style.buttonGroup} {...rest}>
+    <ActionGroup className={""} {...rest}>
       {(save || isSubmit) && (
         <Button
           isDisabled={isDisabled}

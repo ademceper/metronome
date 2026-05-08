@@ -51,9 +51,6 @@ import { GroupTree } from "./components/GroupTree";
 import { getId, getLastId } from "./groupIdUtils";
 import { toGroups } from "./routes/Groups";
 import { GroupResourceContext } from "../context/group-resource/GroupResourceContext";
-
-import "./GroupsSection.css";
-
 export default function GroupsSection({ orgId }: { orgId?: string } = {}) {
   const { adminClient } = useAdminClient();
 

@@ -12,14 +12,11 @@
 import { Label } from "../../shared/@patternfly/react-core";
 import { CheckCircle as CheckCircleIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
-
-import style from "./build-in-label.module.css";
-
 export const BuildInLabel = () => {
   const { t } = useTranslation();
 
   return (
-    <Label icon={<CheckCircleIcon className={style.icon} />}>
+    <Label icon={<CheckCircleIcon className={""} />}>
       {t("buildIn")}
     </Label>
   );

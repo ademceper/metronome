@@ -4,10 +4,6 @@
  *
  * $ npx keycloakify own --path "account/KcAccountUi.tsx" --revert
  */
-
-import "@patternfly/patternfly/patternfly-addons.css";
-import "@patternfly/react-core/dist/styles/base.css";
-
 import { useReducer, useEffect } from "react";
 import { startColorSchemeManagement } from "./colorScheme";
 import { KeycloakProvider } from "../shared/keycloak-ui-shared";

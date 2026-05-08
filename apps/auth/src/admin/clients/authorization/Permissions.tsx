@@ -54,9 +54,6 @@ import { DetailDescriptionLink } from "./DetailDescription";
 import { EmptyPermissionsState } from "./EmptyPermissionsState";
 import { MoreLabel } from "./MoreLabel";
 import { SearchDropdown, SearchForm } from "./SearchDropdown";
-
-import "./permissions.css";
-
 type PermissionsProps = {
   clientId: string;
   isDisabled?: boolean;

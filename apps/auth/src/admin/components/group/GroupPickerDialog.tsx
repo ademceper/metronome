@@ -39,9 +39,6 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { GroupPath } from "./GroupPath";
 import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
-
-import "./group-picker-dialog.css";
-
 export type GroupPickerDialogProps = {
   id?: string;
   type: "selectOne" | "selectMany";

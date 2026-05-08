@@ -21,9 +21,6 @@ import { FormAccess } from "../../../components/form/FormAccess";
 import { KeyValueInput } from "../../../components/key-value-form/KeyValueInput";
 import { KeySelect } from "./KeySelect";
 import { ValueSelect } from "./ValueSelect";
-
-import "../../realm-settings-section.css";
-
 export const AttributeAnnotations = () => {
   const { t } = useTranslation();
   const { register } = useFormContext();

@@ -44,9 +44,6 @@ import { toCustomUserFederation } from "./routes/CustomUserFederation";
 import { toNewCustomUserFederation } from "./routes/NewCustomUserFederation";
 import { toUserFederationKerberos } from "./routes/UserFederationKerberos";
 import { toUserFederationLdap } from "./routes/UserFederationLdap";
-
-import "./user-federation.css";
-
 export default function UserFederationSection() {
   const { adminClient } = useAdminClient();
 

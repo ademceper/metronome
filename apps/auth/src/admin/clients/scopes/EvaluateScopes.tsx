@@ -50,9 +50,6 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
 import { prettyPrintJSON } from "../../util";
 import { GeneratedCodeTab } from "./GeneratedCodeTab";
-
-import "./evaluate.css";
-
 export type EvaluateScopesProps = {
   clientId: string;
   protocol: string;

@@ -38,9 +38,6 @@ import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useLocaleSort from "../../utils/useLocaleSort";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-
-import "./permissions-tab.css";
-
 type PermissionScreenType =
   | "clients"
   | "users"

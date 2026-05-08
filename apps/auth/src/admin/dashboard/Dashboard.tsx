@@ -60,9 +60,6 @@ import helpUrls from "../help-urls";
 import useLocaleSort, { mapByKey } from "../utils/useLocaleSort";
 import { ProviderInfo } from "./ProviderInfo";
 import { DashboardTab, toDashboard } from "./routes/Dashboard";
-
-import "./dashboard.css";
-
 const EmptyDashboard = () => {
   const { environment } = useEnvironment();
 

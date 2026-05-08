@@ -37,9 +37,6 @@ import { emptyFormatter } from "../../util";
 import useFormatDate from "../../utils/useFormatDate";
 import useToggle from "../../utils/useToggle";
 import { toKeysTab } from "../routes/KeysTab";
-
-import "../realm-settings-section.css";
-
 const FILTER_OPTIONS = ["ACTIVE", "PASSIVE", "DISABLED"] as const;
 
 type FilterType = (typeof FILTER_OPTIONS)[number];

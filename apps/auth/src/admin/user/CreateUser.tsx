@@ -30,9 +30,6 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import { UserForm } from "./UserForm";
 import { UserFormFields, toUserRepresentation } from "./form-state";
 import { toUser } from "./routes/User";
-
-import "./user-section.css";
-
 export default function CreateUser() {
   const { adminClient } = useAdminClient();
 

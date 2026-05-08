@@ -29,9 +29,6 @@ import { useAdminClient } from "../admin-client";
 import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { prettyPrintJSON } from "../util";
-
-import "./partial-export.css";
-
 export type PartialExportDialogProps = {
   isOpen: boolean;
   onClose: () => void;

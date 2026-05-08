@@ -16,9 +16,6 @@ import { HelpItem } from "../../../shared/keycloak-ui-shared";
 import { useFormContext, useWatch } from "react-hook-form";
 import type { ComponentProps } from "./components";
 import { FormattedLink } from "../external-link/FormattedLink";
-
-import "./url-component.css";
-
 export const UrlComponent = ({ name, label, helpText }: ComponentProps) => {
   const { t } = useTranslation();
   const { control } = useFormContext();

@@ -37,9 +37,6 @@ import {
 } from "./AddRoleMappingModal";
 import { deleteMapping, getMapping } from "./queries";
 import { getAllEffectiveRoles } from "./resource";
-
-import "./role-mapping.css";
-
 export type CompositeRole = RoleRepresentation & {
   parent: RoleRepresentation;
   isInherited?: boolean;

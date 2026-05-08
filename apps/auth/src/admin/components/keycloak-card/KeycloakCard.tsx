@@ -25,8 +25,6 @@ import {
 } from "../../../shared/@patternfly/react-core";
 import { ReactElement, useState } from "react";
 import { Link, To } from "react-router-dom";
-
-import "./keycloak-card.css";
 import { DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 
 export type KeycloakCardProps = {

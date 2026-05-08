@@ -12,8 +12,6 @@
 import { useEffect, useRef } from "react";
 import { Icon } from "../../../shared/@patternfly/react-core";
 import { CaretDown as CaretDownIcon } from "@phosphor-icons/react"
-import "./dropdown-panel.css";
-
 type DropdownPanelProps = {
   buttonText: string;
   children: React.ReactNode;

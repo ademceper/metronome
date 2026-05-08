@@ -49,9 +49,6 @@ import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { useWhoAmI } from "../context/whoami/WhoAmI";
 import { beerify, sortProviders } from "../util";
 import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
-
-import "./realm-settings-section.css";
-
 type RealmSettingsTokensTabProps = {
   realm: RealmRepresentation;
   save: (realm: RealmRepresentation) => void;

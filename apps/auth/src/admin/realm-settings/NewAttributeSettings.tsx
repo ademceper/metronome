@@ -46,9 +46,6 @@ import { AttributeAnnotations } from "./user-profile/attribute/AttributeAnnotati
 import { AttributeGeneralSettings } from "./user-profile/attribute/AttributeGeneralSettings";
 import { AttributePermission } from "./user-profile/attribute/AttributePermission";
 import { AttributeValidations } from "./user-profile/attribute/AttributeValidations";
-
-import "./realm-settings-section.css";
-
 type IndexedAnnotations = {
   key: string;
   value?: Record<string, unknown>;
