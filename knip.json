@@ -21,6 +21,10 @@
     "apps/auth": {
       "entry": [
         "src/kc.gen.tsx",
+        "src/account/KcPage.tsx",
+        "src/account/KcContext.ts",
+        "src/admin/KcPage.tsx",
+        "src/admin/KcContext.ts",
         "src/login/KcPageStory.tsx",
         "src/login/i18n.ts",
         "src/login/KcContext.ts"
@@ -28,6 +32,7 @@
       "project": ["src/**/*.{ts,tsx}"],
       "vite": true,
       "storybook": true,
+      "ignore": ["src/account/**", "src/admin/**", "src/shared/**"],
       "ignoreDependencies": ["tailwindcss", "postcss", "@tailwindcss/postcss"]
     },
     "packages/ui": {

@@ -1,0 +1,14 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ * 
+ * $ npx keycloakify own --path "admin/authentication/components/flow-header.css" --revert
+ */
+
+.keycloak__authentication__header-drag-button svg {
+  fill: var(--pf-v5-global--BackgroundColor--100);
+}
+
+.keycloak__authentication__header .pf-v5-c-data-list__cell {
+  font-weight: 700;
+}

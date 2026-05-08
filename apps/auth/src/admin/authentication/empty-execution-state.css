@@ -1,0 +1,18 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ * 
+ * $ npx keycloakify own --path "admin/authentication/empty-execution-state.css" --revert
+ */
+
+.keycloak__empty-execution-state__block {
+  padding-top: var(--pf-v5-global--spacer--sm);
+}
+.keycloak__empty-execution-state__help {
+  max-width: 36rem;
+  margin: 0 auto var(--pf-v5-global--spacer--2xl);
+}
+
+.keycloak__empty-execution-state__help p {
+  color: var(--pf-v5-global--Color--200);
+}

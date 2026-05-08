@@ -50,6 +50,7 @@ function Button({
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    children?: React.ReactNode
   }) {
   const Comp = asChild ? Slot.Root : "button"
 

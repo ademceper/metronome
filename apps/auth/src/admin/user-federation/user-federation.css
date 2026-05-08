@@ -1,0 +1,24 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ * 
+ * $ npx keycloakify own --path "admin/user-federation/user-federation.css" --revert
+ */
+
+.keycloak__user-federation__dropdown {
+  margin-top: var(--pf-v5-global--spacer--lg);
+}
+
+.keycloak-admin--user-federation__gallery-item {
+  display: contents;
+}
+
+.keycloak__user-federation__assign-role {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+}
+
+.keycloak__user-federation__assign-role-btn {
+  margin-left: 10px;
+}

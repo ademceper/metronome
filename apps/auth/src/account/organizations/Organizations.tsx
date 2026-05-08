@@ -1,0 +1,59 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-account-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ *
+ * $ npx keycloakify own --path "account/organizations/Organizations.tsx" --revert
+ */
+
+/* eslint-disable */
+
+// @ts-nocheck
+
+import OrganizationRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationRepresentation";
+import {
+  ErrorBoundaryProvider,
+  KeycloakSpinner,
+  ListEmptyState,
+  OrganizationTable,
+  useEnvironment,
+} from "../../shared/keycloak-ui-shared";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { AccountEnvironment } from "..";
+import { getUserOrganizations } from "../api/methods";
+import { Page } from "../components/page/Page";
+import { usePromise } from "../utils/usePromise";
+
+export const Organizations = () => {
+  const { t } = useTranslation();
+  const context = useEnvironment<AccountEnvironment>();
+
+  const [userOrgs, setUserOrgs] = useState<OrganizationRepresentation[]>([]);
+
+  usePromise(
+    (signal) => getUserOrganizations({ signal, context }),
+    setUserOrgs,
+  );
+
+  if (!userOrgs) {
+    return <KeycloakSpinner />;
+  }
+
+  return (
+    <Page title={t("organizations")} description={t("organizationDescription")}>
+      <ErrorBoundaryProvider>
+        <OrganizationTable
+          link={({ children }) => <span>{children}</span>}
+          loader={userOrgs}
+        >
+          <ListEmptyState
+            message={t("emptyUserOrganizations")}
+            instructions={t("emptyUserOrganizationsInstructions")}
+          />
+        </OrganizationTable>
+      </ErrorBoundaryProvider>
+    </Page>
+  );
+};
+
+export default Organizations;

@@ -1,0 +1,21 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ * 
+ * $ npx keycloakify own --path "admin/components/help-enabler/help-header.css" --revert
+ */
+
+div.keycloak_help-header-description {
+  padding-top: var(--pf-v5-global--spacer--lg);
+  overflow-wrap: break-word;
+  white-space: normal;
+  color: var(--pf-v5-c-dropdown__menu-item--Color);
+}
+
+.keycloak_help-header-switch {
+  margin-left: var(--pf-v5-global--spacer--xl);
+}
+
+.keycloak_help-header-switch .pf-v5-c-switch__toggle::before {
+  background-color: var(--pf-v5-c-switch__toggle-icon--Color);
+}

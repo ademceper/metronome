@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     keycloakify({
       themeName: "metronome",
-      accountThemeImplementation: "none",
+      accountThemeImplementation: "Single-Page",
       keycloakifyBuildDirPath: "../../infrastructure/keycloak/providers",
       keycloakVersionTargets: {
         "22-to-25": false,

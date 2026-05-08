@@ -1,0 +1,18 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ * 
+ * $ npx keycloakify own --path "admin/clients/authorization/search-dropdown.css" --revert
+ */
+
+.keycloak__client_authentication__searchdropdown {
+  --pf-v5-c-dropdown__toggle--MinWidth: 21rem;
+}
+
+.keycloak__client_authentication__searchdropdown_form {
+  width: max-content;
+  --pf-v5-c-form--m-horizontal__group-label--md--GridColumnWidth: 5rem;
+  --pf-v5-c-form--m-horizontal__group-control--md--GridColumnWidth: 24rem;
+  margin: var(--pf-v5-global--spacer--lg) var(--pf-v5-global--spacer--lg)
+    var(--pf-v5-global--spacer--lg);
+}

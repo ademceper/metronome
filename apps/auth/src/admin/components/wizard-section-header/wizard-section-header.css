@@ -1,0 +1,17 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ * 
+ * $ npx keycloakify own --path "admin/components/wizard-section-header/wizard-section-header.css" --revert
+ */
+
+.kc-wizard-section-header__title {
+  margin-bottom: var(--pf-v5-global--spacer--lg);
+}
+.kc-wizard-section-header__title--has-description {
+  margin-bottom: var(--pf-v5-global--spacer--sm);
+}
+
+.kc-wizard-section-header__description {
+  margin-bottom: var(--pf-v5-global--spacer--lg);
+}
