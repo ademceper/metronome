@@ -26,7 +26,7 @@ import {
   Split,
   SplitItem,
 } from "../../shared/@patternfly/react-core";
-import { LinkIcon, UnlinkIcon } from "../../shared/@patternfly/react-icons";
+import { LinkSimple as LinkIcon, LinkBreak as UnlinkIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 
 import { unLinkAccount } from "../api/methods";

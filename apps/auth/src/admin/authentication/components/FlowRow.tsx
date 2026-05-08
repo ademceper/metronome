@@ -15,7 +15,7 @@ import {
   Draggable,
   Tooltip,
 } from "../../../shared/@patternfly/react-core";
-import { TrashIcon } from "../../../shared/@patternfly/react-icons";
+import { Trash as TrashIcon } from "@phosphor-icons/react"
 import { Td, TreeRowWrapper } from "../../../shared/@patternfly/react-table";
 import { useTranslation } from "react-i18next";
 import type { ExpandableExecution } from "../execution-model";

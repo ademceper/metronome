@@ -22,11 +22,7 @@ import {
   ModalVariant,
   SelectOption,
 } from "../../../shared/@patternfly/react-core";
-import {
-  CaretDownIcon,
-  CaretUpIcon,
-  FilterIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { CaretDown as CaretDownIcon, CaretUp as CaretUpIcon, Funnel as FilterIcon } from "@phosphor-icons/react"
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {

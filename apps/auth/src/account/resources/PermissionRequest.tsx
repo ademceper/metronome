@@ -19,7 +19,7 @@ import {
   ModalVariant,
   Text,
 } from "../../shared/@patternfly/react-core";
-import { UserCheckIcon } from "../../shared/@patternfly/react-icons";
+import { UserCheck as UserCheckIcon } from "@phosphor-icons/react"
 import {
   Table,
   Tbody,

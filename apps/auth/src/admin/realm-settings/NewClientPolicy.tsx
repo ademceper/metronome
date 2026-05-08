@@ -38,10 +38,7 @@ import {
   Text,
   TextVariants,
 } from "../../shared/@patternfly/react-core";
-import {
-  PlusCircleIcon,
-  TrashIcon,
-} from "../../shared/@patternfly/react-icons";
+import { PlusCircle as PlusCircleIcon, Trash as TrashIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";

@@ -726,8 +726,6 @@
 # admin/workflows/routes/WorkflowDetail.tsx
 # admin/workflows/routes/Workflows.tsx
 # shared/@patternfly/react-core/index.tsx
-# shared/@patternfly/react-icons/index.tsx
-# shared/@patternfly/react-styles/index.tsx
 # shared/@patternfly/react-table/index.tsx
 # shared/keycloak-ui-shared/alerts/AlertPanel.tsx
 # shared/keycloak-ui-shared/alerts/Alerts.tsx
@@ -831,7 +829,5 @@
 # === Owned files end =====
 
 # === @keycloakify/keycloak-admin-ui v260601.0.0 ===
-
-# === @keycloakify/keycloak-ui-shared v260601.0.0 ===
 
 # === @keycloakify/keycloak-account-ui v260601.0.0 ===

@@ -22,10 +22,7 @@ import {
   HelperTextItem,
   TextInput,
 } from "../../../shared/@patternfly/react-core";
-import {
-  MinusCircleIcon,
-  PlusCircleIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { MinusCircle as MinusCircleIcon, PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 import { Fragment, FunctionComponent, PropsWithChildren } from "react";
 import {
   FieldValues,

@@ -17,7 +17,7 @@ import {
   MenuToggle,
   ToolbarItem,
 } from "../../../shared/@patternfly/react-core";
-import { EllipsisVIcon } from "../../../shared/@patternfly/react-icons";
+import { DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { useAccess } from "../../context/access/Access";
 import useToggle from "../../utils/useToggle";

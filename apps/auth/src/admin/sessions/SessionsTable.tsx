@@ -20,10 +20,7 @@ import {
   ToolbarItem,
   Tooltip,
 } from "../../shared/@patternfly/react-core";
-import {
-  CubesIcon,
-  InfoCircleIcon,
-} from "../../shared/@patternfly/react-icons";
+import { Stack as CubesIcon, Info as InfoCircleIcon } from "@phosphor-icons/react"
 import { IRowData } from "../../shared/@patternfly/react-table";
 import { ReactNode, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";

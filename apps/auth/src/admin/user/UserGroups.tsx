@@ -19,7 +19,7 @@ import {
   Checkbox,
   Popover,
 } from "../../shared/@patternfly/react-core";
-import { QuestionCircleIcon } from "../../shared/@patternfly/react-icons";
+import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { cellWidth } from "../../shared/@patternfly/react-table";
 import { intersectionBy, sortBy, uniqBy } from "lodash-es";
 import { useState } from "react";

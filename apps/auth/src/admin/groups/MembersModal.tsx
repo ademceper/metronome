@@ -16,7 +16,7 @@ import {
   ModalVariant,
   Label,
 } from "../../shared/@patternfly/react-core";
-import { InfoCircleIcon } from "../../shared/@patternfly/react-icons";
+import { Info as InfoCircleIcon } from "@phosphor-icons/react"
 import { differenceBy } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

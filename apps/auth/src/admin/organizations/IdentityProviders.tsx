@@ -24,7 +24,7 @@ import {
   ToolbarItem,
 } from "../../shared/@patternfly/react-core";
 import { sortBy } from "lodash-es";
-import { BellIcon } from "../../shared/@patternfly/react-icons";
+import { Bell as BellIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";

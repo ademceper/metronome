@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import { Label } from "../../shared/@patternfly/react-core";
-import { CheckCircleIcon } from "../../shared/@patternfly/react-icons";
+import { CheckCircle as CheckCircleIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 
 import style from "./build-in-label.module.css";

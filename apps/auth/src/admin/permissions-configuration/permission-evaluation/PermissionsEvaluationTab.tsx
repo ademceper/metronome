@@ -31,7 +31,7 @@ import {
   SplitItem,
   Title,
 } from "../../../shared/@patternfly/react-core";
-import { BellIcon } from "../../../shared/@patternfly/react-icons";
+import { Bell as BellIcon } from "@phosphor-icons/react"
 import { useMemo, useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";

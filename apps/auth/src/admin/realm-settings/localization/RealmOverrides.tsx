@@ -36,13 +36,7 @@ import {
   TextVariants,
   ToolbarItem,
 } from "../../../shared/@patternfly/react-core";
-import {
-  CheckIcon,
-  EllipsisVIcon,
-  PencilAltIcon,
-  SearchIcon,
-  TimesIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { Check as CheckIcon, DotsThreeVertical as EllipsisVIcon, PencilSimple as PencilAltIcon, MagnifyingGlass as SearchIcon, X as TimesIcon } from "@phosphor-icons/react"
 import {
   ActionsColumn,
   IRow,

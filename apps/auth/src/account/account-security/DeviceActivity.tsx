@@ -32,11 +32,7 @@ import {
   SplitItem,
   Title,
 } from "../../shared/@patternfly/react-core";
-import {
-  DesktopIcon,
-  MobileAltIcon,
-  SyncAltIcon,
-} from "../../shared/@patternfly/react-icons";
+import { Desktop as DesktopIcon, DeviceMobile as MobileAltIcon, ArrowsClockwise as SyncAltIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

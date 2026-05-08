@@ -31,7 +31,7 @@ import {
   TextInput,
   TextVariants,
 } from "../../../shared/@patternfly/react-core";
-import { CheckIcon } from "../../../shared/@patternfly/react-icons";
+import { Check as CheckIcon } from "@phosphor-icons/react"
 import { ReactNode, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";

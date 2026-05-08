@@ -22,7 +22,7 @@ import {
   TextInputGroupMain,
   TextInputGroupUtilities,
 } from "../../../@patternfly/react-core";
-import { TimesIcon } from "../../../@patternfly/react-icons";
+import { X as TimesIcon } from "@phosphor-icons/react"
 import { get } from "lodash-es";
 import { useMemo, useRef, useState } from "react";
 import {

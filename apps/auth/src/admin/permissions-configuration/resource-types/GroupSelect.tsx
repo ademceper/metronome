@@ -16,7 +16,7 @@ import {
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
 import { Button, FormGroup } from "../../../shared/@patternfly/react-core";
-import { MinusCircleIcon } from "../../../shared/@patternfly/react-icons";
+import { MinusCircle as MinusCircleIcon } from "@phosphor-icons/react"
 import {
   Table,
   Tbody,

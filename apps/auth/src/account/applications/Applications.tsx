@@ -31,11 +31,7 @@ import {
   GridItem,
   Spinner,
 } from "../../shared/@patternfly/react-core";
-import {
-  CheckIcon,
-  ExternalLinkAltIcon,
-  InfoAltIcon,
-} from "../../shared/@patternfly/react-icons";
+import { Check as CheckIcon, ArrowSquareOut as ExternalLinkAltIcon, Info as InfoAltIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

@@ -23,7 +23,7 @@ import {
   TabTitleText,
   Tooltip,
 } from "../../shared/@patternfly/react-core";
-import { InfoCircleIcon } from "../../shared/@patternfly/react-icons";
+import { Info as InfoCircleIcon } from "@phosphor-icons/react"
 import { cloneDeep, sortBy } from "lodash-es";
 import { useMemo, useState } from "react";
 import { Controller, FormProvider, useForm, useWatch } from "react-hook-form";

@@ -17,7 +17,7 @@ import {
   ModalVariant,
   Tooltip,
 } from "../../../shared/@patternfly/react-core";
-import { PencilAltIcon } from "../../../shared/@patternfly/react-icons";
+import { PencilSimple as PencilAltIcon } from "@phosphor-icons/react"
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";

@@ -32,10 +32,7 @@ import {
   TextContent,
   ToolbarItem,
 } from "../../shared/@patternfly/react-core";
-import {
-  EllipsisVIcon,
-  QuestionCircleIcon,
-} from "../../shared/@patternfly/react-icons";
+import { DotsThreeVertical as EllipsisVIcon, Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

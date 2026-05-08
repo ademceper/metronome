@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { ExternalLinkAltIcon } from "../../../shared/@patternfly/react-icons";
+import { ArrowSquareOut as ExternalLinkAltIcon } from "@phosphor-icons/react"
 import { AnchorHTMLAttributes } from "react";
 
 export type FormattedLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {

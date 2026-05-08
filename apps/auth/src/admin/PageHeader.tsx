@@ -16,7 +16,7 @@ import {
   useHelp,
 } from "../shared/keycloak-ui-shared";
 import { DropdownItem, ToolbarItem } from "../shared/@patternfly/react-core";
-import { HelpIcon } from "../shared/@patternfly/react-icons";
+import { Question as HelpIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { Link, useHref } from "react-router-dom";
 import { PageHeaderClearCachesModal } from "./PageHeaderClearCachesModal";

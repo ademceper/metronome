@@ -9,7 +9,6 @@
 
 // @ts-nocheck
 
-import styles from "@patternfly/react-styles/css/components/DataList/data-list";
 import {
   ActionsColumn,
   IAction,
@@ -78,7 +77,6 @@ export function DraggableTable<T>({
     evt.dataTransfer.setData("text/plain", evt.currentTarget.id);
     const draggedItemId = evt.currentTarget.id;
 
-    evt.currentTarget.classList.add(styles.modifiers.ghostRow);
     evt.currentTarget.setAttribute("aria-grabbed", "true");
     setState({ ...state, draggedItemId, dragging: true });
   };
@@ -112,7 +110,6 @@ export function DraggableTable<T>({
 
   const onDragCancel = () => {
     Array.from(bodyRef.current?.children || []).forEach((el) => {
-      el.classList.remove(styles.modifiers.ghostRow);
       el.setAttribute("aria-grabbed", "false");
     });
     setState({
@@ -183,7 +180,6 @@ export function DraggableTable<T>({
 
   const onDragEnd = (evt: ReactDragEvent) => {
     const tr = evt.target as HTMLTableRowElement;
-    tr.classList.remove(styles.modifiers.ghostRow);
     tr.setAttribute("aria-grabbed", "false");
     setState({
       ...state,
@@ -204,7 +200,7 @@ export function DraggableTable<T>({
   return (
     <Table
       aria-label="Draggable table"
-      className={state.dragging ? styles.modifiers.dragOver : ""}
+      className=""
       {...props}
     >
       <Thead>

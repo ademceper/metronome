@@ -21,10 +21,7 @@ import {
   FormGroup,
   TextInput,
 } from "../../../shared/@patternfly/react-core";
-import {
-  MinusCircleIcon,
-  PlusCircleIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { MinusCircle as MinusCircleIcon, PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 import { useEffect, useState, useRef } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";

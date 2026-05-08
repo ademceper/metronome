@@ -26,7 +26,7 @@ import {
   TextContent,
   TextVariants,
 } from "../../shared/@patternfly/react-core";
-import { DatabaseIcon } from "../../shared/@patternfly/react-icons";
+import { Database as DatabaseIcon } from "@phosphor-icons/react"
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";

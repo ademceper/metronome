@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import {
-  ComponentClass,
+  ComponentType,
   MouseEventHandler,
   PropsWithChildren,
   ReactNode,
@@ -25,8 +25,8 @@ import {
   EmptyStateHeader,
   EmptyStateFooter,
 } from "../../../@patternfly/react-core";
-import type { SVGIconProps } from "@patternfly/react-icons/dist/js/createIcon";
-import { PlusCircleIcon, SearchIcon } from "../../../@patternfly/react-icons";
+import { PlusCircle as PlusCircleIcon, MagnifyingGlass as SearchIcon } from "@phosphor-icons/react"
+type SVGIconProps = React.SVGProps<SVGSVGElement>
 
 export type Action = {
   text: string;
@@ -40,7 +40,7 @@ export type ListEmptyStateProps = {
   primaryActionText?: string;
   onPrimaryAction?: MouseEventHandler<HTMLButtonElement>;
   hasIcon?: boolean;
-  icon?: ComponentClass<SVGIconProps>;
+  icon?: ComponentType<SVGIconProps>;
   isSearchVariant?: boolean;
   secondaryActions?: Action[];
   isDisabled?: boolean;

@@ -15,11 +15,7 @@ import {
   TextInputGroupMain,
   TextInputGroupUtilities,
 } from "../../../shared/@patternfly/react-core";
-import {
-  ArrowRightIcon,
-  SearchIcon,
-  TimesIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { ArrowRight as ArrowRightIcon, MagnifyingGlass as SearchIcon, X as TimesIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 
 type SearchInputComponentProps = {

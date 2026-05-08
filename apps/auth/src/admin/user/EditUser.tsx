@@ -30,7 +30,7 @@ import {
   TabTitleText,
   Tooltip,
 } from "../../shared/@patternfly/react-core";
-import { InfoCircleIcon } from "../../shared/@patternfly/react-icons";
+import { Info as InfoCircleIcon } from "@phosphor-icons/react"
 import { TFunction } from "i18next";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";

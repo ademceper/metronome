@@ -29,13 +29,7 @@ import {
   OverflowMenuItem,
   Spinner,
 } from "../../shared/@patternfly/react-core";
-import {
-  EditAltIcon,
-  EllipsisVIcon,
-  ExternalLinkAltIcon,
-  Remove2Icon,
-  ShareAltIcon,
-} from "../../shared/@patternfly/react-icons";
+import { PencilSimple as EditAltIcon, DotsThreeVertical as EllipsisVIcon, ArrowSquareOut as ExternalLinkAltIcon, Minus as Remove2Icon, Share as ShareAltIcon } from "@phosphor-icons/react"
 import {
   ExpandableRowContent,
   Table,

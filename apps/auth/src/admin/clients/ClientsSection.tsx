@@ -23,7 +23,7 @@ import {
   ToolbarItem,
   Tooltip,
 } from "../../shared/@patternfly/react-core";
-import { WarningTriangleIcon } from "../../shared/@patternfly/react-icons";
+import { Warning as WarningTriangleIcon } from "@phosphor-icons/react"
 import {
   IRowData,
   TableText,

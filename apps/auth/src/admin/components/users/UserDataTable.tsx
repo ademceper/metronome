@@ -34,11 +34,7 @@ import {
   ToolbarItem,
   Tooltip,
 } from "../../../shared/@patternfly/react-core";
-import {
-  ExclamationCircleIcon,
-  InfoCircleIcon,
-  WarningTriangleIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { WarningCircle as ExclamationCircleIcon, Info as InfoCircleIcon, Warning as WarningTriangleIcon } from "@phosphor-icons/react"
 import type { IRowData } from "../../../shared/@patternfly/react-table";
 import { JSX, useState } from "react";
 import { useTranslation } from "react-i18next";

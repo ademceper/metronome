@@ -26,10 +26,7 @@ import {
   Modal,
   ModalVariant,
 } from "../../../shared/@patternfly/react-core";
-import {
-  CaretDownIcon,
-  FilterIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { CaretDown as CaretDownIcon, Funnel as FilterIcon } from "@phosphor-icons/react"
 import { sortBy } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

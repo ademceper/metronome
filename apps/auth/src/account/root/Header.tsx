@@ -16,7 +16,7 @@ import {
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
 import { Button } from "../../shared/@patternfly/react-core";
-import { ExternalLinkSquareAltIcon } from "../../shared/@patternfly/react-icons";
+import { ArrowSquareOut as ExternalLinkSquareAltIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { useHref } from "react-router-dom";
 

@@ -23,7 +23,7 @@ import {
   PageSection,
   SelectOption,
 } from "../../../shared/@patternfly/react-core";
-import { FilterIcon } from "../../../shared/@patternfly/react-icons";
+import { Funnel as FilterIcon } from "@phosphor-icons/react"
 import { cellWidth } from "../../../shared/@patternfly/react-table";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";

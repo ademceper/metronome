@@ -17,11 +17,7 @@ import {
   FormGroup,
   TextInput,
 } from "../../../shared/@patternfly/react-core";
-import {
-  CheckIcon,
-  PencilAltIcon,
-  TimesIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { Check as CheckIcon, PencilSimple as PencilAltIcon, X as TimesIcon } from "@phosphor-icons/react"
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";

@@ -18,7 +18,7 @@ import {
   Checkbox,
   Popover,
 } from "../../shared/@patternfly/react-core";
-import { QuestionCircleIcon } from "../../shared/@patternfly/react-icons";
+import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { cellWidth } from "../../shared/@patternfly/react-table";
 import { useHelp } from "../../shared/keycloak-ui-shared";
 import { ListEmptyState } from "../../shared/keycloak-ui-shared";

@@ -28,7 +28,7 @@ import {
   ToolbarContent,
   ToolbarItem,
 } from "../../shared/@patternfly/react-core";
-import { DomainIcon, TableIcon } from "../../shared/@patternfly/react-icons";
+import { Globe as DomainIcon, Table as TableIcon } from "@phosphor-icons/react"
 import { Table, Tbody } from "../../shared/@patternfly/react-table";
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";

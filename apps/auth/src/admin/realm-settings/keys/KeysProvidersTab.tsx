@@ -24,7 +24,7 @@ import {
   ToolbarGroup,
   ToolbarItem,
 } from "../../../shared/@patternfly/react-core";
-import { SearchIcon } from "../../../shared/@patternfly/react-icons";
+import { MagnifyingGlass as SearchIcon } from "@phosphor-icons/react"
 import { KeyboardEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

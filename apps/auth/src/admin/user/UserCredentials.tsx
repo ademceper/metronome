@@ -20,7 +20,6 @@ import {
   PageSection,
   PageSectionVariants,
 } from "../../shared/@patternfly/react-core";
-import styles from "@patternfly/react-styles/css/components/Table/table";
 import {
   Table,
   Tbody,
@@ -221,7 +220,6 @@ export const UserCredentials = ({ user, setUser }: UserCredentialsProps) => {
     evt.dataTransfer.effectAllowed = "move";
     evt.dataTransfer.setData("text/plain", evt.currentTarget.id);
     const draggedItemId = evt.currentTarget.id;
-    evt.currentTarget.classList.add(styles.modifiers.ghostRow);
     evt.currentTarget.setAttribute("aria-pressed", "true");
     setState({ ...state, draggedItemId, dragging: true });
   };
@@ -252,7 +250,6 @@ export const UserCredentials = ({ user, setUser }: UserCredentialsProps) => {
   const onDragCancel = () => {
     if (!bodyRef.current) return;
     Array.from(bodyRef.current.children).forEach((el) => {
-      el.classList.remove(styles.modifiers.ghostRow);
       el.setAttribute("aria-pressed", "false");
     });
     setState({
@@ -332,7 +329,6 @@ export const UserCredentials = ({ user, setUser }: UserCredentialsProps) => {
     if (!(target instanceof HTMLTableRowElement)) {
       return;
     }
-    target.classList.remove(styles.modifiers.ghostRow);
     target.setAttribute("aria-pressed", "false");
     setState({
       ...state,

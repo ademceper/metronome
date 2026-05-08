@@ -20,7 +20,7 @@ import {
   InputGroupItem,
   TextInput,
 } from "../../../../shared/@patternfly/react-core";
-import { GlobeRouteIcon } from "../../../../shared/@patternfly/react-icons";
+import { Globe as GlobeRouteIcon } from "@phosphor-icons/react"
 import { TFunction } from "i18next";
 import { useEffect } from "react";
 import { useFormContext, useWatch } from "react-hook-form";

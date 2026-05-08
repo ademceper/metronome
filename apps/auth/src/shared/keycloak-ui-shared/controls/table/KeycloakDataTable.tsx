@@ -14,8 +14,8 @@ import {
   ButtonVariant,
   ToolbarItem,
 } from "../../../@patternfly/react-core";
-import { SyncAltIcon } from "../../../@patternfly/react-icons";
-import type { SVGIconProps } from "@patternfly/react-icons/dist/js/createIcon";
+import { ArrowsClockwise as SyncAltIcon } from "@phosphor-icons/react"
+type SVGIconProps = React.SVGProps<SVGSVGElement>
 import {
   ActionsColumn,
   ExpandableRowContent,
@@ -37,7 +37,7 @@ import {
 } from "../../../@patternfly/react-table";
 import { cloneDeep, get, intersectionBy } from "lodash-es";
 import {
-  ComponentClass,
+  ComponentType,
   ReactNode,
   isValidElement,
   useEffect,
@@ -352,7 +352,7 @@ export type DataListProps<T> = Omit<
   toolbarItem?: ReactNode;
   subToolbar?: ReactNode;
   emptyState?: ReactNode;
-  icon?: ComponentClass<SVGIconProps>;
+  icon?: ComponentType<SVGIconProps>;
   isNotCompact?: boolean;
   isRadio?: boolean;
   isSearching?: boolean;

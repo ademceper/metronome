@@ -10,21 +10,8 @@
 // @ts-nocheck
 
 import { Icon } from "../../@patternfly/react-core";
-import {
-  BitbucketIcon,
-  CubeIcon,
-  FacebookSquareIcon,
-  GithubIcon,
-  GitlabIcon,
-  GoogleIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  MicrosoftIcon,
-  OpenshiftIcon,
-  PaypalIcon,
-  StackOverflowIcon,
-  TwitterIcon,
-} from "../../@patternfly/react-icons";
+import { Cube as CubeIcon, FacebookLogo as FacebookSquareIcon, GithubLogo as GithubIcon, GitlabLogo as GitlabIcon, GoogleLogo as GoogleIcon, InstagramLogo as InstagramIcon, LinkedinLogo as LinkedinIcon, WindowsLogo as MicrosoftIcon, TwitterLogo as TwitterIcon } from "@phosphor-icons/react"
+import { SiBitbucket as BitbucketIcon, SiRedhatopenshift as OpenshiftIcon, SiPaypal as PaypalIcon, SiStackoverflow as StackOverflowIcon } from "@icons-pack/react-simple-icons"
 
 type IconMapperProps = {
   icon: string;

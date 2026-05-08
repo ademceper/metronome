@@ -17,7 +17,7 @@ import {
   AlertVariant,
   PageSection,
 } from "../../../shared/@patternfly/react-core";
-import { InfoCircleIcon } from "../../../shared/@patternfly/react-icons";
+import { Info as InfoCircleIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

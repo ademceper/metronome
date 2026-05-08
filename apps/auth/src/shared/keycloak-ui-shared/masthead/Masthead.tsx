@@ -24,7 +24,7 @@ import {
   ToolbarContent,
   ToolbarItem,
 } from "../../@patternfly/react-core";
-import { BarsIcon } from "../../@patternfly/react-icons";
+import { List as BarsIcon } from "@phosphor-icons/react"
 import { TFunction } from "i18next";
 import type { Keycloak, KeycloakTokenParsed } from "oidc-spa/keycloak-js";
 import { ReactNode } from "react";

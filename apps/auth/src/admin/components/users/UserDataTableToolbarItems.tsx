@@ -23,10 +23,7 @@ import {
   SearchInput,
   ToolbarItem,
 } from "../../../shared/@patternfly/react-core";
-import {
-  ArrowRightIcon,
-  EllipsisVIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { ArrowRight as ArrowRightIcon, DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 

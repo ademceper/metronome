@@ -20,7 +20,7 @@ import {
   SplitItem,
   Switch,
 } from "../../../shared/@patternfly/react-core";
-import { HelpIcon } from "../../../shared/@patternfly/react-icons";
+import { Question as HelpIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import helpUrls from "../../help-urls";

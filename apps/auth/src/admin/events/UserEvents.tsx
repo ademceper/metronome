@@ -37,10 +37,7 @@ import {
   SelectOption,
   Tooltip,
 } from "../../shared/@patternfly/react-core";
-import {
-  CheckCircleIcon,
-  WarningTriangleIcon,
-} from "../../shared/@patternfly/react-icons";
+import { CheckCircle as CheckCircleIcon, Warning as WarningTriangleIcon } from "@phosphor-icons/react"
 import { cellWidth } from "../../shared/@patternfly/react-table";
 import { pickBy } from "lodash-es";
 import { useState } from "react";

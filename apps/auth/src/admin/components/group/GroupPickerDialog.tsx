@@ -33,7 +33,7 @@ import {
   Modal,
   ModalVariant,
 } from "../../../shared/@patternfly/react-core";
-import { AngleRightIcon } from "../../../shared/@patternfly/react-icons";
+import { CaretRight as AngleRightIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";

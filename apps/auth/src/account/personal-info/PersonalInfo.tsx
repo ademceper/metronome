@@ -25,7 +25,7 @@ import {
   Form,
   Spinner,
 } from "../../shared/@patternfly/react-core";
-import { ExternalLinkSquareAltIcon } from "../../shared/@patternfly/react-icons";
+import { ArrowSquareOut as ExternalLinkSquareAltIcon } from "@phosphor-icons/react"
 import { TFunction } from "i18next";
 import { useState } from "react";
 import { ErrorOption, useForm } from "react-hook-form";

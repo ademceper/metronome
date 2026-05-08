@@ -11,12 +11,7 @@
 
 import { HelpItem } from "../../../shared/keycloak-ui-shared";
 import { Label } from "../../../shared/@patternfly/react-core";
-import {
-  CodeBranchIcon,
-  MapMarkerIcon,
-  ProcessAutomationIcon,
-  TaskIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { GitBranch as CodeBranchIcon, MapPin as MapMarkerIcon, Robot as ProcessAutomationIcon, CheckSquare as TaskIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { useAuthenticationProvider } from "./AuthenticationProviderContext";
 import { FlowType } from "./FlowRow";

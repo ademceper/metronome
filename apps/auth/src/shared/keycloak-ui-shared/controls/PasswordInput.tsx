@@ -16,7 +16,7 @@ import {
   TextInput,
   type TextInputProps,
 } from "../../@patternfly/react-core";
-import { EyeIcon, EyeSlashIcon } from "../../@patternfly/react-icons";
+import { Eye as EyeIcon, EyeSlash as EyeSlashIcon } from "@phosphor-icons/react"
 import { MutableRefObject, Ref, forwardRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 

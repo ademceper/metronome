@@ -23,7 +23,7 @@ import {
   ToolbarContent,
   ToolbarItem,
 } from "../../../shared/@patternfly/react-core";
-import { FilterIcon } from "../../../shared/@patternfly/react-icons";
+import { Funnel as FilterIcon } from "@phosphor-icons/react"
 import { uniqBy } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

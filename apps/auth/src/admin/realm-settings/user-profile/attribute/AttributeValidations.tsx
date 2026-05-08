@@ -16,7 +16,7 @@ import {
   Text,
   TextVariants,
 } from "../../../../shared/@patternfly/react-core";
-import { PlusCircleIcon } from "../../../../shared/@patternfly/react-icons";
+import { PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 import {
   Table,
   Tbody,

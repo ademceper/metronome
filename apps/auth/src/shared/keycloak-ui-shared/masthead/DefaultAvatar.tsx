@@ -9,9 +9,6 @@
 
 // @ts-nocheck
 
-import styles from "@patternfly/react-styles/css/components/Avatar/avatar";
-import { css } from "../../@patternfly/react-styles";
-
 type DefaultAvatarProps = {
   className?: string;
   border?: "light" | "dark";
@@ -20,17 +17,11 @@ type DefaultAvatarProps = {
 
 export const DefaultAvatar = ({
   className = "",
-  border,
-  size = "md",
+  border: _border,
+  size: _size = "md",
 }: DefaultAvatarProps) => (
   <svg
-    className={css(
-      styles.avatar,
-      styles.modifiers[size],
-      border === "light" && styles.modifiers.light,
-      border === "dark" && styles.modifiers.dark,
-      className,
-    )}
+    className={className}
     enableBackground="new 0 0 36 36"
     version="1.1"
     viewBox="0 0 36 36"

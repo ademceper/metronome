@@ -18,7 +18,7 @@ import {
   MenuToggle,
   Tooltip,
 } from "../../../shared/@patternfly/react-core";
-import { PlusIcon } from "../../../shared/@patternfly/react-icons";
+import { Plus as PlusIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";

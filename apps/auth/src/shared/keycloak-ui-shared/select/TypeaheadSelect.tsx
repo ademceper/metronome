@@ -23,7 +23,7 @@ import {
   TextInputGroupMain,
   TextInputGroupUtilities,
 } from "../../@patternfly/react-core";
-import { TimesIcon } from "../../@patternfly/react-icons";
+import { X as TimesIcon } from "@phosphor-icons/react"
 import { Children, useRef, useState } from "react";
 import {
   KeycloakSelectProps,

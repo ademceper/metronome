@@ -29,7 +29,7 @@ import {
   TextInputGroupMain,
   TextInputGroupUtilities,
 } from "../../shared/@patternfly/react-core";
-import { TimesIcon } from "../../shared/@patternfly/react-icons";
+import { X as TimesIcon } from "@phosphor-icons/react"
 import { debounce } from "lodash-es";
 import { useCallback, useRef, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";

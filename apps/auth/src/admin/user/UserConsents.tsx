@@ -16,7 +16,7 @@ import {
   Chip,
   ChipGroup,
 } from "../../shared/@patternfly/react-core";
-import { CubesIcon } from "../../shared/@patternfly/react-icons";
+import { Stack as CubesIcon } from "@phosphor-icons/react"
 import { cellWidth } from "../../shared/@patternfly/react-table";
 import { sortBy } from "lodash-es";
 import { useState } from "react";

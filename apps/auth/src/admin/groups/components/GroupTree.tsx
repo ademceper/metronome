@@ -32,10 +32,7 @@ import {
   useAlerts,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  AngleRightIcon,
-  EllipsisVIcon,
-} from "../../../shared/@patternfly/react-icons";
+import { CaretRight as AngleRightIcon, DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
 import { unionBy } from "lodash-es";
 import { useRef, useState } from "react";

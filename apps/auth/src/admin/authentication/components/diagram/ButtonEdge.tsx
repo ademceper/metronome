@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { PlusIcon } from "../../../../shared/@patternfly/react-icons";
+import { Plus as PlusIcon } from "@phosphor-icons/react"
 import { ComponentType, MouseEvent as ReactMouseEvent } from "react";
 import { EdgeProps, getBezierPath, getMarkerEnd, MarkerType } from "reactflow";
 

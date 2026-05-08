@@ -38,7 +38,7 @@ import {
   Text,
   TextContent,
 } from "../../../shared/@patternfly/react-core";
-import { QuestionCircleIcon } from "../../../shared/@patternfly/react-icons";
+import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { useEffect, useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";

@@ -30,11 +30,7 @@ import {
   SplitItem,
   Title,
 } from "../../shared/@patternfly/react-core";
-import {
-  EllipsisVIcon,
-  ExclamationTriangleIcon,
-  InfoAltIcon,
-} from "../../shared/@patternfly/react-icons";
+import { DotsThreeVertical as EllipsisVIcon, Warning as ExclamationTriangleIcon, Info as InfoAltIcon } from "@phosphor-icons/react"
 import { CSSProperties, Fragment, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";

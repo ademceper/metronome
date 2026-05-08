@@ -28,7 +28,7 @@ import {
   TextInput,
   TextVariants,
 } from "../../../../shared/@patternfly/react-core";
-import { SearchIcon } from "../../../../shared/@patternfly/react-icons";
+import { MagnifyingGlass as SearchIcon } from "@phosphor-icons/react"
 import {
   Table,
   Tbody,

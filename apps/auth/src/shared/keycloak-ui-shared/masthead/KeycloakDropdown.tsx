@@ -15,7 +15,7 @@ import {
   DropdownProps,
   MenuToggle,
 } from "../../@patternfly/react-core";
-import { EllipsisVIcon } from "../../@patternfly/react-icons";
+import { DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 import { ReactNode, useState } from "react";
 
 type KeycloakDropdownProps = Omit<DropdownProps, "toggle"> & {

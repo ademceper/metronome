@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import { Banner, Flex, FlexItem } from "../shared/@patternfly/react-core";
-import { ExclamationTriangleIcon } from "../shared/@patternfly/react-icons";
+import { Warning as ExclamationTriangleIcon } from "@phosphor-icons/react"
 import { useWhoAmI } from "./context/whoami/WhoAmI";
 import { useTranslation } from "react-i18next";
 

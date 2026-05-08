@@ -23,7 +23,7 @@ import {
   Popover,
   ToolbarItem,
 } from "../../shared/@patternfly/react-core";
-import { EllipsisVIcon } from "../../shared/@patternfly/react-icons";
+import { DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 import { cellWidth } from "../../shared/@patternfly/react-table";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

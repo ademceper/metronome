@@ -15,7 +15,7 @@ import {
   HelperText,
   HelperTextItem,
 } from "../../@patternfly/react-core";
-import { ExclamationCircleIcon } from "../../@patternfly/react-icons";
+import { WarningCircle as ExclamationCircleIcon } from "@phosphor-icons/react"
 
 export type FormErrorTextProps = FormHelperTextProps & {
   message: string;

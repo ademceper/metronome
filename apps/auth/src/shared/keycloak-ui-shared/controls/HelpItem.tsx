@@ -10,10 +10,7 @@
 // @ts-nocheck
 
 import { Icon, Popover } from "../../@patternfly/react-core";
-import {
-  HelpIcon,
-  ExclamationTriangleIcon,
-} from "../../@patternfly/react-icons";
+import { Question as HelpIcon, Warning as ExclamationTriangleIcon } from "@phosphor-icons/react"
 import { ReactNode } from "react";
 import { useHelp } from "../context/HelpContext";
 

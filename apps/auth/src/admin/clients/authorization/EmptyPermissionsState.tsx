@@ -20,7 +20,7 @@ import {
   EmptyStateHeader,
   EmptyStateFooter,
 } from "../../../shared/@patternfly/react-core";
-import { PlusCircleIcon } from "../../../shared/@patternfly/react-icons";
+import { PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 
 import { PermissionType, toNewPermission } from "../routes/NewPermission";
 import { useRealm } from "../../context/realm-context/RealmContext";

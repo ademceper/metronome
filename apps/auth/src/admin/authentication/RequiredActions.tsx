@@ -18,7 +18,7 @@ import {
   Button,
   Switch,
 } from "../../shared/@patternfly/react-core";
-import { CogIcon } from "../../shared/@patternfly/react-icons";
+import { Gear as CogIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../admin-client";

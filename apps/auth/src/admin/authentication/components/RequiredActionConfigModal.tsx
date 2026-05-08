@@ -27,7 +27,7 @@ import {
   Modal,
   ModalVariant,
 } from "../../../shared/@patternfly/react-core";
-import { TrashIcon } from "../../../shared/@patternfly/react-icons";
+import { Trash as TrashIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";

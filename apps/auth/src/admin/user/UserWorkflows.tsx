@@ -30,7 +30,7 @@ import {
   Tr,
 } from "../../shared/@patternfly/react-table";
 import { Popover, Button } from "../../shared/@patternfly/react-core";
-import { QuestionCircleIcon } from "../../shared/@patternfly/react-icons";
+import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../admin-client";
