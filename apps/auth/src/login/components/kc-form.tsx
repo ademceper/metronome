@@ -68,7 +68,7 @@ export const KcTextInput = forwardRef<HTMLInputElement, KcTextInputProps>(
         placeholder={placeholder}
         aria-invalid={invalid ?? undefined}
         className={cn(
-          "peer h-12 pt-5 pb-1 pl-4 placeholder:text-transparent",
+          "peer h-12 pt-5 pb-1 pl-4 placeholder:text-transparent focus-visible:ring-0 aria-invalid:ring-0",
           invalid && "border-destructive focus-visible:ring-destructive",
           className
         )}
@@ -110,7 +110,7 @@ export function KcPasswordInput(props: KcPasswordInputProps) {
         placeholder={placeholder}
         aria-invalid={invalid ?? undefined}
         className={cn(
-          "peer h-12 pt-5 pr-12 pb-1 pl-4 placeholder:text-transparent",
+          "peer h-12 pt-5 pr-12 pb-1 pl-4 placeholder:text-transparent focus-visible:ring-0 aria-invalid:ring-0",
           invalid && "border-destructive focus-visible:ring-destructive",
           className
         )}
