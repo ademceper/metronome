@@ -9,16 +9,27 @@
 
 // @ts-nocheck
 
-import {
-  MenuToggle,
-  Select,
-  SelectList,
-  SelectOption,
-} from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Select as UISelect, SelectContent as UISelectContent, SelectItem as UISelectItem, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import type { ExpandableExecution } from "../execution-model";
+import { Select, SelectOption } from "../../../shared/pf-compat"
+
+
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const SelectList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
 
 type FlowRequirementDropdownProps = {
   flow: ExpandableExecution;

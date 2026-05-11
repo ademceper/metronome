@@ -14,7 +14,8 @@ import {
   GroupQuery,
   SubGroupQuery,
 } from "@keycloak/keycloak-admin-client/lib/resources/groups";
-import { SearchInput, ToolbarItem } from "../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
@@ -29,6 +30,15 @@ import { GroupToolbar } from "./components/GroupToolbar";
 import { MoveDialog } from "./components/MoveDialog";
 import { getLastId } from "./groupIdUtils";
 import { useGroupResource } from "../context/group-resource/GroupResourceContext";
+
+
+const SearchInput = ({ value, onChange, onClear, onSearch, placeholder, ...props }: any) => (
+  <UIInput type="search" value={value ?? ""} placeholder={placeholder}
+    onChange={(e: any) => onChange?.(e.target.value, e)} {...props} />
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
 
 type GroupTableProps = {
   refresh: () => void;

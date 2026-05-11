@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import type ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
-import { Tab, TabTitleText } from "../../../shared/@patternfly/react-core";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -26,6 +26,9 @@ import { KEY_PROVIDER_TYPE } from "../../util";
 import { KeySubTab, toKeysTab } from "../routes/KeysTab";
 import { KeysListTab } from "./KeysListTab";
 import { KeysProvidersTab } from "./KeysProvidersTab";
+import { Tab, TabTitleText } from "../../../shared/pf-compat"
+
+
 
 const sortByPriority = (components: ComponentRepresentation[]) => {
   const sortedComponents = [...components].sort((a, b) => {

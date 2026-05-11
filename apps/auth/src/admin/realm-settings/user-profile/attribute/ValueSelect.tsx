@@ -10,10 +10,13 @@
 // @ts-nocheck
 
 import { KeycloakSelect } from "../../../../shared/keycloak-ui-shared";
-import { SelectOption } from "../../../../shared/@patternfly/react-core";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
 import { useState } from "react";
 import { UseControllerProps, useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { SelectOption } from "../../../../shared/pf-compat"
+
+
 
 type ValueSelectProps = UseControllerProps & {
   selectItems: string[];

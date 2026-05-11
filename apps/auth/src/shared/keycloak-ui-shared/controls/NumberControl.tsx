@@ -9,11 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  NumberInput,
-  NumberInputProps,
-  ValidatedOptions,
-} from "../../@patternfly/react-core";
+import * as React from "react";
+import { Input as UIInput } from "@metronome/ui/components/input";
 import {
   Controller,
   ControllerProps,
@@ -25,6 +22,19 @@ import {
 
 import { getRuleValue } from "../utils/getRuleValue";
 import { FormLabel } from "./FormLabel";
+
+
+const NumberInput = ({ value, onChange, min, max, step, ...props }: any) => (
+  <UIInput type="number" value={value ?? ""}
+    onChange={(e: any) => onChange?.(e)} min={min} max={max} step={step} {...props} />
+);
+const ValidatedOptions = {
+  default: "default",
+  success: "success",
+  warning: "warning",
+  error: "error",
+} as const;
+type NumberInputProps = React.ComponentProps<typeof NumberInput>;
 
 export type NumberControlOption = {
   key: string;

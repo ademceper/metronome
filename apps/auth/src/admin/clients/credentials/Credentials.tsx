@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type { AuthenticationProviderRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/authenticatorConfigRepresentation";
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import type CredentialRepresentation from "@keycloak/keycloak-admin-client/lib/defs/credentialRepresentation";
@@ -18,20 +19,11 @@ import {
   useAlerts,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  ActionGroup,
-  Alert,
-  AlertVariant,
-  Button,
-  Card,
-  CardBody,
-  ClipboardCopy,
-  Form,
-  FormGroup,
-  PageSection,
-  Split,
-  SplitItem,
-} from "../../../shared/@patternfly/react-core";
+import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Card as UICard, CardContent as UICardContent } from "@metronome/ui/components/card";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -45,6 +37,117 @@ import { ClientSecret } from "./ClientSecret";
 import { SignedJWT } from "./SignedJWT";
 import { X509 } from "./X509";
 import { convertAttributeNameToForm } from "../../util";
+
+
+const ActionGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
+);
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Alert = ({ variant, title, isInline, isPlain, isLiveRegion, customIcon, actionClose, actionLinks, component, children, ...props }: any) => {
+  const v = (AlertVariant as any)[variant] ?? "default";
+  return (
+    <UIAlert variant={v as any} {...props}>
+      {title ? <UIAlertTitle>{title}</UIAlertTitle> : null}
+      {children ? <UIAlertDescription>{children}</UIAlertDescription> : null}
+      {actionLinks}
+      {actionClose}
+    </UIAlert>
+  );
+};
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Card = ({ isSelectable, isSelected, isFlat, isCompact, ...props }: any) => (
+  <UICard {...props} />
+);
+const CardBody = (props: any) => <UICardContent {...props} />;
+const ClipboardCopy = ({ value, onChange, isReadOnly, isCode, hoverTip, clickTip, children, variant, ...props }: any) => {
+  const [copied, setCopied] = React.useState(false);
+  const text = value ?? children ?? "";
+  return (
+    <div className="flex items-stretch gap-0">
+      <UIInput readOnly={isReadOnly} value={String(text)}
+        onChange={(e: any) => onChange?.(e, e.target.value)} className="rounded-r-none" />
+      <UIButton type="button" variant="outline" className="rounded-l-none"
+        onClick={async () => {
+          try {
+            await navigator.clipboard.writeText(String(text));
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          } catch {}
+        }}>
+        {copied ? (clickTip ?? "Copied") : (hoverTip ?? "Copy")}
+      </UIButton>
+    </div>
+  );
+};
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
 
 type AccessToken = {
   registrationAccessToken: string;

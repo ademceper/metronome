@@ -9,12 +9,16 @@
 
 // @ts-nocheck
 
-import { DataListDragButton } from "../../../shared/@patternfly/react-core";
 import {
   TableHead as Th,
   TableRow as Tr,
 } from "@metronome/ui/components/table";
 import { useTranslation } from "react-i18next";
+
+const DataListDragButton = (props: any) => (
+  <button type="button" aria-label="drag" className="cursor-grab text-muted-foreground text-sm" {...props}>⋮⋮</button>
+);
+
 export const FlowHeader = () => {
   const { t } = useTranslation();
   return (

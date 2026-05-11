@@ -9,14 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  Checkbox,
-  DataList,
-  DataListCell,
-  DataListItem,
-  DataListItemCells,
-  DataListItemRow,
-} from "../../shared/@patternfly/react-core";
+import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
@@ -24,6 +18,35 @@ import { getGroups } from "../api/methods";
 import { Group } from "../api/representations";
 import { Page } from "../components/page/Page";
 import { usePromise } from "../utils/usePromise";
+
+
+const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <UICheckbox id={id} name={name} checked={isChecked} disabled={isDisabled}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const DataList = ({ children, className, ...props }: any) => (
+  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
+);
+const DataListCell = ({ children, className, ...props }: any) => (
+  <div className={cn("flex-1", className)} {...props}>{children}</div>
+);
+const DataListItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const DataListItemCells = ({ dataListCells, ...props }: any) => (
+  <div className="flex flex-1 items-center gap-2" {...props}>{dataListCells}</div>
+);
+const DataListItemRow = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
+);
 
 export const Groups = () => {
   const { t } = useTranslation();

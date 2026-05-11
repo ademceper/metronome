@@ -10,11 +10,21 @@
 // @ts-nocheck
 
 import { HelpItem } from "../../../shared/keycloak-ui-shared";
-import { Label } from "../../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { GitBranch as CodeBranchIcon, MapPin as MapMarkerIcon, Robot as ProcessAutomationIcon, CheckSquare as TaskIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { useAuthenticationProvider } from "./AuthenticationProviderContext";
 import { FlowType } from "./FlowRow";
+
+
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
 
 type FlowTitleProps = {
   id?: string;

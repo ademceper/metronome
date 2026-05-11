@@ -13,21 +13,11 @@ import AuthenticationFlowRepresentation from "@keycloak/keycloak-admin-client/li
 import type { AuthenticationProviderRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/authenticatorConfigRepresentation";
 import AuthenticatorConfigRepresentation from "@keycloak/keycloak-admin-client/lib/defs/authenticatorConfigRepresentation";
 import { useAlerts, useFetch } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  Button,
-  ButtonVariant,
-  DragDrop,
-  DropdownItem,
-  Droppable,
-  Label,
-  PageSection,
-  ToggleGroup,
-  ToggleGroupItem,
-  Toolbar,
-  ToolbarContent,
-  ToolbarItem,
-} from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { ToggleGroup as UIToggleGroup, ToggleGroupItem as UIToggleGroupItem } from "@metronome/ui/components/toggle-group";
+import { cn } from "@metronome/ui/lib/utils";
 import { Globe as DomainIcon, Table as TableIcon } from "@phosphor-icons/react"
 import {
   Table,
@@ -60,6 +50,94 @@ import {
 } from "./execution-model";
 import { toAuthentication } from "./routes/Authentication";
 import { toFlow, type FlowParams } from "./routes/Flow";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const DragDrop = ({ onDrag, onDrop, children, ...props }: any) => (
+  <div {...props}>{children}</div>
+);
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const Droppable = ({ children, ...props }: any) => (
+  <div {...props}>{children}</div>
+);
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const ToggleGroup = ({ children, ...props }: any) => (
+  <UIToggleGroup type="single" {...props}>{children}</UIToggleGroup>
+);
+const ToggleGroupItem = ({ text, buttonId, isSelected, onChange, children, ...props }: any) => (
+  <UIToggleGroupItem value={buttonId ?? String(text)}
+    onClick={(e: any) => onChange?.(e, !isSelected)} {...props}>
+    {text ?? children}
+  </UIToggleGroupItem>
+);
+const Toolbar = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarContent = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-wrap items-center gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
 
 export const providerConditionFilter = (
   value: AuthenticationProviderRepresentation,

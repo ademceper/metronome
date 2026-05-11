@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { SelectOption } from "../../@patternfly/react-core";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
 import { useState } from "react";
 import { Controller, ControllerRenderProps } from "react-hook-form";
 import { KeycloakSelect, SelectVariant } from "../select/KeycloakSelect";
@@ -20,6 +20,9 @@ import {
 } from "./UserProfileFields";
 import { UserProfileGroup } from "./UserProfileGroup";
 import { UserFormFields, fieldName, label } from "./utils";
+import { SelectOption } from "../../pf-compat"
+
+
 
 export const SelectComponent = (props: UserProfileFieldProps) => {
   const { t, form, inputType, attribute } = props;

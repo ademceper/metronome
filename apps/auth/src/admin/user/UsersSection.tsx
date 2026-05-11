@@ -10,12 +10,8 @@
 // @ts-nocheck
 
 import { useTranslation } from "react-i18next";
-import {
-  PageSection,
-  Tab,
-  TabTitleText,
-} from "../../shared/@patternfly/react-core";
-
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import helpUrls from "../help-urls";
@@ -28,6 +24,16 @@ import {
 } from "../components/routable-tabs/RoutableTabs";
 import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
 import { useAccess } from "../context/access/Access";
+import { Tab, TabTitleText } from "../../shared/pf-compat"
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export default function UsersSection() {
   const { t } = useTranslation();

@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { PageSection } from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useAdminClient } from "../admin-client";
 import { RolesList } from "../components/roles-list/RolesList";
 import { ViewHeader } from "../components/view-header/ViewHeader";
@@ -18,6 +18,15 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import helpUrls from "../help-urls";
 import { toAddRole } from "./routes/AddRole";
 import { toRealmRole } from "./routes/RealmRole";
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export default function RealmRolesSection() {
   const { adminClient } = useAdminClient();

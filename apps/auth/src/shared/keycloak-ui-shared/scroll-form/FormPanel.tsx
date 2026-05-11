@@ -9,14 +9,17 @@
 
 // @ts-nocheck
 
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-} from "../../@patternfly/react-core";
+import { Card as UICard, CardContent as UICardContent, CardHeader as UICardHeader, CardTitle as UICardTitle } from "@metronome/ui/components/card";
 import { PropsWithChildren, useId } from "react";
 import { FormTitle } from "./FormTitle";
+
+
+const Card = ({ isSelectable, isSelected, isFlat, isCompact, ...props }: any) => (
+  <UICard {...props} />
+);
+const CardBody = (props: any) => <UICardContent {...props} />;
+const CardHeader = (props: any) => <UICardHeader {...props} />;
+const CardTitle = (props: any) => <UICardTitle {...props} />;
 
 type FormPanelProps = {
   title: string;

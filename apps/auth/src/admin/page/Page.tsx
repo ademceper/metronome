@@ -11,10 +11,7 @@
 
 import ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import { useAlerts, useFetch } from "../../shared/keycloak-ui-shared";
-import {
-  ButtonVariant,
-  DropdownItem,
-} from "../../shared/@patternfly/react-core";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
 import { get } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -27,6 +24,24 @@ import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { PageHandler } from "./PageHandler";
 import { PAGE_PROVIDER } from "./constants";
 import { PageParams, toPage } from "./routes";
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
 
 export default function Page() {
   const { adminClient } = useAdminClient();

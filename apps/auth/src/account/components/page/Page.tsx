@@ -9,13 +9,36 @@
 
 // @ts-nocheck
 
-import {
-  PageSection,
-  Text,
-  TextContent,
-  Title,
-} from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { cn } from "@metronome/ui/lib/utils";
 import { PropsWithChildren } from "react";
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
 
 type PageProps = {
   title: string;

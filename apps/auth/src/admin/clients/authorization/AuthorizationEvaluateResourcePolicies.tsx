@@ -9,16 +9,11 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type EvaluationResultRepresentation from "@keycloak/keycloak-admin-client/lib/defs/evaluationResultRepresentation";
 import { DecisionEffect } from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import type PolicyResultRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyResultRepresentation";
-import {
-  capitalize,
-  DescriptionList,
-  TextContent,
-  TextList,
-  TextListItem,
-} from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   TableBody as Tbody,
   TableCell as Td,
@@ -34,6 +29,27 @@ import { useParams } from "../../utils/useParams";
 import type { ClientParams } from "../routes/Client";
 import { toPermissionDetails } from "../routes/PermissionDetails";
 import { toPolicyDetails } from "../routes/PolicyDetails";
+
+
+const capitalize = (s: string): string =>
+  typeof s === "string" && s.length > 0 ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
+  <dl className={cn("grid gap-y-2 text-sm",
+    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
+    (props as any).className)} {...props}>
+    {children}
+  </dl>
+);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TextList = ({ component = "ul", children, ...props }: any) =>
+  React.createElement(component, {
+    className: cn(component === "ol" ? "list-decimal pl-5" : component === "dl" ? "" : "list-disc pl-5", "space-y-1 text-sm"),
+    ...props,
+  }, children);
+const TextListItem = ({ component = "li", children, ...props }: any) =>
+  React.createElement(component, props, children);
 
 type Props = {
   idx: number;

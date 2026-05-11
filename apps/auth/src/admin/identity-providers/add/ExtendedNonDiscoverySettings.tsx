@@ -14,19 +14,48 @@ import {
   KeycloakSelect,
   SelectVariant,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  ExpandableSection,
-  Form,
-  FormGroup,
-  NumberInput,
-  SelectOption,
-} from "../../../shared/@patternfly/react-core";
+import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FormGroupField } from "../component/FormGroupField";
 import { SwitchField } from "../component/SwitchField";
 import { TextField } from "../component/TextField";
+import { SelectOption } from "../../../shared/pf-compat"
+
+
+const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed, isExpanded, onToggle, isDetached, children, ...props }: any) => (
+  <UICollapsible open={isExpanded} onOpenChange={(open: boolean) => onToggle?.(undefined, open)} {...props}>
+    <UICollapsibleTrigger className="flex items-center gap-2 text-sm">
+      {isExpanded ? (toggleTextExpanded ?? toggleText) : (toggleTextCollapsed ?? toggleText)}
+    </UICollapsibleTrigger>
+    <UICollapsibleContent>{children}</UICollapsibleContent>
+  </UICollapsible>
+);
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const NumberInput = ({ value, onChange, min, max, step, ...props }: any) => (
+  <UIInput type="number" value={value ?? ""}
+    onChange={(e: any) => onChange?.(e)} min={min} max={max} step={step} {...props} />
+);
 
 const promptOptions = {
   unspecified: "",

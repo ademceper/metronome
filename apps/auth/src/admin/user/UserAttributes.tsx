@@ -10,10 +10,7 @@
 // @ts-nocheck
 
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
-import {
-  PageSection,
-  PageSectionVariants,
-} from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { UseFormReturn, useFormContext } from "react-hook-form";
 
 import {
@@ -25,6 +22,21 @@ import {
   UnmanagedAttributePolicy,
   UserProfileConfig,
 } from "@keycloak/keycloak-admin-client/lib/defs/userProfileMetadata";
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const PageSectionVariants = {
+  default: "default",
+  light: "light",
+  dark: "dark",
+  darker: "darker",
+} as const;
 
 type UserAttributesProps = {
   user: UserRepresentation;

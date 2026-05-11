@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { Checkbox, Radio } from "../../@patternfly/react-core";
+import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
 import { Controller } from "react-hook-form";
 import {
   OptionLabel,
@@ -18,6 +18,32 @@ import {
 } from "./UserProfileFields";
 import { UserProfileGroup } from "./UserProfileGroup";
 import { fieldName, isRequiredAttribute, label } from "./utils";
+
+
+const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <UICheckbox id={id} name={name} checked={isChecked} disabled={isDisabled}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const Radio = ({ id, name, label, description, isChecked, onChange, isDisabled, value, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <input type="radio" id={id} name={name} value={value} checked={!!isChecked} disabled={isDisabled}
+      onChange={(e) => onChange?.(e, e.target.checked)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
 
 export const OptionComponent = (props: UserProfileFieldProps) => {
   const { form, inputType, attribute } = props;

@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { Spinner } from "../../shared/@patternfly/react-core";
+import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { Suspense, lazy, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
@@ -18,6 +18,9 @@ import { ContentComponentParams } from "../routes";
 import { joinPath } from "../utils/joinPath";
 import { usePromise } from "../utils/usePromise";
 import fetchContentJson from "./fetchContent";
+
+
+const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 function findComponent(
   content: MenuItem[],

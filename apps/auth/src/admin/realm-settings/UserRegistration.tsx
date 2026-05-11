@@ -10,12 +10,7 @@
 // @ts-nocheck
 
 import type RoleRepresentation from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
-import {
-  AlertVariant,
-  Tab,
-  Tabs,
-  TabTitleText,
-} from "../../shared/@patternfly/react-core";
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../admin-client";
@@ -23,6 +18,16 @@ import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { RoleMapping } from "../components/role-mapping/RoleMapping";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { DefaultsGroupsTab } from "./DefaultGroupsTab";
+import { Tabs, Tab, TabTitleText } from "../../shared/pf-compat"
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
 
 export const UserRegistration = () => {
   const { adminClient } = useAdminClient();

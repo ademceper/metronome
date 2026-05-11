@@ -9,13 +9,9 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import {
-  DataList,
-  Stack,
-  StackItem,
-  Title,
-} from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getLinkedAccounts, LinkedAccountQueryParams } from "../api/methods";
@@ -25,6 +21,30 @@ import { Page } from "../components/page/Page";
 import { usePromise } from "../utils/usePromise";
 import { AccountRow } from "./AccountRow";
 import { LinkedAccountsToolbar } from "./LinkedAccountsToolbar";
+
+
+const DataList = ({ children, className, ...props }: any) => (
+  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
+);
+const Stack = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const StackItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
 
 export const LinkedAccounts = () => {
   const { t } = useTranslation();

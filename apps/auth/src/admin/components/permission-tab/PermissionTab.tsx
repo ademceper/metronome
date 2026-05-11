@@ -11,15 +11,9 @@
 
 import type { ManagementPermissionReference } from "@keycloak/keycloak-admin-client/lib/defs/managementPermissionReference";
 import { HelpItem, useFetch } from "../../../shared/keycloak-ui-shared";
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Form,
-  FormGroup,
-  PageSection,
-  Switch,
-} from "../../../shared/@patternfly/react-core";
+import { Card as UICard, CardContent as UICardContent, CardTitle as UICardTitle } from "@metronome/ui/components/card";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   Table,
   TableBody as Tbody,
@@ -38,6 +32,47 @@ import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useLocaleSort from "../../utils/useLocaleSort";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
+
+const Card = ({ isSelectable, isSelected, isFlat, isCompact, ...props }: any) => (
+  <UICard {...props} />
+);
+const CardBody = (props: any) => <UICardContent {...props} />;
+const CardTitle = (props: any) => <UICardTitle {...props} />;
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
+
 type PermissionScreenType =
   | "clients"
   | "users"

@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import {
   Action,
@@ -18,14 +19,9 @@ import {
   ListEmptyState,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownList,
-  FormGroup,
-  MenuToggle,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -36,6 +32,82 @@ import { ExistingPoliciesDialog } from "./ExistingPoliciesDialog";
 import { CaretDown as CaretDownIcon, Funnel as FilterIcon } from "@phosphor-icons/react"
 import { capitalize, sortBy } from "lodash-es";
 import useToggle from "../../utils/useToggle";
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Dropdown = ({ toggle, isOpen, onSelect, onOpenChange, popperProps, children, ...props }: any) => {
+  const trigger = typeof toggle === "function" ? toggle((node: HTMLElement | null) => node) : toggle;
+  return (
+    <UIDropdownMenu open={isOpen} onOpenChange={(open: boolean) => onOpenChange?.(open)}>
+      <UIDropdownMenuTrigger asChild>{trigger}</UIDropdownMenuTrigger>
+      <UIDropdownMenuContent>{children}</UIDropdownMenuContent>
+    </UIDropdownMenu>
+  );
+};
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const DropdownList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+
 type IRowData = any;
 
 type AssignedPoliciesProps = {

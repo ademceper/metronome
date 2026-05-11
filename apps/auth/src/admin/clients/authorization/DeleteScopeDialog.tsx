@@ -10,12 +10,32 @@
 // @ts-nocheck
 
 import type ScopeRepresentation from "@keycloak/keycloak-admin-client/lib/defs/scopeRepresentation";
-import { Alert, AlertVariant } from "../../../shared/@patternfly/react-core";
+import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { ConfirmDialogModal } from "../../components/confirm-dialog/ConfirmDialog";
 import type { PermissionScopeRepresentation } from "./Scopes";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Alert = ({ variant, title, isInline, isPlain, isLiveRegion, customIcon, actionClose, actionLinks, component, children, ...props }: any) => {
+  const v = (AlertVariant as any)[variant] ?? "default";
+  return (
+    <UIAlert variant={v as any} {...props}>
+      {title ? <UIAlertTitle>{title}</UIAlertTitle> : null}
+      {children ? <UIAlertDescription>{children}</UIAlertDescription> : null}
+      {actionLinks}
+      {actionClose}
+    </UIAlert>
+  );
+};
 
 type DeleteScopeDialogProps = {
   clientId: string;

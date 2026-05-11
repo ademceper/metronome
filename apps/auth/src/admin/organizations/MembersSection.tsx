@@ -9,11 +9,14 @@
 
 // @ts-nocheck
 
-import { Tab, Tabs, TabTitleText } from "../../shared/@patternfly/react-core";
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Invitations } from "./Invitations";
 import { Members } from "./Members";
+import { Tabs, Tab, TabTitleText } from "../../shared/pf-compat"
+
+
 
 export const MembersSection = () => {
   const { t } = useTranslation();

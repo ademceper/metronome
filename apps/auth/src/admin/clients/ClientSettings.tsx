@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
-import { Form } from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { ScrollForm } from "../../shared/keycloak-ui-shared";
@@ -22,6 +22,11 @@ import { LoginSettingsPanel } from "./add/LoginSettingsPanel";
 import { LogoutPanel } from "./add/LogoutPanel";
 import { SamlConfig } from "./add/SamlConfig";
 import { SamlSignature } from "./add/SamlSignature";
+
+
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
 
 export type ClientSettingsProps = {
   client: ClientRepresentation;

@@ -9,21 +9,11 @@
 
 // @ts-nocheck
 
-import {
-  Avatar,
-  AvatarProps,
-  DropdownItem,
-  Masthead,
-  MastheadBrand,
-  MastheadBrandProps,
-  MastheadContent,
-  MastheadMainProps,
-  MastheadToggle,
-  PageToggleButton,
-  Toolbar,
-  ToolbarContent,
-  ToolbarItem,
-} from "../../@patternfly/react-core";
+import * as React from "react";
+import { Avatar as UIAvatar, AvatarFallback as UIAvatarFallback, AvatarImage as UIAvatarImage } from "@metronome/ui/components/avatar";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { cn } from "@metronome/ui/lib/utils";
 import { List as BarsIcon } from "@phosphor-icons/react"
 import { TFunction } from "i18next";
 import type { Keycloak, KeycloakTokenParsed } from "oidc-spa/keycloak-js";
@@ -31,6 +21,47 @@ import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { DefaultAvatar } from "./DefaultAvatar";
 import { KeycloakDropdown } from "./KeycloakDropdown";
+
+
+const Avatar = ({ src, alt, ...props }: any) => (
+  <UIAvatar {...props}>
+    {src ? <UIAvatarImage src={src} alt={alt} /> : null}
+    <UIAvatarFallback>{(alt ?? "?").slice(0, 1)}</UIAvatarFallback>
+  </UIAvatar>
+);
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const Masthead = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 border-b px-3 py-2", className)} {...props}>{children}</div>
+);
+const MastheadBrand = ({ children, ...props }: any) => (
+  <div className="flex items-center gap-2 font-medium" {...props}>{children}</div>
+);
+const MastheadContent = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-1 items-center justify-end gap-2", className)} {...props}>{children}</div>
+);
+const MastheadToggle = ({ children, className, ...props }: any) => (
+  <div className={cn("inline-flex items-center", className)} {...props}>{children}</div>
+);
+const PageToggleButton = ({ children, onClick, isHamburgerButton, ...props }: any) => (
+  <UIButton type="button" variant="ghost" onClick={onClick} {...props}>{children}</UIButton>
+);
+const Toolbar = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarContent = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-wrap items-center gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
+type AvatarProps = React.ComponentProps<typeof Avatar>;
+type MastheadBrandProps = React.ComponentProps<typeof MastheadBrand>;
+type MastheadMainProps = React.ComponentProps<typeof Masthead>;
 
 function loggedInUserName(
   token: KeycloakTokenParsed | undefined,

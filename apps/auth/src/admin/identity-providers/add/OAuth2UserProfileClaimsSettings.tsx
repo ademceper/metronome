@@ -9,9 +9,27 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { TextControl } from "../../../shared/keycloak-ui-shared";
-import { Form, Title } from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
+
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
 
 export const UserProfileClaimsSettings = () => {
   const { t } = useTranslation();

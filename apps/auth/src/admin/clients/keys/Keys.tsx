@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type CertificateRepresentation from "@keycloak/keycloak-admin-client/lib/defs/certificateRepresentation";
 import type KeyStoreConfig from "@keycloak/keycloak-admin-client/lib/defs/keystoreConfig";
 import {
@@ -16,18 +17,9 @@ import {
   useAlerts,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  ActionGroup,
-  AlertVariant,
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  PageSection,
-  Text,
-  TextContent,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Card as UICard, CardContent as UICardContent, CardHeader as UICardHeader, CardTitle as UICardTitle } from "@metronome/ui/components/card";
+import { cn } from "@metronome/ui/lib/utils";
 import { saveAs } from "file-saver";
 import { useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
@@ -41,6 +33,70 @@ import { FormFields } from "../ClientDetails";
 import { KeyInfoArea } from "./Certificate";
 import { GenerateKeyDialog, getFileExtension } from "./GenerateKeyDialog";
 import { ImportFile, ImportKeyDialog } from "./ImportKeyDialog";
+
+
+const ActionGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
+);
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Card = ({ isSelectable, isSelected, isFlat, isCompact, ...props }: any) => (
+  <UICard {...props} />
+);
+const CardBody = (props: any) => <UICardContent {...props} />;
+const CardHeader = (props: any) => <UICardHeader {...props} />;
+const CardTitle = (props: any) => <UICardTitle {...props} />;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
 
 type KeysProps = {
   save: () => void;

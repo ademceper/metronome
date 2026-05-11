@@ -14,18 +14,11 @@ import {
   SelectControl,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import {
-  Button,
-  Chip,
-  ChipGroup,
-  Form,
-  FormGroup,
-  InputGroup,
-  InputGroupItem,
-  Modal,
-  TextInput,
-  ValidatedOptions,
-} from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import { useEffect } from "react";
 import {
   FormProvider,
@@ -39,6 +32,110 @@ import { updateRequest } from "../api";
 import { Permission, Resource } from "../api/representations";
 import { useAccountAlerts } from "../utils/useAccountAlerts";
 import { SharedWith } from "./SharedWith";
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Chip = ({ onClick, children, ...props }: any) => (
+  <UIBadge variant="secondary" {...props}>
+    {children}
+    {onClick ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
+  </UIBadge>
+);
+const ChipGroup = ({ categoryName, numChips, onClick, isClosable, children, ...props }: any) => (
+  <div className="flex flex-wrap items-center gap-1" {...props}>
+    {categoryName ? <span className="text-muted-foreground text-xs">{categoryName}:</span> : null}
+    {children}
+    {isClosable ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
+  </div>
+);
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const InputGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-stretch gap-0", className)} {...props}>{children}</div>
+);
+const InputGroupItem = ({ isFill, children, className, ...props }: any) => (
+  <div className={cn(isFill && "flex-1", className)} {...props}>{children}</div>
+);
+const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (
+  <UIDialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose?.()}>
+    <UIDialogContent {...props}>
+      {(title || header) ? (
+        <UIDialogHeader>
+          {title ? <UIDialogTitle>{title}</UIDialogTitle> : null}
+          {description ? <UIDialogDescription>{description}</UIDialogDescription> : null}
+          {header}
+        </UIDialogHeader>
+      ) : null}
+      {children}
+      {(actions || footer) ? (
+        <UIDialogFooter>
+          {actions}
+          {footer}
+        </UIDialogFooter>
+      ) : null}
+    </UIDialogContent>
+  </UIDialog>
+);
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+const ValidatedOptions = {
+  default: "default",
+  success: "success",
+  warning: "warning",
+  error: "error",
+} as const;
 
 type ShareTheResourceProps = {
   resource: Resource;

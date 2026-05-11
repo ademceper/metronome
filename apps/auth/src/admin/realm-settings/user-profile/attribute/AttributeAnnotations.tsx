@@ -9,18 +9,42 @@
 
 // @ts-nocheck
 
-import {
-  FormGroup,
-  Grid,
-  GridItem,
-  TextInput,
-} from "../../../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FormAccess } from "../../../components/form/FormAccess";
 import { KeyValueInput } from "../../../components/key-value-form/KeyValueInput";
 import { KeySelect } from "./KeySelect";
 import { ValueSelect } from "./ValueSelect";
+
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+
 export const AttributeAnnotations = () => {
   const { t } = useTranslation();
   const { register } = useFormContext();

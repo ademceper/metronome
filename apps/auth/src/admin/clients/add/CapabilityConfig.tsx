@@ -11,15 +11,9 @@
 
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import { HelpItem, SelectControl } from "../../../shared/keycloak-ui-shared";
-import {
-  Checkbox,
-  FormGroup,
-  Grid,
-  GridItem,
-  InputGroup,
-  InputGroupItem,
-  Switch,
-} from "../../../shared/@patternfly/react-core";
+import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
+import { cn } from "@metronome/ui/lib/utils";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { DefaultSwitchControl } from "../../components/SwitchControl";
@@ -30,6 +24,56 @@ import { FormFields } from "../ClientDetails";
 import { IdentityProviderSelect } from "../../components/identity-provider/IdentityProviderSelect";
 import { IdentityProviderType } from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
 import { useAccess } from "../../context/access/Access";
+
+
+const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <UICheckbox id={id} name={name} checked={isChecked} disabled={isDisabled}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const InputGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-stretch gap-0", className)} {...props}>{children}</div>
+);
+const InputGroupItem = ({ isFill, children, className, ...props }: any) => (
+  <div className={cn(isFill && "flex-1", className)} {...props}>{children}</div>
+);
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
 
 type CapabilityConfigProps = {
   unWrap?: boolean;

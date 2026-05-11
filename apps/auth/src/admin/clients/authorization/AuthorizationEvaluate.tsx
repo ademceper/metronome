@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import type EvaluationResultRepresentation from "@keycloak/keycloak-admin-client/lib/defs/evaluationResultRepresentation";
 import type PolicyEvaluationResponse from "@keycloak/keycloak-admin-client/lib/defs/policyEvaluationResponse";
@@ -23,18 +24,10 @@ import {
   useAlerts,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  ActionGroup,
-  Button,
-  ExpandableSection,
-  FormGroup,
-  PageSection,
-  Panel,
-  PanelHeader,
-  PanelMainBody,
-  Switch,
-  Title,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -53,6 +46,106 @@ import { FormFields } from "../ClientDetails";
 import { defaultContextAttributes } from "../utils";
 import { KeyBasedAttributeInput } from "./KeyBasedAttributeInput";
 import { Results } from "./evaluate/Results";
+
+
+const ActionGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
+);
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed, isExpanded, onToggle, isDetached, children, ...props }: any) => (
+  <UICollapsible open={isExpanded} onOpenChange={(open: boolean) => onToggle?.(undefined, open)} {...props}>
+    <UICollapsibleTrigger className="flex items-center gap-2 text-sm">
+      {isExpanded ? (toggleTextExpanded ?? toggleText) : (toggleTextCollapsed ?? toggleText)}
+    </UICollapsibleTrigger>
+    <UICollapsibleContent>{children}</UICollapsibleContent>
+  </UICollapsible>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Panel = ({ children, className, ...props }: any) => (
+  <div className={cn("rounded-md border bg-card", className)} {...props}>{children}</div>
+);
+const PanelHeader = ({ children, className, ...props }: any) => (
+  <div className={cn("border-b px-3 py-2 font-medium text-sm", className)} {...props}>{children}</div>
+);
+const PanelMainBody = ({ children, className, ...props }: any) => (
+  <div className={cn("px-3 py-2 text-sm", className)} {...props}>{children}</div>
+);
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
 
 interface EvaluateFormInputs extends Omit<
   ResourceEvaluation,

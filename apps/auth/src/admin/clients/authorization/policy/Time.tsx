@@ -9,21 +9,64 @@
 
 // @ts-nocheck
 
-import {
-  DatePicker,
-  Flex,
-  FlexItem,
-  FormGroup,
-  NumberInput,
-  Radio,
-  Split,
-  SplitItem,
-  TimePicker,
-} from "../../../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { FormErrorText, HelpItem } from "../../../../shared/keycloak-ui-shared";
 import { useTranslation } from "react-i18next";
 import { Controller, useFormContext } from "react-hook-form";
+
+
+const DatePicker = ({ value, onChange, ...props }: any) => (
+  <UIInput type="date" value={value ?? ""}
+    onChange={(e: any) => onChange?.(e, e.target.value)} {...props} />
+);
+const Flex = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
+);
+const FlexItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const NumberInput = ({ value, onChange, min, max, step, ...props }: any) => (
+  <UIInput type="number" value={value ?? ""}
+    onChange={(e: any) => onChange?.(e)} min={min} max={max} step={step} {...props} />
+);
+const Radio = ({ id, name, label, description, isChecked, onChange, isDisabled, value, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <input type="radio" id={id} name={name} value={value} checked={!!isChecked} disabled={isDisabled}
+      onChange={(e) => onChange?.(e, e.target.checked)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
+const TimePicker = ({ time, onChange, ...props }: any) => (
+  <UIInput type="time" value={time ?? ""}
+    onChange={(e: any) => onChange?.(e, e.target.value)} {...props} />
+);
 
 const DATE_TIME_FORMAT = /(\d\d\d\d-\d\d-\d\d)? (\d\d?):(\d\d?)/;
 const padDateSegment = (value: number) => value.toString().padStart(2, "0");

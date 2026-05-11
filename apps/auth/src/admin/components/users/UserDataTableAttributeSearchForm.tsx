@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type { UserProfileConfig } from "@keycloak/keycloak-admin-client/lib/defs/userProfileMetadata";
 import {
   KeycloakSelect,
@@ -16,27 +17,109 @@ import {
   SelectVariant,
   useAlerts,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  ActionGroup,
-  Alert,
-  AlertVariant,
-  Button,
-  ButtonVariant,
-  Checkbox,
-  InputGroup,
-  InputGroupItem,
-  SelectOption,
-  Text,
-  TextContent,
-  TextInput,
-  TextVariants,
-} from "../../../shared/@patternfly/react-core";
+import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { Check as CheckIcon } from "@phosphor-icons/react"
 import { ReactNode, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Form } from "react-router-dom";
 import { UserAttribute, UserFilter } from "./UserDataTable";
+import { SelectOption } from "../../../shared/pf-compat"
+
+
+const ActionGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
+);
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Alert = ({ variant, title, isInline, isPlain, isLiveRegion, customIcon, actionClose, actionLinks, component, children, ...props }: any) => {
+  const v = (AlertVariant as any)[variant] ?? "default";
+  return (
+    <UIAlert variant={v as any} {...props}>
+      {title ? <UIAlertTitle>{title}</UIAlertTitle> : null}
+      {children ? <UIAlertDescription>{children}</UIAlertDescription> : null}
+      {actionLinks}
+      {actionClose}
+    </UIAlert>
+  );
+};
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <UICheckbox id={id} name={name} checked={isChecked} disabled={isDisabled}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const InputGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-stretch gap-0", className)} {...props}>{children}</div>
+);
+const InputGroupItem = ({ isFill, children, className, ...props }: any) => (
+  <div className={cn(isFill && "flex-1", className)} {...props}>{children}</div>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+const TextVariants = {
+  h1: "h1", h2: "h2", h3: "h3", h4: "h4", h5: "h5", h6: "h6",
+  p: "p", small: "small", blockquote: "blockquote", pre: "pre", a: "a",
+} as const;
 
 type UserDataTableAttributeSearchFormProps = {
   activeFilters: UserFilter;

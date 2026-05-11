@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type { UserProfileConfig } from "@keycloak/keycloak-admin-client/lib/defs/userProfileMetadata";
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
 import {
@@ -18,22 +19,9 @@ import {
   useAlerts,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  Button,
-  ButtonVariant,
-  Chip,
-  ChipGroup,
-  EmptyState,
-  FlexItem,
-  Label,
-  Text,
-  TextContent,
-  Toolbar,
-  ToolbarContent,
-  ToolbarItem,
-  Tooltip,
-} from "../../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { cn } from "@metronome/ui/lib/utils";
 import { WarningCircle as ExclamationCircleIcon, Info as InfoCircleIcon, Warning as WarningTriangleIcon } from "@phosphor-icons/react"
 type IRowData = any;
 import { JSX, useState } from "react";
@@ -51,6 +39,95 @@ import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { BruteUser, findUsers } from "../role-mapping/resource";
 import { UserDataTableToolbarItems } from "./UserDataTableToolbarItems";
 import { NetworkError } from "@keycloak/keycloak-admin-client";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Chip = ({ onClick, children, ...props }: any) => (
+  <UIBadge variant="secondary" {...props}>
+    {children}
+    {onClick ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
+  </UIBadge>
+);
+const ChipGroup = ({ categoryName, numChips, onClick, isClosable, children, ...props }: any) => (
+  <div className="flex flex-wrap items-center gap-1" {...props}>
+    {categoryName ? <span className="text-muted-foreground text-xs">{categoryName}:</span> : null}
+    {children}
+    {isClosable ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
+  </div>
+);
+const EmptyState = ({ variant, titleText, headingLevel, icon, children, ...props }: any) => (
+  <div className={cn("flex flex-col items-center gap-3 py-10 text-center", (props as any).className)} {...props}>
+    {icon ? <div className="text-muted-foreground">{React.createElement(icon)}</div> : null}
+    {titleText ? <h3 className="font-medium text-lg">{titleText}</h3> : null}
+    {children}
+  </div>
+);
+const FlexItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const Toolbar = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarContent = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-wrap items-center gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
+const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;
 
 export type UserFilter = {
   exact: boolean;

@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { Spinner } from "../../@patternfly/react-core";
+import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { Keycloak } from "oidc-spa/keycloak-js";
 import {
   PropsWithChildren,
@@ -24,6 +24,9 @@ import { AlertProvider } from "../alerts/Alerts";
 import { ErrorPage } from "./ErrorPage";
 import { Help } from "./HelpContext";
 import { BaseEnvironment } from "./environment";
+
+
+const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 export type KeycloakContext<T extends BaseEnvironment = BaseEnvironment> =
   KeycloakContextProps<T> & {

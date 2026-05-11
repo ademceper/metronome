@@ -14,11 +14,10 @@ import {
   KeycloakSelect,
   SelectVariant,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  Button,
-  SelectOption,
-  TextInput,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { MinusCircle as MinusCircleIcon, PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 import {
   Table,
@@ -33,6 +32,49 @@ import { useEffect, useMemo, useState } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { defaultContextAttributes } from "../utils";
+import { SelectOption } from "../../../shared/pf-compat"
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+
 export type AttributeType = {
   key?: string;
   name: string;

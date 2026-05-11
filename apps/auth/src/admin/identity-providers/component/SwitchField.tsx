@@ -9,11 +9,23 @@
 
 // @ts-nocheck
 
-import { Switch } from "../../../shared/@patternfly/react-core";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { FieldProps, FormGroupField } from "./FormGroupField";
+
+
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
 
 type FieldType = "boolean" | "string";
 

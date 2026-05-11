@@ -9,11 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  AlertVariant,
-  Divider,
-  DropdownItem,
-} from "../../../shared/@patternfly/react-core";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { Separator as UISeparator } from "@metronome/ui/components/separator";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
@@ -21,6 +18,22 @@ import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog";
 import { Header } from "./Header";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Divider = (props: any) => <UISeparator {...props} />;
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
 
 type ExtendedHeaderProps = {
   provider: string;

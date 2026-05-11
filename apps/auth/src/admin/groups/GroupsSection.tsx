@@ -11,21 +11,11 @@
 
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
 import { useFetch } from "../../shared/keycloak-ui-shared";
-import {
-  Button,
-  Drawer,
-  DrawerContent,
-  DrawerContentBody,
-  DrawerHead,
-  DrawerPanelContent,
-  DropdownItem,
-  PageSection,
-  PageSectionVariants,
-  Tab,
-  TabTitleText,
-  Tabs,
-  Tooltip,
-} from "../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { Sheet as UISheet, SheetContent as UISheetContent } from "@metronome/ui/components/sheet";
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { CaretDoubleLeft as AngleDoubleLeftIcon, TreeStructure as TreeIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -51,6 +41,78 @@ import { GroupTree } from "./components/GroupTree";
 import { getId, getLastId } from "./groupIdUtils";
 import { toGroups } from "./routes/Groups";
 import { GroupResourceContext } from "../context/group-resource/GroupResourceContext";
+import { Tabs, Tab, TabTitleText } from "../../shared/pf-compat"
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Drawer = ({ isExpanded, onExpand, children, ...props }: any) => (
+  <UISheet open={isExpanded} {...props}>{children}</UISheet>
+);
+const DrawerContent = ({ panelContent, children, ...props }: any) => (
+  <div className="relative" {...props}>{children}{panelContent}</div>
+);
+const DrawerContentBody = ({ children, className, ...props }: any) => (
+  <div className={cn("flex-1", className)} {...props}>{children}</div>
+);
+const DrawerHead = ({ children, className, ...props }: any) => (
+  <div className={cn("border-b p-3", className)} {...props}>{children}</div>
+);
+const DrawerPanelContent = ({ children, ...props }: any) => (
+  <UISheetContent {...props}>{children}</UISheetContent>
+);
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const PageSectionVariants = {
+  default: "default",
+  light: "light",
+  dark: "dark",
+  darker: "darker",
+} as const;
+const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;
+
 export default function GroupsSection({ orgId }: { orgId?: string } = {}) {
   const { adminClient } = useAdminClient();
 

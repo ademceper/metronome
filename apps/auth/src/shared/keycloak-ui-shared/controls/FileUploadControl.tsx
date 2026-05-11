@@ -9,11 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  FileUpload,
-  ValidatedOptions,
-  FileUploadProps,
-} from "../../@patternfly/react-core";
+import * as React from "react";
+import { Input as UIInput } from "@metronome/ui/components/input";
 import { ReactNode, useState } from "react";
 import {
   FieldPath,
@@ -25,6 +22,23 @@ import {
 import { getRuleValue } from "../utils/getRuleValue";
 import { FormLabel } from "./FormLabel";
 import { useTranslation } from "react-i18next";
+
+
+const FileUpload = ({ id, value, onChange, filename, onFileInputChange, accept, isReadOnly, isDisabled, ...props }: any) => (
+  <UIInput id={id} type="file" accept={accept} disabled={isDisabled}
+    onChange={(e: any) => {
+      const file = e.target.files?.[0];
+      onChange?.(e, file?.name ?? "");
+      onFileInputChange?.(e, file);
+    }} {...props} />
+);
+const ValidatedOptions = {
+  default: "default",
+  success: "success",
+  warning: "warning",
+  error: "error",
+} as const;
+type FileUploadProps = React.ComponentProps<typeof FileUpload>;
 
 export type FileUploadControlProps<
   T extends FieldValues,

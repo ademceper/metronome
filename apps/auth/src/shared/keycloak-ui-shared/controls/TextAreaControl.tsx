@@ -9,11 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  TextArea,
-  TextAreaProps,
-  ValidatedOptions,
-} from "../../@patternfly/react-core";
+import * as React from "react";
+import { Textarea as UITextarea } from "@metronome/ui/components/textarea";
 import {
   FieldPath,
   FieldValues,
@@ -23,6 +20,20 @@ import {
 } from "react-hook-form";
 
 import { FormLabel } from "./FormLabel";
+
+
+const TextArea = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, ...props }: any) => (
+  <UITextarea value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired} {...props} />
+);
+const ValidatedOptions = {
+  default: "default",
+  success: "success",
+  warning: "warning",
+  error: "error",
+} as const;
+type TextAreaProps = React.ComponentProps<typeof TextArea>;
 
 export type TextAreaControlProps<
   T extends FieldValues,

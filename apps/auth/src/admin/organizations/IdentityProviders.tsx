@@ -16,13 +16,9 @@ import {
   useAlerts,
   useFetch,
 } from "../../shared/keycloak-ui-shared";
-import {
-  Button,
-  ButtonVariant,
-  PageSection,
-  Switch,
-  ToolbarItem,
-} from "../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
+import { cn } from "@metronome/ui/lib/utils";
 import { sortBy } from "lodash-es";
 import { Bell as BellIcon } from "@phosphor-icons/react"
 import { useState } from "react";
@@ -36,6 +32,62 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import useToggle from "../utils/useToggle";
 import { LinkIdentityProviderModal } from "./LinkIdentityProviderModal";
 import { EditOrganizationParams } from "./routes/EditOrganization";
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
 
 type ShownOnLoginPageCheckProps = {
   row: IdentityProviderRepresentation;

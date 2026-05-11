@@ -13,16 +13,28 @@ import {
   KeycloakSelect,
   SelectControlOption,
 } from "../../../../shared/keycloak-ui-shared";
-import {
-  Grid,
-  GridItem,
-  SelectOption,
-  TextInput,
-} from "../../../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { UseControllerProps, useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import useToggle from "../../../utils/useToggle";
+import { SelectOption } from "../../../../shared/pf-compat"
+
+
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
 
 type KeySelectProp = UseControllerProps & {
   selectItems: SelectControlOption[];

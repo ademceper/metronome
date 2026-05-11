@@ -12,17 +12,10 @@
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import type { ClientQuery } from "@keycloak/keycloak-admin-client/lib/resources/clients";
 import { useAlerts, useEnvironment } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  Badge,
-  Button,
-  ButtonVariant,
-  PageSection,
-  Tab,
-  TabTitleText,
-  ToolbarItem,
-  Tooltip,
-} from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { Warning as WarningTriangleIcon } from "@phosphor-icons/react"
 type IRowData = any;
 const TableText = ({ children }: any) => (
@@ -55,6 +48,62 @@ import { toClient } from "./routes/Client";
 import { ClientsTab, toClients } from "./routes/Clients";
 import { toImportClient } from "./routes/ImportClient";
 import { getProtocolName, isRealmClient } from "./utils";
+import { Tab, TabTitleText } from "../../shared/pf-compat"
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
+const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;
 
 const ClientDetailLink = (client: ClientRepresentation) => {
   const { t } = useTranslation();

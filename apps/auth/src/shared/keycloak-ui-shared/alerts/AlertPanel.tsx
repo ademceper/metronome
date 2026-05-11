@@ -9,14 +9,35 @@
 
 // @ts-nocheck
 
-import {
-  AlertGroup,
-  Alert,
-  AlertActionCloseButton,
-  AlertVariant,
-} from "../../@patternfly/react-core";
-
+import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
+import { cn } from "@metronome/ui/lib/utils";
 import type { AlertEntry } from "./Alerts";
+
+
+const AlertGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Alert = ({ variant, title, isInline, isPlain, isLiveRegion, customIcon, actionClose, actionLinks, component, children, ...props }: any) => {
+  const v = (AlertVariant as any)[variant] ?? "default";
+  return (
+    <UIAlert variant={v as any} {...props}>
+      {title ? <UIAlertTitle>{title}</UIAlertTitle> : null}
+      {children ? <UIAlertDescription>{children}</UIAlertDescription> : null}
+      {actionLinks}
+      {actionClose}
+    </UIAlert>
+  );
+};
+const AlertActionCloseButton = ({ onClose, ...props }: any) => (
+  <button type="button" onClick={onClose} className="ml-auto text-sm underline-offset-4 hover:underline" {...props}>Close</button>
+);
 
 export type AlertPanelProps = {
   alerts: AlertEntry[];

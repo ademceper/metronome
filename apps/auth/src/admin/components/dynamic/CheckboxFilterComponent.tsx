@@ -9,13 +9,24 @@
 
 // @ts-nocheck
 
-import {
-  Badge,
-  MenuToggle,
-  Select,
-  SelectList,
-  SelectOption,
-} from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Select as UISelect, SelectContent as UISelectContent, SelectItem as UISelectItem, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
+import { Select, SelectOption } from "../../../shared/pf-compat"
+
+const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const SelectList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
 
 type CheckboxFilterOptions = {
   value: string;

@@ -9,19 +9,35 @@
 
 // @ts-nocheck
 
-import {
-  Grid,
-  GridItem,
-  GridProps,
-  JumpLinks,
-  JumpLinksItem,
-  PageSection,
-} from "../../@patternfly/react-core";
+import * as React from "react";
+import { cn } from "@metronome/ui/lib/utils";
 import { Fragment, ReactNode, useMemo } from "react";
 import { FormPanel } from "./FormPanel";
 import { ScrollPanel } from "./ScrollPanel";
 
 import style from "./scroll-form.module.css";
+
+
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const JumpLinks = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-1 text-sm", className)} {...props}>{children}</div>
+);
+const JumpLinksItem = ({ href, children, ...props }: any) => (
+  <a href={href} className="text-sm hover:underline" {...props}>{children}</a>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+type GridProps = React.ComponentProps<typeof Grid>;
 
 export const mainPageContentId = "kc-main-content-page-container";
 

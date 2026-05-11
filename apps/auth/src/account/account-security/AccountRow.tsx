@@ -14,24 +14,83 @@ import {
   label,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import {
-  Button,
-  DataListAction,
-  DataListCell,
-  DataListItem,
-  DataListItemCells,
-  DataListItemRow,
-  Icon,
-  Label,
-  Split,
-  SplitItem,
-} from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { cn } from "@metronome/ui/lib/utils";
 import { LinkSimple as LinkIcon, LinkBreak as UnlinkIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 
 import { unLinkAccount } from "../api/methods";
 import { LinkedAccountRepresentation } from "../api/representations";
 import { useAccountAlerts } from "../utils/useAccountAlerts";
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const DataListAction = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
+);
+const DataListCell = ({ children, className, ...props }: any) => (
+  <div className={cn("flex-1", className)} {...props}>{children}</div>
+);
+const DataListItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const DataListItemCells = ({ dataListCells, ...props }: any) => (
+  <div className="flex flex-1 items-center gap-2" {...props}>{dataListCells}</div>
+);
+const DataListItemRow = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
+);
+const Icon = ({ size, status, children, className, ...props }: any) => (
+  <span className={cn("inline-flex items-center justify-center", className)} {...props}>{children}</span>
+);
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
 
 type AccountRowProps = {
   account: LinkedAccountRepresentation;

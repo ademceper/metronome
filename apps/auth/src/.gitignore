@@ -725,8 +725,6 @@
 # admin/user-federation/shared/SettingsCache.tsx
 # admin/workflows/routes/WorkflowDetail.tsx
 # admin/workflows/routes/Workflows.tsx
-# shared/@patternfly/react-core/index.tsx
-# shared/@patternfly/react-table/index.tsx
 # shared/keycloak-ui-shared/alerts/AlertPanel.tsx
 # shared/keycloak-ui-shared/alerts/Alerts.tsx
 # shared/keycloak-ui-shared/buttons/FormSubmitButton.tsx

@@ -9,23 +9,13 @@
 
 // @ts-nocheck
 
-import {
-  Badge,
-  Button,
-  Divider,
-  Dropdown,
-  DropdownList,
-  Level,
-  LevelItem,
-  MenuToggle,
-  PageSection,
-  Switch,
-  Text,
-  TextContent,
-  Toolbar,
-  ToolbarContent,
-  ToolbarItem,
-} from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
+import { Separator as UISeparator } from "@metronome/ui/components/separator";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   ReactElement,
   ReactNode,
@@ -36,6 +26,101 @@ import {
 import { useTranslation } from "react-i18next";
 import { FormattedLink } from "../external-link/FormattedLink";
 import { useHelp, HelpItem } from "../../../shared/keycloak-ui-shared";
+
+const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Divider = (props: any) => <UISeparator {...props} />;
+const Dropdown = ({ toggle, isOpen, onSelect, onOpenChange, popperProps, children, ...props }: any) => {
+  const trigger = typeof toggle === "function" ? toggle((node: HTMLElement | null) => node) : toggle;
+  return (
+    <UIDropdownMenu open={isOpen} onOpenChange={(open: boolean) => onOpenChange?.(open)}>
+      <UIDropdownMenuTrigger asChild>{trigger}</UIDropdownMenuTrigger>
+      <UIDropdownMenuContent>{children}</UIDropdownMenuContent>
+    </UIDropdownMenu>
+  );
+};
+const DropdownList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Level = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center justify-between gap-2", className)} {...props}>{children}</div>
+);
+const LevelItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const Toolbar = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarContent = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-wrap items-center gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
+
 import "../../help-urls";
 
 export type ViewHeaderProps = {

@@ -9,13 +9,22 @@
 
 // @ts-nocheck
 
-import { PageSection } from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../admin-client";
 import { useRealm } from "../context/realm-context/RealmContext";
 import SessionsTable from "../sessions/SessionsTable";
 import { useParams } from "../utils/useParams";
 import type { UserParams } from "./routes/User";
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export const UserSessions = () => {
   const { adminClient } = useAdminClient();

@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import { useTranslation } from "react-i18next";
-import { Modal, ModalVariant } from "../../../shared/@patternfly/react-core";
+import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import {
   Table,
   TableBody as Tbody,
@@ -19,6 +19,34 @@ import {
   TableHeader as Thead,
   TableRow as Tr,
 } from "@metronome/ui/components/table";
+
+const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (
+  <UIDialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose?.()}>
+    <UIDialogContent {...props}>
+      {(title || header) ? (
+        <UIDialogHeader>
+          {title ? <UIDialogTitle>{title}</UIDialogTitle> : null}
+          {description ? <UIDialogDescription>{description}</UIDialogDescription> : null}
+          {header}
+        </UIDialogHeader>
+      ) : null}
+      {children}
+      {(actions || footer) ? (
+        <UIDialogFooter>
+          {actions}
+          {footer}
+        </UIDialogFooter>
+      ) : null}
+    </UIDialogContent>
+  </UIDialog>
+);
+const ModalVariant = {
+  small: "small",
+  medium: "medium",
+  large: "large",
+  default: "default",
+} as const;
+
 const TableVariant = { compact: undefined, default: undefined } as any;
 
 type CredentialDataDialogProps = {

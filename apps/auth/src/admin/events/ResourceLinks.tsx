@@ -11,8 +11,6 @@
 
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { Tooltip } from "../../shared/@patternfly/react-core";
-
 import type AdminEventRepresentation from "@keycloak/keycloak-admin-client/lib/defs/adminEventRepresentation";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { toClient } from "../clients/routes/Client";
@@ -22,6 +20,9 @@ import { toUser } from "../user/routes/User";
 import { toRealmRole } from "../realm-roles/routes/RealmRole";
 import { toFlow } from "../authentication/routes/Flow";
 import { toEditOrganization } from "../organizations/routes/EditOrganization";
+
+
+const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;
 
 type ResourceLinkProps = {
   event: AdminEventRepresentation;

@@ -9,11 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  PageSection,
-  Tab,
-  TabTitleText,
-} from "../../shared/@patternfly/react-core";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
@@ -27,6 +24,16 @@ import { toRealmSettings } from "../realm-settings/routes/RealmSettings";
 import { AdminEvents } from "./AdminEvents";
 import { UserEvents } from "./UserEvents";
 import { toEvents } from "./routes/Events";
+import { Tab, TabTitleText } from "../../shared/pf-compat"
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+
 export default function EventsSection() {
   const { t } = useTranslation();
   const { realm } = useRealm();

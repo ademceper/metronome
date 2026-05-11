@@ -9,15 +9,10 @@
 
 // @ts-nocheck
 
-import {
-  FormGroup,
-  MenuToggle,
-  Select,
-  SelectList,
-  SelectOption,
-  Split,
-  SplitItem,
-} from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Select as UISelect, SelectContent as UISelectContent, SelectItem as UISelectItem, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -27,6 +22,40 @@ import {
   TimeSelector,
   Unit,
 } from "../../components/time-selector/TimeSelector";
+import { Select, SelectOption } from "../../../shared/pf-compat"
+
+
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const SelectList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
 
 type TokenLifespanProps = {
   id: string;

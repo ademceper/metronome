@@ -9,12 +9,20 @@
 
 // @ts-nocheck
 
-import {
-  DataListItem,
-  DataListItemRow,
-  DataListItemCells,
-  DataListCell,
-} from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
+
+const DataListItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const DataListItemRow = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
+);
+const DataListItemCells = ({ dataListCells, ...props }: any) => (
+  <div className="flex flex-1 items-center gap-2" {...props}>{dataListCells}</div>
+);
+const DataListCell = ({ children, className, ...props }: any) => (
+  <div className={cn("flex-1", className)} {...props}>{children}</div>
+);
 
 type EmptyRowProps = {
   message: string;

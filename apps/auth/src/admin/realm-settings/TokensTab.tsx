@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
 import {
   HelpItem,
@@ -19,20 +20,11 @@ import {
   SelectControl,
   NumberControl,
 } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  FormGroup,
-  FormHelperText,
-  HelperText,
-  HelperTextItem,
-  NumberInput,
-  SelectOption,
-  Switch,
-  Text,
-  TextInput,
-  TextArea,
-  TextVariants,
-} from "../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
+import { Textarea as UITextarea } from "@metronome/ui/components/textarea";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -49,6 +41,74 @@ import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { useWhoAmI } from "../context/whoami/WhoAmI";
 import { beerify, sortProviders } from "../util";
 import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
+import { SelectOption } from "../../shared/pf-compat"
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const FormHelperText = ({ children, className, ...props }: any) => (
+  <div className={cn("text-muted-foreground text-xs", className)} {...props}>{children}</div>
+);
+const HelperText = ({ children, className, ...props }: any) => (
+  <div className={cn("text-sm text-muted-foreground", className)} {...props}>{children}</div>
+);
+const HelperTextItem = ({ icon, variant, children, ...props }: any) => (
+  <p className={cn("text-sm",
+    variant === "error" ? "text-destructive" : variant === "warning" ? "text-amber-600" : "text-muted-foreground",
+    (props as any).className)} {...props}>
+    {icon}{children}
+  </p>
+);
+const NumberInput = ({ value, onChange, min, max, step, ...props }: any) => (
+  <UIInput type="number" value={value ?? ""}
+    onChange={(e: any) => onChange?.(e)} min={min} max={max} step={step} {...props} />
+);
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+const TextArea = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, ...props }: any) => (
+  <UITextarea value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired} {...props} />
+);
+const TextVariants = {
+  h1: "h1", h2: "h2", h3: "h3", h4: "h4", h5: "h5", h6: "h6",
+  p: "p", small: "small", blockquote: "blockquote", pre: "pre", a: "a",
+} as const;
+
 type RealmSettingsTokensTabProps = {
   realm: RealmRepresentation;
   save: (realm: RealmRepresentation) => void;

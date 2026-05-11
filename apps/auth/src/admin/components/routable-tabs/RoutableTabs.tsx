@@ -9,13 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  Tab,
-  TabProps,
-  Tabs,
-  TabsComponent,
-  TabsProps,
-} from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import {
   Children,
   JSXElementConstructor,
@@ -36,6 +31,12 @@ import { PageHandler } from "../../page/PageHandler";
 import { TAB_PROVIDER } from "../../page/constants";
 import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
 import { useTranslation } from "react-i18next";
+import { Tabs, Tab } from "../../../shared/pf-compat"
+
+
+const TabsComponent = { div: "div", nav: "nav" } as const;
+type TabProps = React.ComponentProps<typeof Tab>;
+type TabsProps = React.ComponentProps<typeof Tabs>;
 
 // TODO: Remove the custom 'children' props and type once the following issue has been resolved:
 // https://github.com/patternfly/patternfly-react/issues/6766

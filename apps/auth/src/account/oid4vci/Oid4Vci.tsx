@@ -9,26 +9,57 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import {
-  ActionList,
-  ActionListItem,
-  List,
-  ListItem,
-  MenuToggle,
-  MenuToggleElement,
-  PageSection,
-  PageSectionVariants,
-  Select,
-  SelectList,
-  SelectOption,
-} from "../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Select as UISelect, SelectContent as UISelectContent, SelectItem as UISelectItem, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getIssuer, requestVCOffer } from "../api";
 import { CredentialsIssuer } from "../api/representations";
 import { Page } from "../components/page/Page";
 import { usePromise } from "../utils/usePromise";
+import { Select, SelectOption } from "../../shared/pf-compat"
+
+
+const ActionList = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
+);
+const ActionListItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const List = ({ variant, children, className, ...props }: any) => (
+  <ul className={cn("space-y-1 text-sm", variant === "inline" ? "flex flex-wrap gap-2" : "list-disc pl-5", className)} {...props}>
+    {children}
+  </ul>
+);
+const ListItem = ({ children, ...props }: any) => <li {...props}>{children}</li>;
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const PageSectionVariants = {
+  default: "default",
+  light: "light",
+  dark: "dark",
+  darker: "darker",
+} as const;
+const SelectList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+type MenuToggleElement = HTMLButtonElement;
 
 export const Oid4Vci = () => {
   const context = useEnvironment();

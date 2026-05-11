@@ -12,13 +12,10 @@
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
 import { useHelp } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  Button,
-  ButtonVariant,
-  Checkbox,
-  Popover,
-} from "../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
+import { Popover as UIPopover, PopoverContent as UIPopoverContent, PopoverTrigger as UIPopoverTrigger } from "@metronome/ui/components/popover";
+import { cn } from "@metronome/ui/lib/utils";
 import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 const cellWidth = (_n: number) => () => ({ className: '' });
 import { intersectionBy, sortBy, uniqBy } from "lodash-es";
@@ -33,6 +30,77 @@ import { ListEmptyState } from "../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../shared/keycloak-ui-shared";
 import { useAccess } from "../context/access/Access";
 import { GroupResourceContext } from "../context/group-resource/GroupResourceContext";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <UICheckbox id={id} name={name} checked={isChecked} disabled={isDisabled}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const Popover = ({ bodyContent, headerContent, footerContent, children, position, ...props }: any) => (
+  <UIPopover {...props}>
+    <UIPopoverTrigger asChild>{children}</UIPopoverTrigger>
+    <UIPopoverContent>
+      {headerContent ? (
+        <div className="font-medium text-sm">{typeof headerContent === "function" ? headerContent() : headerContent}</div>
+      ) : null}
+      {bodyContent ? (
+        <div className="text-sm">{typeof bodyContent === "function" ? bodyContent() : bodyContent}</div>
+      ) : null}
+      {footerContent ? (
+        <div className="pt-2 text-sm">{typeof footerContent === "function" ? footerContent() : footerContent}</div>
+      ) : null}
+    </UIPopoverContent>
+  </UIPopover>
+);
 
 type UserGroupsProps = {
   user: UserRepresentation;

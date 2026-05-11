@@ -9,14 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  AlertVariant,
-  PageSection,
-  useWizardContext,
-  Wizard,
-  WizardFooter,
-  WizardStep,
-} from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
+import { Wizard, WizardFooter, WizardStep, useWizardContext } from "../../../shared/wizard";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +27,22 @@ import { CapabilityConfig } from "./CapabilityConfig";
 import { GeneralSettings } from "./GeneralSettings";
 import { LoginSettings } from "./LoginSettings";
 import { useState } from "react";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 const NewClientFooter = (newClientForm: any) => {
   const { t } = useTranslation();

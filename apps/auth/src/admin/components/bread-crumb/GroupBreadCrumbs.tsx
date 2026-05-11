@@ -12,14 +12,20 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-} from "../../../shared/@patternfly/react-core";
-
+import { Breadcrumb as UIBreadcrumb, BreadcrumbItem as UIBreadcrumbItem, BreadcrumbList as UIBreadcrumbList } from "@metronome/ui/components/breadcrumb";
 import { useSubGroups } from "../../groups/SubGroupsContext";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
+
+
+const Breadcrumb = ({ children, ...props }: any) => (
+  <UIBreadcrumb {...props}>
+    <UIBreadcrumbList>{children}</UIBreadcrumbList>
+  </UIBreadcrumb>
+);
+const BreadcrumbItem = ({ isActive, to, children, ...props }: any) => (
+  <UIBreadcrumbItem {...props}>{children}</UIBreadcrumbItem>
+);
 
 export const GroupBreadCrumbs = () => {
   const { t } = useTranslation();

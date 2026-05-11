@@ -9,9 +9,25 @@
 
 // @ts-nocheck
 
-import { Title, TitleProps } from "../../@patternfly/react-core";
-
+import * as React from "react";
+import { cn } from "@metronome/ui/lib/utils";
 import style from "./form-title.module.css";
+
+
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
+type TitleProps = React.ComponentProps<typeof Title>;
 
 type FormTitleProps = Omit<TitleProps, "headingLevel"> & {
   id?: string;

@@ -9,18 +9,13 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownList,
-  MenuToggle,
-  Select,
-  SelectList,
-  SelectOption,
-  ToolbarItem,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
+import { Select as UISelect, SelectContent as UISelectContent, SelectItem as UISelectItem, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { Funnel as FilterIcon } from "@phosphor-icons/react"
 
 import {
@@ -31,6 +26,41 @@ import {
 import type { Row } from "../../clients/scopes/ClientScopes";
 import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
 import { useMemo } from "react";
+import { Select, SelectOption } from "../../../shared/pf-compat"
+
+
+const Dropdown = ({ toggle, isOpen, onSelect, onOpenChange, popperProps, children, ...props }: any) => {
+  const trigger = typeof toggle === "function" ? toggle((node: HTMLElement | null) => node) : toggle;
+  return (
+    <UIDropdownMenu open={isOpen} onOpenChange={(open: boolean) => onOpenChange?.(open)}>
+      <UIDropdownMenuTrigger asChild>{trigger}</UIDropdownMenuTrigger>
+      <UIDropdownMenuContent>{children}</UIDropdownMenuContent>
+    </UIDropdownMenu>
+  );
+};
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const DropdownList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const SelectList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
 
 export type SearchType = "name" | "type" | "protocol";
 export const PROTOCOLS = ["all", "saml", "openid-connect"] as const;

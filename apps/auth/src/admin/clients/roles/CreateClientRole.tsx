@@ -10,7 +10,6 @@
 // @ts-nocheck
 
 import type RoleRepresentation from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
-import { AlertVariant } from "../../../shared/@patternfly/react-core";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
@@ -22,6 +21,15 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { toClient } from "../routes/Client";
 import { toClientRole } from "../routes/ClientRole";
 import { NewRoleParams } from "../routes/NewRole";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
 
 export default function CreateClientRole() {
   const { adminClient } = useAdminClient();

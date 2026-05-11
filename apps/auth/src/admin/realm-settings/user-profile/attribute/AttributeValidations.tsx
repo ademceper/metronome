@@ -9,13 +9,10 @@
 
 // @ts-nocheck
 
-import {
-  Button,
-  ButtonVariant,
-  Divider,
-  Text,
-  TextVariants,
-} from "../../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Separator as UISeparator } from "@metronome/ui/components/separator";
+import { cn } from "@metronome/ui/lib/utils";
 import { PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 import {
   Table,
@@ -34,6 +31,49 @@ import { DefaultValue } from "../../../components/key-value-form/KeyValueInput";
 import useToggle from "../../../utils/useToggle";
 import type { IndexedValidations } from "../../NewAttributeSettings";
 import { AddValidatorDialog } from "../attribute/AddValidatorDialog";
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Divider = (props: any) => <UISeparator {...props} />;
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextVariants = {
+  h1: "h1", h2: "h2", h3: "h3", h4: "h4", h5: "h5", h6: "h6",
+  p: "p", small: "small", blockquote: "blockquote", pre: "pre", a: "a",
+} as const;
+
 export const AttributeValidations = () => {
   const { t } = useTranslation();
   const [addValidatorModalOpen, toggleModal] = useToggle();

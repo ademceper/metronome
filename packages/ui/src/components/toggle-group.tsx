@@ -48,7 +48,7 @@ function ToggleGroup({
       <ToggleGroupContext.Provider
         value={{ variant, size, spacing, orientation }}
       >
-        {children}
+        {children as React.ReactNode}
       </ToggleGroupContext.Provider>
     </ToggleGroupPrimitive.Root>
   )

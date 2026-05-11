@@ -9,29 +9,16 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import {
   ContinueCancelModal,
   label,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import {
-  Button,
-  DataList,
-  DataListContent,
-  DataListItem,
-  DataListItemRow,
-  DescriptionList,
-  DescriptionListDescription,
-  DescriptionListGroup,
-  DescriptionListTerm,
-  Grid,
-  GridItem,
-  Label,
-  Spinner,
-  Split,
-  SplitItem,
-  Title,
-} from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
+import { cn } from "@metronome/ui/lib/utils";
 import { Desktop as DesktopIcon, DeviceMobile as MobileAltIcon, ArrowsClockwise as SyncAltIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -47,6 +34,104 @@ import { Page } from "../components/page/Page";
 import { formatDate } from "../utils/formatDate";
 import { useAccountAlerts } from "../utils/useAccountAlerts";
 import { usePromise } from "../utils/usePromise";
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const DataList = ({ children, className, ...props }: any) => (
+  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
+);
+const DataListContent = ({ children, className, ...props }: any) => (
+  <div className={cn("px-3 py-2", className)} {...props}>{children}</div>
+);
+const DataListItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const DataListItemRow = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
+);
+const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
+  <dl className={cn("grid gap-y-2 text-sm",
+    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
+    (props as any).className)} {...props}>
+    {children}
+  </dl>
+);
+const DescriptionListDescription = ({ children, ...props }: any) => (
+  <dd {...props}>{children}</dd>
+);
+const DescriptionListGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("contents", className)} {...props}>{children}</div>
+);
+const DescriptionListTerm = ({ children, ...props }: any) => (
+  <dt className="font-medium text-muted-foreground" {...props}>{children}</dt>
+);
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
 
 export const DeviceActivity = () => {
   const { t } = useTranslation();

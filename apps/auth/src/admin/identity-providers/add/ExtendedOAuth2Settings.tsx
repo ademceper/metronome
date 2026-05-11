@@ -13,14 +13,25 @@ import {
   NumberControl,
   SelectControl,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  ExpandableSection,
-  Form,
-} from "../../../shared/@patternfly/react-core";
+import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SwitchField } from "../component/SwitchField";
 import { TextField } from "../component/TextField";
+
+
+const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed, isExpanded, onToggle, isDetached, children, ...props }: any) => (
+  <UICollapsible open={isExpanded} onOpenChange={(open: boolean) => onToggle?.(undefined, open)} {...props}>
+    <UICollapsibleTrigger className="flex items-center gap-2 text-sm">
+      {isExpanded ? (toggleTextExpanded ?? toggleText) : (toggleTextCollapsed ?? toggleText)}
+    </UICollapsibleTrigger>
+    <UICollapsibleContent>{children}</UICollapsibleContent>
+  </UICollapsible>
+);
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
 
 export const ExtendedOAuth2Settings = () => {
   const { t } = useTranslation();

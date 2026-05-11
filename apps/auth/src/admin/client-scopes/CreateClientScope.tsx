@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { AlertVariant, PageSection } from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAdminClient } from "../admin-client";
@@ -23,6 +23,22 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import { convertFormValuesToObject } from "../util";
 import { ScopeForm } from "./details/ScopeForm";
 import { toClientScope } from "./routes/ClientScope";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export default function CreateClientScope() {
   const { adminClient } = useAdminClient();

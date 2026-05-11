@@ -9,17 +9,48 @@
 
 // @ts-nocheck
 
-import {
-  DataList,
-  DataListCell,
-  DataListItem,
-  DataListItemCells,
-  DataListItemRow,
-  Modal,
-} from "../../../../shared/@patternfly/react-core";
+import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
 import { KEY_PROVIDER_TYPE } from "../../../util";
+
+
+const DataList = ({ children, className, ...props }: any) => (
+  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
+);
+const DataListCell = ({ children, className, ...props }: any) => (
+  <div className={cn("flex-1", className)} {...props}>{children}</div>
+);
+const DataListItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const DataListItemCells = ({ dataListCells, ...props }: any) => (
+  <div className="flex flex-1 items-center gap-2" {...props}>{dataListCells}</div>
+);
+const DataListItemRow = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
+);
+const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (
+  <UIDialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose?.()}>
+    <UIDialogContent {...props}>
+      {(title || header) ? (
+        <UIDialogHeader>
+          {title ? <UIDialogTitle>{title}</UIDialogTitle> : null}
+          {description ? <UIDialogDescription>{description}</UIDialogDescription> : null}
+          {header}
+        </UIDialogHeader>
+      ) : null}
+      {children}
+      {(actions || footer) ? (
+        <UIDialogFooter>
+          {actions}
+          {footer}
+        </UIDialogFooter>
+      ) : null}
+    </UIDialogContent>
+  </UIDialog>
+);
 
 type KeyProvidersPickerProps = {
   onConfirm: (provider: string) => void;

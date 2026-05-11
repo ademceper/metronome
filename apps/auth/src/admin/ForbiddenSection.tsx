@@ -10,9 +10,17 @@
 // @ts-nocheck
 
 import { useTranslation } from "react-i18next";
-import { PageSection } from "../shared/@patternfly/react-core";
-
+import { cn } from "@metronome/ui/lib/utils";
 import type { AccessType } from "@keycloak/keycloak-admin-client/lib/defs/whoAmIRepresentation";
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 type ForbiddenSectionProps = {
   permissionNeeded: AccessType | AccessType[];

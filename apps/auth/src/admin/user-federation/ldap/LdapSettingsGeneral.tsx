@@ -16,16 +16,31 @@ import {
   SelectVariant,
   TextControl,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  FormGroup,
-  SelectOption,
-} from "../../../shared/@patternfly/react-core";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { useEffect, useState } from "react";
 import { Controller, FormProvider, UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FormAccess } from "../../components/form/FormAccess";
 import { WizardSectionHeader } from "../../components/wizard-section-header/WizardSectionHeader";
 import { useRealm } from "../../context/realm-context/RealmContext";
+import { SelectOption } from "../../../shared/pf-compat"
+
+
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
 
 export type LdapSettingsGeneralProps = {
   form: UseFormReturn<ComponentRepresentation>;

@@ -9,10 +9,27 @@
 
 // @ts-nocheck
 
-import { Banner, Flex, FlexItem } from "../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { Warning as ExclamationTriangleIcon } from "@phosphor-icons/react"
 import { useWhoAmI } from "./context/whoami/WhoAmI";
 import { useTranslation } from "react-i18next";
+
+const Banner = ({ variant, screenReaderText, children, ...props }: any) => (
+  <div className={cn("px-4 py-2 text-sm",
+    variant === "warning" && "bg-amber-100 text-amber-900",
+    variant === "danger" && "bg-destructive/10 text-destructive",
+    (props as any).className)} {...props}>
+    {screenReaderText ? <span className="sr-only">{screenReaderText}</span> : null}
+    {children}
+  </div>
+);
+const Flex = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
+);
+const FlexItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+
 type WarnBannerProps = {
   msg: string;
   className?: string;

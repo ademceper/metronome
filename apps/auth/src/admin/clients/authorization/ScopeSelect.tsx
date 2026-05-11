@@ -15,11 +15,14 @@ import {
   SelectVariant,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import { SelectOption } from "../../../shared/@patternfly/react-core";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
 import { useRef, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
+import { SelectOption } from "../../../shared/pf-compat"
+
+
 
 type ScopeSelectProps = {
   clientId: string;

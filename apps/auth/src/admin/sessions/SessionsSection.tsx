@@ -11,11 +11,9 @@
 
 import UserSessionRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userSessionRepresentation";
 import { KeycloakSelect } from "../../shared/keycloak-ui-shared";
-import {
-  DropdownItem,
-  PageSection,
-  SelectOption,
-} from "../../shared/@patternfly/react-core";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { Funnel as FilterIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -29,6 +27,22 @@ import helpUrls from "../help-urls";
 import useToggle from "../utils/useToggle";
 import { RevocationModal } from "./RevocationModal";
 import SessionsTable from "./SessionsTable";
+import { SelectOption } from "../../shared/pf-compat"
+
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+
 type FilterType = "ALL" | "REGULAR" | "OFFLINE";
 
 type SessionFilterProps = {

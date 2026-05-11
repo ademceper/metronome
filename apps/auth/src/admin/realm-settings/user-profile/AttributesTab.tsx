@@ -14,15 +14,10 @@ import {
   KeycloakSelect,
   SelectVariant,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  Button,
-  ButtonVariant,
-  Divider,
-  SelectOption,
-  Toolbar,
-  ToolbarContent,
-  ToolbarItem,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { Separator as UISeparator } from "@metronome/ui/components/separator";
+import { cn } from "@metronome/ui/lib/utils";
 import { Funnel as FilterIcon } from "@phosphor-icons/react"
 import { uniqBy } from "lodash-es";
 import { useState } from "react";
@@ -38,6 +33,53 @@ import useToggle from "../../utils/useToggle";
 import { toAddAttribute } from "../routes/AddAttribute";
 import { toAttribute } from "../routes/Attribute";
 import { useUserProfile } from "./UserProfileContext";
+import { SelectOption } from "../../../shared/pf-compat"
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Divider = (props: any) => <UISeparator {...props} />;
+const Toolbar = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarContent = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-wrap items-center gap-2", className)} {...props}>{children}</div>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
 
 const RESTRICTED_ATTRIBUTES = ["username", "email"];
 

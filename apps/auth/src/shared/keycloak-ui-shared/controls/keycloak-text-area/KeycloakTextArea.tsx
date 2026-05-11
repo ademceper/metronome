@@ -11,13 +11,20 @@
 
 // TODO: Remove code once the following issue has been fixed:
 // https://github.com/patternfly/patternfly-react/issues/10192
-import { TextArea } from "../../../@patternfly/react-core";
+import { Textarea as UITextarea } from "@metronome/ui/components/textarea";
 import {
   ComponentProps,
   HTMLProps,
   type ForwardRefExoticComponent,
   type RefAttributes,
 } from "react";
+
+
+const TextArea = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, ...props }: any) => (
+  <UITextarea value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired} {...props} />
+);
 
 // PatternFly changes the signature of the 'onFocus' and 'onBlur' handlers for textarea elements.
 // This causes issues with React Hook Form as it expects the default signature for a textarea element.

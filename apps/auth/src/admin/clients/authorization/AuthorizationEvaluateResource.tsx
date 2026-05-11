@@ -19,11 +19,20 @@ import {
   TableRow as Tr,
 } from "@metronome/ui/components/table";
 const ExpandableRowContent = ({ children }: any) => <>{children}</>;
-import { DescriptionList } from "@patternfly/react-core/dist/esm/components";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { AuthorizationEvaluateResourcePolicies } from "./AuthorizationEvaluateResourcePolicies";
 import type EvaluationResultRepresentation from "@keycloak/keycloak-admin-client/lib/defs/evaluationResultRepresentation";
 import type PolicyResultRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyResultRepresentation";
+
+
+const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
+  <dl className={cn("grid gap-y-2 text-sm",
+    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
+    (props as any).className)} {...props}>
+    {children}
+  </dl>
+);
 
 type Props = {
   rowIndex: number;

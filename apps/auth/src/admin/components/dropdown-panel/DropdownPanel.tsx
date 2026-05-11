@@ -10,8 +10,13 @@
 // @ts-nocheck
 
 import { useEffect, useRef } from "react";
-import { Icon } from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { CaretDown as CaretDownIcon } from "@phosphor-icons/react"
+
+const Icon = ({ size, status, children, className, ...props }: any) => (
+  <span className={cn("inline-flex items-center justify-center", className)} {...props}>{children}</span>
+);
+
 type DropdownPanelProps = {
   buttonText: string;
   children: React.ReactNode;

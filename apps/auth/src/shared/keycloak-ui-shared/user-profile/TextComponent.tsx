@@ -9,11 +9,22 @@
 
 // @ts-nocheck
 
-import { TextInput, TextInputTypes } from "../../@patternfly/react-core";
-
+import { Input as UIInput } from "@metronome/ui/components/input";
 import { UserProfileFieldProps } from "./UserProfileFields";
 import { UserProfileGroup } from "./UserProfileGroup";
 import { fieldName, isRequiredAttribute, label } from "./utils";
+
+
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+const TextInputTypes = {
+  text: "text", password: "password", email: "email", number: "number",
+  search: "search", url: "url", tel: "tel", date: "date", time: "time",
+} as const;
 
 export const TextComponent = (props: UserProfileFieldProps) => {
   const { form, inputType, attribute } = props;

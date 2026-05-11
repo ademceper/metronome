@@ -9,26 +9,13 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import KeycloakAdminClient from "@keycloak/keycloak-admin-client";
 import type CertificateRepresentation from "@keycloak/keycloak-admin-client/lib/defs/certificateRepresentation";
 import type KeyStoreConfig from "@keycloak/keycloak-admin-client/lib/defs/keystoreConfig";
-import {
-  AlertVariant,
-  Button,
-  ButtonVariant,
-  Flex,
-  FlexItem,
-  Form,
-  FormGroup,
-  Modal,
-  ModalVariant,
-  Radio,
-  Split,
-  SplitItem,
-  Text,
-  TextContent,
-  Title,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
+import { cn } from "@metronome/ui/lib/utils";
 import { saveAs } from "file-saver";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -39,6 +26,134 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { Certificate } from "./Certificate";
 import { KeyForm } from "./GenerateKeyDialog";
 import type { KeyTypes } from "./SamlKeys";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Flex = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
+);
+const FlexItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (
+  <UIDialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose?.()}>
+    <UIDialogContent {...props}>
+      {(title || header) ? (
+        <UIDialogHeader>
+          {title ? <UIDialogTitle>{title}</UIDialogTitle> : null}
+          {description ? <UIDialogDescription>{description}</UIDialogDescription> : null}
+          {header}
+        </UIDialogHeader>
+      ) : null}
+      {children}
+      {(actions || footer) ? (
+        <UIDialogFooter>
+          {actions}
+          {footer}
+        </UIDialogFooter>
+      ) : null}
+    </UIDialogContent>
+  </UIDialog>
+);
+const ModalVariant = {
+  small: "small",
+  medium: "medium",
+  large: "large",
+  default: "default",
+} as const;
+const Radio = ({ id, name, label, description, isChecked, onChange, isDisabled, value, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <input type="radio" id={id} name={name} value={value} checked={!!isChecked} disabled={isDisabled}
+      onChange={(e) => onChange?.(e, e.target.checked)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
 
 type SamlKeysDialogProps = {
   id: string;

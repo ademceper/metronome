@@ -9,18 +9,47 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { KeycloakSelect } from "../../../shared/keycloak-ui-shared";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownList,
-  MenuToggle,
-  SelectOption,
-  ToolbarItem,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { Funnel as FilterIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SelectOption } from "../../../shared/pf-compat"
+
+
+const Dropdown = ({ toggle, isOpen, onSelect, onOpenChange, popperProps, children, ...props }: any) => {
+  const trigger = typeof toggle === "function" ? toggle((node: HTMLElement | null) => node) : toggle;
+  return (
+    <UIDropdownMenu open={isOpen} onOpenChange={(open: boolean) => onOpenChange?.(open)}>
+      <UIDropdownMenuTrigger asChild>{trigger}</UIDropdownMenuTrigger>
+      <UIDropdownMenuContent>{children}</UIDropdownMenuContent>
+    </UIDropdownMenu>
+  );
+};
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const DropdownList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
 
 export type SearchType = "default" | "attribute";
 

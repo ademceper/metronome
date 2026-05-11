@@ -11,11 +11,20 @@
 
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import type UserSessionRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userSessionRepresentation";
-import { PageSection } from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../admin-client";
 import { fetchAdminUI } from "../context/auth/admin-ui-endpoint";
 import SessionsTable from "../sessions/SessionsTable";
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 type ClientSessionsProps = {
   client: ClientRepresentation;

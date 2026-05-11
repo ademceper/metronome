@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import iconSvgUrl from "../assets/icon.svg";
 import FeatureRepresentation, {
   FeatureType,
@@ -18,35 +19,11 @@ import {
   label,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import {
-  ActionList,
-  ActionListItem,
-  Brand,
-  Button,
-  Card,
-  CardBody,
-  CardTitle,
-  DescriptionList,
-  DescriptionListDescription,
-  DescriptionListGroup,
-  DescriptionListTerm,
-  EmptyState,
-  EmptyStateBody,
-  EmptyStateHeader,
-  Grid,
-  GridItem,
-  Label,
-  List,
-  ListItem,
-  ListVariant,
-  PageSection,
-  Tab,
-  TabTitleText,
-  Text,
-  TextContent,
-  TextVariants,
-  Title,
-} from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Card as UICard, CardContent as UICardContent, CardTitle as UICardTitle } from "@metronome/ui/components/card";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { KeycloakSpinner } from "../../shared/keycloak-ui-shared";
@@ -60,6 +37,140 @@ import helpUrls from "../help-urls";
 import useLocaleSort, { mapByKey } from "../utils/useLocaleSort";
 import { ProviderInfo } from "./ProviderInfo";
 import { DashboardTab, toDashboard } from "./routes/Dashboard";
+import { Tab, TabTitleText } from "../../shared/pf-compat"
+
+const ActionList = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
+);
+const ActionListItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Brand = ({ src, alt, heights, widths, className, ...props }: any) => (
+  <img src={src} alt={alt} className={cn("h-auto", className)} {...props} />
+);
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Card = ({ isSelectable, isSelected, isFlat, isCompact, ...props }: any) => (
+  <UICard {...props} />
+);
+const CardBody = (props: any) => <UICardContent {...props} />;
+const CardTitle = (props: any) => <UICardTitle {...props} />;
+const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
+  <dl className={cn("grid gap-y-2 text-sm",
+    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
+    (props as any).className)} {...props}>
+    {children}
+  </dl>
+);
+const DescriptionListDescription = ({ children, ...props }: any) => (
+  <dd {...props}>{children}</dd>
+);
+const DescriptionListGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("contents", className)} {...props}>{children}</div>
+);
+const DescriptionListTerm = ({ children, ...props }: any) => (
+  <dt className="font-medium text-muted-foreground" {...props}>{children}</dt>
+);
+const EmptyState = ({ variant, titleText, headingLevel, icon, children, ...props }: any) => (
+  <div className={cn("flex flex-col items-center gap-3 py-10 text-center", (props as any).className)} {...props}>
+    {icon ? <div className="text-muted-foreground">{React.createElement(icon)}</div> : null}
+    {titleText ? <h3 className="font-medium text-lg">{titleText}</h3> : null}
+    {children}
+  </div>
+);
+const EmptyStateBody = ({ children, className, ...props }: any) => (
+  <div className={cn("text-muted-foreground text-sm", className)} {...props}>{children}</div>
+);
+const EmptyStateHeader = ({ titleText, headingLevel = "h4", icon, children, ...props }: any) => (
+  <div className="flex flex-col items-center gap-2" {...props}>
+    {icon}
+    {titleText ? React.createElement(headingLevel, { className: "font-medium text-base" }, titleText) : null}
+    {children}
+  </div>
+);
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+const List = ({ variant, children, className, ...props }: any) => (
+  <ul className={cn("space-y-1 text-sm", variant === "inline" ? "flex flex-wrap gap-2" : "list-disc pl-5", className)} {...props}>
+    {children}
+  </ul>
+);
+const ListItem = ({ children, ...props }: any) => <li {...props}>{children}</li>;
+const ListVariant = { inline: "inline" } as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TextVariants = {
+  h1: "h1", h2: "h2", h3: "h3", h4: "h4", h5: "h5", h6: "h6",
+  p: "p", small: "small", blockquote: "blockquote", pre: "pre", a: "a",
+} as const;
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
+
 const EmptyDashboard = () => {
   const { environment } = useEnvironment();
 

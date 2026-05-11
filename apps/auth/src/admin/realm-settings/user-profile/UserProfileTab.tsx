@@ -9,8 +9,7 @@
 
 // @ts-nocheck
 
-import { Tab, TabTitleText } from "../../../shared/@patternfly/react-core";
-
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { useTranslation } from "react-i18next";
 import {
   RoutableTabs,
@@ -25,6 +24,9 @@ import { AttributesGroupTab } from "./AttributesGroupTab";
 import { AttributesTab } from "./AttributesTab";
 import { JsonEditorTab } from "./JsonEditorTab";
 import { UserProfileProvider } from "./UserProfileContext";
+import { Tab, TabTitleText } from "../../../shared/pf-compat"
+
+
 
 type UserProfileTabProps = {
   setTableData: React.Dispatch<

@@ -9,10 +9,7 @@
 
 // @ts-nocheck
 
-import {
-  FormGroup,
-  ValidatedOptions,
-} from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   Controller,
   ControllerProps,
@@ -23,6 +20,28 @@ import {
 } from "react-hook-form";
 import { FormErrorText, HelpItem } from "../../../shared/keycloak-ui-shared";
 import { TimeSelector, TimeSelectorProps } from "./TimeSelector";
+
+
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const ValidatedOptions = {
+  default: "default",
+  success: "success",
+  warning: "warning",
+  error: "error",
+} as const;
 
 export type NumberControlOption = {
   key: string;

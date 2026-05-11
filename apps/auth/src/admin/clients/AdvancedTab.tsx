@@ -9,13 +9,10 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import type GlobalRequestResult from "@keycloak/keycloak-admin-client/lib/defs/globalRequestResult";
-import {
-  AlertVariant,
-  PageSection,
-  Text,
-} from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import type { TFunction } from "i18next";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -33,6 +30,24 @@ import { OpenIdConnectCompatibilityModes } from "./advanced/OpenIdConnectCompati
 import { OpenIdVerifiableCredentials } from "./advanced/OpenIdVerifiableCredentials";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { PROTOCOL_OIDC, PROTOCOL_OID4VC } from "./constants";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
 
 export const parseResult = (
   result: GlobalRequestResult,

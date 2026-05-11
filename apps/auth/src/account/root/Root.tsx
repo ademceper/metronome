@@ -14,7 +14,8 @@ import {
   useEnvironment,
   KeycloakContext,
 } from "../../shared/keycloak-ui-shared";
-import { Page, Spinner } from "../../shared/@patternfly/react-core";
+import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
+import { cn } from "@metronome/ui/lib/utils";
 import { Suspense, useState } from "react";
 import {
   createBrowserRouter,
@@ -28,6 +29,12 @@ import { usePromise } from "../utils/usePromise";
 import { Header } from "./Header";
 import { MenuItem, PageNav } from "./PageNav";
 import { routes } from "../routes";
+
+
+const Page = ({ children, className, ...props }: any) => (
+  <div className={cn("flex min-h-svh flex-col", className)} {...props}>{children}</div>
+);
+const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 function mapRoutes(
   context: KeycloakContext<AccountEnvironment>,

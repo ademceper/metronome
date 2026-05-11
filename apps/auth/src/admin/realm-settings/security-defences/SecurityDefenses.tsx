@@ -11,16 +11,21 @@
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  PageSection,
-  Tab,
-  Tabs,
-  TabTitleText,
-} from "../../../shared/@patternfly/react-core";
-
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import type RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
 import { HeadersForm } from "./HeadersForm";
 import { BruteForceDetection } from "./BruteForceDetection";
+import { Tabs, Tab, TabTitleText } from "../../../shared/pf-compat"
+
+
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 type SecurityDefensesProps = {
   realm: RealmRepresentation;

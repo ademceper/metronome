@@ -9,14 +9,27 @@
 
 // @ts-nocheck
 
-import {
-  TextInputProps,
-  InputGroup,
-  InputGroupItem,
-} from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import { TextControl } from "../../../shared/keycloak-ui-shared";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+
+
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+const InputGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-stretch gap-0", className)} {...props}>{children}</div>
+);
+const InputGroupItem = ({ isFill, children, className, ...props }: any) => (
+  <div className={cn(isFill && "flex-1", className)} {...props}>{children}</div>
+);
+type TextInputProps = React.ComponentProps<typeof TextInput>;
 
 export type ColorControlProps = TextInputProps & {
   name: string;

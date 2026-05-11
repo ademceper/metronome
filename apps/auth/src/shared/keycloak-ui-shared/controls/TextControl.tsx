@@ -9,14 +9,9 @@
 
 // @ts-nocheck
 
-import {
-  FormHelperText,
-  HelperText,
-  HelperTextItem,
-  TextInput,
-  TextInputProps,
-  ValidatedOptions,
-} from "../../@patternfly/react-core";
+import * as React from "react";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import { ReactNode } from "react";
 import {
   FieldPath,
@@ -27,6 +22,34 @@ import {
 } from "react-hook-form";
 import { getRuleValue } from "../utils/getRuleValue";
 import { FormLabel } from "./FormLabel";
+
+
+const FormHelperText = ({ children, className, ...props }: any) => (
+  <div className={cn("text-muted-foreground text-xs", className)} {...props}>{children}</div>
+);
+const HelperText = ({ children, className, ...props }: any) => (
+  <div className={cn("text-sm text-muted-foreground", className)} {...props}>{children}</div>
+);
+const HelperTextItem = ({ icon, variant, children, ...props }: any) => (
+  <p className={cn("text-sm",
+    variant === "error" ? "text-destructive" : variant === "warning" ? "text-amber-600" : "text-muted-foreground",
+    (props as any).className)} {...props}>
+    {icon}{children}
+  </p>
+);
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+const ValidatedOptions = {
+  default: "default",
+  success: "success",
+  warning: "warning",
+  error: "error",
+} as const;
+type TextInputProps = React.ComponentProps<typeof TextInput>;
 
 export type TextControlProps<
   T extends FieldValues,

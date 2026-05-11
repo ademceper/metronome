@@ -11,12 +11,8 @@
 
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import { useAlerts, useFetch } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  PageSection,
-  Tab,
-  TabTitleText,
-} from "../../shared/@patternfly/react-core";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -36,6 +32,23 @@ import { convertFormValuesToObject, convertToFormValues } from "../util";
 import useToggle from "../utils/useToggle";
 import { PermissionsConfigurationTab } from "./permission-configuration/PermissionsConfigurationTab";
 import { PermissionsEvaluationTab } from "./permission-evaluation/PermissionsEvaluationTab";
+import { Tab, TabTitleText } from "../../shared/pf-compat"
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export default function PermissionsConfigurationSection() {
   const { adminClient } = useAdminClient();

@@ -15,14 +15,9 @@ import {
   useAlerts,
   useFetch,
 } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  ButtonVariant,
-  DropdownItem,
-  PageSection,
-  Tab,
-  TabTitleText,
-} from "../../shared/@patternfly/react-core";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import {
   FormProvider,
@@ -66,6 +61,39 @@ import { useParams } from "../utils/useParams";
 import { UsersInRoleTab } from "./UsersInRoleTab";
 import { RealmRoleRoute, RealmRoleTab, toRealmRole } from "./routes/RealmRole";
 import { toRealmRoles } from "./routes/RealmRoles";
+import { Tab, TabTitleText } from "../../shared/pf-compat"
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export default function RealmRoleTabs() {
   const { adminClient } = useAdminClient();

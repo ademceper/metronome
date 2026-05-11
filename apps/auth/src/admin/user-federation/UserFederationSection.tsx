@@ -9,23 +9,12 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import { useAlerts, useFetch } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  ButtonVariant,
-  CardTitle,
-  DropdownItem,
-  Gallery,
-  GalleryItem,
-  Icon,
-  PageSection,
-  Split,
-  SplitItem,
-  Text,
-  TextContent,
-  TextVariants,
-} from "../../shared/@patternfly/react-core";
+import { CardTitle as UICardTitle } from "@metronome/ui/components/card";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { cn } from "@metronome/ui/lib/utils";
 import { Database as DatabaseIcon } from "@phosphor-icons/react"
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -44,6 +33,63 @@ import { toCustomUserFederation } from "./routes/CustomUserFederation";
 import { toNewCustomUserFederation } from "./routes/NewCustomUserFederation";
 import { toUserFederationKerberos } from "./routes/UserFederationKerberos";
 import { toUserFederationLdap } from "./routes/UserFederationLdap";
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const CardTitle = (props: any) => <UICardTitle {...props} />;
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const Gallery = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-3 sm:grid-cols-2 md:grid-cols-3", className)} {...props}>{children}</div>
+);
+const GalleryItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Icon = ({ size, status, children, className, ...props }: any) => (
+  <span className={cn("inline-flex items-center justify-center", className)} {...props}>{children}</span>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TextVariants = {
+  h1: "h1", h2: "h2", h3: "h3", h4: "h4", h5: "h5", h6: "h6",
+  p: "p", small: "small", blockquote: "blockquote", pre: "pre", a: "a",
+} as const;
+
 export default function UserFederationSection() {
   const { adminClient } = useAdminClient();
 

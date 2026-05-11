@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type ClientScopeRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientScopeRepresentation";
 import type ProtocolMapperRepresentation from "@keycloak/keycloak-admin-client/lib/defs/protocolMapperRepresentation";
 import type RoleRepresentation from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
@@ -21,23 +22,11 @@ import {
   useFetch,
   useHelp,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  ClipboardCopy,
-  Form,
-  FormGroup,
-  Grid,
-  GridItem,
-  PageSection,
-  SelectOption,
-  Split,
-  SplitItem,
-  Tab,
-  TabContent,
-  Tabs,
-  TabTitleText,
-  Text,
-  TextContent,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { Tabs as UITabs, TabsContent as UITabsContent, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { useEffect, useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -50,6 +39,71 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
 import { prettyPrintJSON } from "../../util";
 import { GeneratedCodeTab } from "./GeneratedCodeTab";
+import { Tabs, Tab, TabContent, TabTitleText } from "../../../shared/pf-compat"
+import { SelectOption } from "../../../shared/pf-compat"
+
+const ClipboardCopy = ({ value, onChange, isReadOnly, isCode, hoverTip, clickTip, children, variant, ...props }: any) => {
+  const [copied, setCopied] = React.useState(false);
+  const text = value ?? children ?? "";
+  return (
+    <div className="flex items-stretch gap-0">
+      <UIInput readOnly={isReadOnly} value={String(text)}
+        onChange={(e: any) => onChange?.(e, e.target.value)} className="rounded-r-none" />
+      <UIButton type="button" variant="outline" className="rounded-l-none"
+        onClick={async () => {
+          try {
+            await navigator.clipboard.writeText(String(text));
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          } catch {}
+        }}>
+        {copied ? (clickTip ?? "Copied") : (hoverTip ?? "Copy")}
+      </UIButton>
+    </div>
+  );
+};
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+
 export type EvaluateScopesProps = {
   clientId: string;
   protocol: string;

@@ -9,13 +9,20 @@
 
 // @ts-nocheck
 
-import {
-  DescriptionListDescription,
-  DescriptionListGroup,
-  DescriptionListTerm,
-} from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { Link, Path } from "react-router-dom";
+
+
+const DescriptionListDescription = ({ children, ...props }: any) => (
+  <dd {...props}>{children}</dd>
+);
+const DescriptionListGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("contents", className)} {...props}>{children}</div>
+);
+const DescriptionListTerm = ({ children, ...props }: any) => (
+  <dt className="font-medium text-muted-foreground" {...props}>{children}</dt>
+);
 
 type DetailDescriptionProps<T> = {
   name: string;

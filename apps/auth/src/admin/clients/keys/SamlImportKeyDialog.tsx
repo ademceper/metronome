@@ -10,7 +10,6 @@
 // @ts-nocheck
 
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
-import { AlertVariant } from "../../../shared/@patternfly/react-core";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
@@ -18,6 +17,15 @@ import { ConfirmDialogModal } from "../../components/confirm-dialog/ConfirmDialo
 import { KeyForm } from "./GenerateKeyDialog";
 import type { KeyTypes } from "./SamlKeys";
 import { SamlKeysDialogForm, submitForm } from "./SamlKeysDialog";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
 
 type SamlImportKeyDialogProps = {
   id: string;

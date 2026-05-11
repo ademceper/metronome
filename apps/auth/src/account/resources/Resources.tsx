@@ -11,10 +11,12 @@
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Tab, Tabs, TabTitleText } from "../../shared/@patternfly/react-core";
-
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { ResourcesTab } from "./ResourcesTab";
 import { Page } from "../components/page/Page";
+import { Tabs, Tab, TabTitleText } from "../../shared/pf-compat"
+
+
 
 export const Resources = () => {
   const { t } = useTranslation();

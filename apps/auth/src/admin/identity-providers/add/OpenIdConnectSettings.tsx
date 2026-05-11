@@ -9,7 +9,8 @@
 
 // @ts-nocheck
 
-import { FormGroup, Title } from "../../../shared/@patternfly/react-core";
+import * as React from "react";
+import { cn } from "@metronome/ui/lib/utils";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FormErrorText, HelpItem } from "../../../shared/keycloak-ui-shared";
@@ -17,6 +18,35 @@ import { useAdminClient } from "../../admin-client";
 import { JsonFileUpload } from "../../components/json-file-upload/JsonFileUpload";
 import { DiscoveryEndpointField } from "../component/DiscoveryEndpointField";
 import { DiscoverySettings } from "./DiscoverySettings";
+
+
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const TitleSizes = {
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
+  "2xl": "text-2xl",
+  "3xl": "text-3xl",
+  "4xl": "text-4xl",
+} as const;
+const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
+  React.createElement(headingLevel, {
+    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
+    ...props,
+  }, children);
 
 type OpenIdConnectSettingsProps = {
   isOIDC: boolean;

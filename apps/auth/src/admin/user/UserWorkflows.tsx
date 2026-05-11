@@ -13,13 +13,11 @@ import {
   KeycloakDataTable,
   ListEmptyState,
 } from "../../shared/keycloak-ui-shared";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionToggle,
-  Label,
-} from "../../shared/@patternfly/react-core";
+import { Accordion as UIAccordion, AccordionContent as UIAccordionContent, AccordionItem as UIAccordionItem, AccordionTrigger as UIAccordionTrigger } from "@metronome/ui/components/accordion";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Popover as UIPopover, PopoverContent as UIPopoverContent, PopoverTrigger as UIPopoverTrigger } from "@metronome/ui/components/popover";
+import { cn } from "@metronome/ui/lib/utils";
 import yaml from "yaml";
 import {
   Table,
@@ -29,7 +27,6 @@ import {
   TableHeader as Thead,
   TableRow as Tr,
 } from "@metronome/ui/components/table";
-import { Popover, Button } from "../../shared/@patternfly/react-core";
 import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -37,6 +34,78 @@ import { useAdminClient } from "../admin-client";
 import useFormatDate from "../utils/useFormatDate";
 import WorkflowRepresentation from "libs/keycloak-admin-client/lib/defs/workflowRepresentation";
 import CodeEditor from "../components/form/CodeEditor";
+
+
+const Accordion = ({ asDefinitionList, children, ...props }: any) => (
+  <UIAccordion type="multiple" {...props}>{children}</UIAccordion>
+);
+const AccordionContent = ({ children, ...props }: any) => (
+  <UIAccordionContent {...props}>{children}</UIAccordionContent>
+);
+const AccordionItem = ({ children, ...props }: any) => (
+  <UIAccordionItem value={String((props as any).id ?? Math.random())} {...props}>{children}</UIAccordionItem>
+);
+const AccordionToggle = ({ onClick, isExpanded, children, ...props }: any) => (
+  <UIAccordionTrigger onClick={onClick} {...props}>{children}</UIAccordionTrigger>
+);
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+const Popover = ({ bodyContent, headerContent, footerContent, children, position, ...props }: any) => (
+  <UIPopover {...props}>
+    <UIPopoverTrigger asChild>{children}</UIPopoverTrigger>
+    <UIPopoverContent>
+      {headerContent ? (
+        <div className="font-medium text-sm">{typeof headerContent === "function" ? headerContent() : headerContent}</div>
+      ) : null}
+      {bodyContent ? (
+        <div className="text-sm">{typeof bodyContent === "function" ? bodyContent() : bodyContent}</div>
+      ) : null}
+      {footerContent ? (
+        <div className="pt-2 text-sm">{typeof footerContent === "function" ? footerContent() : footerContent}</div>
+      ) : null}
+    </UIPopoverContent>
+  </UIPopover>
+);
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
 
 type UserWorkflowProps = {
   user?: string;

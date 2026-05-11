@@ -9,16 +9,25 @@
 
 // @ts-nocheck
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionToggle,
-} from "../../../shared/@patternfly/react-core";
+import { Accordion as UIAccordion, AccordionContent as UIAccordionContent, AccordionItem as UIAccordionItem, AccordionTrigger as UIAccordionTrigger } from "@metronome/ui/components/accordion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { resolveColorToHex } from "./PatternflyVars";
 import { ColorControl, ColorControlProps } from "./ColorControl";
+
+
+const Accordion = ({ asDefinitionList, children, ...props }: any) => (
+  <UIAccordion type="multiple" {...props}>{children}</UIAccordion>
+);
+const AccordionContent = ({ children, ...props }: any) => (
+  <UIAccordionContent {...props}>{children}</UIAccordionContent>
+);
+const AccordionItem = ({ children, ...props }: any) => (
+  <UIAccordionItem value={String((props as any).id ?? Math.random())} {...props}>{children}</UIAccordionItem>
+);
+const AccordionToggle = ({ onClick, isExpanded, children, ...props }: any) => (
+  <UIAccordionTrigger onClick={onClick} {...props}>{children}</UIAccordionTrigger>
+);
 
 type DefaultColorAccordionProps = ColorControlProps & {
   colorName?: string;

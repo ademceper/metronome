@@ -9,24 +9,17 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { fetchWithError } from "@keycloak/keycloak-admin-client";
 import {
   HelpItem,
   useFetch,
   useHelp,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  Form,
-  FormGroup,
-  MenuToggle,
-  ModalVariant,
-  Select,
-  SelectList,
-  SelectOption,
-  Stack,
-  StackItem,
-  TextArea,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Select as UISelect, SelectContent as UISelectContent, SelectItem as UISelectItem, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
+import { Textarea as UITextarea } from "@metronome/ui/components/textarea";
+import { cn } from "@metronome/ui/lib/utils";
 import { saveAs } from "file-saver";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -36,6 +29,54 @@ import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
 import { addTrailingSlash, prettyPrintJSON } from "../../util";
 import { getAuthorizationHeaders } from "../../utils/getAuthorizationHeaders";
 import { ConfirmDialogModal } from "../confirm-dialog/ConfirmDialog";
+import { Select, SelectOption } from "../../../shared/pf-compat"
+
+
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const ModalVariant = {
+  small: "small",
+  medium: "medium",
+  large: "large",
+  default: "default",
+} as const;
+const SelectList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Stack = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const StackItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const TextArea = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, ...props }: any) => (
+  <UITextarea value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired} {...props} />
+);
 
 type DownloadDialogProps = {
   id: string;

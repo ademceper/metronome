@@ -10,11 +10,7 @@
 // @ts-nocheck
 
 import type { RequiredActionAlias } from "@keycloak/keycloak-admin-client/lib/defs/requiredActionProviderRepresentation";
-import {
-  AlertVariant,
-  Form,
-  ModalVariant,
-} from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { isEmpty } from "lodash-es";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -24,6 +20,24 @@ import { ConfirmDialogModal } from "../../components/confirm-dialog/ConfirmDialo
 import { LifespanField } from "./LifespanField";
 import { RequiredActionMultiSelect } from "./RequiredActionMultiSelect";
 import { useRealm } from "../../context/realm-context/RealmContext";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const ModalVariant = {
+  small: "small",
+  medium: "medium",
+  large: "large",
+  default: "default",
+} as const;
 
 type ResetCredentialDialogProps = {
   userId: string;

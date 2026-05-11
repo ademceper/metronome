@@ -9,16 +9,12 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
-import {
-  Button,
-  Modal,
-  ModalVariant,
-  Popover,
-  Text,
-  TextContent,
-  TextVariants,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
+import { Popover as UIPopover, PopoverContent as UIPopoverContent, PopoverTrigger as UIPopoverTrigger } from "@metronome/ui/components/popover";
+import { cn } from "@metronome/ui/lib/utils";
 import { CheckCircle as CheckCircleIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
@@ -26,6 +22,93 @@ import { fetchUsedBy } from "../../components/role-mapping/resource";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useToggle from "../../utils/useToggle";
 import { AuthenticationType, REALM_FLOWS } from "../constants";
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (
+  <UIDialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose?.()}>
+    <UIDialogContent {...props}>
+      {(title || header) ? (
+        <UIDialogHeader>
+          {title ? <UIDialogTitle>{title}</UIDialogTitle> : null}
+          {description ? <UIDialogDescription>{description}</UIDialogDescription> : null}
+          {header}
+        </UIDialogHeader>
+      ) : null}
+      {children}
+      {(actions || footer) ? (
+        <UIDialogFooter>
+          {actions}
+          {footer}
+        </UIDialogFooter>
+      ) : null}
+    </UIDialogContent>
+  </UIDialog>
+);
+const ModalVariant = {
+  small: "small",
+  medium: "medium",
+  large: "large",
+  default: "default",
+} as const;
+const Popover = ({ bodyContent, headerContent, footerContent, children, position, ...props }: any) => (
+  <UIPopover {...props}>
+    <UIPopoverTrigger asChild>{children}</UIPopoverTrigger>
+    <UIPopoverContent>
+      {headerContent ? (
+        <div className="font-medium text-sm">{typeof headerContent === "function" ? headerContent() : headerContent}</div>
+      ) : null}
+      {bodyContent ? (
+        <div className="text-sm">{typeof bodyContent === "function" ? bodyContent() : bodyContent}</div>
+      ) : null}
+      {footerContent ? (
+        <div className="pt-2 text-sm">{typeof footerContent === "function" ? footerContent() : footerContent}</div>
+      ) : null}
+    </UIPopoverContent>
+  </UIPopover>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TextVariants = {
+  h1: "h1", h2: "h2", h3: "h3", h4: "h4", h5: "h5", h6: "h6",
+  p: "p", small: "small", blockquote: "blockquote", pre: "pre", a: "a",
+} as const;
+
 type UsedByProps = {
   authType: AuthenticationType;
 };

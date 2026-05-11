@@ -10,11 +10,22 @@
 // @ts-nocheck
 
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
-import { ButtonVariant } from "../../../shared/@patternfly/react-core";
 import { useTranslation } from "react-i18next";
 import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { ConfirmDialogModal } from "../../components/confirm-dialog/ConfirmDialog";
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
 
 type DeleteConfirmProps = {
   selectedRows: GroupRepresentation[];

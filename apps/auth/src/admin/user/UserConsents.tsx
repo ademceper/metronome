@@ -10,12 +10,7 @@
 // @ts-nocheck
 
 import type UserConsentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userConsentRepresentation";
-import {
-  AlertVariant,
-  ButtonVariant,
-  Chip,
-  ChipGroup,
-} from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Stack as CubesIcon } from "@phosphor-icons/react"
 const cellWidth = (_n: number) => () => ({ className: '' });
 import { sortBy } from "lodash-es";
@@ -29,6 +24,38 @@ import { Action, KeycloakDataTable } from "../../shared/keycloak-ui-shared";
 import { emptyFormatter } from "../util";
 import useFormatDate from "../utils/useFormatDate";
 import { useParams } from "../utils/useParams";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Chip = ({ onClick, children, ...props }: any) => (
+  <UIBadge variant="secondary" {...props}>
+    {children}
+    {onClick ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
+  </UIBadge>
+);
+const ChipGroup = ({ categoryName, numChips, onClick, isClosable, children, ...props }: any) => (
+  <div className="flex flex-wrap items-center gap-1" {...props}>
+    {categoryName ? <span className="text-muted-foreground text-xs">{categoryName}:</span> : null}
+    {children}
+    {isClosable ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
+  </div>
+);
 
 export const UserConsents = () => {
   const { adminClient } = useAdminClient();

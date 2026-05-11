@@ -9,19 +9,54 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { capitalize } from "lodash-es";
-import {
-  Label,
-  LabelGroup,
-  Popover,
-  Text,
-  TextContent,
-  TextList,
-  TextListItem,
-  TextListItemVariants,
-  TextListVariants,
-} from "../../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Popover as UIPopover, PopoverContent as UIPopoverContent, PopoverTrigger as UIPopoverTrigger } from "@metronome/ui/components/popover";
+import { cn } from "@metronome/ui/lib/utils";
+
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+const LabelGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-wrap items-center gap-1", className)} {...props}>{children}</div>
+);
+const Popover = ({ bodyContent, headerContent, footerContent, children, position, ...props }: any) => (
+  <UIPopover {...props}>
+    <UIPopoverTrigger asChild>{children}</UIPopoverTrigger>
+    <UIPopoverContent>
+      {headerContent ? (
+        <div className="font-medium text-sm">{typeof headerContent === "function" ? headerContent() : headerContent}</div>
+      ) : null}
+      {bodyContent ? (
+        <div className="text-sm">{typeof bodyContent === "function" ? bodyContent() : bodyContent}</div>
+      ) : null}
+      {footerContent ? (
+        <div className="pt-2 text-sm">{typeof footerContent === "function" ? footerContent() : footerContent}</div>
+      ) : null}
+    </UIPopoverContent>
+  </UIPopover>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const TextList = ({ component = "ul", children, ...props }: any) =>
+  React.createElement(component, {
+    className: cn(component === "ol" ? "list-decimal pl-5" : component === "dl" ? "" : "list-disc pl-5", "space-y-1 text-sm"),
+    ...props,
+  }, children);
+const TextListItem = ({ component = "li", children, ...props }: any) =>
+  React.createElement(component, props, children);
+const TextListItemVariants = { li: "li", dt: "dt", dd: "dd" } as const;
+const TextListVariants = { ul: "ul", ol: "ol", dl: "dl" } as const;
 
 type AuthorizationScopesDetailsProps = {
   row: {

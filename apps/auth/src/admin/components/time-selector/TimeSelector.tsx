@@ -9,20 +9,33 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import {
   KeycloakSelect,
   KeycloakSelectProps,
   SelectVariant,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  SelectOption,
-  Split,
-  SplitItem,
-  TextInput,
-  TextInputProps,
-} from "../../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SelectOption } from "../../../shared/pf-compat"
+
+
+const Split = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
+);
+const SplitItem = ({ isFilled, children, className, ...props }: any) => (
+  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
+);
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
+type TextInputProps = React.ComponentProps<typeof TextInput>;
 
 export type Unit = "second" | "minute" | "hour" | "day";
 

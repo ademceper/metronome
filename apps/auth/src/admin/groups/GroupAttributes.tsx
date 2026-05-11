@@ -11,11 +11,7 @@
 
 import GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
 import { useAlerts, useFetch } from "../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  PageSection,
-  PageSectionVariants,
-} from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -28,6 +24,28 @@ import { arrayToKeyValue } from "../components/key-value-form/key-value-convert"
 import { convertFormValuesToObject } from "../util";
 import { getLastId } from "./groupIdUtils";
 import { useGroupResource } from "../context/group-resource/GroupResourceContext";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const PageSectionVariants = {
+  default: "default",
+  light: "light",
+  dark: "dark",
+  darker: "darker",
+} as const;
 
 export const GroupAttributes = () => {
   const groups = useGroupResource();

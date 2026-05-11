@@ -9,11 +9,7 @@
 
 // @ts-nocheck
 
-import {
-  Tab,
-  Tabs,
-  TabTitleText,
-} from "../../../shared/@patternfly/react-core";
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
@@ -22,6 +18,9 @@ import { CibaPolicy } from "./CibaPolicy";
 import { OtpPolicy } from "./OtpPolicy";
 import { PasswordPolicy } from "./PasswordPolicy";
 import { WebauthnPolicy } from "./WebauthnPolicy";
+import { Tabs, Tab, TabTitleText } from "../../../shared/pf-compat"
+
+
 
 export const Policies = () => {
   const { t } = useTranslation();

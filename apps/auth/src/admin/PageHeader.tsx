@@ -15,7 +15,8 @@ import {
   useEnvironment,
   useHelp,
 } from "../shared/keycloak-ui-shared";
-import { DropdownItem, ToolbarItem } from "../shared/@patternfly/react-core";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
+import { cn } from "@metronome/ui/lib/utils";
 import { Question as HelpIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { Link, useHref } from "react-router-dom";
@@ -27,6 +28,17 @@ import { toDashboard } from "./dashboard/routes/Dashboard";
 import { usePreviewLogo } from "./realm-settings/themes/LogoContext";
 import { joinPath } from "./utils/joinPath";
 import useToggle from "./utils/useToggle";
+
+
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const ToolbarItem = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center", className)} {...props}>{children}</div>
+);
 
 const ManageAccountDropdownItem = () => {
   const { keycloak } = useEnvironment();

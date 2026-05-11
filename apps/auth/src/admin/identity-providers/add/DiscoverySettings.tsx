@@ -10,13 +10,23 @@
 // @ts-nocheck
 
 import IdentityProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
-import { ExpandableSection } from "../../../shared/@patternfly/react-core";
+import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
 import { useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { SelectControl, TextControl } from "../../../shared/keycloak-ui-shared";
 import { DefaultSwitchControl } from "../../components/SwitchControl";
 import { JwksSettings } from "./JwksSettings";
+
+const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed, isExpanded, onToggle, isDetached, children, ...props }: any) => (
+  <UICollapsible open={isExpanded} onOpenChange={(open: boolean) => onToggle?.(undefined, open)} {...props}>
+    <UICollapsibleTrigger className="flex items-center gap-2 text-sm">
+      {isExpanded ? (toggleTextExpanded ?? toggleText) : (toggleTextCollapsed ?? toggleText)}
+    </UICollapsibleTrigger>
+    <UICollapsibleContent>{children}</UICollapsibleContent>
+  </UICollapsible>
+);
+
 const PKCE_METHODS = ["plain", "S256"] as const;
 
 type DiscoverySettingsProps = {

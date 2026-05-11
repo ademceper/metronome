@@ -9,12 +9,13 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import {
   UserProfileAttributeGroupMetadata,
   UserProfileAttributeMetadata,
   UserProfileMetadata,
 } from "@keycloak/keycloak-admin-client/lib/defs/userProfileMetadata";
-import { Text } from "../../@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { TFunction } from "i18next";
 import { ReactNode, useMemo, type JSX } from "react";
 import { FieldPath, UseFormReturn } from "react-hook-form";
@@ -27,6 +28,10 @@ import { SelectComponent } from "./SelectComponent";
 import { TextAreaComponent } from "./TextAreaComponent";
 import { TextComponent } from "./TextComponent";
 import { UserFormFields, fieldName, isRootAttribute, label } from "./utils";
+
+
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
 
 export type UserProfileError = {
   responseData: { errors?: { errorMessage: string }[] };

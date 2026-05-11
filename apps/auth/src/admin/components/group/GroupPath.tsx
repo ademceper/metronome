@@ -10,10 +10,12 @@
 // @ts-nocheck
 
 import { useState } from "react";
-import { Tooltip } from "../../../shared/@patternfly/react-core";
 type TableTextProps = any;
 
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
+
+
+const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;
 
 type GroupPathProps = TableTextProps & {
   group: GroupRepresentation;

@@ -9,24 +9,14 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
-import {
-  AlertVariant,
-  Button,
-  Checkbox,
-  Divider,
-  Dropdown,
-  DropdownItem,
-  DropdownList,
-  InputGroup,
-  InputGroupItem,
-  MenuToggle,
-  Spinner,
-  Tooltip,
-  TreeView,
-  TreeViewDataItem,
-} from "../../../shared/@patternfly/react-core";
-
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
+import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
+import { Separator as UISeparator } from "@metronome/ui/components/separator";
+import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   PaginatingTableToolbar,
   useAlerts,
@@ -49,6 +39,114 @@ import { useSubGroups } from "../SubGroupsContext";
 import { toGroups } from "../routes/Groups";
 import { DeleteGroup } from "./DeleteGroup";
 import { MoveDialog } from "./MoveDialog";
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <UICheckbox id={id} name={name} checked={isChecked} disabled={isDisabled}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const Divider = (props: any) => <UISeparator {...props} />;
+const Dropdown = ({ toggle, isOpen, onSelect, onOpenChange, popperProps, children, ...props }: any) => {
+  const trigger = typeof toggle === "function" ? toggle((node: HTMLElement | null) => node) : toggle;
+  return (
+    <UIDropdownMenu open={isOpen} onOpenChange={(open: boolean) => onOpenChange?.(open)}>
+      <UIDropdownMenuTrigger asChild>{trigger}</UIDropdownMenuTrigger>
+      <UIDropdownMenuContent>{children}</UIDropdownMenuContent>
+    </UIDropdownMenu>
+  );
+};
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
+const DropdownList = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const InputGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-stretch gap-0", className)} {...props}>{children}</div>
+);
+const InputGroupItem = ({ isFill, children, className, ...props }: any) => (
+  <div className={cn(isFill && "flex-1", className)} {...props}>{children}</div>
+);
+const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
+  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
+    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+      {children}
+    </UIButton>
+  ),
+);
+(MenuToggle as any).displayName = "MenuToggle";
+const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
+const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;
+const TreeView = ({ data, onSelect, activeItems, hasGuides, ...props }: any) => {
+  const renderItem = (item: any) => (
+    <li key={item.id ?? item.name} className="text-sm">
+      <button type="button" onClick={(e) => onSelect?.(e, item)} className="rounded-md px-2 py-1 text-left hover:bg-muted">
+        {item.title ?? item.name}
+      </button>
+      {item.children?.length ? <ul className="ml-3">{item.children.map(renderItem)}</ul> : null}
+    </li>
+  );
+  return <ul className="flex flex-col gap-1" {...props}>{Array.isArray(data) ? data.map(renderItem) : null}</ul>;
+};
+type TreeViewDataItem = {
+  id?: string;
+  name?: string | React.ReactNode;
+  title?: string | React.ReactNode;
+  children?: TreeViewDataItem[];
+  [key: string]: any;
+};
+
 type ExtendedTreeViewDataItem = TreeViewDataItem & {
   access?: Record<string, boolean>;
 };

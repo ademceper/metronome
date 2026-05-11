@@ -65,7 +65,7 @@ function DialogContent({
         )}
         {...props}
       >
-        {children}
+        {children as React.ReactNode}
         {showCloseButton && (
           <DialogPrimitive.Close data-slot="dialog-close" asChild>
             <Button
@@ -110,7 +110,7 @@ function DialogFooter({
       )}
       {...props}
     >
-      {children}
+      {children as React.ReactNode}
       {showCloseButton && (
         <DialogPrimitive.Close asChild>
           <Button variant="outline">Close</Button>

@@ -9,17 +9,45 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
-import {
-  CodeBlock,
-  CodeBlockAction,
-  EmptyState,
-  EmptyStateBody,
-  EmptyStateHeader,
-  TextArea,
-} from "../../../shared/@patternfly/react-core";
+import { Textarea as UITextarea } from "@metronome/ui/components/textarea";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { CopyToClipboardButton } from "../../components/copy-to-clipboard-button/CopyToClipboardButton";
+
+
+const CodeBlock = ({ actions, children, ...props }: any) => (
+  <div className="rounded-md border bg-muted/40">
+    {actions ? <div className="flex justify-end px-2 py-1">{actions}</div> : null}
+    <pre className={cn("overflow-auto rounded-md bg-muted p-3 text-sm", (props as any).className)} {...props}>{children}</pre>
+  </div>
+);
+const CodeBlockAction = ({ children, className, ...props }: any) => (
+  <div className={cn("inline-flex items-center", className)} {...props}>{children}</div>
+);
+const EmptyState = ({ variant, titleText, headingLevel, icon, children, ...props }: any) => (
+  <div className={cn("flex flex-col items-center gap-3 py-10 text-center", (props as any).className)} {...props}>
+    {icon ? <div className="text-muted-foreground">{React.createElement(icon)}</div> : null}
+    {titleText ? <h3 className="font-medium text-lg">{titleText}</h3> : null}
+    {children}
+  </div>
+);
+const EmptyStateBody = ({ children, className, ...props }: any) => (
+  <div className={cn("text-muted-foreground text-sm", className)} {...props}>{children}</div>
+);
+const EmptyStateHeader = ({ titleText, headingLevel = "h4", icon, children, ...props }: any) => (
+  <div className="flex flex-col items-center gap-2" {...props}>
+    {icon}
+    {titleText ? React.createElement(headingLevel, { className: "font-medium text-base" }, titleText) : null}
+    {children}
+  </div>
+);
+const TextArea = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, ...props }: any) => (
+  <UITextarea value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired} {...props} />
+);
 
 type GeneratedCodeTabProps = {
   user?: UserRepresentation;

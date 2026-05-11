@@ -10,15 +10,8 @@
 // @ts-nocheck
 
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import {
-  Nav,
-  NavExpandable,
-  NavItem,
-  NavList,
-  PageSidebar,
-  PageSidebarBody,
-  Spinner,
-} from "../../shared/@patternfly/react-core";
+import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   PropsWithChildren,
   MouseEvent as ReactMouseEvent,
@@ -38,6 +31,34 @@ import fetchContentJson from "../content/fetchContent";
 import type { TFuncKey } from "../i18n-type";
 import type { AccountEnvironment, Feature } from "..";
 import { usePromise } from "../utils/usePromise";
+
+
+const Nav = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-1", className)} {...props}>{children}</div>
+);
+const NavExpandable = ({ title, isExpanded, children, ...props }: any) => (
+  <li {...props}>
+    <details open={isExpanded}>
+      <summary className="cursor-pointer rounded-md px-2 py-1 text-sm">{title}</summary>
+      <ul className="ml-3 flex flex-col gap-1">{children}</ul>
+    </details>
+  </li>
+);
+const NavItem = ({ to, isActive, children, ...props }: any) => (
+  <li {...props}>
+    <span className={cn("block rounded-md px-2 py-1 text-sm", isActive && "bg-muted font-medium")}>{children}</span>
+  </li>
+);
+const NavList = ({ children, ...props }: any) => (
+  <ul className="flex flex-col gap-1" {...props}>{children}</ul>
+);
+const PageSidebar = ({ children, className, ...props }: any) => (
+  <div className={cn("border-r", className)} {...props}>{children}</div>
+);
+const PageSidebarBody = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 type RootMenuItem = {
   id?: string;

@@ -9,12 +9,28 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useEffect, useState } from "react";
 
-import {
-  TreeView,
-  TreeViewDataItem,
-} from "../../../shared/@patternfly/react-core";
+
+const TreeView = ({ data, onSelect, activeItems, hasGuides, ...props }: any) => {
+  const renderItem = (item: any) => (
+    <li key={item.id ?? item.name} className="text-sm">
+      <button type="button" onClick={(e) => onSelect?.(e, item)} className="rounded-md px-2 py-1 text-left hover:bg-muted">
+        {item.title ?? item.name}
+      </button>
+      {item.children?.length ? <ul className="ml-3">{item.children.map(renderItem)}</ul> : null}
+    </li>
+  );
+  return <ul className="flex flex-col gap-1" {...props}>{Array.isArray(data) ? data.map(renderItem) : null}</ul>;
+};
+type TreeViewDataItem = {
+  id?: string;
+  name?: string | React.ReactNode;
+  title?: string | React.ReactNode;
+  children?: TreeViewDataItem[];
+  [key: string]: any;
+};
 
 type CheckableTreeViewProps = {
   data: TreeViewDataItem[];

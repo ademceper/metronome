@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { Tab, TabTitleText } from "../../../shared/@patternfly/react-core";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { useTranslation } from "react-i18next";
 import { HelpItem } from "../../../shared/keycloak-ui-shared";
 import {
@@ -22,6 +22,9 @@ import {
   toClientRegistration,
 } from "../routes/ClientRegistration";
 import { ClientRegistrationList } from "./ClientRegistrationList";
+import { Tab, TabTitleText } from "../../../shared/pf-compat"
+
+
 
 export const ClientRegistration = () => {
   const { t } = useTranslation();

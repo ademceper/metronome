@@ -11,7 +11,7 @@
 
 import type PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import { useFetch } from "../../../shared/keycloak-ui-shared";
-import { DescriptionList } from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useAdminClient } from "../../admin-client";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
@@ -19,6 +19,15 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { toPermissionDetails } from "../routes/PermissionDetails";
 import { toScopeDetails } from "../routes/Scope";
 import { DetailDescription, DetailDescriptionLink } from "./DetailDescription";
+
+const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
+  <dl className={cn("grid gap-y-2 text-sm",
+    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
+    (props as any).className)} {...props}>
+    {children}
+  </dl>
+);
+
 type Scope = { id: string; name: string }[];
 
 type DetailCellProps = {

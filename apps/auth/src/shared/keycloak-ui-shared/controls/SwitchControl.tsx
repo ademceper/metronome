@@ -9,6 +9,7 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import {
   Controller,
   FieldValues,
@@ -17,9 +18,22 @@ import {
   PathValue,
   useFormContext,
 } from "react-hook-form";
-import { SwitchProps, Switch } from "../../@patternfly/react-core";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
 import { FormLabel } from "./FormLabel";
 import { debeerify } from "../user-profile/utils";
+
+
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
+type SwitchProps = React.ComponentProps<typeof Switch>;
 
 export type SwitchControlProps<
   T extends FieldValues,

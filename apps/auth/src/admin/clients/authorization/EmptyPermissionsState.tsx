@@ -9,22 +9,74 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  EmptyState,
-  EmptyStateIcon,
-  EmptyStateBody,
-  Button,
-  Tooltip,
-  EmptyStateHeader,
-  EmptyStateFooter,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { cn } from "@metronome/ui/lib/utils";
 import { PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 
 import { PermissionType, toNewPermission } from "../routes/NewPermission";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { toUpperCase } from "../../util";
+
+
+const EmptyState = ({ variant, titleText, headingLevel, icon, children, ...props }: any) => (
+  <div className={cn("flex flex-col items-center gap-3 py-10 text-center", (props as any).className)} {...props}>
+    {icon ? <div className="text-muted-foreground">{React.createElement(icon)}</div> : null}
+    {titleText ? <h3 className="font-medium text-lg">{titleText}</h3> : null}
+    {children}
+  </div>
+);
+const EmptyStateIcon = ({ icon, ...props }: any) => icon ? React.createElement(icon, { ...props }) : null;
+const EmptyStateBody = ({ children, className, ...props }: any) => (
+  <div className={cn("text-muted-foreground text-sm", className)} {...props}>{children}</div>
+);
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;
+const EmptyStateHeader = ({ titleText, headingLevel = "h4", icon, children, ...props }: any) => (
+  <div className="flex flex-col items-center gap-2" {...props}>
+    {icon}
+    {titleText ? React.createElement(headingLevel, { className: "font-medium text-base" }, titleText) : null}
+    {children}
+  </div>
+);
+const EmptyStateFooter = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col items-center gap-2", className)} {...props}>{children}</div>
+);
 
 type EmptyButtonProps = {
   permissionType: PermissionType;

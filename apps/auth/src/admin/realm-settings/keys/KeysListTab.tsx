@@ -17,12 +17,9 @@ import {
   SelectVariant,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import {
-  Button,
-  ButtonVariant,
-  PageSection,
-  SelectOption,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { cn } from "@metronome/ui/lib/utils";
 import { Funnel as FilterIcon } from "@phosphor-icons/react"
 const cellWidth = (_n: number) => () => ({ className: '' });
 import { useMemo, useState } from "react";
@@ -37,6 +34,50 @@ import { emptyFormatter } from "../../util";
 import useFormatDate from "../../utils/useFormatDate";
 import useToggle from "../../utils/useToggle";
 import { toKeysTab } from "../routes/KeysTab";
+import { SelectOption } from "../../../shared/pf-compat"
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+
 const FILTER_OPTIONS = ["ACTIVE", "PASSIVE", "DISABLED"] as const;
 
 type FilterType = (typeof FILTER_OPTIONS)[number];

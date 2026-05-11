@@ -9,7 +9,8 @@
 
 // @ts-nocheck
 
-import { ChipGroupProps, SelectProps } from "../../../@patternfly/react-core";
+import * as React from "react";
+import { Select as UISelect, SelectContent as UISelectContent, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
 import {
   ControllerProps,
   FieldPath,
@@ -18,6 +19,18 @@ import {
 } from "react-hook-form";
 import { SingleSelectControl } from "./SingleSelectControl";
 import { TypeaheadSelectControl } from "./TypeaheadSelectControl";
+import { Select } from "../../../pf-compat"
+
+
+const ChipGroup = ({ categoryName, numChips, onClick, isClosable, children, ...props }: any) => (
+  <div className="flex flex-wrap items-center gap-1" {...props}>
+    {categoryName ? <span className="text-muted-foreground text-xs">{categoryName}:</span> : null}
+    {children}
+    {isClosable ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
+  </div>
+);
+type ChipGroupProps = React.ComponentProps<typeof ChipGroup>;
+type SelectProps = React.ComponentProps<typeof Select>;
 
 type Variant = `${SelectVariant}`;
 

@@ -10,10 +10,20 @@
 // @ts-nocheck
 
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
-import { FileUpload } from "../../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
 import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { fileToDataUri } from "./fileUtils";
+
+
+const FileUpload = ({ id, value, onChange, filename, onFileInputChange, accept, isReadOnly, isDisabled, ...props }: any) => (
+  <UIInput id={id} type="file" accept={accept} disabled={isDisabled}
+    onChange={(e: any) => {
+      const file = e.target.files?.[0];
+      onChange?.(e, file?.name ?? "");
+      onFileInputChange?.(e, file);
+    }} {...props} />
+);
 
 type ImageUploadProps = {
   name: string;

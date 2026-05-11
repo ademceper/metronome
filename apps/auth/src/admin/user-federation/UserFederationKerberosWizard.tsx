@@ -9,12 +9,7 @@
 
 // @ts-nocheck
 
-import {
-  useWizardContext,
-  Wizard,
-  WizardFooter,
-  WizardStep,
-} from "@patternfly/react-core/";
+import { Wizard, WizardFooter, WizardStep, useWizardContext } from "../../shared/wizard";
 import { useTranslation } from "react-i18next";
 
 import { KerberosSettingsRequired } from "./kerberos/KerberosSettingsRequired";

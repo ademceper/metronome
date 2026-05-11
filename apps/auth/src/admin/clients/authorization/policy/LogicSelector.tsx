@@ -11,9 +11,36 @@
 
 import { useTranslation } from "react-i18next";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormGroup, Radio } from "../../../../shared/@patternfly/react-core";
-
+import { cn } from "@metronome/ui/lib/utils";
 import { HelpItem } from "../../../../shared/keycloak-ui-shared";
+
+
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const Radio = ({ id, name, label, description, isChecked, onChange, isDisabled, value, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <input type="radio" id={id} name={name} value={value} checked={!!isChecked} disabled={isDisabled}
+      onChange={(e) => onChange?.(e, e.target.checked)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
 
 const LOGIC_TYPES = ["POSITIVE", "NEGATIVE"] as const;
 

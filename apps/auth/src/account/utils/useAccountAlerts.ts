@@ -10,11 +10,19 @@
 // @ts-nocheck
 
 import { useAlerts } from "../../shared/keycloak-ui-shared";
-import { AlertVariant } from "../../shared/@patternfly/react-core";
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ApiError } from "../api/parse-response";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
 
 export function useAccountAlerts() {
   const { t } = useTranslation();

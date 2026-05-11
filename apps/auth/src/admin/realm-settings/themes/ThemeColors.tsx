@@ -9,20 +9,12 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
-import {
-  Alert,
-  Flex,
-  FlexItem,
-  FormGroup,
-  PageSection,
-  Tab,
-  Tabs,
-  Text,
-  TextContent,
-  ToggleGroup,
-  ToggleGroupItem,
-} from "../../../shared/@patternfly/react-core";
+import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { ToggleGroup as UIToggleGroup, ToggleGroupItem as UIToggleGroupItem } from "@metronome/ui/components/toggle-group";
+import { cn } from "@metronome/ui/lib/utils";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -48,6 +40,68 @@ import { ThemeRealmRepresentation } from "./QuickTheme";
 import { UploadJar } from "./UploadJar";
 import { DefaultColorAccordion } from "./DefaultColorAccordion";
 import { ColorControl } from "./ColorControl";
+import { Tabs, Tab } from "../../../shared/pf-compat"
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const Alert = ({ variant, title, isInline, isPlain, isLiveRegion, customIcon, actionClose, actionLinks, component, children, ...props }: any) => {
+  const v = (AlertVariant as any)[variant] ?? "default";
+  return (
+    <UIAlert variant={v as any} {...props}>
+      {title ? <UIAlertTitle>{title}</UIAlertTitle> : null}
+      {children ? <UIAlertDescription>{children}</UIAlertDescription> : null}
+      {actionLinks}
+      {actionClose}
+    </UIAlert>
+  );
+};
+const Flex = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
+);
+const FlexItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+const Text = ({ component = "p", children, className, ...props }: any) =>
+  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
+const TextContent = ({ children, className, ...props }: any) => (
+  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
+);
+const ToggleGroup = ({ children, ...props }: any) => (
+  <UIToggleGroup type="single" {...props}>{children}</UIToggleGroup>
+);
+const ToggleGroupItem = ({ text, buttonId, isSelected, onChange, children, ...props }: any) => (
+  <UIToggleGroupItem value={buttonId ?? String(text)}
+    onClick={(e: any) => onChange?.(e, !isSelected)} {...props}>
+    {text ?? children}
+  </UIToggleGroupItem>
+);
 
 type ThemeType = "light" | "dark";
 

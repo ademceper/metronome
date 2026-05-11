@@ -13,10 +13,7 @@ import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/
 import type { RoleMappingPayload } from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
 import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  PageSection,
-} from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { Info as InfoCircleIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
@@ -27,6 +24,22 @@ import { RoleMapping, Row } from "../../components/role-mapping/RoleMapping";
 import { useAccess } from "../../context/access/Access";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { toUser } from "../../user/routes/User";
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+
 type ServiceAccountProps = {
   client: ClientRepresentation;
 };

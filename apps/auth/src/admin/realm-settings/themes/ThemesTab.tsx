@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import type RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
-import { Tab, TabTitleText } from "../../../shared/@patternfly/react-core";
+import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { useTranslation } from "react-i18next";
 import {
   RoutableTabs,
@@ -21,6 +21,9 @@ import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
 import { ThemesTabType, toThemesTab } from "../routes/ThemesTab";
 import { QuickTheme } from "./QuickTheme";
 import { ThemeSettingsTab } from "./ThemeSettings";
+import { Tab, TabTitleText } from "../../../shared/pf-compat"
+
+
 
 type ThemesTabProps = {
   realm: RealmRepresentation;

@@ -10,11 +10,19 @@
 // @ts-nocheck
 
 import type { RoleMappingPayload } from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
-import { AlertVariant } from "../../shared/@patternfly/react-core";
 import { useTranslation } from "react-i18next";
 import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { RoleMapping, Row } from "../components/role-mapping/RoleMapping";
 import { useGroupResource } from "../context/group-resource/GroupResourceContext";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
 
 type GroupRoleMappingProps = {
   id: string;

@@ -10,10 +10,8 @@
 // @ts-nocheck
 
 import { TableToolbar } from "../../shared/keycloak-ui-shared";
-import {
-  ExpandableSection,
-  PageSection,
-} from "../../shared/@patternfly/react-core";
+import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   Table,
   TableBody as Tbody,
@@ -25,6 +23,23 @@ import {
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
+
+
+const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed, isExpanded, onToggle, isDetached, children, ...props }: any) => (
+  <UICollapsible open={isExpanded} onOpenChange={(open: boolean) => onToggle?.(undefined, open)} {...props}>
+    <UICollapsibleTrigger className="flex items-center gap-2 text-sm">
+      {isExpanded ? (toggleTextExpanded ?? toggleText) : (toggleTextCollapsed ?? toggleText)}
+    </UICollapsibleTrigger>
+    <UICollapsibleContent>{children}</UICollapsibleContent>
+  </UICollapsible>
+);
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export const ProviderInfo = () => {
   const { t } = useTranslation();

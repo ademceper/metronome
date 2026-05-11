@@ -10,11 +10,22 @@
 // @ts-nocheck
 
 import { TextControl } from "../../../shared/keycloak-ui-shared";
-import { Form, ModalVariant } from "../../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { ConfirmDialogModal } from "../../components/confirm-dialog/ConfirmDialog";
 import { useTranslation } from "react-i18next";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useEffect } from "react";
+
+
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const ModalVariant = {
+  small: "small",
+  medium: "medium",
+  large: "large",
+  default: "default",
+} as const;
 
 type FileNameDialogProps = {
   onSave: (

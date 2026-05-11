@@ -9,12 +9,15 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { KeyboardEvent, useId } from "react";
-import {
-  Card,
-  CardHeader,
-  CardProps,
-} from "../../../shared/@patternfly/react-core";
+import { Card as UICard, CardHeader as UICardHeader } from "@metronome/ui/components/card";
+
+const Card = ({ isSelectable, isSelected, isFlat, isCompact, ...props }: any) => (
+  <UICard {...props} />
+);
+const CardHeader = (props: any) => <UICardHeader {...props} />;
+type CardProps = React.ComponentProps<typeof Card>;
 
 type ClickableCardProps = Omit<CardProps, "onClick"> & {
   onClick: () => void;

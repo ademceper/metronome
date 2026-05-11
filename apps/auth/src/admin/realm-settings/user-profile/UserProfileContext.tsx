@@ -16,11 +16,19 @@ import {
   useFetch,
   useRequiredContext,
 } from "../../../shared/keycloak-ui-shared";
-import { AlertVariant } from "../../../shared/@patternfly/react-core";
 import { PropsWithChildren, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useRealm } from "../../context/realm-context/RealmContext";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
 
 type UserProfileProps = {
   config: UserProfileConfig | null;

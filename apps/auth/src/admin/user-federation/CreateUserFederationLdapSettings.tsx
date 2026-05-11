@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { AlertVariant, PageSection } from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +23,22 @@ import {
 } from "./UserFederationLdapForm";
 import { toUserFederation } from "./routes/UserFederation";
 import { ExtendedHeader } from "./shared/ExtendedHeader";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 export default function CreateUserFederationLdapSettings() {
   const { adminClient } = useAdminClient();

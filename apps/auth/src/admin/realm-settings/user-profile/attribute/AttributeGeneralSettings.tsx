@@ -20,13 +20,10 @@ import {
   TextControl,
   useFetch,
 } from "../../../../shared/keycloak-ui-shared";
-import {
-  Divider,
-  FormGroup,
-  Radio,
-  SelectOption,
-  Switch,
-} from "../../../../shared/@patternfly/react-core";
+import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
+import { Separator as UISeparator } from "@metronome/ui/components/separator";
+import { Switch as UISwitch } from "@metronome/ui/components/switch";
+import { cn } from "@metronome/ui/lib/utils";
 import { isEqual } from "lodash-es";
 import { useState } from "react";
 import {
@@ -44,6 +41,46 @@ import { USERNAME_EMAIL } from "../../NewAttributeSettings";
 import { AttributeParams } from "../../routes/Attribute";
 import { TranslatableField } from "./TranslatableField";
 import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
+import { SelectOption } from "../../../../shared/pf-compat"
+
+
+const Divider = (props: any) => <UISeparator {...props} />;
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const Radio = ({ id, name, label, description, isChecked, onChange, isDisabled, value, ...props }: any) => (
+  <div className="flex items-start gap-2">
+    <input type="radio" id={id} name={name} value={value} checked={!!isChecked} disabled={isDisabled}
+      onChange={(e) => onChange?.(e, e.target.checked)} {...props} />
+    {label ? (
+      <label htmlFor={id} className="text-sm leading-tight">
+        {label}
+        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
+      </label>
+    ) : null}
+  </div>
+);
+const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
+  <span className="inline-flex items-center gap-2">
+    <UISwitch id={id} checked={isChecked}
+      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
+      disabled={isDisabled} {...props} />
+    {(isChecked ? label : (labelOff ?? label)) ? (
+      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
+    ) : null}
+  </span>
+);
 
 const REQUIRED_FOR = [
   { label: "requiredForLabel.both", value: ["admin", "user"] },

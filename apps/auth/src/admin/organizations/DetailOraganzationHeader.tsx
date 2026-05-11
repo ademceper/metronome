@@ -9,10 +9,7 @@
 
 // @ts-nocheck
 
-import {
-  ButtonVariant,
-  DropdownItem,
-} from "../../shared/@patternfly/react-core";
+import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useTranslation } from "react-i18next";
 import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
@@ -22,6 +19,24 @@ import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { toOrganizations } from "./routes/Organizations";
 import { useRealm } from "../context/realm-context/RealmContext";
+
+
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
+  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
+    {children}
+    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
+  </UIDropdownMenuItem>
+);
 
 type DetailOrganizationHeaderProps = {
   save: () => void;

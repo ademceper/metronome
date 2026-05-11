@@ -9,19 +9,12 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import type { AccessType } from "@keycloak/keycloak-admin-client/lib/defs/whoAmIRepresentation";
-import {
-  ActionGroup,
-  ClipboardCopy,
-  Form,
-  FormGroup,
-  FormProps,
-  Grid,
-  GridItem,
-  Stack,
-  StackItem,
-  TextArea,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { Input as UIInput } from "@metronome/ui/components/input";
+import { Textarea as UITextarea } from "@metronome/ui/components/textarea";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   Children,
   cloneElement,
@@ -34,6 +27,66 @@ import { Controller } from "react-hook-form";
 
 import { useAccess } from "../../context/access/Access";
 import { FixedButtonsGroup } from "./FixedButtonGroup";
+
+
+const ActionGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
+);
+const ClipboardCopy = ({ value, onChange, isReadOnly, isCode, hoverTip, clickTip, children, variant, ...props }: any) => {
+  const [copied, setCopied] = React.useState(false);
+  const text = value ?? children ?? "";
+  return (
+    <div className="flex items-stretch gap-0">
+      <UIInput readOnly={isReadOnly} value={String(text)}
+        onChange={(e: any) => onChange?.(e, e.target.value)} className="rounded-r-none" />
+      <UIButton type="button" variant="outline" className="rounded-l-none"
+        onClick={async () => {
+          try {
+            await navigator.clipboard.writeText(String(text));
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          } catch {}
+        }}>
+        {copied ? (clickTip ?? "Copied") : (hoverTip ?? "Copy")}
+      </UIButton>
+    </div>
+  );
+};
+const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
+  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+);
+const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
+  <div className={cn("space-y-1.5", (props as any).className)}>
+    {label ? (
+      <label htmlFor={fieldId} className="font-medium text-sm">
+        {label}
+        {isRequired ? <span className="text-destructive"> *</span> : null}
+        {labelIcon}
+      </label>
+    ) : null}
+    {children}
+    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
+    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
+  </div>
+);
+const Grid = ({ children, className, ...props }: any) => (
+  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+);
+const GridItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const Stack = ({ children, className, ...props }: any) => (
+  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
+);
+const StackItem = ({ children, className, ...props }: any) => (
+  <div className={className} {...props}>{children}</div>
+);
+const TextArea = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, ...props }: any) => (
+  <UITextarea value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired} {...props} />
+);
+type FormProps = React.ComponentProps<typeof Form>;
 
 export type FormAccessProps = FormProps & {
   /**

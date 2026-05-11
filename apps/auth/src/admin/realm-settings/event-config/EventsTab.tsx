@@ -12,14 +12,8 @@
 import type { RealmEventsConfigRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/realmEventsConfigRepresentation";
 import type RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
 import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
-import {
-  AlertVariant,
-  ButtonVariant,
-  PageSection,
-  Tab,
-  Tabs,
-  TabTitleText,
-} from "../../../shared/@patternfly/react-core";
+import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import { cn } from "@metronome/ui/lib/utils";
 import { isEqual } from "lodash-es";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -33,6 +27,33 @@ import { AddEventTypesDialog } from "./AddEventTypesDialog";
 import { EventConfigForm, EventsType } from "./EventConfigForm";
 import { EventListenersForm } from "./EventListenersForm";
 import { EventsTypeTable, EventType } from "./EventsTypeTable";
+import { Tabs, Tab, TabTitleText } from "../../../shared/pf-compat"
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
 
 type EventsTabProps = {
   realm: RealmRepresentation;

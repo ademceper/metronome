@@ -9,8 +9,15 @@
 
 // @ts-nocheck
 
-import { Bullseye, Spinner } from "../../@patternfly/react-core";
+import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
+import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
+
+
+const Bullseye = ({ children, className, ...props }: any) => (
+  <div className={cn("flex h-full w-full items-center justify-center", className)} {...props}>{children}</div>
+);
+const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 export const KeycloakSpinner = () => {
   const { t } = useTranslation();

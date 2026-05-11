@@ -9,9 +9,19 @@
 
 // @ts-nocheck
 
-import { Label } from "../../shared/@patternfly/react-core";
+import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { CheckCircle as CheckCircleIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
+
+const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
+  <UIBadge variant="outline" {...props}>
+    {icon}{children}
+    {onClose ? (
+      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
+    ) : null}
+  </UIBadge>
+);
+
 export const BuildInLabel = () => {
   const { t } = useTranslation();
 

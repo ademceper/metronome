@@ -9,7 +9,6 @@
 
 // @ts-nocheck
 
-import { AlertVariant } from "../../@patternfly/react-core";
 import { PropsWithChildren, useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -19,6 +18,15 @@ import { generateId } from "../utils/generateId";
 import { useRequiredContext } from "../utils/useRequiredContext";
 import { useSetTimeout } from "../utils/useSetTimeout";
 import { AlertPanel } from "./AlertPanel";
+
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
 
 const ALERT_TIMEOUT = 8000;
 

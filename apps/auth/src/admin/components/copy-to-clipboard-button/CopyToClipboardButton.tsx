@@ -9,15 +9,19 @@
 
 // @ts-nocheck
 
+import * as React from "react";
 import { useSetTimeout } from "../../../shared/keycloak-ui-shared";
-import {
-  ClipboardCopyButton,
-  ClipboardCopyButtonProps,
-} from "../../../shared/@patternfly/react-core";
+import { Button as UIButton } from "@metronome/ui/components/button";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import useQueryPermission from "../../utils/useQueryPermission";
+
+
+const ClipboardCopyButton = ({ onClick, textId, children, ...props }: any) => (
+  <UIButton type="button" variant="outline" onClick={onClick} {...props}>{children}</UIButton>
+);
+type ClipboardCopyButtonProps = React.ComponentProps<typeof ClipboardCopyButton>;
 
 enum CopyState {
   Ready,

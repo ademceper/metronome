@@ -9,10 +9,7 @@
 
 // @ts-nocheck
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-} from "../../../shared/@patternfly/react-core";
+import { Breadcrumb as UIBreadcrumb, BreadcrumbItem as UIBreadcrumbItem, BreadcrumbList as UIBreadcrumbList } from "@metronome/ui/components/breadcrumb";
 import { uniqBy } from "lodash-es";
 import { isValidElement } from "react";
 import { useTranslation } from "react-i18next";
@@ -24,6 +21,16 @@ import useBreadcrumbs, {
 
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { routes } from "../../routes";
+
+
+const Breadcrumb = ({ children, ...props }: any) => (
+  <UIBreadcrumb {...props}>
+    <UIBreadcrumbList>{children}</UIBreadcrumbList>
+  </UIBreadcrumb>
+);
+const BreadcrumbItem = ({ isActive, to, children, ...props }: any) => (
+  <UIBreadcrumbItem {...props}>{children}</UIBreadcrumbItem>
+);
 
 export const PageBreadCrumbs = () => {
   const { t } = useTranslation();

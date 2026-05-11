@@ -9,12 +9,7 @@
 
 // @ts-nocheck
 
-import {
-  FormHelperText,
-  HelperText,
-  HelperTextItem,
-  ValidatedOptions,
-} from "../../@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import {
   FieldPath,
   FieldValues,
@@ -25,6 +20,27 @@ import {
 import { getRuleValue } from "../utils/getRuleValue";
 import { FormLabel } from "./FormLabel";
 import { PasswordInput, PasswordInputProps } from "./PasswordInput";
+
+
+const FormHelperText = ({ children, className, ...props }: any) => (
+  <div className={cn("text-muted-foreground text-xs", className)} {...props}>{children}</div>
+);
+const HelperText = ({ children, className, ...props }: any) => (
+  <div className={cn("text-sm text-muted-foreground", className)} {...props}>{children}</div>
+);
+const HelperTextItem = ({ icon, variant, children, ...props }: any) => (
+  <p className={cn("text-sm",
+    variant === "error" ? "text-destructive" : variant === "warning" ? "text-amber-600" : "text-muted-foreground",
+    (props as any).className)} {...props}>
+    {icon}{children}
+  </p>
+);
+const ValidatedOptions = {
+  default: "default",
+  success: "success",
+  warning: "warning",
+  error: "error",
+} as const;
 
 export type PasswordControlProps<
   T extends FieldValues,

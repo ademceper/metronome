@@ -9,10 +9,18 @@
 
 // @ts-nocheck
 
-import { TextInput } from "../../../shared/@patternfly/react-core";
+import { Input as UIInput } from "@metronome/ui/components/input";
 import { useFormContext } from "react-hook-form";
 
 import { FieldProps, FormGroupField } from "./FormGroupField";
+
+
+const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <UIInput value={value ?? ""}
+    onChange={(e: any) => onChange?.(e.target.value, e)}
+    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
+    type={type || "text"} {...props} />
+);
 
 export const TextField = ({ label, field, isReadOnly = false }: FieldProps) => {
   const { register } = useFormContext();

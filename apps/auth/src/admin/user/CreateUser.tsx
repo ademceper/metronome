@@ -17,7 +17,7 @@ import {
   useAlerts,
   useFetch,
 } from "../../shared/keycloak-ui-shared";
-import { AlertVariant, PageSection } from "../../shared/@patternfly/react-core";
+import { cn } from "@metronome/ui/lib/utils";
 import { TFunction } from "i18next";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -30,6 +30,22 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import { UserForm } from "./UserForm";
 import { UserFormFields, toUserRepresentation } from "./form-state";
 import { toUser } from "./routes/User";
+
+const AlertVariant = {
+  default: "default",
+  success: "default",
+  info: "default",
+  warning: "default",
+  danger: "destructive",
+} as const;
+const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
+  <section className={cn("px-4 py-3",
+    variant === "light" && "bg-card",
+    isFilled && "flex-1",
+    hasOverflowScroll && "overflow-auto",
+    className)} {...props}>{children}</section>
+);
+
 export default function CreateUser() {
   const { adminClient } = useAdminClient();
 
