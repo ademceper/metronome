@@ -13,6 +13,7 @@ import {
   Info as InfoIcon,
   CaretRight as CaretIcon,
 } from "@phosphor-icons/react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { ApplicationsLoading } from "./-loading/applications";
 import { useState } from "react";
@@ -20,53 +21,40 @@ import { useTranslation } from "react-i18next";
 
 import { AccountEnvironment } from "..";
 import { deleteConsent, getApplications } from "../lib/api/methods";
-import { ClientRepresentation } from "../lib/api/representations";
 import { Page } from "../components/Page";
 import type { TFuncKey } from "../i18n/types";
 import { formatDate } from "../lib/formatDate";
 import { useAccountAlerts } from "../lib/useAccountAlerts";
-import { usePromise } from "../lib/usePromise";
-
-type Application = ClientRepresentation & {
-  open: boolean;
-};
 
 export const Route = createFileRoute("/applications")({
   component: Applications,
 });
 
+const queryKey = ["account", "applications"] as const;
+
 function Applications() {
   const { t } = useTranslation();
   const context = useEnvironment<AccountEnvironment>();
   const { addAlert, addError } = useAccountAlerts();
+  const qc = useQueryClient();
 
-  const [applications, setApplications] = useState<Application[]>();
-  const [key, setKey] = useState(1);
-  const refresh = () => setKey(key + 1);
+  const { data: applications } = useQuery({
+    queryKey,
+    queryFn: ({ signal }) => getApplications({ signal, context }),
+  });
 
-  usePromise(
-    (signal) => getApplications({ signal, context }),
-    (clients) => setApplications(clients.map((c) => ({ ...c, open: false }))),
-    [key],
-  );
+  const [open, setOpen] = useState<Record<string, boolean>>({});
+  const toggleOpen = (clientId: string) =>
+    setOpen((prev) => ({ ...prev, [clientId]: !prev[clientId] }));
 
-  const toggleOpen = (clientId: string) => {
-    setApplications([
-      ...applications!.map((a) =>
-        a.clientId === clientId ? { ...a, open: !a.open } : a,
-      ),
-    ]);
-  };
-
-  const removeConsent = async (id: string) => {
-    try {
-      await deleteConsent(context, id);
-      refresh();
+  const remove = useMutation({
+    mutationFn: (id: string) => deleteConsent(context, id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey });
       addAlert(t("removeConsentSuccess"));
-    } catch (error) {
-      addError("removeConsentError", error);
-    }
-  };
+    },
+    onError: (error) => addError("removeConsentError", error),
+  });
 
   if (!applications) {
     return <ApplicationsLoading />;
@@ -91,7 +79,7 @@ function Applications() {
                 <button
                   type="button"
                   onClick={() => toggleOpen(application.clientId)}
-                  aria-expanded={application.open}
+                  aria-expanded={!!open[application.clientId]}
                   aria-controls={`content-${application.clientId}`}
                   id={`toggle-${application.clientId}`}
                   className="flex size-6 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -99,7 +87,7 @@ function Applications() {
                   <CaretIcon
                     className={[
                       "size-3.5 transition-transform",
-                      application.open ? "rotate-90" : "",
+                      open[application.clientId] ? "rotate-90" : "",
                     ].join(" ")}
                   />
                 </button>
@@ -139,7 +127,7 @@ function Applications() {
                 </div>
               </div>
 
-              {application.open && (
+              {open[application.clientId] && (
                 <div
                   id={`content-${application.clientId}`}
                   className="space-y-4 border-t bg-muted/30 px-4 py-4 text-sm"
@@ -234,7 +222,7 @@ function Applications() {
                         continueLabel={t("confirm")}
                         cancelLabel={t("cancel")}
                         buttonVariant="secondary"
-                        onContinue={() => removeConsent(application.clientId)}
+                        onContinue={() => remove.mutate(application.clientId)}
                       >
                         {t("removeModalMessage", { name: application.clientId })}
                       </ContinueCancelModal>

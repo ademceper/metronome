@@ -10,13 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@metronome/ui/components/select";
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getIssuer, requestVCOffer } from "../lib/api/resources";
-import { CredentialsIssuer } from "../lib/api/representations";
 import { Page } from "../components/Page";
-import { usePromise } from "../lib/usePromise";
 
 export const Route = createFileRoute("/oid4vci")({
   component: Oid4Vci,
@@ -30,24 +29,20 @@ function Oid4Vci() {
   const [selected, setSelected] = useState<string>(initialSelected);
   const [qrCode, setQrCode] = useState<string>("");
   const [offerQRVisible, setOfferQRVisible] = useState<boolean>(false);
-  const [credentialsIssuer, setCredentialsIssuer] =
-    useState<CredentialsIssuer>();
 
-  usePromise(() => getIssuer(context), setCredentialsIssuer);
+  const { data: credentialsIssuer } = useQuery({
+    queryKey: ["account", "oid4vci", "issuer"],
+    queryFn: () => getIssuer(context),
+  });
 
-  const selectOptions = useMemo(() => {
-    if (typeof credentialsIssuer !== "undefined") {
-      return credentialsIssuer.credential_configurations_supported;
-    }
-    return {};
-  }, [credentialsIssuer]);
-
-  const dropdownItems = useMemo(() => {
-    if (typeof selectOptions !== "undefined") {
-      return Array.from(Object.keys(selectOptions));
-    }
-    return [];
-  }, [selectOptions]);
+  const selectOptions = useMemo(
+    () => credentialsIssuer?.credential_configurations_supported ?? {},
+    [credentialsIssuer],
+  );
+  const dropdownItems = useMemo(
+    () => Object.keys(selectOptions),
+    [selectOptions],
+  );
 
   useEffect(() => {
     if (initialSelected !== selected && credentialsIssuer !== undefined) {

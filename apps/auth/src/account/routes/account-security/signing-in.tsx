@@ -6,20 +6,17 @@ import {
   Info as InfoAltIcon,
   Warning as ExclamationTriangleIcon,
 } from "@phosphor-icons/react";
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { SigningInLoading } from "../-loading/account-security/signing-in";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
 import { getCredentials } from "../../lib/api/methods";
-import {
-  CredentialContainer,
-  CredentialMetadataRepresentation,
-} from "../../lib/api/representations";
+import { CredentialMetadataRepresentation } from "../../lib/api/representations";
 import { Page } from "../../components/Page";
 import type { TFuncKey } from "../../i18n/types";
 import { formatDate } from "../../lib/formatDate";
-import { usePromise } from "../../lib/usePromise";
 import { AccountEnvironment } from "../..";
 
 export const Route = createFileRoute("/account-security/signing-in")({
@@ -31,13 +28,10 @@ function SigningIn() {
   const context = useEnvironment<AccountEnvironment>();
   const { login } = context.keycloak;
 
-  const [credentials, setCredentials] = useState<CredentialContainer[]>();
-
-  usePromise(
-    (signal) => getCredentials({ signal, context }),
-    setCredentials,
-    [],
-  );
+  const { data: credentials } = useQuery({
+    queryKey: ["account", "credentials"],
+    queryFn: ({ signal }) => getCredentials({ signal, context }),
+  });
 
   if (!credentials) {
     return <SigningInLoading />;

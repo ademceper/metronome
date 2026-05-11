@@ -3,6 +3,7 @@
 
 import { Checkbox } from "@metronome/ui/components/checkbox";
 import { Label } from "@metronome/ui/components/label";
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -10,49 +11,41 @@ import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import { getGroups } from "../lib/api/methods";
 import { Group } from "../lib/api/representations";
 import { Page } from "../components/Page";
-import { usePromise } from "../lib/usePromise";
 
 export const Route = createFileRoute("/groups")({
   component: Groups,
 });
 
-function Groups() {
-  const { t } = useTranslation();
-  const context = useEnvironment();
-
-  const [groups, setGroups] = useState<Group[]>([]);
-  const [directMembership, setDirectMembership] = useState(false);
-
-  usePromise(
-    (signal) => getGroups({ signal, context }),
-    (groups) => {
-      if (!directMembership) {
-        groups.forEach((el) =>
-          getParents(
-            el,
-            groups,
-            groups.map(({ path }) => path),
-          ),
-        );
-      }
-      setGroups(groups);
-    },
-    [directMembership],
-  );
-
-  const getParents = (el: Group, groups: Group[], groupsPaths: string[]) => {
-    const parentPath = el.path.slice(0, el.path.lastIndexOf("/"));
-    if (parentPath && !groupsPaths.includes(parentPath)) {
-      el = {
+function expandParents(groups: Group[]): Group[] {
+  const out = [...groups];
+  const paths = new Set(out.map(({ path }) => path));
+  for (const el of [...out]) {
+    let parentPath = el.path.slice(0, el.path.lastIndexOf("/"));
+    while (parentPath && !paths.has(parentPath)) {
+      const parent: Group = {
         name: parentPath.slice(parentPath.lastIndexOf("/") + 1),
         path: parentPath,
       };
-      groups.push(el);
-      groupsPaths.push(parentPath);
-
-      getParents(el, groups, groupsPaths);
+      out.push(parent);
+      paths.add(parentPath);
+      parentPath = parentPath.slice(0, parentPath.lastIndexOf("/"));
     }
-  };
+  }
+  return out;
+}
+
+function Groups() {
+  const { t } = useTranslation();
+  const context = useEnvironment();
+  const [directMembership, setDirectMembership] = useState(false);
+
+  const { data: groups = [] } = useQuery({
+    queryKey: ["account", "groups", { directMembership }],
+    queryFn: async ({ signal }) => {
+      const fetched = await getGroups({ signal, context });
+      return directMembership ? fetched : expandParents(fetched);
+    },
+  });
 
   return (
     <Page

@@ -22,15 +22,14 @@ import {
   Share as ShareIcon,
   CaretRight as CaretIcon,
 } from "@phosphor-icons/react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { fetchPermission, fetchResources, updatePermissions } from "../../lib/api/resources";
 import { getPermissionRequests } from "../../lib/api/methods";
-import { Links } from "../../lib/api/parse-links";
 import { Permission, Resource } from "../../lib/api/representations";
 import { useAccountAlerts } from "../../lib/useAccountAlerts";
-import { usePromise } from "../../lib/usePromise";
 import { EditTheResource } from "./EditTheResource";
 import { PermissionRequest } from "./PermissionRequest";
 import { ResourceToolbar } from "./ResourceToolbar";
@@ -53,21 +52,25 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
   const { t } = useTranslation();
   const context = useEnvironment();
   const { addAlert, addError } = useAccountAlerts();
+  const qc = useQueryClient();
 
   const [params, setParams] = useState<Record<string, string>>({
     first: "0",
     max: "5",
   });
-  const [links, setLinks] = useState<Links | undefined>();
-  const [resources, setResources] = useState<Resource[]>();
   const [details, setDetails] = useState<
     Record<string, PermissionDetail | undefined>
   >({});
-  const [key, setKey] = useState(1);
-  const refresh = () => setKey(key + 1);
 
-  usePromise(
-    async (signal) => {
+  const resourcesQueryKey = [
+    "account",
+    "resources",
+    { isShared, params },
+  ] as const;
+
+  const { data } = useQuery({
+    queryKey: resourcesQueryKey,
+    queryFn: async ({ signal }) => {
       const result = await fetchResources(
         { signal, context },
         params,
@@ -85,12 +88,29 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
         );
       return result;
     },
-    ({ data, links }) => {
-      setResources(data);
-      setLinks(links);
+  });
+
+  const resources = data?.data;
+  const links = data?.links;
+
+  const removeShare = useMutation({
+    mutationFn: async (resource: Resource) => {
+      const perms = await fetchPermission({ context }, resource._id);
+      const cleared = perms.map(
+        ({ username }) => ({ username, scopes: [] }) as Permission,
+      );
+      await updatePermissions(context, resource._id, cleared);
     },
-    [params, key],
-  );
+    onSuccess: () => {
+      setDetails({});
+      qc.invalidateQueries({ queryKey: ["account", "resources"] });
+      addAlert(t("unShareSuccess"));
+    },
+    onError: (error) => addError("unShareError", error),
+  });
+
+  const refresh = () =>
+    qc.invalidateQueries({ queryKey: ["account", "resources"] });
 
   if (!resources) {
     return <ResourcesTabLoading />;
@@ -102,23 +122,6 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
       permissions = await fetchPermission({ context }, id);
     }
     return permissions;
-  };
-
-  const removeShare = async (resource: Resource) => {
-    try {
-      const permissions = (await fetchPermissions(resource._id)).map(
-        ({ username }) =>
-          ({
-            username,
-            scopes: [],
-          }) as Permission,
-      )!;
-      await updatePermissions(context, resource._id, permissions);
-      setDetails({});
-      addAlert(t("unShareSuccess"));
-    } catch (error) {
-      addError("unShareError", error);
-    }
   };
 
   const toggleOpen = async (
@@ -302,7 +305,7 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
                             continueLabel={t("confirm")}
                             cancelLabel={t("cancel")}
                             component={DropdownMenuItem}
-                            onContinue={() => removeShare(resource)}
+                            onContinue={() => removeShare.mutate(resource)}
                             isDisabled={detail?.permissions?.length === 0}
                           >
                             {t("unShareAllConfirm")}

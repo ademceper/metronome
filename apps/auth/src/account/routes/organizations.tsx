@@ -1,21 +1,19 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import OrganizationRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationRepresentation";
 import {
   ErrorBoundaryProvider,
   ListEmptyState,
   OrganizationTable,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { OrganizationsLoading } from "./-loading/organizations";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AccountEnvironment } from "..";
 import { getUserOrganizations } from "../lib/api/methods";
 import { Page } from "../components/Page";
-import { usePromise } from "../lib/usePromise";
 
 export const Route = createFileRoute("/organizations")({
   component: Organizations,
@@ -25,14 +23,12 @@ function Organizations() {
   const { t } = useTranslation();
   const context = useEnvironment<AccountEnvironment>();
 
-  const [userOrgs, setUserOrgs] = useState<OrganizationRepresentation[]>([]);
+  const { data: userOrgs, isPending } = useQuery({
+    queryKey: ["account", "userOrganizations"],
+    queryFn: ({ signal }) => getUserOrganizations({ signal, context }),
+  });
 
-  usePromise(
-    (signal) => getUserOrganizations({ signal, context }),
-    setUserOrgs,
-  );
-
-  if (!userOrgs) {
+  if (isPending || !userOrgs) {
     return <OrganizationsLoading />;
   }
 

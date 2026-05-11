@@ -1,15 +1,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
 import { getLinkedAccounts, LinkedAccountQueryParams } from "../../lib/api/methods";
-import { LinkedAccountRepresentation } from "../../lib/api/representations";
 import { EmptyRow } from "../../components/EmptyRow";
 import { Page } from "../../components/Page";
-import { usePromise } from "../../lib/usePromise";
 import { AccountRow } from "./-AccountRow";
 import { LinkedAccountsToolbar } from "./-LinkedAccountsToolbar";
 
@@ -20,12 +19,7 @@ export const Route = createFileRoute("/account-security/linked-accounts")({
 function LinkedAccounts() {
   const { t } = useTranslation();
   const context = useEnvironment();
-  const [linkedAccounts, setLinkedAccounts] = useState<
-    LinkedAccountRepresentation[]
-  >([]);
-  const [unlinkedAccounts, setUninkedAccounts] = useState<
-    LinkedAccountRepresentation[]
-  >([]);
+  const qc = useQueryClient();
 
   const [paramsUnlinked, setParamsUnlinked] =
     useState<LinkedAccountQueryParams>({
@@ -38,20 +32,20 @@ function LinkedAccounts() {
     max: 6,
     linked: true,
   });
-  const [key, setKey] = useState(1);
-  const refresh = () => setKey(key + 1);
 
-  usePromise(
-    (signal) => getLinkedAccounts({ signal, context }, paramsUnlinked),
-    setUninkedAccounts,
-    [paramsUnlinked, key],
-  );
+  const { data: linkedAccounts = [] } = useQuery({
+    queryKey: ["account", "linkedAccounts", paramsLinked],
+    queryFn: ({ signal }) =>
+      getLinkedAccounts({ signal, context }, paramsLinked),
+  });
+  const { data: unlinkedAccounts = [] } = useQuery({
+    queryKey: ["account", "linkedAccounts", paramsUnlinked],
+    queryFn: ({ signal }) =>
+      getLinkedAccounts({ signal, context }, paramsUnlinked),
+  });
 
-  usePromise(
-    (signal) => getLinkedAccounts({ signal, context }, paramsLinked),
-    setLinkedAccounts,
-    [paramsLinked, key],
-  );
+  const refresh = () =>
+    qc.invalidateQueries({ queryKey: ["account", "linkedAccounts"] });
 
   return (
     <Page

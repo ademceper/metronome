@@ -13,10 +13,11 @@ import { Button as UIButton } from "@metronome/ui/components/button";
 import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
 import { cn } from "@metronome/ui/lib/utils";
 import { ArrowSquareOut as ExternalLinkSquareAltIcon } from "@phosphor-icons/react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { PersonalInfoLoading } from "./-loading/personal-info";
 import { TFunction } from "i18next";
-import { useState } from "react";
+import { useEffect } from "react";
 import { ErrorOption, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
@@ -25,15 +26,11 @@ import {
   getSupportedLocales,
   savePersonalInfo,
 } from "../lib/api/methods";
-import {
-  UserProfileMetadata,
-  UserRepresentation,
-} from "../lib/api/representations";
+import { UserRepresentation } from "../lib/api/representations";
 import { Page } from "../components/Page";
 import { type AccountEnvironment } from "..";
 import type { TFuncKey } from "../i18n/types";
 import { useAccountAlerts } from "../lib/useAccountAlerts";
-import { usePromise } from "../lib/usePromise";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (
@@ -110,31 +107,29 @@ export const Route = createFileRoute("/")({
 function PersonalInfo() {
   const { t } = useTranslation();
   const context = useEnvironment<AccountEnvironment>();
-  const [userProfileMetadata, setUserProfileMetadata] =
-    useState<UserProfileMetadata>();
-  const [supportedLocales, setSupportedLocales] = useState<string[]>([]);
   const form = useForm<UserRepresentation>({ mode: "onChange" });
   const { handleSubmit, reset, setValue, setError } = form;
   const { addAlert } = useAccountAlerts();
 
-  usePromise(
-    (signal) =>
-      Promise.all([
-        getPersonalInfo({ signal, context }),
-        getSupportedLocales({ signal, context }),
-      ]),
-    ([personalInfo, supportedLocales]) => {
-      setUserProfileMetadata(personalInfo.userProfileMetadata);
-      setSupportedLocales(supportedLocales);
-      reset(personalInfo);
-      Object.entries(personalInfo.attributes || {}).forEach(([k, v]) =>
-        setValue(`attributes[${beerify(k)}]`, v),
-      );
-    },
-  );
+  const personalInfo = useQuery({
+    queryKey: ["account", "personalInfo"],
+    queryFn: ({ signal }) => getPersonalInfo({ signal, context }),
+  });
+  const supportedLocalesQuery = useQuery({
+    queryKey: ["account", "supportedLocales"],
+    queryFn: ({ signal }) => getSupportedLocales({ signal, context }),
+  });
 
-  const onSubmit = async (user: UserRepresentation) => {
-    try {
+  useEffect(() => {
+    if (!personalInfo.data) return;
+    reset(personalInfo.data);
+    Object.entries(personalInfo.data.attributes || {}).forEach(([k, v]) =>
+      setValue(`attributes[${beerify(k)}]`, v),
+    );
+  }, [personalInfo.data, reset, setValue]);
+
+  const save = useMutation({
+    mutationFn: async (user: UserRepresentation) => {
       const attributes = Object.fromEntries(
         Object.entries(user.attributes || {}).map(([k, v]) => [
           debeerify(k),
@@ -149,18 +144,23 @@ function PersonalInfo() {
         );
       }
       await context.keycloak.updateToken();
+    },
+    onSuccess: () => {
       addAlert(t("accountUpdatedMessage"));
-    } catch (error) {
+    },
+    onError: (error) => {
       addAlert(t("accountUpdatedError"), "danger");
-
       setUserProfileServerError(
         { responseData: { errors: error as any } },
-        (name: string | number, error: unknown) =>
-          setError(name as string, error as ErrorOption),
+        (name: string | number, err: unknown) =>
+          setError(name as string, err as ErrorOption),
         ((key: TFuncKey, param?: object) => t(key, param as any)) as TFunction,
       );
-    }
-  };
+    },
+  });
+
+  const userProfileMetadata = personalInfo.data?.userProfileMetadata;
+  const supportedLocales = supportedLocalesQuery.data ?? [];
 
   if (!userProfileMetadata) {
     return <PersonalInfoLoading />;
@@ -197,7 +197,7 @@ function PersonalInfo() {
         ) : undefined
       }
     >
-      <Form isHorizontal onSubmit={handleSubmit(onSubmit)}>
+      <Form isHorizontal onSubmit={handleSubmit((user) => save.mutate(user))}>
         <UserProfileFields
           form={form}
           userProfileMetadata={userProfileMetadata}

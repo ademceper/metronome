@@ -13,9 +13,9 @@ import {
   DeviceMobile as MobileIcon,
   ArrowsClockwise as RefreshIcon,
 } from "@phosphor-icons/react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { DeviceActivityLoading } from "../-loading/account-security/device-activity";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { AccountEnvironment } from "../..";
@@ -28,58 +28,69 @@ import {
 import { Page } from "../../components/Page";
 import { formatDate } from "../../lib/formatDate";
 import { useAccountAlerts } from "../../lib/useAccountAlerts";
-import { usePromise } from "../../lib/usePromise";
 
 export const Route = createFileRoute("/account-security/device-activity")({
   component: DeviceActivity,
 });
 
+const queryKey = ["account", "devices"] as const;
+
+function moveCurrentToTop(devices: DeviceRepresentation[]) {
+  if (devices.length === 0) return devices;
+  const out = [...devices];
+  const idx = out.findIndex((d) => d.current);
+  if (idx > 0) {
+    const [cur] = out.splice(idx, 1);
+    out.unshift(cur);
+  }
+  if (out[0]) {
+    const sessions = [...out[0].sessions];
+    const sIdx = sessions.findIndex((s) => s.current);
+    if (sIdx > 0) {
+      const [curSess] = sessions.splice(sIdx, 1);
+      sessions.unshift(curSess);
+      out[0] = { ...out[0], sessions };
+    }
+  }
+  return out;
+}
+
 function DeviceActivity() {
   const { t } = useTranslation();
   const context = useEnvironment<AccountEnvironment>();
   const { addAlert, addError } = useAccountAlerts();
+  const qc = useQueryClient();
 
-  const [devices, setDevices] = useState<DeviceRepresentation[]>();
-  const [key, setKey] = useState(0);
-  const refresh = () => setKey(key + 1);
+  const { data: devices } = useQuery({
+    queryKey,
+    queryFn: async ({ signal }) => {
+      const fetched = await getDevices({ signal, context });
+      return moveCurrentToTop(fetched);
+    },
+  });
 
-  const moveCurrentToTop = (devices: DeviceRepresentation[]) => {
-    let currentDevice = devices[0];
-
-    const index = devices.findIndex((d) => d.current);
-    currentDevice = devices.splice(index, 1)[0];
-    devices.unshift(currentDevice);
-
-    const sessionIndex = currentDevice.sessions.findIndex((s) => s.current);
-    const currentSession = currentDevice.sessions.splice(sessionIndex, 1)[0];
-    currentDevice.sessions.unshift(currentSession);
-
-    setDevices(devices);
-  };
-
-  usePromise((signal) => getDevices({ signal, context }), moveCurrentToTop, [
-    key,
-  ]);
+  const refresh = () => qc.invalidateQueries({ queryKey });
 
   const signOutAll = async () => {
     await deleteSession(context);
     await context.keycloak.logout();
   };
 
-  const signOutSession = async (
-    session: SessionRepresentation,
-    device: DeviceRepresentation,
-  ) => {
-    try {
-      await deleteSession(context, session.id);
+  const signOutSession = useMutation({
+    mutationFn: ({
+      session,
+    }: {
+      session: SessionRepresentation;
+      device: DeviceRepresentation;
+    }) => deleteSession(context, session.id),
+    onSuccess: (_, { session, device }) => {
       addAlert(
         t("signedOutSession", { browser: session.browser, os: device.os }),
       );
       refresh();
-    } catch (error) {
-      addError("errorSignOutMessage", error);
-    }
-  };
+    },
+    onError: (error) => addError("errorSignOutMessage", error),
+  });
 
   const makeClientsString = (clients: ClientRepresentation[]): string => {
     let clientsString = "";
@@ -177,7 +188,9 @@ function DeviceActivity() {
                       continueLabel={t("confirm")}
                       cancelLabel={t("cancel")}
                       buttonVariant="secondary"
-                      onContinue={() => signOutSession(session, device)}
+                      onContinue={() =>
+                        signOutSession.mutate({ session, device })
+                      }
                     >
                       {t("signOutWarning")}
                     </ContinueCancelModal>
