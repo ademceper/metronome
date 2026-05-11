@@ -44,7 +44,7 @@ import { usePromise } from "../utils/usePromise";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (
-  <div className={cn("flex flex-col gap-2 pt-2", className)} {...props}>{children}</div>
+  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
 );
 const AlertVariant = {
   default: "default",
@@ -182,7 +182,25 @@ export const PersonalInfo = () => {
     isEditUserNameAllowed,
   } = context.environment.features;
   return (
-    <Page title={t("personalInfo")} description={t("personalInfoDescription")}>
+    <Page
+      title={t("personalInfo")}
+      description={t("personalInfoDescription")}
+      action={
+        context.environment.features.deleteAccountAllowed ? (
+          <Button
+            id="delete-account-btn"
+            data-testid="delete-account"
+            variant="destructive"
+            className="bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent"
+            onClick={() =>
+              context.keycloak.login({ action: "delete_account" })
+            }
+          >
+            {t("deleteAccount")}
+          </Button>
+        ) : undefined
+      }
+    >
       <Form isHorizontal onSubmit={handleSubmit(onSubmit)}>
         <UserProfileFields
           form={form}
@@ -224,47 +242,21 @@ export const PersonalInfo = () => {
               id="save-btn"
               variant="primary"
               size="xl"
-              className="w-full"
+              className="flex-1"
             >
               {t("save")}
             </Button>
             <Button
               data-testid="cancel"
               id="cancel-btn"
-              variant="link"
+              variant="tertiary"
+              size="xl"
+              className="flex-1"
               onClick={() => reset()}
             >
               {t("cancel")}
             </Button>
           </ActionGroup>
-        )}
-        {context.environment.features.deleteAccountAllowed && (
-          <ExpandableSection
-            data-testid="delete-account"
-            toggleText={t("deleteAccount")}
-          >
-            <Alert
-              isInline
-              title={t("deleteAccount")}
-              variant="danger"
-              actionLinks={
-                <Button
-                  id="delete-account-btn"
-                  variant="danger"
-                  onClick={() =>
-                    context.keycloak.login({
-                      action: "delete_account",
-                    })
-                  }
-                  className="delete-button"
-                >
-                  {t("delete")}
-                </Button>
-              }
-            >
-              {t("deleteAccountWarning")}
-            </Alert>
-          </ExpandableSection>
         )}
       </Form>
     </Page>

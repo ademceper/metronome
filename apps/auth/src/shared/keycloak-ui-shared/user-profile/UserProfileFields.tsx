@@ -154,7 +154,7 @@ export const UserProfileFields = ({
       sections={groupsWithAttributes
         .filter((group) => group.attributes.length > 0)
         .map(({ group, attributes }) => ({
-          title: label(t, group.displayHeader, group.name) || t("general"),
+          title: label(t, group.displayHeader, group.name) || "",
           panel: (
             <div className="space-y-4">
               {group.displayDescription && (

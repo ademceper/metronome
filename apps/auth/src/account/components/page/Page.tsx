@@ -43,22 +43,27 @@ const Title = ({ headingLevel = "h1", size, children, className, ...props }: any
 type PageProps = {
   title: string;
   description: string;
+  action?: React.ReactNode;
 };
 
 export const Page = ({
   title,
   description,
+  action,
   children,
 }: PropsWithChildren<PageProps>) => {
   return (
     <>
       <PageSection variant="light">
-        <TextContent>
-          <Title headingLevel="h1" data-testid="page-heading">
-            {title}
-          </Title>
-          <Text component="p">{description}</Text>
-        </TextContent>
+        <div className="flex items-center justify-between gap-4">
+          <TextContent>
+            <Title headingLevel="h1" data-testid="page-heading">
+              {title}
+            </Title>
+            <Text component="p">{description}</Text>
+          </TextContent>
+          {action ? <div className="shrink-0">{action}</div> : null}
+        </div>
       </PageSection>
       <PageSection variant="light">{children}</PageSection>
     </>

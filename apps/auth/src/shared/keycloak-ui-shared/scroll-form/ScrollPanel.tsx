@@ -24,7 +24,7 @@ export const ScrollPanel = (props: ScrollPanelProps) => {
   return (
     <section {...rest} style={{ marginTop: "var(--pf-v5-global--spacer--lg)" }}>
       <>
-        <FormTitle id={scrollId} title={title} />
+        {title ? <FormTitle id={scrollId} title={title} /> : null}
         {children}
       </>
     </section>

@@ -9,9 +9,17 @@
 
 // @ts-nocheck
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@metronome/ui/components/select";
+import { Label } from "@metronome/ui/components/label";
+import { cn } from "@metronome/ui/lib/utils";
 import { useMemo } from "react";
-import { FormProvider } from "react-hook-form";
-import { SelectControl } from "../controls/select-control/SelectControl";
+import { Controller, FormProvider } from "react-hook-form";
 import { UserProfileFieldProps } from "./UserProfileFields";
 
 const localeToDisplayName = (locale: string) => {
@@ -26,6 +34,11 @@ type LocaleSelectorProps = Omit<UserProfileFieldProps, "inputType"> & {
   supportedLocales: string[];
   currentLocale: string;
 };
+
+const SELECT_EMPTY = "__pf_empty__";
+const toRadixValue = (v: any) =>
+  v === "" || v == null ? SELECT_EMPTY : String(v);
+const fromRadixValue = (v: any) => (v === SELECT_EMPTY ? "" : v);
 
 export const LocaleSelector = ({
   t,
@@ -47,16 +60,53 @@ export const LocaleSelector = ({
   if (!locales.length) {
     return null;
   }
+
+  const fieldId = "attributes.locale";
+
   return (
     <FormProvider {...form}>
-      <SelectControl
-        data-testid="locale-select"
-        name="attributes.locale"
-        label={t("selectALocale")}
-        controller={{ defaultValue: "" }}
-        options={[{ key: "", value: t("defaultLocale") }, ...locales]}
-        variant={locales.length >= 10 ? "typeahead" : "single"}
-      />
+      <div className="space-y-1">
+        <div className="relative">
+          <Controller
+            name="attributes.locale"
+            control={form.control}
+            defaultValue=""
+            render={({ field }) => (
+              <Select
+                value={toRadixValue(field.value)}
+                onValueChange={(v) => field.onChange(fromRadixValue(v))}
+              >
+                <SelectTrigger
+                  id={fieldId}
+                  data-testid="locale-select"
+                  className={cn(
+                    "peer h-12! w-full pt-5 pb-1 pl-4",
+                    "focus-visible:ring-0 aria-invalid:ring-0",
+                  )}
+                >
+                  <SelectValue placeholder=" " />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={SELECT_EMPTY}>
+                    {t("defaultLocale")}
+                  </SelectItem>
+                  {locales.map((l) => (
+                    <SelectItem key={l.key} value={l.key}>
+                      {l.value}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
+          <Label
+            htmlFor={fieldId}
+            className="pointer-events-none absolute top-1 left-4 z-10 text-muted-foreground text-xs"
+          >
+            {t("selectALocale")}
+          </Label>
+        </div>
+      </div>
     </FormProvider>
   );
 };
