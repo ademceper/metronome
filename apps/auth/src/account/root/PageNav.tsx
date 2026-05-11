@@ -69,6 +69,7 @@ const LeafLink = ({
     <RRNavLink
       to={fullPath + location.search}
       data-testid={menuItem.path}
+      end={menuItem.path === ""}
       className={({ isActive }) =>
         cn(
           "flex h-12 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",

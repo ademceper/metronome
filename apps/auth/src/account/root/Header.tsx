@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { label, useEnvironment } from "../../shared/keycloak-ui-shared";
+import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import {
   Avatar,
   AvatarFallback,
@@ -24,31 +24,9 @@ import {
   DropdownMenuTrigger,
 } from "@metronome/ui/components/dropdown-menu";
 import { cn } from "@metronome/ui/lib/utils";
-import {
-  ArrowSquareOutIcon,
-  CaretDownIcon,
-  SignOutIcon,
-} from "@phosphor-icons/react";
+import { CaretDownIcon, SignOutIcon } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
 import { AccountEnvironment } from "..";
-
-const ReferrerLink = () => {
-  const { environment } = useEnvironment<AccountEnvironment>();
-  const { t } = useTranslation();
-  if (!environment.referrerUrl) return null;
-  return (
-    <a
-      href={environment.referrerUrl.replace("_hash_", "#")}
-      className="inline-flex items-center gap-1 text-muted-foreground text-sm hover:text-foreground"
-      data-testid="referrer-link"
-    >
-      {t("backTo", {
-        app: label(t, environment.referrerName, environment.referrerUrl),
-      })}
-      <ArrowSquareOutIcon className="size-4" />
-    </a>
-  );
-};
 
 const UserMenu = () => {
   const { keycloak } = useEnvironment<AccountEnvironment>();
@@ -106,10 +84,7 @@ export const Header = ({ className }: { className?: string }) => {
         >
           {realm}
         </a>
-        <div className="flex items-center gap-6">
-          <ReferrerLink />
-          <UserMenu />
-        </div>
+        <UserMenu />
       </div>
     </header>
   );
