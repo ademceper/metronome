@@ -48,6 +48,9 @@
       "entry": ["src/components/ui/*.tsx", "src/lib/*.ts"],
       "project": ["src/**/*.{ts,tsx}"],
       "ignoreDependencies": ["@rn-primitives/types"]
+    },
+    "packages/auth": {
+      "project": ["src/**/*.{ts,tsx}"]
     }
   }
 }

@@ -1,0 +1,5 @@
+export { createUserManager } from "./client"
+export { useAuth, useIsAuthenticated, useUser } from "./hooks"
+export type { AuthContextValue, AuthProviderProps } from "./provider"
+export { AuthContext, AuthProvider } from "./provider"
+export type { AuthConfig, AuthState, AuthStatus, AuthUser } from "./types"

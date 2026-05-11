@@ -1,0 +1,26 @@
+{
+  "name": "@metronome/auth",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "oidc-client-ts": "^3.4.1"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@metronome/ts-cfg": "workspace:*",
+    "@types/react": "^19.2.10",
+    "react": "^19.2.4",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./types": "./src/types.ts"
+  }
+}
