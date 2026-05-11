@@ -1,10 +1,3 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-account-ui version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "account/api/representations.ts" --revert
- */
-
 // Generated using typescript-generator version 2.37.1128 on 2022-09-16 15:57:05.
 
 export interface AccountLinkUriRepresentation {
