@@ -9,11 +9,9 @@
 
 // @ts-nocheck
 
-import * as React from "react";
-import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import { getLinkedAccounts, LinkedAccountQueryParams } from "../api/methods";
 import { LinkedAccountRepresentation } from "../api/representations";
 import { EmptyRow } from "../components/datalist/EmptyRow";
@@ -21,30 +19,6 @@ import { Page } from "../components/page/Page";
 import { usePromise } from "../utils/usePromise";
 import { AccountRow } from "./AccountRow";
 import { LinkedAccountsToolbar } from "./LinkedAccountsToolbar";
-
-
-const DataList = ({ children, className, ...props }: any) => (
-  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
-);
-const Stack = ({ children, className, ...props }: any) => (
-  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
-);
-const StackItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const TitleSizes = {
-  md: "text-base",
-  lg: "text-lg",
-  xl: "text-xl",
-  "2xl": "text-2xl",
-  "3xl": "text-3xl",
-  "4xl": "text-4xl",
-} as const;
-const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
-  React.createElement(headingLevel, {
-    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
-    ...props,
-  }, children);
 
 export const LinkedAccounts = () => {
   const { t } = useTranslation();
@@ -87,11 +61,11 @@ export const LinkedAccounts = () => {
       title={t("linkedAccounts")}
       description={t("linkedAccountsIntroMessage")}
     >
-      <Stack hasGutter>
-        <StackItem>
-          <Title headingLevel="h2" className="pf-v5-u-mb-lg" size="xl">
+      <div className="space-y-8">
+        <section className="space-y-3">
+          <h2 className="font-heading font-medium text-lg">
             {t("linkedLoginProviders")}
-          </Title>
+          </h2>
           <LinkedAccountsToolbar
             onFilter={(search) =>
               setParamsLinked({ ...paramsLinked, first: 0, search })
@@ -120,7 +94,11 @@ export const LinkedAccounts = () => {
             }
             hasNext={linkedAccounts.length > paramsLinked.max - 1}
           />
-          <DataList id="linked-idps" aria-label={t("linkedLoginProviders")}>
+          <div
+            id="linked-idps"
+            aria-label={t("linkedLoginProviders")}
+            className="divide-y rounded-md border"
+          >
             {linkedAccounts.length > 0 ? (
               linkedAccounts.map(
                 (account, index) =>
@@ -136,16 +114,12 @@ export const LinkedAccounts = () => {
             ) : (
               <EmptyRow message={t("linkedEmpty")} />
             )}
-          </DataList>
-        </StackItem>
-        <StackItem>
-          <Title
-            headingLevel="h2"
-            className="pf-v5-u-mt-xl pf-v5-u-mb-lg"
-            size="xl"
-          >
+          </div>
+        </section>
+        <section className="space-y-3">
+          <h2 className="font-heading font-medium text-lg">
             {t("unlinkedLoginProviders")}
-          </Title>
+          </h2>
           <LinkedAccountsToolbar
             onFilter={(search) =>
               setParamsUnlinked({ ...paramsUnlinked, first: 0, search })
@@ -174,7 +148,11 @@ export const LinkedAccounts = () => {
             }
             hasNext={unlinkedAccounts.length > paramsUnlinked.max - 1}
           />
-          <DataList id="unlinked-idps" aria-label={t("unlinkedLoginProviders")}>
+          <div
+            id="unlinked-idps"
+            aria-label={t("unlinkedLoginProviders")}
+            className="divide-y rounded-md border"
+          >
             {unlinkedAccounts.length > 0 ? (
               unlinkedAccounts.map(
                 (account, index) =>
@@ -189,9 +167,9 @@ export const LinkedAccounts = () => {
             ) : (
               <EmptyRow message={t("unlinkedEmpty")} />
             )}
-          </DataList>
-        </StackItem>
-      </Stack>
+          </div>
+        </section>
+      </div>
     </Page>
   );
 };

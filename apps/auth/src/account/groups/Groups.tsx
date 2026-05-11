@@ -9,8 +9,8 @@
 
 // @ts-nocheck
 
-import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
-import { cn } from "@metronome/ui/lib/utils";
+import { Checkbox } from "@metronome/ui/components/checkbox";
+import { Label } from "@metronome/ui/components/label";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
@@ -18,35 +18,6 @@ import { getGroups } from "../api/methods";
 import { Group } from "../api/representations";
 import { Page } from "../components/page/Page";
 import { usePromise } from "../utils/usePromise";
-
-
-const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (
-  <div className="flex items-start gap-2">
-    <UICheckbox id={id} name={name} checked={isChecked} disabled={isDisabled}
-      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)} {...props} />
-    {label ? (
-      <label htmlFor={id} className="text-sm leading-tight">
-        {label}
-        {description ? <span className="block text-muted-foreground text-xs">{description}</span> : null}
-      </label>
-    ) : null}
-  </div>
-);
-const DataList = ({ children, className, ...props }: any) => (
-  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
-);
-const DataListCell = ({ children, className, ...props }: any) => (
-  <div className={cn("flex-1", className)} {...props}>{children}</div>
-);
-const DataListItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const DataListItemCells = ({ dataListCells, ...props }: any) => (
-  <div className="flex flex-1 items-center gap-2" {...props}>{dataListCells}</div>
-);
-const DataListItemRow = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
-);
 
 export const Groups = () => {
   const { t } = useTranslation();
@@ -87,88 +58,54 @@ export const Groups = () => {
   };
 
   return (
-    <Page title={t("groups")} description={t("groupDescriptionLabel")}>
-      <DataList id="groups-list" aria-label={t("groups")} isCompact>
-        <DataListItem
-          id="groups-list-header"
-          aria-label={t("groupsListHeader")}
-        >
-          <DataListItemRow>
-            <DataListItemCells
-              dataListCells={[
-                <DataListCell key="directMembership-header">
-                  <Checkbox
-                    label={t("directMembership")}
-                    id="directMembership-checkbox"
-                    data-testid="directMembership-checkbox"
-                    isChecked={directMembership}
-                    onChange={(_event, checked) => setDirectMembership(checked)}
-                  />
-                </DataListCell>,
-              ]}
-            />
-          </DataListItemRow>
-        </DataListItem>
-        <DataListItem
-          id="groups-list-columns-names"
-          aria-label={t("groupsListColumnsNames")}
-        >
-          <DataListItemRow>
-            <DataListItemCells
-              dataListCells={[
-                <DataListCell key="group-name-header" width={2}>
-                  <strong>{t("name")}</strong>
-                </DataListCell>,
-                <DataListCell key="group-path-header" width={2}>
-                  <strong>{t("path")}</strong>
-                </DataListCell>,
-                <DataListCell key="group-direct-membership-header" width={2}>
-                  <strong>{t("directMembership")}</strong>
-                </DataListCell>,
-              ]}
-            />
-          </DataListItemRow>
-        </DataListItem>
-        {groups.map((group, appIndex) => (
-          <DataListItem
-            id={`${appIndex}-group`}
-            key={"group-" + appIndex}
-            aria-labelledby="groups-list"
-          >
-            <DataListItemRow>
-              <DataListItemCells
-                dataListCells={[
-                  <DataListCell
-                    data-testid={`group[${appIndex}].name`}
-                    width={2}
-                    key={"name-" + appIndex}
-                  >
-                    {group.name}
-                  </DataListCell>,
-                  <DataListCell
-                    id={`${appIndex}-group-path`}
-                    width={2}
-                    key={"path-" + appIndex}
-                  >
-                    {group.path}
-                  </DataListCell>,
-                  <DataListCell
-                    id={`${appIndex}-group-directMembership`}
-                    width={2}
-                    key={"directMembership-" + appIndex}
-                  >
-                    <Checkbox
-                      id={`${appIndex}-checkbox-directMembership`}
-                      isChecked={group.id != null}
-                      isDisabled={true}
-                    />
-                  </DataListCell>,
-                ]}
+    <Page
+      title={t("groups")}
+      description={t("groupDescriptionLabel")}
+      action={
+        <div className="flex items-center gap-2">
+          <Checkbox
+            id="directMembership-checkbox"
+            data-testid="directMembership-checkbox"
+            checked={directMembership}
+            onCheckedChange={(checked: boolean) =>
+              setDirectMembership(checked)
+            }
+          />
+          <Label htmlFor="directMembership-checkbox" className="text-sm">
+            {t("directMembership")}
+          </Label>
+        </div>
+      }
+    >
+      <div className="overflow-hidden rounded-md border">
+        <div className="grid grid-cols-[2fr_2fr_max-content] items-center gap-4 border-b bg-muted/40 px-4 py-3 font-medium text-sm">
+          <span>{t("name")}</span>
+          <span>{t("path")}</span>
+          <span>{t("directMembership")}</span>
+        </div>
+        <div className="divide-y">
+          {groups.map((group, appIndex) => (
+            <div
+              key={"group-" + appIndex}
+              id={`${appIndex}-group`}
+              className="grid grid-cols-[2fr_2fr_max-content] items-center gap-4 px-4 py-3 text-sm"
+            >
+              <span data-testid={`group[${appIndex}].name`}>{group.name}</span>
+              <span
+                id={`${appIndex}-group-path`}
+                className="truncate text-muted-foreground"
+              >
+                {group.path}
+              </span>
+              <Checkbox
+                id={`${appIndex}-checkbox-directMembership`}
+                checked={group.id != null}
+                disabled
               />
-            </DataListItemRow>
-          </DataListItem>
-        ))}
-      </DataList>
+            </div>
+          ))}
+        </div>
+      </div>
     </Page>
   );
 };

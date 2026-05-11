@@ -14,10 +14,14 @@ import {
   label,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import { Button as UIButton } from "@metronome/ui/components/button";
-import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
-import { cn } from "@metronome/ui/lib/utils";
-import { Check as CheckIcon, ArrowSquareOut as ExternalLinkAltIcon, Info as InfoAltIcon } from "@phosphor-icons/react"
+import { Button } from "@metronome/ui/components/button";
+import { Spinner } from "@metronome/ui/components/spinner";
+import {
+  Check as CheckIcon,
+  ArrowSquareOut as ExternalLinkIcon,
+  Info as InfoIcon,
+  CaretRight as CaretIcon,
+} from "@phosphor-icons/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -29,88 +33,6 @@ import type { TFuncKey } from "../i18n-type";
 import { formatDate } from "../utils/formatDate";
 import { useAccountAlerts } from "../utils/useAccountAlerts";
 import { usePromise } from "../utils/usePromise";
-
-
-const ButtonVariant = {
-  primary: "default",
-  secondary: "secondary",
-  tertiary: "outline",
-  danger: "destructive",
-  warning: "destructive",
-  link: "link",
-  plain: "ghost",
-  control: "outline",
-} as const;
-const Button = ({
-  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
-  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
-  icon, iconPosition, component, to, href, target, rel, children, ...props
-}: any) => {
-  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
-  if (href || to) {
-    return (
-      <a href={href || to} target={target} rel={rel}
-        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
-        {icon && iconPosition !== "right" ? icon : null}
-        {children}
-        {icon && iconPosition === "right" ? icon : null}
-      </a>
-    );
-  }
-  return (
-    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
-      {icon && iconPosition !== "right" ? icon : null}
-      {children}
-      {icon && iconPosition === "right" ? icon : null}
-    </UIButton>
-  );
-};
-const DataList = ({ children, className, ...props }: any) => (
-  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
-);
-const DataListCell = ({ children, className, ...props }: any) => (
-  <div className={cn("flex-1", className)} {...props}>{children}</div>
-);
-const DataListContent = ({ children, className, ...props }: any) => (
-  <div className={cn("px-3 py-2", className)} {...props}>{children}</div>
-);
-const DataListItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const DataListItemCells = ({ dataListCells, ...props }: any) => (
-  <div className="flex flex-1 items-center gap-2" {...props}>{dataListCells}</div>
-);
-const DataListItemRow = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
-);
-const DataListToggle = ({ onClick, isExpanded, ...props }: any) => (
-  <button type="button" onClick={onClick} aria-expanded={isExpanded} className="text-sm" {...props}>
-    {isExpanded ? "−" : "+"}
-  </button>
-);
-const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
-  <dl className={cn("grid gap-y-2 text-sm",
-    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
-    (props as any).className)} {...props}>
-    {children}
-  </dl>
-);
-const DescriptionListDescription = ({ children, ...props }: any) => (
-  <dd {...props}>{children}</dd>
-);
-const DescriptionListGroup = ({ children, className, ...props }: any) => (
-  <div className={cn("contents", className)} {...props}>{children}</div>
-);
-const DescriptionListTerm = ({ children, ...props }: any) => (
-  <dt className="font-medium text-muted-foreground" {...props}>{children}</dt>
-);
-const Grid = ({ children, className, ...props }: any) => (
-  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
-);
-const GridItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 type Application = ClientRepresentation & {
   open: boolean;
@@ -155,214 +77,182 @@ export const Applications = () => {
 
   return (
     <Page title={t("application")} description={t("applicationsIntroMessage")}>
-      <DataList id="applications-list" aria-label={t("application")}>
-        <DataListItem
-          id="applications-list-header"
-          aria-labelledby="Columns names"
-        >
-          <DataListItemRow>
-            <span style={{ visibility: "hidden", height: 55 }}>
-              <DataListToggle
-                id="applications-list-header-invisible-toggle"
-                aria-controls="applications-list-content"
-              />
-            </span>
-            <DataListItemCells
-              dataListCells={[
-                <DataListCell
-                  key="applications-list-client-id-header"
-                  width={2}
-                  className="pf-v5-u-pt-md"
+      <div className="overflow-hidden rounded-md border">
+        <div className="grid grid-cols-[2rem_2fr_2fr_1fr] items-center gap-2 border-b bg-muted/40 px-4 py-3 font-medium text-sm">
+          <span aria-hidden />
+          <span>{t("name")}</span>
+          <span>{t("applicationType")}</span>
+          <span>{t("status")}</span>
+        </div>
+        <div className="divide-y">
+          {applications.map((application) => (
+            <div
+              key={application.clientId}
+              data-testid="applications-list-item"
+            >
+              <div className="grid grid-cols-[2rem_2fr_2fr_1fr] items-center gap-2 px-4 py-3 text-sm">
+                <button
+                  type="button"
+                  onClick={() => toggleOpen(application.clientId)}
+                  aria-expanded={application.open}
+                  aria-controls={`content-${application.clientId}`}
+                  id={`toggle-${application.clientId}`}
+                  className="flex size-6 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
                 >
-                  <strong>{t("name")}</strong>
-                </DataListCell>,
-                <DataListCell
-                  key="applications-list-app-type-header"
-                  width={2}
-                  className="pf-v5-u-pt-md"
-                >
-                  <strong>{t("applicationType")}</strong>
-                </DataListCell>,
-                <DataListCell
-                  key="applications-list-status"
-                  width={2}
-                  className="pf-v5-u-pt-md"
-                >
-                  <strong>{t("status")}</strong>
-                </DataListCell>,
-              ]}
-            />
-          </DataListItemRow>
-        </DataListItem>
-        {applications.map((application) => (
-          <DataListItem
-            key={application.clientId}
-            aria-labelledby="applications-list"
-            data-testid="applications-list-item"
-            isExpanded={application.open}
-          >
-            <DataListItemRow className="pf-v5-u-align-items-center">
-              <DataListToggle
-                onClick={() => toggleOpen(application.clientId)}
-                isExpanded={application.open}
-                id={`toggle-${application.clientId}`}
-                aria-controls={`content-${application.clientId}`}
-              />
-              <DataListItemCells
-                className="pf-v5-u-align-items-center"
-                dataListCells={[
-                  <DataListCell width={2} key={`client${application.clientId}`}>
-                    {application.effectiveUrl && (
-                      <Button
-                        className="pf-v5-u-pl-0 title-case"
-                        component="a"
-                        variant="link"
-                        onClick={() => window.open(application.effectiveUrl)}
-                      >
-                        {label(
-                          t,
-                          application.clientName || application.clientId,
-                        )}{" "}
-                        <ExternalLinkAltIcon />
-                      </Button>
-                    )}
-                    {!application.effectiveUrl && (
-                      <>
+                  <CaretIcon
+                    className={[
+                      "size-3.5 transition-transform",
+                      application.open ? "rotate-90" : "",
+                    ].join(" ")}
+                  />
+                </button>
+                <div className="min-w-0 truncate">
+                  {application.effectiveUrl ? (
+                    <Button
+                      type="button"
+                      variant="link"
+                      className="h-auto px-0"
+                      onClick={() => window.open(application.effectiveUrl)}
+                    >
+                      <span className="truncate">
                         {label(
                           t,
                           application.clientName || application.clientId,
                         )}
+                      </span>
+                      <ExternalLinkIcon className="ms-1 size-3.5" />
+                    </Button>
+                  ) : (
+                    <span className="truncate">
+                      {label(
+                        t,
+                        application.clientName || application.clientId,
+                      )}
+                    </span>
+                  )}
+                </div>
+                <div className="text-muted-foreground">
+                  {application.userConsentRequired
+                    ? t("thirdPartyApp")
+                    : t("internalApp")}
+                  {application.offlineAccess ? ", " + t("offlineAccess") : ""}
+                </div>
+                <div className="text-muted-foreground">
+                  {application.inUse ? t("inUse") : t("notInUse")}
+                </div>
+              </div>
+
+              {application.open && (
+                <div
+                  id={`content-${application.clientId}`}
+                  className="space-y-4 border-t bg-muted/30 px-4 py-4 text-sm"
+                  aria-label={t("applicationDetails", {
+                    clientId: application.clientId,
+                  })}
+                >
+                  <dl className="grid grid-cols-[max-content_1fr] gap-x-6 gap-y-2">
+                    <dt className="text-muted-foreground">{t("client")}</dt>
+                    <dd>{application.clientId}</dd>
+                    {application.description && (
+                      <>
+                        <dt className="text-muted-foreground">
+                          {t("description")}
+                        </dt>
+                        <dd>{application.description}</dd>
                       </>
                     )}
-                  </DataListCell>,
-                  <DataListCell
-                    width={2}
-                    key={`internal${application.clientId}`}
-                  >
-                    {application.userConsentRequired
-                      ? t("thirdPartyApp")
-                      : t("internalApp")}
-                    {application.offlineAccess ? ", " + t("offlineAccess") : ""}
-                  </DataListCell>,
-                  <DataListCell width={2} key={`status${application.clientId}`}>
-                    {application.inUse ? t("inUse") : t("notInUse")}
-                  </DataListCell>,
-                ]}
-              />
-            </DataListItemRow>
-
-            <DataListContent
-              id={`content-${application.clientId}`}
-              className="pf-v5-u-pl-4xl"
-              aria-label={t("applicationDetails", {
-                clientId: application.clientId,
-              })}
-              isHidden={!application.open}
-            >
-              <DescriptionList>
-                <DescriptionListGroup>
-                  <DescriptionListTerm>{t("client")}</DescriptionListTerm>
-                  <DescriptionListDescription>
-                    {application.clientId}
-                  </DescriptionListDescription>
-                </DescriptionListGroup>
-                {application.description && (
-                  <DescriptionListGroup>
-                    <DescriptionListTerm>
-                      {t("description")}
-                    </DescriptionListTerm>
-                    <DescriptionListDescription>
-                      {application.description}
-                    </DescriptionListDescription>
-                  </DescriptionListGroup>
-                )}
-                {application.effectiveUrl && (
-                  <DescriptionListGroup>
-                    <DescriptionListTerm>URL</DescriptionListTerm>
-                    <DescriptionListDescription>
-                      {application.effectiveUrl.split('"')}
-                    </DescriptionListDescription>
-                  </DescriptionListGroup>
-                )}
-                {application.consent && (
-                  <>
-                    <DescriptionListGroup>
-                      <DescriptionListTerm>
-                        {t("hasAccessTo")}
-                      </DescriptionListTerm>
-                      {application.consent.grantedScopes.map((scope) => (
-                        <DescriptionListDescription key={`scope${scope.id}`}>
-                          <CheckIcon />{" "}
-                          {t(scope.name as TFuncKey, scope.displayText)}
-                        </DescriptionListDescription>
-                      ))}
-                    </DescriptionListGroup>
-                    {application.tosUri && (
-                      <DescriptionListGroup>
-                        <DescriptionListTerm>
-                          {t("termsOfService")}
-                        </DescriptionListTerm>
-                        <DescriptionListDescription>
-                          {application.tosUri}
-                        </DescriptionListDescription>
-                      </DescriptionListGroup>
+                    {application.effectiveUrl && (
+                      <>
+                        <dt className="text-muted-foreground">URL</dt>
+                        <dd className="break-all">
+                          {application.effectiveUrl.split('"')}
+                        </dd>
+                      </>
                     )}
-                    {application.policyUri && (
-                      <DescriptionListGroup>
-                        <DescriptionListTerm>
-                          {t("privacyPolicy")}
-                        </DescriptionListTerm>
-                        <DescriptionListDescription>
-                          {application.policyUri}
-                        </DescriptionListDescription>
-                      </DescriptionListGroup>
-                    )}
-                    {application.logoUri && (
-                      <DescriptionListGroup>
-                        <DescriptionListTerm>{t("logo")}</DescriptionListTerm>
-                        <DescriptionListDescription>
-                          <img src={application.logoUri} />
-                        </DescriptionListDescription>
-                      </DescriptionListGroup>
-                    )}
-                    <DescriptionListGroup>
-                      <DescriptionListTerm>
-                        {t("accessGrantedOn")}
-                      </DescriptionListTerm>
-                      <DescriptionListDescription>
-                        {formatDate(
-                          new Date(application.consent.createdDate),
-                          context.environment.locale,
+                    {application.consent && (
+                      <>
+                        <dt className="text-muted-foreground">
+                          {t("hasAccessTo")}
+                        </dt>
+                        <dd>
+                          <ul className="space-y-1">
+                            {application.consent.grantedScopes.map((scope) => (
+                              <li
+                                key={`scope${scope.id}`}
+                                className="flex items-center gap-1.5"
+                              >
+                                <CheckIcon className="size-3.5 text-muted-foreground" />
+                                {t(scope.name as TFuncKey, scope.displayText)}
+                              </li>
+                            ))}
+                          </ul>
+                        </dd>
+                        {application.tosUri && (
+                          <>
+                            <dt className="text-muted-foreground">
+                              {t("termsOfService")}
+                            </dt>
+                            <dd>{application.tosUri}</dd>
+                          </>
                         )}
-                      </DescriptionListDescription>
-                    </DescriptionListGroup>
-                  </>
-                )}
-              </DescriptionList>
-              {(application.consent || application.offlineAccess) && (
-                <Grid hasGutter>
-                  <hr />
-                  <GridItem>
-                    <ContinueCancelModal
-                      buttonTitle={t("removeAccess")}
-                      modalTitle={t("removeAccess")}
-                      continueLabel={t("confirm")}
-                      cancelLabel={t("cancel")}
-                      buttonVariant="secondary"
-                      onContinue={() => removeConsent(application.clientId)}
-                    >
-                      {t("removeModalMessage", { name: application.clientId })}
-                    </ContinueCancelModal>
-                  </GridItem>
-                  <GridItem>
-                    <InfoAltIcon /> {t("infoMessage")}
-                  </GridItem>
-                </Grid>
+                        {application.policyUri && (
+                          <>
+                            <dt className="text-muted-foreground">
+                              {t("privacyPolicy")}
+                            </dt>
+                            <dd>{application.policyUri}</dd>
+                          </>
+                        )}
+                        {application.logoUri && (
+                          <>
+                            <dt className="text-muted-foreground">
+                              {t("logo")}
+                            </dt>
+                            <dd>
+                              <img
+                                src={application.logoUri}
+                                alt=""
+                                className="h-8"
+                              />
+                            </dd>
+                          </>
+                        )}
+                        <dt className="text-muted-foreground">
+                          {t("accessGrantedOn")}
+                        </dt>
+                        <dd>
+                          {formatDate(
+                            new Date(application.consent.createdDate),
+                            context.environment.locale,
+                          )}
+                        </dd>
+                      </>
+                    )}
+                  </dl>
+                  {(application.consent || application.offlineAccess) && (
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
+                      <ContinueCancelModal
+                        buttonTitle={t("removeAccess")}
+                        modalTitle={t("removeAccess")}
+                        continueLabel={t("confirm")}
+                        cancelLabel={t("cancel")}
+                        buttonVariant="secondary"
+                        onContinue={() => removeConsent(application.clientId)}
+                      >
+                        {t("removeModalMessage", { name: application.clientId })}
+                      </ContinueCancelModal>
+                      <span className="flex items-center gap-1.5 text-muted-foreground text-xs">
+                        <InfoIcon className="size-3.5" />
+                        {t("infoMessage")}
+                      </span>
+                    </div>
+                  )}
+                </div>
               )}
-            </DataListContent>
-          </DataListItem>
-        ))}
-      </DataList>
+            </div>
+          ))}
+        </div>
+      </div>
     </Page>
   );
 };

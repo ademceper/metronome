@@ -9,26 +9,27 @@
 
 // @ts-nocheck
 
-import * as React from "react";
 import {
   ContinueCancelModal,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import { Badge as UIBadge } from "@metronome/ui/components/badge";
-import { Button as UIButton } from "@metronome/ui/components/button";
-import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
-import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
-import { cn } from "@metronome/ui/lib/utils";
-import { PencilSimple as EditAltIcon, DotsThreeVertical as EllipsisVIcon, ArrowSquareOut as ExternalLinkAltIcon, Minus as Remove2Icon, Share as ShareAltIcon } from "@phosphor-icons/react"
+import { Badge } from "@metronome/ui/components/badge";
+import { Button } from "@metronome/ui/components/button";
 import {
-  Table,
-  TableBody as Tbody,
-  TableCell as Td,
-  TableHead as Th,
-  TableHeader as Thead,
-  TableRow as Tr,
-} from "@metronome/ui/components/table";
-const ExpandableRowContent = ({ children }: any) => <>{children}</>;
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@metronome/ui/components/dropdown-menu";
+import { Spinner } from "@metronome/ui/components/spinner";
+import {
+  PencilSimple as EditIcon,
+  DotsThreeVertical as EllipsisIcon,
+  ArrowSquareOut as ExternalLinkIcon,
+  Minus as RemoveIcon,
+  Share as ShareIcon,
+  CaretRight as CaretIcon,
+} from "@phosphor-icons/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -43,100 +44,6 @@ import { PermissionRequest } from "./PermissionRequest";
 import { ResourceToolbar } from "./ResourceToolbar";
 import { ShareTheResource } from "./ShareTheResource";
 import { SharedWith } from "./SharedWith";
-
-
-const ButtonVariant = {
-  primary: "default",
-  secondary: "secondary",
-  tertiary: "outline",
-  danger: "destructive",
-  warning: "destructive",
-  link: "link",
-  plain: "ghost",
-  control: "outline",
-} as const;
-const Button = ({
-  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
-  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
-  icon, iconPosition, component, to, href, target, rel, children, ...props
-}: any) => {
-  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
-  if (href || to) {
-    return (
-      <a href={href || to} target={target} rel={rel}
-        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
-        {icon && iconPosition !== "right" ? icon : null}
-        {children}
-        {icon && iconPosition === "right" ? icon : null}
-      </a>
-    );
-  }
-  return (
-    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
-      {icon && iconPosition !== "right" ? icon : null}
-      {children}
-      {icon && iconPosition === "right" ? icon : null}
-    </UIButton>
-  );
-};
-const Chip = ({ onClick, children, ...props }: any) => (
-  <UIBadge variant="secondary" {...props}>
-    {children}
-    {onClick ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
-  </UIBadge>
-);
-const ChipGroup = ({ categoryName, numChips, onClick, isClosable, children, ...props }: any) => (
-  <div className="flex flex-wrap items-center gap-1" {...props}>
-    {categoryName ? <span className="text-muted-foreground text-xs">{categoryName}:</span> : null}
-    {children}
-    {isClosable ? <button type="button" onClick={onClick} aria-label="close" className="ml-1 text-xs">×</button> : null}
-  </div>
-);
-const Dropdown = ({ toggle, isOpen, onSelect, onOpenChange, popperProps, children, ...props }: any) => {
-  const trigger = typeof toggle === "function" ? toggle((node: HTMLElement | null) => node) : toggle;
-  return (
-    <UIDropdownMenu open={isOpen} onOpenChange={(open: boolean) => onOpenChange?.(open)}>
-      <UIDropdownMenuTrigger asChild>{trigger}</UIDropdownMenuTrigger>
-      <UIDropdownMenuContent>{children}</UIDropdownMenuContent>
-    </UIDropdownMenu>
-  );
-};
-const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
-  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
-    {children}
-    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
-  </UIDropdownMenuItem>
-);
-const DropdownList = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
-  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
-    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
-      {children}
-    </UIButton>
-  ),
-);
-(MenuToggle as any).displayName = "MenuToggle";
-const OverflowMenu = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
-);
-const OverflowMenuContent = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
-);
-const OverflowMenuControl = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center", className)} {...props}>{children}</div>
-);
-const OverflowMenuDropdownItem = ({ onClick, children, ...props }: any) => (
-  <UIDropdownMenuItem onClick={onClick} {...props}>{children}</UIDropdownMenuItem>
-);
-const OverflowMenuGroup = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
-);
-const OverflowMenuItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 type PermissionDetail = {
   contextOpen?: boolean;
@@ -235,8 +142,12 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
     });
   };
 
+  const cols = isShared
+    ? "grid-cols-[2fr_2fr_2fr]"
+    : "grid-cols-[2rem_2fr_2fr_2fr_max-content]";
+
   return (
-    <>
+    <div className="space-y-3">
       <ResourceToolbar
         onFilter={(name) => setParams({ ...params, name })}
         count={resources.length}
@@ -249,252 +160,176 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
         }
         hasNext={!!links?.next}
       />
-      <Table aria-label={t("resources")}>
-        <Thead>
-          <Tr>
-            <Th aria-hidden="true" />
-            <Th>{t("resourceName")}</Th>
-            <Th>{t("application")}</Th>
-            <Th aria-hidden={isShared}>
-              {!isShared ? t("permissionRequests") : ""}
-            </Th>
-          </Tr>
-        </Thead>
-        {resources.map((resource, index) => (
-          <Tbody
-            key={resource.name}
-            isExpanded={details[resource._id]?.rowOpen}
-          >
-            <Tr>
-              <Td
-                data-testid={`expand-${resource.name}`}
-                expand={
-                  !isShared
-                    ? {
-                        isExpanded: details[resource._id]?.rowOpen || false,
-                        rowIndex: index,
-                        onToggle: () =>
-                          toggleOpen(
-                            resource._id,
-                            "rowOpen",
-                            !details[resource._id]?.rowOpen,
-                          ),
+
+      <div className="overflow-hidden rounded-md border">
+        <div
+          className={`grid ${cols} items-center gap-2 border-b bg-muted/40 px-4 py-3 font-medium text-sm`}
+        >
+          {!isShared && <span aria-hidden />}
+          <span>{t("resourceName")}</span>
+          <span>{t("application")}</span>
+          <span>{isShared ? t("permissions") : t("permissionRequests")}</span>
+          {!isShared && <span aria-hidden />}
+        </div>
+        <div className="divide-y">
+          {resources.map((resource, index) => {
+            const detail = details[resource._id];
+            return (
+              <div key={resource.name}>
+                <div
+                  className={`grid ${cols} items-center gap-2 px-4 py-3 text-sm`}
+                >
+                  {!isShared && (
+                    <button
+                      type="button"
+                      data-testid={`expand-${resource.name}`}
+                      onClick={() =>
+                        toggleOpen(
+                          resource._id,
+                          "rowOpen",
+                          !detail?.rowOpen,
+                        )
                       }
-                    : undefined
-                }
-              />
-              <Td
-                dataLabel={t("resourceName")}
-                data-testid={`row[${index}].name`}
-              >
-                {resource.name}
-              </Td>
-              <Td dataLabel={t("application")}>
-                <a href={resource.client.baseUrl}>
-                  {resource.client.name || resource.client.clientId}{" "}
-                  <ExternalLinkAltIcon />
-                </a>
-              </Td>
-              <Td dataLabel={t("permissionRequests")}>
-                {resource.shareRequests &&
-                  resource.shareRequests.length > 0 && (
-                    <PermissionRequest
-                      resource={resource}
-                      refresh={() => refresh()}
-                    />
+                      aria-expanded={detail?.rowOpen}
+                      className="flex size-6 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+                    >
+                      <CaretIcon
+                        className={[
+                          "size-3.5 transition-transform",
+                          detail?.rowOpen ? "rotate-90" : "",
+                        ].join(" ")}
+                      />
+                    </button>
                   )}
-                <ShareTheResource
-                  resource={resource}
-                  permissions={details[resource._id]?.permissions}
-                  open={details[resource._id]?.shareDialogOpen || false}
-                  onClose={() => setDetails({})}
-                />
-                {details[resource._id]?.editDialogOpen && (
-                  <EditTheResource
-                    resource={resource}
-                    permissions={details[resource._id]?.permissions}
-                    onClose={() => setDetails({})}
-                  />
-                )}
-              </Td>
-              {isShared ? (
-                <Td>
-                  {resource.scopes.length > 0 && (
-                    <ChipGroup categoryName={t("permissions")}>
-                      {resource.scopes.map((scope) => (
-                        <Chip key={scope.name} isReadOnly>
-                          {scope.displayName || scope.name}
-                        </Chip>
-                      ))}
-                    </ChipGroup>
-                  )}
-                </Td>
-              ) : (
-                <Td isActionCell>
-                  <OverflowMenu breakpoint="lg">
-                    <OverflowMenuContent>
-                      <OverflowMenuGroup groupType="button">
-                        <OverflowMenuItem>
-                          <Button
-                            data-testid={`share-${resource.name}`}
-                            variant="link"
-                            onClick={() =>
-                              toggleOpen(resource._id, "shareDialogOpen", true)
-                            }
-                          >
-                            <ShareAltIcon /> {t("share")}
-                          </Button>
-                        </OverflowMenuItem>
-                        <OverflowMenuItem>
-                          <Dropdown
-                            popperProps={{
-                              position: "right",
-                            }}
-                            onOpenChange={(isOpen) =>
-                              toggleOpen(resource._id, "contextOpen", isOpen)
-                            }
-                            toggle={(ref) => (
-                              <MenuToggle
-                                variant="plain"
-                                ref={ref}
-                                onClick={() =>
-                                  toggleOpen(
-                                    resource._id,
-                                    "contextOpen",
-                                    !details[resource._id]?.contextOpen,
-                                  )
-                                }
-                                isExpanded={details[resource._id]?.contextOpen}
-                              >
-                                <EllipsisVIcon />
-                              </MenuToggle>
-                            )}
-                            isOpen={!!details[resource._id]?.contextOpen}
-                          >
-                            <DropdownList>
-                              <DropdownItem
-                                isDisabled={
-                                  details[resource._id]?.permissions?.length ===
-                                  0
-                                }
-                                onClick={() =>
-                                  toggleOpen(
-                                    resource._id,
-                                    "editDialogOpen",
-                                    true,
-                                  )
-                                }
-                              >
-                                <EditAltIcon /> {t("edit")}
-                              </DropdownItem>
-                              <ContinueCancelModal
-                                buttonTitle={
-                                  <>
-                                    <Remove2Icon /> {t("unShare")}
-                                  </>
-                                }
-                                modalTitle={t("unShare")}
-                                continueLabel={t("confirm")}
-                                cancelLabel={t("cancel")}
-                                component={DropdownItem}
-                                onContinue={() => removeShare(resource)}
-                                isDisabled={
-                                  details[resource._id]?.permissions?.length ===
-                                  0
-                                }
-                              >
-                                {t("unShareAllConfirm")}
-                              </ContinueCancelModal>
-                            </DropdownList>
-                          </Dropdown>
-                        </OverflowMenuItem>
-                      </OverflowMenuGroup>
-                    </OverflowMenuContent>
-                    <OverflowMenuControl>
-                      <Dropdown
-                        popperProps={{
-                          position: "right",
-                        }}
-                        onOpenChange={(isOpen) =>
+                  <span
+                    data-testid={`row[${index}].name`}
+                    className="truncate"
+                  >
+                    {resource.name}
+                  </span>
+                  <a
+                    href={resource.client.baseUrl}
+                    className="inline-flex items-center gap-1 truncate text-foreground hover:underline"
+                  >
+                    <span className="truncate">
+                      {resource.client.name || resource.client.clientId}
+                    </span>
+                    <ExternalLinkIcon className="size-3.5" />
+                  </a>
+                  <div className="flex flex-wrap items-center gap-1">
+                    {isShared ? (
+                      resource.scopes.length > 0 && (
+                        <>
+                          <span className="text-muted-foreground text-xs">
+                            {t("permissions")}:
+                          </span>
+                          {resource.scopes.map((scope) => (
+                            <Badge
+                              key={scope.name}
+                              variant="secondary"
+                              className="font-normal"
+                            >
+                              {scope.displayName || scope.name}
+                            </Badge>
+                          ))}
+                        </>
+                      )
+                    ) : (
+                      <>
+                        {resource.shareRequests &&
+                          resource.shareRequests.length > 0 && (
+                            <PermissionRequest
+                              resource={resource}
+                              refresh={() => refresh()}
+                            />
+                          )}
+                        <ShareTheResource
+                          resource={resource}
+                          permissions={detail?.permissions}
+                          open={detail?.shareDialogOpen || false}
+                          onClose={() => setDetails({})}
+                        />
+                        {detail?.editDialogOpen && (
+                          <EditTheResource
+                            resource={resource}
+                            permissions={detail?.permissions}
+                            onClose={() => setDetails({})}
+                          />
+                        )}
+                      </>
+                    )}
+                  </div>
+                  {!isShared && (
+                    <div className="flex shrink-0 items-center gap-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        data-testid={`share-${resource.name}`}
+                        onClick={() =>
+                          toggleOpen(resource._id, "shareDialogOpen", true)
+                        }
+                      >
+                        <ShareIcon className="me-1.5 size-3.5" />
+                        {t("share")}
+                      </Button>
+                      <DropdownMenu
+                        open={!!detail?.contextOpen}
+                        onOpenChange={(isOpen: boolean) =>
                           toggleOpen(resource._id, "contextOpen", isOpen)
                         }
-                        toggle={(ref) => (
-                          <MenuToggle
-                            variant="plain"
-                            ref={ref}
-                            isExpanded={details[resource._id]?.contextOpen}
-                            onClick={() =>
-                              toggleOpen(
-                                resource._id,
-                                "contextOpen",
-                                !details[resource._id]?.contextOpen,
-                              )
-                            }
-                          >
-                            <EllipsisVIcon />
-                          </MenuToggle>
-                        )}
-                        isOpen={!!details[resource._id]?.contextOpen}
                       >
-                        <DropdownList>
-                          <OverflowMenuDropdownItem
-                            key="share"
-                            isShared
-                            onClick={() =>
-                              toggleOpen(resource._id, "shareDialogOpen", true)
-                            }
+                        <DropdownMenuTrigger asChild>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            aria-label={t("actions")}
                           >
-                            <ShareAltIcon /> {t("share")}
-                          </OverflowMenuDropdownItem>
-                          <OverflowMenuDropdownItem
-                            key="edit"
-                            isShared
+                            <EllipsisIcon className="size-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem
+                            disabled={detail?.permissions?.length === 0}
                             onClick={() =>
                               toggleOpen(resource._id, "editDialogOpen", true)
                             }
-                            isDisabled={
-                              details[resource._id]?.permissions?.length === 0
-                            }
                           >
-                            <EditAltIcon /> {t("edit")}
-                          </OverflowMenuDropdownItem>
+                            <EditIcon className="me-2 size-3.5" />
+                            {t("edit")}
+                          </DropdownMenuItem>
                           <ContinueCancelModal
-                            key="unShare"
                             buttonTitle={
                               <>
-                                <Remove2Icon /> {t("unShare")}
+                                <RemoveIcon className="me-2 size-3.5" />
+                                {t("unShare")}
                               </>
                             }
                             modalTitle={t("unShare")}
                             continueLabel={t("confirm")}
                             cancelLabel={t("cancel")}
-                            component={OverflowMenuDropdownItem}
+                            component={DropdownMenuItem}
                             onContinue={() => removeShare(resource)}
-                            isDisabled={
-                              details[resource._id]?.permissions?.length === 0
-                            }
+                            isDisabled={detail?.permissions?.length === 0}
                           >
                             {t("unShareAllConfirm")}
                           </ContinueCancelModal>
-                        </DropdownList>
-                      </Dropdown>
-                    </OverflowMenuControl>
-                  </OverflowMenu>
-                </Td>
-              )}
-            </Tr>
-            <Tr isExpanded={details[resource._id]?.rowOpen || false}>
-              <Td colSpan={4} textCenter>
-                <ExpandableRowContent>
-                  <SharedWith
-                    permissions={details[resource._id]?.permissions}
-                  />
-                </ExpandableRowContent>
-              </Td>
-            </Tr>
-          </Tbody>
-        ))}
-      </Table>
-    </>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
+                  )}
+                </div>
+                {detail?.rowOpen && (
+                  <div className="border-t bg-muted/30 px-4 py-3 text-sm">
+                    <SharedWith permissions={detail?.permissions} />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 };

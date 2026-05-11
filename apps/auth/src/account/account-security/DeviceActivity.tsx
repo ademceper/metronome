@@ -9,17 +9,19 @@
 
 // @ts-nocheck
 
-import * as React from "react";
 import {
   ContinueCancelModal,
   label,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import { Badge as UIBadge } from "@metronome/ui/components/badge";
-import { Button as UIButton } from "@metronome/ui/components/button";
-import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
-import { cn } from "@metronome/ui/lib/utils";
-import { Desktop as DesktopIcon, DeviceMobile as MobileAltIcon, ArrowsClockwise as SyncAltIcon } from "@phosphor-icons/react"
+import { Badge } from "@metronome/ui/components/badge";
+import { Button } from "@metronome/ui/components/button";
+import { Spinner } from "@metronome/ui/components/spinner";
+import {
+  Desktop as DesktopIcon,
+  DeviceMobile as MobileIcon,
+  ArrowsClockwise as RefreshIcon,
+} from "@phosphor-icons/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -34,104 +36,6 @@ import { Page } from "../components/page/Page";
 import { formatDate } from "../utils/formatDate";
 import { useAccountAlerts } from "../utils/useAccountAlerts";
 import { usePromise } from "../utils/usePromise";
-
-
-const ButtonVariant = {
-  primary: "default",
-  secondary: "secondary",
-  tertiary: "outline",
-  danger: "destructive",
-  warning: "destructive",
-  link: "link",
-  plain: "ghost",
-  control: "outline",
-} as const;
-const Button = ({
-  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
-  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
-  icon, iconPosition, component, to, href, target, rel, children, ...props
-}: any) => {
-  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
-  if (href || to) {
-    return (
-      <a href={href || to} target={target} rel={rel}
-        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
-        {icon && iconPosition !== "right" ? icon : null}
-        {children}
-        {icon && iconPosition === "right" ? icon : null}
-      </a>
-    );
-  }
-  return (
-    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
-      {icon && iconPosition !== "right" ? icon : null}
-      {children}
-      {icon && iconPosition === "right" ? icon : null}
-    </UIButton>
-  );
-};
-const DataList = ({ children, className, ...props }: any) => (
-  <div className={cn("divide-y rounded-md border", className)} {...props}>{children}</div>
-);
-const DataListContent = ({ children, className, ...props }: any) => (
-  <div className={cn("px-3 py-2", className)} {...props}>{children}</div>
-);
-const DataListItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const DataListItemRow = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2 px-3 py-2", className)} {...props}>{children}</div>
-);
-const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
-  <dl className={cn("grid gap-y-2 text-sm",
-    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
-    (props as any).className)} {...props}>
-    {children}
-  </dl>
-);
-const DescriptionListDescription = ({ children, ...props }: any) => (
-  <dd {...props}>{children}</dd>
-);
-const DescriptionListGroup = ({ children, className, ...props }: any) => (
-  <div className={cn("contents", className)} {...props}>{children}</div>
-);
-const DescriptionListTerm = ({ children, ...props }: any) => (
-  <dt className="font-medium text-muted-foreground" {...props}>{children}</dt>
-);
-const Grid = ({ children, className, ...props }: any) => (
-  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
-);
-const GridItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const Label = ({ color, variant, icon, onClose, children, ...props }: any) => (
-  <UIBadge variant="outline" {...props}>
-    {icon}{children}
-    {onClose ? (
-      <button type="button" onClick={onClose} className="ml-1 text-xs" aria-label="close">×</button>
-    ) : null}
-  </UIBadge>
-);
-const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
-const Split = ({ children, className, ...props }: any) => (
-  <div className={cn("flex flex-row gap-2", className)} {...props}>{children}</div>
-);
-const SplitItem = ({ isFilled, children, className, ...props }: any) => (
-  <div className={cn(isFilled && "flex-1", className)} {...props}>{children}</div>
-);
-const TitleSizes = {
-  md: "text-base",
-  lg: "text-lg",
-  xl: "text-xl",
-  "2xl": "text-2xl",
-  "3xl": "text-3xl",
-  "4xl": "text-4xl",
-} as const;
-const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
-  React.createElement(headingLevel, {
-    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
-    ...props,
-  }, children);
 
 export const DeviceActivity = () => {
   const { t } = useTranslation();
@@ -202,153 +106,138 @@ export const DeviceActivity = () => {
     return <Spinner />;
   }
 
+  const showSignOutAll =
+    devices.length > 1 || devices[0].sessions.length > 1;
+
   return (
     <Page
       title={t("deviceActivity")}
       description={t("signedInDevicesExplanation")}
-    >
-      <Split hasGutter className="pf-v5-u-mb-lg">
-        <SplitItem isFilled>
-          <Title headingLevel="h2" size="xl">
-            {t("signedInDevices")}
-          </Title>
-        </SplitItem>
-        <SplitItem>
+      action={
+        <div className="flex items-center gap-2">
           <Button
-            id="refresh-page"
+            type="button"
             variant="link"
-            onClick={() => refresh()}
-            icon={<SyncAltIcon />}
+            className="h-auto px-0"
+            onClick={refresh}
+            id="refresh-page"
           >
+            <RefreshIcon className="me-1.5 size-3.5" />
             {t("refreshPage")}
           </Button>
-
-          {(devices.length > 1 || devices[0].sessions.length > 1) && (
+          {showSignOutAll && (
             <ContinueCancelModal
               buttonTitle={t("signOutAllDevices")}
               modalTitle={t("signOutAllDevices")}
               continueLabel={t("confirm")}
               cancelLabel={t("cancel")}
+              buttonVariant="destructive"
               onContinue={() => signOutAll()}
             >
               {t("signOutAllDevicesWarning")}
             </ContinueCancelModal>
           )}
-        </SplitItem>
-      </Split>
-      <DataList
-        className="signed-in-device-list"
-        aria-label={t("signedInDevices")}
-      >
-        <DataListItem aria-labelledby={`sessions-${key}`}>
+        </div>
+      }
+    >
+      <div className="space-y-3">
+        <h2 className="font-heading font-medium text-lg">
+          {t("signedInDevices")}
+        </h2>
+        <div className="divide-y rounded-md border">
           {devices.map((device) =>
             device.sessions.map((session, index) => (
-              <DataListItemRow key={device.id} data-testid={`row-${index}`}>
-                <DataListContent
-                  aria-label="device-sessions-content"
-                  className="pf-v5-u-flex-grow-1"
-                >
-                  <Grid hasGutter>
-                    <GridItem span={1} rowSpan={2}>
-                      {device.mobile ? <MobileAltIcon /> : <DesktopIcon />}
-                    </GridItem>
-                    <GridItem sm={8} md={9} span={10}>
-                      <span className="pf-v5-u-mr-md session-title">
-                        {device.os.toLowerCase().includes("unknown")
-                          ? t("unknownOperatingSystem")
-                          : device.os}{" "}
-                        {!device.osVersion.toLowerCase().includes("unknown") &&
-                          device.osVersion}{" "}
-                        / {session.browser}
-                      </span>
-                      {session.current && (
-                        <Label color="green">{t("currentSession")}</Label>
-                      )}
-                    </GridItem>
-                    <GridItem
-                      className="pf-v5-u-text-align-right"
-                      sm={3}
-                      md={2}
-                      span={1}
+              <div
+                key={`${device.id}-${session.id ?? index}`}
+                data-testid={`row-${index}`}
+                className="space-y-3 px-4 py-3"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="text-muted-foreground">
+                    {device.mobile ? (
+                      <MobileIcon className="size-5" />
+                    ) : (
+                      <DesktopIcon className="size-5" />
+                    )}
+                  </div>
+                  <div className="flex min-w-0 flex-1 items-center gap-2">
+                    <span className="session-title font-medium text-sm">
+                      {device.os.toLowerCase().includes("unknown")
+                        ? t("unknownOperatingSystem")
+                        : device.os}{" "}
+                      {!device.osVersion.toLowerCase().includes("unknown") &&
+                        device.osVersion}{" "}
+                      / {session.browser}
+                    </span>
+                    {session.current && (
+                      <Badge variant="outline">{t("currentSession")}</Badge>
+                    )}
+                  </div>
+                  {!session.current && (
+                    <ContinueCancelModal
+                      buttonTitle={t("signOut")}
+                      modalTitle={t("signOut")}
+                      continueLabel={t("confirm")}
+                      cancelLabel={t("cancel")}
+                      buttonVariant="secondary"
+                      onContinue={() => signOutSession(session, device)}
                     >
-                      {!session.current && (
-                        <ContinueCancelModal
-                          buttonTitle={t("signOut")}
-                          modalTitle={t("signOut")}
-                          continueLabel={t("confirm")}
-                          cancelLabel={t("cancel")}
-                          buttonVariant="secondary"
-                          onContinue={() => signOutSession(session, device)}
-                        >
-                          {t("signOutWarning")}
-                        </ContinueCancelModal>
+                      {t("signOutWarning")}
+                    </ContinueCancelModal>
+                  )}
+                </div>
+                <dl className="grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2 lg:grid-cols-3">
+                  <div>
+                    <dt className="text-muted-foreground text-xs">
+                      {t("ipAddress")}
+                    </dt>
+                    <dd>{session.ipAddress}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground text-xs">
+                      {t("lastAccessedOn")}
+                    </dt>
+                    <dd>
+                      {formatDate(
+                        new Date(session.lastAccess * 1000),
+                        context.environment.locale,
                       )}
-                    </GridItem>
-                    <GridItem span={11}>
-                      <DescriptionList
-                        className="signed-in-device-grid"
-                        columnModifier={{ sm: "2Col", lg: "3Col" }}
-                        cols={5}
-                        rows={1}
-                      >
-                        <DescriptionListGroup>
-                          <DescriptionListTerm>
-                            {t("ipAddress")}
-                          </DescriptionListTerm>
-                          <DescriptionListDescription>
-                            {session.ipAddress}
-                          </DescriptionListDescription>
-                        </DescriptionListGroup>
-                        <DescriptionListGroup>
-                          <DescriptionListTerm>
-                            {t("lastAccessedOn")}
-                          </DescriptionListTerm>
-                          <DescriptionListDescription>
-                            {formatDate(
-                              new Date(session.lastAccess * 1000),
-                              context.environment.locale,
-                            )}
-                          </DescriptionListDescription>
-                        </DescriptionListGroup>
-                        <DescriptionListGroup>
-                          <DescriptionListTerm>
-                            {t("clients")}
-                          </DescriptionListTerm>
-                          <DescriptionListDescription>
-                            {makeClientsString(session.clients)}
-                          </DescriptionListDescription>
-                        </DescriptionListGroup>
-                        <DescriptionListGroup>
-                          <DescriptionListTerm>
-                            {t("started")}
-                          </DescriptionListTerm>
-                          <DescriptionListDescription>
-                            {formatDate(
-                              new Date(session.started * 1000),
-                              context.environment.locale,
-                            )}
-                          </DescriptionListDescription>
-                        </DescriptionListGroup>
-                        <DescriptionListGroup>
-                          <DescriptionListTerm>
-                            {t("expires")}
-                          </DescriptionListTerm>
-                          <DescriptionListDescription>
-                            {formatDate(
-                              new Date(session.expires * 1000),
-                              context.environment.locale,
-                            )}
-                          </DescriptionListDescription>
-                        </DescriptionListGroup>
-                      </DescriptionList>
-                    </GridItem>
-                  </Grid>
-                </DataListContent>
-              </DataListItemRow>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground text-xs">
+                      {t("clients")}
+                    </dt>
+                    <dd>{makeClientsString(session.clients)}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground text-xs">
+                      {t("started")}
+                    </dt>
+                    <dd>
+                      {formatDate(
+                        new Date(session.started * 1000),
+                        context.environment.locale,
+                      )}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground text-xs">
+                      {t("expires")}
+                    </dt>
+                    <dd>
+                      {formatDate(
+                        new Date(session.expires * 1000),
+                        context.environment.locale,
+                      )}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
             )),
           )}
-        </DataListItem>
-      </DataList>
+        </div>
+      </div>
     </Page>
   );
 };

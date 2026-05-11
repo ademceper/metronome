@@ -11,39 +11,40 @@
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@metronome/ui/components/tabs";
 import { ResourcesTab } from "./ResourcesTab";
 import { Page } from "../components/page/Page";
-import { Tabs, Tab, TabTitleText } from "../../shared/pf-compat"
-
-
 
 export const Resources = () => {
   const { t } = useTranslation();
-  const [activeTabKey, setActiveTabKey] = useState(0);
+  const [activeTab, setActiveTab] = useState("my");
 
   return (
     <Page title={t("resources")} description={t("resourceIntroMessage")}>
       <Tabs
-        activeKey={activeTabKey}
-        onSelect={(_, key) => setActiveTabKey(key as number)}
-        mountOnEnter
-        unmountOnExit
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="space-y-4"
       >
-        <Tab
-          data-testid="myResources"
-          eventKey={0}
-          title={<TabTitleText>{t("myResources")}</TabTitleText>}
-        >
+        <TabsList>
+          <TabsTrigger value="my" data-testid="myResources">
+            {t("myResources")}
+          </TabsTrigger>
+          <TabsTrigger value="shared" data-testid="sharedWithMe">
+            {t("sharedWithMe")}
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="my">
           <ResourcesTab />
-        </Tab>
-        <Tab
-          data-testid="sharedWithMe"
-          eventKey={1}
-          title={<TabTitleText>{t("sharedWithMe")}</TabTitleText>}
-        >
+        </TabsContent>
+        <TabsContent value="shared">
           <ResourcesTab isShared />
-        </Tab>
+        </TabsContent>
       </Tabs>
     </Page>
   );

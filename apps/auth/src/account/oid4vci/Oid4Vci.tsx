@@ -11,66 +11,27 @@
 
 import * as React from "react";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import { Button as UIButton } from "@metronome/ui/components/button";
-import { Select as UISelect, SelectContent as UISelectContent, SelectItem as UISelectItem, SelectTrigger as UISelectTrigger, SelectValue as UISelectValue } from "@metronome/ui/components/select";
-import { cn } from "@metronome/ui/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@metronome/ui/components/select";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getIssuer, requestVCOffer } from "../api";
 import { CredentialsIssuer } from "../api/representations";
 import { Page } from "../components/page/Page";
 import { usePromise } from "../utils/usePromise";
-import { Select, SelectOption } from "../../shared/pf-compat"
-
-
-const ActionList = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2", className)} {...props}>{children}</div>
-);
-const ActionListItem = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-const List = ({ variant, children, className, ...props }: any) => (
-  <ul className={cn("space-y-1 text-sm", variant === "inline" ? "flex flex-wrap gap-2" : "list-disc pl-5", className)} {...props}>
-    {children}
-  </ul>
-);
-const ListItem = ({ children, ...props }: any) => <li {...props}>{children}</li>;
-const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
-  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
-    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
-      {children}
-    </UIButton>
-  ),
-);
-(MenuToggle as any).displayName = "MenuToggle";
-const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
-  <section className={cn("px-4 py-3",
-    variant === "light" && "bg-card",
-    isFilled && "flex-1",
-    hasOverflowScroll && "overflow-auto",
-    className)} {...props}>{children}</section>
-);
-const PageSectionVariants = {
-  default: "default",
-  light: "light",
-  dark: "dark",
-  darker: "darker",
-} as const;
-const SelectList = ({ children, className, ...props }: any) => (
-  <div className={className} {...props}>{children}</div>
-);
-type MenuToggleElement = HTMLButtonElement;
 
 export const Oid4Vci = () => {
   const context = useEnvironment();
-
   const { t } = useTranslation();
-
   const initialSelected = t("verifiableCredentialsSelectionDefault");
 
   const [selected, setSelected] = useState<string>(initialSelected);
   const [qrCode, setQrCode] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [offerQRVisible, setOfferQRVisible] = useState<boolean>(false);
   const [credentialsIssuer, setCredentialsIssuer] =
     useState<CredentialsIssuer>();
@@ -93,7 +54,6 @@ export const Oid4Vci = () => {
 
   useEffect(() => {
     if (initialSelected !== selected && credentialsIssuer !== undefined) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       requestVCOffer(context, selectOptions[selected], credentialsIssuer).then(
         (blob) => {
           const reader = new FileReader();
@@ -103,7 +63,6 @@ export const Oid4Vci = () => {
             if (typeof result === "string") {
               setQrCode(result);
               setOfferQRVisible(true);
-              setIsOpen(false);
             }
           };
         },
@@ -111,67 +70,45 @@ export const Oid4Vci = () => {
     }
   }, [selected]);
 
-  const onToggleClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
-    <MenuToggle
-      ref={toggleRef}
-      onClick={onToggleClick}
-      isExpanded={isOpen}
-      data-testid="menu-toggle"
-    >
-      {selected}
-    </MenuToggle>
-  );
-
   return (
     <Page
       title={t("verifiableCredentialsTitle")}
       description={t("verifiableCredentialsDescription")}
     >
-      <PageSection isFilled variant={PageSectionVariants.light}>
-        <List isPlain>
-          <ListItem>
-            <Select
-              data-testid="credential-select"
-              onOpenChange={(isOpen) => setIsOpen(isOpen)}
-              onSelect={(_event, val) => setSelected(val as string)}
-              isOpen={isOpen}
-              selected={selected}
-              toggle={toggle}
-              shouldFocusToggleOnSelect={true}
-            >
-              <SelectList>
-                {dropdownItems.map((option) => (
-                  <SelectOption
-                    key={option}
-                    value={option}
-                    data-testid={option}
-                  >
-                    {option}
-                  </SelectOption>
-                ))}
-              </SelectList>
-            </Select>
-          </ListItem>
-          <ListItem>
-            <ActionList>
-              {offerQRVisible && (
-                <ActionListItem>
-                  <img
-                    width="500"
-                    height="500"
-                    src={qrCode}
-                    data-testid="qr-code"
-                  />
-                </ActionListItem>
-              )}
-            </ActionList>
-          </ListItem>
-        </List>
-      </PageSection>
+      <div className="space-y-6">
+        <Select value={selected} onValueChange={setSelected}>
+          <SelectTrigger
+            data-testid="menu-toggle"
+            className="w-full max-w-md"
+          >
+            <SelectValue placeholder={initialSelected} />
+          </SelectTrigger>
+          <SelectContent>
+            {dropdownItems.map((option) => (
+              <SelectItem
+                key={option}
+                value={option}
+                data-testid={option}
+              >
+                {option}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {offerQRVisible && (
+          <div className="flex justify-center">
+            <img
+              width="500"
+              height="500"
+              src={qrCode}
+              alt="credential offer QR code"
+              data-testid="qr-code"
+              className="rounded-md border"
+            />
+          </div>
+        )}
+      </div>
     </Page>
   );
 };
