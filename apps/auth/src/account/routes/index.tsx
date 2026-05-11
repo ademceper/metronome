@@ -151,7 +151,7 @@ function PersonalInfo() {
       await context.keycloak.updateToken();
       addAlert(t("accountUpdatedMessage"));
     } catch (error) {
-      addAlert(t("accountUpdatedError"), AlertVariant.danger);
+      addAlert(t("accountUpdatedError"), "danger");
 
       setUserProfileServerError(
         { responseData: { errors: error as any } },

@@ -10,6 +10,7 @@
 // @ts-nocheck
 
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
+import { Toaster } from "@metronome/ui/components/sonner";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { type AccountEnvironment } from "..";
@@ -30,5 +31,10 @@ export const Root = () => {
     });
   }, [context.environment.baseUrl]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster position="top-mid" />
+    </>
+  );
 };
