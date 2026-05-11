@@ -5,14 +5,9 @@
  * $ npx keycloakify own --path "account/components/page/Page.tsx" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 import * as React from "react";
 import { cn } from "@metronome/ui/lib/utils";
 import { PropsWithChildren } from "react";
-
 
 const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
   <section className={cn("px-4 py-3",

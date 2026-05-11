@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import {
   UserProfileFields,
   beerify,
@@ -31,7 +28,6 @@ import { Page } from "../components/Page";
 import { type AccountEnvironment } from "..";
 import type { TFuncKey } from "../i18n/types";
 import { useAccountAlerts } from "../lib/useAccountAlerts";
-
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
@@ -168,8 +164,8 @@ function PersonalInfo() {
 
   const allFieldsReadOnly = () =>
     userProfileMetadata?.attributes
-      ?.map((a) => a.readOnly)
-      .reduce((p, c) => p && c, true);
+      ?.map((a: any) => a.readOnly)
+      .reduce((p: boolean, c: boolean) => p && c, true);
 
   const {
     updateEmailFeatureEnabled,

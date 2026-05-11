@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/root/Header.tsx" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import {
   Avatar,

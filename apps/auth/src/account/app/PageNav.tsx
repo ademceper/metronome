@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/root/PageNav.tsx" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import { cn } from "@metronome/ui/lib/utils";
 import { Link, useRouterState } from "@tanstack/react-router";

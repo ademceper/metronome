@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import {
   SelectControl,
   TextControl,
@@ -16,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import { updatePermissions } from "../../lib/api/resources";
 import type { Permission, Resource } from "../../lib/api/representations";
 import { useAccountAlerts } from "../../lib/useAccountAlerts";
-
 
 const ButtonVariant = {
   primary: "default",

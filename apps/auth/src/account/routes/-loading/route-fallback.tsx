@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { Skeleton } from "@metronome/ui/components/skeleton";
 
 export function RouteFallback() {

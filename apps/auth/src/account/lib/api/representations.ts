@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/api/representations.ts" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 // Generated using typescript-generator version 2.37.1128 on 2022-09-16 15:57:05.
 
 export interface AccountLinkUriRepresentation {

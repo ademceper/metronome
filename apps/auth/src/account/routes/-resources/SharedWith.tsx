@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { Trans } from "react-i18next";
 
 import { Permission } from "../../lib/api/representations";

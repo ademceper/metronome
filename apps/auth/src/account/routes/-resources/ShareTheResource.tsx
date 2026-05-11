@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import {
   FormErrorText,
   SelectControl,
@@ -24,7 +21,6 @@ import { updateRequest } from "../../lib/api/resources";
 import { Permission, Resource } from "../../lib/api/representations";
 import { useAccountAlerts } from "../../lib/useAccountAlerts";
 import { SharedWith } from "./SharedWith";
-
 
 const ButtonVariant = {
   primary: "default",

@@ -1,5 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { ErrorPage } from "../../shared/keycloak-ui-shared";
@@ -30,5 +28,5 @@ const AccountLayout = () => (
 export const Route = createRootRoute({
   component: AccountLayout,
   errorComponent: ErrorPage,
-  notFoundComponent: ErrorPage,
+  notFoundComponent: () => <ErrorPage />,
 });

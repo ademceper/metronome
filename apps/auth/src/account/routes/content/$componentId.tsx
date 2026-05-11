@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { Suspense, lazy, useMemo } from "react";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";

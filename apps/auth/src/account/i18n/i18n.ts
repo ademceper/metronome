@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/i18n/i18n.ts" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 import { LanguageDetectorModule, createInstance } from "i18next";
 import FetchBackend from "i18next-fetch-backend";
 import { initReactI18next } from "react-i18next";

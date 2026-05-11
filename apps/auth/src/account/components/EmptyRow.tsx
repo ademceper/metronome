@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/components/datalist/EmptyRow.tsx" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 type EmptyRowProps = {
   message: string;
 };

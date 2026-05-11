@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/api/parse-links.ts" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 export type Links = {
   prev?: Record<string, string>;
   next?: Record<string, string>;

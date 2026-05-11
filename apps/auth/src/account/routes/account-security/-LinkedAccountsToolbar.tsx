@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@metronome/ui/components/button";

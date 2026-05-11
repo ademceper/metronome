@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { Button } from "@metronome/ui/components/button";
 import {
   Info as InfoAltIcon,
@@ -11,7 +8,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SigningInLoading } from "../-loading/account-security/signing-in";
 import { Fragment } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import { useEnvironment } from "../../../shared/keycloak-ui-shared";
+import {
+  type KeycloakContext,
+  useEnvironment,
+} from "../../../shared/keycloak-ui-shared";
 import { getCredentials } from "../../lib/api/methods";
 import { CredentialMetadataRepresentation } from "../../lib/api/representations";
 import { Page } from "../../components/Page";
@@ -41,7 +41,7 @@ function SigningIn() {
 
   const renderMetadata = (
     credMetadata: CredentialMetadataRepresentation,
-    context: AccountEnvironment,
+    context: KeycloakContext<AccountEnvironment>,
   ) => {
     const credential = credMetadata.credential;
     return (

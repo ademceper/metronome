@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/root/Root.tsx" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import { Toaster } from "@metronome/ui/components/sonner";
 import {

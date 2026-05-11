@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/i18next.d.ts" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 // https://www.i18next.com/overview/typescript
 import "i18next";
 

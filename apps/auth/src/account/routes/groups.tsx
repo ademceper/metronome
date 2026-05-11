@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { Checkbox } from "@metronome/ui/components/checkbox";
 import { Label } from "@metronome/ui/components/label";
 import { useQuery } from "@tanstack/react-query";

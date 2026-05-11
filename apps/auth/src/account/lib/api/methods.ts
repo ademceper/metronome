@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/api/methods.ts" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 import {
   BaseEnvironment,
   type KeycloakContext,

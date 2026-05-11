@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import {
   ErrorBoundaryProvider,
   ListEmptyState,

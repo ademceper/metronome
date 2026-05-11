@@ -5,8 +5,4 @@
  * $ npx keycloakify own --path "account/i18n/index.ts" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 export * from "./i18n";

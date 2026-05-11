@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

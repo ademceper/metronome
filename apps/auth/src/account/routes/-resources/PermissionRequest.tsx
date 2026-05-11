@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import * as React from "react";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
@@ -22,7 +19,6 @@ import { useTranslation } from "react-i18next";
 import { fetchPermission, updateRequest } from "../../lib/api/resources";
 import { Permission, Resource } from "../../lib/api/representations";
 import { useAccountAlerts } from "../../lib/useAccountAlerts";
-
 
 const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
 const ButtonVariant = {

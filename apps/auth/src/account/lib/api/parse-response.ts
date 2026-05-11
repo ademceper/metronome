@@ -5,10 +5,6 @@
  * $ npx keycloakify own --path "account/api/parse-response.ts" --revert
  */
 
-/* eslint-disable */
-
-// @ts-nocheck
-
 import {
   getNetworkErrorMessage,
   getNetworkErrorDescription,

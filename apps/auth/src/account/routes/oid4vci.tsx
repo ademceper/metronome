@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import * as React from "react";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import {

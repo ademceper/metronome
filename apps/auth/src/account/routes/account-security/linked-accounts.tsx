@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";

@@ -1,6 +1,3 @@
-/* eslint-disable */
-// @ts-nocheck
-
 import { Skeleton } from "@metronome/ui/components/skeleton";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
