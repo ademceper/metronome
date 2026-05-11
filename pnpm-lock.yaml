@@ -352,9 +352,9 @@ importers:
 
   packages/auth:
     dependencies:
-      oidc-client-ts:
-        specifier: ^3.4.1
-        version: 3.5.0
+      oidc-spa:
+        specifier: ~10.0.5
+        version: 10.0.9(@tanstack/react-router@1.169.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)(rxjs@6.6.7)
     devDependencies:
       '@metronome/ts-cfg':
         specifier: workspace:*
@@ -6796,10 +6796,6 @@ packages:
   jszip@3.10.1:
     resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
 
-  jwt-decode@4.0.0:
-    resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
-    engines: {node: '>=18'}
-
   keycloakify@11.15.3:
     resolution: {integrity: sha512-iB8kQELuZ3eqAJsKht3974VZQWss0BydzvELS3uefNKRMZA8ZBq3hsGelL8t3Yt0zZ7wS+Ijavi5VgC9poVcvw==}
     hasBin: true
@@ -7518,10 +7514,6 @@ packages:
   object-treeify@1.1.33:
     resolution: {integrity: sha512-EFVjAYfzWqWsBMRHPMAXLCDIJnpMhdWAqR7xG6M6a2cs6PMFpl/+Z20w9zDW4vkxOFfddegBKq9Rehd0bxWE7A==}
     engines: {node: '>= 10'}
-
-  oidc-client-ts@3.5.0:
-    resolution: {integrity: sha512-l2q8l9CTCTOlbX+AnK4p3M+4CEpKpyQhle6blQkdFhm0IsBqsxm15bYaSa11G7pWdsYr6epdsRZxJpCyCRbT8A==}
-    engines: {node: '>=18'}
 
   oidc-spa@10.0.9:
     resolution: {integrity: sha512-UZm66cPuzDK3l4sZvaa9Dgkl2g2P88IjT3fIeCwHwk6dM9IXapOCBuSuBqaMzps87JPQZJY0py+Q3xxYBAxieQ==}
@@ -16401,8 +16393,6 @@ snapshots:
       readable-stream: 2.3.8
       setimmediate: 1.0.5
 
-  jwt-decode@4.0.0: {}
-
   keycloakify@11.15.3:
     dependencies:
       tsafe: 1.8.12
@@ -17152,10 +17142,6 @@ snapshots:
   object-inspect@1.13.4: {}
 
   object-treeify@1.1.33: {}
-
-  oidc-client-ts@3.5.0:
-    dependencies:
-      jwt-decode: 4.0.0
 
   oidc-spa@10.0.9(@tanstack/react-router@1.169.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)(rxjs@6.6.7):
     optionalDependencies:

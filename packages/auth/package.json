@@ -6,9 +6,6 @@
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "oidc-client-ts": "^3.4.1"
-  },
   "peerDependencies": {
     "react": "^19.0.0"
   },
@@ -19,8 +16,9 @@
     "typescript": "^5.9.3"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./client": "./src/client.ts",
-    "./types": "./src/types.ts"
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "oidc-spa": "~10.0.5"
   }
 }
