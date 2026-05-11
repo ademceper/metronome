@@ -2,12 +2,10 @@
 // @ts-nocheck
 
 import { createFileRoute, useParams } from "@tanstack/react-router";
-import { Suspense, lazy, useMemo, useState } from "react";
+import { Suspense, lazy, useMemo } from "react";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
-import { MenuItem } from "../../app/PageNav";
+import { MenuItem, navItems } from "../../app/PageNav";
 import { joinPath } from "../../lib/joinPath";
-import { usePromise } from "../../lib/usePromise";
-import fetchContentJson from "../../nav/fetchContent";
 import { RouteFallback } from "../-loading/route-fallback";
 
 export const Route = createFileRoute("/content/$componentId")({
@@ -34,17 +32,13 @@ function findComponent(
 }
 
 function ContentComponent() {
-  const context = useEnvironment();
-
-  const [content, setContent] = useState<MenuItem[]>();
   const { componentId } = useParams({ strict: false }) as {
     componentId?: string;
   };
 
-  usePromise((signal) => fetchContentJson({ signal, context }), setContent);
   const modulePath = useMemo(
-    () => findComponent(content || [], componentId!),
-    [content, componentId],
+    () => findComponent(navItems, componentId!),
+    [componentId],
   );
 
   return modulePath && <Component modulePath={modulePath} />;

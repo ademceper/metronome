@@ -16,10 +16,8 @@ import { CaretRightIcon } from "@phosphor-icons/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import fetchContentJson from "../nav/fetchContent";
 import type { TFuncKey } from "../i18n/types";
 import type { AccountEnvironment, Feature } from "..";
-import { usePromise } from "../lib/usePromise";
 
 type RootMenuItem = {
   id?: string;
@@ -36,6 +34,43 @@ type MenuItemWithChildren = {
 };
 
 export type MenuItem = RootMenuItem | MenuItemWithChildren;
+
+export const navItems: MenuItem[] = [
+  { label: "personalInfo", path: "" },
+  {
+    label: "accountSecurity",
+    children: [
+      { label: "signingIn", path: "account-security/signing-in" },
+      { label: "deviceActivity", path: "account-security/device-activity" },
+      {
+        label: "linkedAccounts",
+        path: "account-security/linked-accounts",
+        isVisible: "isLinkedAccountsEnabled",
+      },
+    ],
+  },
+  { label: "applications", path: "applications" },
+  {
+    label: "groups",
+    path: "groups",
+    isVisible: "isViewGroupsEnabled",
+  },
+  {
+    label: "organizations",
+    path: "organizations",
+    isVisible: "isViewOrganizationsEnabled",
+  },
+  {
+    label: "resources",
+    path: "resources",
+    isVisible: "isMyResourcesEnabled",
+  },
+  {
+    label: "oid4vci",
+    path: "oid4vci",
+    isVisible: "isOid4VciEnabled",
+  },
+];
 
 const normalize = (path: string) => "/" + path.replace(/^\/+|\/+$/g, "");
 
@@ -124,13 +159,9 @@ const Group = ({ menuItem }: { menuItem: MenuItemWithChildren }) => {
 };
 
 export const PageNav = () => {
-  const [menuItems, setMenuItems] = useState<MenuItem[]>();
   const context = useEnvironment<AccountEnvironment>();
-  usePromise((signal) => fetchContentJson({ signal, context }), setMenuItems);
 
-  if (!menuItems) return null;
-
-  const visible = menuItems.filter((m) =>
+  const visible = navItems.filter((m) =>
     m.isVisible ? context.environment.features[m.isVisible] : true,
   );
 
