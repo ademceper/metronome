@@ -1,19 +1,11 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-account-ui version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "account/account-security/AccountRow.tsx" --revert
- */
-
 /* eslint-disable */
-
 // @ts-nocheck
 
 import {
   IconMapper,
   label,
   useEnvironment,
-} from "../../shared/keycloak-ui-shared";
+} from "../../../shared/keycloak-ui-shared";
 import { Badge } from "@metronome/ui/components/badge";
 import { Button } from "@metronome/ui/components/button";
 import {
@@ -22,9 +14,9 @@ import {
 } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
 
-import { unLinkAccount } from "../api/methods";
-import { LinkedAccountRepresentation } from "../api/representations";
-import { useAccountAlerts } from "../utils/useAccountAlerts";
+import { unLinkAccount } from "../../api/methods";
+import { LinkedAccountRepresentation } from "../../api/representations";
+import { useAccountAlerts } from "../../utils/useAccountAlerts";
 
 type AccountRowProps = {
   account: LinkedAccountRepresentation;

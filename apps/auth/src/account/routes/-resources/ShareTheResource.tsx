@@ -1,19 +1,11 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-account-ui version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "account/resources/ShareTheResource.tsx" --revert
- */
-
 /* eslint-disable */
-
 // @ts-nocheck
 
 import {
   FormErrorText,
   SelectControl,
   useEnvironment,
-} from "../../shared/keycloak-ui-shared";
+} from "../../../shared/keycloak-ui-shared";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
@@ -28,9 +20,9 @@ import {
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { updateRequest } from "../api";
-import { Permission, Resource } from "../api/representations";
-import { useAccountAlerts } from "../utils/useAccountAlerts";
+import { updateRequest } from "../../api";
+import { Permission, Resource } from "../../api/representations";
+import { useAccountAlerts } from "../../utils/useAccountAlerts";
 import { SharedWith } from "./SharedWith";
 
 

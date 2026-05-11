@@ -1,21 +1,13 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-account-ui version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "account/resources/PermissionRequest.tsx" --revert
- */
-
 /* eslint-disable */
-
 // @ts-nocheck
 
 import * as React from "react";
-import { useEnvironment } from "../../shared/keycloak-ui-shared";
+import { useEnvironment } from "../../../shared/keycloak-ui-shared";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { cn } from "@metronome/ui/lib/utils";
-import { UserCheck as UserCheckIcon } from "@phosphor-icons/react"
+import { UserCheck as UserCheckIcon } from "@phosphor-icons/react";
 import {
   Table,
   TableBody as Tbody,
@@ -27,9 +19,9 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { fetchPermission, updateRequest } from "../api";
-import { Permission, Resource } from "../api/representations";
-import { useAccountAlerts } from "../utils/useAccountAlerts";
+import { fetchPermission, updateRequest } from "../../api";
+import { Permission, Resource } from "../../api/representations";
+import { useAccountAlerts } from "../../utils/useAccountAlerts";
 
 
 const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
@@ -203,7 +195,7 @@ export const PermissionRequest = ({
                     onClick={async () => {
                       await approveDeny(shareRequest);
                     }}
-                    className="pf-v5-u-ml-sm"
+                    className="ml-2"
                     variant="danger"
                   >
                     {t("deny")}

@@ -1,19 +1,11 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-account-ui version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "account/resources/EditTheResource.tsx" --revert
- */
-
 /* eslint-disable */
-
 // @ts-nocheck
 
 import {
   SelectControl,
   TextControl,
   useEnvironment,
-} from "../../shared/keycloak-ui-shared";
+} from "../../../shared/keycloak-ui-shared";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { cn } from "@metronome/ui/lib/utils";
@@ -21,9 +13,9 @@ import { Fragment, useEffect } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { updatePermissions } from "../api";
-import type { Permission, Resource } from "../api/representations";
-import { useAccountAlerts } from "../utils/useAccountAlerts";
+import { updatePermissions } from "../../api";
+import type { Permission, Resource } from "../../api/representations";
+import { useAccountAlerts } from "../../utils/useAccountAlerts";
 
 
 const ButtonVariant = {

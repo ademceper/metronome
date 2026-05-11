@@ -1,18 +1,10 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-account-ui version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "account/resources/ResourcesTab.tsx" --revert
- */
-
 /* eslint-disable */
-
 // @ts-nocheck
 
 import {
   ContinueCancelModal,
   useEnvironment,
-} from "../../shared/keycloak-ui-shared";
+} from "../../../shared/keycloak-ui-shared";
 import { Badge } from "@metronome/ui/components/badge";
 import { Button } from "@metronome/ui/components/button";
 import {
@@ -33,12 +25,12 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { fetchPermission, fetchResources, updatePermissions } from "../api";
-import { getPermissionRequests } from "../api/methods";
-import { Links } from "../api/parse-links";
-import { Permission, Resource } from "../api/representations";
-import { useAccountAlerts } from "../utils/useAccountAlerts";
-import { usePromise } from "../utils/usePromise";
+import { fetchPermission, fetchResources, updatePermissions } from "../../api";
+import { getPermissionRequests } from "../../api/methods";
+import { Links } from "../../api/parse-links";
+import { Permission, Resource } from "../../api/representations";
+import { useAccountAlerts } from "../../utils/useAccountAlerts";
+import { usePromise } from "../../utils/usePromise";
 import { EditTheResource } from "./EditTheResource";
 import { PermissionRequest } from "./PermissionRequest";
 import { ResourceToolbar } from "./ResourceToolbar";
