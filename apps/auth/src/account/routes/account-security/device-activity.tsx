@@ -8,13 +8,13 @@ import {
 } from "../../../shared/keycloak-ui-shared";
 import { Badge } from "@metronome/ui/components/badge";
 import { Button } from "@metronome/ui/components/button";
-import { Spinner } from "@metronome/ui/components/spinner";
 import {
   Desktop as DesktopIcon,
   DeviceMobile as MobileIcon,
   ArrowsClockwise as RefreshIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
+import { DeviceActivityLoading } from "../-loading/account-security/device-activity";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -100,7 +100,7 @@ function DeviceActivity() {
   };
 
   if (!devices) {
-    return <Spinner />;
+    return <DeviceActivityLoading />;
   }
 
   const showSignOutAll =

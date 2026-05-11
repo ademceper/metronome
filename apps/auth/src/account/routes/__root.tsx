@@ -1,13 +1,11 @@
 /* eslint-disable */
 // @ts-nocheck
-import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { ErrorPage } from "../../shared/keycloak-ui-shared";
 import { Header } from "../app/Header";
 import { PageNav } from "../app/PageNav";
-
-const Spinner = (props: any) => <UISpinner {...props} />;
+import { RouteFallback } from "./-loading/route-fallback";
 
 const AccountLayout = () => (
   <div className="flex min-h-svh flex-col">
@@ -20,7 +18,7 @@ const AccountLayout = () => (
           </div>
         </aside>
         <main className="min-w-0 md:ps-8">
-          <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<RouteFallback />}>
             <Outlet />
           </Suspense>
         </main>

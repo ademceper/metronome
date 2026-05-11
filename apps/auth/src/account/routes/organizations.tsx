@@ -4,12 +4,12 @@
 import OrganizationRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationRepresentation";
 import {
   ErrorBoundaryProvider,
-  KeycloakSpinner,
   ListEmptyState,
   OrganizationTable,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
 import { createFileRoute } from "@tanstack/react-router";
+import { OrganizationsLoading } from "./-loading/organizations";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AccountEnvironment } from "..";
@@ -33,7 +33,7 @@ function Organizations() {
   );
 
   if (!userOrgs) {
-    return <KeycloakSpinner />;
+    return <OrganizationsLoading />;
   }
 
   return (

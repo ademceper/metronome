@@ -11,10 +11,10 @@ import {
 import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
-import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { cn } from "@metronome/ui/lib/utils";
 import { ArrowSquareOut as ExternalLinkSquareAltIcon } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
+import { PersonalInfoLoading } from "./-loading/personal-info";
 import { TFunction } from "i18next";
 import { useState } from "react";
 import { ErrorOption, useForm } from "react-hook-form";
@@ -102,7 +102,6 @@ const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed
 const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
   <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
 );
-const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 export const Route = createFileRoute("/")({
   component: PersonalInfo,
@@ -164,7 +163,7 @@ function PersonalInfo() {
   };
 
   if (!userProfileMetadata) {
-    return <Spinner />;
+    return <PersonalInfoLoading />;
   }
 
   const allFieldsReadOnly = () =>

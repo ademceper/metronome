@@ -1,7 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { Suspense, lazy, useMemo, useState } from "react";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
@@ -9,12 +8,11 @@ import { MenuItem } from "../../app/PageNav";
 import { joinPath } from "../../lib/joinPath";
 import { usePromise } from "../../lib/usePromise";
 import fetchContentJson from "../../nav/fetchContent";
+import { RouteFallback } from "../-loading/route-fallback";
 
 export const Route = createFileRoute("/content/$componentId")({
   component: ContentComponent,
 });
-
-const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 function findComponent(
   content: MenuItem[],
@@ -64,7 +62,7 @@ const Component = ({ modulePath }: ComponentProps) => {
       import(/* @vite-ignore */ joinPath(environment.resourceUrl, modulePath)),
   );
   return (
-    <Suspense fallback={<Spinner />}>
+    <Suspense fallback={<RouteFallback />}>
       <Element />
     </Suspense>
   );

@@ -13,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@metronome/ui/components/dropdown-menu";
-import { Spinner } from "@metronome/ui/components/spinner";
+import { ResourcesTabLoading } from "../-loading/resources";
 import {
   PencilSimple as EditIcon,
   DotsThreeVertical as EllipsisIcon,
@@ -93,7 +93,7 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
   );
 
   if (!resources) {
-    return <Spinner />;
+    return <ResourcesTabLoading />;
   }
 
   const fetchPermissions = async (id: string) => {

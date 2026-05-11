@@ -2,12 +2,12 @@
 // @ts-nocheck
 
 import { Button } from "@metronome/ui/components/button";
-import { Spinner } from "@metronome/ui/components/spinner";
 import {
   Info as InfoAltIcon,
   Warning as ExclamationTriangleIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
+import { SigningInLoading } from "../-loading/account-security/signing-in";
 import { Fragment, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
@@ -40,7 +40,7 @@ function SigningIn() {
   );
 
   if (!credentials) {
-    return <Spinner />;
+    return <SigningInLoading />;
   }
 
   const categories = [...new Set(credentials.map((c) => c.category))];

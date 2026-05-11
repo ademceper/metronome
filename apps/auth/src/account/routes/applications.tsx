@@ -7,7 +7,6 @@ import {
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
 import { Button } from "@metronome/ui/components/button";
-import { Spinner } from "@metronome/ui/components/spinner";
 import {
   Check as CheckIcon,
   ArrowSquareOut as ExternalLinkIcon,
@@ -15,6 +14,7 @@ import {
   CaretRight as CaretIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
+import { ApplicationsLoading } from "./-loading/applications";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -69,7 +69,7 @@ function Applications() {
   };
 
   if (!applications) {
-    return <Spinner />;
+    return <ApplicationsLoading />;
   }
 
   return (
