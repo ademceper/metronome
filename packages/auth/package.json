@@ -6,6 +6,11 @@
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@metronome/ui": "workspace:*",
+    "@phosphor-icons/react": "^2.1.10",
+    "oidc-spa": "~10.0.5"
+  },
   "peerDependencies": {
     "react": "^19.0.0"
   },
@@ -17,8 +22,5 @@
   },
   "exports": {
     ".": "./src/index.ts"
-  },
-  "dependencies": {
-    "oidc-spa": "~10.0.5"
   }
 }

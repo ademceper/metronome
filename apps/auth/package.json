@@ -20,6 +20,7 @@
     "@keycloakify/keycloak-account-ui": "~260601.0.0",
     "@keycloakify/keycloak-admin-ui": "~260601.0.0",
     "@keycloakify/keycloak-ui-shared": "~260601.0.0",
+    "@metronome/auth": "workspace:^",
     "@metronome/ui": "workspace:*",
     "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-query": "^5.100.10",

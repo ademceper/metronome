@@ -1,206 +1,158 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-ui-shared version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "shared/keycloak-ui-shared/masthead/Masthead.tsx" --revert
- */
-
-/* eslint-disable */
-
-// @ts-nocheck
-
-import * as React from "react";
-import { Avatar as UIAvatar, AvatarFallback as UIAvatarFallback, AvatarImage as UIAvatarImage } from "@metronome/ui/components/avatar";
-import { Button as UIButton } from "@metronome/ui/components/button";
-import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
-import { cn } from "@metronome/ui/lib/utils";
+import { Profile } from "@metronome/auth"
+import { Button as UIButton } from "@metronome/ui/components/button"
+import { DropdownMenuItem } from "@metronome/ui/components/dropdown-menu"
+import { cn } from "@metronome/ui/lib/utils"
 import { List as BarsIcon } from "@phosphor-icons/react"
-import { TFunction } from "i18next";
-import type { Keycloak, KeycloakTokenParsed } from "oidc-spa/keycloak-js";
-import { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
-import { DefaultAvatar } from "./DefaultAvatar";
-import { KeycloakDropdown } from "./KeycloakDropdown";
+import type { TFunction } from "i18next"
+import type { Keycloak, KeycloakTokenParsed } from "oidc-spa/keycloak-js"
+import type { ReactNode } from "react"
+import { useTranslation } from "react-i18next"
 
-
-const Avatar = ({ src, alt, ...props }: any) => (
-  <UIAvatar {...props}>
-    {src ? <UIAvatarImage src={src} alt={alt} /> : null}
-    <UIAvatarFallback>{(alt ?? "?").slice(0, 1)}</UIAvatarFallback>
-  </UIAvatar>
-);
-const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (
-  <UIDropdownMenuItem onClick={onClick} disabled={isDisabled ?? isAriaDisabled} {...props}>
-    {children}
-    {description ? <span className="text-muted-foreground text-xs">{description}</span> : null}
-  </UIDropdownMenuItem>
-);
 const Masthead = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2 border-b px-3 py-2", className)} {...props}>{children}</div>
-);
+  <div
+    className={cn("flex items-center gap-2 border-b px-3 py-2", className)}
+    {...props}
+  >
+    {children}
+  </div>
+)
 const MastheadBrand = ({ children, ...props }: any) => (
-  <div className="flex items-center gap-2 font-medium" {...props}>{children}</div>
-);
+  <div className="flex items-center gap-2 font-medium" {...props}>
+    {children}
+  </div>
+)
 const MastheadContent = ({ children, className, ...props }: any) => (
-  <div className={cn("flex flex-1 items-center justify-end gap-2", className)} {...props}>{children}</div>
-);
+  <div
+    className={cn("flex flex-1 items-center justify-end gap-2", className)}
+    {...props}
+  >
+    {children}
+  </div>
+)
 const MastheadToggle = ({ children, className, ...props }: any) => (
-  <div className={cn("inline-flex items-center", className)} {...props}>{children}</div>
-);
-const PageToggleButton = ({ children, onClick, isHamburgerButton, ...props }: any) => (
-  <UIButton type="button" variant="ghost" onClick={onClick} {...props}>{children}</UIButton>
-);
-const Toolbar = ({ children, className, ...props }: any) => (
-  <div className={cn("flex flex-col gap-2", className)} {...props}>{children}</div>
-);
-const ToolbarContent = ({ children, className, ...props }: any) => (
-  <div className={cn("flex flex-wrap items-center gap-2", className)} {...props}>{children}</div>
-);
-const ToolbarItem = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center", className)} {...props}>{children}</div>
-);
-type AvatarProps = React.ComponentProps<typeof Avatar>;
-type MastheadBrandProps = React.ComponentProps<typeof MastheadBrand>;
-type MastheadMainProps = React.ComponentProps<typeof Masthead>;
+  <div className={cn("inline-flex items-center", className)} {...props}>
+    {children}
+  </div>
+)
+const PageToggleButton = ({ children, onClick, ...props }: any) => (
+  <UIButton type="button" variant="ghost" onClick={onClick} {...props}>
+    {children}
+  </UIButton>
+)
+
+type BrandLogo = {
+  src?: string
+  alt?: string
+  className?: string
+}
+
+type KeycloakMastheadProps = {
+  keycloak: Keycloak
+  brand: BrandLogo
+  avatar?: { src?: string; alt?: string }
+  features?: {
+    hasLogout?: boolean
+    hasManageAccount?: boolean
+    hasUsername?: boolean
+  }
+  dropdownItems?: ReactNode[]
+  /** Legacy alias for dropdownItems — kept for compatibility, ignored if dropdownItems is set. */
+  kebabDropdownItems?: ReactNode[]
+  toolbarItems?: ReactNode[]
+  toolbar?: ReactNode
+  className?: string
+}
 
 function loggedInUserName(
   token: KeycloakTokenParsed | undefined,
   t: TFunction,
-) {
-  if (!token) {
-    return t("unknownUser");
+): string | undefined {
+  if (!token) return undefined
+  const tokenAny = token as KeycloakTokenParsed & {
+    name?: string
+    given_name?: string
+    family_name?: string
+    preferred_username?: string
   }
-
-  const givenName = token.given_name;
-  const familyName = token.family_name;
-  const preferredUsername = token.preferred_username;
-
-  if (givenName && familyName) {
-    return t("fullName", { givenName, familyName });
+  if (tokenAny.given_name && tokenAny.family_name) {
+    return t("fullName", {
+      givenName: tokenAny.given_name,
+      familyName: tokenAny.family_name,
+    })
   }
-
-  return givenName || familyName || preferredUsername || t("unknownUser");
+  return (
+    tokenAny.name ??
+    tokenAny.given_name ??
+    tokenAny.family_name ??
+    tokenAny.preferred_username
+  )
 }
-
-type BrandLogo = MastheadBrandProps;
-
-type KeycloakMastheadProps = MastheadMainProps & {
-  keycloak: Keycloak;
-  brand: BrandLogo;
-  avatar?: AvatarProps;
-  features?: {
-    hasLogout?: boolean;
-    hasManageAccount?: boolean;
-    hasUsername?: boolean;
-  };
-  kebabDropdownItems?: ReactNode[];
-  dropdownItems?: ReactNode[];
-  toolbarItems?: ReactNode[];
-  toolbar?: ReactNode;
-};
 
 const KeycloakMasthead = ({
   keycloak,
-  brand: { src, alt, className, ...brandProps },
+  brand: { src, alt, className: brandClassName },
   avatar,
-  features: {
-    hasLogout = true,
-    hasManageAccount = true,
-    hasUsername = true,
-  } = {},
-  kebabDropdownItems,
+  features: { hasLogout = true, hasManageAccount = true } = {},
   dropdownItems = [],
+  kebabDropdownItems,
   toolbarItems,
   toolbar,
+  className,
   ...rest
 }: KeycloakMastheadProps) => {
-  const { t } = useTranslation();
-  const extraItems = [];
-  if (hasManageAccount) {
-    extraItems.push(
-      <DropdownItem
-        key="manageAccount"
-        onClick={() => keycloak.accountManagement()}
-      >
-        {t("manageAccount")}
-      </DropdownItem>,
-    );
-  }
-  if (hasLogout) {
-    extraItems.push(
-      <DropdownItem key="signOut" onClick={() => keycloak.logout()}>
-        {t("signOut")}
-      </DropdownItem>,
-    );
-  }
+  const { t } = useTranslation()
 
-  const picture = keycloak.idTokenParsed?.picture;
+  const token = keycloak.idTokenParsed as
+    | (KeycloakTokenParsed & {
+        name?: string
+        email?: string
+        preferred_username?: string
+        picture?: string
+      })
+    | undefined
+
+  const extraItems: ReactNode[] = [...dropdownItems]
+  if (hasManageAccount) {
+    extraItems.unshift(
+      <ManageAccountItem key="manage-account" keycloak={keycloak} />,
+    )
+  }
+  void kebabDropdownItems
+
   return (
-    <Masthead {...rest}>
+    <Masthead className={className} {...rest}>
       <MastheadToggle>
-        <PageToggleButton variant="plain" aria-label={t("navigation")}>
+        <PageToggleButton aria-label={t("navigation")}>
           <BarsIcon />
         </PageToggleButton>
       </MastheadToggle>
-      <MastheadBrand {...brandProps}>
-        <img src={src} alt={alt} className={className} />
+      <MastheadBrand>
+        {src ? <img src={src} alt={alt} className={brandClassName} /> : null}
       </MastheadBrand>
       <MastheadContent>
         {toolbar}
-        <Toolbar>
-          <ToolbarContent>
-            {toolbarItems?.map((item, index) => (
-              <ToolbarItem key={index} align={{ default: "alignRight" }}>
-                {item}
-              </ToolbarItem>
-            ))}
-            <ToolbarItem
-              visibility={{
-                default: "hidden",
-                md: "visible",
-              }} /** this user dropdown is hidden on mobile sizes */
-            >
-              <KeycloakDropdown
-                data-testid="options"
-                dropDownItems={[...dropdownItems, extraItems]}
-                title={
-                  hasUsername
-                    ? loggedInUserName(keycloak.idTokenParsed, t)
-                    : undefined
-                }
-              />
-            </ToolbarItem>
-            <ToolbarItem
-              align={{ default: "alignLeft" }}
-              visibility={{
-                md: "hidden",
-              }}
-            >
-              <KeycloakDropdown
-                data-testid="options-kebab"
-                isKebab
-                dropDownItems={[
-                  ...(kebabDropdownItems || dropdownItems),
-                  extraItems,
-                ]}
-              />
-            </ToolbarItem>
-            <ToolbarItem
-              variant="overflow-menu"
-              align={{ default: "alignRight" }}
-              className="pf-v5-u-m-0-on-lg"
-            >
-              {picture || avatar?.src ? (
-                <Avatar {...{ src: picture, alt: t("avatar"), ...avatar }} />
-              ) : (
-                <DefaultAvatar {...avatar} />
-              )}
-            </ToolbarItem>
-          </ToolbarContent>
-        </Toolbar>
+        {toolbarItems}
+        <Profile
+          name={loggedInUserName(token, t)}
+          email={token?.email}
+          avatarUrl={avatar?.src || token?.picture}
+          onSignOut={hasLogout ? () => keycloak.logout() : () => {}}
+          signOutLabel={t("signOut")}
+        >
+          {extraItems}
+        </Profile>
       </MastheadContent>
     </Masthead>
-  );
-};
+  )
+}
 
-export default KeycloakMasthead;
+const ManageAccountItem = ({ keycloak }: { keycloak: Keycloak }) => {
+  const { t } = useTranslation()
+  return (
+    <DropdownMenuItem onSelect={() => keycloak.accountManagement()}>
+      {t("manageAccount")}
+    </DropdownMenuItem>
+  )
+}
+
+export default KeycloakMasthead
