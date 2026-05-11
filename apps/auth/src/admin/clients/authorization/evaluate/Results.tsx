@@ -29,10 +29,10 @@ import {
 import { MagnifyingGlass as SearchIcon } from "@phosphor-icons/react"
 import {
   Table,
-  Th,
-  Thead,
-  Tr,
-} from "../../../../shared/@patternfly/react-table";
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
 import { KeyboardEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 

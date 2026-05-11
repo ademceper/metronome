@@ -24,11 +24,11 @@ import {
   Tooltip,
 } from "../../shared/@patternfly/react-core";
 import { Warning as WarningTriangleIcon } from "@phosphor-icons/react"
-import {
-  IRowData,
-  TableText,
-  cellWidth,
-} from "../../shared/@patternfly/react-table";
+type IRowData = any;
+const TableText = ({ children }: any) => (
+  <span className="block truncate">{children}</span>
+);
+const cellWidth = (_n: number) => () => ({ className: "" });
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

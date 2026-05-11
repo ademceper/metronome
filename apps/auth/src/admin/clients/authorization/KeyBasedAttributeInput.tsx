@@ -22,12 +22,12 @@ import {
 import { MinusCircle as MinusCircleIcon, PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 import {
   Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "../../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
 import { camelCase } from "lodash-es";
 import { useEffect, useMemo, useState } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";

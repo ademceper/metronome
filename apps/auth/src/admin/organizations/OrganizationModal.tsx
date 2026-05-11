@@ -17,7 +17,9 @@ import {
   Modal,
   ModalVariant,
 } from "../../shared/@patternfly/react-core";
-import { TableText } from "../../shared/@patternfly/react-table";
+const TableText = ({ children }: any) => (
+  <span className="block truncate">{children}</span>
+);
 import { differenceBy } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

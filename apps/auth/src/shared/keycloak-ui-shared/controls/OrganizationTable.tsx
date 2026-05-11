@@ -11,7 +11,9 @@
 
 import OrganizationRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationRepresentation";
 import { Badge, Chip, ChipGroup } from "../../@patternfly/react-core";
-import { TableText } from "../../@patternfly/react-table";
+const TableText = ({ children }: any) => (
+  <span className="block truncate">{children}</span>
+);
 import { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import type { Action, LoaderFunction } from "./table/KeycloakDataTable";

@@ -19,7 +19,7 @@ import {
   Popover,
 } from "../../shared/@patternfly/react-core";
 import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
-import { cellWidth } from "../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { useHelp } from "../../shared/keycloak-ui-shared";
 import { ListEmptyState } from "../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../shared/keycloak-ui-shared";

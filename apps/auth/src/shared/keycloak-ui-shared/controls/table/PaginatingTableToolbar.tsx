@@ -9,11 +9,11 @@
 
 // @ts-nocheck
 
+import { Button } from "@metronome/ui/components/button";
 import {
-  Pagination,
-  PaginationToggleTemplateProps,
-  ToolbarItem,
-} from "../../../@patternfly/react-core";
+  CaretLeft as CaretLeftIcon,
+  CaretRight as CaretRightIcon,
+} from "@phosphor-icons/react";
 import { PropsWithChildren, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -39,41 +39,72 @@ type TableToolbarProps = KeycloakPaginationProps & {
   inputGroupOnEnter?: (value: string) => void;
 };
 
+const PAGE_SIZES = [5, 10, 25, 50, 100];
+
 const KeycloakPagination = ({
-  id,
-  variant = "top",
   count,
   first,
   max,
   onNextClick,
   onPreviousClick,
   onPerPageSelect,
+  variant = "top",
 }: KeycloakPaginationProps) => {
   const { t } = useTranslation();
   const page = Math.round(first / max);
+  const itemCount = count + page * max;
+  const firstIndex = itemCount === 0 ? 0 : page * max + 1;
+  const lastIndex = Math.min(page * max + max, itemCount);
+  const hasNext = count > max;
+  const hasPrev = page > 0;
+
   return (
-    <Pagination
-      widgetId={id}
-      titles={{
-        paginationAriaLabel: `${t("pagination")} ${variant} `,
-      }}
-      isCompact
-      toggleTemplate={({
-        firstIndex,
-        lastIndex,
-      }: PaginationToggleTemplateProps) => (
-        <b>
+    <div
+      aria-label={`${t("pagination")} ${variant}`}
+      className="flex items-center gap-2"
+    >
+      {variant === "top" && (
+        <select
+          aria-label={t("perPage") || "Per page"}
+          className="h-8 rounded-md border border-input bg-background px-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          onChange={(e) => onPerPageSelect(0, Number(e.target.value))}
+          value={max}
+        >
+          {PAGE_SIZES.map((size) => (
+            <option key={size} value={size}>
+              {size}
+            </option>
+          ))}
+        </select>
+      )}
+      <span className="whitespace-nowrap text-muted-foreground text-sm">
+        <b className="text-foreground">
           {firstIndex} - {lastIndex}
         </b>
-      )}
-      itemCount={count + page * max}
-      page={page + 1}
-      perPage={max}
-      onNextClick={(_, p) => onNextClick((p - 1) * max)}
-      onPreviousClick={(_, p) => onPreviousClick((p - 1) * max)}
-      onPerPageSelect={(_, m, f) => onPerPageSelect(f - 1, m)}
-      variant={variant}
-    />
+      </span>
+      <div className="flex items-center gap-1">
+        <Button
+          aria-label={t("previousPage") || "Previous page"}
+          disabled={!hasPrev}
+          onClick={() => onPreviousClick(Math.max(0, (page - 1) * max))}
+          size="icon"
+          variant="outline"
+          className="size-7"
+        >
+          <CaretLeftIcon aria-hidden="true" size={14} />
+        </Button>
+        <Button
+          aria-label={t("nextPage") || "Next page"}
+          disabled={!hasNext}
+          onClick={() => onNextClick((page + 1) * max)}
+          size="icon"
+          variant="outline"
+          className="size-7"
+        >
+          <CaretRightIcon aria-hidden="true" size={14} />
+        </Button>
+      </div>
+    </div>
   );
 };
 
@@ -94,17 +125,13 @@ export const PaginatingTableToolbar = ({
       toolbarItem={
         <>
           {toolbarItem}
-          <ToolbarItem variant="pagination">
-            <KeycloakPagination count={count} {...rest} />
-          </ToolbarItem>
+          <KeycloakPagination count={count} {...rest} />
         </>
       }
       subToolbar={subToolbar}
       toolbarItemFooter={
         count !== 0 ? (
-          <ToolbarItem variant="pagination">
-            <KeycloakPagination count={count} variant="bottom" {...rest} />
-          </ToolbarItem>
+          <KeycloakPagination count={count} variant="bottom" {...rest} />
         ) : null
       }
       inputGroupName={inputGroupName}

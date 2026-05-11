@@ -35,7 +35,7 @@ import {
   Tooltip,
 } from "../../../shared/@patternfly/react-core";
 import { WarningCircle as ExclamationCircleIcon, Info as InfoCircleIcon, Warning as WarningTriangleIcon } from "@phosphor-icons/react"
-import type { IRowData } from "../../../shared/@patternfly/react-table";
+type IRowData = any;
 import { JSX, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";

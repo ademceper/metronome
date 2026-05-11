@@ -15,7 +15,7 @@ import {
   Button,
   ButtonVariant,
 } from "../../../shared/@patternfly/react-core";
-import { wrappable } from "../../../shared/@patternfly/react-table";
+const wrappable = () => ({ className: "" });
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";

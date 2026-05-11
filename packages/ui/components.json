@@ -15,7 +15,8 @@
     "utils": "@metronome/ui/lib/utils",
     "hooks": "@metronome/ui/hooks",
     "lib": "@metronome/ui/lib",
-    "ui": "@metronome/ui/components"
+    "ui": "@metronome/ui/components",
+    "blocks": "@metronome/ui/blocks"
   },
   "rtl": true,
   "menuColor": "default",

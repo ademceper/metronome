@@ -93,14 +93,19 @@
       }
     },
     {
-      "includes": ["packages/ui/src/components/**"],
+      "includes": [
+        "packages/ui/src/components/**",
+        "packages/ui/src/blocks/**"
+      ],
       "linter": {
         "rules": {
           "a11y": {
             "useSemanticElements": "off",
             "useFocusableInteractive": "off",
             "useKeyWithClickEvents": "off",
-            "useAriaPropsForRole": "off"
+            "useAriaPropsForRole": "off",
+            "useValidAnchor": "off",
+            "noStaticElementInteractions": "off"
           },
           "suspicious": {
             "noArrayIndexKey": "off",

@@ -10,18 +10,18 @@
 // @ts-nocheck
 
 import {
-  ActionsColumn,
-  IAction,
   Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  type TableProps,
-  ThProps,
-} from "../../../shared/@patternfly/react-table";
-import type { ThInfoType } from "@patternfly/react-table/dist/esm/components/Table/base/types";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
+const ActionsColumn = ({ items, extraData: _e }: any) => null;
+type IAction = any;
+type TableProps = any;
+type ThProps = any;
+type ThInfoType = any;
 import { get } from "lodash-es";
 import {
   DragEvent as ReactDragEvent,

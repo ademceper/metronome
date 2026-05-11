@@ -19,12 +19,12 @@ import {
 import { PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 import {
   Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "../../../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
 import { useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";

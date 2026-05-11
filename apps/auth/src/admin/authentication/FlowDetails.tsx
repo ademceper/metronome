@@ -29,7 +29,10 @@ import {
   ToolbarItem,
 } from "../../shared/@patternfly/react-core";
 import { Globe as DomainIcon, Table as TableIcon } from "@phosphor-icons/react"
-import { Table, Tbody } from "../../shared/@patternfly/react-table";
+import {
+  Table,
+  TableBody as Tbody,
+} from "@metronome/ui/components/table";
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";

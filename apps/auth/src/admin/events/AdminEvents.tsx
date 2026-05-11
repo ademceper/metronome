@@ -39,14 +39,14 @@ import {
 } from "../../shared/@patternfly/react-core";
 import {
   Table,
-  TableVariant,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  cellWidth,
-} from "../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
+const TableVariant = { compact: undefined, default: undefined } as any;
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { pickBy } from "lodash-es";
 import { PropsWithChildren, useMemo, useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";

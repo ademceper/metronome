@@ -11,7 +11,9 @@
 
 import { ReactNode, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Td } from "../../../shared/@patternfly/react-table";
+import {
+  TableCell as Td,
+} from "@metronome/ui/components/table";
 import {
   Button,
   Dropdown,

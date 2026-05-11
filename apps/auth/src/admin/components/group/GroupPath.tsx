@@ -11,7 +11,7 @@
 
 import { useState } from "react";
 import { Tooltip } from "../../../shared/@patternfly/react-core";
-import type { TableTextProps } from "../../../shared/@patternfly/react-table";
+type TableTextProps = any;
 
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
 

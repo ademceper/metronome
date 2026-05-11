@@ -22,7 +22,7 @@ import {
   PageSection,
   ToolbarItem,
 } from "../../shared/@patternfly/react-core";
-import { IRowData } from "../../shared/@patternfly/react-table";
+type IRowData = any;
 import { get } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

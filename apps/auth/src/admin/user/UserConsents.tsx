@@ -17,7 +17,7 @@ import {
   ChipGroup,
 } from "../../shared/@patternfly/react-core";
 import { Stack as CubesIcon } from "@phosphor-icons/react"
-import { cellWidth } from "../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { sortBy } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

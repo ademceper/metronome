@@ -16,12 +16,12 @@ import {
 } from "../../shared/@patternfly/react-core";
 import {
   Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";

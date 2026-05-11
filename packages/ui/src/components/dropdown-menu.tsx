@@ -91,6 +91,7 @@ function DropdownMenuCheckboxItem({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem> & {
   inset?: boolean
+  children?: React.ReactNode
 }) {
   return (
     <DropdownMenuPrimitive.CheckboxItem
@@ -134,6 +135,7 @@ function DropdownMenuRadioItem({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem> & {
   inset?: boolean
+  children?: React.ReactNode
 }) {
   return (
     <DropdownMenuPrimitive.RadioItem
@@ -220,6 +222,7 @@ function DropdownMenuSubTrigger({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.SubTrigger> & {
   inset?: boolean
+  children?: React.ReactNode
 }) {
   return (
     <DropdownMenuPrimitive.SubTrigger

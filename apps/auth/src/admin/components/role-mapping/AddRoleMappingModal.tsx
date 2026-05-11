@@ -24,7 +24,10 @@ import {
   Modal,
   ModalVariant,
 } from "../../../shared/@patternfly/react-core";
-import { cellWidth, TableText } from "../../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
+const TableText = ({ children }: any) => (
+  <span className="block truncate">{children}</span>
+);
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";

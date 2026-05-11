@@ -11,11 +11,12 @@
 
 import { SessionExpirationWarningOverlay } from "../shared/SessionExpirationWarningOverlay";
 import KeycloakAdminClient from "@keycloak/keycloak-admin-client";
+import { useEnvironment } from "../shared/keycloak-ui-shared";
 import {
-  mainPageContentId,
-  useEnvironment,
-} from "../shared/keycloak-ui-shared";
-import { Flex, FlexItem, Page } from "../shared/@patternfly/react-core";
+  SidebarInset,
+  SidebarProvider,
+} from "@metronome/ui/components/sidebar";
+import { PageNav } from "./PageNav";
 import { PropsWithChildren, Suspense, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -24,8 +25,6 @@ import {
   ErrorBoundaryProvider,
   KeycloakSpinner,
 } from "../shared/keycloak-ui-shared";
-import { Header } from "./PageHeader";
-import { PageNav } from "./PageNav";
 import { AdminClientContext, initAdminClient } from "./admin-client";
 import { PageBreadCrumbs } from "./components/bread-crumb/PageBreadCrumbs";
 import { ErrorRenderer } from "./components/error/ErrorRenderer";
@@ -78,33 +77,20 @@ export const App = () => {
   return (
     <AdminClientContext.Provider value={{ keycloak, adminClient }}>
       <AppContexts>
-        <Flex
-          direction={{ default: "column" }}
-          flexWrap={{ default: "nowrap" }}
-          spaceItems={{ default: "spaceItemsNone" }}
-          style={{ height: "100%" }}
-        >
-          <FlexItem>
+        <SidebarProvider>
+          <PageNav />
+          <SidebarInset>
             <Banners />
-          </FlexItem>
-          <FlexItem grow={{ default: "grow" }} style={{ minHeight: 0 }}>
-            <Page
-              header={<Header />}
-              isManagedSidebar
-              sidebar={<PageNav />}
-              breadcrumb={<PageBreadCrumbs />}
-              mainContainerId={mainPageContentId}
-            >
-              <ErrorBoundaryFallback fallback={ErrorRenderer}>
-                <Suspense fallback={<KeycloakSpinner />}>
-                  <AuthWall>
-                    <Outlet />
-                  </AuthWall>
-                </Suspense>
-              </ErrorBoundaryFallback>
-            </Page>
-          </FlexItem>
-        </Flex>
+            <PageBreadCrumbs />
+            <ErrorBoundaryFallback fallback={ErrorRenderer}>
+              <Suspense fallback={<KeycloakSpinner />}>
+                <AuthWall>
+                  <Outlet />
+                </AuthWall>
+              </Suspense>
+            </ErrorBoundaryFallback>
+          </SidebarInset>
+        </SidebarProvider>
         <SessionExpirationWarningOverlay warnUserSecondsBeforeAutoLogout={45} />
       </AppContexts>
     </AdminClientContext.Provider>

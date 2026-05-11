@@ -38,7 +38,7 @@ import {
   Tooltip,
 } from "../../shared/@patternfly/react-core";
 import { CheckCircle as CheckCircleIcon, Warning as WarningTriangleIcon } from "@phosphor-icons/react"
-import { cellWidth } from "../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { pickBy } from "lodash-es";
 import { useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";

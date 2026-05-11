@@ -38,16 +38,16 @@ import {
 } from "../../../shared/@patternfly/react-core";
 import { Check as CheckIcon, DotsThreeVertical as EllipsisVIcon, PencilSimple as PencilAltIcon, MagnifyingGlass as SearchIcon, X as TimesIcon } from "@phosphor-icons/react"
 import {
-  ActionsColumn,
-  IRow,
-  IRowCell,
   Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "../../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
+const ActionsColumn = ({ items, extraData: _e }: any) => null;
+type IRow = any;
+type IRowCell = any;
 import { cloneDeep, isEqual, uniqWith } from "lodash-es";
 import { ChangeEvent, useEffect, useState, type FormEvent } from "react";
 import { useForm } from "react-hook-form";

@@ -22,7 +22,7 @@ import {
   TextContent,
   Spinner,
 } from "../../shared/@patternfly/react-core";
-import { cellWidth } from "../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { capitalize } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

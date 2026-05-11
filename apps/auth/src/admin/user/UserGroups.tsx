@@ -20,7 +20,7 @@ import {
   Popover,
 } from "../../shared/@patternfly/react-core";
 import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
-import { cellWidth } from "../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { intersectionBy, sortBy, uniqBy } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

@@ -21,7 +21,7 @@ import {
   Tooltip,
 } from "../../shared/@patternfly/react-core";
 import { Stack as CubesIcon, Info as InfoCircleIcon } from "@phosphor-icons/react"
-import { IRowData } from "../../shared/@patternfly/react-table";
+type IRowData = any;
 import { ReactNode, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useMatch, useNavigate } from "react-router-dom";

@@ -20,11 +20,11 @@ import {
   TextListItem,
 } from "../../../shared/@patternfly/react-core";
 import {
-  ExpandableRowContent,
-  Tbody,
-  Td,
-  Tr,
-} from "../../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
+const ExpandableRowContent = ({ children }: any) => <>{children}</>;
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

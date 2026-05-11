@@ -21,7 +21,7 @@ import {
   Checkbox,
   ToolbarItem,
 } from "../../../shared/@patternfly/react-core";
-import { cellWidth } from "../../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";

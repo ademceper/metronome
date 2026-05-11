@@ -9,14 +9,12 @@
 
 // @ts-nocheck
 
+import { Input } from "@metronome/ui/components/input";
+import { cn } from "@metronome/ui/lib/utils";
 import {
-  Divider,
-  InputGroup,
-  SearchInput,
-  Toolbar,
-  ToolbarContent,
-  ToolbarItem,
-} from "../../../@patternfly/react-core";
+  MagnifyingGlass as SearchIcon,
+  XCircle as XCircleIcon,
+} from "@phosphor-icons/react";
 import { KeyboardEvent, PropsWithChildren, ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -43,9 +41,10 @@ export const TableToolbar = ({
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const onSearch = (searchValue: string) => {
-    setSearchValue(searchValue.trim());
-    inputGroupOnEnter?.(searchValue.trim());
+  const onSearch = (value: string) => {
+    const trimmed = value.trim();
+    setSearchValue(trimmed);
+    inputGroupOnEnter?.(trimmed);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -55,41 +54,53 @@ export const TableToolbar = ({
   };
 
   return (
-    <>
-      <Toolbar data-testid="table-toolbar">
-        <ToolbarContent>
-          {inputGroupName && (
-            <ToolbarItem>
-              <InputGroup data-testid={inputGroupName}>
-                {searchTypeComponent}
-                {inputGroupPlaceholder && (
-                  <SearchInput
-                    data-testid="table-search-input"
-                    placeholder={inputGroupPlaceholder}
-                    aria-label={t("search")}
-                    value={searchValue}
-                    onChange={(_, value) => {
-                      setSearchValue(value);
-                    }}
-                    onSearch={() => onSearch(searchValue)}
-                    onKeyDown={handleKeyDown}
-                    onClear={() => onSearch("")}
-                  />
+    <div className="space-y-4">
+      <div
+        data-testid="table-toolbar"
+        className="flex flex-wrap items-center gap-3"
+      >
+        {inputGroupName && (
+          <div className="flex items-center gap-2" data-testid={inputGroupName}>
+            {searchTypeComponent}
+            {inputGroupPlaceholder && (
+              <div className="relative">
+                <Input
+                  aria-label={t("search")}
+                  className={cn(
+                    "peer min-w-60 ps-9",
+                    Boolean(searchValue) && "pe-9",
+                  )}
+                  data-testid="table-search-input"
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder={inputGroupPlaceholder}
+                  type="text"
+                  value={searchValue}
+                />
+                <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80">
+                  <SearchIcon aria-hidden="true" size={16} />
+                </div>
+                {Boolean(searchValue) && (
+                  <button
+                    aria-label="Clear search"
+                    className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/80 outline-none hover:text-foreground"
+                    onClick={() => onSearch("")}
+                    type="button"
+                  >
+                    <XCircleIcon aria-hidden="true" size={16} />
+                  </button>
                 )}
-              </InputGroup>
-            </ToolbarItem>
-          )}
-          {toolbarItem}
-        </ToolbarContent>
-      </Toolbar>
-      {subToolbar && (
-        <Toolbar>
-          <ToolbarContent>{subToolbar}</ToolbarContent>
-        </Toolbar>
-      )}
-      <Divider />
+              </div>
+            )}
+          </div>
+        )}
+        <div className="flex flex-wrap items-center gap-2">{toolbarItem}</div>
+      </div>
+      {subToolbar && <div className="flex items-center gap-2">{subToolbar}</div>}
       {children}
-      <Toolbar>{toolbarItemFooter}</Toolbar>
-    </>
+      {toolbarItemFooter && (
+        <div className="flex items-center justify-end">{toolbarItemFooter}</div>
+      )}
+    </div>
   );
 };

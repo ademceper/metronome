@@ -1,6 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "@metronome/ui/globals.css"
+import { AppSidebar } from "@metronome/ui/blocks/app-sidebar"
+import { SidebarInset, SidebarProvider } from "@metronome/ui/components/sidebar"
+import { TooltipProvider } from "@metronome/ui/components/tooltip"
 import { cn } from "@metronome/ui/lib/utils"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -28,7 +31,14 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <TooltipProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>{children}</SidebarInset>
+            </SidebarProvider>
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

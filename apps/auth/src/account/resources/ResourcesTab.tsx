@@ -31,14 +31,14 @@ import {
 } from "../../shared/@patternfly/react-core";
 import { PencilSimple as EditAltIcon, DotsThreeVertical as EllipsisVIcon, ArrowSquareOut as ExternalLinkAltIcon, Minus as Remove2Icon, Share as ShareAltIcon } from "@phosphor-icons/react"
 import {
-  ExpandableRowContent,
   Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
+const ExpandableRowContent = ({ children }: any) => <>{children}</>;
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

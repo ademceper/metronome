@@ -392,7 +392,10 @@ function SidebarGroupLabel({
   className,
   asChild = false,
   ...props
-}: React.ComponentProps<"div"> & { asChild?: boolean }) {
+}: React.ComponentProps<"div"> & {
+  asChild?: boolean
+  children?: React.ReactNode
+}) {
   const Comp = asChild ? Slot.Root : "div"
 
   return (
@@ -412,7 +415,10 @@ function SidebarGroupAction({
   className,
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> & { asChild?: boolean }) {
+}: React.ComponentProps<"button"> & {
+  asChild?: boolean
+  children?: React.ReactNode
+}) {
   const Comp = asChild ? Slot.Root : "button"
 
   return (
@@ -497,6 +503,7 @@ function SidebarMenuButton({
 }: React.ComponentProps<"button"> & {
   asChild?: boolean
   isActive?: boolean
+  children?: React.ReactNode
   tooltip?: string | React.ComponentProps<typeof TooltipContent>
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const Comp = asChild ? Slot.Root : "button"
@@ -544,6 +551,7 @@ function SidebarMenuAction({
 }: React.ComponentProps<"button"> & {
   asChild?: boolean
   showOnHover?: boolean
+  children?: React.ReactNode
 }) {
   const Comp = asChild ? Slot.Root : "button"
 
@@ -655,6 +663,7 @@ function SidebarMenuSubButton({
   asChild?: boolean
   size?: "sm" | "md"
   isActive?: boolean
+  children?: React.ReactNode
 }) {
   const Comp = asChild ? Slot.Root : "a"
 

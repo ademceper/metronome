@@ -24,7 +24,7 @@ import {
   SelectOption,
 } from "../../../shared/@patternfly/react-core";
 import { Funnel as FilterIcon } from "@phosphor-icons/react"
-import { cellWidth } from "../../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";

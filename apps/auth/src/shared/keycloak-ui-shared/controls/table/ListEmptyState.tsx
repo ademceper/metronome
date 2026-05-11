@@ -9,28 +9,23 @@
 
 // @ts-nocheck
 
+import { Button } from "@metronome/ui/components/button";
+import {
+  MagnifyingGlass as SearchIcon,
+  PlusCircle as PlusCircleIcon,
+} from "@phosphor-icons/react";
 import {
   ComponentType,
   MouseEventHandler,
   PropsWithChildren,
   ReactNode,
 } from "react";
-import {
-  EmptyState,
-  EmptyStateIcon,
-  EmptyStateBody,
-  Button,
-  ButtonVariant,
-  EmptyStateActions,
-  EmptyStateHeader,
-  EmptyStateFooter,
-} from "../../../@patternfly/react-core";
-import { PlusCircle as PlusCircleIcon, MagnifyingGlass as SearchIcon } from "@phosphor-icons/react"
-type SVGIconProps = React.SVGProps<SVGSVGElement>
+
+type SVGIconProps = React.SVGProps<SVGSVGElement>;
 
 export type Action = {
   text: string;
-  type?: ButtonVariant;
+  type?: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -58,47 +53,49 @@ export const ListEmptyState = ({
   isDisabled = false,
   children,
 }: PropsWithChildren<ListEmptyStateProps>) => {
+  const Icon = isSearchVariant ? SearchIcon : icon ? icon : PlusCircleIcon;
   return (
-    <EmptyState data-testid="empty-state" variant="lg">
-      {hasIcon && isSearchVariant ? (
-        <EmptyStateIcon icon={SearchIcon} />
-      ) : (
-        hasIcon && <EmptyStateIcon icon={icon ? icon : PlusCircleIcon} />
+    <div
+      data-testid="empty-state"
+      className="flex flex-col items-center justify-center gap-3 p-12 text-center"
+    >
+      {hasIcon && (
+        <div
+          aria-hidden="true"
+          className="flex size-12 items-center justify-center rounded-full border bg-muted/40 text-muted-foreground"
+        >
+          <Icon size={24} />
+        </div>
       )}
-      <EmptyStateHeader titleText={message} headingLevel="h1" />
-      <EmptyStateBody>{instructions}</EmptyStateBody>
-      <EmptyStateFooter>
+      <h3 className="font-semibold text-lg">{message}</h3>
+      <p className="max-w-md text-muted-foreground text-sm">{instructions}</p>
+      <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
         {primaryActionText && (
           <Button
             data-testid={`${message
               .replace(/\W+/g, "-")
               .toLowerCase()}-empty-action`}
-            variant="primary"
+            disabled={isDisabled}
             onClick={onPrimaryAction}
-            isDisabled={isDisabled}
           >
             {primaryActionText}
           </Button>
         )}
         {children}
-        {secondaryActions && (
-          <EmptyStateActions>
-            {secondaryActions.map((action) => (
-              <Button
-                key={action.text}
-                data-testid={`${action.text
-                  .replace(/\W+/g, "-")
-                  .toLowerCase()}-empty-action`}
-                variant={action.type || ButtonVariant.secondary}
-                onClick={action.onClick}
-                isDisabled={isDisabled}
-              >
-                {action.text}
-              </Button>
-            ))}
-          </EmptyStateActions>
-        )}
-      </EmptyStateFooter>
-    </EmptyState>
+        {secondaryActions?.map((action) => (
+          <Button
+            key={action.text}
+            data-testid={`${action.text
+              .replace(/\W+/g, "-")
+              .toLowerCase()}-empty-action`}
+            disabled={isDisabled}
+            onClick={action.onClick}
+            variant="outline"
+          >
+            {action.text}
+          </Button>
+        ))}
+      </div>
+    </div>
   );
 };

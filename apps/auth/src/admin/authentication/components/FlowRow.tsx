@@ -16,7 +16,10 @@ import {
   Tooltip,
 } from "../../../shared/@patternfly/react-core";
 import { Trash as TrashIcon } from "@phosphor-icons/react"
-import { Td, TreeRowWrapper } from "../../../shared/@patternfly/react-table";
+import {
+  TableCell as Td,
+} from "@metronome/ui/components/table";
+const TreeRowWrapper = (p: any) => <tr {...p} />;
 import { useTranslation } from "react-i18next";
 import type { ExpandableExecution } from "../execution-model";
 import { AddFlowDropdown } from "./AddFlowDropdown";

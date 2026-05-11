@@ -10,7 +10,10 @@
 // @ts-nocheck
 
 import { DataListDragButton } from "../../../shared/@patternfly/react-core";
-import { Th, Tr } from "../../../shared/@patternfly/react-table";
+import {
+  TableHead as Th,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
 import { useTranslation } from "react-i18next";
 export const FlowHeader = () => {
   const { t } = useTranslation();

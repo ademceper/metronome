@@ -21,7 +21,7 @@ import {
   ToolbarItem,
 } from "../../shared/@patternfly/react-core";
 import { DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
-import { cellWidth } from "../../shared/@patternfly/react-table";
+const cellWidth = (_n: number) => () => ({ className: '' });
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

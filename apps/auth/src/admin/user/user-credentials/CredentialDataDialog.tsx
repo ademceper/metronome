@@ -13,13 +13,13 @@ import { useTranslation } from "react-i18next";
 import { Modal, ModalVariant } from "../../../shared/@patternfly/react-core";
 import {
   Table,
-  TableVariant,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "../../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
+const TableVariant = { compact: undefined, default: undefined } as any;
 
 type CredentialDataDialogProps = {
   title: string;

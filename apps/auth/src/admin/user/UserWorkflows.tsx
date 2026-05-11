@@ -23,12 +23,12 @@ import {
 import yaml from "yaml";
 import {
   Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "../../shared/@patternfly/react-table";
+  TableBody as Tbody,
+  TableCell as Td,
+  TableHead as Th,
+  TableHeader as Thead,
+  TableRow as Tr,
+} from "@metronome/ui/components/table";
 import { Popover, Button } from "../../shared/@patternfly/react-core";
 import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { useState } from "react";
