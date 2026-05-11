@@ -9,17 +9,21 @@
 
 // @ts-nocheck
 
-import { Input as UIInput } from "@metronome/ui/components/input";
+import { KcTextInput } from "../../kc-form";
 import { UserProfileFieldProps } from "./UserProfileFields";
 import { UserProfileGroup } from "./UserProfileGroup";
 import { fieldName, isRequiredAttribute, label } from "./utils";
 
 
-const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
-  <UIInput value={value ?? ""}
-    onChange={(e: any) => onChange?.(e.target.value, e)}
-    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
-    type={type || "text"} {...props} />
+const TextInput = ({ isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
+  <KcTextInput
+    disabled={isDisabled}
+    readOnly={isReadOnly}
+    required={isRequired}
+    invalid={validated === "error"}
+    type={type || "text"}
+    {...props}
+  />
 );
 const TextInputTypes = {
   text: "text", password: "password", email: "email", number: "number",

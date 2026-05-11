@@ -16,7 +16,7 @@ import { get } from "lodash-es";
 import { PropsWithChildren, ReactNode } from "react";
 import { UseFormReturn, type FieldError } from "react-hook-form";
 
-import { FormErrorText } from "../controls/FormErrorText";
+import { KcField } from "../../kc-form";
 import { HelpItem } from "../controls/HelpItem";
 import {
   UserFormFields,
@@ -27,20 +27,6 @@ import {
 } from "./utils";
 
 
-const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
-  <div className={cn("space-y-1.5", (props as any).className)}>
-    {label ? (
-      <label htmlFor={fieldId} className="font-medium text-sm">
-        {label}
-        {isRequired ? <span className="text-destructive"> *</span> : null}
-        {labelIcon}
-      </label>
-    ) : null}
-    {children}
-    {helperText ? <p className="text-muted-foreground text-xs">{helperText}</p> : null}
-    {helperTextInvalid ? <p className="text-destructive text-xs">{helperTextInvalid}</p> : null}
-  </div>
-);
 const InputGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-stretch gap-0", className)} {...props}>{children}</div>
 );
@@ -70,17 +56,22 @@ export const UserProfileGroup = ({
   const component = renderer?.(attribute);
   const error = get(errors, fieldName(attribute.name)) as FieldError;
 
+  const labelNode = (
+    <span className="inline-flex items-center gap-1">
+      {labelAttribute(t, attribute) || ""}
+      {helpText ? (
+        <HelpItem helpText={helpText} fieldLabelId={attribute.name!} />
+      ) : null}
+    </span>
+  );
+
   return (
-    <FormGroup
+    <KcField
       key={attribute.name}
-      label={labelAttribute(t, attribute) || ""}
-      fieldId={attribute.name}
-      isRequired={isRequiredAttribute(attribute)}
-      labelIcon={
-        helpText ? (
-          <HelpItem helpText={helpText} fieldLabelId={attribute.name!} />
-        ) : undefined
-      }
+      id={attribute.name!}
+      label={labelNode}
+      required={isRequiredAttribute(attribute)}
+      error={error?.message as string | undefined}
     >
       {component ? (
         <InputGroup>
@@ -90,12 +81,6 @@ export const UserProfileGroup = ({
       ) : (
         children
       )}
-      {error && (
-        <FormErrorText
-          data-testid={`${attribute.name}-helper`}
-          message={error.message as string}
-        />
-      )}
-    </FormGroup>
+    </KcField>
   );
 };

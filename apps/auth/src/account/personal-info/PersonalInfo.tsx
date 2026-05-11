@@ -44,7 +44,7 @@ import { usePromise } from "../utils/usePromise";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
+  <div className={cn("flex flex-col gap-2 pt-2", className)} {...props}>{children}</div>
 );
 const AlertVariant = {
   default: "default",
@@ -223,6 +223,8 @@ export const PersonalInfo = () => {
               type="submit"
               id="save-btn"
               variant="primary"
+              size="xl"
+              className="w-full"
             >
               {t("save")}
             </Button>

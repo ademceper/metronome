@@ -15,7 +15,6 @@ import {
   KeycloakContext,
 } from "../../shared/keycloak-ui-shared";
 import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
-import { cn } from "@metronome/ui/lib/utils";
 import { Suspense, useState } from "react";
 import {
   createBrowserRouter,
@@ -27,13 +26,10 @@ import fetchContentJson from "../content/fetchContent";
 import { type AccountEnvironment } from "..";
 import { usePromise } from "../utils/usePromise";
 import { Header } from "./Header";
-import { MenuItem, PageNav } from "./PageNav";
+import { type MenuItem, PageNav } from "./PageNav";
 import { routes } from "../routes";
 
 
-const Page = ({ children, className, ...props }: any) => (
-  <div className={cn("flex min-h-svh flex-col", className)} {...props}>{children}</div>
-);
 const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
 function mapRoutes(
@@ -76,11 +72,23 @@ export const Root = () => {
             new URL(context.environment.baseUrl).pathname,
           ),
           element: (
-            <Page header={<Header />} sidebar={<PageNav />} isManagedSidebar>
-              <Suspense fallback={<Spinner />}>
-                <Outlet />
-              </Suspense>
-            </Page>
+            <div className="flex min-h-svh flex-col">
+              <Header />
+              <div className="container mx-auto flex max-w-6xl flex-1 flex-col px-4 py-6">
+                <div className="grid flex-1 grid-cols-1 gap-0 md:grid-cols-[280px_1fr]">
+                  <aside className="md:border-r md:pe-2">
+                    <div className="md:sticky md:top-20">
+                      <PageNav />
+                    </div>
+                  </aside>
+                  <main className="min-w-0 md:ps-8">
+                    <Suspense fallback={<Spinner />}>
+                      <Outlet />
+                    </Suspense>
+                  </main>
+                </div>
+              </div>
+            </div>
           ),
           errorElement: <ErrorPage />,
           children: mapRoutes(context, content),
