@@ -13,9 +13,9 @@ import { Fragment, useEffect } from "react";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { updatePermissions } from "../../api";
-import type { Permission, Resource } from "../../api/representations";
-import { useAccountAlerts } from "../../utils/useAccountAlerts";
+import { updatePermissions } from "../../lib/api/resources";
+import type { Permission, Resource } from "../../lib/api/representations";
+import { useAccountAlerts } from "../../lib/useAccountAlerts";
 
 
 const ButtonVariant = {

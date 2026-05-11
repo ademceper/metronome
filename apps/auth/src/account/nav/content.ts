@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { MenuItem } from "../root/PageNav";
+import type { MenuItem } from "../app/PageNav";
 
 export const content: MenuItem[] = [
   { label: "personalInfo", path: "" },

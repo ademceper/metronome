@@ -14,7 +14,7 @@ import FetchBackend from "i18next-fetch-backend";
 import { initReactI18next } from "react-i18next";
 
 import { environment } from "../environment";
-import { joinPath } from "../utils/joinPath";
+import { joinPath } from "../lib/joinPath";
 
 const DEFAULT_LOCALE = "en";
 

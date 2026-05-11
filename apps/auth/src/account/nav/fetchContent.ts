@@ -9,12 +9,12 @@
 
 // @ts-nocheck
 
-import type { CallOptions } from "../api/methods";
-import type { MenuItem } from "../root/PageNav";
+import type { CallOptions } from "../lib/api/methods";
+import type { MenuItem } from "../app/PageNav";
 
 export default async function fetchContentJson(
   opts: CallOptions,
 ): Promise<MenuItem[]> {
-  const { content } = await import("../assets/content");
+  const { content } = await import("./content");
   return content;
 }

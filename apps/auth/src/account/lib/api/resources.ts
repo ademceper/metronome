@@ -12,20 +12,20 @@
 import {
   KeycloakContext,
   type BaseEnvironment,
-} from "../shared/keycloak-ui-shared";
+} from "../../../shared/keycloak-ui-shared";
 
-import { CallOptions } from "./api/methods";
-import { Links, parseLinks } from "./api/parse-links";
-import { parseResponse } from "./api/parse-response";
+import { CallOptions } from "./methods";
+import { Links, parseLinks } from "./parse-links";
+import { parseResponse } from "./parse-response";
 import {
   CredentialsIssuer,
   Permission,
   Resource,
   Scope,
   SupportedCredentialConfiguration,
-} from "./api/representations";
-import { request } from "./api/request";
-import { joinPath } from "./utils/joinPath";
+} from "./representations";
+import { request } from "./request";
+import { joinPath } from "../joinPath";
 
 export const fetchResources = async (
   { signal, context }: CallOptions,

@@ -5,11 +5,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
-import { getLinkedAccounts, LinkedAccountQueryParams } from "../../api/methods";
-import { LinkedAccountRepresentation } from "../../api/representations";
-import { EmptyRow } from "../../components/datalist/EmptyRow";
-import { Page } from "../../components/page/Page";
-import { usePromise } from "../../utils/usePromise";
+import { getLinkedAccounts, LinkedAccountQueryParams } from "../../lib/api/methods";
+import { LinkedAccountRepresentation } from "../../lib/api/representations";
+import { EmptyRow } from "../../components/EmptyRow";
+import { Page } from "../../components/Page";
+import { usePromise } from "../../lib/usePromise";
 import { AccountRow } from "./-AccountRow";
 import { LinkedAccountsToolbar } from "./-LinkedAccountsToolbar";
 

@@ -24,16 +24,16 @@ import {
   getPersonalInfo,
   getSupportedLocales,
   savePersonalInfo,
-} from "../api/methods";
+} from "../lib/api/methods";
 import {
   UserProfileMetadata,
   UserRepresentation,
-} from "../api/representations";
-import { Page } from "../components/page/Page";
+} from "../lib/api/representations";
+import { Page } from "../components/Page";
 import { type AccountEnvironment } from "..";
-import type { TFuncKey } from "../i18n-type";
-import { useAccountAlerts } from "../utils/useAccountAlerts";
-import { usePromise } from "../utils/usePromise";
+import type { TFuncKey } from "../i18n/types";
+import { useAccountAlerts } from "../lib/useAccountAlerts";
+import { usePromise } from "../lib/usePromise";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

@@ -19,16 +19,16 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { AccountEnvironment } from "../..";
-import { deleteSession, getDevices } from "../../api/methods";
+import { deleteSession, getDevices } from "../../lib/api/methods";
 import {
   ClientRepresentation,
   DeviceRepresentation,
   SessionRepresentation,
-} from "../../api/representations";
-import { Page } from "../../components/page/Page";
-import { formatDate } from "../../utils/formatDate";
-import { useAccountAlerts } from "../../utils/useAccountAlerts";
-import { usePromise } from "../../utils/usePromise";
+} from "../../lib/api/representations";
+import { Page } from "../../components/Page";
+import { formatDate } from "../../lib/formatDate";
+import { useAccountAlerts } from "../../lib/useAccountAlerts";
+import { usePromise } from "../../lib/usePromise";
 
 export const Route = createFileRoute("/account-security/device-activity")({
   component: DeviceActivity,

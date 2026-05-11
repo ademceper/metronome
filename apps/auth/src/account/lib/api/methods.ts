@@ -12,7 +12,7 @@
 import {
   BaseEnvironment,
   type KeycloakContext,
-} from "../../shared/keycloak-ui-shared";
+} from "../../../shared/keycloak-ui-shared";
 
 import OrganizationRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationRepresentation";
 import { parseResponse } from "./parse-response";

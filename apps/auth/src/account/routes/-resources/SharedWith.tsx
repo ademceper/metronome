@@ -3,7 +3,7 @@
 
 import { Trans } from "react-i18next";
 
-import { Permission } from "../../api/representations";
+import { Permission } from "../../lib/api/representations";
 
 type SharedWithProps = {
   permissions?: Permission[];

@@ -7,10 +7,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import { getGroups } from "../api/methods";
-import { Group } from "../api/representations";
-import { Page } from "../components/page/Page";
-import { usePromise } from "../utils/usePromise";
+import { getGroups } from "../lib/api/methods";
+import { Group } from "../lib/api/representations";
+import { Page } from "../components/Page";
+import { usePromise } from "../lib/usePromise";
 
 export const Route = createFileRoute("/groups")({
   component: Groups,

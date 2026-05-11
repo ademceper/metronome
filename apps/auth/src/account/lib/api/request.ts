@@ -12,10 +12,10 @@
 import {
   KeycloakContext,
   type BaseEnvironment,
-} from "../../shared/keycloak-ui-shared";
+} from "../../../shared/keycloak-ui-shared";
 import type { Keycloak } from "oidc-spa/keycloak-js";
 
-import { joinPath } from "../utils/joinPath";
+import { joinPath } from "../joinPath";
 import { CONTENT_TYPE_HEADER, CONTENT_TYPE_JSON } from "./constants";
 
 export type RequestOptions = {

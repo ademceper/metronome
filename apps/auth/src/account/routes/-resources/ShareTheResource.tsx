@@ -20,9 +20,9 @@ import {
 } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { updateRequest } from "../../api";
-import { Permission, Resource } from "../../api/representations";
-import { useAccountAlerts } from "../../utils/useAccountAlerts";
+import { updateRequest } from "../../lib/api/resources";
+import { Permission, Resource } from "../../lib/api/representations";
+import { useAccountAlerts } from "../../lib/useAccountAlerts";
 import { SharedWith } from "./SharedWith";
 
 

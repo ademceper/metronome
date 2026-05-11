@@ -19,13 +19,13 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { AccountEnvironment } from "..";
-import { deleteConsent, getApplications } from "../api/methods";
-import { ClientRepresentation } from "../api/representations";
-import { Page } from "../components/page/Page";
-import type { TFuncKey } from "../i18n-type";
-import { formatDate } from "../utils/formatDate";
-import { useAccountAlerts } from "../utils/useAccountAlerts";
-import { usePromise } from "../utils/usePromise";
+import { deleteConsent, getApplications } from "../lib/api/methods";
+import { ClientRepresentation } from "../lib/api/representations";
+import { Page } from "../components/Page";
+import type { TFuncKey } from "../i18n/types";
+import { formatDate } from "../lib/formatDate";
+import { useAccountAlerts } from "../lib/useAccountAlerts";
+import { usePromise } from "../lib/usePromise";
 
 type Application = ClientRepresentation & {
   open: boolean;

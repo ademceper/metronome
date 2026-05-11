@@ -13,10 +13,10 @@ import {
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getIssuer, requestVCOffer } from "../api";
-import { CredentialsIssuer } from "../api/representations";
-import { Page } from "../components/page/Page";
-import { usePromise } from "../utils/usePromise";
+import { getIssuer, requestVCOffer } from "../lib/api/resources";
+import { CredentialsIssuer } from "../lib/api/representations";
+import { Page } from "../components/Page";
+import { usePromise } from "../lib/usePromise";
 
 export const Route = createFileRoute("/oid4vci")({
   component: Oid4Vci,

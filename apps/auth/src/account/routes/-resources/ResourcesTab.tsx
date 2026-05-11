@@ -25,12 +25,12 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { fetchPermission, fetchResources, updatePermissions } from "../../api";
-import { getPermissionRequests } from "../../api/methods";
-import { Links } from "../../api/parse-links";
-import { Permission, Resource } from "../../api/representations";
-import { useAccountAlerts } from "../../utils/useAccountAlerts";
-import { usePromise } from "../../utils/usePromise";
+import { fetchPermission, fetchResources, updatePermissions } from "../../lib/api/resources";
+import { getPermissionRequests } from "../../lib/api/methods";
+import { Links } from "../../lib/api/parse-links";
+import { Permission, Resource } from "../../lib/api/representations";
+import { useAccountAlerts } from "../../lib/useAccountAlerts";
+import { usePromise } from "../../lib/usePromise";
 import { EditTheResource } from "./EditTheResource";
 import { PermissionRequest } from "./PermissionRequest";
 import { ResourceToolbar } from "./ResourceToolbar";

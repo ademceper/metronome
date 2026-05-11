@@ -5,10 +5,10 @@ import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { Suspense, lazy, useMemo, useState } from "react";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
-import { MenuItem } from "../../root/PageNav";
-import { joinPath } from "../../utils/joinPath";
-import { usePromise } from "../../utils/usePromise";
-import fetchContentJson from "../../content/fetchContent";
+import { MenuItem } from "../../app/PageNav";
+import { joinPath } from "../../lib/joinPath";
+import { usePromise } from "../../lib/usePromise";
+import fetchContentJson from "../../nav/fetchContent";
 
 export const Route = createFileRoute("/content/$componentId")({
   component: ContentComponent,

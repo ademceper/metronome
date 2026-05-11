@@ -14,9 +14,9 @@ import {
 } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
 
-import { unLinkAccount } from "../../api/methods";
-import { LinkedAccountRepresentation } from "../../api/representations";
-import { useAccountAlerts } from "../../utils/useAccountAlerts";
+import { unLinkAccount } from "../../lib/api/methods";
+import { LinkedAccountRepresentation } from "../../lib/api/representations";
+import { useAccountAlerts } from "../../lib/useAccountAlerts";
 
 type AccountRowProps = {
   account: LinkedAccountRepresentation;

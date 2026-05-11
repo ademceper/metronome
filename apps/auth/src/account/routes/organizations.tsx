@@ -13,9 +13,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AccountEnvironment } from "..";
-import { getUserOrganizations } from "../api/methods";
-import { Page } from "../components/page/Page";
-import { usePromise } from "../utils/usePromise";
+import { getUserOrganizations } from "../lib/api/methods";
+import { Page } from "../components/Page";
+import { usePromise } from "../lib/usePromise";
 
 export const Route = createFileRoute("/organizations")({
   component: Organizations,

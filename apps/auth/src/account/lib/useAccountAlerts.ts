@@ -13,7 +13,7 @@ import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ApiError } from "../api/parse-response";
+import { ApiError } from "../lib/api/parse-response";
 
 
 const AlertVariant = {

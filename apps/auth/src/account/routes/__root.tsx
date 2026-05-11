@@ -4,8 +4,8 @@ import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { ErrorPage } from "../../shared/keycloak-ui-shared";
-import { Header } from "../root/Header";
-import { PageNav } from "../root/PageNav";
+import { Header } from "../app/Header";
+import { PageNav } from "../app/PageNav";
 
 const Spinner = (props: any) => <UISpinner {...props} />;
 

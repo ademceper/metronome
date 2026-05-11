@@ -16,10 +16,10 @@ import { CaretRightIcon } from "@phosphor-icons/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import fetchContentJson from "../content/fetchContent";
-import type { TFuncKey } from "../i18n-type";
+import fetchContentJson from "../nav/fetchContent";
+import type { TFuncKey } from "../i18n/types";
 import type { AccountEnvironment, Feature } from "..";
-import { usePromise } from "../utils/usePromise";
+import { usePromise } from "../lib/usePromise";
 
 type RootMenuItem = {
   id?: string;

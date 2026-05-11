@@ -19,9 +19,9 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { fetchPermission, updateRequest } from "../../api";
-import { Permission, Resource } from "../../api/representations";
-import { useAccountAlerts } from "../../utils/useAccountAlerts";
+import { fetchPermission, updateRequest } from "../../lib/api/resources";
+import { Permission, Resource } from "../../lib/api/representations";
+import { useAccountAlerts } from "../../lib/useAccountAlerts";
 
 
 const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
