@@ -11,14 +11,10 @@
 
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import { cn } from "@metronome/ui/lib/utils";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { CaretRightIcon } from "@phosphor-icons/react";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  matchPath,
-  NavLink as RRNavLink,
-  useLocation,
-} from "react-router-dom";
 
 import fetchContentJson from "../content/fetchContent";
 import type { TFuncKey } from "../i18n-type";
@@ -41,18 +37,13 @@ type MenuItemWithChildren = {
 
 export type MenuItem = RootMenuItem | MenuItemWithChildren;
 
-const getFullUrl = (path: string, baseUrl: string) =>
-  `${new URL(baseUrl).pathname}${path}`;
+const normalize = (path: string) => "/" + path.replace(/^\/+|\/+$/g, "");
 
-const matchMenuItem = (
-  currentPath: string,
-  menuItem: MenuItem,
-  baseUrl: string,
-): boolean => {
+const matchMenuItem = (currentPath: string, menuItem: MenuItem): boolean => {
   if ("path" in menuItem) {
-    return !!matchPath(getFullUrl(menuItem.path, baseUrl), currentPath);
+    return currentPath === normalize(menuItem.path);
   }
-  return menuItem.children.some((c) => matchMenuItem(currentPath, c, baseUrl));
+  return menuItem.children.some((c) => matchMenuItem(currentPath, c));
 };
 
 const LeafLink = ({
@@ -63,33 +54,36 @@ const LeafLink = ({
   className?: string;
 }) => {
   const { t } = useTranslation();
-  const { environment } = useEnvironment<AccountEnvironment>();
-  const fullPath = getFullUrl(menuItem.path, environment.baseUrl);
+  const target = normalize(menuItem.path);
+  const currentPath = useRouterState({
+    select: (s) => s.location.pathname,
+  });
+  const isActive = currentPath === target;
+
   return (
-    <RRNavLink
-      to={fullPath + location.search}
+    <Link
+      to={target}
       data-testid={menuItem.path}
-      end={menuItem.path === ""}
-      className={({ isActive }) =>
-        cn(
-          "flex h-12 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-          isActive && "bg-muted font-medium text-foreground",
-          className,
-        )
-      }
+      className={cn(
+        "flex h-12 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+        isActive && "bg-muted font-medium text-foreground",
+        className,
+      )}
     >
       {t(menuItem.label)}
-    </RRNavLink>
+    </Link>
   );
 };
 
 const Group = ({ menuItem }: { menuItem: MenuItemWithChildren }) => {
   const { t } = useTranslation();
   const { environment } = useEnvironment<AccountEnvironment>();
-  const { pathname } = useLocation();
+  const currentPath = useRouterState({
+    select: (s) => s.location.pathname,
+  });
   const isOpenDefault = useMemo(
-    () => matchMenuItem(pathname, menuItem, environment.baseUrl),
-    [pathname, menuItem, environment.baseUrl],
+    () => matchMenuItem(currentPath, menuItem),
+    [currentPath, menuItem],
   );
   const [open, setOpen] = useState(isOpenDefault);
 

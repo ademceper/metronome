@@ -9,8 +9,12 @@
 
 // @ts-nocheck
 
+import {
+  createRootRoute,
+  createRoute,
+  type AnyRoute,
+} from "@tanstack/react-router";
 import { lazy } from "react";
-import type { IndexRouteObject, RouteObject } from "react-router-dom";
 import { Organizations } from "./organizations/Organizations";
 
 const DeviceActivity = lazy(() => import("./account-security/DeviceActivity"));
@@ -23,70 +27,33 @@ const Resources = lazy(() => import("./resources/Resources"));
 const ContentComponent = lazy(() => import("./content/ContentComponent"));
 const Oid4Vci = lazy(() => import("./oid4vci/Oid4Vci"));
 
-export const DeviceActivityRoute: RouteObject = {
-  path: "account-security/device-activity",
-  element: <DeviceActivity />,
-};
-
-export const LinkedAccountsRoute: RouteObject = {
-  path: "account-security/linked-accounts",
-  element: <LinkedAccounts />,
-};
-
-export const SigningInRoute: RouteObject = {
-  path: "account-security/signing-in",
-  element: <SigningIn />,
-};
-
-export const ApplicationsRoute: RouteObject = {
-  path: "applications",
-  element: <Applications />,
-};
-
-export const GroupsRoute: RouteObject = {
-  path: "groups",
-  element: <Groups />,
-};
-
-export const ResourcesRoute: RouteObject = {
-  path: "resources",
-  element: <Resources />,
-};
-
 export type ContentComponentParams = {
   componentId: string;
 };
 
-export const ContentRoute: RouteObject = {
-  path: "content/:componentId",
-  element: <ContentComponent />,
+export type AccountRouteSpec = {
+  path: string;
+  component: React.ComponentType<any>;
 };
 
-export const PersonalInfoRoute: IndexRouteObject = {
-  index: true,
-  element: <PersonalInfo />,
-  path: "",
-};
-
-export const OrganizationsRoute: RouteObject = {
-  path: "organizations",
-  element: <Organizations />,
-};
-
-export const Oid4VciRoute: RouteObject = {
-  path: "oid4vci",
-  element: <Oid4Vci />,
-};
-
-export const routes: RouteObject[] = [
-  PersonalInfoRoute,
-  DeviceActivityRoute,
-  LinkedAccountsRoute,
-  SigningInRoute,
-  ApplicationsRoute,
-  GroupsRoute,
-  OrganizationsRoute,
-  ResourcesRoute,
-  ContentRoute,
-  Oid4VciRoute,
+export const accountRouteSpecs: AccountRouteSpec[] = [
+  { path: "/", component: PersonalInfo },
+  { path: "/account-security/device-activity", component: DeviceActivity },
+  { path: "/account-security/linked-accounts", component: LinkedAccounts },
+  { path: "/account-security/signing-in", component: SigningIn },
+  { path: "/applications", component: Applications },
+  { path: "/groups", component: Groups },
+  { path: "/organizations", component: Organizations },
+  { path: "/resources", component: Resources },
+  { path: "/oid4vci", component: Oid4Vci },
+  { path: "/content/$componentId", component: ContentComponent },
 ];
+
+export const buildAccountRoutes = (rootRoute: AnyRoute): AnyRoute[] =>
+  accountRouteSpecs.map(({ path, component }) =>
+    createRoute({
+      getParentRoute: () => rootRoute,
+      path,
+      component,
+    }),
+  );

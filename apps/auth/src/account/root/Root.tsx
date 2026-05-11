@@ -12,93 +12,64 @@
 import {
   ErrorPage,
   useEnvironment,
-  KeycloakContext,
 } from "../../shared/keycloak-ui-shared";
 import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
-import { Suspense, useState } from "react";
 import {
-  createBrowserRouter,
+  createRootRoute,
+  createRouter,
   Outlet,
-  RouteObject,
   RouterProvider,
-} from "react-router-dom";
-import fetchContentJson from "../content/fetchContent";
+} from "@tanstack/react-router";
+import { Suspense, useMemo } from "react";
 import { type AccountEnvironment } from "..";
-import { usePromise } from "../utils/usePromise";
 import { Header } from "./Header";
-import { type MenuItem, PageNav } from "./PageNav";
-import { routes } from "../routes";
-
+import { PageNav } from "./PageNav";
+import { buildAccountRoutes } from "../routes";
 
 const Spinner = ({ size, ...props }: any) => <UISpinner {...props} />;
 
-function mapRoutes(
-  context: KeycloakContext<AccountEnvironment>,
-  content: MenuItem[],
-): RouteObject[] {
-  return content
-    .map((item) => {
-      if ("children" in item) {
-        return mapRoutes(context, item.children);
-      }
-
-      // Do not add route disabled via feature flags
-      if (item.isVisible && !context.environment.features[item.isVisible]) {
-        return null;
-      }
-
-      return {
-        ...item,
-        element:
-          "path" in item
-            ? routes.find((r) => r.path === (item.id ?? item.path))?.element
-            : undefined,
-      };
-    })
-    .filter((item) => !!item)
-    .flat();
-}
+const AccountLayout = () => (
+  <div className="flex min-h-svh flex-col">
+    <Header />
+    <div className="container mx-auto flex max-w-6xl flex-1 flex-col px-4 py-6">
+      <div className="grid flex-1 grid-cols-1 gap-0 md:grid-cols-[280px_1fr]">
+        <aside className="md:border-r md:pe-2">
+          <div className="md:sticky md:top-20">
+            <PageNav />
+          </div>
+        </aside>
+        <main className="min-w-0 md:ps-8">
+          <Suspense fallback={<Spinner />}>
+            <Outlet />
+          </Suspense>
+        </main>
+      </div>
+    </div>
+  </div>
+);
 
 export const Root = () => {
   const context = useEnvironment<AccountEnvironment>();
-  const [content, setContent] = useState<RouteObject[]>();
 
-  usePromise(
-    (signal) => fetchContentJson({ signal, context }),
-    (content) => {
-      setContent([
-        {
-          path: decodeURIComponent(
-            new URL(context.environment.baseUrl).pathname,
-          ),
-          element: (
-            <div className="flex min-h-svh flex-col">
-              <Header />
-              <div className="container mx-auto flex max-w-6xl flex-1 flex-col px-4 py-6">
-                <div className="grid flex-1 grid-cols-1 gap-0 md:grid-cols-[280px_1fr]">
-                  <aside className="md:border-r md:pe-2">
-                    <div className="md:sticky md:top-20">
-                      <PageNav />
-                    </div>
-                  </aside>
-                  <main className="min-w-0 md:ps-8">
-                    <Suspense fallback={<Spinner />}>
-                      <Outlet />
-                    </Suspense>
-                  </main>
-                </div>
-              </div>
-            </div>
-          ),
-          errorElement: <ErrorPage />,
-          children: mapRoutes(context, content),
-        },
-      ]);
-    },
-  );
+  const router = useMemo(() => {
+    const basepath = decodeURIComponent(
+      new URL(context.environment.baseUrl).pathname,
+    ).replace(/\/$/, "");
 
-  if (!content) {
-    return <Spinner />;
-  }
-  return <RouterProvider router={createBrowserRouter(content)} />;
+    const rootRoute = createRootRoute({
+      component: AccountLayout,
+      errorComponent: ErrorPage,
+      notFoundComponent: ErrorPage,
+    });
+
+    rootRoute.addChildren(buildAccountRoutes(rootRoute));
+
+    return createRouter({
+      routeTree: rootRoute,
+      basepath: basepath || "/",
+      defaultPreload: false,
+    });
+  }, [context.environment.baseUrl]);
+
+  return <RouterProvider router={router} />;
 };
