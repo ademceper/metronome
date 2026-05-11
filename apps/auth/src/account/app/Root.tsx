@@ -34,7 +34,7 @@ export const Root = () => {
   return (
     <>
       <RouterProvider router={router} />
-      <Toaster position="top-mid" />
+      <Toaster position="top-center" />
     </>
   );
 };
