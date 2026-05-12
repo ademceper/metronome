@@ -331,22 +331,22 @@ importers:
         version: 1.2.3
       '@novu/api':
         specifier: workspace:*
-        version: link:../../packages/internal-sdk
+        version: link:../../lib/internal-sdk
       '@novu/framework':
         specifier: workspace:*
-        version: link:../../packages/framework
+        version: link:../../lib/framework
       '@novu/js':
         specifier: workspace:*
-        version: link:../../packages/js
+        version: link:../../lib/js
       '@novu/maily-core':
         specifier: workspace:*
-        version: link:../../packages/maily-core
+        version: link:../../lib/maily-core
       '@novu/react':
         specifier: workspace:*
-        version: link:../../packages/react
+        version: link:../../lib/react
       '@novu/shared':
         specifier: workspace:*
-        version: link:../../packages/shared
+        version: link:../../lib/shared
       '@number-flow/react':
         specifier: ^0.5.10
         version: 0.5.14(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -680,10 +680,10 @@ importers:
         version: 4.4.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@novu/dal':
         specifier: workspace:*
-        version: link:../../packages/dal
+        version: link:../../lib/dal
       '@novu/testing':
         specifier: workspace:*
-        version: link:../../packages/testing
+        version: link:../../lib/testing
       '@playwright/test':
         specifier: ^1.55.1
         version: 1.60.0
@@ -835,34 +835,34 @@ importers:
         version: 6.5.0(@nestjs/common@10.4.18(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.18)(reflect-metadata@0.2.2)
       '@novu/api':
         specifier: workspace:*
-        version: link:../../../packages/internal-sdk
+        version: link:../../../lib/internal-sdk
       '@novu/application-generic':
         specifier: workspace:*
-        version: link:../../../packages/application-generic
+        version: link:../../../lib/application-generic
       '@novu/chat-adapter-email':
         specifier: workspace:*
-        version: link:../../../packages/chat-adapter-email
+        version: link:../../../lib/chat-adapter-email
       '@novu/dal':
         specifier: workspace:*
-        version: link:../../../packages/dal
+        version: link:../../../lib/dal
       '@novu/framework':
         specifier: workspace:*
-        version: link:../../../packages/framework
+        version: link:../../../lib/framework
       '@novu/maily-render':
         specifier: workspace:*
-        version: link:../../../packages/maily-render
+        version: link:../../../lib/maily-render
       '@novu/notifications':
         specifier: workspace:*
-        version: link:../../../packages/notifications
+        version: link:../../../lib/notifications
       '@novu/shared':
         specifier: workspace:*
-        version: link:../../../packages/shared
+        version: link:../../../lib/shared
       '@novu/stateless':
         specifier: workspace:*
-        version: link:../../../packages/stateless
+        version: link:../../../lib/stateless
       '@novu/testing':
         specifier: workspace:*
-        version: link:../../../packages/testing
+        version: link:../../../lib/testing
       '@sendgrid/mail':
         specifier: ^8.1.6
         version: 8.1.6
@@ -1163,10 +1163,10 @@ importers:
         version: 3.1045.0
       '@novu/application-generic':
         specifier: workspace:*
-        version: link:../../../packages/application-generic
+        version: link:../../../lib/application-generic
       '@novu/shared':
         specifier: workspace:*
-        version: link:../../../packages/shared
+        version: link:../../../lib/shared
       '@sentry/browser':
         specifier: ^8.33.1
         version: 8.55.2
@@ -1236,7 +1236,7 @@ importers:
     devDependencies:
       '@novu/testing':
         specifier: workspace:*
-        version: link:../../../packages/testing
+        version: link:../../../lib/testing
       '@types/chai':
         specifier: ^4.2.11
         version: 4.3.20
@@ -1361,19 +1361,19 @@ importers:
         version: 10.2.3(@grpc/grpc-js@1.14.3)(@grpc/proto-loader@0.8.1)(@nestjs/axios@3.0.3(@nestjs/common@10.4.18(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(axios@1.16.0)(rxjs@7.8.2))(@nestjs/common@10.4.18(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.18)(mongoose@8.23.1(gcp-metadata@5.3.0(encoding@0.1.13))(socks@2.8.6))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@novu/application-generic':
         specifier: workspace:*
-        version: link:../../../packages/application-generic
+        version: link:../../../lib/application-generic
       '@novu/dal':
         specifier: workspace:*
-        version: link:../../../packages/dal
+        version: link:../../../lib/dal
       '@novu/shared':
         specifier: workspace:*
-        version: link:../../../packages/shared
+        version: link:../../../lib/shared
       '@novu/stateless':
         specifier: workspace:*
-        version: link:../../../packages/stateless
+        version: link:../../../lib/stateless
       '@novu/testing':
         specifier: workspace:*
-        version: link:../../../packages/testing
+        version: link:../../../lib/testing
       '@sentry/browser':
         specifier: ^8.33.1
         version: 8.55.2
@@ -1524,22 +1524,22 @@ importers:
         version: 10.2.3(@grpc/grpc-js@1.14.3)(@grpc/proto-loader@0.8.1)(@nestjs/axios@3.0.3(@nestjs/common@10.4.18(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(axios@1.16.0)(rxjs@7.8.2))(@nestjs/common@10.4.18(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.18)(mongoose@8.23.1(gcp-metadata@5.3.0(encoding@0.1.13))(socks@2.8.6))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@novu/application-generic':
         specifier: workspace:*
-        version: link:../../../packages/application-generic
+        version: link:../../../lib/application-generic
       '@novu/dal':
         specifier: workspace:*
-        version: link:../../../packages/dal
+        version: link:../../../lib/dal
       '@novu/framework':
         specifier: workspace:*
-        version: link:../../../packages/framework
+        version: link:../../../lib/framework
       '@novu/shared':
         specifier: workspace:*
-        version: link:../../../packages/shared
+        version: link:../../../lib/shared
       '@novu/stateless':
         specifier: workspace:*
-        version: link:../../../packages/stateless
+        version: link:../../../lib/stateless
       '@novu/testing':
         specifier: workspace:*
-        version: link:../../../packages/testing
+        version: link:../../../lib/testing
       '@sentry/browser':
         specifier: ^8.33.1
         version: 8.55.2
@@ -1753,16 +1753,16 @@ importers:
         version: 10.4.18(@nestjs/common@10.4.18(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@10.4.18)(@nestjs/platform-socket.io@10.4.18)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@novu/application-generic':
         specifier: workspace:*
-        version: link:../../../packages/application-generic
+        version: link:../../../lib/application-generic
       '@novu/dal':
         specifier: workspace:*
-        version: link:../../../packages/dal
+        version: link:../../../lib/dal
       '@novu/shared':
         specifier: workspace:*
-        version: link:../../../packages/shared
+        version: link:../../../lib/shared
       '@novu/testing':
         specifier: workspace:*
-        version: link:../../../packages/testing
+        version: link:../../../lib/testing
       '@sentry/browser':
         specifier: ^8.33.1
         version: 8.55.2
@@ -1942,7 +1942,7 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
 
-  packages/add-inbox:
+  lib/add-inbox:
     dependencies:
       '@segment/analytics-node':
         specifier: ^2.2.1
@@ -1982,7 +1982,7 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@edge-runtime/vm@3.0.3)(@types/node@25.2.3)(happy-dom@20.9.0)(jsdom@20.0.3)(lightningcss@1.32.0)(msw@2.14.3(@types/node@25.2.3)(typescript@5.9.3))(terser@5.47.1)
 
-  packages/agent-toolkit:
+  lib/agent-toolkit:
     dependencies:
       '@novu/api':
         specifier: ^3.15.0
@@ -2013,7 +2013,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/application-generic:
+  lib/application-generic:
     dependencies:
       '@aws-sdk/client-s3':
         specifier: ^3.971.0
@@ -2344,32 +2344,7 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@edge-runtime/vm@3.0.3)(@types/node@25.2.3)(happy-dom@20.9.0)(jsdom@20.0.3)(lightningcss@1.32.0)(msw@2.14.3(@types/node@25.2.3)(typescript@5.6.2))(terser@5.47.1)
 
-  packages/auth:
-    dependencies:
-      '@metronome/ui':
-        specifier: workspace:*
-        version: link:../ui
-      '@phosphor-icons/react':
-        specifier: ^2.1.10
-        version: 2.1.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      oidc-spa:
-        specifier: ~10.0.5
-        version: 10.0.9(@tanstack/react-router@1.169.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2)
-    devDependencies:
-      '@metronome/ts-cfg':
-        specifier: workspace:*
-        version: link:../ts-cfg
-      '@types/react':
-        specifier: ^19.2.10
-        version: 19.2.14
-      react:
-        specifier: ^19.2.4
-        version: 19.2.4
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
-
-  packages/automation:
+  lib/automation:
     dependencies:
       '@nx/devkit':
         specifier: 20.1.2
@@ -2409,7 +2384,7 @@ importers:
         specifier: ^5.0.4
         version: 5.33.0(encoding@0.1.13)(typanion@3.14.0)
 
-  packages/chat-adapter-email:
+  lib/chat-adapter-email:
     dependencies:
       '@novu/shared':
         specifier: workspace:*
@@ -2443,7 +2418,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/dal:
+  lib/dal:
     dependencies:
       '@aws-sdk/client-s3':
         specifier: ^3.382.0
@@ -2522,7 +2497,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/framework:
+  lib/framework:
     dependencies:
       ajv:
         specifier: ^8.18.0
@@ -2625,7 +2600,7 @@ importers:
         specifier: ^3.23.3
         version: 3.25.2(zod@3.25.76)
 
-  packages/internal-sdk:
+  lib/internal-sdk:
     dependencies:
       react:
         specifier: ^18 || ^19
@@ -2659,7 +2634,7 @@ importers:
         specifier: ^8.26.0
         version: 8.59.3(eslint@9.39.4(jiti@2.7.0))(typescript@5.8.3)
 
-  packages/js:
+  lib/js:
     dependencies:
       '@floating-ui/dom':
         specifier: ^1.6.13
@@ -2795,7 +2770,7 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.106.2)
 
-  packages/maily-core:
+  lib/maily-core:
     dependencies:
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.1.6
@@ -2938,18 +2913,18 @@ importers:
         version: 2.0.1(postcss@8.5.14)
       tsup:
         specifier: ^8.1.0
-        version: 8.5.1(@swc/core@1.15.33)(jiti@1.21.7)(postcss@8.5.14)(tsx@4.21.0)(typescript@5.6.2)(yaml@2.8.4)
+        version: 8.5.1(@swc/core@1.15.33)(jiti@2.7.0)(postcss@8.5.14)(tsx@4.21.0)(typescript@5.6.2)(yaml@2.8.4)
       typescript:
         specifier: 5.6.2
         version: 5.6.2
       vite:
         specifier: ^6.4.2
-        version: 6.4.2(@types/node@25.2.3)(jiti@1.21.7)(lightningcss@1.32.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.8.4)
+        version: 6.4.2(@types/node@25.2.3)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.8.4)
       vitest:
         specifier: ^2.1.3
         version: 2.1.9(@edge-runtime/vm@3.0.3)(@types/node@25.2.3)(happy-dom@20.9.0)(jsdom@20.0.3)(lightningcss@1.32.0)(msw@2.14.3(@types/node@25.2.3)(typescript@5.6.2))(terser@5.47.1)
 
-  packages/maily-render:
+  lib/maily-render:
     dependencies:
       '@react-email/components':
         specifier: ^0.5.1
@@ -3001,7 +2976,7 @@ importers:
         specifier: ^2.1.3
         version: 2.1.9(@edge-runtime/vm@3.0.3)(@types/node@25.2.3)(happy-dom@20.9.0)(jsdom@20.0.3)(lightningcss@1.32.0)(msw@2.14.3(@types/node@25.2.3)(typescript@5.6.2))(terser@5.47.1)
 
-  packages/maily-tailwind-config:
+  lib/maily-tailwind-config:
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.15
@@ -3022,9 +2997,9 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.19(tsx@4.21.0)(yaml@2.8.4))
 
-  packages/maily-tsconfig: {}
+  lib/maily-tsconfig: {}
 
-  packages/nextjs:
+  lib/nextjs:
     dependencies:
       '@novu/react':
         specifier: workspace:*
@@ -3061,7 +3036,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/notifications:
+  lib/notifications:
     dependencies:
       '@novu/framework':
         specifier: workspace:*
@@ -3104,7 +3079,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/novu:
+  lib/novu:
     dependencies:
       '@babel/parser':
         specifier: ^7.29.0
@@ -3234,9 +3209,9 @@ importers:
         specifier: ^1.2.1
         version: 1.6.1(@edge-runtime/vm@3.0.3)(@types/node@25.2.3)(happy-dom@20.9.0)(jsdom@20.0.3)(lightningcss@1.32.0)(terser@5.47.1)
 
-  packages/novu-tsconfig: {}
+  lib/novu-tsconfig: {}
 
-  packages/providers:
+  lib/providers:
     dependencies:
       '@aws-sdk/client-sesv2':
         specifier: ^3.723.0
@@ -3423,7 +3398,7 @@ importers:
         specifier: 2.1.9
         version: 2.1.9(@edge-runtime/vm@3.0.3)(@types/node@25.2.3)(happy-dom@20.9.0)(jsdom@20.0.3)(lightningcss@1.32.0)(msw@2.14.3(@types/node@25.2.3)(typescript@5.6.2))(terser@5.47.1)
 
-  packages/react:
+  lib/react:
     dependencies:
       '@novu/js':
         specifier: workspace:*
@@ -3457,7 +3432,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/react-native:
+  lib/react-native:
     dependencies:
       '@novu/react':
         specifier: workspace:*
@@ -3485,7 +3460,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/shared:
+  lib/shared:
     dependencies:
       lru-cache:
         specifier: ^11.2.4
@@ -3504,7 +3479,7 @@ importers:
         specifier: ^2.1.9
         version: 2.1.9(@edge-runtime/vm@3.0.3)(@types/node@25.2.3)(happy-dom@20.9.0)(jsdom@20.0.3)(lightningcss@1.32.0)(msw@2.14.3(@types/node@25.2.3)(typescript@5.6.2))(terser@5.47.1)
 
-  packages/stateless:
+  lib/stateless:
     dependencies:
       handlebars:
         specifier: 4.7.9
@@ -3556,7 +3531,7 @@ importers:
         specifier: 5.6.2
         version: 5.6.2
 
-  packages/testing:
+  lib/testing:
     dependencies:
       '@clerk/backend':
         specifier: 1.25.2
@@ -3646,6 +3621,31 @@ importers:
       typescript:
         specifier: 5.6.2
         version: 5.6.2
+
+  packages/auth:
+    dependencies:
+      '@metronome/ui':
+        specifier: workspace:*
+        version: link:../ui
+      '@phosphor-icons/react':
+        specifier: ^2.1.10
+        version: 2.1.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      oidc-spa:
+        specifier: ~10.0.5
+        version: 10.0.9(@tanstack/react-router@1.169.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@types/react@19.2.14)(react@19.2.4)(rxjs@7.8.2)
+    devDependencies:
+      '@metronome/ts-cfg':
+        specifier: workspace:*
+        version: link:../ts-cfg
+      '@types/react':
+        specifier: ^19.2.10
+        version: 19.2.14
+      react:
+        specifier: ^19.2.4
+        version: 19.2.4
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   packages/ts-cfg: {}
 
@@ -43025,7 +43025,7 @@ snapshots:
 
   core-js-compat@3.49.0:
     dependencies:
-      browserslist: 4.28.1
+      browserslist: 4.28.2
 
   core-js-pure@3.45.0: {}
 
@@ -44143,7 +44143,7 @@ snapshots:
       has-property-descriptors: 1.0.2
       has-proto: 1.2.0
       has-symbols: 1.1.0
-      hasown: 2.0.2
+      hasown: 2.0.3
       internal-slot: 1.1.0
       is-array-buffer: 3.0.5
       is-callable: 1.2.7
@@ -45649,7 +45649,7 @@ snapshots:
       call-bound: 1.0.4
       define-properties: 1.2.1
       functions-have-names: 1.2.3
-      hasown: 2.0.2
+      hasown: 2.0.3
       is-callable: 1.2.7
 
   functional-red-black-tree@1.0.1:
@@ -46853,7 +46853,7 @@ snapshots:
   internal-slot@1.1.0:
     dependencies:
       es-errors: 1.3.0
-      hasown: 2.0.2
+      hasown: 2.0.3
       side-channel: 1.1.0
 
   internmap@1.0.1: {}
@@ -55583,35 +55583,6 @@ snapshots:
       - solid-js
       - supports-color
 
-  tsup@8.5.1(@swc/core@1.15.33)(jiti@1.21.7)(postcss@8.5.14)(tsx@4.21.0)(typescript@5.6.2)(yaml@2.8.4):
-    dependencies:
-      bundle-require: 5.1.0(esbuild@0.27.3)
-      cac: 6.7.14
-      chokidar: 4.0.3
-      consola: 3.4.2
-      debug: 4.4.3(supports-color@5.5.0)
-      esbuild: 0.27.3
-      fix-dts-default-cjs-exports: 1.0.1
-      joycon: 3.1.1
-      picocolors: 1.1.1
-      postcss-load-config: 6.0.1(jiti@1.21.7)(postcss@8.5.14)(tsx@4.21.0)(yaml@2.8.4)
-      resolve-from: 5.0.0
-      rollup: 4.60.3
-      source-map: 0.7.6
-      sucrase: 3.35.1
-      tinyexec: 0.3.2
-      tinyglobby: 0.2.16
-      tree-kill: 1.2.2
-    optionalDependencies:
-      '@swc/core': 1.15.33
-      postcss: 8.5.14
-      typescript: 5.6.2
-    transitivePeerDependencies:
-      - jiti
-      - supports-color
-      - tsx
-      - yaml
-
   tsup@8.5.1(@swc/core@1.15.33)(jiti@2.7.0)(postcss@8.5.14)(tsx@4.16.2)(typescript@5.6.2)(yaml@2.8.4):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.27.3)
@@ -56563,23 +56534,6 @@ snapshots:
       '@types/node': 22.19.19
       fsevents: 2.3.3
       jiti: 2.7.0
-      lightningcss: 1.32.0
-      terser: 5.47.1
-      tsx: 4.21.0
-      yaml: 2.8.4
-
-  vite@6.4.2(@types/node@25.2.3)(jiti@1.21.7)(lightningcss@1.32.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.8.4):
-    dependencies:
-      esbuild: 0.25.12
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
-      postcss: 8.5.14
-      rollup: 4.60.3
-      tinyglobby: 0.2.16
-    optionalDependencies:
-      '@types/node': 25.2.3
-      fsevents: 2.3.3
-      jiti: 1.21.7
       lightningcss: 1.32.0
       terser: 5.47.1
       tsx: 4.21.0
