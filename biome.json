@@ -24,8 +24,8 @@
       "!apps/auth/src/account",
       "!apps/auth/src/admin",
       "!apps/auth/src/shared",
-      "!apps/novu",
-      "!apps/server/novu-*"
+      "!apps/notification",
+      "!apps/server/notification-*"
     ]
   },
   "formatter": {
