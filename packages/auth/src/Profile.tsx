@@ -45,8 +45,7 @@ export function Profile({
       <DropdownMenuTrigger
         aria-label={displayName}
         className={cn(
-          "rounded-full outline-none ring-offset-background transition-shadow",
-          "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "rounded-full outline-none focus:outline-none focus-visible:outline-none",
           className
         )}
       >
