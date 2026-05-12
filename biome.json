@@ -25,7 +25,27 @@
       "!apps/auth/src/admin",
       "!apps/auth/src/shared",
       "!apps/notification",
-      "!apps/server/notification-*"
+      "!apps/server/notification-*",
+      "!packages/application-generic",
+      "!packages/automation",
+      "!packages/dal",
+      "!packages/internal-sdk",
+      "!packages/maily-*",
+      "!packages/notifications",
+      "!packages/testing",
+      "!packages/shared",
+      "!packages/framework",
+      "!packages/stateless",
+      "!packages/providers",
+      "!packages/js",
+      "!packages/react",
+      "!packages/react-native",
+      "!packages/nextjs",
+      "!packages/novu",
+      "!packages/add-inbox",
+      "!packages/agent-toolkit",
+      "!packages/chat-adapter-email",
+      "!packages/api"
     ]
   },
   "formatter": {

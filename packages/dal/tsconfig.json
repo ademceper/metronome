@@ -1,0 +1,9 @@
+{
+  "extends": "@novu/tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
