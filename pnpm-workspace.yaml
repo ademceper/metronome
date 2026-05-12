@@ -4,3 +4,4 @@ packages:
   - "packages/*"
   - "!apps/novu"
   - "!apps/novu/**"
+  - "!apps/server/novu-*"

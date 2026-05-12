@@ -24,7 +24,8 @@
       "!apps/auth/src/account",
       "!apps/auth/src/admin",
       "!apps/auth/src/shared",
-      "!apps/novu"
+      "!apps/novu",
+      "!apps/server/novu-*"
     ]
   },
   "formatter": {
