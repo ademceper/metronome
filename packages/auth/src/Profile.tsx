@@ -3,7 +3,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@metronome/ui/components/avatar"
-import { Button } from "@metronome/ui/components/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,14 +12,13 @@ import {
   DropdownMenuTrigger,
 } from "@metronome/ui/components/dropdown-menu"
 import { cn } from "@metronome/ui/lib/utils"
-import { CaretDownIcon, SignOutIcon } from "@phosphor-icons/react"
+import { SignOutIcon } from "@phosphor-icons/react"
 import type { ReactNode } from "react"
 
 export type ProfileProps = {
   name?: string
   email?: string
   avatarUrl?: string
-  showName?: boolean
   onSignOut: () => void
   signOutLabel?: string
   /** Extra DropdownMenuItem(s) inserted above the standard Sign Out item. */
@@ -33,7 +31,6 @@ export function Profile({
   name,
   email,
   avatarUrl,
-  showName = true,
   onSignOut,
   signOutLabel = "Sign out",
   children,
@@ -45,23 +42,18 @@ export function Profile({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className={cn("gap-2 px-2", className)}
-          aria-label={displayName}
-        >
-          <Avatar className="size-7">
-            {avatarUrl ? (
-              <AvatarImage src={avatarUrl} alt={displayName} />
-            ) : null}
-            <AvatarFallback className="text-xs">{initials}</AvatarFallback>
-          </Avatar>
-          {showName ? (
-            <span className="hidden text-sm sm:inline">{displayName}</span>
-          ) : null}
-          <CaretDownIcon className="size-3.5 text-muted-foreground" />
-        </Button>
+      <DropdownMenuTrigger
+        aria-label={displayName}
+        className={cn(
+          "rounded-full outline-none ring-offset-background transition-shadow",
+          "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          className
+        )}
+      >
+        <Avatar className="size-8">
+          {avatarUrl ? <AvatarImage src={avatarUrl} alt={displayName} /> : null}
+          <AvatarFallback className="text-xs">{initials}</AvatarFallback>
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align} className="min-w-48">
         <DropdownMenuLabel className="font-normal">
