@@ -7,6 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@metronome/ui/components/breadcrumb"
+import { DropdownMenuItem } from "@metronome/ui/components/dropdown-menu"
 import { Separator } from "@metronome/ui/components/separator"
 import {
   SidebarInset,
@@ -14,6 +15,7 @@ import {
   SidebarTrigger,
 } from "@metronome/ui/components/sidebar"
 import { TooltipProvider } from "@metronome/ui/components/tooltip"
+import { UserButton } from "./auth"
 
 export default function App() {
   return (
@@ -22,7 +24,7 @@ export default function App() {
         <AppSidebar />
         <SidebarInset>
           <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-            <div className="flex items-center gap-2 px-4">
+            <div className="flex flex-1 items-center gap-2 px-4">
               <SidebarTrigger className="-ml-1" />
               <Separator
                 orientation="vertical"
@@ -39,6 +41,12 @@ export default function App() {
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb>
+            </div>
+            <div className="px-4">
+              <UserButton>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Workspace</DropdownMenuItem>
+              </UserButton>
             </div>
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

@@ -41,7 +41,10 @@ export type AuthClient<
 
 export function createAuthClient<
   D extends Record<string, unknown> = DefaultClaims,
->(options?: CreateAuthClientOptions<D>): AuthClient<boolean, D> {
+  AutoLogin extends boolean = false,
+>(
+  options?: CreateAuthClientOptions<D> & { withAutoLogin?: AutoLogin }
+): AuthClient<AutoLogin, D> {
   let builder: any = oidcSpa
 
   if (options?.decodedIdTokenSchema) {
@@ -55,7 +58,7 @@ export function createAuthClient<
     builder = builder.withAutoLogin()
   }
 
-  const utils = builder.createUtils() as OidcSpaUtils<boolean, D>
+  const utils = builder.createUtils() as OidcSpaUtils<AutoLogin, D>
 
   const UserButton = createUserButton(utils.useOidc as any)
 

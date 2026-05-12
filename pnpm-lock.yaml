@@ -35,6 +35,9 @@ importers:
 
   apps/admin:
     dependencies:
+      '@metronome/auth':
+        specifier: workspace:^
+        version: link:../../packages/auth
       '@metronome/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -315,6 +318,9 @@ importers:
 
   apps/user:
     dependencies:
+      '@metronome/auth':
+        specifier: workspace:^
+        version: link:../../packages/auth
       '@metronome/ui':
         specifier: workspace:*
         version: link:../../packages/ui
