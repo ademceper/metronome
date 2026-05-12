@@ -1,9 +1,0 @@
-packages:
-  - 'dashboard'
-  - 'libs/*'
-  - 'packages/*'
-  - 'enterprise/workers/*'
-  - '!**/test/**'
-
-# Wait 3 days (4320 minutes) before allowing packages to be installed
-minimumReleaseAge: 4320

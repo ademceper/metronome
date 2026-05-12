@@ -1,7 +1,9 @@
 packages:
   - "apps/*"
   - "apps/server/*"
+  - "apps/notification/dashboard"
+  - "apps/notification/libs/*"
+  - "apps/notification/packages/*"
+  - "apps/notification/enterprise/workers/*"
   - "packages/*"
   - "!apps/notification"
-  - "!apps/notification/**"
-  - "!apps/server/notification-*"

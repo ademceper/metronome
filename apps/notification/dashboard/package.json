@@ -162,7 +162,6 @@
     "@faker-js/faker": "^9.5.0",
     "@hookform/devtools": "^4.3.0",
     "@novu/dal": "workspace:*",
-    "@novu/ee-auth": "workspace:*",
     "@novu/testing": "workspace:*",
     "@playwright/test": "^1.55.1",
     "@sentry/vite-plugin": "^2.22.6",

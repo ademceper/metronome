@@ -81,7 +81,4 @@
       "@nestjs/platform-socket.io/**"
     ]
   }
-      }
-    }
-  }
 }
