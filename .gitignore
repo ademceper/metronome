@@ -35,3 +35,7 @@ npm-debug.log*
 # Misc
 .DS_Store
 *.pem
+
+# Vite's transient TS config compiler timestamps
+*.timestamp-*.mjs
+**/.vite-temp/
