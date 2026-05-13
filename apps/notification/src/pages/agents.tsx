@@ -4,12 +4,12 @@ import { useMutation } from '@tanstack/react-query';
 import type { FormEvent, ReactElement } from 'react';
 import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import { RiArrowRightSLine, RiCheckLine, RiCloseLine, RiMailLine, RiMessage3Line, RiMoreLine } from 'react-icons/ri';
+import { BiLogoMicrosoftTeams as SiMicrosoftteams } from 'react-icons/bi';
 import {
   SiGithub,
   SiGooglechat,
   SiLinear,
   SiMessenger,
-  SiMicrosoftteams,
   SiTelegram,
   SiWhatsapp,
   SiZoom,
