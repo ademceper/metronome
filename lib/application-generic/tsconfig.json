@@ -1,5 +1,5 @@
 {
-  "extends": "@novu/tsconfig/tsconfig.json",
+  "extends": "../novu-tsconfig/tsconfig.json",
   "compilerOptions": {
     "sourceMap": true,
     "strictNullChecks": false,
@@ -10,9 +10,12 @@
     "esModuleInterop": true,
     "rootDir": "src",
     "strict": true,
-    "types": ["node", "jest"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "types": ["node"],
     "typeRoots": ["./node_modules/@types", "../../node_modules/@types"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules/**"]
+  "exclude": ["node_modules/**", "**/*.spec.ts"]
 }
