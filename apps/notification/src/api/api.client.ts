@@ -46,10 +46,12 @@ function mockEnvironment(name: 'Development' | 'Production', id: string) {
 
 function offlineFallback(endpoint: string): unknown {
   if (endpoint === '/environments' || endpoint.startsWith('/environments?')) {
-    return [
-      mockEnvironment('Development', '000000000000000000000010'),
-      mockEnvironment('Production', '000000000000000000000011'),
-    ];
+    return {
+      data: [
+        mockEnvironment('Development', '000000000000000000000010'),
+        mockEnvironment('Production', '000000000000000000000011'),
+      ],
+    };
   }
   if (endpoint.startsWith('/organizations/me')) {
     return {
