@@ -5,6 +5,7 @@
   "ignoreBinaries": ["sleep"],
   "ignoreWorkspaces": [
     "apps/server/*",
+    "apps/server/notification/*",
     "apps/mobile",
     "apps/notification",
     "lib/*"
