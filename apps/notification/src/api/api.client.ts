@@ -88,6 +88,11 @@ const request = async <T>(
 ): Promise<T> => {
   const { body, environment, headers, method = 'GET', version = 'v1', signal } = options || {};
 
+  // Offline / mock mode: never hit the network. Return canned fake data
+  // shaped like Novu's API responses so the dashboard renders end-to-end.
+  return offlineFallback(endpoint) as T;
+
+  // eslint-disable-next-line no-unreachable
   try {
     const jwt = await getToken();
     const config: RequestInit = {
