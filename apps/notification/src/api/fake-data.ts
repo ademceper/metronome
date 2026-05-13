@@ -78,7 +78,7 @@ function makeWorkflow(seed: (typeof workflowSeeds)[number], i: number) {
     active: true,
     validatePayload: false,
     isTranslationEnabled: false,
-    slug: { workflowId: seed.id, internalId: _id },
+    slug: `${seed.id}_wf_${_id.slice(-8)}`,
     updatedAt: daysAgo(i),
     createdAt: daysAgo(30 + i * 5),
     lastTriggeredAt: minsAgo(i * 17 + 3),
@@ -89,7 +89,7 @@ function makeWorkflow(seed: (typeof workflowSeeds)[number], i: number) {
       _id: `${_id}_step_${j}`,
       stepId: `${seed.id}-${type}`,
       name: `${type.toUpperCase()} step`,
-      slug: { stepId: `${seed.id}-${type}`, internalId: `${_id}_step_${j}` },
+      slug: `${seed.id}-${type}_st_${j}`,
       type,
       origin: 'novu-cloud',
       controls: { values: {}, schema: { type: 'object', properties: {} } },
@@ -128,7 +128,7 @@ function makeLayout(seed: (typeof layoutSeeds)[number], i: number) {
     _id,
     layoutId: seed.id,
     name: seed.name,
-    slug: { layoutId: seed.id, internalId: _id },
+    slug: `${seed.id}_lay_${_id.slice(-8)}`,
     description: `${seed.name} layout for the notification platform`,
     isDefault: i === 0,
     type: 'EMAIL',
@@ -332,15 +332,17 @@ export const fakeChartData = {
 
 export function pickWorkflow(slug: string) {
   return (
-    fakeWorkflows.find((w) => w.workflowId === slug || w._id === slug) ??
-    fakeWorkflows[0]!
+    fakeWorkflows.find(
+      (w) => w.workflowId === slug || w._id === slug || w.slug === slug
+    ) ?? fakeWorkflows[0]!
   );
 }
 
 export function pickLayout(slug: string) {
   return (
-    fakeLayouts.find((l) => l.layoutId === slug || l._id === slug) ??
-    fakeLayouts[0]!
+    fakeLayouts.find(
+      (l) => l.layoutId === slug || l._id === slug || l.slug === slug
+    ) ?? fakeLayouts[0]!
   );
 }
 
