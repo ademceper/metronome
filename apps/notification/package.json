@@ -1,5 +1,5 @@
 {
-  "name": "@novu/dashboard",
+  "name": "notification",
   "private": true,
   "version": "3.15.4",
   "type": "module",
