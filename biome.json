@@ -25,7 +25,7 @@
       "!apps/auth/src/admin",
       "!apps/auth/src/shared",
       "!apps/notification",
-      "!apps/server/notification-*",
+      "!apps/server/notification",
       "!lib"
     ]
   },
