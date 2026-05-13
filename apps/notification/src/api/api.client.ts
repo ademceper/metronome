@@ -77,6 +77,9 @@ function offlineFallback(endpoint: string): unknown {
   if (endpoint.startsWith('/workflows')) {
     return { data: { workflows: [], totalCount: 0 } };
   }
+  if (endpoint.startsWith('/layouts')) {
+    return { data: { layouts: [], totalCount: 0 } };
+  }
   if (endpoint.startsWith('/integrations')) {
     return { data: [] };
   }
