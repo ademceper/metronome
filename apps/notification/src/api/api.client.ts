@@ -79,6 +79,20 @@ const request = async <T>(
       throw error;
     }
 
+    // Offline mode: backend unreachable (CORS / connection refused / TypeError).
+    // Return an empty payload so the UI renders empty state instead of crashing.
+    // Most Novu endpoints respond with either { data: [...] } or a bare array.
+    const isNetworkError =
+      error instanceof TypeError ||
+      (typeof error === "object" && error && "message" in error &&
+        typeof (error as { message: unknown }).message === "string" &&
+        /Failed to fetch|NetworkError|Load failed/i.test(
+          (error as { message: string }).message,
+        ));
+    if (isNetworkError) {
+      return { data: [] } as T;
+    }
+
     if (typeof error === 'object' && error && 'message' in error) {
       throw new Error(`Fetch error: ${error.message}`);
     }
