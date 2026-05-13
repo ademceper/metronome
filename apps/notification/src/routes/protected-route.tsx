@@ -1,4 +1,3 @@
-import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import { MemberRoleEnum, PermissionsEnum } from '@novu/shared';
 import { ReactNode } from 'react';
 import { EnvironmentProvider } from '@/context/environment/environment-provider';
@@ -13,21 +12,14 @@ interface ProtectedRouteProps {
 
 export const ProtectedRoute = ({ children, permission, condition, isDrawerRoute }: ProtectedRouteProps) => {
   return (
-    <>
-      <SignedIn>
-        <EnvironmentProvider>
-          {permission || condition ? (
-            <PermissionProtectedRoute permission={permission} condition={condition} isDrawerRoute={isDrawerRoute}>
-              {children}
-            </PermissionProtectedRoute>
-          ) : (
-            children
-          )}
-        </EnvironmentProvider>
-      </SignedIn>
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
-    </>
+    <EnvironmentProvider>
+      {permission || condition ? (
+        <PermissionProtectedRoute permission={permission} condition={condition} isDrawerRoute={isDrawerRoute}>
+          {children}
+        </PermissionProtectedRoute>
+      ) : (
+        children
+      )}
+    </EnvironmentProvider>
   );
 };

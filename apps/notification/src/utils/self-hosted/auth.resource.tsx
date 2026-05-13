@@ -1,17 +1,26 @@
 import React from 'react';
 import { createContextHook } from '../context';
-import { DecodedJwt } from '.';
-import { getJwtToken, isJwtValid } from './jwt-manager';
-import { createUserFromJwt } from './user.types';
+import { SelfHostedUser } from './user.types';
+
+const MOCK_USER: SelfHostedUser = {
+  update: async () => null,
+  reload: async () => null,
+  externalId: 'local-user',
+  firstName: 'Local',
+  lastName: 'User',
+  emailAddresses: [{ emailAddress: 'local@notification.dev' }],
+  createdAt: new Date(),
+  publicMetadata: { newDashboardOptInStatus: 'opted_in' },
+  unsafeMetadata: { newDashboardOptInStatus: 'opted_in' },
+  organizationMemberships: [{}],
+  passwordEnabled: true,
+};
 
 export const AuthContext = React.createContext({});
 
 export function AuthContextProvider({ children }: any) {
-  const jwt = getJwtToken();
-  const decodedJwt: DecodedJwt | null = jwt && isJwtValid(jwt) ? JSON.parse(atob(jwt.split('.')[1])) : null;
-
   const value = {
-    currentUser: createUserFromJwt(decodedJwt),
+    currentUser: MOCK_USER,
     has: () => true,
   };
 

@@ -1,25 +1,35 @@
 import React from 'react';
 import { createContextHook } from '../context';
-import { DecodedJwt } from '.';
-import { createUserFromJwt, SelfHostedUser } from './user.types';
+import { SelfHostedUser } from './user.types';
+
+const MOCK_USER: SelfHostedUser = {
+  update: async () => null,
+  reload: async () => null,
+  externalId: 'local-user',
+  firstName: 'Local',
+  lastName: 'User',
+  emailAddresses: [{ emailAddress: 'local@notification.dev' }],
+  createdAt: new Date(),
+  publicMetadata: { newDashboardOptInStatus: 'opted_in' },
+  unsafeMetadata: { newDashboardOptInStatus: 'opted_in' },
+  organizationMemberships: [{}],
+  passwordEnabled: true,
+};
 
 export const UserContext = React.createContext<{
   user: SelfHostedUser | null;
   isLoaded: boolean;
 }>({
-  user: null,
-  isLoaded: false,
+  user: MOCK_USER,
+  isLoaded: true,
 });
 
 export function UserContextProvider({ children }: any) {
-  const jwt = localStorage.getItem('self-hosted-jwt');
-  const decodedJwt: DecodedJwt | null = jwt ? JSON.parse(atob(jwt.split('.')[1])) : null;
-  const value = {
-    user: createUserFromJwt(decodedJwt),
-    isLoaded: true,
-  };
-
-  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ user: MOCK_USER, isLoaded: true }}>
+      {children}
+    </UserContext.Provider>
+  );
 }
 
 export const useUser = createContextHook(UserContext);

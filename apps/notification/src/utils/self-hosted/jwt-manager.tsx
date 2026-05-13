@@ -1,17 +1,9 @@
-const JWT_STORAGE_KEY = 'self-hosted-jwt';
+const MOCK_TOKEN = 'local-no-auth';
 
 export function getJwtToken(): string | null {
-  return localStorage.getItem(JWT_STORAGE_KEY);
+  return MOCK_TOKEN;
 }
 
-export function isJwtValid(token: string | null): boolean {
-  if (!token) return false;
-
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const expirationTime = payload.exp * 1000; // Convert to milliseconds
-    return Date.now() < expirationTime;
-  } catch (error) {
-    return false;
-  }
+export function isJwtValid(_token: string | null): boolean {
+  return true;
 }
