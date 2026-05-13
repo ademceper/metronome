@@ -74,6 +74,24 @@ function offlineFallback(endpoint: string): unknown {
       },
     };
   }
+  if (endpoint.startsWith('/workflows')) {
+    return { data: { workflows: [], totalCount: 0 } };
+  }
+  if (endpoint.startsWith('/integrations')) {
+    return { data: [] };
+  }
+  if (endpoint.startsWith('/subscribers')) {
+    return { data: { subscribers: [], totalCount: 0, page: 0, pageSize: 10, hasMore: false } };
+  }
+  if (endpoint.startsWith('/notifications') || endpoint.startsWith('/activity')) {
+    return { data: [], totalCount: 0, page: 0, pageSize: 10, hasMore: false };
+  }
+  if (endpoint.startsWith('/topics')) {
+    return { data: [], totalCount: 0, page: 0, pageSize: 10 };
+  }
+  if (endpoint.startsWith('/feature-flags') || endpoint.startsWith('/inbox/preferences')) {
+    return { data: {} };
+  }
   return { data: [] };
 }
 
