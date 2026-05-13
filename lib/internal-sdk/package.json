@@ -2,7 +2,8 @@
   "name": "@novu/api",
   "version": "0.1.21",
   "author": "Novu",
-  "main": "./src/index.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "sideEffects": false,
   "scripts": {
     "lint": "eslint --cache --max-warnings=0 src",
@@ -38,8 +39,14 @@
     "zod": "^3.25.0 || ^4.0.0"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./models/components": "./src/models/components/index.ts",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./models/components": {
+      "types": "./models/components/index.d.ts",
+      "default": "./models/components/index.js"
+    },
     "./package.json": "./package.json"
   }
 }

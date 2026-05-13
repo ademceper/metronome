@@ -1,19 +1,27 @@
 {
-  "extends": "@novu/tsconfig/tsconfig.json",
+  "extends": "../novu-tsconfig/tsconfig.json",
   "compilerOptions": {
     "sourceMap": true,
     "strictNullChecks": false,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
     "outDir": "build/main",
     "module": "commonjs",
     "target": "es6",
     "esModuleInterop": true,
     "rootDir": "src",
-    "strict": true,
-    "types": ["node", "jest"],
+    "strict": false,
+    "types": ["node"],
     "jsx": "react",
-    "typeRoots": ["./node_modules/@types", "../../node_modules/@types"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "../../node_modules/@types",
+      "../../node_modules/.pnpm/node_modules/@types"
+    ]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules/**"]
+  "exclude": ["node_modules/**", "**/*.spec.ts"]
 }

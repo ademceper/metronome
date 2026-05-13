@@ -74,6 +74,66 @@
       "require": "./dist/cjs/internal/index.cjs",
       "types": "./dist/cjs/internal/index.d.cts"
     },
+    "./nest": {
+      "import": "./dist/esm/servers/nest.js",
+      "require": "./dist/cjs/servers/nest.cjs",
+      "types": "./dist/cjs/servers/nest.d.cts"
+    },
+    "./express": {
+      "import": "./dist/esm/servers/express.js",
+      "require": "./dist/cjs/servers/express.cjs",
+      "types": "./dist/cjs/servers/express.d.cts"
+    },
+    "./h3": {
+      "import": "./dist/esm/servers/h3.js",
+      "require": "./dist/cjs/servers/h3.cjs",
+      "types": "./dist/cjs/servers/h3.d.cts"
+    },
+    "./lambda": {
+      "import": "./dist/esm/servers/lambda.js",
+      "require": "./dist/cjs/servers/lambda.cjs",
+      "types": "./dist/cjs/servers/lambda.d.cts"
+    },
+    "./next": {
+      "import": "./dist/esm/servers/next.js",
+      "require": "./dist/cjs/servers/next.cjs",
+      "types": "./dist/cjs/servers/next.d.cts"
+    },
+    "./nuxt": {
+      "import": "./dist/esm/servers/nuxt.js",
+      "require": "./dist/cjs/servers/nuxt.cjs",
+      "types": "./dist/cjs/servers/nuxt.d.cts"
+    },
+    "./remix": {
+      "import": "./dist/esm/servers/remix.js",
+      "require": "./dist/cjs/servers/remix.cjs",
+      "types": "./dist/cjs/servers/remix.d.cts"
+    },
+    "./sveltekit": {
+      "import": "./dist/esm/servers/sveltekit.js",
+      "require": "./dist/cjs/servers/sveltekit.cjs",
+      "types": "./dist/cjs/servers/sveltekit.d.cts"
+    },
+    "./step-resolver": {
+      "import": "./dist/esm/step-resolver.js",
+      "require": "./dist/cjs/step-resolver.cjs",
+      "types": "./dist/cjs/step-resolver.d.cts"
+    },
+    "./validators": {
+      "import": "./dist/esm/validators.js",
+      "require": "./dist/cjs/validators.cjs",
+      "types": "./dist/cjs/validators.d.cts"
+    },
+    "./jsx-runtime": {
+      "import": "./dist/esm/jsx-runtime.js",
+      "require": "./dist/cjs/jsx-runtime.cjs",
+      "types": "./dist/cjs/jsx-runtime.d.cts"
+    },
+    "./jsx-dev-runtime": {
+      "import": "./dist/esm/jsx-dev-runtime.js",
+      "require": "./dist/cjs/jsx-dev-runtime.cjs",
+      "types": "./dist/cjs/jsx-dev-runtime.d.cts"
+    },
     "./package.json": "./package.json"
   },
   "peerDependencies": {

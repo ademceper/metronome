@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "target": "es2022",
+    "module": "commonjs",
+    "lib": ["es2022", "dom"],
+    "downlevelIteration": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false
+  }
+}
