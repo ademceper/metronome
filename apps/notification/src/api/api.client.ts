@@ -62,7 +62,7 @@ function offlineFallback(endpoint: string): unknown {
     case 'environments':
       if (!sub) return { data: fakeEnvironments };
       if (sub === 'api-keys') return { data: fakeApiKeys };
-      if (rest[0] === 'tags') return { data: { tags: fakeTags } };
+      if (rest[0] === 'tags') return { data: fakeTags.map((name) => ({ name })) };
       if (rest[0] === 'diff') return { data: { changes: [] } };
       if (rest[0] === 'publish') return { data: { changes: [] } };
       return { data: fakeEnvironments[0] };
