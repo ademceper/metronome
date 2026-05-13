@@ -36,5 +36,10 @@
   },
   "dependencies": {
     "zod": "^3.25.0 || ^4.0.0"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./models/components": "./src/models/components/index.ts",
+    "./package.json": "./package.json"
   }
 }

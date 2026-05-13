@@ -11,104 +11,12 @@
     "dist/**"
   ],
   "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "node": {
-        "import": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/index.mjs"
-        },
-        "require": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/index.cjs"
-        }
-      },
-      "browser": {
-        "import": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/index.mjs"
-        },
-        "require": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/index.cjs"
-        }
-      },
-      "default": {
-        "import": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/index.mjs"
-        },
-        "require": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/index.cjs"
-        }
-      }
-    },
-    "./blocks": {
-      "node": {
-        "import": {
-          "types": "./dist/blocks/index.d.ts",
-          "default": "./dist/blocks/index.mjs"
-        },
-        "require": {
-          "types": "./dist/blocks/index.d.ts",
-          "default": "./dist/blocks/index.cjs"
-        }
-      },
-      "browser": {
-        "import": {
-          "types": "./dist/blocks/index.d.ts",
-          "default": "./dist/blocks/index.mjs"
-        },
-        "require": {
-          "types": "./dist/blocks/index.d.ts",
-          "default": "./dist/blocks/index.cjs"
-        }
-      },
-      "default": {
-        "import": {
-          "types": "./dist/blocks/index.d.ts",
-          "default": "./dist/blocks/index.mjs"
-        },
-        "require": {
-          "types": "./dist/blocks/index.d.ts",
-          "default": "./dist/blocks/index.cjs"
-        }
-      }
-    },
-    "./extensions": {
-      "node": {
-        "import": {
-          "types": "./dist/extensions/index.d.ts",
-          "default": "./dist/extensions/index.mjs"
-        },
-        "require": {
-          "types": "./dist/extensions/index.d.ts",
-          "default": "./dist/extensions/index.cjs"
-        }
-      },
-      "browser": {
-        "import": {
-          "types": "./dist/extensions/index.d.ts",
-          "default": "./dist/extensions/index.mjs"
-        },
-        "require": {
-          "types": "./dist/extensions/index.d.ts",
-          "default": "./dist/extensions/index.cjs"
-        }
-      },
-      "default": {
-        "import": {
-          "types": "./dist/extensions/index.d.ts",
-          "default": "./dist/extensions/index.mjs"
-        },
-        "require": {
-          "types": "./dist/extensions/index.d.ts",
-          "default": "./dist/extensions/index.cjs"
-        }
-      }
-    },
-    "./style.css": "./dist/index.css"
+    ".": "./src/index.ts",
+    "./blocks": "./src/blocks.ts",
+    "./extensions": "./src/extensions.ts",
+    "./style.css": "./src/styles/index.css",
+    "./style": "./src/styles/index.css",
+    "./package.json": "./package.json"
   },
   "typesVersions": {
     "*": {
