@@ -24,6 +24,57 @@ export class NovuApiError extends Error {
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
+// When the backend is unreachable, hand the UI a payload it can render with
+// instead of throwing. Special-case the endpoints the dashboard bootstraps
+// from; everything else falls back to an empty list.
+const MOCK_ORG_ID = '000000000000000000000001';
+const MOCK_USER_ID = '000000000000000000000002';
+
+function mockEnvironment(name: 'Development' | 'Production', id: string) {
+  return {
+    _id: id,
+    name,
+    _organizationId: MOCK_ORG_ID,
+    identifier: name.toLowerCase(),
+    slug: name.toLowerCase(),
+    color: name === 'Development' ? '#3b82f6' : '#22c55e',
+    type: name === 'Development' ? 'dev' : 'prod',
+    widget: { notificationCenterEncryption: false },
+    apiKeys: [],
+  };
+}
+
+function offlineFallback(endpoint: string): unknown {
+  if (endpoint === '/environments' || endpoint.startsWith('/environments?')) {
+    return [
+      mockEnvironment('Development', '000000000000000000000010'),
+      mockEnvironment('Production', '000000000000000000000011'),
+    ];
+  }
+  if (endpoint.startsWith('/organizations/me')) {
+    return {
+      data: {
+        _id: MOCK_ORG_ID,
+        name: 'Local',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      },
+    };
+  }
+  if (endpoint.startsWith('/users/me')) {
+    return {
+      data: {
+        _id: MOCK_USER_ID,
+        firstName: 'Local',
+        lastName: 'User',
+        email: 'local@notification.dev',
+        organizationId: MOCK_ORG_ID,
+      },
+    };
+  }
+  return { data: [] };
+}
+
 const request = async <T>(
   endpoint: string,
   options?: {
@@ -80,8 +131,7 @@ const request = async <T>(
     }
 
     // Offline mode: backend unreachable (CORS / connection refused / TypeError).
-    // Return an empty payload so the UI renders empty state instead of crashing.
-    // Most Novu endpoints respond with either { data: [...] } or a bare array.
+    // Return a safe payload so the UI renders instead of crashing.
     const isNetworkError =
       error instanceof TypeError ||
       (typeof error === "object" && error && "message" in error &&
@@ -90,7 +140,7 @@ const request = async <T>(
           (error as { message: string }).message,
         ));
     if (isNetworkError) {
-      return { data: [] } as T;
+      return offlineFallback(endpoint) as T;
     }
 
     if (typeof error === 'object' && error && 'message' in error) {
