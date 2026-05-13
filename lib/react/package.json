@@ -11,9 +11,9 @@
   "author": "Novu",
   "license": "ISC",
   "type": "module",
-  "main": "./dist/cjs/server/index.cjs",
+  "main": "./src/index.ts",
   "browser": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "types": "./src/index.ts",
   "exports": {
     ".": {
       "browser": {

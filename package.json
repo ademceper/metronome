@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev --filter=!./apps/notification --filter=!./apps/server/notification-* --filter=!./lib/*",
+    "dev": "turbo dev --filter=!./apps/server/notification-* --filter=!./lib/*",
     "dev:notification": "turbo dev --filter=./apps/notification --filter=./apps/server/notification-* --filter=./lib/*",
     "dev:all": "turbo dev",
     "lint": "biome lint .",
