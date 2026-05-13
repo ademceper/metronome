@@ -1,5 +1,5 @@
 {
-  "name": "server-integration",
+  "name": "integration",
   "version": "0.0.0",
   "private": true,
   "scripts": {

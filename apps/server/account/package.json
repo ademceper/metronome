@@ -1,5 +1,5 @@
 {
-  "name": "server-account",
+  "name": "account",
   "version": "0.0.0",
   "private": true,
   "scripts": {
