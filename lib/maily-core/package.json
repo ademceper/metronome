@@ -4,18 +4,30 @@
   "version": "0.2.7-novu.19-core",
   "description": "Powerful editor for creating beautiful, pre-designed, mobile-ready emails.",
   "private": true,
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/**"
   ],
   "exports": {
-    ".": "./src/index.ts",
-    "./blocks": "./src/blocks.ts",
-    "./extensions": "./src/extensions.ts",
-    "./style.css": "./src/styles/index.css",
-    "./style": "./src/styles/index.css",
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./blocks": {
+      "import": "./dist/blocks/index.mjs",
+      "require": "./dist/blocks/index.cjs",
+      "types": "./dist/blocks/index.d.ts"
+    },
+    "./extensions": {
+      "import": "./dist/extensions/index.mjs",
+      "require": "./dist/extensions/index.cjs",
+      "types": "./dist/extensions/index.d.ts"
+    },
+    "./style.css": "./dist/index.css",
+    "./style": "./dist/index.css",
     "./package.json": "./package.json"
   },
   "typesVersions": {
