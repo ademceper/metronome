@@ -1,5 +1,5 @@
 import { Injectable, Logger } from "@nestjs/common"
-import type { MessageRepository } from "@novu/dal"
+import { MessageRepository } from "@novu/dal"
 import {
   ChannelTypeEnum,
   FeatureFlagsKeysEnum,
@@ -7,7 +7,7 @@ import {
 } from "@novu/shared"
 import got, { HTTPError, RequestError } from "got"
 
-import type { FeatureFlagsService } from "../feature-flags"
+import { FeatureFlagsService } from "../feature-flags"
 
 const LOG_CONTEXT = "SocketWorkerService"
 

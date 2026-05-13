@@ -1,13 +1,13 @@
-import type { DiscoverWorkflowOutput } from "@novu/framework/internal"
+import { DiscoverWorkflowOutput } from "@novu/framework/internal"
 import {
   AddressingTypeEnum,
-  type ContextPayload,
-  type StatelessControls,
-  type TriggerOverrides,
-  type TriggerRecipientSubscriber,
-  type TriggerRecipientsPayload,
+  ContextPayload,
+  StatelessControls,
+  TriggerOverrides,
+  TriggerRecipientSubscriber,
+  TriggerRecipientsPayload,
   TriggerRequestCategoryEnum,
-  type TriggerTenantContext,
+  TriggerTenantContext,
 } from "@novu/shared"
 import {
   IsDefined,

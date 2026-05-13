@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common"
-import type { ChangeRepository } from "@novu/dal"
-import type { UpdateChangeCommand } from "./update-change.command"
+import { ChangeRepository } from "@novu/dal"
+import { UpdateChangeCommand } from "./update-change.command"
 
 @Injectable()
 export class UpdateChange {

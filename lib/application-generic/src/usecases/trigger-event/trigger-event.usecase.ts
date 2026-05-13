@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, Logger } from "@nestjs/common"
-import type {
+import {
   ContextRepository,
   JobEntity,
   JobRepository,
@@ -9,40 +9,40 @@ import type {
 } from "@novu/dal"
 import {
   AddressingTypeEnum,
-  type ISubscribersDefine,
-  type ITenantDefine,
-  type TriggerRecipientSubscriber,
-  type TriggerTenantContext,
+  ISubscribersDefine,
+  ITenantDefine,
+  TriggerRecipientSubscriber,
+  TriggerTenantContext,
 } from "@novu/shared"
 import { addBreadcrumb } from "@sentry/node"
 import { toMerged } from "es-toolkit"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { PinoLogger } from "../../logging"
-import type { EventType, RequestTraceInput } from "../../services/analytic-logs"
+import { PinoLogger } from "../../logging"
+import { EventType, RequestTraceInput } from "../../services/analytic-logs"
 import {
   LogRepository,
   mapEventTypeToTitle,
-  type TraceLogRepository,
+  TraceLogRepository,
 } from "../../services/analytic-logs"
-import type { AnalyticsService } from "../../services/analytics.service"
-import type { FeatureFlagsService } from "../../services/feature-flags"
+import { AnalyticsService } from "../../services/analytics.service"
+import { FeatureFlagsService } from "../../services/feature-flags"
 import {
-  type InMemoryLRUCacheService,
+  InMemoryLRUCacheService,
   InMemoryLRUCacheStore,
 } from "../../services/in-memory-lru-cache"
 import {
   CreateOrUpdateSubscriberCommand,
-  type CreateOrUpdateSubscriberUseCase,
+  CreateOrUpdateSubscriberUseCase,
 } from "../create-or-update-subscriber"
-import { type ProcessTenant, ProcessTenantCommand } from "../process-tenant"
+import { ProcessTenant, ProcessTenantCommand } from "../process-tenant"
 import { TriggerBroadcastCommand } from "../trigger-broadcast/trigger-broadcast.command"
-import type { TriggerBroadcast } from "../trigger-broadcast/trigger-broadcast.usecase"
+import { TriggerBroadcast } from "../trigger-broadcast/trigger-broadcast.usecase"
 import {
-  type TriggerMulticast,
+  TriggerMulticast,
   TriggerMulticastCommand,
 } from "../trigger-multicast"
-import { type VerifyPayload, VerifyPayloadCommand } from "../verify-payload"
-import type { TriggerEventCommand } from "./trigger-event.command"
+import { VerifyPayload, VerifyPayloadCommand } from "../verify-payload"
+import { TriggerEventCommand } from "./trigger-event.command"
 
 function getActiveWorker() {
   return process.env.ACTIVE_WORKER

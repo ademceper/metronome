@@ -1,14 +1,14 @@
 import {
-  type ExecutionDetailsEntity,
+  ExecutionDetailsEntity,
   ExecutionDetailsRepository,
-  type JobEntity,
+  JobEntity,
 } from "@novu/dal"
-import type {
+import {
   ExecutionDetailsSourceEnum,
   ExecutionDetailsStatusEnum,
   StepTypeEnum,
 } from "@novu/shared"
-import type { EmailEventStatusEnum, SmsEventStatusEnum } from "@novu/stateless"
+import { EmailEventStatusEnum, SmsEventStatusEnum } from "@novu/stateless"
 import {
   IsDate,
   IsDefined,
@@ -17,7 +17,7 @@ import {
   IsString,
 } from "class-validator"
 import { EnvironmentWithSubscriber } from "../../commands"
-import type { DetailEnum } from "./types"
+import { DetailEnum } from "./types"
 
 export class CreateExecutionDetailsCommand extends EnvironmentWithSubscriber {
   // used for trace log

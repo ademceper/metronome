@@ -4,7 +4,7 @@ import { JobTopicNameEnum } from "@novu/shared"
 import { Producer } from "sqs-producer"
 
 import { SqsPayloadOffloadService } from "./sqs-payload-offload.service"
-import type { ISqsMessage } from "./types"
+import { ISqsMessage } from "./types"
 
 const LOG_CONTEXT = "SqsService"
 

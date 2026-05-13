@@ -1,24 +1,24 @@
 import { Injectable } from "@nestjs/common"
-import type { NotificationTemplateEntity, SubscriberEntity } from "@novu/dal"
+import { NotificationTemplateEntity, SubscriberEntity } from "@novu/dal"
 import {
-  type ISubscribersDefine,
-  type ITenantDefine,
+  ISubscribersDefine,
+  ITenantDefine,
   ResourceEnum,
-  type StatelessControls,
-  type SubscriberSourceEnum,
-  type TriggerOverrides,
-  type TriggerRequestCategoryEnum,
+  StatelessControls,
+  SubscriberSourceEnum,
+  TriggerOverrides,
+  TriggerRequestCategoryEnum,
 } from "@novu/shared"
 import _ from "lodash"
 
-import type {
+import {
   IProcessSubscriberBulkJobDto,
   SubscriberTopicPreference,
 } from "../../dtos"
-import type { PinoLogger } from "../../logging"
-import type { CacheService } from "../../services"
+import { PinoLogger } from "../../logging"
+import { CacheService } from "../../services"
 import { buildUsageKey } from "../../services/cache/key-builders"
-import type { SubscriberProcessQueueService } from "../../services/queues/subscriber-process-queue.service"
+import { SubscriberProcessQueueService } from "../../services/queues/subscriber-process-queue.service"
 import { mapSubscribersToJobs } from "../../utils"
 
 export type BaseTriggerCommand = {

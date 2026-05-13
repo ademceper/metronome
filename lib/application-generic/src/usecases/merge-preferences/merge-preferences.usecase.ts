@@ -1,10 +1,10 @@
 /** biome-ignore-all lint/complexity/noStaticOnlyClass: needed */
 
-import type { PreferencesEntity } from "@novu/dal"
-import { PreferencesTypeEnum, type WorkflowPreferences } from "@novu/shared"
+import { PreferencesEntity } from "@novu/dal"
+import { PreferencesTypeEnum, WorkflowPreferences } from "@novu/shared"
 import { toMerged } from "es-toolkit"
-import type { GetPreferencesResponseDto } from "../get-preferences"
-import type { MergePreferencesCommand } from "./merge-preferences.command"
+import { GetPreferencesResponseDto } from "../get-preferences"
+import { MergePreferencesCommand } from "./merge-preferences.command"
 
 /**
  * Merge preferences for a subscriber.

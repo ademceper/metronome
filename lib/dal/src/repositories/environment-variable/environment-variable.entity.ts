@@ -1,4 +1,4 @@
-import type {
+import {
   EnvironmentId,
   EnvironmentVariableId,
   EnvironmentVariableType,
@@ -6,7 +6,7 @@ import type {
   IEnvironmentVariableValue,
   OrganizationId,
 } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
+import { ChangePropsValueType } from "../../types/helpers"
 
 export class EnvironmentVariableValueEntity
   implements IEnvironmentVariableValue

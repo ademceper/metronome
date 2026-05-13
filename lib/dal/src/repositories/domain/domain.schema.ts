@@ -2,7 +2,7 @@ import { DomainStatusEnum } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { DomainDBModel } from "./domain.entity"
+import { DomainDBModel } from "./domain.entity"
 
 const domainSchema = new Schema<DomainDBModel>(
   {

@@ -2,7 +2,7 @@ import { DomainRouteTypeEnum } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { DomainRouteDBModel } from "./domain-route.entity"
+import { DomainRouteDBModel } from "./domain-route.entity"
 
 const domainRouteSchema = new Schema<DomainRouteDBModel>(
   {

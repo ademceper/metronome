@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from "@nestjs/common"
 import { HandlebarHelpersEnum } from "@novu/shared"
 import { format } from "date-fns"
 import Handlebars from "handlebars"
-import type { CompileTemplateCommand } from "./compile-template.command"
+import { CompileTemplateCommand } from "./compile-template.command"
 
 const assertResult = (condition: boolean, options) => {
   const fn = condition ? options.fn : options.inverse

@@ -1,6 +1,6 @@
 import { JsonSchemaFormatEnum, JsonSchemaTypeEnum } from "@novu/dal"
 import { SeverityLevelEnum } from "@novu/shared"
-import type { JSONSchemaDto } from "../dtos/json-schema.dto"
+import { JSONSchemaDto } from "../dtos/json-schema.dto"
 
 function determineSchemaType(value: unknown): JSONSchemaDto {
   if (value === null) {

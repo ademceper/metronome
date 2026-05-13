@@ -2,7 +2,7 @@ import { ResourceTypeEnum, SeverityLevelEnum } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { NotificationTemplateDBModel } from "./notification-template.entity"
+import { NotificationTemplateDBModel } from "./notification-template.entity"
 
 const mongooseDelete = require("mongoose-delete")
 

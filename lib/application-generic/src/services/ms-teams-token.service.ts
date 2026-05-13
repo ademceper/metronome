@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common"
 import axios from "axios"
 import { createHash } from "crypto"
-import type { PinoLogger } from "../logging"
+import { PinoLogger } from "../logging"
 import { CachedResponse } from "./cache/interceptors/cached-response.decorator"
 
 function shortSecretHash(secret: string): string {

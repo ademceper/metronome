@@ -2,7 +2,7 @@ import { BrevoEmailProvider } from "@novu/providers"
 import {
   ChannelTypeEnum,
   EmailProviderIdEnum,
-  type ICredentials,
+  ICredentials,
 } from "@novu/shared"
 import { BaseEmailHandler } from "./base.handler"
 

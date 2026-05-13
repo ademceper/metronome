@@ -3,23 +3,23 @@ import {
   ResourceOriginEnum,
   ResourceTypeEnum,
 } from "@novu/shared"
-import type {
+import {
   ClientSession,
   FilterQuery,
   ProjectionType,
   QueryOptions,
 } from "mongoose"
-import type { SoftDeleteModel } from "mongoose-delete"
+import { SoftDeleteModel } from "mongoose-delete"
 import { DalException } from "../../shared"
-import type { EnforceEnvOrOrgIds } from "../../types/enforce"
+import { EnforceEnvOrOrgIds } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
-import { type LayoutDBModel, LayoutEntity } from "./layout.entity"
+import { LayoutDBModel, LayoutEntity } from "./layout.entity"
 import { Layout } from "./layout.schema"
 import {
-  type EnvironmentId,
-  type LayoutId,
+  EnvironmentId,
+  LayoutId,
   OrderDirectionEnum,
-  type OrganizationId,
+  OrganizationId,
 } from "./types"
 
 type LayoutQuery = FilterQuery<LayoutDBModel> & EnforceEnvOrOrgIds

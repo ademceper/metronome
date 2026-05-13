@@ -1,15 +1,15 @@
 import { forwardRef, Inject, Injectable, Logger } from "@nestjs/common"
-import type { CommunityOrganizationRepository } from "@novu/dal"
+import { CommunityOrganizationRepository } from "@novu/dal"
 import { JobTopicNameEnum } from "@novu/shared"
-import type {
+import {
   IProcessSubscriberBulkJobDto,
   IProcessSubscriberJobDto,
 } from "../../dtos/process-subscriber-job.dto"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 import { BullMqService } from "../bull-mq"
-import type { FeatureFlagsService } from "../feature-flags"
+import { FeatureFlagsService } from "../feature-flags"
 import { WorkflowInMemoryProviderService } from "../in-memory-provider"
-import type { SqsService } from "../sqs"
+import { SqsService } from "../sqs"
 import { QueueBaseService } from "./queue-base.service"
 
 @Injectable()

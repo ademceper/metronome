@@ -1,8 +1,8 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
 import {
-  type BuilderFieldOperator,
-  type BuilderFieldType,
-  type BuilderGroupValues,
+  BuilderFieldOperator,
+  BuilderFieldType,
+  BuilderGroupValues,
   FilterPartTypeEnum,
   PreviousStepTypeEnum,
   TimeOperatorEnum,

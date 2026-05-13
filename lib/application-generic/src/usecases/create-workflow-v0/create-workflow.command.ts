@@ -1,13 +1,13 @@
-import type { ClientSession } from "@novu/dal"
+import { ClientSession } from "@novu/dal"
 import {
-  type CustomDataType,
-  type INotificationGroup,
+  CustomDataType,
+  INotificationGroup,
   MAX_DESCRIPTION_LENGTH,
   MAX_NAME_LENGTH,
   MAX_TAG_LENGTH,
   ResourceOriginEnum,
   ResourceTypeEnum,
-  type RuntimeIssue,
+  RuntimeIssue,
   SeverityLevelEnum,
   WorkflowStatusEnum,
 } from "@novu/shared"
@@ -29,8 +29,8 @@ import {
 import { EnvironmentWithUserCommand } from "../../commands"
 import {
   ContentIssue,
-  type JSONSchema,
-  type NotificationStep,
+  JSONSchema,
+  NotificationStep,
 } from "../../value-objects"
 import { PreferencesRequired } from "../upsert-preferences"
 

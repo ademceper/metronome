@@ -1,12 +1,12 @@
 import { BaseRepository } from "../base-repository"
 import { CommunityMemberRepository } from "../member"
 import {
-  type IPartnerConfiguration,
-  type OrganizationDBModel,
+  IPartnerConfiguration,
+  OrganizationDBModel,
   OrganizationEntity,
 } from "./organization.entity"
 import { Organization } from "./organization.schema"
-import type { IOrganizationRepository } from "./organization-repository.interface"
+import { IOrganizationRepository } from "./organization-repository.interface"
 
 export class CommunityOrganizationRepository
   extends BaseRepository<OrganizationDBModel, OrganizationEntity, object>

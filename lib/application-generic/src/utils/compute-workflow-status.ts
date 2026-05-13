@@ -1,5 +1,5 @@
-import { type StepIssues, WorkflowStatusEnum } from "@novu/shared"
-import type { NotificationStep } from "../value-objects"
+import { StepIssues, WorkflowStatusEnum } from "@novu/shared"
+import { NotificationStep } from "../value-objects"
 
 export function computeWorkflowStatus(
   workflowActive: boolean,

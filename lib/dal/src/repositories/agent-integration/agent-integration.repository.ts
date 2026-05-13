@@ -1,11 +1,11 @@
 import { DirectionEnum } from "@novu/shared"
-import type { FilterQuery } from "mongoose"
+import { FilterQuery } from "mongoose"
 
-import type { EnforceEnvOrOrgIds } from "../../types"
-import type { SortOrder } from "../../types/sort-order"
+import { EnforceEnvOrOrgIds } from "../../types"
+import { SortOrder } from "../../types/sort-order"
 import { BaseRepositoryV2 } from "../base-repository-v2"
 import {
-  type AgentIntegrationDBModel,
+  AgentIntegrationDBModel,
   AgentIntegrationEntity,
 } from "./agent-integration.entity"
 import { AgentIntegration } from "./agent-integration.schema"

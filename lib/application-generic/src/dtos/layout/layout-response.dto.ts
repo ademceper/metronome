@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
-import { ResourceOriginEnum, ResourceTypeEnum, type Slug } from "@novu/shared"
+import { ResourceOriginEnum, ResourceTypeEnum, Slug } from "@novu/shared"
 import { Type } from "class-transformer"
 import {
   IsBoolean,
@@ -10,9 +10,9 @@ import {
 } from "class-validator"
 import { ControlsMetadataDto } from "../controls-metadata.dto"
 import { UserResponseDto } from "../user-response.dto"
-import type { CreateLayoutDto } from "./create-layout.dto"
-import type { LayoutControlValuesDto } from "./layout-controls.dto"
-import type { UpdateLayoutDto } from "./update-layout.dto"
+import { CreateLayoutDto } from "./create-layout.dto"
+import { LayoutControlValuesDto } from "./layout-controls.dto"
+import { UpdateLayoutDto } from "./update-layout.dto"
 
 export type LayoutCreateAndUpdateKeys =
   | keyof CreateLayoutDto

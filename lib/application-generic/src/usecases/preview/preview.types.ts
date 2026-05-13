@@ -1,8 +1,8 @@
 import { InternalServerErrorException } from "@nestjs/common"
-import type { JobStatusEnum, NotificationTemplateEntity } from "@novu/dal"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
-import type { StepResponseDto } from "../../dtos/workflow/step.response.dto"
-import type { StepType } from "../../services"
+import { JobStatusEnum, NotificationTemplateEntity } from "@novu/dal"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { StepResponseDto } from "../../dtos/workflow/step.response.dto"
+import { StepType } from "../../services"
 
 export type PreviewContext = {
   stepData: StepResponseDto

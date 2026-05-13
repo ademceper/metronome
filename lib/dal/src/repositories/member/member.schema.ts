@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { MemberDBModel } from "./member.entity"
+import { MemberDBModel } from "./member.entity"
 
 const memberSchema = new Schema<MemberDBModel>(
   {

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
-import type { ContextDBModel } from "./context.entity"
+import { ContextDBModel } from "./context.entity"
 
 const contextSchema = new Schema<ContextDBModel>(
   {

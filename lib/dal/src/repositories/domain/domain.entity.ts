@@ -1,7 +1,7 @@
-import type { DomainStatusEnum } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { OrganizationId } from "../organization"
+import { DomainStatusEnum } from "@novu/shared"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { OrganizationId } from "../organization"
 
 export class DomainEntity {
   _id: string

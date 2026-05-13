@@ -1,8 +1,8 @@
-import type { JobEntity, NotificationStepEntity, StepFilter } from "@novu/dal"
+import { JobEntity, NotificationStepEntity, StepFilter } from "@novu/dal"
 import { IsDefined } from "class-validator"
 
 import { EnvironmentWithUserCommand } from "../../commands"
-import type { IFilterVariables } from "../../utils"
+import { IFilterVariables } from "../../utils"
 
 export class ConditionsFilterCommand extends EnvironmentWithUserCommand {
   @IsDefined()

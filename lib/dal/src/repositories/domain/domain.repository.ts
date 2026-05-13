@@ -1,10 +1,10 @@
 import { DirectionEnum } from "@novu/shared"
-import type { FilterQuery } from "mongoose"
+import { FilterQuery } from "mongoose"
 
-import type { EnforceEnvOrOrgIds } from "../../types"
-import type { SortOrder } from "../../types/sort-order"
+import { EnforceEnvOrOrgIds } from "../../types"
+import { SortOrder } from "../../types/sort-order"
 import { BaseRepositoryV2 } from "../base-repository-v2"
-import { type DomainDBModel, DomainEntity } from "./domain.entity"
+import { DomainDBModel, DomainEntity } from "./domain.entity"
 import { Domain } from "./domain.schema"
 
 export class DomainRepository extends BaseRepositoryV2<

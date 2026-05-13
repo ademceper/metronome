@@ -3,14 +3,14 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common"
-import type { IntegrationEntity } from "@novu/dal"
+import { IntegrationEntity } from "@novu/dal"
 import { ChatFactory } from "./chat/chat.factory"
-import type { IChatHandler } from "./chat/interfaces"
-import type { IMailHandler } from "./mail/interfaces"
+import { IChatHandler } from "./chat/interfaces"
+import { IMailHandler } from "./mail/interfaces"
 import { MailFactory } from "./mail/mail.factory"
-import type { IPushHandler } from "./push/interfaces"
+import { IPushHandler } from "./push/interfaces"
 import { PushFactory } from "./push/push.factory"
-import type { ISmsHandler } from "./sms/interfaces"
+import { ISmsHandler } from "./sms/interfaces"
 import { SmsFactory } from "./sms/sms.factory"
 
 export type ChannelHandler =

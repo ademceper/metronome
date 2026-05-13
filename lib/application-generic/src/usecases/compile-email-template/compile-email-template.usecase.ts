@@ -1,17 +1,17 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type { ModuleRef } from "@nestjs/core"
-import type { CommunityOrganizationRepository, IEmailBlock } from "@novu/dal"
+import { ModuleRef } from "@nestjs/core"
+import { CommunityOrganizationRepository, IEmailBlock } from "@novu/dal"
 import { merge } from "es-toolkit/compat"
 import { readFile } from "fs/promises"
 import { VerifyPayloadService } from "../../services"
-import { type CompileTemplate, CompileTemplateBase } from "../compile-template"
+import { CompileTemplate, CompileTemplateBase } from "../compile-template"
 import {
   GetLayoutCommandV0,
-  type GetLayoutUseCaseV0,
-  type LayoutDtoV0,
+  GetLayoutUseCaseV0,
+  LayoutDtoV0,
 } from "../get-layout-v0"
-import type { GetNovuLayout } from "../get-novu-layout"
-import type { CompileEmailTemplateCommand } from "./compile-email-template.command"
+import { GetNovuLayout } from "../get-novu-layout"
+import { CompileEmailTemplateCommand } from "./compile-email-template.command"
 
 @Injectable()
 export class CompileEmailTemplate extends CompileTemplateBase {

@@ -1,4 +1,4 @@
-import type { ControlSchemas, JSONSchemaEntity } from "@novu/dal"
+import { ControlSchemas, JSONSchemaEntity } from "@novu/dal"
 import { ActionStepEnum, ChannelStepEnum } from "@novu/framework/internal"
 import { httpRequestControlSchema, httpRequestUiSchema } from "@novu/shared"
 import {

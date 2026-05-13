@@ -1,13 +1,13 @@
-import { DeleteMessageCommand, type Message } from "@aws-sdk/client-sqs"
+import { DeleteMessageCommand, Message } from "@aws-sdk/client-sqs"
 import { Logger } from "@nestjs/common"
-import type { JobTopicNameEnum } from "@novu/shared"
+import { JobTopicNameEnum } from "@novu/shared"
 import { Consumer } from "sqs-consumer"
-import type { PinoLogger } from "../../logging"
-import type { SqsService } from "./sqs.service"
-import type { SqsPayloadOffloadService } from "./sqs-payload-offload.service"
+import { PinoLogger } from "../../logging"
+import { SqsService } from "./sqs.service"
+import { SqsPayloadOffloadService } from "./sqs-payload-offload.service"
 import {
-  type ISqsConsumerOptions,
-  type ISqsMessageMeta,
+  ISqsConsumerOptions,
+  ISqsMessageMeta,
   SQS_DEFAULT_BATCH_SIZE,
   SQS_DEFAULT_MAX_CONCURRENCY,
   SQS_DEFAULT_VISIBILITY_TIMEOUT,

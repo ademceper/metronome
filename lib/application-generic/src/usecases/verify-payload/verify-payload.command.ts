@@ -1,4 +1,4 @@
-import type { NotificationTemplateEntity } from "@novu/dal"
+import { NotificationTemplateEntity } from "@novu/dal"
 import { IsDefined } from "class-validator"
 import { BaseCommand } from "../../commands"
 

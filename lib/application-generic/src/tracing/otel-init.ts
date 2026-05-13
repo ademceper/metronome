@@ -14,7 +14,7 @@ import { B3InjectEncoding, B3Propagator } from "@opentelemetry/propagator-b3"
 import { resourceFromAttributes } from "@opentelemetry/resources"
 import { BatchLogRecordProcessor } from "@opentelemetry/sdk-logs"
 import {
-  type MetricReader,
+  MetricReader,
   PeriodicExportingMetricReader,
 } from "@opentelemetry/sdk-metrics"
 import { NodeSDK } from "@opentelemetry/sdk-node"

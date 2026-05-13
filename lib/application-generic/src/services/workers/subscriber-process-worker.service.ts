@@ -1,7 +1,7 @@
 import { JobTopicNameEnum } from "@novu/shared"
-import type { PinoLogger } from "../../logging"
-import type { BullMqService } from "../bull-mq"
-import type { SqsService } from "../sqs"
+import { PinoLogger } from "../../logging"
+import { BullMqService } from "../bull-mq"
+import { SqsService } from "../sqs"
 import { WorkerBaseService } from "./worker-base.service"
 
 const LOG_CONTEXT = "SubscriberProcessWorkerService"

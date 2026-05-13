@@ -1,8 +1,8 @@
 import { ChannelTypeEnum, ShortIsPrefixEnum } from "@novu/shared"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
-import type { EmailControlsDto } from "../../dtos/layout/layout-controls.dto"
-import type { LayoutResponseDto } from "../../dtos/layout/layout-response.dto"
-import type { LayoutDto } from "../../dtos/layout/v0/layout.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { EmailControlsDto } from "../../dtos/layout/layout-controls.dto"
+import { LayoutResponseDto } from "../../dtos/layout/layout-response.dto"
+import { LayoutDto } from "../../dtos/layout/v0/layout.dto"
 import { buildSlug } from "../../utils/build-slug"
 
 export const mapLayoutToResponseDto = ({

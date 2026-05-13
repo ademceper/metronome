@@ -3,7 +3,7 @@ import {
   ApiPropertyOptional,
   getSchemaPath,
 } from "@nestjs/swagger"
-import type { RuntimeIssue } from "@novu/shared"
+import { RuntimeIssue } from "@novu/shared"
 import { IsOptional, ValidateNested } from "class-validator"
 import { StepIntegrationIssue } from "./integration-issue.dto"
 import { StepContentIssueDto } from "./step-content-issue.dto"

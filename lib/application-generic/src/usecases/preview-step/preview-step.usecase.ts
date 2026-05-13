@@ -1,16 +1,16 @@
 import { Injectable } from "@nestjs/common"
 import {
-  type Event,
-  type ExecuteOutput,
+  Event,
+  ExecuteOutput,
   HttpQueryKeysEnum,
   PostActionEnum,
 } from "@novu/framework/internal"
 import { InstrumentUsecase } from "../../instrumentation"
 import {
-  type ExecuteBridgeRequest,
+  ExecuteBridgeRequest,
   ExecuteBridgeRequestCommand,
 } from "../execute-bridge-request"
-import type { PreviewStepCommand } from "./preview-step.command"
+import { PreviewStepCommand } from "./preview-step.command"
 
 @Injectable()
 export class PreviewStep {

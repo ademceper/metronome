@@ -7,37 +7,37 @@ import {
 } from "@nestjs/common"
 import {
   BaseRepository,
-  type EnvironmentRepository,
-  type IntegrationEntity,
-  type IntegrationRepository,
-  type NotificationStepEntity,
-  type NotificationTemplateEntity,
+  EnvironmentRepository,
+  IntegrationEntity,
+  IntegrationRepository,
+  NotificationStepEntity,
+  NotificationTemplateEntity,
 } from "@novu/dal"
 import {
-  type ChannelTypeEnum,
+  ChannelTypeEnum,
   IntegrationIssueEnum,
   STEP_TYPE_TO_CHANNEL_TYPE,
   StepTypeEnum,
-  type UserSessionData,
+  UserSessionData,
 } from "@novu/shared"
 import { merge } from "es-toolkit/compat"
-import type { PinoLogger } from "nestjs-pino"
-import type { StepIssuesDto } from "../../dtos/step-issues.dto"
-import type { StepResponseDto } from "../../dtos/workflow/step.response.dto"
-import type { WorkflowResponseDto } from "../../dtos/workflow/workflow-response.dto"
+import { PinoLogger } from "nestjs-pino"
+import { StepIssuesDto } from "../../dtos/step-issues.dto"
+import { StepResponseDto } from "../../dtos/workflow/step.response.dto"
+import { WorkflowResponseDto } from "../../dtos/workflow/workflow-response.dto"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { WorkflowDataContainer } from "../../services/workflow-data.container"
+import { WorkflowDataContainer } from "../../services/workflow-data.container"
 import { generatePayloadExample } from "../../utils/generate-payload-example"
 import { toResponseWorkflowDto } from "../../utils/notification-template-mapper"
 import {
   BuildStepDataCommand,
-  type BuildStepDataUsecase,
+  BuildStepDataUsecase,
 } from "../build-step-data"
 import {
   GetWorkflowWithPreferencesCommand,
-  type GetWorkflowWithPreferencesUseCase,
+  GetWorkflowWithPreferencesUseCase,
 } from "../get-workflow-with-preferences"
-import type { GetWorkflowCommand } from "./get-workflow.command"
+import { GetWorkflowCommand } from "./get-workflow.command"
 
 @Injectable()
 export class GetWorkflowUseCase {

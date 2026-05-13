@@ -1,4 +1,4 @@
-import type {
+import {
   ChannelEndpointByType,
   ChannelEndpointType,
   ChannelTypeEnum,
@@ -6,12 +6,12 @@ import type {
   IMessageCTA,
   SeverityLevelEnum,
 } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { IEmailBlock } from "../message-template"
-import type { NotificationTemplateEntity } from "../notification-template"
-import type { OrganizationId } from "../organization"
-import type { SubscriberEntity } from "../subscriber"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { IEmailBlock } from "../message-template"
+import { NotificationTemplateEntity } from "../notification-template"
+import { OrganizationId } from "../organization"
+import { SubscriberEntity } from "../subscriber"
 
 export type MessageChannelData<
   T extends ChannelEndpointType = ChannelEndpointType,

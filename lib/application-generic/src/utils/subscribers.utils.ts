@@ -1,9 +1,9 @@
-import type { ISubscribersDefine, SubscriberSourceEnum } from "@novu/shared"
-import type {
+import { ISubscribersDefine, SubscriberSourceEnum } from "@novu/shared"
+import {
   IProcessSubscriberBulkJobDto,
   SubscriberTopicPreference,
 } from "../dtos"
-import type { BaseTriggerCommand } from "../usecases/trigger-base/trigger-base.usecase"
+import { BaseTriggerCommand } from "../usecases/trigger-base/trigger-base.usecase"
 
 export function mapSubscribersToJobs(
   subscriberSource: SubscriberSourceEnum,

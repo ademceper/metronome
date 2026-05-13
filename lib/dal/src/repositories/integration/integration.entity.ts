@@ -1,12 +1,12 @@
-import type {
+import {
   ChannelTypeEnum,
   IConfigurations,
   ICredentials,
 } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { StepFilter } from "../notification-template"
-import type { OrganizationId } from "../organization"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { StepFilter } from "../notification-template"
+import { OrganizationId } from "../organization"
 
 export type ICredentialsEntity = ICredentials
 

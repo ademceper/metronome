@@ -1,9 +1,9 @@
-import type { EncryptedSecret, IApiRateLimitMaximum } from "@novu/shared"
+import { EncryptedSecret, IApiRateLimitMaximum } from "@novu/shared"
 import { BaseRepository } from "../base-repository"
 import {
-  type EnvironmentDBModel,
+  EnvironmentDBModel,
   EnvironmentEntity,
-  type IApiKey,
+  IApiKey,
 } from "./environment.entity"
 import { Environment } from "./environment.schema"
 

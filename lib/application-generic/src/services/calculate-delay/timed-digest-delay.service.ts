@@ -3,7 +3,7 @@
 import {
   DaysEnum,
   DigestUnitEnum,
-  type ITimedConfig,
+  ITimedConfig,
   MonthlyTypeEnum,
   OrdinalEnum,
   OrdinalValueEnum,
@@ -17,7 +17,7 @@ import {
   differenceInMilliseconds,
 } from "date-fns"
 import { fromZonedTime, toZonedTime } from "date-fns-tz"
-import { Frequency, RRule, type Weekday } from "rrule"
+import { Frequency, RRule, Weekday } from "rrule"
 
 const UNIT_TO_RRULE_FREQUENCY = {
   [DigestUnitEnum.MINUTES]: Frequency.MINUTELY,

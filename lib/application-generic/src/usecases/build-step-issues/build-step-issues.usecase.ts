@@ -1,18 +1,18 @@
 import { forwardRef, Inject, Injectable } from "@nestjs/common"
-import type { ControlValuesRepository } from "@novu/dal"
+import { ControlValuesRepository } from "@novu/dal"
 import {
   ContentIssueEnum,
   ControlValuesLevelEnum,
   ResourceOriginEnum,
-  type RuntimeIssue,
-  type StepIssuesDto,
-  type StepTypeEnum,
-  type UserSessionData,
+  RuntimeIssue,
+  StepIssuesDto,
+  StepTypeEnum,
+  UserSessionData,
 } from "@novu/shared"
 import { isEmpty, merge } from "es-toolkit/compat"
-import type { AdditionalOperation, RulesLogic } from "json-logic-js"
-import type { PinoLogger } from "nestjs-pino"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { AdditionalOperation, RulesLogic } from "json-logic-js"
+import { PinoLogger } from "nestjs-pino"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
 import {
   QueryIssueTypeEnum,
@@ -20,7 +20,7 @@ import {
 } from "../../services/query-parser/query-validator.service"
 import { dashboardSanitizeControlValues } from "../../utils"
 import {
-  type ControlIssues,
+  ControlIssues,
   processControlValuesByLiquid,
   processControlValuesBySchema,
 } from "../../utils/issues"
@@ -28,13 +28,13 @@ import { parseStepVariables } from "../../utils/parse-step-variables"
 import { isStepResolverActive } from "../../utils/step-resolver-control-state"
 import {
   BuildVariableSchemaCommand,
-  type BuildVariableSchemaUsecase,
+  BuildVariableSchemaUsecase,
 } from "../build-variable-schema"
 import {
   TierRestrictionsValidateCommand,
   TierRestrictionsValidateUsecase,
 } from "../tier-restrictions-validate"
-import type { BuildStepIssuesCommand } from "./build-step-issues.command"
+import { BuildStepIssuesCommand } from "./build-step-issues.command"
 
 const PAYLOAD_FIELD_PREFIX = "payload."
 const SUBSCRIBER_DATA_FIELD_PREFIX = "subscriber.data."

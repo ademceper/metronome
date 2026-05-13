@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common"
-import type { EnvironmentRepository } from "@novu/dal"
+import { EnvironmentRepository } from "@novu/dal"
 import { decryptApiKey } from "../../encryption"
-import type { GetDecryptedSecretKeyCommand } from "./get-decrypted-secret-key.command"
+import { GetDecryptedSecretKeyCommand } from "./get-decrypted-secret-key.command"
 
 @Injectable()
 export class GetDecryptedSecretKey {

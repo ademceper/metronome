@@ -1,4 +1,4 @@
-import { LiquidError, type RenderError } from "liquidjs"
+import { LiquidError, RenderError } from "liquidjs"
 
 /**
  * Copy of LiquidErrors type from liquidjs since it's not exported.

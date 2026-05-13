@@ -1,10 +1,10 @@
-import type { ControlValuesLevelEnum } from "@novu/shared"
-import type { ClientSession } from "mongoose"
-import type { SoftDeleteModel } from "mongoose-delete"
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { ControlValuesLevelEnum } from "@novu/shared"
+import { ClientSession } from "mongoose"
+import { SoftDeleteModel } from "mongoose-delete"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
 import { ControlValuesEntity } from "./control-values.entity"
-import { ControlValues, type ControlValuesModel } from "./control-values.schema"
+import { ControlValues, ControlValuesModel } from "./control-values.schema"
 
 export interface DeleteManyValuesQuery {
   _environmentId: string

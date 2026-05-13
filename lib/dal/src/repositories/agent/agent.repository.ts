@@ -1,10 +1,10 @@
 import { DirectionEnum } from "@novu/shared"
-import type { FilterQuery } from "mongoose"
+import { FilterQuery } from "mongoose"
 
-import type { EnforceEnvOrOrgIds } from "../../types"
-import type { SortOrder } from "../../types/sort-order"
+import { EnforceEnvOrOrgIds } from "../../types"
+import { SortOrder } from "../../types/sort-order"
 import { BaseRepositoryV2 } from "../base-repository-v2"
-import { type AgentDBModel, AgentEntity } from "./agent.entity"
+import { AgentDBModel, AgentEntity } from "./agent.entity"
 import { Agent } from "./agent.schema"
 
 export class AgentRepository extends BaseRepositoryV2<

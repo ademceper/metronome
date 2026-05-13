@@ -2,7 +2,7 @@ import { Injectable, Logger } from "@nestjs/common"
 import { LaunchDarklyFeatureFlagsService } from "./launch-darkly.service"
 import { ProcessEnvFeatureFlagsService } from "./process-env.service"
 
-import type { FeatureFlagContext, IFeatureFlagsService } from "./types"
+import { FeatureFlagContext, IFeatureFlagsService } from "./types"
 
 const LOG_CONTEXT = "FeatureFlagsService"
 

@@ -1,12 +1,12 @@
-import type { EmailProviderIdEnum } from "@novu/shared"
-import type {
+import { EmailProviderIdEnum } from "@novu/shared"
+import {
   IEmailEventBody,
   IEmailOptions,
   IEmailProvider,
 } from "@novu/stateless"
 import { PlatformException } from "../../../utils/exceptions"
 import { BaseHandler } from "../../shared/interfaces"
-import type { IMailHandler } from "../interfaces"
+import { IMailHandler } from "../interfaces"
 
 export abstract class BaseEmailHandler
   extends BaseHandler<IEmailProvider>

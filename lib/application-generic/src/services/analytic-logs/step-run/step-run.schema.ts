@@ -7,10 +7,10 @@ import {
   CHUInt8,
   CHUInt32,
   ClickhouseSchema,
-  type InferClickhouseSchemaType,
+  InferClickhouseSchemaType,
 } from "clickhouse-schema"
-import type { Prettify } from "../../../utils/prettify.type"
-import type { StepType } from ".."
+import { Prettify } from "../../../utils/prettify.type"
+import { StepType } from ".."
 
 export const TABLE_NAME = "step_runs"
 

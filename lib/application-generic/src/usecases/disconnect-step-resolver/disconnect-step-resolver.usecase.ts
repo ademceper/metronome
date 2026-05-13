@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type {
+import {
   ControlValuesRepository,
   MessageTemplateRepository,
 } from "@novu/dal"
@@ -7,7 +7,7 @@ import { ControlValuesLevelEnum } from "@novu/shared"
 import { InstrumentUsecase } from "../../instrumentation"
 import { isStepResolverSupportedType } from "../../utils/digest"
 import { stepTypeToControlSchema } from "../../utils/step-type-to-control.mapper"
-import type { DisconnectStepResolverCommand } from "./disconnect-step-resolver.command"
+import { DisconnectStepResolverCommand } from "./disconnect-step-resolver.command"
 
 @Injectable()
 export class DisconnectStepResolverUsecase {

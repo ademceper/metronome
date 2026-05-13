@@ -1,5 +1,5 @@
-import type { JSONSchemaEntity } from "@novu/dal"
-import { UiComponentEnum, type UiSchema, UiSchemaGroupEnum } from "@novu/shared"
+import { JSONSchemaEntity } from "@novu/dal"
+import { UiComponentEnum, UiSchema, UiSchemaGroupEnum } from "@novu/shared"
 import { z } from "zod"
 import { zodToJsonSchema } from "zod-to-json-schema"
 import { defaultOptions } from "./shared"

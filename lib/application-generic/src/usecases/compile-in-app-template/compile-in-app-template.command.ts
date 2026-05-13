@@ -1,4 +1,4 @@
-import type { IMessageCTA } from "@novu/shared"
+import { IMessageCTA } from "@novu/shared"
 import { IsDefined, IsOptional, IsString } from "class-validator"
 
 import { EnvironmentWithUserCommand } from "../../commands/project.command"

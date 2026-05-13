@@ -1,10 +1,10 @@
-import type {
+import {
   EnvironmentEntity,
   NotificationTemplateEntity,
   OrganizationEntity,
   PreferencesEntity,
 } from "@novu/dal"
-import type { UserSessionData } from "@novu/shared"
+import { UserSessionData } from "@novu/shared"
 
 const MS_PER_SECOND = 1000
 const THIRTY_SECONDS_MS = MS_PER_SECOND * 30

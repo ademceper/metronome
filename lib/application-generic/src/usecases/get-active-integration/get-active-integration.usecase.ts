@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common"
-import type { IntegrationResponseDto } from "../../dtos/integration-response.dto"
+import { IntegrationResponseDto } from "../../dtos/integration-response.dto"
 import {
-  type GetDecryptedIntegrations,
+  GetDecryptedIntegrations,
   GetDecryptedIntegrationsCommand,
 } from "../get-decrypted-integrations"
-import type { GetActiveIntegrationsCommand } from "./get-active-integration.command"
+import { GetActiveIntegrationsCommand } from "./get-active-integration.command"
 
 @Injectable()
 export class GetActiveIntegrations {

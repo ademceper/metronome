@@ -3,12 +3,12 @@ import {
   DelayTypeEnum,
   DigestTypeEnum,
   DigestUnitEnum,
-  type IDelayDynamicMetadata,
-  type IDelayRegularMetadata,
-  type IDelayScheduledMetadata,
-  type IDigestRegularMetadata,
-  type IDigestTimedMetadata,
-  type IWorkflowStepMetadata,
+  IDelayDynamicMetadata,
+  IDelayRegularMetadata,
+  IDelayScheduledMetadata,
+  IDigestRegularMetadata,
+  IDigestTimedMetadata,
+  IWorkflowStepMetadata,
 } from "@novu/shared"
 import { differenceInMilliseconds } from "date-fns"
 import { getNestedValue } from "../../utils"

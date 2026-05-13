@@ -1,20 +1,20 @@
 import {
-  type ChannelTypeEnum,
-  type DeliveryLifecycleEventType,
+  ChannelTypeEnum,
+  DeliveryLifecycleEventType,
   SeverityLevelEnum,
   StepTypeEnum,
 } from "@novu/shared"
 import { subMonths, subWeeks } from "date-fns"
-import { type FilterQuery, type QueryWithHelpers, Types } from "mongoose"
+import { FilterQuery, QueryWithHelpers, Types } from "mongoose"
 
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
-import type { EnvironmentId } from "../environment"
+import { EnvironmentId } from "../environment"
 import {
-  type NotificationDBModel,
+  NotificationDBModel,
   NotificationEntity,
 } from "./notification.entity"
-import type { NotificationFeedItemEntity } from "./notification.feed.Item.entity"
+import { NotificationFeedItemEntity } from "./notification.feed.Item.entity"
 import { Notification } from "./notification.schema"
 
 const DELIVERY_LIFECYCLE_ORDER: Record<DeliveryLifecycleEventType, number> = {

@@ -1,12 +1,12 @@
 import {
   FILTER_TO_LABEL,
   FieldOperatorEnum,
-  type IBaseFieldFilterPart,
-  type ICondition,
+  IBaseFieldFilterPart,
+  ICondition,
 } from "@novu/shared"
 import _ from "lodash"
 
-import type {
+import {
   FilterProcessingDetails,
   IFilterVariables,
 } from "./filter-processing-details"

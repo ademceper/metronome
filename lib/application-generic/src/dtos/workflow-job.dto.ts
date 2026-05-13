@@ -1,5 +1,5 @@
-import type { DiscoverWorkflowOutput } from "@novu/framework/internal"
-import type {
+import { DiscoverWorkflowOutput } from "@novu/framework/internal"
+import {
   AddressingTypeEnum,
   ContextPayload,
   StatelessControls,
@@ -9,7 +9,7 @@ import type {
   TriggerRequestCategoryEnum,
   TriggerTenantContext,
 } from "@novu/shared"
-import type {
+import {
   IBulkJobParams,
   IJobParams,
 } from "../services/queues/queue-base.service"

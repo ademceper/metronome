@@ -1,4 +1,4 @@
-import type { NotificationStepVariantCommand } from "../../value-objects/notification-step-variant.command"
+import { NotificationStepVariantCommand } from "../../value-objects/notification-step-variant.command"
 
 /** determine if the variant has no filters / conditions */
 export const isVariantEmpty = (

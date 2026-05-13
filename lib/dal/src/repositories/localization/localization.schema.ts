@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
-import type { LocalizationDBModel } from "./localization.entity"
+import { LocalizationDBModel } from "./localization.entity"
 
 const localizationSchema = new Schema<LocalizationDBModel>(
   {

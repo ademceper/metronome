@@ -2,8 +2,8 @@ import { SendgridEmailProvider } from "@novu/providers"
 import {
   ChannelTypeEnum,
   EmailProviderIdEnum,
-  type IConfigurations,
-  type ICredentials,
+  IConfigurations,
+  ICredentials,
 } from "@novu/shared"
 
 import { BaseEmailHandler } from "./base.handler"

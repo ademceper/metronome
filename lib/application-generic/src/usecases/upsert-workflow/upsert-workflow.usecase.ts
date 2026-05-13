@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type {
+import {
   ClientSession,
   ControlSchemas,
   ControlValuesEntity,
@@ -18,15 +18,15 @@ import {
   WebhookObjectTypeEnum,
   WorkflowCreationSourceEnum,
 } from "@novu/shared"
-import type { PinoLogger } from "nestjs-pino"
+import { PinoLogger } from "nestjs-pino"
 import { format } from "prettier"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
-import type { StepIssuesDto } from "../../dtos/step-issues.dto"
-import type { EmailRenderOutput } from "../../dtos/workflow/generate-preview-response.dto"
-import type { WorkflowResponseDto } from "../../dtos/workflow/workflow-response.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { StepIssuesDto } from "../../dtos/step-issues.dto"
+import { EmailRenderOutput } from "../../dtos/workflow/generate-preview-response.dto"
+import { WorkflowResponseDto } from "../../dtos/workflow/workflow-response.dto"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { EmailControlType } from "../../schemas/control"
-import type { AnalyticsService } from "../../services"
+import { EmailControlType } from "../../schemas/control"
+import { AnalyticsService } from "../../services"
 import {
   computeWorkflowStatus,
   removeBrandingFromHtml,
@@ -36,29 +36,29 @@ import {
 } from "../../utils"
 import { isStringifiedMailyJSONContent } from "../../utils/maily-utils"
 import { isStepResolverActive } from "../../utils/step-resolver-control-state"
-import type { NotificationStep } from "../../value-objects"
-import type { SendWebhookMessage } from "../../webhooks"
-import type { BuildStepIssuesUsecase } from "../build-step-issues"
+import { NotificationStep } from "../../value-objects"
+import { SendWebhookMessage } from "../../webhooks"
+import { BuildStepIssuesUsecase } from "../build-step-issues"
 import {
   CreateWorkflowCommandV0,
-  type CreateWorkflowV0,
+  CreateWorkflowV0,
 } from "../create-workflow-v0"
-import { GetLayoutCommand, type GetLayoutUseCase } from "../get-layout-v2"
-import { GetWorkflowCommand, type GetWorkflowUseCase } from "../get-workflow"
-import { PreviewCommand, type PreviewUsecase } from "../preview"
+import { GetLayoutCommand, GetLayoutUseCase } from "../get-layout-v2"
+import { GetWorkflowCommand, GetWorkflowUseCase } from "../get-workflow"
+import { PreviewCommand, PreviewUsecase } from "../preview"
 import {
   UpdateWorkflowCommandV0,
-  type UpdateWorkflowV0,
+  UpdateWorkflowV0,
 } from "../update-workflow-v0"
 import {
   UpsertControlValuesCommand,
-  type UpsertControlValuesUseCase,
+  UpsertControlValuesUseCase,
 } from "../upsert-control-values"
 import {
   GetWorkflowByIdsCommand,
-  type GetWorkflowByIdsUseCase,
+  GetWorkflowByIdsUseCase,
 } from "../workflow"
-import type {
+import {
   UpsertStepDataCommand,
   UpsertWorkflowCommand,
 } from "./upsert-workflow.command"

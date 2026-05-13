@@ -4,9 +4,9 @@ import { setTimeout } from "timers/promises"
 import {
   getClientAndConfig,
   getClientAndConfigForCluster,
-  type InMemoryProviderConfig,
+  InMemoryProviderConfig,
 } from "./providers"
-import type {
+import {
   Cluster,
   ClusterOptions,
   InMemoryProviderClient,

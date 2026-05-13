@@ -1,7 +1,7 @@
-import type { ICredentials, SmsProviderIdEnum } from "@novu/shared"
-import type { ISmsOptions, ISmsProvider } from "@novu/stateless"
+import { ICredentials, SmsProviderIdEnum } from "@novu/shared"
+import { ISmsOptions, ISmsProvider } from "@novu/stateless"
 import { BaseHandler } from "../../shared/interfaces"
-import type { ISmsHandler } from "../interfaces"
+import { ISmsHandler } from "../interfaces"
 
 export abstract class BaseSmsHandler
   extends BaseHandler<ISmsProvider>

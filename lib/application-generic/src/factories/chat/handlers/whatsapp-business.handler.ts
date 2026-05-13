@@ -2,7 +2,7 @@ import { WhatsappBusinessChatProvider } from "@novu/providers"
 import {
   ChannelTypeEnum,
   ChatProviderIdEnum,
-  type ICredentials,
+  ICredentials,
 } from "@novu/shared"
 import { BaseChatHandler } from "./base.handler"
 

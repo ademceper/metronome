@@ -4,22 +4,22 @@ import {
   Inject,
   Injectable,
 } from "@nestjs/common"
-import type {
+import {
   IntegrationEntity,
   IntegrationRepository,
   SubscriberEntity,
   SubscriberRepository,
 } from "@novu/dal"
-import { FeatureFlagsKeysEnum, type IChannelSettings } from "@novu/shared"
+import { FeatureFlagsKeysEnum, IChannelSettings } from "@novu/shared"
 import { isEqual } from "lodash"
 import {
   AnalyticsService,
   buildSubscriberKey,
   InvalidateCacheService,
 } from "../../../services"
-import type { FeatureFlagsService } from "../../../services/feature-flags"
+import { FeatureFlagsService } from "../../../services/feature-flags"
 import { SYSTEM_LIMITS } from "../../../services/resource-validator.service"
-import type { UpdateSubscriberChannelCommand } from "./update-subscriber-channel.command"
+import { UpdateSubscriberChannelCommand } from "./update-subscriber-channel.command"
 
 @Injectable()
 export class UpdateSubscriberChannel {

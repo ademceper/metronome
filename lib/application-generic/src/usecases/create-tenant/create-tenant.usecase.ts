@@ -1,9 +1,9 @@
 import { ConflictException, Injectable } from "@nestjs/common"
 
-import type { TenantRepository } from "@novu/dal"
-import type { AnalyticsService } from "../../services/analytics.service"
+import { TenantRepository } from "@novu/dal"
+import { AnalyticsService } from "../../services/analytics.service"
 
-import type { CreateTenantCommand } from "./create-tenant.command"
+import { CreateTenantCommand } from "./create-tenant.command"
 
 @Injectable()
 export class CreateTenant {

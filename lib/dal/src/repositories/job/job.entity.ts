@@ -1,18 +1,18 @@
 import {
-  type DeliveryLifecycleDetail,
-  type DeliveryLifecycleStatusEnum,
-  type ITenantDefine,
-  type IWorkflowStepMetadata,
+  DeliveryLifecycleDetail,
+  DeliveryLifecycleStatusEnum,
+  ITenantDefine,
+  IWorkflowStepMetadata,
   JobStatusEnum,
-  type StepTypeEnum,
-  type TriggerOverrides,
-  type WorkflowPreferences,
+  StepTypeEnum,
+  TriggerOverrides,
+  WorkflowPreferences,
 } from "@novu/shared"
-import type { Types } from "mongoose"
-import type { ChangePropsValueType } from "../../types"
-import type { EnvironmentId } from "../environment"
-import type { NotificationStepEntity } from "../notification-template"
-import type { OrganizationId } from "../organization"
+import { Types } from "mongoose"
+import { ChangePropsValueType } from "../../types"
+import { EnvironmentId } from "../environment"
+import { NotificationStepEntity } from "../notification-template"
+import { OrganizationId } from "../organization"
 
 export { JobStatusEnum }
 

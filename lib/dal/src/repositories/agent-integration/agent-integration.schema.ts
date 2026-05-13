@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { AgentIntegrationDBModel } from "./agent-integration.entity"
+import { AgentIntegrationDBModel } from "./agent-integration.entity"
 
 const agentIntegrationSchema = new Schema<AgentIntegrationDBModel>(
   {

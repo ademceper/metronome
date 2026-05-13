@@ -1,4 +1,4 @@
-import type { IntegrationEntity } from "@novu/dal"
+import { IntegrationEntity } from "@novu/dal"
 import {
   AfricasTalkingSmsHandler,
   AfroSmsHandler,
@@ -39,7 +39,7 @@ import {
   UnifonicHandler,
 } from "./handlers"
 import { SmsmodeHandler } from "./handlers/smsmode.handler"
-import type { ISmsFactory, ISmsHandler } from "./interfaces"
+import { ISmsFactory, ISmsHandler } from "./interfaces"
 
 export class SmsFactory implements ISmsFactory {
   handlers: ISmsHandler[] = [

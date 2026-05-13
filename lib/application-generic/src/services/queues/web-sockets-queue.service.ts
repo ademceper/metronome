@@ -1,16 +1,16 @@
 import { Injectable, Logger } from "@nestjs/common"
-import type { CommunityOrganizationRepository } from "@novu/dal"
+import { CommunityOrganizationRepository } from "@novu/dal"
 import { JobTopicNameEnum } from "@novu/shared"
-import type {
+import {
   IWebSocketBulkJobDto,
   IWebSocketJobDto,
 } from "../../dtos/web-sockets-job.dto"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 import { BullMqService } from "../bull-mq"
-import type { FeatureFlagsService } from "../feature-flags"
-import type { WorkflowInMemoryProviderService } from "../in-memory-provider"
-import type { SocketWorkerService } from "../socket-worker"
-import type { SqsService } from "../sqs"
+import { FeatureFlagsService } from "../feature-flags"
+import { WorkflowInMemoryProviderService } from "../in-memory-provider"
+import { SocketWorkerService } from "../socket-worker"
+import { SqsService } from "../sqs"
 import { QueueBaseService } from "./queue-base.service"
 
 const LOG_CONTEXT = "WebSocketsQueueService"

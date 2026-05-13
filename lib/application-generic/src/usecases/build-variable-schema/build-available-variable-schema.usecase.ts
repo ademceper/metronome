@@ -1,20 +1,20 @@
 import { Injectable } from "@nestjs/common"
 import {
-  type ControlValuesEntity,
-  type ControlValuesRepository,
-  type EnvironmentRepository,
-  type EnvironmentVariableRepository,
+  ControlValuesEntity,
+  ControlValuesRepository,
+  EnvironmentRepository,
+  EnvironmentVariableRepository,
   JsonSchemaTypeEnum,
-  type NotificationStepEntity,
-  type NotificationTemplateEntity,
+  NotificationStepEntity,
+  NotificationTemplateEntity,
 } from "@novu/dal"
 import {
   ControlValuesLevelEnum,
-  type EnvironmentSystemVariables,
+  EnvironmentSystemVariables,
   StepTypeEnum,
 } from "@novu/shared"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
-import type { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
 import { resolveEnvironmentVariables } from "../../encryption/encrypt-environment-variable"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
 import {
@@ -28,10 +28,10 @@ import { emptyJsonSchema } from "../../utils/jsonToSchema"
 import { computeResultSchema } from "../../utils/map-step-type-to-result.mapper"
 import { parsePayloadSchema } from "../../utils/parse-payload-schema"
 import {
-  type CreateVariablesObject,
+  CreateVariablesObject,
   CreateVariablesObjectCommand,
 } from "../create-variables-object"
-import type {
+import {
   BuildVariableSchemaCommand,
   IOptimisticStepInfo,
 } from "./build-available-variable-schema.command"

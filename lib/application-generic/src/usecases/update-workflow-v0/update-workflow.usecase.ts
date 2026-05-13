@@ -3,18 +3,18 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common"
-import type { ModuleRef } from "@nestjs/core"
+import { ModuleRef } from "@nestjs/core"
 import {
-  type ChangeRepository,
-  type ClientSession,
-  type ControlValuesRepository,
+  ChangeRepository,
+  ClientSession,
+  ControlValuesRepository,
   LocalizationResourceEnum,
-  type MessageTemplateRepository,
-  type NotificationGroupRepository,
-  type NotificationStepData,
-  type NotificationStepEntity,
-  type NotificationTemplateEntity,
-  type NotificationTemplateRepository,
+  MessageTemplateRepository,
+  NotificationGroupRepository,
+  NotificationStepData,
+  NotificationStepEntity,
+  NotificationTemplateEntity,
+  NotificationTemplateRepository,
 } from "@novu/dal"
 import {
   buildWorkflowPreferences,
@@ -25,45 +25,45 @@ import {
   PreferencesTypeEnum,
   ResourceOriginEnum,
 } from "@novu/shared"
-import type { PinoLogger } from "nestjs-pino"
-import type { WorkflowWithPreferencesResponseDto } from "../../dtos/get-workflow-with-preferences.dto"
+import { PinoLogger } from "nestjs-pino"
+import { WorkflowWithPreferencesResponseDto } from "../../dtos/get-workflow-with-preferences.dto"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import { type AnalyticsService, ContentService } from "../../services"
-import type { ResourceValidatorService } from "../../services/resource-validator.service"
+import { AnalyticsService, ContentService } from "../../services"
+import { ResourceValidatorService } from "../../services/resource-validator.service"
 import { isVariantEmpty, PlatformException } from "../../utils"
 import { computeWorkflowStatus } from "../../utils/compute-workflow-status"
 import {
   MANAGE_TRANSLATIONS,
   TRANSLATIONS_SERVICE,
 } from "../../utils/constants"
-import type {
+import {
   NotificationStep,
   NotificationStepVariantCommand,
 } from "../../value-objects"
-import { type CreateChange, CreateChangeCommand } from "../create-change"
+import { CreateChange, CreateChangeCommand } from "../create-change"
 import {
   DeletePreferencesCommand,
-  type DeletePreferencesUseCase,
+  DeletePreferencesUseCase,
 } from "../delete-preferences"
 import { GetPreferences } from "../get-preferences"
 import {
   GetWorkflowWithPreferencesCommand,
-  type GetWorkflowWithPreferencesUseCase,
+  GetWorkflowWithPreferencesUseCase,
 } from "../get-workflow-with-preferences"
 import {
-  type CreateMessageTemplate,
+  CreateMessageTemplate,
   CreateMessageTemplateCommand,
-  type DeleteMessageTemplate,
+  DeleteMessageTemplate,
   DeleteMessageTemplateCommand,
-  type UpdateMessageTemplate,
+  UpdateMessageTemplate,
   UpdateMessageTemplateCommand,
 } from "../message-template"
 import {
-  type UpsertPreferences,
+  UpsertPreferences,
   UpsertUserWorkflowPreferencesCommand,
   UpsertWorkflowPreferencesCommand,
 } from "../upsert-preferences"
-import type { UpdateWorkflowCommandV0 } from "./update-workflow.command"
+import { UpdateWorkflowCommandV0 } from "./update-workflow.command"
 
 /**
  * @deprecated - use `UpsertWorkflow` instead

@@ -1,5 +1,5 @@
 import {
-  type LayoutId,
+  LayoutId,
   ResourceOriginEnum,
   ResourceTypeEnum,
 } from "@novu/shared"

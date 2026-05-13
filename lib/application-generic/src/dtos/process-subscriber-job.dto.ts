@@ -1,6 +1,6 @@
-import type { SubscriberEntity } from "@novu/dal"
-import type { DiscoverWorkflowOutput } from "@novu/framework/internal"
-import type {
+import { SubscriberEntity } from "@novu/dal"
+import { DiscoverWorkflowOutput } from "@novu/framework/internal"
+import {
   ISubscribersDefine,
   ITenantDefine,
   StatelessControls,
@@ -9,11 +9,11 @@ import type {
   TriggerRequestCategoryEnum,
 } from "@novu/shared"
 
-import type {
+import {
   IBulkJobParams,
   IJobParams,
 } from "../services/queues/queue-base.service"
-import type { SubscriberTopicPreference } from "./subscriber-topic-preference.dto"
+import { SubscriberTopicPreference } from "./subscriber-topic-preference.dto"
 
 export interface IProcessSubscriberDataDto {
   environmentId: string

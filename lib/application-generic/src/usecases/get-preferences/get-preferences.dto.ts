@@ -1,9 +1,9 @@
 import {
   PreferencesTypeEnum,
-  type Schedule,
-  type SubscriberGlobalPreference,
-  type WorkflowPreferences,
-  type WorkflowPreferencesPartial,
+  Schedule,
+  SubscriberGlobalPreference,
+  WorkflowPreferences,
+  WorkflowPreferencesPartial,
 } from "@novu/shared"
 
 export class GetPreferencesResponseDto {

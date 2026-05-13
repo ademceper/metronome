@@ -1,6 +1,6 @@
 import { Logger } from "@nestjs/common"
 import { addJitter } from "../../resilience"
-import type {
+import {
   CacheInMemoryProviderService,
   InMemoryProviderClient,
   Pipeline,

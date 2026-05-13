@@ -1,4 +1,4 @@
-import { RuntimeIssue, type StepCreateAndUpdateKeys } from "@novu/shared"
+import { RuntimeIssue, StepCreateAndUpdateKeys } from "@novu/shared"
 import { Type } from "class-transformer"
 import { IsObject, IsOptional, ValidateNested } from "class-validator"
 import { StepIssue } from "./step.issue"

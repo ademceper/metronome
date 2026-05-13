@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common"
-import type { PinoLogger } from "nestjs-pino"
-import type { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
-import type { ClickHouseService } from "../clickhouse.service"
+import { PinoLogger } from "nestjs-pino"
+import { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
+import { ClickHouseService } from "../clickhouse.service"
 import { LogRepository } from "../log.repository"
 import {
   DELIVERY_TREND_COUNTS_ORDER_BY,
   DELIVERY_TREND_COUNTS_TABLE_NAME,
-  type DeliveryTrendCount,
+  DeliveryTrendCount,
   deliveryTrendCountsSchema,
 } from "./delivery-trend-counts.schema"
 

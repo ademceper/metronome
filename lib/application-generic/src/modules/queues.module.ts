@@ -1,8 +1,8 @@
 import {
-  type DynamicModule,
+  DynamicModule,
   Module,
-  type OnApplicationShutdown,
-  type Provider,
+  OnApplicationShutdown,
+  Provider,
 } from "@nestjs/common"
 import { CommunityOrganizationRepository, MessageRepository } from "@novu/dal"
 import { JobTopicNameEnum } from "@novu/shared"

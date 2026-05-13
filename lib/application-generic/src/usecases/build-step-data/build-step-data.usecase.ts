@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type {
+import {
   ControlValuesRepository,
   NotificationStepEntity,
   NotificationTemplateEntity,
@@ -9,16 +9,16 @@ import {
   ResourceOriginEnum,
   ShortIsPrefixEnum,
 } from "@novu/shared"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
-import type { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
-import type { StepResponseDto } from "../../dtos/workflow/step.response.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
+import { StepResponseDto } from "../../dtos/workflow/step.response.dto"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { WorkflowDataContainer } from "../../services"
+import { WorkflowDataContainer } from "../../services"
 import { buildSlug } from "../../utils"
 import { InvalidStepException } from "../../utils/exceptions"
-import type { BuildVariableSchemaUsecase } from "../build-variable-schema"
-import type { GetWorkflowByIdsUseCase } from "../workflow"
-import type { BuildStepDataCommand } from "./build-step-data.command"
+import { BuildVariableSchemaUsecase } from "../build-variable-schema"
+import { GetWorkflowByIdsUseCase } from "../workflow"
+import { BuildStepDataCommand } from "./build-step-data.command"
 
 @Injectable()
 export class BuildStepDataUsecase {

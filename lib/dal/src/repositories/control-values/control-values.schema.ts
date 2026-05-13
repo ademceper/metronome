@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose"
-import type { ChangePropsValueType } from "../../types"
+import { ChangePropsValueType } from "../../types"
 import { schemaOptions } from "../schema-default.options"
-import type { ControlValuesEntity } from "./control-values.entity"
+import { ControlValuesEntity } from "./control-values.entity"
 
 const mongooseDelete = require("mongoose-delete")
 

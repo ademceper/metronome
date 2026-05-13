@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from "@nestjs/swagger"
-import type { ContextPayload } from "@novu/shared"
+import { ContextPayload } from "@novu/shared"
 import { Type } from "class-transformer"
 import { IsObject, IsOptional, ValidateNested } from "class-validator"
 import { ApiContextPayload, IsValidContextPayload } from "../../decorators"

@@ -1,9 +1,9 @@
-import type { ClientSession, FilterQuery } from "mongoose"
-import type { SoftDeleteModel } from "mongoose-delete"
-import type { EnforceEnvOrOrgIds } from "../../types/enforce"
+import { ClientSession, FilterQuery } from "mongoose"
+import { SoftDeleteModel } from "mongoose-delete"
+import { EnforceEnvOrOrgIds } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
 import {
-  type MessageTemplateDBModel,
+  MessageTemplateDBModel,
   MessageTemplateEntity,
 } from "./message-template.entity"
 import { MessageTemplate } from "./message-template.schema"

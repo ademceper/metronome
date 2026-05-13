@@ -1,4 +1,4 @@
-import type { ControlValuesEntity, NotificationTemplateEntity } from "@novu/dal"
+import { ControlValuesEntity, NotificationTemplateEntity } from "@novu/dal"
 import { ResourceOriginEnum, StepTypeEnum } from "@novu/shared"
 import {
   IsDefined,
@@ -8,8 +8,8 @@ import {
   IsString,
 } from "class-validator"
 import { EnvironmentWithUserObjectCommand } from "../../commands"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
-import type { IOptimisticStepInfo } from "../build-variable-schema/build-available-variable-schema.command"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { IOptimisticStepInfo } from "../build-variable-schema/build-available-variable-schema.command"
 
 export class BuildStepIssuesCommand extends EnvironmentWithUserObjectCommand {
   /**

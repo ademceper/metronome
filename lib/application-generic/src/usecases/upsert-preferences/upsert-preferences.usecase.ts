@@ -1,25 +1,25 @@
 import { Injectable } from "@nestjs/common"
 import {
-  type EnforceEnvOrOrgIds,
+  EnforceEnvOrOrgIds,
   ErrorCodesEnum,
-  type PreferencesDBModel,
-  type PreferencesEntity,
-  type PreferencesRepository,
+  PreferencesDBModel,
+  PreferencesEntity,
+  PreferencesRepository,
 } from "@novu/dal"
 import {
   FeatureFlagsKeysEnum,
   PreferencesTypeEnum,
-  type WorkflowPreferences,
-  type WorkflowPreferencesPartial,
+  WorkflowPreferences,
+  WorkflowPreferencesPartial,
 } from "@novu/shared"
-import type { FilterQuery } from "mongoose"
+import { FilterQuery } from "mongoose"
 import { Instrument } from "../../instrumentation"
-import type { FeatureFlagsService } from "../../services/feature-flags/feature-flags.service"
+import { FeatureFlagsService } from "../../services/feature-flags/feature-flags.service"
 import { deepMerge } from "../../utils"
-import type { UpsertSubscriberGlobalPreferencesCommand } from "./upsert-subscriber-global-preferences.command"
-import type { UpsertSubscriberWorkflowPreferencesCommand } from "./upsert-subscriber-workflow-preferences.command"
-import type { UpsertUserWorkflowPreferencesCommand } from "./upsert-user-workflow-preferences.command"
-import type { UpsertWorkflowPreferencesCommand } from "./upsert-workflow-preferences.command"
+import { UpsertSubscriberGlobalPreferencesCommand } from "./upsert-subscriber-global-preferences.command"
+import { UpsertSubscriberWorkflowPreferencesCommand } from "./upsert-subscriber-workflow-preferences.command"
+import { UpsertUserWorkflowPreferencesCommand } from "./upsert-user-workflow-preferences.command"
+import { UpsertWorkflowPreferencesCommand } from "./upsert-workflow-preferences.command"
 
 export type WorkflowPreferencesFull = Omit<PreferencesEntity, "preferences"> & {
   preferences: WorkflowPreferences

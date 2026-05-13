@@ -1,13 +1,13 @@
 import { Injectable } from "@nestjs/common"
-import type { PreferencesRepository } from "@novu/dal"
+import { PreferencesRepository } from "@novu/dal"
 import {
   FeatureFlagsKeysEnum,
   PreferencesTypeEnum,
-  type Schedule,
+  Schedule,
 } from "@novu/shared"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { FeatureFlagsService } from "../../services/feature-flags"
-import type { GetSubscriberScheduleCommand } from "./get-subscriber-schedule.command"
+import { FeatureFlagsService } from "../../services/feature-flags"
+import { GetSubscriberScheduleCommand } from "./get-subscriber-schedule.command"
 
 @Injectable()
 export class GetSubscriberSchedule {

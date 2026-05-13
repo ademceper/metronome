@@ -1,11 +1,11 @@
 import { Inject } from "@nestjs/common"
-import type {
+import {
   IMemberInvite,
   MemberRoleEnum,
   MemberStatusEnum,
 } from "@novu/shared"
-import type { MemberEntity } from "./member.entity"
-import type { IMemberRepository } from "./member-repository.interface"
+import { MemberEntity } from "./member.entity"
+import { IMemberRepository } from "./member-repository.interface"
 
 export interface IAddMemberData {
   _userId?: string

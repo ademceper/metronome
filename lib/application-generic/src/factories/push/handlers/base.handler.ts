@@ -1,7 +1,7 @@
-import type { ICredentials, PushProviderIdEnum } from "@novu/shared"
-import type { IPushOptions, IPushProvider } from "@novu/stateless"
+import { ICredentials, PushProviderIdEnum } from "@novu/shared"
+import { IPushOptions, IPushProvider } from "@novu/stateless"
 import { BaseHandler } from "../../shared/interfaces"
-import type { IPushHandler } from "../interfaces"
+import { IPushHandler } from "../interfaces"
 
 export abstract class BasePushHandler
   extends BaseHandler<IPushProvider>

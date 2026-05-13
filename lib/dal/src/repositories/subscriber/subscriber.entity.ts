@@ -1,12 +1,12 @@
-import type {
+import {
   IChannelSettings,
   ISubscriber,
   SubscriberCustomData,
 } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { OrganizationId } from "../organization"
-import type { ExternalSubscriberId } from "./types"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { OrganizationId } from "../organization"
+import { ExternalSubscriberId } from "./types"
 
 export class SubscriberEntity implements ISubscriber {
   // TODO: Use SubscriberId. Means lot of changes across whole codebase. Cool down.

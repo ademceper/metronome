@@ -1,4 +1,4 @@
-import { type DynamicModule, Module, type Provider } from "@nestjs/common"
+import { DynamicModule, Module, Provider } from "@nestjs/common"
 import { DalService } from "@novu/dal"
 import { JobCronNameEnum, JobTopicNameEnum } from "@novu/shared"
 import { Pulse } from "@pulsecron/pulse"

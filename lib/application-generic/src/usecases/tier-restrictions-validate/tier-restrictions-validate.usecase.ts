@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common"
-import type {
+import {
   CommunityOrganizationRepository,
   OrganizationEntity,
 } from "@novu/dal"
@@ -15,16 +15,16 @@ import {
 import { parseExpression as parseCronExpression } from "cron-parser"
 import { addYears, differenceInMilliseconds, isAfter } from "date-fns"
 import { InstrumentUsecase } from "../../instrumentation"
-import type { FeatureFlagsService } from "../../services"
+import { FeatureFlagsService } from "../../services"
 import {
   MIN_VALIDATION_LIMITS,
   SYSTEM_LIMITS,
 } from "../../services/resource-validator.service"
-import type { TierRestrictionsValidateCommand } from "./tier-restrictions-validate.command"
+import { TierRestrictionsValidateCommand } from "./tier-restrictions-validate.command"
 import {
   ErrorEnum,
-  type TierRestrictionsValidateResponse,
-  type TierValidationError,
+  TierRestrictionsValidateResponse,
+  TierValidationError,
 } from "./tier-restrictions-validate.response"
 
 @Injectable()

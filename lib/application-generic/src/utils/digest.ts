@@ -1,9 +1,9 @@
-import type { JobEntity } from "@novu/dal"
+import { JobEntity } from "@novu/dal"
 import {
   DelayTypeEnum,
   DigestTypeEnum,
-  type IDigestBaseMetadata,
-  type IDigestRegularMetadata,
+  IDigestBaseMetadata,
+  IDigestRegularMetadata,
   JobStatusEnum,
   StepTypeEnum,
 } from "@novu/shared"

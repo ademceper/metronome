@@ -1,4 +1,4 @@
-import { Injectable, type OnModuleDestroy } from "@nestjs/common"
+import { Injectable, OnModuleDestroy } from "@nestjs/common"
 import { shutdownOtel } from "./otel-init"
 
 /**

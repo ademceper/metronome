@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from "@nestjs/swagger"
-import type { ICredentials } from "@novu/shared"
+import { ICredentials } from "@novu/shared"
 import { Transform } from "class-transformer"
 import {
   IsBoolean,

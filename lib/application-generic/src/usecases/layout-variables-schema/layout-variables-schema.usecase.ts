@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common"
 import {
-  type EnvironmentRepository,
-  type EnvironmentVariableRepository,
+  EnvironmentRepository,
+  EnvironmentVariableRepository,
   JsonSchemaTypeEnum,
 } from "@novu/dal"
 import {
-  type EnvironmentSystemVariables,
+  EnvironmentSystemVariables,
   LAYOUT_CONTENT_VARIABLE,
 } from "@novu/shared"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
 import { resolveEnvironmentVariables } from "../../encryption/encrypt-environment-variable"
 import { InstrumentUsecase } from "../../instrumentation"
 import {
@@ -17,8 +17,8 @@ import {
   buildSubscriberSchema,
 } from "../../utils/create-schema"
 import { CreateVariablesObjectCommand } from "../create-variables-object/create-variables-object.command"
-import type { CreateVariablesObject } from "../create-variables-object/create-variables-object.usecase"
-import type { LayoutVariablesSchemaCommand } from "./layout-variables-schema.command"
+import { CreateVariablesObject } from "../create-variables-object/create-variables-object.usecase"
+import { LayoutVariablesSchemaCommand } from "./layout-variables-schema.command"
 
 @Injectable()
 export class LayoutVariablesSchemaUseCase {

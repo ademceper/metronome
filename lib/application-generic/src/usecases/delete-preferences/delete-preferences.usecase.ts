@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common"
-import type { PreferencesEntity, PreferencesRepository } from "@novu/dal"
+import { PreferencesEntity, PreferencesRepository } from "@novu/dal"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { DeletePreferencesCommand } from "./delete-preferences.command"
+import { DeletePreferencesCommand } from "./delete-preferences.command"
 
 @Injectable()
 export class DeletePreferencesUseCase {

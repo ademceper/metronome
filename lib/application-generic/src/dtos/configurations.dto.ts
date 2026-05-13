@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from "@nestjs/swagger"
-import type { IConfigurations } from "@novu/shared"
+import { IConfigurations } from "@novu/shared"
 import { IsOptional, IsString } from "class-validator"
 
 export class ConfigurationsDto implements IConfigurations {

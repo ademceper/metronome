@@ -7,7 +7,7 @@ import {
   ClickHouseBatchService,
   ClickHouseService,
   FeatureFlagsService,
-  type QueueBaseService,
+  QueueBaseService,
 } from "../services"
 
 export const featureFlagsService = {

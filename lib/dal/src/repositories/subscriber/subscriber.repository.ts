@@ -1,16 +1,16 @@
-import type {
+import {
   DirectionEnum,
   EnvironmentId,
   ISubscribersDefine,
   OrganizationId,
 } from "@novu/shared"
 import { DalException } from "../../shared"
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
-import type { BulkCreateSubscriberEntity } from "./bulk.create.subscriber.entity"
-import { type SubscriberDBModel, SubscriberEntity } from "./subscriber.entity"
+import { BulkCreateSubscriberEntity } from "./bulk.create.subscriber.entity"
+import { SubscriberDBModel, SubscriberEntity } from "./subscriber.entity"
 import { Subscriber } from "./subscriber.schema"
-import type { IExternalSubscribersEntity } from "./types"
+import { IExternalSubscribersEntity } from "./types"
 
 export class SubscriberRepository extends BaseRepository<
   SubscriberDBModel,

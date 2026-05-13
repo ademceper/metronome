@@ -1,5 +1,5 @@
-import type { Types } from "mongoose"
-import type {
+import { Types } from "mongoose"
+import {
   IPartnerConfiguration,
   OrganizationEntity,
 } from "./organization.entity"

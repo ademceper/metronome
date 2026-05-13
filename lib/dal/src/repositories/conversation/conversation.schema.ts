@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
 import {
-  type ConversationDBModel,
+  ConversationDBModel,
   ConversationParticipantTypeEnum,
   ConversationStatusEnum,
 } from "./conversation.entity"

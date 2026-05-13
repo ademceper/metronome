@@ -1,6 +1,6 @@
-import type { MessageEntity } from "@novu/dal"
-import type { ChannelData } from "@novu/stateless"
-import type { MessageWebhookResponseDto } from "../dtos"
+import { MessageEntity } from "@novu/dal"
+import { ChannelData } from "@novu/stateless"
+import { MessageWebhookResponseDto } from "../dtos"
 
 export const messageWebhookMapper = (
   message: Pick<

@@ -1,5 +1,5 @@
-import type { NotificationTemplateEntity, SubscriberEntity } from "@novu/dal"
-import type { ITenantDefine } from "@novu/shared"
+import { NotificationTemplateEntity, SubscriberEntity } from "@novu/dal"
+import { ITenantDefine } from "@novu/shared"
 import {
   IsArray,
   IsDefined,

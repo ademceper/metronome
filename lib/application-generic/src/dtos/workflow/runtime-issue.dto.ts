@@ -1,4 +1,4 @@
-import type { WorkflowIssueTypeEnum } from "@novu/shared"
+import { WorkflowIssueTypeEnum } from "@novu/shared"
 
 export class RuntimeIssueDto {
   issueType: WorkflowIssueTypeEnum

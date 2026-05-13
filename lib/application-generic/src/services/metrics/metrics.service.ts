@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger } from "@nestjs/common"
 import * as otelApi from "@opentelemetry/api"
-import type { IMetricsService } from "./metrics.interface"
+import { IMetricsService } from "./metrics.interface"
 
 const nr = require("newrelic")
 

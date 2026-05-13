@@ -1,4 +1,4 @@
-import { ChannelTypeEnum, type ProvidersIdEnum } from "@novu/shared"
+import { ChannelTypeEnum, ProvidersIdEnum } from "@novu/shared"
 import { IsBoolean, IsEnum, IsOptional } from "class-validator"
 
 import { EnvironmentWithUserCommand } from "../../commands"

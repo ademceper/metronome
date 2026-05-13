@@ -1,13 +1,13 @@
 import { Injectable, Logger } from "@nestjs/common"
 import {
   DalException,
-  type ExecutionDetailsEntity,
-  type ExecutionDetailsRepository,
+  ExecutionDetailsEntity,
+  ExecutionDetailsRepository,
 } from "@novu/dal"
 import { InstrumentUsecase } from "../../instrumentation"
 import { PlatformException } from "../../utils/exceptions"
 import { mapExecutionDetailsCommandToEntity } from "../create-execution-details"
-import type { BulkCreateExecutionDetailsCommand } from "./bulk-create-execution-details.command"
+import { BulkCreateExecutionDetailsCommand } from "./bulk-create-execution-details.command"
 
 const LOG_CONTEXT = "BulkCreateExecutionDetails"
 

@@ -1,8 +1,8 @@
 import { EnvironmentVariableType } from "@novu/shared"
-import mongoose, { Schema, type SchemaDefinitionProperty } from "mongoose"
+import mongoose, { Schema, SchemaDefinitionProperty } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { EnvironmentVariableDBModel } from "./environment-variable.entity"
+import { EnvironmentVariableDBModel } from "./environment-variable.entity"
 
 const environmentVariableValueSchema = new Schema(
   {

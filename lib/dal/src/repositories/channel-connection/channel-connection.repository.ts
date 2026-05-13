@@ -1,7 +1,7 @@
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
 import {
-  type ChannelConnectionDBModel,
+  ChannelConnectionDBModel,
   ChannelConnectionEntity,
 } from "./channel-connection.entity"
 import { ChannelConnection } from "./channel-connection.schema"

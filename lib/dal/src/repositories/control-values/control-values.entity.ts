@@ -1,4 +1,4 @@
-import type { ControlValuesLevelEnum } from "@novu/shared"
+import { ControlValuesLevelEnum } from "@novu/shared"
 
 export class ControlValuesEntity {
   _id: string

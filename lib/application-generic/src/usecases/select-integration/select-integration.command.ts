@@ -1,4 +1,4 @@
-import type {
+import {
   ChannelTypeEnum,
   ITenantDefine,
   ProvidersIdEnum,

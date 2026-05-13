@@ -1,14 +1,14 @@
-import type { DeliveryLifecycleEventType } from "@novu/shared"
+import { DeliveryLifecycleEventType } from "@novu/shared"
 import {
   CHDate,
   CHLowCardinality,
   CHString,
   CHUInt64,
   ClickhouseSchema,
-  type InferClickhouseSchemaType,
+  InferClickhouseSchemaType,
 } from "clickhouse-schema"
-import type { Prettify } from "../../../utils/prettify.type"
-import type { WorkflowRunStatusType } from "../trace-log/trace-log.schema"
+import { Prettify } from "../../../utils/prettify.type"
+import { WorkflowRunStatusType } from "../trace-log/trace-log.schema"
 
 export const WORKFLOW_RUN_COUNT_TABLE_NAME = "workflow_run_count"
 

@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Injectable } from "@nestjs/common"
-import type {
+import {
   EnvironmentRepository,
   JobEntity,
   JobRepository,
@@ -14,13 +14,13 @@ import {
   FILTER_TO_LABEL,
   FieldLogicalOperatorEnum,
   FieldOperatorEnum,
-  type FilterParts,
+  FilterParts,
   FilterPartTypeEnum,
-  type ICondition,
-  type IOnlineInLastFilterPart,
-  type IPreviousStepFilterPart,
-  type IRealtimeOnlineFilterPart,
-  type IWebhookFilterPart,
+  ICondition,
+  IOnlineInLastFilterPart,
+  IPreviousStepFilterPart,
+  IRealtimeOnlineFilterPart,
+  IWebhookFilterPart,
   PreviousStepTypeEnum,
   TimeOperatorEnum,
 } from "@novu/shared"
@@ -41,17 +41,17 @@ import {
   createHash,
   Filter,
   FilterProcessingDetails,
-  type IFilterVariables,
+  IFilterVariables,
   PlatformException,
   SsrfBlockedError,
 } from "../../utils"
-import type { CompileTemplate } from "../compile-template"
+import { CompileTemplate } from "../compile-template"
 import {
   CreateExecutionDetails,
   CreateExecutionDetailsCommand,
   DetailEnum,
 } from "../create-execution-details"
-import type { ConditionsFilterCommand } from "./conditions-filter.command"
+import { ConditionsFilterCommand } from "./conditions-filter.command"
 
 export interface IConditionsFilterResponse {
   passed: boolean

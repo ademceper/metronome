@@ -1,11 +1,11 @@
 import { DirectionEnum } from "@novu/shared"
-import type { ClientSession, FilterQuery } from "mongoose"
+import { ClientSession, FilterQuery } from "mongoose"
 
-import type { EnforceEnvOrOrgIds } from "../../types"
-import type { SortOrder } from "../../types/sort-order"
+import { EnforceEnvOrOrgIds } from "../../types"
+import { SortOrder } from "../../types/sort-order"
 import { BaseRepositoryV2 } from "../base-repository-v2"
 import {
-  type DomainRouteDBModel,
+  DomainRouteDBModel,
   DomainRouteEntity,
 } from "./domain-route.entity"
 import { DomainRoute } from "./domain-route.schema"

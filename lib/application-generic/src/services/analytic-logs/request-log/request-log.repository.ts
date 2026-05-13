@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common"
-import type { PinoLogger } from "nestjs-pino"
-import type { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
-import type { ClickHouseService, InsertOptions } from "../clickhouse.service"
+import { PinoLogger } from "nestjs-pino"
+import { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
+import { ClickHouseService, InsertOptions } from "../clickhouse.service"
 import { LogRepository } from "../log.repository"
 import { getInsertOptions } from "../shared"
 import {
   ORDER_BY,
-  type RequestLog,
+  RequestLog,
   requestLogSchema,
   TABLE_NAME,
 } from "./request-log.schema"

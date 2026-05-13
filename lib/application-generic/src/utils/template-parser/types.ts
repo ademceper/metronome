@@ -1,5 +1,5 @@
-import type { Template } from "liquidjs"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { Template } from "liquidjs"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
 
 export type Variable = {
   /**

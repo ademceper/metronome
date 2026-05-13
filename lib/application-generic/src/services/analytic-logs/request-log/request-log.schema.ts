@@ -5,9 +5,9 @@ import {
   CHUInt16,
   CHUInt32,
   ClickhouseSchema,
-  type InferClickhouseSchemaType,
+  InferClickhouseSchemaType,
 } from "clickhouse-schema"
-import type { Prettify } from "../../../utils/prettify.type"
+import { Prettify } from "../../../utils/prettify.type"
 
 export const TABLE_NAME = "requests"
 

@@ -1,10 +1,10 @@
-import type { ChannelTypeEnum, ICredentials } from "@novu/shared"
-import type {
+import { ChannelTypeEnum, ICredentials } from "@novu/shared"
+import {
   ISendMessageSuccessResponse,
   ISmsOptions,
   ISmsProvider,
 } from "@novu/stateless"
-import type { IHandler } from "../../shared/interfaces"
+import { IHandler } from "../../shared/interfaces"
 
 export interface ISmsHandler extends IHandler {
   canHandle(providerId: string, channelType: ChannelTypeEnum)

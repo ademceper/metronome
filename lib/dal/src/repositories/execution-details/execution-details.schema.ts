@@ -4,7 +4,7 @@ import {
 } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
-import type { ExecutionDetailsDBModel } from "./execution-details.entity"
+import { ExecutionDetailsDBModel } from "./execution-details.entity"
 
 const executionDetailsSchema = new Schema<ExecutionDetailsDBModel>(
   {

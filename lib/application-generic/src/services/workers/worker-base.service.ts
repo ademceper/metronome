@@ -1,30 +1,30 @@
-import { Logger, type OnModuleDestroy } from "@nestjs/common"
-import type { JobTopicNameEnum } from "@novu/shared"
+import { Logger, OnModuleDestroy } from "@nestjs/common"
+import { JobTopicNameEnum } from "@novu/shared"
 import {
   getSqsDefaultBatchSize,
   getSqsDefaultConcurrency,
   getSqsDefaultVisibilityTimeout,
   getSqsDefaultWaitTimeSeconds,
 } from "../../config/workers"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 import {
-  type BullMqService,
-  type Job,
-  type Processor,
+  BullMqService,
+  Job,
+  Processor,
   WorkerOptions,
 } from "../bull-mq"
-import type { INovuWorker } from "../readiness"
+import { INovuWorker } from "../readiness"
 import {
   createSqsJobAdapter,
-  type ISqsConsumerOptions,
-  type ISqsMessageMeta,
+  ISqsConsumerOptions,
+  ISqsMessageMeta,
   SQS_DEFAULT_BATCH_SIZE,
   SQS_DEFAULT_DRAIN_TIMEOUT_MS,
   SQS_DEFAULT_MAX_CONCURRENCY,
   SQS_DEFAULT_VISIBILITY_TIMEOUT,
   SQS_DEFAULT_WAIT_TIME_SECONDS,
   SqsConsumerService,
-  type SqsService,
+  SqsService,
 } from "../sqs"
 
 const LOG_CONTEXT = "WorkerService"

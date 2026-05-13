@@ -1,17 +1,17 @@
 import { Injectable, Logger } from "@nestjs/common"
-import type { CommunityOrganizationRepository } from "@novu/dal"
+import { CommunityOrganizationRepository } from "@novu/dal"
 import {
   CloudflareSchedulerMode,
   FeatureFlagsKeysEnum,
   JobTopicNameEnum,
 } from "@novu/shared"
-import type { IStandardBulkJobDto, IStandardJobDto } from "../../dtos"
-import type { PinoLogger } from "../../logging"
+import { IStandardBulkJobDto, IStandardJobDto } from "../../dtos"
+import { PinoLogger } from "../../logging"
 import { BullMqService } from "../bull-mq"
-import type { CloudflareSchedulerService } from "../cloudflare-scheduler"
-import type { FeatureFlagsService } from "../feature-flags"
-import type { WorkflowInMemoryProviderService } from "../in-memory-provider"
-import type { SqsService } from "../sqs"
+import { CloudflareSchedulerService } from "../cloudflare-scheduler"
+import { FeatureFlagsService } from "../feature-flags"
+import { WorkflowInMemoryProviderService } from "../in-memory-provider"
+import { SqsService } from "../sqs"
 import { QueueBaseService } from "./queue-base.service"
 
 const LOG_CONTEXT = "StandardQueueService"

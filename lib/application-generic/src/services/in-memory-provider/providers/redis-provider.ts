@@ -1,6 +1,6 @@
 import Redis, { RedisOptions, ScanStream } from "ioredis"
 import newrelic from "newrelic"
-import type { ConnectionOptions } from "tls"
+import { ConnectionOptions } from "tls"
 
 import { convertStringValues } from "./variable-mappers"
 

@@ -1,6 +1,6 @@
-import type { WebSocketEventEnum } from "@novu/shared"
-import type { JobsOptions } from "../services/bull-mq"
-import type {
+import { WebSocketEventEnum } from "@novu/shared"
+import { JobsOptions } from "../services/bull-mq"
+import {
   IBulkJobParams,
   IJobParams,
 } from "../services/queues/queue-base.service"

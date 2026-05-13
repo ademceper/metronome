@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
 import { readFile } from "fs/promises"
-import type { GetNovuLayoutCommand } from "./get-novu-layout.command"
+import { GetNovuLayoutCommand } from "./get-novu-layout.command"
 
 @Injectable()
 export class GetNovuLayout {

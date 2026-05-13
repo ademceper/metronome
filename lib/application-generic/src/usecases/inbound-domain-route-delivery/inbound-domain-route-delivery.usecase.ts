@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type {
+import {
   AgentIntegrationRepository,
   DomainEntity,
   DomainRouteEntity,
@@ -8,18 +8,18 @@ import type {
 import {
   ChannelTypeEnum,
   EmailProviderIdEnum,
-  type EmailWebhookPayload,
-  type NovuEmailAttachment,
+  EmailWebhookPayload,
+  NovuEmailAttachment,
   WebhookEventEnum,
   WebhookObjectTypeEnum,
 } from "@novu/shared"
-import type { IFrom, IHeaders, ITo } from "../../dtos/inbound-parse-job.dto"
+import { IFrom, IHeaders, ITo } from "../../dtos/inbound-parse-job.dto"
 import { decryptSecret } from "../../encryption/encrypt-provider"
-import type { PinoLogger } from "../../logging"
-import type { HttpClientService } from "../../services/http-client/http-client.service"
+import { PinoLogger } from "../../logging"
+import { HttpClientService } from "../../services/http-client/http-client.service"
 import { buildNovuSignatureHeader } from "../../utils/hmac"
 import { normalizeReferences } from "../../utils/inbound-email-references"
-import type { SendWebhookMessage } from "../../webhooks/usecases/send-webhook-message/send-webhook-message.usecase"
+import { SendWebhookMessage } from "../../webhooks/usecases/send-webhook-message/send-webhook-message.usecase"
 
 export type RoutableDomain = Pick<
   DomainEntity,

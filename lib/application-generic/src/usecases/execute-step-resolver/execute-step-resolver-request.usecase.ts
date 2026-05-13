@@ -7,16 +7,16 @@ import {
 } from "@nestjs/common"
 import {
   createLiquidEngine,
-  type ExecuteOutput,
+  ExecuteOutput,
   HttpQueryKeysEnum,
-  type State,
+  State,
 } from "@novu/framework/internal"
 import got, { HTTPError } from "got"
 import { InstrumentUsecase } from "../../instrumentation"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 import { RETRYABLE_ERROR_CODES } from "../../services/http-client"
 import { sanitizeHtmlInObject } from "../../services/sanitize/sanitizer.service"
-import type {
+import {
   BridgeError,
   ExecuteBridgeRequestCommand,
   ProcessError,

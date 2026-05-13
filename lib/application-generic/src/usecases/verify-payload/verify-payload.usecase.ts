@@ -3,7 +3,7 @@ import { DelayTypeEnum, StepTypeEnum } from "@novu/shared"
 import { InstrumentUsecase } from "../../instrumentation"
 import { VerifyPayloadService } from "../../services"
 
-import type { VerifyPayloadCommand } from "./verify-payload.command"
+import { VerifyPayloadCommand } from "./verify-payload.command"
 
 const ISO_DATE_REGEX = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/
 

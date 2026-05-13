@@ -1,25 +1,25 @@
 import { Injectable } from "@nestjs/common"
-import type {
+import {
   ControlValuesRepository,
   NotificationTemplateEntity,
 } from "@novu/dal"
-import type { ContextResolved } from "@novu/framework/internal"
+import { ContextResolved } from "@novu/framework/internal"
 import {
-  type ContextPayload,
+  ContextPayload,
   ControlValuesLevelEnum,
   createMockObjectFromSchema,
   ResourceOriginEnum,
   StepTypeEnum,
-  type UserSessionData,
+  UserSessionData,
 } from "@novu/shared"
 import { isPlainObject, pick } from "es-toolkit"
 import { keys, merge, mergeWith } from "es-toolkit/compat"
-import type { PreviewPayloadDto } from "../../../dtos/workflow/preview-payload.dto"
-import type { StepResponseDto } from "../../../dtos/workflow/step.response.dto"
+import { PreviewPayloadDto } from "../../../dtos/workflow/preview-payload.dto"
+import { StepResponseDto } from "../../../dtos/workflow/step.response.dto"
 import { JsonSchemaMock } from "../../../utils/json-schema-mock"
 import { mergeCommonObjectKeys } from "../../../utils/json-schema-utils"
-import type { BuildStepDataUsecase } from "../../build-step-data"
-import type { MockDataGeneratorService } from "./mock-data-generator.service"
+import { BuildStepDataUsecase } from "../../build-step-data"
+import { MockDataGeneratorService } from "./mock-data-generator.service"
 
 @Injectable()
 export class PayloadMergerService {

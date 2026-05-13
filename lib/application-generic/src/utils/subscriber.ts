@@ -1,4 +1,4 @@
-import type { SubscriberEntity } from "@novu/dal"
+import { SubscriberEntity } from "@novu/dal"
 import { isEqual } from "lodash"
 
 export function subscriberNeedUpdate(

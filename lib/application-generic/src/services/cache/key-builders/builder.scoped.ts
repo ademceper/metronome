@@ -8,7 +8,7 @@ import {
   CacheKeyTypeEnum,
   IdentifierPrefixEnum,
   OrgScopePrefixEnum,
-  type ServiceConfigIdentifierEnum,
+  ServiceConfigIdentifierEnum,
 } from "./identifiers"
 
 /**

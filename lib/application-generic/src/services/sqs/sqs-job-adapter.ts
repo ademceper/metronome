@@ -1,5 +1,5 @@
-import type { Job } from "../bull-mq"
-import type { ISqsMessageMeta } from "./types"
+import { Job } from "../bull-mq"
+import { ISqsMessageMeta } from "./types"
 
 const noOp = async () => {}
 

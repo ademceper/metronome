@@ -4,7 +4,7 @@ import isArray from "lodash/isArray"
 import isObject from "lodash/isObject"
 import reduce from "lodash/reduce"
 import set from "lodash/set"
-import type { JSONSchemaDto } from "../dtos/json-schema.dto"
+import { JSONSchemaDto } from "../dtos/json-schema.dto"
 import { DIGEST_EVENTS_VARIABLE_PATTERN } from "./template-parser/parser-utils"
 
 export type ArrayVariable = {

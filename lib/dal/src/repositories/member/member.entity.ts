@@ -1,12 +1,12 @@
-import type {
+import {
   IMemberInvite,
   MemberRoleEnum,
   MemberStatusEnum,
 } from "@novu/shared"
-import type { Types } from "mongoose"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { OrganizationId } from "../organization"
-import type { UserEntity } from "../user"
+import { Types } from "mongoose"
+import { ChangePropsValueType } from "../../types/helpers"
+import { OrganizationId } from "../organization"
+import { UserEntity } from "../user"
 
 export class MemberEntity {
   _id: string

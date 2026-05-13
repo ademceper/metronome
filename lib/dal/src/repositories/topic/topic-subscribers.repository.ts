@@ -1,16 +1,16 @@
-import { DirectionEnum, type ExternalSubscriberId } from "@novu/shared"
+import { DirectionEnum, ExternalSubscriberId } from "@novu/shared"
 
-import type { FilterQuery, mongo } from "mongoose"
-import { DalException, type TopicEntity } from "../.."
-import type { EnforceEnvOrOrgIds } from "../../types/enforce"
+import { FilterQuery, mongo } from "mongoose"
+import { DalException, TopicEntity } from "../.."
+import { EnforceEnvOrOrgIds } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
 import {
-  type CreateTopicSubscribersEntity,
-  type TopicSubscribersDBModel,
+  CreateTopicSubscribersEntity,
+  TopicSubscribersDBModel,
   TopicSubscribersEntity,
 } from "./topic-subscribers.entity"
 import { TopicSubscribers } from "./topic-subscribers.schema"
-import type { EnvironmentId, OrganizationId, TopicId, TopicKey } from "./types"
+import { EnvironmentId, OrganizationId, TopicId, TopicKey } from "./types"
 
 export interface BulkAddTopicSubscribersResult {
   created: TopicSubscribersEntity[]

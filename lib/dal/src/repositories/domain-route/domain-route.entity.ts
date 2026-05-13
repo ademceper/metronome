@@ -1,7 +1,7 @@
-import type { DomainRouteTypeEnum } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { OrganizationId } from "../organization"
+import { DomainRouteTypeEnum } from "@novu/shared"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { OrganizationId } from "../organization"
 
 export class DomainRouteEntity {
   _id: string

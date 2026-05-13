@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common"
 import {
   HealthCheckError,
   HealthIndicator,
-  type HealthIndicatorResult,
+  HealthIndicatorResult,
 } from "@nestjs/terminus"
-import type { DalService } from "@novu/dal"
-import type { IHealthIndicator } from "./health-indicator.interface"
+import { DalService } from "@novu/dal"
+import { IHealthIndicator } from "./health-indicator.interface"
 
 @Injectable()
 export class DalServiceHealthIndicator

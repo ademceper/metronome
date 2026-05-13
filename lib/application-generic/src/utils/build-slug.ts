@@ -1,4 +1,4 @@
-import type { ShortIsPrefixEnum, Slug } from "@novu/shared"
+import { ShortIsPrefixEnum, Slug } from "@novu/shared"
 import { encodeBase62 } from "./base62"
 import { slugifyOrRandom } from "./slugify-or-random"
 

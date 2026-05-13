@@ -1,4 +1,4 @@
-import { DirectionEnum, type KeysOfT, type UserSessionData } from "@novu/shared"
+import { DirectionEnum, KeysOfT, UserSessionData } from "@novu/shared"
 import {
   IsArray,
   IsDefined,

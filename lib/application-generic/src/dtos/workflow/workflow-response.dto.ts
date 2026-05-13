@@ -5,12 +5,12 @@ import {
   getSchemaPath,
 } from "@nestjs/swagger"
 import {
-  type CreateWorkflowDto,
+  CreateWorkflowDto,
   ResourceOriginEnum,
   SeverityLevelEnum,
-  type Slug,
+  Slug,
   StepTypeEnum,
-  type UpdateWorkflowDto,
+  UpdateWorkflowDto,
   WorkflowStatusEnum,
 } from "@novu/shared"
 import { Type } from "class-transformer"

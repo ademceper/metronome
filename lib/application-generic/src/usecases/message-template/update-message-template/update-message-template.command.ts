@@ -1,9 +1,9 @@
 import {
-  type IActor,
-  type IEmailBlock,
-  type IMessageCTA,
-  type ITemplateVariable,
-  type MessageTemplateContentType,
+  IActor,
+  IEmailBlock,
+  IMessageCTA,
+  ITemplateVariable,
+  MessageTemplateContentType,
   ResourceTypeEnum,
   StepTypeEnum,
 } from "@novu/shared"
@@ -16,7 +16,7 @@ import {
   ValidateNested,
 } from "class-validator"
 import { EnvironmentWithUserCommand } from "../../../commands"
-import type { JSONSchema } from "../../../value-objects"
+import { JSONSchema } from "../../../value-objects"
 
 export class UpdateMessageTemplateCommand extends EnvironmentWithUserCommand {
   @IsDefined()

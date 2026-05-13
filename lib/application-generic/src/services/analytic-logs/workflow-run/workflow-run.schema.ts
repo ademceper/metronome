@@ -1,5 +1,5 @@
 import {
-  type DeliveryLifecycleStatusEnum,
+  DeliveryLifecycleStatusEnum,
   SeverityLevelEnum,
 } from "@novu/shared"
 import {
@@ -10,9 +10,9 @@ import {
   CHNullable,
   CHString,
   ClickhouseSchema,
-  type InferClickhouseSchemaType,
+  InferClickhouseSchemaType,
 } from "clickhouse-schema"
-import type { Prettify } from "../../../utils/prettify.type"
+import { Prettify } from "../../../utils/prettify.type"
 
 export const TABLE_NAME = "workflow_runs"
 

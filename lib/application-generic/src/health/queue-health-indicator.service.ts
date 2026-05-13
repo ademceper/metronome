@@ -2,11 +2,11 @@ import { Injectable, Logger } from "@nestjs/common"
 import {
   HealthCheckError,
   HealthIndicator,
-  type HealthIndicatorResult,
+  HealthIndicatorResult,
 } from "@nestjs/terminus"
 
-import type { QueueBaseService } from "../services/queues/queue-base.service"
-import type { IHealthIndicator } from "./health-indicator.interface"
+import { QueueBaseService } from "../services/queues/queue-base.service"
+import { IHealthIndicator } from "./health-indicator.interface"
 
 @Injectable()
 export abstract class QueueHealthIndicator

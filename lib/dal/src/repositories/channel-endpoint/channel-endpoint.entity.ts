@@ -1,13 +1,13 @@
-import type {
+import {
   ChannelEndpoint,
   ChannelEndpointByType,
   ChannelEndpointType,
   ChannelTypeEnum,
   ProvidersIdEnum,
 } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { OrganizationId } from "../organization"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { OrganizationId } from "../organization"
 
 export class ChannelEndpointEntity<
   T extends ChannelEndpointType = ChannelEndpointType,

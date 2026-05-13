@@ -1,31 +1,31 @@
 import { Injectable } from "@nestjs/common"
 import {
-  type JobEntity,
-  type JobRepository,
+  JobEntity,
+  JobRepository,
   JobStatusEnum,
-  type MessageEntity,
-  type MessageRepository,
-  type NotificationRepository,
-  type NotificationTemplateEntity,
-  type NotificationTemplateRepository,
+  MessageEntity,
+  MessageRepository,
+  NotificationRepository,
+  NotificationTemplateEntity,
+  NotificationTemplateRepository,
 } from "@novu/dal"
 import {
   DeliveryLifecycleDetail,
-  type DeliveryLifecycleEventType,
+  DeliveryLifecycleEventType,
   DeliveryLifecycleStatusEnum,
   FeatureFlagsKeysEnum,
   SeverityLevelEnum,
 } from "@novu/shared"
-import type { PinoLogger } from "../logging"
+import { PinoLogger } from "../logging"
 import {
-  type EventType,
-  type TraceLogRepository,
-  type WorkflowRunRepository,
+  EventType,
+  TraceLogRepository,
+  WorkflowRunRepository,
   WorkflowRunStatusEnum,
-  type WorkflowRunTraceInput,
+  WorkflowRunTraceInput,
 } from "./analytic-logs"
 import { LogRepository } from "./analytic-logs/log.repository"
-import type { FeatureFlagsService } from "./feature-flags"
+import { FeatureFlagsService } from "./feature-flags"
 
 const DELIVERY_STATUS_TO_EVENT: Record<
   DeliveryLifecycleStatusEnum,

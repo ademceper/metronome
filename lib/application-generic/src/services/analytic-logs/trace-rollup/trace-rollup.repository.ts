@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common"
-import type { PinoLogger } from "nestjs-pino"
-import type { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
-import type { ClickHouseService } from "../clickhouse.service"
+import { PinoLogger } from "nestjs-pino"
+import { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
+import { ClickHouseService } from "../clickhouse.service"
 import { LogRepository } from "../log.repository"
 import {
   TRACE_ROLLUP_ORDER_BY,
   TRACE_ROLLUP_TABLE_NAME,
-  type TraceRollup,
+  TraceRollup,
   traceRollupSchema,
 } from "./trace-rollup.schema"
 

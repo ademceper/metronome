@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common"
-import type { FeatureFlagContext, IFeatureFlagsService } from "./types"
+import { FeatureFlagContext, IFeatureFlagsService } from "./types"
 
 @Injectable()
 export class ProcessEnvFeatureFlagsService implements IFeatureFlagsService {

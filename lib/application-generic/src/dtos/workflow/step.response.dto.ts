@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
-import { ResourceOriginEnum, type Slug, StepTypeEnum } from "@novu/shared"
+import { ResourceOriginEnum, Slug, StepTypeEnum } from "@novu/shared"
 import { Type } from "class-transformer"
 import { IsEnum, IsOptional, IsString, ValidateNested } from "class-validator"
 import { ControlsMetadataDto } from "../controls-metadata.dto"

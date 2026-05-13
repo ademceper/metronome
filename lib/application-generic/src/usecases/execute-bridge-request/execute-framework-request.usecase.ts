@@ -5,9 +5,9 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common"
-import type { EnvironmentRepository } from "@novu/dal"
+import { EnvironmentRepository } from "@novu/dal"
 import {
-  type GetActionEnum,
+  GetActionEnum,
   HttpHeaderKeysEnum,
   HttpQueryKeysEnum,
   isFrameworkError,
@@ -16,21 +16,21 @@ import {
 import { ResourceOriginEnum } from "@novu/shared"
 import { HttpRequestHeaderKeysEnum } from "../../http"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 import {
   DEFAULT_RETRIES_LIMIT,
   DEFAULT_TIMEOUT,
   HttpClientError,
   HttpClientErrorType,
-  type HttpClientService,
+  HttpClientService,
   RETRYABLE_ERROR_CODES,
 } from "../../services/http-client"
 import { BRIDGE_EXECUTION_ERROR, buildNovuSignatureHeader } from "../../utils"
 import {
-  type GetDecryptedSecretKey,
+  GetDecryptedSecretKey,
   GetDecryptedSecretKeyCommand,
 } from "../get-decrypted-secret-key"
-import type {
+import {
   BridgeError,
   ExecuteBridgeRequestCommand,
   ExecuteBridgeRequestDto,

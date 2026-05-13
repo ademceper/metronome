@@ -1,5 +1,5 @@
 import { JsonSchemaTypeEnum } from "@novu/dal"
-import type { JSONSchemaDto } from "../dtos/json-schema.dto"
+import { JSONSchemaDto } from "../dtos/json-schema.dto"
 
 export function emptyJsonSchema(): JSONSchemaDto {
   return {

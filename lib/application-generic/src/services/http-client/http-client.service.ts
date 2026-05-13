@@ -13,10 +13,10 @@ import got, {
   UnsupportedProtocolError,
   UploadError,
 } from "got"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 import {
-  type SafeOutboundRequestOptions,
-  type SafeOutboundResponse,
+  SafeOutboundRequestOptions,
+  SafeOutboundResponse,
   SsrfBlockedError,
   safeOutboundJsonRequest,
   safeOutboundRequest,
@@ -24,8 +24,8 @@ import {
 import {
   HttpClientError,
   HttpClientErrorType,
-  type HttpRequestOptions,
-  type HttpResponse,
+  HttpRequestOptions,
+  HttpResponse,
   RETRYABLE_ERROR_CODES,
   RETRYABLE_HTTP_CODES,
 } from "./http-client.types"

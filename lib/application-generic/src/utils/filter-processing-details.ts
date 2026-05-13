@@ -1,6 +1,6 @@
-import type { SubscriberEntity, TenantEntity } from "@novu/dal"
-import type { ContextResolved } from "@novu/framework/internal"
-import type { ICondition, IMessageFilter, ITriggerPayload } from "@novu/shared"
+import { SubscriberEntity, TenantEntity } from "@novu/dal"
+import { ContextResolved } from "@novu/framework/internal"
+import { ICondition, IMessageFilter, ITriggerPayload } from "@novu/shared"
 
 export interface IFilterVariables {
   payload?: ITriggerPayload

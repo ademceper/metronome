@@ -1,4 +1,4 @@
-import type { JSONSchemaDto } from "../dtos/json-schema.dto"
+import { JSONSchemaDto } from "../dtos/json-schema.dto"
 
 type ParsePayloadSchemaOptions = {
   safe?: boolean

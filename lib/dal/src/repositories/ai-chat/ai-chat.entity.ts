@@ -1,7 +1,7 @@
-import type { AiResourceTypeEnum, AiResumeActionEnum } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { OrganizationId } from "../organization"
+import { AiResourceTypeEnum, AiResumeActionEnum } from "@novu/shared"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { OrganizationId } from "../organization"
 
 export type AiChatSnapshotRef = {
   _snapshotId: string

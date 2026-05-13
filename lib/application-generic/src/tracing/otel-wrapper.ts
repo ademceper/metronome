@@ -1,7 +1,7 @@
-import { Injectable, type PipeTransform, type Type } from "@nestjs/common"
+import { Injectable, PipeTransform, Type } from "@nestjs/common"
 import {
-  type MetricOptions,
-  type SpanOptions,
+  MetricOptions,
+  SpanOptions,
   Tracer,
 } from "@opentelemetry/api"
 import {

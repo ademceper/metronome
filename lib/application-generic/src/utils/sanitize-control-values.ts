@@ -1,7 +1,7 @@
 import { StepTypeEnum } from "@novu/shared"
 import { isEmpty } from "lodash"
-import type { PinoLogger } from "../logging"
-import type {
+import { PinoLogger } from "../logging"
+import {
   ChatControlType,
   DelayControlType,
   DelayDynamicControlType,
@@ -17,7 +17,7 @@ import type {
   PushControlType,
   SmsControlType,
 } from "../schemas/control"
-import type {
+import {
   InAppActionType,
   InAppControlType,
 } from "../schemas/control/in-app-control.schema"

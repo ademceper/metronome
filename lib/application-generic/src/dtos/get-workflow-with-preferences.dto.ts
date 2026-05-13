@@ -1,5 +1,5 @@
 import { NotificationTemplateEntity } from "@novu/dal"
-import type { WorkflowPreferences } from "@novu/shared"
+import { WorkflowPreferences } from "@novu/shared"
 
 export class WorkflowWithPreferencesResponseDto extends NotificationTemplateEntity {
   userPreferences: WorkflowPreferences | null

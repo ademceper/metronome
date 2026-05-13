@@ -1,17 +1,17 @@
 import { Injectable } from "@nestjs/common"
 import { merge } from "es-toolkit/compat"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
 import { MailyAttrsEnum } from "../../types/maily.types"
 import { buildVariables } from "../../utils/build-variables"
 import { JsonSchemaMock } from "../../utils/json-schema-mock"
 import {
-  type ArrayVariable,
+  ArrayVariable,
   collectKeys,
   keysToObject,
 } from "../../utils/json-schema-utils"
 import { isStringifiedMailyJSONContent } from "../../utils/maily-utils"
-import type { CreateVariablesObjectCommand } from "./create-variables-object.command"
+import { CreateVariablesObjectCommand } from "./create-variables-object.command"
 
 export const DEFAULT_ARRAY_ELEMENTS = 3
 /**

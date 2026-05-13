@@ -1,10 +1,10 @@
 import { Injectable, Logger } from "@nestjs/common"
-import type { IEventJobData, IJobData, JobTopicNameEnum } from "@novu/shared"
+import { IEventJobData, IJobData, JobTopicNameEnum } from "@novu/shared"
 import {
   BulkJobOptions,
   Job,
   JobsOptions,
-  type Metrics,
+  Metrics,
   MetricsTime,
   Processor,
   Queue,
@@ -15,7 +15,7 @@ import {
   WorkerOptions,
 } from "bullmq"
 
-import type { WorkflowInMemoryProviderService } from "../in-memory-provider"
+import { WorkflowInMemoryProviderService } from "../in-memory-provider"
 
 interface IQueueMetrics {
   completed: Metrics

@@ -1,6 +1,6 @@
-import type { ClientSession } from "@novu/dal"
+import { ClientSession } from "@novu/dal"
 import {
-  type ChannelTypeEnum,
+  ChannelTypeEnum,
   MAX_NAME_LENGTH,
   ResourceOriginEnum,
   SeverityLevelEnum,

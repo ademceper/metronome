@@ -1,7 +1,7 @@
 import { PlivoSmsProvider } from "@novu/providers"
 import {
   ChannelTypeEnum,
-  type ICredentials,
+  ICredentials,
   SmsProviderIdEnum,
 } from "@novu/shared"
 import { BaseSmsHandler } from "./base.handler"

@@ -1,7 +1,7 @@
 import { Injectable, Logger } from "@nestjs/common"
 import { JobTopicNameEnum } from "@novu/shared"
 import { BullMqService } from "../bull-mq"
-import type { WorkflowInMemoryProviderService } from "../in-memory-provider"
+import { WorkflowInMemoryProviderService } from "../in-memory-provider"
 import { QueueBaseService } from "./queue-base.service"
 
 const LOG_CONTEXT = "ActiveJobsMetricQueueService"

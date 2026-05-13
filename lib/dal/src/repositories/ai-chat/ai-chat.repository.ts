@@ -1,11 +1,11 @@
-import type { AiResourceTypeEnum } from "@novu/shared"
-import type { ClientSession } from "mongoose"
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { AiResourceTypeEnum } from "@novu/shared"
+import { ClientSession } from "mongoose"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
 import {
-  type AiChatDBModel,
+  AiChatDBModel,
   AiChatEntity,
-  type AiChatSnapshotRef,
+  AiChatSnapshotRef,
 } from "./ai-chat.entity"
 import { AiChat } from "./ai-chat.schema"
 

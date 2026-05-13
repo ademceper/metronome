@@ -1,6 +1,6 @@
 import { IsArray, IsDefined, IsObject, IsOptional } from "class-validator"
 import { EnvironmentCommand } from "../../commands"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
 
 export class CreateVariablesObjectCommand extends EnvironmentCommand {
   @IsDefined()

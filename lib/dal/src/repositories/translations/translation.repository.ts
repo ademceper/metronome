@@ -1,10 +1,10 @@
-import type { FilterQuery } from "mongoose"
-import type { SoftDeleteModel } from "mongoose-delete"
+import { FilterQuery } from "mongoose"
+import { SoftDeleteModel } from "mongoose-delete"
 import { DalException } from "../../shared"
-import type { EnforceEnvOrOrgIds } from "../../types/enforce"
+import { EnforceEnvOrOrgIds } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
 import { TranslationEntity } from "./translation.entity"
-import { Translation, type TranslationModel } from "./translation.schema"
+import { Translation, TranslationModel } from "./translation.schema"
 
 type TranslationQuery = FilterQuery<TranslationModel> & EnforceEnvOrOrgIds
 

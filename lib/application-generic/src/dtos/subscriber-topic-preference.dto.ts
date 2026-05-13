@@ -1,4 +1,4 @@
-import type { NotificationTopic } from "@novu/dal"
+import { NotificationTopic } from "@novu/dal"
 
 export type SubscriberTopicPreference = NotificationTopic & {
   _topicSubscriptionId?: string

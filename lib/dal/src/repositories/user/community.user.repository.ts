@@ -1,12 +1,12 @@
 import { createHash } from "crypto"
 import { BaseRepository } from "../base-repository"
 import {
-  type IUserResetTokenCount,
-  type UserDBModel,
+  IUserResetTokenCount,
+  UserDBModel,
   UserEntity,
 } from "./user.entity"
 import { User } from "./user.schema"
-import type { IUserRepository } from "./user-repository.interface"
+import { IUserRepository } from "./user-repository.interface"
 
 export class CommunityUserRepository
   extends BaseRepository<UserDBModel, UserEntity, object>

@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common"
-import type { PinoLogger } from "nestjs-pino"
-import type { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
-import type { ClickHouseService } from "../clickhouse.service"
+import { PinoLogger } from "nestjs-pino"
+import { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
+import { ClickHouseService } from "../clickhouse.service"
 import { LogRepository } from "../log.repository"
 import {
   WORKFLOW_RUN_COUNT_ORDER_BY,
   WORKFLOW_RUN_COUNT_TABLE_NAME,
-  type WorkflowRunCount,
+  WorkflowRunCount,
   workflowRunCountSchema,
 } from "./workflow-run-count.schema"
 

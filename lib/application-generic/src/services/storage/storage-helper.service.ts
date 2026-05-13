@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common"
-import type { IAttachmentOptionsExtended } from "@novu/stateless"
+import { IAttachmentOptionsExtended } from "@novu/stateless"
 import { Instrument } from "../../instrumentation"
 import { NonExistingFileError } from "./non-existing-file.error"
-import type { StorageService } from "./storage.service"
+import { StorageService } from "./storage.service"
 
 @Injectable()
 export class StorageHelperService {

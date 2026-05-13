@@ -1,20 +1,20 @@
 import { Injectable, Optional } from "@nestjs/common"
 import { FeatureFlagsKeysEnum } from "@novu/shared"
-import type { PinoLogger } from "nestjs-pino"
-import type { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
-import type { ClickHouseService, InsertOptions } from "../clickhouse.service"
-import type { ClickHouseBatchService } from "../clickhouse-batch.service"
+import { PinoLogger } from "nestjs-pino"
+import { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
+import { ClickHouseService, InsertOptions } from "../clickhouse.service"
+import { ClickHouseBatchService } from "../clickhouse-batch.service"
 import { LogRepository } from "../log.repository"
 import { getInsertOptions } from "../shared"
 import {
-  type EventType,
+  EventType,
   ORDER_BY,
-  type RequestTraceInput,
-  type StepRunTraceInput,
+  RequestTraceInput,
+  StepRunTraceInput,
   TABLE_NAME,
-  type Trace,
+  Trace,
   traceLogSchema,
-  type WorkflowRunTraceInput,
+  WorkflowRunTraceInput,
 } from "./trace-log.schema"
 
 const TRACE_INSERT_OPTIONS: InsertOptions = getInsertOptions(

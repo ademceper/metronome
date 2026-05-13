@@ -1,4 +1,4 @@
-import type { TranslationEntity } from "../translations/translation.entity"
+import { TranslationEntity } from "../translations/translation.entity"
 
 export class TranslationGroupEntity {
   _id: string

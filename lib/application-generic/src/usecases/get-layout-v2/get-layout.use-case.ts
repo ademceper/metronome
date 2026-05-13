@@ -1,17 +1,17 @@
 import { Injectable } from "@nestjs/common"
-import type { ControlValuesRepository } from "@novu/dal"
+import { ControlValuesRepository } from "@novu/dal"
 import {
   ControlValuesLevelEnum,
   ResourceOriginEnum,
   ResourceTypeEnum,
 } from "@novu/shared"
-import type { LayoutResponseDto } from "../../dtos/layout/layout-response.dto"
-import { GetLayoutCommandV0, type GetLayoutUseCaseV0 } from "../get-layout-v0"
+import { LayoutResponseDto } from "../../dtos/layout/layout-response.dto"
+import { GetLayoutCommandV0, GetLayoutUseCaseV0 } from "../get-layout-v0"
 import {
   LayoutVariablesSchemaCommand,
-  type LayoutVariablesSchemaUseCase,
+  LayoutVariablesSchemaUseCase,
 } from "../layout-variables-schema"
-import type { GetLayoutCommand } from "./get-layout.command"
+import { GetLayoutCommand } from "./get-layout.command"
 import { mapLayoutToResponseDto } from "./mapper"
 
 @Injectable()

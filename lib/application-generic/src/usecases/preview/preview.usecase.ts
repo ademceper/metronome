@@ -1,23 +1,23 @@
 import { Injectable } from "@nestjs/common"
-import type {
+import {
   EnvironmentRepository,
   EnvironmentVariableRepository,
 } from "@novu/dal"
-import type { ContextResolved } from "@novu/framework/internal"
+import { ContextResolved } from "@novu/framework/internal"
 import {
-  type ChannelTypeEnum,
-  type EnvironmentSystemVariables,
+  ChannelTypeEnum,
+  EnvironmentSystemVariables,
   ResourceOriginEnum,
   StepTypeEnum,
 } from "@novu/shared"
 import { get, set } from "es-toolkit/compat"
-import type { PinoLogger } from "nestjs-pino"
-import type { GeneratePreviewResponseDto } from "../../dtos/workflow/generate-preview-response.dto"
-import type { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
-import type { StepResponseDto } from "../../dtos/workflow/step.response.dto"
+import { PinoLogger } from "nestjs-pino"
+import { GeneratePreviewResponseDto } from "../../dtos/workflow/generate-preview-response.dto"
+import { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
+import { StepResponseDto } from "../../dtos/workflow/step.response.dto"
 import { resolveEnvironmentVariables } from "../../encryption/encrypt-environment-variable"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { ControlValueSanitizerService } from "../../services/control-value-sanitizer.service"
+import { ControlValueSanitizerService } from "../../services/control-value-sanitizer.service"
 import {
   resolveHttpRequestBody,
   shouldIncludeBody,
@@ -25,22 +25,22 @@ import {
 import { buildVariables } from "../../utils/build-variables"
 import { buildNovuSignatureHeader } from "../../utils/hmac"
 import { isStepResolverActive } from "../../utils/step-resolver-control-state"
-import type { BuildStepDataUsecase } from "../build-step-data"
+import { BuildStepDataUsecase } from "../build-step-data"
 import { CreateVariablesObjectCommand } from "../create-variables-object/create-variables-object.command"
-import type { CreateVariablesObject } from "../create-variables-object/create-variables-object.usecase"
+import { CreateVariablesObject } from "../create-variables-object/create-variables-object.usecase"
 import {
-  type GetDecryptedSecretKey,
+  GetDecryptedSecretKey,
   GetDecryptedSecretKeyCommand,
 } from "../get-decrypted-secret-key"
-import { type PreviewStep, PreviewStepCommand } from "../preview-step"
+import { PreviewStep, PreviewStepCommand } from "../preview-step"
 import {
   GetWorkflowByIdsCommand,
-  type GetWorkflowByIdsUseCase,
+  GetWorkflowByIdsUseCase,
 } from "../workflow"
-import type { PreviewCommand } from "./preview.command"
-import type { PayloadMergerService } from "./services/payload-merger.service"
-import type { PreviewPayloadProcessorService } from "./services/preview-payload-processor.service"
-import type { PreviewErrorHandler } from "./utils/preview-error-handler"
+import { PreviewCommand } from "./preview.command"
+import { PayloadMergerService } from "./services/payload-merger.service"
+import { PreviewPayloadProcessorService } from "./services/preview-payload-processor.service"
+import { PreviewErrorHandler } from "./utils/preview-error-handler"
 
 @Injectable()
 export class PreviewUsecase {

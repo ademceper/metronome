@@ -1,6 +1,6 @@
 import {
   FILTER_VALIDATORS,
-  type LiquidFilterIssue,
+  LiquidFilterIssue,
 } from "@novu/framework/internal"
 import {
   LAYOUT_CONTENT_VARIABLE,
@@ -10,15 +10,15 @@ import {
   AssignTag,
   CaptureTag,
   CaseTag,
-  type Filter,
+  Filter,
   ForTag,
   IfTag,
   LiquidError,
   Output,
-  type RenderError,
+  RenderError,
   TablerowTag,
-  type Tag,
-  type Template,
+  Tag,
+  Template,
   TokenKind,
   UnlessTag,
 } from "liquidjs"

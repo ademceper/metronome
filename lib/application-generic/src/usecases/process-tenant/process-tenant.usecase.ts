@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common"
-import type { TenantEntity, TenantRepository } from "@novu/dal"
-import type { ITenantDefine } from "@novu/shared"
+import { TenantEntity, TenantRepository } from "@novu/dal"
+import { ITenantDefine } from "@novu/shared"
 import { isEqual } from "lodash"
 
 import { InstrumentUsecase } from "../../instrumentation"
-import { type CreateTenant, CreateTenantCommand } from "../create-tenant"
-import { type UpdateTenant, UpdateTenantCommand } from "../update-tenant"
-import type { ProcessTenantCommand } from "./process-tenant.command"
+import { CreateTenant, CreateTenantCommand } from "../create-tenant"
+import { UpdateTenant, UpdateTenantCommand } from "../update-tenant"
+import { ProcessTenantCommand } from "./process-tenant.command"
 
 @Injectable()
 export class ProcessTenant {

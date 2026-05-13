@@ -1,9 +1,9 @@
-import type { ControlValuesEntity, NotificationTemplateEntity } from "@novu/dal"
-import type { StepTypeEnum } from "@novu/shared"
+import { ControlValuesEntity, NotificationTemplateEntity } from "@novu/dal"
+import { StepTypeEnum } from "@novu/shared"
 import { IsOptional, IsString } from "class-validator"
 import { EnvironmentWithUserCommand } from "../../commands"
-import type { JSONSchemaDto } from "../../dtos/json-schema.dto"
-import type { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
+import { JSONSchemaDto } from "../../dtos/json-schema.dto"
+import { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
 
 // Type for optimistic step data used during sync
 export interface IOptimisticStepInfo {

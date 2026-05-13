@@ -11,7 +11,7 @@ import {
   IsOptional,
   IsString,
   ValidateBy,
-  type ValidationOptions,
+  ValidationOptions,
 } from "class-validator"
 
 export enum HttpMethodEnum {

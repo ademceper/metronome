@@ -1,8 +1,8 @@
-import type { EnvironmentId } from "@novu/shared"
-import type { EnforceOrgId } from "../../types"
+import { EnvironmentId } from "@novu/shared"
+import { EnforceOrgId } from "../../types"
 import { BaseRepositoryV2 } from "../base-repository-v2"
 import {
-  type EnvironmentVariableDBModel,
+  EnvironmentVariableDBModel,
   EnvironmentVariableEntity,
 } from "./environment-variable.entity"
 import { EnvironmentVariable } from "./environment-variable.schema"

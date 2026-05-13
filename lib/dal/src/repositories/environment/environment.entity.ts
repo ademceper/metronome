@@ -1,12 +1,12 @@
-import type {
+import {
   EncryptedSecret,
   EnvironmentTypeEnum,
   IApiRateLimitMaximum,
 } from "@novu/shared"
-import type { Types } from "mongoose"
+import { Types } from "mongoose"
 
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { OrganizationId } from "../organization"
+import { ChangePropsValueType } from "../../types/helpers"
+import { OrganizationId } from "../organization"
 
 export interface IApiKey {
   /*

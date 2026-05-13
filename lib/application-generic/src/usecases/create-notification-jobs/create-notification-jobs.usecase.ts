@@ -1,37 +1,37 @@
 import { Injectable, Logger } from "@nestjs/common"
 import {
-  type JobEntity,
+  JobEntity,
   JobStatusEnum,
-  type NotificationEntity,
-  type NotificationRepository,
-  type NotificationStepEntity,
+  NotificationEntity,
+  NotificationRepository,
+  NotificationStepEntity,
 } from "@novu/dal"
 import {
   DeliveryLifecycleStatusEnum,
-  type DigestTypeEnum,
+  DigestTypeEnum,
   FeatureFlagsKeysEnum,
-  type IDigestBaseMetadata,
-  type IWorkflowStepMetadata,
+  IDigestBaseMetadata,
+  IWorkflowStepMetadata,
   SeverityLevelEnum,
   STEP_TYPE_TO_CHANNEL_TYPE,
   StepTypeEnum,
 } from "@novu/shared"
 import { InstrumentUsecase } from "../../instrumentation"
 import {
-  type TraceLogRepository,
-  type WorkflowRunRepository,
+  TraceLogRepository,
+  WorkflowRunRepository,
   WorkflowRunStatusEnum,
-  type WorkflowRunTraceInput,
+  WorkflowRunTraceInput,
 } from "../../services/analytic-logs"
 import { LogRepository } from "../../services/analytic-logs/log.repository"
-import type { FeatureFlagsService } from "../../services/feature-flags"
+import { FeatureFlagsService } from "../../services/feature-flags"
 import { getNestedValue } from "../../utils"
 import { PlatformException } from "../../utils/exceptions"
 import {
-  type DigestFilterSteps,
+  DigestFilterSteps,
   DigestFilterStepsCommand,
 } from "../digest-filter-steps"
-import type { CreateNotificationJobsCommand } from "./create-notification-jobs.command"
+import { CreateNotificationJobsCommand } from "./create-notification-jobs.command"
 
 const LOG_CONTEXT = "CreateNotificationUseCase"
 type NotificationJob = Omit<JobEntity, "_id" | "createdAt" | "updatedAt">

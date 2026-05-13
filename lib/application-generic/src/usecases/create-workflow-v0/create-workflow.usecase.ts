@@ -3,31 +3,31 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common"
-import type { ModuleRef } from "@nestjs/core"
+import { ModuleRef } from "@nestjs/core"
 import {
-  type ClientSession,
+  ClientSession,
   JsonSchemaTypeEnum,
   LocalizationResourceEnum,
-  type NotificationGroupEntity,
+  NotificationGroupEntity,
   NotificationGroupRepository,
   NotificationTemplateRepository,
 } from "@novu/dal"
 import {
   ChangeEntityTypeEnum,
   DEFAULT_WORKFLOW_PREFERENCES,
-  type INotificationTemplateStep,
-  type INotificationTrigger,
-  type IStepVariant,
+  INotificationTemplateStep,
+  INotificationTrigger,
+  IStepVariant,
   isBridgeWorkflow,
   ResourceOriginEnum,
   ResourceTypeEnum,
   TriggerTypeEnum,
 } from "@novu/shared"
-import type { PinoLogger } from "nestjs-pino"
-import type { WorkflowWithPreferencesResponseDto } from "../../dtos/get-workflow-with-preferences.dto"
+import { PinoLogger } from "nestjs-pino"
+import { WorkflowWithPreferencesResponseDto } from "../../dtos/get-workflow-with-preferences.dto"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import { type AnalyticsService, ContentService } from "../../services"
-import type { ResourceValidatorService } from "../../services/resource-validator.service"
+import { AnalyticsService, ContentService } from "../../services"
+import { ResourceValidatorService } from "../../services/resource-validator.service"
 import {
   isVariantEmpty,
   PlatformException,
@@ -38,19 +38,19 @@ import {
   MANAGE_TRANSLATIONS,
   TRANSLATIONS_SERVICE,
 } from "../../utils/constants"
-import type {
+import {
   NotificationStep,
   NotificationStepVariantCommand,
 } from "../../value-objects"
-import { type CreateChange, CreateChangeCommand } from "../create-change"
+import { CreateChange, CreateChangeCommand } from "../create-change"
 import { GetPreferences } from "../get-preferences"
-import type { GetWorkflowWithPreferencesUseCase } from "../get-workflow-with-preferences"
+import { GetWorkflowWithPreferencesUseCase } from "../get-workflow-with-preferences"
 import {
-  type CreateMessageTemplate,
+  CreateMessageTemplate,
   CreateMessageTemplateCommand,
 } from "../message-template"
 import {
-  type UpsertPreferences,
+  UpsertPreferences,
   UpsertUserWorkflowPreferencesCommand,
   UpsertWorkflowPreferencesCommand,
 } from "../upsert-preferences"

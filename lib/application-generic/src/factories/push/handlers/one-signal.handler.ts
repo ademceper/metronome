@@ -1,7 +1,7 @@
 import { OneSignalPushProvider } from "@novu/providers"
 import {
   ChannelTypeEnum,
-  type ICredentials,
+  ICredentials,
   PushProviderIdEnum,
 } from "@novu/shared"
 import { BasePushHandler } from "./base.handler"

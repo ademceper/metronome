@@ -1,8 +1,8 @@
-import type { ResourceOriginEnum, ResourceTypeEnum } from "@novu/shared"
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { ControlSchemas } from "../message-template"
-import type { UserEntity } from "../user"
-import type {
+import { ResourceOriginEnum, ResourceTypeEnum } from "@novu/shared"
+import { ChangePropsValueType } from "../../types/helpers"
+import { ControlSchemas } from "../message-template"
+import { UserEntity } from "../user"
+import {
   ChannelTypeEnum,
   EnvironmentId,
   ITemplateVariable,

@@ -1,22 +1,22 @@
-import { Logger, type OnModuleDestroy } from "@nestjs/common"
-import type { CommunityOrganizationRepository } from "@novu/dal"
+import { Logger, OnModuleDestroy } from "@nestjs/common"
+import { CommunityOrganizationRepository } from "@novu/dal"
 import {
-  type ApiServiceLevelEnum,
+  ApiServiceLevelEnum,
   FeatureFlagsKeysEnum,
-  type JobTopicNameEnum,
+  JobTopicNameEnum,
   QueueBackendMode,
 } from "@novu/shared"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 
-import type {
+import {
   BulkJobOptions,
   BullMqService,
   JobsOptions,
   Queue,
   QueueOptions,
 } from "../bull-mq"
-import type { FeatureFlagsService } from "../feature-flags"
-import type { SqsService } from "../sqs"
+import { FeatureFlagsService } from "../feature-flags"
+import { SqsService } from "../sqs"
 import { SQS_MAX_DELAY_SECONDS } from "../sqs/types"
 
 const LOG_CONTEXT = "QueueService"

@@ -1,5 +1,5 @@
-import type { NotificationStepEntity } from "@novu/dal"
-import type { DigestTypeEnum } from "@novu/shared"
+import { NotificationStepEntity } from "@novu/dal"
+import { DigestTypeEnum } from "@novu/shared"
 import {
   IsBoolean,
   IsDefined,

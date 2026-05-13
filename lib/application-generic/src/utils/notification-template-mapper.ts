@@ -1,4 +1,4 @@
-import type {
+import {
   NotificationStepEntity,
   NotificationTemplateEntity,
 } from "@novu/dal"
@@ -7,17 +7,17 @@ import {
   ResourceTypeEnum,
   SeverityLevelEnum,
   ShortIsPrefixEnum,
-  type StepTypeEnum,
-  type WorkflowCreateAndUpdateKeys,
+  StepTypeEnum,
+  WorkflowCreateAndUpdateKeys,
   WorkflowStatusEnum,
 } from "@novu/shared"
-import type { WorkflowWithPreferencesResponseDto } from "../dtos/get-workflow-with-preferences.dto"
-import type { WorkflowPreferencesResponseDto } from "../dtos/workflow/preferences.response.dto"
-import type { RuntimeIssueDto } from "../dtos/workflow/runtime-issue.dto"
-import type { StepResponseDto } from "../dtos/workflow/step.response.dto"
-import type { StepListResponseDto } from "../dtos/workflow/step-list-response.dto"
-import type { WorkflowListResponseDto } from "../dtos/workflow/workflow-list-response.dto"
-import type { WorkflowResponseDto } from "../dtos/workflow/workflow-response.dto"
+import { WorkflowWithPreferencesResponseDto } from "../dtos/get-workflow-with-preferences.dto"
+import { WorkflowPreferencesResponseDto } from "../dtos/workflow/preferences.response.dto"
+import { RuntimeIssueDto } from "../dtos/workflow/runtime-issue.dto"
+import { StepResponseDto } from "../dtos/workflow/step.response.dto"
+import { StepListResponseDto } from "../dtos/workflow/step-list-response.dto"
+import { WorkflowListResponseDto } from "../dtos/workflow/workflow-list-response.dto"
+import { WorkflowResponseDto } from "../dtos/workflow/workflow-response.dto"
 import { buildSlug } from "./build-slug"
 
 export function toResponseWorkflowDto(

@@ -1,22 +1,22 @@
 import { Injectable } from "@nestjs/common"
-import type {
+import {
   ExecutionDetailsEntity,
   ExecutionDetailsRepository,
 } from "@novu/dal"
 import { ExecutionDetailsStatusEnum, FeatureFlagsKeysEnum } from "@novu/shared"
 import { Instrument } from "../../instrumentation"
 import {
-  type FeatureFlagsService,
+  FeatureFlagsService,
   LogRepository,
-  type StepType,
+  StepType,
 } from "../../services"
-import type {
+import {
   EventType,
   StepRunTraceInput,
   TraceLogRepository,
   TraceStatus,
 } from "../../services/analytic-logs/trace-log"
-import type { CreateExecutionDetailsCommand } from "./create-execution-details.command"
+import { CreateExecutionDetailsCommand } from "./create-execution-details.command"
 import { mapExecutionDetailsCommandToEntity } from "./dtos/execution-details.dto"
 import { DetailEnum } from "./types"
 

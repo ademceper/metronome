@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
 import {
-  type LocalizationGroupDBModel,
+  LocalizationGroupDBModel,
   LocalizationResourceEnum,
 } from "./localization-group.entity"
 

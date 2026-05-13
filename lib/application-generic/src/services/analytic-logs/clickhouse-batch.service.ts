@@ -1,14 +1,14 @@
 import {
-  type BeforeApplicationShutdown,
+  BeforeApplicationShutdown,
   Injectable,
-  type OnModuleDestroy,
-  type OnModuleInit,
+  OnModuleDestroy,
+  OnModuleInit,
 } from "@nestjs/common"
 import { ObservabilityBackgroundTransactionEnum } from "@novu/shared"
-import type { PinoLogger } from "nestjs-pino"
+import { PinoLogger } from "nestjs-pino"
 import PQueue from "p-queue"
-import type { QueueBaseService } from "../queues"
-import type { ClickHouseService, InsertOptions } from "./clickhouse.service"
+import { QueueBaseService } from "../queues"
+import { ClickHouseService, InsertOptions } from "./clickhouse.service"
 
 const noopTransaction = { end: () => {} }
 const noopNewRelic = {

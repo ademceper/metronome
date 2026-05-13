@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common"
 
 import { ObservabilityBackgroundTransactionEnum } from "@novu/shared"
-import type { SubscriberProcessQueueService } from "../services/queues"
+import { SubscriberProcessQueueService } from "../services/queues"
 import { QueueHealthIndicator } from "./queue-health-indicator.service"
 
 const LOG_CONTEXT = "SubscriberProcessQueueHealthIndicator"

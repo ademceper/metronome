@@ -1,5 +1,5 @@
 import { Logger } from "@nestjs/common"
-import type { IOrganizationEntity } from "@novu/shared"
+import { IOrganizationEntity } from "@novu/shared"
 import { Analytics } from "@segment/analytics-node"
 import Mixpanel from "mixpanel"
 

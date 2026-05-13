@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-s3"
 import { Logger } from "@nestjs/common"
 import { nanoid } from "nanoid"
-import type { Readable } from "stream"
+import { Readable } from "stream"
 
 import { SQS_DEFAULT_PAYLOAD_SIZE_THRESHOLD } from "./types"
 

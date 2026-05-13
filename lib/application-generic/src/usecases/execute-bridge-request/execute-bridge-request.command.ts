@@ -1,4 +1,4 @@
-import type {
+import {
   CodeResult,
   DiscoverOutput,
   Event,
@@ -8,7 +8,7 @@ import type {
   HttpQueryKeysEnum,
   PostActionEnum,
 } from "@novu/framework/internal"
-import type { ResourceOriginEnum } from "@novu/shared"
+import { ResourceOriginEnum } from "@novu/shared"
 import { IsBoolean, IsDefined, IsOptional, IsString } from "class-validator"
 import { EnvironmentLevelCommand } from "../../commands"
 

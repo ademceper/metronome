@@ -1,9 +1,9 @@
 import {
-  type ContextPayload,
-  type ContextValue,
+  ContextPayload,
+  ContextValue,
   isValidContextPayload,
 } from "@novu/shared"
-import { registerDecorator, type ValidationOptions } from "class-validator"
+import { registerDecorator, ValidationOptions } from "class-validator"
 
 const MAX_SIZE_KB = 64
 

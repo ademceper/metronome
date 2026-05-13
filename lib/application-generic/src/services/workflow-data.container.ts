@@ -1,4 +1,4 @@
-import type {
+import {
   ControlValuesEntity,
   ControlValuesRepository,
   NotificationTemplateEntity,
@@ -9,10 +9,10 @@ import {
   buildWorkflowPreferences,
   ControlValuesLevelEnum,
   PreferencesTypeEnum,
-  type WorkflowPreferences,
+  WorkflowPreferences,
 } from "@novu/shared"
-import type { StepResponseDto } from "../dtos/workflow/step.response.dto"
-import type { WorkflowResponseDto } from "../dtos/workflow/workflow-response.dto"
+import { StepResponseDto } from "../dtos/workflow/step.response.dto"
+import { WorkflowResponseDto } from "../dtos/workflow/workflow-response.dto"
 import { BuildStepDataUsecase } from "../usecases/build-step-data"
 import { emptyJsonSchema } from "../utils/jsonToSchema"
 import { toResponseWorkflowDto } from "../utils/notification-template-mapper"

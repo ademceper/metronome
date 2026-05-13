@@ -1,5 +1,5 @@
 import { BadRequestException } from "@nestjs/common"
-import { type ChannelEndpointType, ENDPOINT_TYPES } from "@novu/shared"
+import { ChannelEndpointType, ENDPOINT_TYPES } from "@novu/shared"
 
 // Centralized schema definition
 export const CHANNEL_ENDPOINT_SCHEMAS = {

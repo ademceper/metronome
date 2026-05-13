@@ -1,4 +1,4 @@
-import type { IntegrationEntity } from "@novu/dal"
+import { IntegrationEntity } from "@novu/dal"
 import {
   BrazeEmailHandler,
   EmailJsHandler,
@@ -21,7 +21,7 @@ import {
   SendinblueHandler,
   SparkPostHandler,
 } from "./handlers"
-import type { IMailFactory, IMailHandler } from "./interfaces"
+import { IMailFactory, IMailHandler } from "./interfaces"
 
 export class MailFactory implements IMailFactory {
   handlers: IMailHandler[] = [

@@ -1,22 +1,22 @@
 import { ConflictException, Injectable } from "@nestjs/common"
-import type { SubscriberEntity, SubscriberRepository } from "@novu/dal"
+import { SubscriberEntity, SubscriberRepository } from "@novu/dal"
 import { RetryOnError } from "../../decorators/retry-on-error-decorator"
 import { InstrumentUsecase } from "../../instrumentation"
 import {
-  type AnalyticsService,
+  AnalyticsService,
   buildSubscriberKey,
-  type InvalidateCacheService,
+  InvalidateCacheService,
 } from "../../services"
 import {
   OAuthHandlerEnum,
-  type UpdateSubscriberChannel,
+  UpdateSubscriberChannel,
   UpdateSubscriberChannelCommand,
 } from "../subscribers"
 import {
-  type UpdateSubscriber,
+  UpdateSubscriber,
   UpdateSubscriberCommand,
 } from "../update-subscriber"
-import type { CreateOrUpdateSubscriberCommand } from "./create-or-update-subscriber.command"
+import { CreateOrUpdateSubscriberCommand } from "./create-or-update-subscriber.command"
 
 @Injectable()
 export class CreateOrUpdateSubscriberUseCase {

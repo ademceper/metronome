@@ -4,16 +4,16 @@ import {
   ApiPropertyOptional,
   getSchemaPath,
 } from "@nestjs/swagger"
-import type { ChannelTypeEnum, ITemplateVariable } from "@novu/dal"
+import { ChannelTypeEnum, ITemplateVariable } from "@novu/dal"
 import {
-  type ResourceOriginEnum,
-  type ResourceTypeEnum,
+  ResourceOriginEnum,
+  ResourceTypeEnum,
   UiSchemaGroupEnum,
   UiSchemaProperty,
 } from "@novu/shared"
 import { Type } from "class-transformer"
 import { IsOptional, ValidateNested } from "class-validator"
-import type { JSONSchemaDto } from "../../dtos"
+import { JSONSchemaDto } from "../../dtos"
 
 @ApiExtraModels(UiSchemaProperty)
 export class UiSchema {

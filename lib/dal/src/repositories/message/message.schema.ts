@@ -2,7 +2,7 @@ import { ActorTypeEnum, SeverityLevelEnum } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { MessageDBModel } from "./message.entity"
+import { MessageDBModel } from "./message.entity"
 
 const messageSchema = new Schema<MessageDBModel>(
   {

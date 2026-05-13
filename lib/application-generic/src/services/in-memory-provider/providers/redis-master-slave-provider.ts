@@ -5,7 +5,7 @@ import Redis, {
   ClusterOptions,
   NodeRole,
 } from "ioredis"
-import type { ConnectionOptions } from "tls"
+import { ConnectionOptions } from "tls"
 
 import { convertStringValues } from "./variable-mappers"
 

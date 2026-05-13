@@ -1,5 +1,5 @@
-import type { NotificationTemplateEntity, SubscriberEntity } from "@novu/dal"
-import type {
+import { NotificationTemplateEntity, SubscriberEntity } from "@novu/dal"
+import {
   ChannelTypeEnum,
   ISubscribersDefine,
   ITenantDefine,
@@ -12,7 +12,7 @@ import type {
 import { IsArray, IsDefined, IsOptional, IsString } from "class-validator"
 
 import { EnvironmentWithUserCommand } from "../../commands"
-import type { SubscriberTopicPreference } from "../../dtos"
+import { SubscriberTopicPreference } from "../../dtos"
 
 export class CreateNotificationJobsCommand extends EnvironmentWithUserCommand {
   @IsDefined()

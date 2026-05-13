@@ -1,4 +1,4 @@
-import type { ResourceEnum } from "@novu/shared"
+import { ResourceEnum } from "@novu/shared"
 import { buildUnscopedKey } from "./builder.base"
 import {
   buildEnvironmentScopedKey,

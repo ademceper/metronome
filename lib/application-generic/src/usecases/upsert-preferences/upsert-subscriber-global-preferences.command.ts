@@ -1,4 +1,4 @@
-import type { Schedule } from "@novu/shared"
+import { Schedule } from "@novu/shared"
 import {
   IsArray,
   IsBoolean,

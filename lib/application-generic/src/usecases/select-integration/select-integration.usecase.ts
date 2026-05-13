@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common"
-import type {
+import {
   IntegrationEntity,
   IntegrationRepository,
   TenantEntity,
@@ -8,15 +8,15 @@ import type {
 import { CHANNELS_WITH_PRIMARY } from "@novu/shared"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
 import {
-  type ConditionsFilter,
+  ConditionsFilter,
   ConditionsFilterCommand,
 } from "../conditions-filter"
 import { GetDecryptedIntegrations } from "../get-decrypted-integrations"
 import {
-  type NormalizeVariables,
+  NormalizeVariables,
   NormalizeVariablesCommand,
 } from "../normalize-variables"
-import type { SelectIntegrationCommand } from "./select-integration.command"
+import { SelectIntegrationCommand } from "./select-integration.command"
 
 @Injectable()
 export class SelectIntegration {

@@ -1,9 +1,9 @@
 import { Inject } from "@nestjs/common"
-import type {
+import {
   IPartnerConfiguration,
   OrganizationEntity,
 } from "./organization.entity"
-import type { IOrganizationRepository } from "./organization-repository.interface"
+import { IOrganizationRepository } from "./organization-repository.interface"
 
 export class OrganizationRepository implements IOrganizationRepository {
   constructor(@Inject('ORGANIZATION_REPOSITORY') private organizationRepository: IOrganizationRepository) {}

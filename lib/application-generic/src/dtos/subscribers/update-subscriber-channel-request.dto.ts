@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
 import {
   ChatProviderIdEnum,
-  type ISubscriberChannel,
+  ISubscriberChannel,
   PushProviderIdEnum,
 } from "@novu/shared"
 import {
@@ -11,7 +11,7 @@ import {
   IsOptional,
   IsString,
 } from "class-validator"
-import type { ChannelCredentials } from "./subscriber-channel"
+import { ChannelCredentials } from "./subscriber-channel"
 
 export function getEnumValues<T>(enumObj: T): Array<T[keyof T]> {
   return Object.values(enumObj || {}) as Array<T[keyof T]>

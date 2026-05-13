@@ -1,5 +1,5 @@
-import type { ChannelTypeEnum, IConfigurations } from "@novu/shared"
-import type {
+import { ChannelTypeEnum, IConfigurations } from "@novu/shared"
+import {
   ChannelProvider,
   IEmailEventBody,
   ISMSEventBody,

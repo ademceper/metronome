@@ -1,4 +1,4 @@
-import type { EnvironmentEntity } from "@novu/dal"
+import { EnvironmentEntity } from "@novu/dal"
 import { WebhookEventEnum, WebhookObjectTypeEnum } from "@novu/shared"
 import { IsDefined, IsEnum, IsOptional } from "class-validator"
 import { EnvironmentCommand } from "../../../commands/project.command"

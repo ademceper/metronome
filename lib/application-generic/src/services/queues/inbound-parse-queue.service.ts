@@ -1,11 +1,11 @@
 import { Injectable, Logger } from "@nestjs/common"
 import { JobTopicNameEnum } from "@novu/shared"
-import type {
+import {
   IInboundParseBulkJobDto,
   IInboundParseJobDto,
 } from "../../dtos/inbound-parse-job.dto"
-import { BullMqService, type QueueOptions } from "../bull-mq"
-import type { WorkflowInMemoryProviderService } from "../in-memory-provider"
+import { BullMqService, QueueOptions } from "../bull-mq"
+import { WorkflowInMemoryProviderService } from "../in-memory-provider"
 import { QueueBaseService } from "./queue-base.service"
 
 const LOG_CONTEXT = "InboundParseQueueService"

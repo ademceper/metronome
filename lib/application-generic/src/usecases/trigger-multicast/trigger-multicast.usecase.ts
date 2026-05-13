@@ -1,33 +1,33 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type {
+import {
   TopicEntity,
   TopicRepository,
   TopicSubscribersRepository,
 } from "@novu/dal"
 import {
   FeatureFlagsKeysEnum,
-  type ISubscribersDefine,
-  type ITopic,
+  ISubscribersDefine,
+  ITopic,
   SubscriberSourceEnum,
-  type TriggerRecipient,
-  type TriggerRecipientSubscriber,
+  TriggerRecipient,
+  TriggerRecipientSubscriber,
   TriggerRecipientsTypeEnum,
 } from "@novu/shared"
 
-import type { PinoLogger } from "nestjs-pino"
-import type { SubscriberTopicPreference } from "../../dtos"
+import { PinoLogger } from "nestjs-pino"
+import { SubscriberTopicPreference } from "../../dtos"
 import { InstrumentUsecase } from "../../instrumentation"
-import type { CacheService, FeatureFlagsService } from "../../services"
-import type { EventType } from "../../services/analytic-logs"
+import { CacheService, FeatureFlagsService } from "../../services"
+import { EventType } from "../../services/analytic-logs"
 import {
   LogRepository,
   mapEventTypeToTitle,
-  type TraceLogRepository,
+  TraceLogRepository,
 } from "../../services/analytic-logs"
-import type { RequestTraceInput } from "../../services/analytic-logs/trace-log"
-import type { SubscriberProcessQueueService } from "../../services/queues/subscriber-process-queue.service"
+import { RequestTraceInput } from "../../services/analytic-logs/trace-log"
+import { SubscriberProcessQueueService } from "../../services/queues/subscriber-process-queue.service"
 import { TriggerBase } from "../trigger-base"
-import type { TriggerMulticastCommand } from "./trigger-multicast.command"
+import { TriggerMulticastCommand } from "./trigger-multicast.command"
 
 const QUEUE_CHUNK_SIZE = Number(process.env.MULTICAST_QUEUE_CHUNK_SIZE) || 100
 const SUBSCRIBER_TOPIC_DISTINCT_BATCH_SIZE =

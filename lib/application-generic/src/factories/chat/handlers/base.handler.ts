@@ -1,7 +1,7 @@
-import type { ChatProviderIdEnum } from "@novu/shared"
-import type { IChatOptions, IChatProvider } from "@novu/stateless"
+import { ChatProviderIdEnum } from "@novu/shared"
+import { IChatOptions, IChatProvider } from "@novu/stateless"
 import { BaseHandler } from "../../shared/interfaces"
-import type { IChatHandler } from "../interfaces"
+import { IChatHandler } from "../interfaces"
 
 export abstract class BaseChatHandler
   extends BaseHandler<IChatProvider>

@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common"
-import type { MessageRepository } from "@novu/dal"
+import { MessageRepository } from "@novu/dal"
 import {
   ChannelTypeEnum,
   ChatProviderIdEnum,
@@ -12,7 +12,7 @@ import {
   areNovuEmailCredentialsSet,
   areNovuSmsCredentialsSet,
 } from "../../utils/novu-integrations"
-import type { CalculateLimitNovuIntegrationCommand } from "./calculate-limit-novu-integration.command"
+import { CalculateLimitNovuIntegrationCommand } from "./calculate-limit-novu-integration.command"
 
 @Injectable()
 export class CalculateLimitNovuIntegration {

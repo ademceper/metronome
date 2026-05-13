@@ -1,6 +1,6 @@
 import {
-  type EncryptedSecret,
-  type ICredentialsDto,
+  EncryptedSecret,
+  ICredentialsDto,
   NOVU_ENCRYPTION_SUB_MASK,
   secureCredentials,
 } from "@novu/shared"

@@ -1,7 +1,7 @@
 import mongoose, { IndexOptions, Schema } from "mongoose"
 import { IndexDefinition } from "../../shared/types"
 import { schemaOptions } from "../schema-default.options"
-import { type SubscriberDBModel, SubscriberEntity } from "./subscriber.entity"
+import { SubscriberDBModel, SubscriberEntity } from "./subscriber.entity"
 
 const mongooseDelete = require("mongoose-delete")
 

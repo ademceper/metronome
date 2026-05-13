@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString } from "class-validator"
 import { EnvironmentWithUserObjectCommand } from "../../commands"
-import type { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
+import { PreviewPayloadDto } from "../../dtos/workflow/preview-payload.dto"
 
 export class BuildStepDataCommand extends EnvironmentWithUserObjectCommand {
   @IsString()

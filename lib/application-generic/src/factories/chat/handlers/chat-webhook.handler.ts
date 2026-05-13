@@ -1,5 +1,5 @@
 import { ChatWebhookProvider } from "@novu/providers"
-import { ChatProviderIdEnum, type ICredentials } from "@novu/shared"
+import { ChatProviderIdEnum, ICredentials } from "@novu/shared"
 import { ChannelTypeEnum } from "@novu/stateless"
 
 import { BaseChatHandler } from "./base.handler"

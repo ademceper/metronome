@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common"
-import type { PinoLogger } from "../../logging"
+import { PinoLogger } from "../../logging"
 import {
-  type SafeOutboundJsonResponse,
-  type SafeOutboundRequestOptions,
-  type SafeOutboundResponse,
+  SafeOutboundJsonResponse,
+  SafeOutboundRequestOptions,
+  SafeOutboundResponse,
   safeOutboundJsonRequest,
   safeOutboundRequest,
 } from "../../utils/ssrf-url-validation"

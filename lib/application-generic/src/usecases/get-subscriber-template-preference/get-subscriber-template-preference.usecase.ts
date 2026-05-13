@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type {
+import {
   MessageTemplateRepository,
   NotificationTemplateEntity,
   SubscriberEntity,
@@ -9,20 +9,20 @@ import type {
 } from "@novu/dal"
 import {
   ChannelTypeEnum,
-  type IOverridePreferencesSources,
-  type IPreferenceChannels,
-  type IPreferenceOverride,
-  type ISubscriberPreferenceResponse,
-  type ITemplateConfiguration,
+  IOverridePreferencesSources,
+  IPreferenceChannels,
+  IPreferenceOverride,
+  ISubscriberPreferenceResponse,
+  ITemplateConfiguration,
   PreferenceOverrideSourceEnum,
   PreferencesTypeEnum,
   SeverityLevelEnum,
-  type StepTypeEnum,
+  StepTypeEnum,
 } from "@novu/shared"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
 import { buildSubscriberKey, CachedResponse } from "../../services"
 import { GetPreferences } from "../get-preferences"
-import type { GetSubscriberTemplatePreferenceCommand } from "./get-subscriber-template-preference.command"
+import { GetSubscriberTemplatePreferenceCommand } from "./get-subscriber-template-preference.command"
 
 const PRIORITY_ORDER = [
   PreferenceOverrideSourceEnum.TEMPLATE,

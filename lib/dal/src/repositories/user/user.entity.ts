@@ -1,7 +1,7 @@
-import type { AuthProviderEnum, IUserEntity, JobTitleEnum } from "@novu/shared"
+import { AuthProviderEnum, IUserEntity, JobTitleEnum } from "@novu/shared"
 import { Exclude } from "class-transformer"
 
-import type { UserId } from "./types"
+import { UserId } from "./types"
 
 export interface IUserToken {
   providerId: string

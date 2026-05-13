@@ -1,8 +1,8 @@
 import { Injectable, Logger } from "@nestjs/common"
-import type { NotificationStepEntity } from "@novu/dal"
+import { NotificationStepEntity } from "@novu/dal"
 import { StepTypeEnum } from "@novu/shared"
 
-import type { DigestFilterStepsCommand } from "./digest-filter-steps.command"
+import { DigestFilterStepsCommand } from "./digest-filter-steps.command"
 
 const LOG_CONTEXT = "DigestFilterSteps"
 

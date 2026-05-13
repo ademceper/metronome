@@ -1,4 +1,4 @@
-import type { AdditionalOperation, RulesLogic } from "json-logic-js"
+import { AdditionalOperation, RulesLogic } from "json-logic-js"
 
 import {
   COMPARISON_OPERATORS,

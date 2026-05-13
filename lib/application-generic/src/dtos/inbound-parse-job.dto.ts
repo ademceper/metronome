@@ -1,4 +1,4 @@
-import type {
+import {
   IBulkJobParams,
   IJobParams,
 } from "../services/queues/queue-base.service"

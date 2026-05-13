@@ -15,7 +15,7 @@ import {
 } from "class-validator"
 import { UserResponseDto } from "../user-response.dto"
 import { StepListResponseDto } from "./step-list-response.dto"
-import type { WorkflowResponseDto } from "./workflow-response.dto"
+import { WorkflowResponseDto } from "./workflow-response.dto"
 
 export class WorkflowListResponseDto {
   @ApiProperty({ description: "Name of the workflow" })

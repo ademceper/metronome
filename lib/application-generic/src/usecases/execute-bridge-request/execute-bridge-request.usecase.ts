@@ -1,14 +1,14 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import { type GetActionEnum, PostActionEnum } from "@novu/framework/internal"
+import { GetActionEnum, PostActionEnum } from "@novu/framework/internal"
 import { FeatureFlagsKeysEnum } from "@novu/shared"
 import { InstrumentUsecase } from "../../instrumentation"
-import type { FeatureFlagsService } from "../../services/feature-flags/feature-flags.service"
-import type { ExecuteStepResolverRequest } from "../execute-step-resolver/execute-step-resolver-request.usecase"
-import type {
+import { FeatureFlagsService } from "../../services/feature-flags/feature-flags.service"
+import { ExecuteStepResolverRequest } from "../execute-step-resolver/execute-step-resolver-request.usecase"
+import {
   ExecuteBridgeRequestCommand,
   ExecuteBridgeRequestDto,
 } from "./execute-bridge-request.command"
-import type { ExecuteFrameworkRequest } from "./execute-framework-request.usecase"
+import { ExecuteFrameworkRequest } from "./execute-framework-request.usecase"
 
 @Injectable()
 export class ExecuteBridgeRequest {

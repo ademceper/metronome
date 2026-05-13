@@ -1,4 +1,4 @@
-import type { IntegrationEntity } from "@novu/dal"
+import { IntegrationEntity } from "@novu/dal"
 import { ChatWebhookHandler } from "./handlers/chat-webhook.handler"
 import { DiscordHandler } from "./handlers/discord.handler"
 import { GetstreamChatHandler } from "./handlers/getstream.handler"
@@ -11,7 +11,7 @@ import { RyverHandler } from "./handlers/ryver.handler"
 import { SlackHandler } from "./handlers/slack.handler"
 import { WhatsAppBusinessHandler } from "./handlers/whatsapp-business.handler"
 import { ZulipHandler } from "./handlers/zulip.handler"
-import type { IChatFactory, IChatHandler } from "./interfaces"
+import { IChatFactory, IChatHandler } from "./interfaces"
 
 export class ChatFactory implements IChatFactory {
   handlers: IChatHandler[] = [

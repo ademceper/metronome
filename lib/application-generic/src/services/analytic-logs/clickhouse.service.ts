@@ -1,10 +1,10 @@
 import {
   ClickHouseClient,
-  type ClickHouseSettings,
+  ClickHouseSettings,
   createClient,
-  type PingResult,
+  PingResult,
 } from "@clickhouse/client"
-import { type BeforeApplicationShutdown, Injectable } from "@nestjs/common"
+import { BeforeApplicationShutdown, Injectable } from "@nestjs/common"
 
 export { ClickHouseClient }
 

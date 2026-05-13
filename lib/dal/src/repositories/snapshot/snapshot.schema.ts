@@ -1,7 +1,7 @@
 import { AiResourceTypeEnum, SnapshotSourceTypeEnum } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
-import type { SnapshotDBModel } from "./snapshot.entity"
+import { SnapshotDBModel } from "./snapshot.entity"
 
 const snapshotSchema = new Schema<SnapshotDBModel>(
   {

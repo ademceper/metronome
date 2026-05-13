@@ -1,27 +1,27 @@
 import { Injectable, Optional } from "@nestjs/common"
-import type {
+import {
   NotificationEntity,
   NotificationRepository,
   NotificationTemplateEntity,
   NotificationTemplateRepository,
 } from "@novu/dal"
 import {
-  type DeliveryLifecycleDetail,
-  type DeliveryLifecycleStatusEnum,
+  DeliveryLifecycleDetail,
+  DeliveryLifecycleStatusEnum,
   FeatureFlagsKeysEnum,
   SeverityLevelEnum,
 } from "@novu/shared"
-import type { InferClickhouseSchemaType } from "clickhouse-schema"
-import type { PinoLogger } from "nestjs-pino"
-import type { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
-import type { ClickHouseService, InsertOptions } from "../clickhouse.service"
-import type { ClickHouseBatchService } from "../clickhouse-batch.service"
-import { LogRepository, type SchemaKeys, type Where } from "../log.repository"
+import { InferClickhouseSchemaType } from "clickhouse-schema"
+import { PinoLogger } from "nestjs-pino"
+import { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
+import { ClickHouseService, InsertOptions } from "../clickhouse.service"
+import { ClickHouseBatchService } from "../clickhouse-batch.service"
+import { LogRepository, SchemaKeys, Where } from "../log.repository"
 import { getInsertOptions } from "../shared"
 import {
   ORDER_BY,
   TABLE_NAME,
-  type WorkflowRun,
+  WorkflowRun,
   WorkflowRunStatusEnum,
   workflowRunSchema,
 } from "./workflow-run.schema"

@@ -1,5 +1,5 @@
-import type { MemberEntity, SubscriberEntity, UserEntity } from "@novu/dal"
-import type {
+import { MemberEntity, SubscriberEntity, UserEntity } from "@novu/dal"
+import {
   AuthenticateContext,
   AuthProviderEnum,
   ISubscriberJwt,

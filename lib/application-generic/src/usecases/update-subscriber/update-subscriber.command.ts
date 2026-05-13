@@ -1,5 +1,5 @@
-import type { SubscriberEntity } from "@novu/dal"
-import type { ISubscriberChannel, SubscriberCustomData } from "@novu/shared"
+import { SubscriberEntity } from "@novu/dal"
+import { ISubscriberChannel, SubscriberCustomData } from "@novu/shared"
 import { Transform } from "class-transformer"
 import {
   IsDefined,

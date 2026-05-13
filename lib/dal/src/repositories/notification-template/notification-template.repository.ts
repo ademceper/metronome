@@ -4,14 +4,14 @@ import {
   ResourceTypeEnum,
   SeverityLevelEnum,
 } from "@novu/shared"
-import type { ClientSession, FilterQuery } from "mongoose"
-import type { SoftDeleteModel } from "mongoose-delete"
+import { ClientSession, FilterQuery } from "mongoose"
+import { SoftDeleteModel } from "mongoose-delete"
 import { DalException } from "../../shared"
-import type { EnforceEnvOrOrgIds } from "../../types/enforce"
+import { EnforceEnvOrOrgIds } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
 import { EnvironmentRepository } from "../environment"
 import {
-  type NotificationTemplateDBModel,
+  NotificationTemplateDBModel,
   NotificationTemplateEntity,
 } from "./notification-template.entity"
 import { NotificationTemplate } from "./notification-template.schema"

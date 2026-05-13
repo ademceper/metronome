@@ -1,4 +1,4 @@
-import Ajv, { type ErrorObject } from "ajv"
+import Ajv, { ErrorObject } from "ajv"
 import addFormats from "ajv-formats"
 import { cloneDeep } from "es-toolkit/compat"
 

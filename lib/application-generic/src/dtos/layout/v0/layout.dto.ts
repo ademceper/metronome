@@ -1,10 +1,10 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
-import type { UserEntity } from "@novu/dal"
+import { UserEntity } from "@novu/dal"
 import {
   ChannelTypeEnum,
-  type ITemplateVariable,
-  type ResourceOriginEnum,
-  type ResourceTypeEnum,
+  ITemplateVariable,
+  ResourceOriginEnum,
+  ResourceTypeEnum,
 } from "@novu/shared"
 import { Type } from "class-transformer"
 import { ControlsMetadataDto } from "../../controls-metadata.dto"

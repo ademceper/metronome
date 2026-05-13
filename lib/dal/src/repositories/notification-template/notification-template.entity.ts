@@ -1,4 +1,4 @@
-import type {
+import {
   BuilderFieldType,
   BuilderGroupValues,
   ControlSchemas,
@@ -18,13 +18,13 @@ import type {
   TriggerTypeEnum,
   WorkflowStatusEnum,
 } from "@novu/shared"
-import type { Types } from "mongoose"
-import type { ChangePropsValueType } from "../../types"
-import type { EnvironmentId } from "../environment"
-import type { MessageTemplateEntity } from "../message-template"
-import type { NotificationGroupEntity } from "../notification-group"
-import type { OrganizationId } from "../organization"
-import type { UserEntity } from "../user"
+import { Types } from "mongoose"
+import { ChangePropsValueType } from "../../types"
+import { EnvironmentId } from "../environment"
+import { MessageTemplateEntity } from "../message-template"
+import { NotificationGroupEntity } from "../notification-group"
+import { OrganizationId } from "../organization"
+import { UserEntity } from "../user"
 
 export class NotificationTemplateEntity {
   _id: string

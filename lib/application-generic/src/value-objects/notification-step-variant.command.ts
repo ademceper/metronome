@@ -1,4 +1,4 @@
-import type { IStepVariant, IWorkflowStepMetadata } from "@novu/shared"
+import { IStepVariant, IWorkflowStepMetadata } from "@novu/shared"
 import { Type } from "class-transformer"
 import {
   IsArray,
@@ -9,8 +9,8 @@ import {
   IsString,
   ValidateNested,
 } from "class-validator"
-import type { IStepControl } from "./i-step.control"
-import type { MessageFilter } from "./message.filter"
+import { IStepControl } from "./i-step.control"
+import { MessageFilter } from "./message.filter"
 import { StepIssues } from "./step.issues"
 
 export class NotificationStepVariantCommand implements IStepVariant {

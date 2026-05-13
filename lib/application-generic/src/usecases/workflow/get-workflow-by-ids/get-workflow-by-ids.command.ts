@@ -1,4 +1,4 @@
-import type { ClientSession } from "@novu/dal"
+import { ClientSession } from "@novu/dal"
 import { Exclude } from "class-transformer"
 import { IsDefined, IsOptional, IsString } from "class-validator"
 import { EnvironmentCommand } from "../../../commands"

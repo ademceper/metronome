@@ -6,7 +6,7 @@ import {
 import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
-import type { EnvironmentDBModel } from "./environment.entity"
+import { EnvironmentDBModel } from "./environment.entity"
 
 const environmentSchema = new Schema<EnvironmentDBModel>(
   {

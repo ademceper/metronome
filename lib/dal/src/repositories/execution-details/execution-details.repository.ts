@@ -1,8 +1,8 @@
-import type { ExecutionDetailsStatusEnum } from "@novu/shared"
-import type { EnforceEnvId } from "../../types/enforce"
+import { ExecutionDetailsStatusEnum } from "@novu/shared"
+import { EnforceEnvId } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
 import {
-  type ExecutionDetailsDBModel,
+  ExecutionDetailsDBModel,
   ExecutionDetailsEntity,
 } from "./execution-details.entity"
 import { ExecutionDetails } from "./execution-details.schema"

@@ -1,14 +1,14 @@
-import type { FilterQuery } from "mongoose"
-import type { SoftDeleteModel } from "mongoose-delete"
-import type { EnforceEnvOrOrgIds } from "../../types/enforce"
+import { FilterQuery } from "mongoose"
+import { SoftDeleteModel } from "mongoose-delete"
+import { EnforceEnvOrOrgIds } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
 import {
   TranslationGroupEntity,
-  type TranslationGroupWithTranslations,
+  TranslationGroupWithTranslations,
 } from "./translation-group.entity"
 import {
   TranslationGroup,
-  type TranslationGroupModel,
+  TranslationGroupModel,
 } from "./translation-group.schema"
 
 type TranslationGroupQuery = FilterQuery<TranslationGroupModel> &

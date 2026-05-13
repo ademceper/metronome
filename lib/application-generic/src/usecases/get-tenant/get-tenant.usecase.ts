@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common"
-import type { TenantRepository } from "@novu/dal"
-import type { GetTenantCommand } from "./get-tenant.command"
+import { TenantRepository } from "@novu/dal"
+import { GetTenantCommand } from "./get-tenant.command"
 
 @Injectable()
 export class GetTenant {

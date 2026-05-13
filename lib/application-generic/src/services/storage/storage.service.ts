@@ -3,7 +3,7 @@ import {
   GetObjectCommand,
   HeadObjectCommand,
   PutObjectCommand,
-  type PutObjectCommandOutput,
+  PutObjectCommandOutput,
   S3Client,
 } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
@@ -15,7 +15,7 @@ import {
   StorageSharedKeyCredential,
 } from "@azure/storage-blob"
 import { Storage } from "@google-cloud/storage"
-import type { Readable } from "stream"
+import { Readable } from "stream"
 import { URL } from "url"
 
 import { NonExistingFileError } from "./non-existing-file.error"

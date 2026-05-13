@@ -1,11 +1,11 @@
-import type {
+import {
   IMemberInvite,
   MemberRoleEnum,
   MemberStatusEnum,
 } from "@novu/shared"
-import type { Types } from "mongoose"
-import type { MemberEntity } from "./member.entity"
-import type { IAddMemberData } from "./member.repository"
+import { Types } from "mongoose"
+import { MemberEntity } from "./member.entity"
+import { IAddMemberData } from "./member.repository"
 
 export interface IMemberRepository extends IMemberRepositoryMongo {
   removeMemberById(

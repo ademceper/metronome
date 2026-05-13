@@ -1,7 +1,7 @@
 import { ENDPOINT_TYPES } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
-import type { ChannelEndpointDBModel } from "./channel-endpoint.entity"
+import { ChannelEndpointDBModel } from "./channel-endpoint.entity"
 
 const channelEndpointSchema = new Schema<ChannelEndpointDBModel>(
   {

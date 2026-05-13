@@ -4,7 +4,7 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common"
-import type {
+import {
   CommunityUserRepository,
   EnvironmentEntity,
   OrganizationEntity,
@@ -14,13 +14,13 @@ import {
   ChatProviderIdEnum,
   EmailProviderIdEnum,
   FeatureFlagsKeysEnum,
-  type ICredentials,
+  ICredentials,
   SmsProviderIdEnum,
 } from "@novu/shared"
-import type { FeatureFlagsService } from "../../services"
-import type { AnalyticsService } from "../../services/analytics.service"
-import type { CalculateLimitNovuIntegration } from "../calculate-limit-novu-integration"
-import type { GetNovuProviderCredentialsCommand } from "./get-novu-provider-credentials.command"
+import { FeatureFlagsService } from "../../services"
+import { AnalyticsService } from "../../services/analytics.service"
+import { CalculateLimitNovuIntegration } from "../calculate-limit-novu-integration"
+import { GetNovuProviderCredentialsCommand } from "./get-novu-provider-credentials.command"
 
 @Injectable()
 export class GetNovuProviderCredentials {

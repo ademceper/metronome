@@ -1,7 +1,7 @@
-import type { ClientSession } from "mongoose"
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { ClientSession } from "mongoose"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
-import { type SnapshotDBModel, SnapshotEntity } from "./snapshot.entity"
+import { SnapshotDBModel, SnapshotEntity } from "./snapshot.entity"
 import { Snapshot } from "./snapshot.schema"
 
 export class SnapshotRepository extends BaseRepository<

@@ -1,5 +1,5 @@
-import type { IEmailBlock } from "@novu/dal"
-import type { LayoutId, MessageTemplateContentType } from "@novu/shared"
+import { IEmailBlock } from "@novu/dal"
+import { LayoutId, MessageTemplateContentType } from "@novu/shared"
 import { IsDefined, IsOptional, IsString } from "class-validator"
 
 import { EnvironmentWithUserCommand } from "../../commands/project.command"

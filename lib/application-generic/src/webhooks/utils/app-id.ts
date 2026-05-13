@@ -1,4 +1,4 @@
-import type { EnvironmentId, OrganizationId } from "@novu/shared"
+import { EnvironmentId, OrganizationId } from "@novu/shared"
 
 /**
  * Generates a standardized app ID format for webhook applications

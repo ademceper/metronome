@@ -1,20 +1,20 @@
 import { Injectable } from "@nestjs/common"
 
-import type { SubscriberEntity, SubscriberRepository } from "@novu/dal"
+import { SubscriberEntity, SubscriberRepository } from "@novu/dal"
 import { SubscriberSourceEnum } from "@novu/shared"
 
-import type { PinoLogger } from "nestjs-pino"
+import { PinoLogger } from "nestjs-pino"
 import { InstrumentUsecase } from "../../instrumentation"
-import type { CacheService } from "../../services"
-import type { EventType, RequestTraceInput } from "../../services/analytic-logs"
+import { CacheService } from "../../services"
+import { EventType, RequestTraceInput } from "../../services/analytic-logs"
 import {
   LogRepository,
   mapEventTypeToTitle,
-  type TraceLogRepository,
+  TraceLogRepository,
 } from "../../services/analytic-logs"
-import type { SubscriberProcessQueueService } from "../../services/queues/subscriber-process-queue.service"
+import { SubscriberProcessQueueService } from "../../services/queues/subscriber-process-queue.service"
 import { TriggerBase } from "../trigger-base"
-import type { TriggerBroadcastCommand } from "./trigger-broadcast.command"
+import { TriggerBroadcastCommand } from "./trigger-broadcast.command"
 
 const QUEUE_CHUNK_SIZE = Number(process.env.BROADCAST_QUEUE_CHUNK_SIZE) || 100
 

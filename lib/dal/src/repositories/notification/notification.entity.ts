@@ -1,4 +1,4 @@
-import type {
+import {
   DeliveryLifecycleEventType,
   ISubscribersDefine,
   SeverityLevelEnum,
@@ -6,10 +6,10 @@ import type {
   StepTypeEnum,
 } from "@novu/shared"
 
-import type { ChangePropsValueType } from "../../types/helpers"
-import type { EnvironmentId } from "../environment"
-import type { NotificationTemplateEntity } from "../notification-template"
-import type { OrganizationId } from "../organization"
+import { ChangePropsValueType } from "../../types/helpers"
+import { EnvironmentId } from "../environment"
+import { NotificationTemplateEntity } from "../notification-template"
+import { OrganizationId } from "../organization"
 
 export interface TopicPreferenceEvaluation {
   condition?: Record<string, unknown>

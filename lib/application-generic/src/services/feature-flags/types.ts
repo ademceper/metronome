@@ -1,9 +1,9 @@
-import type {
+import {
   EnvironmentEntity,
   OrganizationEntity,
   UserEntity,
 } from "@novu/dal"
-import type { FeatureFlagsKeysEnum } from "@novu/shared"
+import { FeatureFlagsKeysEnum } from "@novu/shared"
 
 type PartialWithId<T> = Partial<T> & { _id: string }
 

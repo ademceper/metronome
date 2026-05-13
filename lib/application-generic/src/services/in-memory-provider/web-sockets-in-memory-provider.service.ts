@@ -1,9 +1,9 @@
 import { Logger } from "@nestjs/common"
 import { InMemoryProviderService } from "./in-memory-provider.service"
 import {
-  type InMemoryProviderClient,
+  InMemoryProviderClient,
   InMemoryProviderEnum,
-  type ScanStream,
+  ScanStream,
 } from "./types"
 import { isClusterModeEnabled } from "./utils"
 

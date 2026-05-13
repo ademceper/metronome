@@ -1,21 +1,21 @@
 import { BadRequestException } from "@nestjs/common"
 import {
   DelayTypeEnum,
-  type FilterParts,
+  FilterParts,
   FilterPartTypeEnum,
   getTemplateVariables,
-  type IFieldFilterPart,
-  type IMustacheVariable,
-  type ITriggerReservedVariable,
+  IFieldFilterPart,
+  IMustacheVariable,
+  ITriggerReservedVariable,
   ReservedVariablesMap,
   StepTypeEnum,
   TemplateSystemVariables,
   TemplateVariableTypeEnum,
-  type TriggerContextTypeEnum,
+  TriggerContextTypeEnum,
   TriggerReservedVariables,
 } from "@novu/shared"
 import Handlebars from "handlebars"
-import type { NotificationStep } from "../value-objects"
+import { NotificationStep } from "../value-objects"
 
 export class ContentService {
   replaceVariables(content: string, variables: { [key: string]: string }) {

@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
 import {
-  type ChangeRepository,
+  ChangeRepository,
   DalException,
-  type MessageTemplateRepository,
+  MessageTemplateRepository,
 } from "@novu/dal"
 import { ChangeEntityTypeEnum, isBridgeWorkflow } from "@novu/shared"
-import { type CreateChange, CreateChangeCommand } from "../../create-change"
-import type { DeleteMessageTemplateCommand } from "./delete-message-template.command"
+import { CreateChange, CreateChangeCommand } from "../../create-change"
+import { DeleteMessageTemplateCommand } from "./delete-message-template.command"
 
 @Injectable()
 export class DeleteMessageTemplate {

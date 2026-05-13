@@ -1,23 +1,23 @@
 import {
   DeliveryLifecycleDetail,
   DeliveryLifecycleStatusEnum,
-  type DigestCreationResultEnum,
-  type IDigestBaseMetadata,
-  type IDigestRegularMetadata,
+  DigestCreationResultEnum,
+  IDigestBaseMetadata,
+  IDigestRegularMetadata,
   StepTypeEnum,
 } from "@novu/shared"
 import { sub } from "date-fns"
-import type { ProjectionType } from "mongoose"
+import { ProjectionType } from "mongoose"
 import { DalException } from "../../shared"
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
-import type { EnvironmentEntity } from "../environment"
-import type { NotificationEntity } from "../notification"
-import type { NotificationTemplateEntity } from "../notification-template"
-import type { SubscriberEntity } from "../subscriber"
+import { EnvironmentEntity } from "../environment"
+import { NotificationEntity } from "../notification"
+import { NotificationTemplateEntity } from "../notification-template"
+import { SubscriberEntity } from "../subscriber"
 import {
-  type DeliveryLifecycleState,
-  type JobDBModel,
+  DeliveryLifecycleState,
+  JobDBModel,
   JobEntity,
   JobStatusEnum,
 } from "./job.entity"

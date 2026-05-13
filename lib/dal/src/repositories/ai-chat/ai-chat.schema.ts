@@ -1,7 +1,7 @@
 import { AiResumeActionEnum } from "@novu/shared"
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
-import type { AiChatDBModel } from "./ai-chat.entity"
+import { AiChatDBModel } from "./ai-chat.entity"
 
 const aiChatSchema = new Schema<AiChatDBModel>(
   {

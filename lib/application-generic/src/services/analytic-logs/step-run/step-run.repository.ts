@@ -1,16 +1,16 @@
 import { Injectable, Optional } from "@nestjs/common"
-import type { JobEntity, JobStatusEnum, MessageEntity } from "@novu/dal"
+import { JobEntity, JobStatusEnum, MessageEntity } from "@novu/dal"
 import { FeatureFlagsKeysEnum, StepTypeEnum } from "@novu/shared"
-import type { PinoLogger } from "nestjs-pino"
-import type { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
-import type { StepType } from ".."
-import type { ClickHouseService, InsertOptions } from "../clickhouse.service"
-import type { ClickHouseBatchService } from "../clickhouse-batch.service"
-import { LogRepository, type SchemaKeys } from "../log.repository"
+import { PinoLogger } from "nestjs-pino"
+import { FeatureFlagsService } from "../../feature-flags/feature-flags.service"
+import { StepType } from ".."
+import { ClickHouseService, InsertOptions } from "../clickhouse.service"
+import { ClickHouseBatchService } from "../clickhouse-batch.service"
+import { LogRepository, SchemaKeys } from "../log.repository"
 import { getInsertOptions } from "../shared"
 import {
   ORDER_BY,
-  type StepRun,
+  StepRun,
   stepRunSchema,
   TABLE_NAME,
 } from "./step-run.schema"

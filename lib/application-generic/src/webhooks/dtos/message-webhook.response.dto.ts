@@ -1,5 +1,5 @@
-import type { MessageEntity } from "@novu/dal"
-import type { ChannelData } from "@novu/stateless"
+import { MessageEntity } from "@novu/dal"
+import { ChannelData } from "@novu/stateless"
 
 export type MessageWebhookResponseDto = Pick<
   MessageEntity,

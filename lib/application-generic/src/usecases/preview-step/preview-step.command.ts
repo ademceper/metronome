@@ -1,8 +1,8 @@
-import type { ContextResolved } from "@novu/framework/internal"
-import type { ResourceOriginEnum } from "@novu/shared"
+import { ContextResolved } from "@novu/framework/internal"
+import { ResourceOriginEnum } from "@novu/shared"
 import { EnvironmentWithUserCommand } from "../../commands"
-import type { SubscriberResponseDtoOptional } from "../../dtos/subscribers/subscriber-response.dto"
-import type { FrameworkPreviousStepsOutputState } from "../preview/preview.types"
+import { SubscriberResponseDtoOptional } from "../../dtos/subscribers/subscriber-response.dto"
+import { FrameworkPreviousStepsOutputState } from "../preview/preview.types"
 
 export class PreviewStepCommand extends EnvironmentWithUserCommand {
   workflowId: string

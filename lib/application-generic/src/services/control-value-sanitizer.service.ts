@@ -1,19 +1,19 @@
 import { Injectable } from "@nestjs/common"
 import { actionStepSchemas, channelStepSchemas } from "@novu/framework/internal"
 import { ResourceOriginEnum } from "@novu/shared"
-import Ajv, { type ErrorObject } from "ajv"
+import Ajv, { ErrorObject } from "ajv"
 import addFormats from "ajv-formats"
 import { cloneDeep, get, merge, set } from "es-toolkit/compat"
-import type { PinoLogger } from "nestjs-pino"
-import type { JSONSchemaDto } from "../dtos/json-schema.dto"
+import { PinoLogger } from "nestjs-pino"
+import { JSONSchemaDto } from "../dtos/json-schema.dto"
 import { layoutControlSchema } from "../schemas/control"
 import { previewControlValueDefault } from "../usecases/preview/preview.constants"
-import type {
+import {
   ControlValueProcessingResult,
   PreviewTemplateData,
 } from "../usecases/preview/preview.types"
 import { replaceAll } from "../usecases/preview/utils/variable-helpers"
-import { dashboardSanitizeControlValues, type SanitizationType } from "../utils"
+import { dashboardSanitizeControlValues, SanitizationType } from "../utils"
 import { buildVariables } from "../utils/build-variables"
 import {
   isObjectMailyJSONContent,
@@ -21,7 +21,7 @@ import {
   replaceMailyVariables,
 } from "../utils/maily-utils"
 import { buildLiquidParser } from "../utils/template-parser/liquid-engine"
-import type { Variable } from "../utils/template-parser/types"
+import { Variable } from "../utils/template-parser/types"
 
 @Injectable()
 export class ControlValueSanitizerService {

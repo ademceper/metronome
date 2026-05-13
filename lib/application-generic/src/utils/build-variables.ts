@@ -1,13 +1,13 @@
-import type { AdditionalOperation, RulesLogic } from "json-logic-js"
-import type { PinoLogger } from "nestjs-pino"
-import type { JSONSchemaDto } from "../dtos/json-schema.dto"
+import { AdditionalOperation, RulesLogic } from "json-logic-js"
+import { PinoLogger } from "nestjs-pino"
+import { JSONSchemaDto } from "../dtos/json-schema.dto"
 import {
   extractFieldsFromRules,
   isValidRule,
 } from "../services/query-parser/query-parser.service"
 import { isStringifiedMailyJSONContent, wrapMailyInLiquid } from "./maily-utils"
 import { extractLiquidTemplateVariables as newExtractLiquidTemplateVariables } from "./template-parser/new-liquid-parser"
-import type { VariableDetails } from "./template-parser/types"
+import { VariableDetails } from "./template-parser/types"
 
 export function buildVariables({
   variableSchema,

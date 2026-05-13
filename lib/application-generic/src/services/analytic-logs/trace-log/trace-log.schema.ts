@@ -1,4 +1,4 @@
-import type { DeliveryLifecycleEventType } from "@novu/shared"
+import { DeliveryLifecycleEventType } from "@novu/shared"
 import {
   CHArray,
   CHBoolean,
@@ -6,10 +6,10 @@ import {
   CHLowCardinality,
   CHString,
   ClickhouseSchema,
-  type InferClickhouseSchemaType,
+  InferClickhouseSchemaType,
 } from "clickhouse-schema"
-import type { Prettify } from "../../../utils/prettify.type"
-import type { StepType } from ".."
+import { Prettify } from "../../../utils/prettify.type"
+import { StepType } from ".."
 
 export const TABLE_NAME = "traces"
 

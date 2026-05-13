@@ -1,4 +1,4 @@
-import type { JsonSchemaFormatEnum, JsonSchemaTypeEnum } from "@novu/dal"
+import { JsonSchemaFormatEnum, JsonSchemaTypeEnum } from "@novu/dal"
 
 export class JSONSchema {
   type?: JsonSchemaTypeEnum

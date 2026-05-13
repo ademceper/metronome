@@ -1,6 +1,6 @@
 import { NotFoundException } from "@nestjs/common"
-import type { ModuleRef } from "@nestjs/core"
-import type {
+import { ModuleRef } from "@nestjs/core"
+import {
   CommunityOrganizationRepository,
   OrganizationEntity,
 } from "@novu/dal"

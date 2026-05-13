@@ -1,4 +1,4 @@
-import type { JSONContent as MailyJSONContent } from "@novu/maily-render"
+import { JSONContent as MailyJSONContent } from "@novu/maily-render"
 
 export const LOG_CONTEXT = "GeneratePreviewUsecase"
 

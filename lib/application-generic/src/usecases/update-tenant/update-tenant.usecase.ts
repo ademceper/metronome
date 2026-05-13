@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from "@nestjs/common"
-import type { TenantEntity, TenantRepository } from "@novu/dal"
-import { type GetTenant, GetTenantCommand } from "../get-tenant"
-import type { UpdateTenantCommand } from "./update-tenant.command"
+import { TenantEntity, TenantRepository } from "@novu/dal"
+import { GetTenant, GetTenantCommand } from "../get-tenant"
+import { UpdateTenantCommand } from "./update-tenant.command"
 
 @Injectable()
 export class UpdateTenant {

@@ -5,8 +5,8 @@ import {
   ChannelStepEnum,
   channelStepSchemas,
 } from "@novu/framework/internal"
-import type { StepTypeEnum } from "@novu/shared"
-import type { JSONSchema } from "../value-objects/json-schema"
+import { StepTypeEnum } from "@novu/shared"
+import { JSONSchema } from "../value-objects/json-schema"
 
 export function computeResultSchema({
   stepType,

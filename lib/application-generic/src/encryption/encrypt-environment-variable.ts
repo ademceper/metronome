@@ -1,5 +1,5 @@
 import { Logger } from "@nestjs/common"
-import type { EnvironmentVariableForTemplate } from "@novu/dal"
+import { EnvironmentVariableForTemplate } from "@novu/dal"
 import { NOVU_ENCRYPTION_SUB_MASK } from "@novu/shared"
 
 import { decryptSecret } from "./encrypt-provider"

@@ -1,6 +1,6 @@
-import type { SubscriberEntity, TenantEntity } from "@novu/dal"
-import type { ContextResolved } from "@novu/framework/internal"
-import type { EnvironmentSystemVariables, ITriggerPayload } from "@novu/shared"
+import { SubscriberEntity, TenantEntity } from "@novu/dal"
+import { ContextResolved } from "@novu/framework/internal"
+import { EnvironmentSystemVariables, ITriggerPayload } from "@novu/shared"
 
 export interface ICompileContext {
   payload?: ITriggerPayload

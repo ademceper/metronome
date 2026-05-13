@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose"
 
 import { schemaOptions } from "../schema-default.options"
 import {
-  type OrganizationDBModel,
+  OrganizationDBModel,
   PartnerTypeEnum,
 } from "./organization.entity"
 

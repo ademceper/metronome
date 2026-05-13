@@ -1,24 +1,24 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type { PreferencesEntity, PreferencesRepository } from "@novu/dal"
+import { PreferencesEntity, PreferencesRepository } from "@novu/dal"
 import {
   buildWorkflowPreferences,
   FeatureFlagsKeysEnum,
-  type IPreferenceChannels,
+  IPreferenceChannels,
   PreferencesTypeEnum,
-  type Schedule,
-  type WorkflowPreferences,
-  type WorkflowPreferencesPartial,
+  Schedule,
+  WorkflowPreferences,
+  WorkflowPreferencesPartial,
 } from "@novu/shared"
 import { Instrument, InstrumentUsecase } from "../../instrumentation"
-import type { FeatureFlagsService } from "../../services/feature-flags"
+import { FeatureFlagsService } from "../../services/feature-flags"
 import {
-  type InMemoryLRUCacheService,
+  InMemoryLRUCacheService,
   InMemoryLRUCacheStore,
 } from "../../services/in-memory-lru-cache"
 import { MergePreferencesCommand } from "../merge-preferences/merge-preferences.command"
 import { MergePreferences } from "../merge-preferences/merge-preferences.usecase"
 import { GetPreferencesCommand } from "./get-preferences.command"
-import type { GetPreferencesResponseDto } from "./get-preferences.dto"
+import { GetPreferencesResponseDto } from "./get-preferences.dto"
 
 export type PreferenceSet = {
   workflowResourcePreference?: PreferencesEntity & {

@@ -1,5 +1,5 @@
-import type { SubscriberEntity } from "@novu/dal"
-import type {
+import { SubscriberEntity } from "@novu/dal"
+import {
   ChatProviderIdEnum,
   IChannelCredentials,
   ISubscriberChannel,
@@ -13,7 +13,7 @@ import {
   ValidateNested,
 } from "class-validator"
 import { EnvironmentCommand } from "../../../commands"
-import type { OAuthHandlerEnum } from "../types"
+import { OAuthHandlerEnum } from "../types"
 
 export class IChannelCredentialsCommand implements IChannelCredentials {
   @IsString()

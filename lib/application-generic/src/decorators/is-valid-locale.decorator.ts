@@ -1,8 +1,8 @@
 import { validateLocale } from "@novu/shared"
 import {
   registerDecorator,
-  type ValidationArguments,
-  type ValidationOptions,
+  ValidationArguments,
+  ValidationOptions,
 } from "class-validator"
 
 export function IsValidLocale(validationOptions?: ValidationOptions) {

@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from "@nestjs/common"
-import type { ChangeRepository } from "@novu/dal"
-import { applyDiff, getDiff, type rdiffResult } from "recursive-diff"
+import { ChangeRepository } from "@novu/dal"
+import { applyDiff, getDiff, rdiffResult } from "recursive-diff"
 
-import type { CreateChangeCommand } from "./create-change.command"
+import { CreateChangeCommand } from "./create-change.command"
 
 function sanitizeDiff(diff: unknown): rdiffResult[] {
   if (!Array.isArray(diff)) return []

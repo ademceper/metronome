@@ -1,8 +1,8 @@
-import type { JobCronNameEnum } from "@novu/shared"
-import type { JobPriority, Pulse } from "@pulsecron/pulse"
-import type { MetricsService } from "../metrics"
+import { JobCronNameEnum } from "@novu/shared"
+import { JobPriority, Pulse } from "@pulsecron/pulse"
+import { MetricsService } from "../metrics"
 import { CronService } from "./cron.service"
-import type { CronJobProcessor, CronMetrics, CronOptions } from "./cron.types"
+import { CronJobProcessor, CronMetrics, CronOptions } from "./cron.types"
 
 type PulsePriority = keyof typeof JobPriority
 

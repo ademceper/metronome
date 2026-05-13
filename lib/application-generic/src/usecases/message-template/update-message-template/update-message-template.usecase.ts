@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from "@nestjs/common"
 
-import type {
+import {
   ChangeRepository,
   MessageRepository,
   MessageTemplateEntity,
@@ -13,10 +13,10 @@ import type {
 import { ChangeEntityTypeEnum, isBridgeWorkflow } from "@novu/shared"
 import { sanitizeMessageContentV0 } from "../../../services"
 import { normalizeVariantDefault } from "../../../utils"
-import { type CreateChange, CreateChangeCommand } from "../../create-change"
-import { type UpdateChange, UpdateChangeCommand } from "../../update-change"
+import { CreateChange, CreateChangeCommand } from "../../create-change"
+import { UpdateChange, UpdateChangeCommand } from "../../update-change"
 import { shouldSanitize } from "../shared"
-import type { UpdateMessageTemplateCommand } from "./update-message-template.command"
+import { UpdateMessageTemplateCommand } from "./update-message-template.command"
 
 @Injectable()
 export class UpdateMessageTemplate {

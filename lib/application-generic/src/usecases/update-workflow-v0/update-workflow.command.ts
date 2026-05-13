@@ -1,11 +1,11 @@
-import type { ClientSession, NotificationTemplateEntity } from "@novu/dal"
+import { ClientSession, NotificationTemplateEntity } from "@novu/dal"
 import {
-  type CustomDataType,
+  CustomDataType,
   MAX_DESCRIPTION_LENGTH,
   MAX_NAME_LENGTH,
   MAX_TAG_LENGTH,
   ResourceTypeEnum,
-  type RuntimeIssue,
+  RuntimeIssue,
   SeverityLevelEnum,
 } from "@novu/shared"
 import { Exclude, Type } from "class-transformer"
@@ -24,7 +24,7 @@ import {
   ValidateNested,
 } from "class-validator"
 import { EnvironmentWithUserCommand } from "../../commands"
-import type {
+import {
   ContentIssue,
   IStepControl,
   JSONSchema,

@@ -1,14 +1,14 @@
 import {
-  type ContextData,
-  type ContextId,
-  type ContextPayload,
-  type ContextType,
+  ContextData,
+  ContextId,
+  ContextPayload,
+  ContextType,
   createContextKey,
 } from "@novu/shared"
-import type { FilterQuery } from "mongoose"
-import { type EnforceEnvOrOrgIds, ErrorCodesEnum } from "../../types"
+import { FilterQuery } from "mongoose"
+import { EnforceEnvOrOrgIds, ErrorCodesEnum } from "../../types"
 import { BaseRepository } from "../base-repository"
-import { type ContextDBModel, ContextEntity } from "./context.entity"
+import { ContextDBModel, ContextEntity } from "./context.entity"
 import { Context } from "./context.schema"
 
 export class ContextRepository extends BaseRepository<

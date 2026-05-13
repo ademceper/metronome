@@ -1,4 +1,4 @@
-import { type MessageTemplateContentType, StepTypeEnum } from "@novu/shared"
+import { MessageTemplateContentType, StepTypeEnum } from "@novu/shared"
 
 export function shouldSanitize(
   channelType: StepTypeEnum,

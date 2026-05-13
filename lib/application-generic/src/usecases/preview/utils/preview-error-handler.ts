@@ -1,9 +1,9 @@
 import { HttpException, Injectable } from "@nestjs/common"
 import { captureException } from "@sentry/node"
-import type { PinoLogger } from "nestjs-pino"
-import type { GeneratePreviewResponseDto } from "../../../dtos/workflow/generate-preview-response.dto"
+import { PinoLogger } from "nestjs-pino"
+import { GeneratePreviewResponseDto } from "../../../dtos/workflow/generate-preview-response.dto"
 import { LOG_CONTEXT } from "../preview.constants"
-import { type FrameworkError, GeneratePreviewError } from "../preview.types"
+import { FrameworkError, GeneratePreviewError } from "../preview.types"
 
 type ErrorContent = {
   title: string

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose"
 import { schemaOptions } from "../schema-default.options"
-import type { ChannelConnectionDBModel } from "./channel-connection.entity"
+import { ChannelConnectionDBModel } from "./channel-connection.entity"
 
 const channelConnectionSchema = new Schema<ChannelConnectionDBModel>(
   {

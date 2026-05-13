@@ -1,4 +1,4 @@
-import type { ClientSession } from "@novu/dal"
+import { ClientSession } from "@novu/dal"
 import { PreferencesTypeEnum } from "@novu/shared"
 import { Exclude } from "class-transformer"
 import { IsEnum, IsMongoId, IsNotEmpty, IsOptional } from "class-validator"

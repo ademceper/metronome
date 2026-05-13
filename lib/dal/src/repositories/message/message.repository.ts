@@ -2,19 +2,19 @@ import {
   ActorTypeEnum,
   ButtonTypeEnum,
   buildTagsQuery,
-  type ChannelTypeEnum,
-  type MessageActionStatusEnum,
+  ChannelTypeEnum,
+  MessageActionStatusEnum,
   MessagesStatusEnum,
   SeverityLevelEnum,
-  type TagsMongoFragment,
+  TagsMongoFragment,
 } from "@novu/shared"
-import { type FilterQuery, type ProjectionType, Types } from "mongoose"
+import { FilterQuery, ProjectionType, Types } from "mongoose"
 
 import { DalException } from "../../shared"
-import type { EnforceEnvId } from "../../types/enforce"
+import { EnforceEnvId } from "../../types/enforce"
 import { BaseRepository } from "../base-repository"
 import { FeedRepository } from "../feed"
-import { type MessageDBModel, MessageEntity } from "./message.entity"
+import { MessageDBModel, MessageEntity } from "./message.entity"
 import { Message } from "./message.schema"
 
 type MessageQuery = FilterQuery<MessageDBModel>

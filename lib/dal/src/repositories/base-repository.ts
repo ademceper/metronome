@@ -1,16 +1,16 @@
 import { DirectionEnum } from "@novu/shared"
-import { type ClassConstructor, plainToInstance } from "class-transformer"
+import { ClassConstructor, plainToInstance } from "class-transformer"
 import {
-  type ClientSession,
-  type FilterQuery,
-  type Model,
-  type mongo,
-  type ProjectionType,
-  type QueryOptions,
-  type QueryWithHelpers,
-  type SortOrder,
+  ClientSession,
+  FilterQuery,
+  Model,
+  mongo,
+  ProjectionType,
+  QueryOptions,
+  QueryWithHelpers,
+  SortOrder,
   Types,
-  type UpdateQuery,
+  UpdateQuery,
 } from "mongoose"
 import { DalException } from "../shared"
 

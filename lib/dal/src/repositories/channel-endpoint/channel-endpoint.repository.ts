@@ -1,8 +1,8 @@
-import type { ChannelEndpointType } from "@novu/shared"
-import type { EnforceEnvOrOrgIds } from "../../types"
+import { ChannelEndpointType } from "@novu/shared"
+import { EnforceEnvOrOrgIds } from "../../types"
 import { BaseRepository } from "../base-repository"
 import {
-  type ChannelEndpointDBModel,
+  ChannelEndpointDBModel,
   ChannelEndpointEntity,
 } from "./channel-endpoint.entity"
 import { ChannelEndpoint } from "./channel-endpoint.schema"

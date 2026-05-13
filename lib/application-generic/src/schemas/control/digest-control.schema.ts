@@ -1,10 +1,10 @@
-import type { JSONSchemaEntity } from "@novu/dal"
+import { JSONSchemaEntity } from "@novu/dal"
 import {
   DigestTypeEnum,
   DigestUnitEnum,
   TimeUnitEnum,
   UiComponentEnum,
-  type UiSchema,
+  UiSchema,
   UiSchemaGroupEnum,
 } from "@novu/shared"
 import { z } from "zod"

@@ -1,15 +1,15 @@
 import { FeatureFlagsKeysEnum } from "@novu/shared"
-import type {
+import {
   ClickhouseSchema,
   InferClickhouseSchemaType,
 } from "clickhouse-schema"
 import { addDays } from "date-fns"
-import type { PinoLogger } from "nestjs-pino"
+import { PinoLogger } from "nestjs-pino"
 import { generateObjectId } from "../../utils/generate-id"
-import type { Prettify } from "../../utils/prettify.type"
-import type { FeatureFlagsService } from "../feature-flags/feature-flags.service"
-import type { ClickHouseService, InsertOptions } from "./clickhouse.service"
-import type { ClickHouseBatchService } from "./clickhouse-batch.service"
+import { Prettify } from "../../utils/prettify.type"
+import { FeatureFlagsService } from "../feature-flags/feature-flags.service"
+import { ClickHouseService, InsertOptions } from "./clickhouse.service"
+import { ClickHouseBatchService } from "./clickhouse-batch.service"
 
 // Define operators as const assertion to maintain literal types
 const CLICKHOUSE_OPERATORS = [
