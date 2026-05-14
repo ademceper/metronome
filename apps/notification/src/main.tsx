@@ -6,12 +6,30 @@ import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-rou
 import './index.css';
 import { bootstrapOidc, OidcInitializationGate, OidcInitializationErrorGate } from '@/auth-client';
 
-bootstrapOidc({
-  implementation: 'real',
-  issuerUri:
-    import.meta.env.VITE_OIDC_ISSUER_URI ?? 'http://localhost:8080/realms/tiko',
-  clientId: import.meta.env.VITE_OIDC_CLIENT_ID ?? 'notification-spa',
-});
+// Surface any uncaught runtime error to the DOM so we don't get silent white screens.
+function showFatalError(label: string, err: unknown) {
+  const root = document.getElementById('root');
+  if (!root) return;
+  const msg = err instanceof Error ? `${err.message}\n\n${err.stack ?? ''}` : String(err);
+  root.innerHTML = `
+    <div style="font-family: system-ui, sans-serif; padding: 24px; max-width: 900px; margin: 0 auto;">
+      <h2 style="color:#b91c1c; margin-top:0;">${label}</h2>
+      <pre style="background:#fafafa; padding:12px; border:1px solid #eee; border-radius:6px; white-space:pre-wrap; word-break:break-word;">${msg.replace(/</g, '&lt;')}</pre>
+    </div>`;
+}
+window.addEventListener('error', (e) => showFatalError('Uncaught error', e.error ?? e.message));
+window.addEventListener('unhandledrejection', (e) => showFatalError('Unhandled promise rejection', e.reason));
+
+try {
+  bootstrapOidc({
+    implementation: 'real',
+    issuerUri:
+      import.meta.env.VITE_OIDC_ISSUER_URI ?? 'http://localhost:8080/realms/tiko',
+    clientId: import.meta.env.VITE_OIDC_CLIENT_ID ?? 'notification-spa',
+  });
+} catch (err) {
+  showFatalError('bootstrapOidc threw synchronously', err);
+}
 
 import { ConfigureWorkflow } from '@/components/workflow-editor/configure-workflow';
 import { EditStepConditions } from '@/components/workflow-editor/steps/conditions/edit-step-conditions';
