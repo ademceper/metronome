@@ -19,6 +19,9 @@ export default defineConfig({
         "22-to-25": false,
         "all-other-versions": true,
       },
+      startKeycloakOptions: {
+        realmJsonFilePath: "keycloak-realm.json",
+      },
     }),
   ],
 })
