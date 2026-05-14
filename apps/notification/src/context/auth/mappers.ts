@@ -1,5 +1,25 @@
-import type { OrganizationResource, UserResource } from '@clerk/types';
 import type { IOrganizationEntity, IServicesHashes, IUserEntity, JobTitleEnum, ProductUseCases } from '@novu/shared';
+
+// Minimal Clerk-shaped types kept local so we don't need @clerk/types.
+// Self-hosted user/org providers expose the same fields these mappers read.
+export type UserResource = {
+  externalId?: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  primaryEmailAddress?: { emailAddress: string } | null;
+  emailAddresses?: Array<{ emailAddress: string }>;
+  imageUrl?: string;
+  createdAt?: Date | null;
+  publicMetadata: Record<string, unknown>;
+  passwordEnabled: boolean;
+};
+
+export type OrganizationResource = {
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publicMetadata: Record<string, unknown>;
+};
 
 export const toUserEntity = (clerkUser: UserResource): IUserEntity => {
   /*

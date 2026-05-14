@@ -1,5 +1,4 @@
-import { useAuth } from '@clerk/clerk-react';
-import type { CheckAuthorizationWithCustomPermissions } from '@clerk/types';
+import { useAuth } from '@/utils/self-hosted';
 import {
   ApiServiceLevelEnum,
   FeatureFlagsKeysEnum,
@@ -10,6 +9,13 @@ import {
 import { useMemo } from 'react';
 import { useFeatureFlag } from '@/hooks/use-feature-flag';
 import { useFetchSubscription } from '@/hooks/use-fetch-subscription';
+
+// Local stand-in for Clerk's permission check signature. Self-hosted auth
+// context exposes the same shape: (params) => boolean.
+type CheckAuthorizationWithCustomPermissions = (params: {
+  permission?: string;
+  role?: string;
+}) => boolean;
 
 function isRbacEnabled(isRbacFlagEnabled: boolean, subscription: GetSubscriptionDto | undefined): boolean {
   return (

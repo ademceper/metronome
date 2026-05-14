@@ -1,17 +1,14 @@
 /** biome-ignore-all lint/correctness/useUniqueElementIds: expected */
-import { OrganizationProfile } from '@clerk/clerk-react';
-import type { Appearance } from '@clerk/types';
+import { OrganizationProfile } from '@/utils/self-hosted';
 import { PermissionsEnum } from '@novu/shared';
 import { RiInformation2Line } from 'react-icons/ri';
 import { Tooltip, TooltipContent, TooltipPortal, TooltipTrigger } from '@/components/primitives/tooltip';
-import { EE_AUTH_PROVIDER } from '@/config';
 import { useFetchOrganizationSettings } from '@/hooks/use-fetch-organization-settings';
 import { useUpdateOrganizationSettings } from '@/hooks/use-update-organization-settings';
-import { OrganizationSettings as BetterAuthOrganizationSettings } from '@/utils/better-auth/components/organization-settings';
 import { Protect } from '@/utils/protect';
 import { NovuBrandingSwitch } from './novu-branding-switch';
 
-export function OrganizationSettings({ clerkAppearance }: { clerkAppearance: Appearance }) {
+export function OrganizationSettings() {
   const { data: organizationSettings, isLoading: isLoadingSettings } = useFetchOrganizationSettings();
   const updateOrganizationSettings = useUpdateOrganizationSettings();
 
@@ -80,13 +77,9 @@ export function OrganizationSettings({ clerkAppearance }: { clerkAppearance: App
       {/* Organization Settings Section */}
       <div>
         <h1 className="text-label-sm text-text-strong mb-3">Organization Settings</h1>
-        {EE_AUTH_PROVIDER === 'clerk' ? (
-          <OrganizationProfile appearance={clerkAppearance}>
-            <OrganizationProfile.Page label="members" />
-          </OrganizationProfile>
-        ) : (
-          <BetterAuthOrganizationSettings />
-        )}
+        <OrganizationProfile>
+          <OrganizationProfile.Page label="members" />
+        </OrganizationProfile>
       </div>
     </div>
   );
