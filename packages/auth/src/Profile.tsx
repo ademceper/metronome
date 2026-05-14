@@ -63,9 +63,9 @@ export type ProfileProps = {
    *  URL in a new tab. */
   accountUrl?: string
   accountLabel?: string
-  /** Fallback when no avatarUrl is supplied. Defaults to /images/avatar.svg
-   *  so apps that drop a static asset there (notification, user, admin)
-   *  get a photo-style avatar instead of initials. */
+  /** Bitmap fallback when no avatarUrl is supplied. When omitted (the
+   *  common case) the theme-aware inline DefaultAvatar SVG renders
+   *  instead, adapting to light/dark mode. */
   fallbackAvatarUrl?: string
   /** Extra DropdownMenuItem(s) inserted between the header and Sign Out. */
   children?: ReactNode
@@ -77,7 +77,7 @@ export function Profile({
   name,
   email,
   avatarUrl,
-  fallbackAvatarUrl = "/images/avatar.svg",
+  fallbackAvatarUrl,
   accountUrl,
   accountLabel = "Manage account",
   onSignOut,
@@ -88,11 +88,9 @@ export function Profile({
 }: ProfileProps) {
   const displayName = name || email || "Account"
   const initials = (displayName || "?").slice(0, 2).toUpperCase()
-  // Only use the bitmap fallback when the caller explicitly overrode it.
-  // Default path renders DefaultAvatar so it tracks the theme.
-  const explicitFallback = fallbackAvatarUrl !== "/images/avatar.svg"
-  const resolvedAvatar =
-    avatarUrl ?? (explicitFallback ? fallbackAvatarUrl : undefined)
+  // No explicit fallback ⇒ render the theme-aware inline SVG. Apps that
+  // want a static bitmap can opt in by passing fallbackAvatarUrl.
+  const resolvedAvatar = avatarUrl ?? fallbackAvatarUrl
   const useDefaultAvatar = !resolvedAvatar
 
   return (
