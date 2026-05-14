@@ -105,13 +105,17 @@ export function Profile({
           )}
         >
           <Avatar className="size-6 border">
-            {useDefaultAvatar ? (
-              <DefaultAvatar />
-            ) : (
+            {resolvedAvatar ? (
               <AvatarImage src={resolvedAvatar} alt={displayName} />
-            )}
-            <AvatarFallback className="font-medium text-[10px]">
-              {initials}
+            ) : null}
+            <AvatarFallback
+              delayMs={useDefaultAvatar ? 0 : undefined}
+              className={cn(
+                "font-medium text-[10px]",
+                useDefaultAvatar && "bg-transparent p-0"
+              )}
+            >
+              {useDefaultAvatar ? <DefaultAvatar /> : initials}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
@@ -122,13 +126,17 @@ export function Profile({
         >
           <div className="flex items-center gap-3 p-3">
             <Avatar className="size-8 border">
-              {useDefaultAvatar ? (
-                <DefaultAvatar />
-              ) : (
+              {resolvedAvatar ? (
                 <AvatarImage src={resolvedAvatar} alt={displayName} />
-              )}
-              <AvatarFallback className="font-medium text-xs">
-                {initials}
+              ) : null}
+              <AvatarFallback
+                delayMs={useDefaultAvatar ? 0 : undefined}
+                className={cn(
+                  "font-medium text-xs",
+                  useDefaultAvatar && "bg-transparent p-0"
+                )}
+              >
+                {useDefaultAvatar ? <DefaultAvatar /> : initials}
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0 flex-1">
