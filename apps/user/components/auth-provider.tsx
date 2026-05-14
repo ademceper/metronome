@@ -1,7 +1,13 @@
 "use client"
 
+import { oidcEarlyInit } from "oidc-spa/entrypoint"
 import type { ReactNode } from "react"
 import { bootstrapOidc, OidcInitializationGate } from "@/lib/auth"
+
+// Required by oidc-spa before any other oidc-spa code runs. The Vite plugin
+// injects this automatically for SPA apps; in Next.js we call it manually
+// from the auth provider's client entry.
+oidcEarlyInit({ BASE_URL: "/" })
 
 bootstrapOidc({
   implementation: "real",
