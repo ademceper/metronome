@@ -1,7 +1,13 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { HttpRequestHeaderKeysEnum, Instrument } from '@novu/application-generic';
-import { EnvironmentRepository, OrganizationRepository, UserEntity, UserRepository } from '@novu/dal';
+import {
+  EnvironmentRepository,
+  OrganizationRepository,
+  SubscriberRepository,
+  UserEntity,
+  UserRepository,
+} from '@novu/dal';
 import { ApiAuthSchemeEnum, MemberRoleEnum, UserSessionData } from '@novu/shared';
 import type http from 'http';
 import jwksRsa from 'jwks-rsa';
@@ -32,6 +38,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private environmentRepository: EnvironmentRepository,
     private userRepository: UserRepository,
     private organizationRepository: OrganizationRepository,
+    private subscriberRepository: SubscriberRepository,
     private createOrganizationUsecase: CreateOrganization
   ) {
     const issuerUri =
@@ -70,6 +77,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const user = await this.resolveOrProvisionUser(claims);
     const organizationId = await this.resolveOrganizationId(user);
     const environmentId = await this.resolveEnvironmentId(req, organizationId);
+
+    if (environmentId) {
+      await this.ensureSubscriber(claims, environmentId, organizationId);
+    }
 
     const session: UserSessionData = {
       _id: user._id,
@@ -115,6 +126,36 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     const reloaded = await this.userRepository.findById(created._id);
     if (!reloaded) throw new UnauthorizedException('User provisioning failed');
     return reloaded;
+  }
+
+  // Mirrors the Keycloak user as a Subscriber in the current environment so
+  // that login → both dashboard admin (User) AND notification recipient
+  // (Subscriber) are populated in one step. Subscribers are environment-scoped;
+  // a new dev env will get its own row on first request to that env.
+  private async ensureSubscriber(
+    claims: KeycloakClaims,
+    environmentId: string,
+    organizationId: string
+  ): Promise<void> {
+    const subscriberId = claims.sub;
+    const existing = await this.subscriberRepository.findOne({
+      _environmentId: environmentId,
+      subscriberId,
+    });
+    if (existing) return;
+
+    const firstName = claims.given_name ?? claims.preferred_username ?? 'User';
+    const lastName = claims.family_name ?? '';
+
+    await this.subscriberRepository.create({
+      _environmentId: environmentId,
+      _organizationId: organizationId,
+      subscriberId,
+      firstName,
+      lastName,
+      email: claims.email,
+      data: { externalId: claims.sub, source: 'keycloak' },
+    });
   }
 
   private async resolveOrganizationId(user: UserEntity): Promise<string> {
