@@ -1,6 +1,6 @@
 "use client"
 
-import { UserButton } from "@/lib/auth"
+import { UserButton } from "@metronome/auth-next/client"
 
 export function AppHeader() {
   return (

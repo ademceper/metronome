@@ -1,0 +1,10 @@
+{
+  "extends": "@metronome/ts-cfg/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@metronome/auth-next/*": ["./src/*"]
+    }
+  },
+  "include": ["."],
+  "exclude": ["node_modules", "dist"]
+}
