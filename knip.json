@@ -15,6 +15,7 @@
       "entry": ["biome.json", "lefthook.yml"]
     },
     "apps/user": {
+      "entry": ["auth.ts"],
       "project": ["**/*.{ts,tsx}"],
       "next": true,
       "ignoreDependencies": ["@tailwindcss/postcss", "@phosphor-icons/react"]
