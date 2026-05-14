@@ -738,9 +738,32 @@ const rootElement = document.getElementById('root');
 
 if (!rootElement) throw new Error('Root element not found');
 
+function OidcFallback() {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: 24,
+    }}>
+      <div style={{ maxWidth: 560 }}>
+        <h2 style={{ margin: 0, fontSize: 20, fontWeight: 600 }}>
+          Waiting for Keycloak…
+        </h2>
+        <p style={{ marginTop: 12, color: '#666', lineHeight: 1.5 }}>
+          The dashboard could not reach the OIDC server at{' '}
+          <code>{import.meta.env.VITE_OIDC_ISSUER_URI ?? 'http://localhost:8080/realms/tiko'}</code>.
+          Start Keycloak with <code>pnpm --filter auth dev:local</code>{' '}
+          (it boots from <code>infrastructure/keycloak/</code> and registers the{' '}
+          <code>notification-spa</code> client automatically). This page reloads
+          itself once the server responds.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 createRoot(rootElement).render(
   <StrictMode>
-    <OidcInitializationGate>
+    <OidcInitializationGate fallback={<OidcFallback />}>
       <FeatureFlagsProvider>
         <RouterProvider router={router} />
       </FeatureFlagsProvider>
