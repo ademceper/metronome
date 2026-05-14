@@ -57,7 +57,35 @@ export function NovuLogoBlackBg() {
   );
 }
 
+// Theme-aware default avatar — light/dark adaptive via CSS theme tokens.
 export function UserAvatar(props: any) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      width={32}
+      height={32}
+      role="img"
+      aria-hidden="true"
+      className="text-muted-foreground"
+      {...props}
+    >
+      <rect width="32" height="32" rx="16" className="fill-muted" />
+      <g clipPath="url(#default-avatar-clip)">
+        <ellipse cx="16" cy="31.2" rx="12.8" ry="9.6" fill="currentColor" fillOpacity="0.72" />
+        <circle cx="16" cy="12.8" r="6.4" fill="currentColor" fillOpacity="0.9" />
+      </g>
+      <defs>
+        <clipPath id="default-avatar-clip">
+          <rect width="32" height="32" rx="16" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+// Old base64 PNG kept as escape hatch if a particular caller needs the photo.
+export function UserAvatarLegacy(props: any) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

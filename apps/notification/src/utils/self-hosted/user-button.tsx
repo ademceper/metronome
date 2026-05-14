@@ -2,7 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import { RiCalendarEventLine, RiExternalLinkLine, RiLogoutBoxRLine, RiSignpostFill, RiUserLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
-import { Avatar, AvatarImage } from '@/components/primitives/avatar';
+import { Avatar } from '@/components/primitives/avatar';
 import { Button } from '@/components/primitives/button';
 import {
   DropdownMenu,
@@ -53,7 +53,7 @@ export function UserButton() {
             className="size-6 rounded-full bg-background p-0 hover:bg-accent focus:outline-hidden focus:ring-0 focus-visible:shadow-none"
           >
             <Avatar className="size-6 border">
-              <AvatarImage src={`${window.location.origin}/images/avatar.svg`} alt={userName} />
+              <UserAvatar className="size-full" />
             </Avatar>
           </Button>
         </DropdownMenuTrigger>

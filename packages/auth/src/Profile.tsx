@@ -14,6 +14,44 @@ import { cn } from "@metronome/ui/lib/utils"
 import { SignOutIcon, UserCircleIcon } from "@phosphor-icons/react"
 import type { ReactNode } from "react"
 
+// Inline theme-aware default avatar. Uses CSS theme tokens so the same
+// markup adapts to light and dark mode without swapping assets.
+function DefaultAvatar({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-hidden="true"
+      className={cn("size-full text-muted-foreground", className)}
+    >
+      <rect width="32" height="32" rx="16" className="fill-muted" />
+      <g clipPath="url(#default-avatar-clip)">
+        <ellipse
+          cx="16"
+          cy="31.2"
+          rx="12.8"
+          ry="9.6"
+          fill="currentColor"
+          fillOpacity="0.72"
+        />
+        <circle
+          cx="16"
+          cy="12.8"
+          r="6.4"
+          fill="currentColor"
+          fillOpacity="0.9"
+        />
+      </g>
+      <defs>
+        <clipPath id="default-avatar-clip">
+          <rect width="32" height="32" rx="16" />
+        </clipPath>
+      </defs>
+    </svg>
+  )
+}
+
 export type ProfileProps = {
   name?: string
   email?: string
@@ -50,7 +88,12 @@ export function Profile({
 }: ProfileProps) {
   const displayName = name || email || "Account"
   const initials = (displayName || "?").slice(0, 2).toUpperCase()
-  const resolvedAvatar = avatarUrl ?? fallbackAvatarUrl
+  // Only use the bitmap fallback when the caller explicitly overrode it.
+  // Default path renders DefaultAvatar so it tracks the theme.
+  const explicitFallback = fallbackAvatarUrl !== "/images/avatar.svg"
+  const resolvedAvatar =
+    avatarUrl ?? (explicitFallback ? fallbackAvatarUrl : undefined)
+  const useDefaultAvatar = !resolvedAvatar
 
   return (
     <div className="shrink-0">
@@ -64,7 +107,11 @@ export function Profile({
           )}
         >
           <Avatar className="size-6 border">
-            <AvatarImage src={resolvedAvatar} alt={displayName} />
+            {useDefaultAvatar ? (
+              <DefaultAvatar />
+            ) : (
+              <AvatarImage src={resolvedAvatar} alt={displayName} />
+            )}
             <AvatarFallback className="font-medium text-[10px]">
               {initials}
             </AvatarFallback>
@@ -77,7 +124,11 @@ export function Profile({
         >
           <div className="flex items-center gap-3 p-3">
             <Avatar className="size-8 border">
-              <AvatarImage src={resolvedAvatar} alt={displayName} />
+              {useDefaultAvatar ? (
+                <DefaultAvatar />
+              ) : (
+                <AvatarImage src={resolvedAvatar} alt={displayName} />
+              )}
               <AvatarFallback className="font-medium text-xs">
                 {initials}
               </AvatarFallback>
