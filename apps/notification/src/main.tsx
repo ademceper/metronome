@@ -4,6 +4,14 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
 import './index.css';
+import { bootstrapOidc, OidcInitializationGate } from '@/auth-client';
+
+bootstrapOidc({
+  implementation: 'real',
+  issuerUri:
+    import.meta.env.VITE_OIDC_ISSUER_URI ?? 'http://localhost:8080/realms/tiko',
+  clientId: import.meta.env.VITE_OIDC_CLIENT_ID ?? 'notification-spa',
+});
 
 import { ConfigureWorkflow } from '@/components/workflow-editor/configure-workflow';
 import { EditStepConditions } from '@/components/workflow-editor/steps/conditions/edit-step-conditions';
@@ -732,8 +740,10 @@ if (!rootElement) throw new Error('Root element not found');
 
 createRoot(rootElement).render(
   <StrictMode>
-    <FeatureFlagsProvider>
-      <RouterProvider router={router} />
-    </FeatureFlagsProvider>
+    <OidcInitializationGate>
+      <FeatureFlagsProvider>
+        <RouterProvider router={router} />
+      </FeatureFlagsProvider>
+    </OidcInitializationGate>
   </StrictMode>
 );
