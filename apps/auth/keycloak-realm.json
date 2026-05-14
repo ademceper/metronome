@@ -884,6 +884,7 @@
       ]
     },
     {
+      "id": "ac642273-7088-418f-91dc-bc48a79a8886",
       "clientId": "user-spa",
       "name": "Metronome User App",
       "rootUrl": "http://localhost:3000",
@@ -934,6 +935,7 @@
       ]
     },
     {
+      "id": "0eb29235-73e7-4bd5-8d32-bc319dcc4099",
       "clientId": "admin-spa",
       "name": "Metronome Admin App",
       "rootUrl": "http://localhost:5173",
@@ -1035,6 +1037,7 @@
       "id": "68e5e99a-fe8a-4d5e-977a-8b9dcacd93d9"
     },
     {
+      "id": "532452bf-d786-48d2-811b-1994a290a1b7",
       "clientId": "mobile-spa",
       "name": "Metronome Mobile App",
       "surrogateAuthRequired": false,
@@ -1084,6 +1087,7 @@
       ]
     },
     {
+      "id": "eeec1364-aa10-4609-8f8d-f40fa04e2ded",
       "clientId": "notification-api",
       "name": "Notification API",
       "surrogateAuthRequired": false,
@@ -1124,6 +1128,7 @@
       ]
     },
     {
+      "id": "9dd702b8-2d6c-4875-ad6f-a789d5014a71",
       "clientId": "notification-worker",
       "name": "Notification Worker",
       "surrogateAuthRequired": false,
@@ -1164,6 +1169,7 @@
       ]
     },
     {
+      "id": "54d41b39-8cce-4ce0-917f-39c08036cb24",
       "clientId": "notification-ws",
       "name": "Notification WebSocket",
       "surrogateAuthRequired": false,
@@ -1204,6 +1210,7 @@
       ]
     },
     {
+      "id": "2ca19328-96d3-4644-96c4-788824ada4d2",
       "clientId": "notification-webhook",
       "name": "Notification Webhook",
       "surrogateAuthRequired": false,
@@ -1244,6 +1251,7 @@
       ]
     },
     {
+      "id": "ce02a10d-7598-490d-9faf-2bb0598f0e55",
       "clientId": "notification-inbound-mail",
       "name": "Notification Inbound Mail",
       "surrogateAuthRequired": false,
@@ -1284,6 +1292,7 @@
       ]
     },
     {
+      "id": "3c064a43-1d21-4b2f-8175-69cf11c48dd5",
       "clientId": "account-api",
       "name": "Account Service",
       "surrogateAuthRequired": false,
@@ -1324,6 +1333,7 @@
       ]
     },
     {
+      "id": "1d79a930-2f61-4e5d-b6f3-57a879306527",
       "clientId": "admin-api",
       "name": "Admin Backend",
       "surrogateAuthRequired": false,
@@ -1364,6 +1374,7 @@
       ]
     },
     {
+      "id": "63627d6e-35eb-4062-9fbd-03cf79dcb9e4",
       "clientId": "campaign-api",
       "name": "Campaign Service",
       "surrogateAuthRequired": false,
@@ -1404,6 +1415,7 @@
       ]
     },
     {
+      "id": "d178437b-4791-4676-b969-3edcd4204922",
       "clientId": "card-api",
       "name": "Card Service",
       "surrogateAuthRequired": false,
@@ -1444,6 +1456,7 @@
       ]
     },
     {
+      "id": "07ac564b-58dc-46e8-ac20-d33e274bec30",
       "clientId": "corporate-api",
       "name": "Corporate Service",
       "surrogateAuthRequired": false,
@@ -1484,6 +1497,7 @@
       ]
     },
     {
+      "id": "56536283-4919-43a5-8400-0427f36c1ba6",
       "clientId": "fast-api",
       "name": "Fast Service",
       "surrogateAuthRequired": false,
@@ -1524,6 +1538,7 @@
       ]
     },
     {
+      "id": "5c2c2895-45dc-4276-9fe3-9fc7b6d523fe",
       "clientId": "fraud-api",
       "name": "Fraud Service",
       "surrogateAuthRequired": false,
@@ -1564,6 +1579,7 @@
       ]
     },
     {
+      "id": "3aedc5ec-f7fb-47d0-b830-7e1b2c51799d",
       "clientId": "integration-api",
       "name": "Integration Service",
       "surrogateAuthRequired": false,
@@ -1604,6 +1620,7 @@
       ]
     },
     {
+      "id": "858e224b-cb38-4056-b20b-0dd56aceac9f",
       "clientId": "onboarding-api",
       "name": "Onboarding Service",
       "surrogateAuthRequired": false,
@@ -1644,6 +1661,7 @@
       ]
     },
     {
+      "id": "bf6e0e5b-b676-49a4-9db0-c81832959f06",
       "clientId": "reconciliation-api",
       "name": "Reconciliation Service",
       "surrogateAuthRequired": false,
@@ -1684,6 +1702,7 @@
       ]
     },
     {
+      "id": "09a7f393-c426-4682-92f2-d0ddd13f00b2",
       "clientId": "reporting-api",
       "name": "Reporting Service",
       "surrogateAuthRequired": false,
@@ -1724,6 +1743,7 @@
       ]
     },
     {
+      "id": "d360d31a-bdd8-4aa6-a6a9-c3d5cf31ca88",
       "clientId": "transaction-api",
       "name": "Transaction Service",
       "surrogateAuthRequired": false,
