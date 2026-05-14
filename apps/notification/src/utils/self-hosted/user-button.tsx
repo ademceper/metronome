@@ -50,46 +50,50 @@ export function UserButton() {
             ref={buttonRef}
             variant="secondary"
             size="sm"
-            className="h-6 w-6 rounded-full bg-white p-0 hover:bg-gray-50 focus:outline-hidden focus:ring-0 focus-visible:shadow-none"
+            className="size-6 rounded-full bg-background p-0 hover:bg-accent focus:outline-hidden focus:ring-0 focus-visible:shadow-none"
           >
-            <Avatar className="h-6 w-6 border border-gray-200">
+            <Avatar className="size-6 border">
               <AvatarImage src={`${window.location.origin}/images/avatar.svg`} alt={userName} />
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-[300px] border border-gray-200 bg-white shadow-sm" sideOffset={5}>
+        <DropdownMenuContent
+          align="end"
+          className="w-75 border bg-popover text-popover-foreground shadow-sm"
+          sideOffset={5}
+        >
           <div className="flex items-center gap-3 p-3">
             <UserAvatar className="rounded-full" />
-            <span className="truncate text-sm font-medium text-gray-900">{userName}</span>
+            <span className="truncate text-sm font-medium text-foreground">{userName}</span>
           </div>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            className="flex cursor-pointer items-center gap-2 text-gray-700 hover:bg-gray-50"
+            className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
             onClick={() => openInNewTab(SELF_HOSTED_UPGRADE_REDIRECT_URL + '?utm_campaign=user_button_learn_more')}
           >
             <div className="flex min-w-0 flex-1 items-center gap-2">
-              <RiSignpostFill className="h-3.5 w-3.5 shrink-0 text-gray-500" />
+              <RiSignpostFill className="size-3.5 shrink-0 text-muted-foreground" />
               <span>Learn more about Novu Cloud</span>
-              <RiExternalLinkLine className="m-1 ml-auto h-3 w-3 shrink-0 text-gray-500" />
+              <RiExternalLinkLine className="m-1 ml-auto size-3 shrink-0 text-muted-foreground" />
             </div>
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="flex cursor-pointer items-center gap-2 text-gray-700 hover:bg-gray-50"
+            className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
             onClick={() => openInNewTab(SELF_HOSTED_UPGRADE_REDIRECT_URL + '?utm_campaign=user_button_contact_sales')}
           >
             <div className="flex min-w-0 flex-1 items-center gap-2">
-              <RiCalendarEventLine className="h-3.5 w-3.5 shrink-0 text-gray-500" />
+              <RiCalendarEventLine className="size-3.5 shrink-0 text-muted-foreground" />
               <span>Contact Sales</span>
-              <RiExternalLinkLine className="m-1 ml-auto h-3 w-3 shrink-0 text-gray-500" />
+              <RiExternalLinkLine className="m-1 ml-auto size-3 shrink-0 text-muted-foreground" />
             </div>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            className="flex cursor-pointer items-center gap-2 text-gray-700 hover:bg-gray-50"
+            className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
             onClick={handleLogout}
           >
             <div className="flex min-w-0 flex-1 items-center gap-2">
-              <RiLogoutBoxRLine className="h-3.5 w-3.5 shrink-0 text-gray-500" />
+              <RiLogoutBoxRLine className="size-3.5 shrink-0 text-muted-foreground" />
               <span>Logout</span>
             </div>
           </DropdownMenuItem>

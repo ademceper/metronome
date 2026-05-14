@@ -20,7 +20,7 @@ export type ProfileProps = {
   avatarUrl?: string
   onSignOut: () => void
   signOutLabel?: string
-  /** Extra DropdownMenuItem(s) inserted between header and Sign Out. */
+  /** Extra DropdownMenuItem(s) inserted between the header and Sign Out. */
   children?: ReactNode
   align?: "start" | "center" | "end"
   className?: string
@@ -45,12 +45,12 @@ export function Profile({
         <DropdownMenuTrigger
           aria-label={displayName}
           className={cn(
-            "h-6 w-6 rounded-full bg-white p-0 outline-none ring-0",
-            "hover:bg-gray-50 focus:outline-hidden focus:ring-0 focus-visible:shadow-none",
+            "size-6 rounded-full bg-background p-0 outline-none ring-0",
+            "hover:bg-accent focus:outline-hidden focus:ring-0 focus-visible:shadow-none",
             className
           )}
         >
-          <Avatar className="h-6 w-6 border border-gray-200">
+          <Avatar className="size-6 border">
             {avatarUrl ? (
               <AvatarImage src={avatarUrl} alt={displayName} />
             ) : null}
@@ -62,10 +62,10 @@ export function Profile({
         <DropdownMenuContent
           align={align}
           sideOffset={5}
-          className="w-[300px] border border-gray-200 bg-white shadow-sm"
+          className="w-75 border bg-popover text-popover-foreground shadow-sm"
         >
           <div className="flex items-center gap-3 p-3">
-            <Avatar className="size-8 border border-gray-200">
+            <Avatar className="size-8 border">
               {avatarUrl ? (
                 <AvatarImage src={avatarUrl} alt={displayName} />
               ) : null}
@@ -74,11 +74,13 @@ export function Profile({
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0 flex-1">
-              <div className="truncate font-medium text-gray-900 text-sm">
+              <div className="truncate font-medium text-foreground text-sm">
                 {displayName}
               </div>
               {email && name ? (
-                <div className="truncate text-gray-500 text-xs">{email}</div>
+                <div className="truncate text-muted-foreground text-xs">
+                  {email}
+                </div>
               ) : null}
             </div>
           </div>
@@ -91,10 +93,10 @@ export function Profile({
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onSelect={onSignOut}
-            className="flex cursor-pointer items-center gap-2 text-gray-700 hover:bg-gray-50"
+            className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
           >
             <div className="flex min-w-0 flex-1 items-center gap-2">
-              <SignOutIcon className="h-3.5 w-3.5 shrink-0 text-gray-500" />
+              <SignOutIcon className="size-3.5 shrink-0 text-muted-foreground" />
               <span>{signOutLabel}</span>
             </div>
           </DropdownMenuItem>
