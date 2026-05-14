@@ -8,6 +8,7 @@ type UserButtonProps<D> = {
   resolveName?: ResolveClaim<D>
   resolveEmail?: ResolveClaim<D>
   resolveAvatarUrl?: ResolveClaim<D>
+  fallbackAvatarUrl?: string
   signOutLabel?: string
   align?: ProfileProps["align"]
   className?: string
@@ -32,6 +33,7 @@ export function createUserButton<D extends Record<string, unknown>>(
     resolveName,
     resolveEmail,
     resolveAvatarUrl,
+    fallbackAvatarUrl,
     signOutLabel,
     align,
     className,
@@ -59,6 +61,7 @@ export function createUserButton<D extends Record<string, unknown>>(
         name={name}
         email={email}
         avatarUrl={avatarUrl}
+        fallbackAvatarUrl={fallbackAvatarUrl}
         onSignOut={() => oidc.logout?.({ redirectTo: "current page" })}
         signOutLabel={signOutLabel}
         align={align}

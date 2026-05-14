@@ -20,6 +20,10 @@ export type ProfileProps = {
   avatarUrl?: string
   onSignOut: () => void
   signOutLabel?: string
+  /** Fallback when no avatarUrl is supplied. Defaults to /images/avatar.svg
+   *  so apps that drop a static asset there (notification, user, admin)
+   *  get a photo-style avatar instead of initials. */
+  fallbackAvatarUrl?: string
   /** Extra DropdownMenuItem(s) inserted between the header and Sign Out. */
   children?: ReactNode
   align?: "start" | "center" | "end"
@@ -30,6 +34,7 @@ export function Profile({
   name,
   email,
   avatarUrl,
+  fallbackAvatarUrl = "/images/avatar.svg",
   onSignOut,
   signOutLabel = "Sign out",
   children,
@@ -38,6 +43,7 @@ export function Profile({
 }: ProfileProps) {
   const displayName = name || email || "Account"
   const initials = (displayName || "?").slice(0, 2).toUpperCase()
+  const resolvedAvatar = avatarUrl ?? fallbackAvatarUrl
 
   return (
     <div className="shrink-0">
@@ -51,9 +57,7 @@ export function Profile({
           )}
         >
           <Avatar className="size-6 border">
-            {avatarUrl ? (
-              <AvatarImage src={avatarUrl} alt={displayName} />
-            ) : null}
+            <AvatarImage src={resolvedAvatar} alt={displayName} />
             <AvatarFallback className="font-medium text-[10px]">
               {initials}
             </AvatarFallback>
@@ -66,9 +70,7 @@ export function Profile({
         >
           <div className="flex items-center gap-3 p-3">
             <Avatar className="size-8 border">
-              {avatarUrl ? (
-                <AvatarImage src={avatarUrl} alt={displayName} />
-              ) : null}
+              <AvatarImage src={resolvedAvatar} alt={displayName} />
               <AvatarFallback className="font-medium text-xs">
                 {initials}
               </AvatarFallback>

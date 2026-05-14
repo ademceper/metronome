@@ -27,6 +27,8 @@ export type UserButtonProps = {
   resolveEmail?: (claims: any) => string | undefined
   /** Pick the avatar URL claim. Defaults to `picture`. */
   resolveAvatarUrl?: (claims: any) => string | undefined
+  /** Used when claim has no picture. Defaults to `/images/avatar.svg`. */
+  fallbackAvatarUrl?: string
   signOutLabel?: string
   align?: ProfileProps["align"]
   className?: string
