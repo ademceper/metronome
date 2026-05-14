@@ -43,9 +43,7 @@ import {
   CreateWorkflowPage,
   ErrorPage,
   IntegrationsListPage,
-  InvitationAcceptPage,
   LayoutsPage,
-  OrganizationListPage,
   SettingsPage,
   TemplateModal,
   TranslationsPage,
@@ -97,7 +95,7 @@ import { UpsertVariablePage } from './pages/upsert-variable';
 import { UsecaseSelectPage } from './pages/usecase-select-page';
 import { VariablesPage } from './pages/variables';
 import { VercelIntegrationPage } from './pages/vercel-integration-page';
-import { CatchAllRoute, DashboardRoute, ProtectedAuthRoute, RootRoute } from './routes';
+import { CatchAllRoute, DashboardRoute, RootRoute } from './routes';
 import { DispatchProtectedRoute } from './routes/dispatch-protected-route';
 import { OnboardingParentRoute } from './routes/onboarding';
 import { ProtectedRoute } from './routes/protected-route';
@@ -113,19 +111,6 @@ const router = createBrowserRouter([
     element: <RootRoute />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        element: <ProtectedAuthRoute />,
-        children: [
-          {
-            path: ROUTES.SIGNUP_ORGANIZATION_LIST,
-            element: <OrganizationListPage />,
-          },
-          {
-            path: ROUTES.INVITATION_ACCEPT,
-            element: <InvitationAcceptPage />,
-          },
-        ],
-      },
       {
         path: '/onboarding',
         element: <OnboardingParentRoute />,
