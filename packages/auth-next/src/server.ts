@@ -44,6 +44,13 @@ export function createAuth({
       },
     ],
     callbacks: {
+      // Gate every request the middleware sees. Returning false makes
+      // NextAuth send the user through /api/auth/signin (which forwards
+      // to the OIDC provider). This is what makes the package behave like
+      // Clerk's middleware: protected by default.
+      authorized({ auth }) {
+        return !!auth
+      },
       // Surface raw OIDC claims on the session so UserButton can read them.
       async jwt({ token, profile }) {
         if (profile) {
