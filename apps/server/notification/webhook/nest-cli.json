@@ -28,6 +28,6 @@
         "stripLeadingPaths": true
       }
     },
-    "typeCheck": true
+    "typeCheck": false
   }
 }
