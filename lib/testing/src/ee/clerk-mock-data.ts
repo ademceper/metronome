@@ -1,4 +1,9 @@
-import type { Organization, OrganizationMembership, User } from "@clerk/backend"
+// Local stand-ins for the (removed) @clerk/backend types. Mock data only;
+// shape is intentionally loose since tests cast through `unknown`.
+type User = unknown
+type Organization = unknown
+type OrganizationMembership = unknown
+
 import { JobTitleEnum } from "@novu/shared"
 
 export const CLERK_USER_1 = {

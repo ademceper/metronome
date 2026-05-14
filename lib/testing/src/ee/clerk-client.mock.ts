@@ -1,8 +1,12 @@
-import type { Organization, OrganizationMembership, User } from "@clerk/backend"
-import type {
-  OrganizationAPI,
-  UserAPI,
-} from "@clerk/backend/dist/api/endpoints"
+// Local stand-ins for @clerk/backend types so this mock compiles without the
+// real package. Tests cast through `any`/`unknown` and don't rely on strict
+// typing.
+type User = any
+type Organization = any
+type OrganizationMembership = any
+type UserAPI = Record<string, (...args: any[]) => any>
+type OrganizationAPI = Record<string, (...args: any[]) => any>
+
 import {
   CLERK_ORGANIZATION_1,
   CLERK_ORGANIZATION_1_MEMBERSHIP_1,
