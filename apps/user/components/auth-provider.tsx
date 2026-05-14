@@ -1,8 +1,17 @@
 "use client"
 
-import { AuthProvider as NextAuthProvider } from "@metronome/auth-next/client"
+import {
+  AuthProvider as NextAuthProvider,
+  type Session,
+} from "@metronome/auth-next/client"
 import type { ReactNode } from "react"
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  return <NextAuthProvider>{children}</NextAuthProvider>
+export function AuthProvider({
+  children,
+  session,
+}: {
+  children: ReactNode
+  session?: Session
+}) {
+  return <NextAuthProvider session={session}>{children}</NextAuthProvider>
 }

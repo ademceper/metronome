@@ -11,6 +11,7 @@ import type { ComponentType, ReactNode } from "react"
 
 // Re-export the underlying NextAuth hooks so apps can drop down when needed.
 export { signIn, signOut, useSession } from "next-auth/react"
+export type Session = SessionProviderProps["session"]
 
 /**
  * Clerk-style conditional render: only paints children when the user is

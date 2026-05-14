@@ -1,6 +1,11 @@
+import { auth } from "@metronome/auth-next/action"
 import { Button } from "@metronome/ui/components/button"
+import { redirect } from "next/navigation"
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth()
+  if (!session) redirect("/sign-in")
+
   return (
     <div className="flex min-h-svh p-6">
       <div className="flex min-w-0 max-w-md flex-col gap-4 text-sm leading-loose">

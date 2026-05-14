@@ -1,3 +1,4 @@
+import { auth } from "@metronome/auth-next/action"
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "@metronome/ui/globals.css"
@@ -16,11 +17,12 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const session = await auth()
   return (
     <html
       lang="en"
@@ -34,16 +36,20 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <AuthProvider>
-            <TooltipProvider>
-              <SidebarProvider>
-                <AppSidebar />
-                <SidebarInset>
-                  <AppHeader />
-                  {children}
-                </SidebarInset>
-              </SidebarProvider>
-            </TooltipProvider>
+          <AuthProvider session={session}>
+            {session ? (
+              <TooltipProvider>
+                <SidebarProvider>
+                  <AppSidebar />
+                  <SidebarInset>
+                    <AppHeader />
+                    {children}
+                  </SidebarInset>
+                </SidebarProvider>
+              </TooltipProvider>
+            ) : (
+              children
+            )}
           </AuthProvider>
         </ThemeProvider>
       </body>
