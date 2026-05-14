@@ -82,7 +82,6 @@
       }
     ],
     "client": {
-      "myclient": [],
       "realm-management": [
         {
           "id": "b27b272d-d153-4ae7-9fe7-fd96582f057d",
@@ -388,7 +387,27 @@
           "attributes": {}
         }
       ],
-      "notification-spa": []
+      "notification-spa": [],
+      "notification-inbound-mail": [],
+      "reconciliation-api": [],
+      "mobile-spa": [],
+      "transaction-api": [],
+      "reporting-api": [],
+      "fast-api": [],
+      "user-spa": [],
+      "integration-api": [],
+      "admin-spa": [],
+      "notification-ws": [],
+      "corporate-api": [],
+      "campaign-api": [],
+      "notification-webhook": [],
+      "onboarding-api": [],
+      "fraud-api": [],
+      "card-api": [],
+      "notification-worker": [],
+      "notification-api": [],
+      "account-api": [],
+      "admin-api": []
     }
   },
   "groups": [],
