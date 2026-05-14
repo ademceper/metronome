@@ -83,6 +83,11 @@ export type UserButtonProps = {
 /**
  * NextAuth-bound UserButton. Same visual as @metronome/auth's UserButton
  * but driven by the NextAuth session.
+ *
+ * Sign out is federated: we first hit Keycloak's end_session_endpoint
+ * with id_token_hint so the SSO session terminates, then NextAuth clears
+ * the local cookie. Without this the middleware would silently re-auth
+ * the user via the still-live Keycloak session.
  */
 export const UserButton: ComponentType<UserButtonProps> = function UserButton({
   children,
@@ -94,13 +99,27 @@ export const UserButton: ComponentType<UserButtonProps> = function UserButton({
   const { data, status } = useSession()
   if (status !== "authenticated" || !data?.user) return null
 
+  const session = data as typeof data & { idToken?: string; issuer?: string }
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: false })
+    if (session.issuer && session.idToken) {
+      const url = new URL(`${session.issuer}/protocol/openid-connect/logout`)
+      url.searchParams.set("id_token_hint", session.idToken)
+      url.searchParams.set("post_logout_redirect_uri", window.location.origin)
+      window.location.href = url.toString()
+    } else {
+      window.location.href = "/"
+    }
+  }
+
   return (
     <Profile
       name={data.user.name ?? undefined}
       email={data.user.email ?? undefined}
       avatarUrl={data.user.image ?? undefined}
       fallbackAvatarUrl={fallbackAvatarUrl}
-      onSignOut={() => signOut({ redirectTo: "/" })}
+      onSignOut={handleSignOut}
       signOutLabel={signOutLabel}
       align={align}
       className={className}

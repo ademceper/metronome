@@ -56,12 +56,18 @@ export function createAuth({
         return !!auth
       },
       // Surface raw OIDC claims on the session so UserButton can read them.
-      async jwt({ token, profile }) {
+      // Also keep id_token + issuer URL so federated logout can terminate
+      // the Keycloak session on sign out.
+      async jwt({ token, profile, account }) {
         if (profile) {
           token.name = profile.name ?? token.name
           token.email = profile.email ?? token.email
           token.picture = profile.picture ?? token.picture
           token.sub = profile.sub ?? token.sub
+        }
+        if (account?.id_token) {
+          token.idToken = account.id_token
+          token.issuer = (account.provider_issuer as string) ?? issuerUri
         }
         return token
       },
@@ -71,6 +77,12 @@ export function createAuth({
           session.user.email = token.email ?? session.user.email
           session.user.image = (token.picture as string) ?? session.user.image
         }
+        ;(session as { idToken?: string }).idToken = token.idToken as
+          | string
+          | undefined
+        ;(session as { issuer?: string }).issuer = token.issuer as
+          | string
+          | undefined
         return session
       },
     },
