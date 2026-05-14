@@ -24,6 +24,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./client": "./src/client.tsx",
-    "./server": "./src/server.ts"
+    "./server": "./src/server.ts",
+    "./middleware": "./src/middleware.ts",
+    "./route": "./src/route.ts"
   }
 }

@@ -1,6 +1,8 @@
 export type { UserButtonProps } from "./client"
 export {
   AuthProvider,
+  SignedIn,
+  SignedOut,
   signIn,
   signOut,
   UserButton,

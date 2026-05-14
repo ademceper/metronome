@@ -9,8 +9,28 @@ import {
 } from "next-auth/react"
 import type { ComponentType, ReactNode } from "react"
 
-// Re-export the underlying NextAuth hook so apps can drop down when needed.
+// Re-export the underlying NextAuth hooks so apps can drop down when needed.
 export { signIn, signOut, useSession } from "next-auth/react"
+
+/**
+ * Clerk-style conditional render: only paints children when the user is
+ * authenticated. Pair with <SignedOut> to gate UI without writing your own
+ * useSession check.
+ */
+export function SignedIn({ children }: { children: ReactNode }) {
+  const { status } = useSession()
+  return status === "authenticated" ? <>{children}</> : null
+}
+
+/**
+ * Clerk-style conditional render: only paints children when the user is
+ * NOT authenticated (loading is treated as signed-out so the public UI
+ * shows immediately).
+ */
+export function SignedOut({ children }: { children: ReactNode }) {
+  const { status } = useSession()
+  return status === "unauthenticated" ? <>{children}</> : null
+}
 
 /**
  * Wraps children in NextAuth's SessionProvider. Use at the top of the

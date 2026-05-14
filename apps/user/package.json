@@ -14,7 +14,6 @@
     "@metronome/ui": "workspace:*",
     "@phosphor-icons/react": "^2.1.10",
     "next": "16.1.6",
-    "next-auth": "5.0.0-beta.25",
     "next-themes": "^0.4.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

@@ -1,3 +1,1 @@
-import { handlers } from "@/auth"
-
-export const { GET, POST } = handlers
+export { GET, POST } from "@metronome/auth-next/route"
