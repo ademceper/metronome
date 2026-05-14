@@ -4,7 +4,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
 import './index.css';
-import { bootstrapOidc, OidcInitializationGate } from '@/auth-client';
+import { bootstrapOidc, OidcInitializationGate, OidcInitializationErrorGate } from '@/auth-client';
 
 bootstrapOidc({
   implementation: 'real',
@@ -738,24 +738,57 @@ const rootElement = document.getElementById('root');
 
 if (!rootElement) throw new Error('Root element not found');
 
-function OidcFallback() {
+const issuerUri = import.meta.env.VITE_OIDC_ISSUER_URI ?? 'http://localhost:8080/realms/tiko';
+
+function OidcLoading() {
   return (
     <div style={{
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: 24,
     }}>
       <div style={{ maxWidth: 560 }}>
-        <h2 style={{ margin: 0, fontSize: 20, fontWeight: 600 }}>
-          Waiting for Keycloak…
+        <h2 style={{ margin: 0, fontSize: 18, fontWeight: 500 }}>
+          Signing you in via Keycloak…
         </h2>
-        <p style={{ marginTop: 12, color: '#666', lineHeight: 1.5 }}>
-          The dashboard could not reach the OIDC server at{' '}
-          <code>{import.meta.env.VITE_OIDC_ISSUER_URI ?? 'http://localhost:8080/realms/tiko'}</code>.
-          Start Keycloak with <code>pnpm --filter auth dev:local</code>{' '}
-          (it boots from <code>infrastructure/keycloak/</code> and registers the{' '}
-          <code>notification-spa</code> client automatically). This page reloads
-          itself once the server responds.
+        <p style={{ marginTop: 8, color: '#888', fontSize: 14 }}>
+          {issuerUri}
         </p>
+      </div>
+    </div>
+  );
+}
+
+function OidcError({ oidcInitializationError }: { oidcInitializationError: { message?: string; isAuthServerLikelyDown?: boolean } }) {
+  const serverDown = oidcInitializationError.isAuthServerLikelyDown;
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      minHeight: '100vh', fontFamily: 'system-ui, sans-serif', padding: 24,
+    }}>
+      <div style={{ maxWidth: 640 }}>
+        <h2 style={{ margin: 0, fontSize: 20, fontWeight: 600, color: '#b91c1c' }}>
+          {serverDown ? 'Keycloak unreachable' : 'OIDC initialization failed'}
+        </h2>
+        <p style={{ marginTop: 12, color: '#444', lineHeight: 1.5 }}>
+          {serverDown ? (
+            <>
+              The dashboard could not reach the OIDC server at <code>{issuerUri}</code>.
+              Start it with <code>pnpm --filter auth dev</code> (docker) or{' '}
+              <code>pnpm --filter auth dev:local</code> (native), then reload.
+            </>
+          ) : (
+            <>{oidcInitializationError.message ?? 'Unknown error'}</>
+          )}
+        </p>
+        <button
+          onClick={() => window.location.reload()}
+          style={{
+            marginTop: 16, padding: '8px 16px', borderRadius: 6,
+            border: '1px solid #ccc', background: '#f7f7f7', cursor: 'pointer',
+          }}
+        >
+          Retry
+        </button>
       </div>
     </div>
   );
@@ -763,10 +796,12 @@ function OidcFallback() {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <OidcInitializationGate fallback={<OidcFallback />}>
-      <FeatureFlagsProvider>
-        <RouterProvider router={router} />
-      </FeatureFlagsProvider>
-    </OidcInitializationGate>
+    <OidcInitializationErrorGate errorComponent={OidcError}>
+      <OidcInitializationGate fallback={<OidcLoading />}>
+        <FeatureFlagsProvider>
+          <RouterProvider router={router} />
+        </FeatureFlagsProvider>
+      </OidcInitializationGate>
+    </OidcInitializationErrorGate>
   </StrictMode>
 );
