@@ -31,6 +31,10 @@ export function createAuth({
 }: CreateAuthOptions): NextAuthResult {
   const config: NextAuthConfig = {
     trustHost: true,
+    // Skip NextAuth's built-in "Sign in with OIDC" picker by sending users
+    // to /sign-in, where apps render a tiny page that immediately calls
+    // signIn("oidc") and forwards to Keycloak.
+    pages: { signIn: "/sign-in" },
     providers: [
       {
         id: "oidc",
@@ -45,9 +49,9 @@ export function createAuth({
     ],
     callbacks: {
       // Gate every request the middleware sees. Returning false makes
-      // NextAuth send the user through /api/auth/signin (which forwards
-      // to the OIDC provider). This is what makes the package behave like
-      // Clerk's middleware: protected by default.
+      // NextAuth send the user through pages.signIn (default /sign-in),
+      // which apps wire to immediately call signIn("oidc") — skipping
+      // the built-in provider picker.
       authorized({ auth }) {
         return !!auth
       },
