@@ -54,7 +54,7 @@ export function Profile({
             {avatarUrl ? (
               <AvatarImage src={avatarUrl} alt={displayName} />
             ) : null}
-            <AvatarFallback className="text-[10px] font-medium">
+            <AvatarFallback className="font-medium text-[10px]">
               {initials}
             </AvatarFallback>
           </Avatar>
@@ -69,16 +69,16 @@ export function Profile({
               {avatarUrl ? (
                 <AvatarImage src={avatarUrl} alt={displayName} />
               ) : null}
-              <AvatarFallback className="text-xs font-medium">
+              <AvatarFallback className="font-medium text-xs">
                 {initials}
               </AvatarFallback>
             </Avatar>
             <div className="min-w-0 flex-1">
-              <div className="truncate text-sm font-medium text-gray-900">
+              <div className="truncate font-medium text-gray-900 text-sm">
                 {displayName}
               </div>
               {email && name ? (
-                <div className="truncate text-xs text-gray-500">{email}</div>
+                <div className="truncate text-gray-500 text-xs">{email}</div>
               ) : null}
             </div>
           </div>
