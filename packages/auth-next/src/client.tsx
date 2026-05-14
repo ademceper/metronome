@@ -78,6 +78,11 @@ export type UserButtonProps = {
   className?: string
   /** Override the fallback avatar (default `/images/avatar.svg`). */
   fallbackAvatarUrl?: string
+  /** Override the auto-derived Keycloak account console URL. By default
+   *  resolved to `${session.issuer}/account` from the OIDC claims. Pass
+   *  `null` to hide the Account menu item. */
+  accountUrl?: string | null
+  accountLabel?: string
 }
 
 /**
@@ -95,11 +100,21 @@ export const UserButton: ComponentType<UserButtonProps> = function UserButton({
   align,
   className,
   fallbackAvatarUrl,
+  accountUrl,
+  accountLabel,
 }) {
   const { data, status } = useSession()
   if (status !== "authenticated" || !data?.user) return null
 
   const session = data as typeof data & { idToken?: string; issuer?: string }
+
+  // Auto-derive from Keycloak issuer when caller didn't override and the
+  // session carries the issuer claim. Pass `null` to hide.
+  const resolvedAccountUrl =
+    accountUrl === null
+      ? undefined
+      : (accountUrl ??
+        (session.issuer ? `${session.issuer}/account` : undefined))
 
   const handleSignOut = async () => {
     await signOut({ redirect: false })
@@ -119,6 +134,8 @@ export const UserButton: ComponentType<UserButtonProps> = function UserButton({
       email={data.user.email ?? undefined}
       avatarUrl={data.user.image ?? undefined}
       fallbackAvatarUrl={fallbackAvatarUrl}
+      accountUrl={resolvedAccountUrl}
+      accountLabel={accountLabel}
       onSignOut={handleSignOut}
       signOutLabel={signOutLabel}
       align={align}

@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
-import { RiCalendarEventLine, RiExternalLinkLine, RiLogoutBoxRLine, RiSignpostFill } from 'react-icons/ri';
+import { RiCalendarEventLine, RiExternalLinkLine, RiLogoutBoxRLine, RiSignpostFill, RiUserLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { Avatar, AvatarImage } from '@/components/primitives/avatar';
 import { Button } from '@/components/primitives/button';
@@ -88,6 +88,20 @@ export function UserButton() {
             </div>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
+          <DropdownMenuItem
+            className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
+            onClick={() =>
+              openInNewTab(
+                (import.meta.env.VITE_OIDC_ISSUER_URI ?? 'http://localhost:8080/realms/tiko') + '/account'
+              )
+            }
+          >
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              <RiUserLine className="size-3.5 shrink-0 text-muted-foreground" />
+              <span>Manage account</span>
+              <RiExternalLinkLine className="m-1 ml-auto size-3 shrink-0 text-muted-foreground" />
+            </div>
+          </DropdownMenuItem>
           <DropdownMenuItem
             className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
             onClick={handleLogout}

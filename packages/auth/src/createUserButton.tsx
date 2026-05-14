@@ -9,6 +9,11 @@ type UserButtonProps<D> = {
   resolveEmail?: ResolveClaim<D>
   resolveAvatarUrl?: ResolveClaim<D>
   fallbackAvatarUrl?: string
+  /** Override the auto-derived Keycloak account console URL. By default
+   *  resolved to `${oidc.issuerUri}/account` from the OIDC config. Pass
+   *  `null` to hide the Account menu item. */
+  accountUrl?: string | null
+  accountLabel?: string
   signOutLabel?: string
   align?: ProfileProps["align"]
   className?: string
@@ -17,6 +22,7 @@ type UserButtonProps<D> = {
 type AnyUseOidc = (params?: { assert?: undefined }) => {
   isUserLoggedIn: boolean
   decodedIdToken?: any
+  issuerUri?: string
   logout?: (p: { redirectTo: "current page" }) => Promise<never>
 }
 
@@ -34,6 +40,8 @@ export function createUserButton<D extends Record<string, unknown>>(
     resolveEmail,
     resolveAvatarUrl,
     fallbackAvatarUrl,
+    accountUrl,
+    accountLabel,
     signOutLabel,
     align,
     className,
@@ -56,12 +64,20 @@ export function createUserButton<D extends Record<string, unknown>>(
       ? resolveAvatarUrl(claims)
       : claims.picture
 
+    const resolvedAccountUrl =
+      accountUrl === null
+        ? undefined
+        : (accountUrl ??
+          (oidc.issuerUri ? `${oidc.issuerUri}/account` : undefined))
+
     return (
       <Profile
         name={name}
         email={email}
         avatarUrl={avatarUrl}
         fallbackAvatarUrl={fallbackAvatarUrl}
+        accountUrl={resolvedAccountUrl}
+        accountLabel={accountLabel}
         onSignOut={() => oidc.logout?.({ redirectTo: "current page" })}
         signOutLabel={signOutLabel}
         align={align}

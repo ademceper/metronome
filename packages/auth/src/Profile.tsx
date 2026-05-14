@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@metronome/ui/components/dropdown-menu"
 import { cn } from "@metronome/ui/lib/utils"
-import { SignOutIcon } from "@phosphor-icons/react"
+import { SignOutIcon, UserCircleIcon } from "@phosphor-icons/react"
 import type { ReactNode } from "react"
 
 export type ProfileProps = {
@@ -20,6 +20,11 @@ export type ProfileProps = {
   avatarUrl?: string
   onSignOut: () => void
   signOutLabel?: string
+  /** URL to the identity provider's account/profile console. When set,
+   *  the dropdown shows an "Account" item above Sign Out that opens this
+   *  URL in a new tab. */
+  accountUrl?: string
+  accountLabel?: string
   /** Fallback when no avatarUrl is supplied. Defaults to /images/avatar.svg
    *  so apps that drop a static asset there (notification, user, admin)
    *  get a photo-style avatar instead of initials. */
@@ -35,6 +40,8 @@ export function Profile({
   email,
   avatarUrl,
   fallbackAvatarUrl = "/images/avatar.svg",
+  accountUrl,
+  accountLabel = "Manage account",
   onSignOut,
   signOutLabel = "Sign out",
   children,
@@ -93,6 +100,19 @@ export function Profile({
             </>
           ) : null}
           <DropdownMenuSeparator />
+          {accountUrl ? (
+            <DropdownMenuItem
+              onSelect={() =>
+                window.open(accountUrl, "_blank", "noopener,noreferrer")
+              }
+              className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
+            >
+              <div className="flex min-w-0 flex-1 items-center gap-2">
+                <UserCircleIcon className="size-3.5 shrink-0 text-muted-foreground" />
+                <span>{accountLabel}</span>
+              </div>
+            </DropdownMenuItem>
+          ) : null}
           <DropdownMenuItem
             onSelect={onSignOut}
             className="flex cursor-pointer items-center gap-2 text-foreground focus:bg-accent focus:text-accent-foreground"
