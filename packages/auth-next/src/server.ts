@@ -31,6 +31,10 @@ export function createAuth({
 }: CreateAuthOptions): NextAuthResult {
   const config: NextAuthConfig = {
     trustHost: true,
+    // Custom sign-in route. Apps render apps/<app>/app/sign-in/page.tsx
+    // as a Server Component that calls signIn("oidc") — server-side
+    // NEXT_REDIRECT sends the browser straight to Keycloak.
+    pages: { signIn: "/sign-in" },
     providers: [
       {
         id: "oidc",
@@ -44,18 +48,12 @@ export function createAuth({
       },
     ],
     callbacks: {
-      // Gate every request the middleware sees. Unauthenticated visitors
-      // get a server-side 302 straight to NextAuth's per-provider GET
-      // endpoint, which immediately redirects to Keycloak — no interstitial
-      // HTML, no "Redirecting…" flash.
-      authorized({ auth, request }) {
-        if (auth) return true
-        const url = new URL("/api/auth/signin/oidc", request.url)
-        url.searchParams.set(
-          "callbackUrl",
-          request.nextUrl.pathname + request.nextUrl.search
-        )
-        return Response.redirect(url)
+      // Gate every request the middleware sees. Returning false makes
+      // NextAuth redirect to pages.signIn (/sign-in), where the app's
+      // Server Component calls signIn("oidc") and triggers a server-side
+      // redirect to Keycloak. Browser never renders a picker.
+      authorized({ auth }) {
+        return !!auth
       },
       // Surface raw OIDC claims on the session so UserButton can read them.
       // Also keep id_token + issuer URL so federated logout can terminate

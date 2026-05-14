@@ -25,6 +25,7 @@
     ".": "./src/index.ts",
     "./client": "./src/client.tsx",
     "./server": "./src/server.ts",
+    "./action": "./src/action.ts",
     "./middleware": "./src/middleware.ts",
     "./route": "./src/route.ts"
   }
