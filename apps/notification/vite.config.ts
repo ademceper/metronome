@@ -1,5 +1,6 @@
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
+import { oidcSpa } from 'oidc-spa/vite-plugin';
 import path from 'path';
 import { defineConfig, loadEnv, Plugin } from 'vite';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
@@ -47,6 +48,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      oidcSpa(),
       excludeCloudFilesPlugin(),
       ViteEjsPlugin((viteConfig) => ({
         // viteConfig is the current Vite resolved config
