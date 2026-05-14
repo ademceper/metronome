@@ -7,7 +7,6 @@ export const {
   useOidc,
   getOidc,
   OidcInitializationGate,
-  enforceLogin,
-  withLoginEnforced,
+  OidcInitializationErrorGate,
   UserButton,
-} = createAuthClient()
+} = createAuthClient({ withAutoLogin: true })

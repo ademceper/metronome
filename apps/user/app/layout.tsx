@@ -5,6 +5,7 @@ import { AppSidebar } from "@metronome/ui/blocks/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@metronome/ui/components/sidebar"
 import { TooltipProvider } from "@metronome/ui/components/tooltip"
 import { cn } from "@metronome/ui/lib/utils"
+import { AppHeader } from "@/components/app-header"
 import { AuthProvider } from "@/components/auth-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -37,7 +38,10 @@ export default function RootLayout({
             <TooltipProvider>
               <SidebarProvider>
                 <AppSidebar />
-                <SidebarInset>{children}</SidebarInset>
+                <SidebarInset>
+                  <AppHeader />
+                  {children}
+                </SidebarInset>
               </SidebarProvider>
             </TooltipProvider>
           </AuthProvider>
