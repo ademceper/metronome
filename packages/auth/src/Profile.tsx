@@ -23,9 +23,15 @@ function DefaultAvatar({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-hidden="true"
-      className={cn("size-full text-muted-foreground", className)}
+      style={{ color: "var(--avatar-fg)" }}
+      className={cn("size-full", className)}
     >
-      <rect width="32" height="32" rx="16" className="fill-muted" />
+      <rect
+        width="32"
+        height="32"
+        rx="16"
+        style={{ fill: "var(--avatar-bg)" }}
+      />
       <g clipPath="url(#default-avatar-clip)">
         <ellipse
           cx="16"
