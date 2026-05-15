@@ -2,7 +2,6 @@ import { auth } from "@metronome/auth-next/action"
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "@metronome/ui/globals.css"
-import { AppShell } from "@metronome/ui/blocks/layout/app-shell"
 import { AppSidebar } from "@metronome/ui/blocks/layout/app-sidebar"
 import { TooltipProvider } from "@metronome/ui/components/tooltip"
 import { cn } from "@metronome/ui/lib/utils"
@@ -39,10 +38,10 @@ export default async function RootLayout({
           <AuthProvider session={session}>
             {session ? (
               <TooltipProvider>
-                <AppShell sidebar={<AppSidebar />}>
+                <AppSidebar>
                   <AppHeader />
                   {children}
-                </AppShell>
+                </AppSidebar>
               </TooltipProvider>
             ) : (
               children

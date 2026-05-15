@@ -42,7 +42,7 @@ function isAllowed(hasAccess: (...types: string[]) => boolean, access: Access | 
   return Array.isArray(access) ? hasAccess(...access) : hasAccess(access)
 }
 
-export const PageNav = () => {
+export const PageNav = ({ children }: { children?: React.ReactNode }) => {
   const { t } = useTranslation()
   const { environment } = useEnvironment<Environment>()
   const { hasAccess, hasSomeAccess } = useAccess()
@@ -270,6 +270,8 @@ export const PageNav = () => {
       }}
       groups={groups}
       Link={Link}
-    />
+    >
+      {children}
+    </AppSidebar>
   )
 }

@@ -1,4 +1,3 @@
-import { AppShell } from "@metronome/ui/blocks/layout/app-shell"
 import { AppSidebar } from "@metronome/ui/blocks/layout/app-sidebar"
 import {
   Breadcrumb,
@@ -18,7 +17,7 @@ import { UserButton } from "@/auth"
 function RootLayout() {
   return (
     <TooltipProvider>
-      <AppShell sidebar={<AppSidebar />}>
+      <AppSidebar>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
           <div className="flex flex-1 items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
@@ -46,7 +45,7 @@ function RootLayout() {
           </div>
         </header>
         <Outlet />
-      </AppShell>
+      </AppSidebar>
     </TooltipProvider>
   )
 }
