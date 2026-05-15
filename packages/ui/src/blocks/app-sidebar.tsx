@@ -2,7 +2,6 @@
 
 import type { LinkComponent } from "@metronome/ui/blocks/-link"
 import { NavMain, type NavMainItem } from "@metronome/ui/blocks/nav-main"
-import { NavUser, type NavUserProps } from "@metronome/ui/blocks/nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -39,10 +38,7 @@ export type AppSidebarProps = {
   header?: ReactNode
   /** Grouped nav items rendered in SidebarContent. Defaults to []. */
   groups?: SidebarNavGroup[]
-  /** User card shown in SidebarFooter via NavUser. Provide either this
-   *  OR `footer` (or neither — the footer is then omitted). */
-  user?: NavUserProps
-  /** Fully custom footer content. Wins over `user`. */
+  /** Fully custom footer content. When omitted, no SidebarFooter is rendered. */
   footer?: ReactNode
   /** Router-aware link component. Receives `{ href, children, …rest }` and
    *  should render an anchor that triggers a client-side navigation. Defaults
@@ -94,7 +90,6 @@ export function AppSidebar({
   brand,
   header,
   groups = [],
-  user,
   footer,
   Link = DefaultLink,
   ...sidebarProps
@@ -114,11 +109,7 @@ export function AppSidebar({
           </SidebarGroup>
         ))}
       </SidebarContent>
-      {footer || user ? (
-        <SidebarFooter>
-          {footer ?? (user ? <NavUser {...user} /> : null)}
-        </SidebarFooter>
-      ) : null}
+      {footer ? <SidebarFooter>{footer}</SidebarFooter> : null}
     </Sidebar>
   )
 }

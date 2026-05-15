@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { AppSidebar, type SidebarNavGroup } from "@metronome/ui/blocks/app-sidebar"
-import { DropdownMenuItem } from "@metronome/ui/components/dropdown-menu"
 import {
   BuildingsIcon,
   ClockClockwiseIcon,
@@ -13,7 +12,6 @@ import {
   ListBulletsIcon,
   ShieldCheckIcon,
   SignInIcon,
-  SignOutIcon,
   StackIcon,
   UserGearIcon,
   UsersIcon,
@@ -26,7 +24,6 @@ import { label, useEnvironment } from "../../shared/keycloak-ui-shared"
 import { useAccess } from "../context/access/Access"
 import { useRealm } from "../context/realm-context/RealmContext"
 import { useServerInfo } from "../context/server-info/ServerInfoProvider"
-import { useWhoAmI } from "../context/whoami/WhoAmI"
 import { Environment } from "../environment"
 import { toPage } from "../lib/page"
 import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled"
@@ -47,10 +44,9 @@ function isAllowed(hasAccess: (...types: string[]) => boolean, access: Access | 
 
 export const PageNav = () => {
   const { t } = useTranslation()
-  const { environment, keycloak } = useEnvironment<Environment>()
+  const { environment } = useEnvironment<Environment>()
   const { hasAccess, hasSomeAccess } = useAccess()
   const { componentTypes } = useServerInfo()
-  const { whoAmI } = useWhoAmI()
   const isFeatureEnabled = useIsFeatureEnabled()
   const pages = componentTypes?.["org.keycloak.services.ui.extend.UiPageProvider"]
   const { realm, realmRepresentation } = useRealm()
@@ -263,8 +259,6 @@ export const PageNav = () => {
     showWorkflows,
   ])
 
-  const displayName = whoAmI.displayName || whoAmI.userName || whoAmI.userId
-
   return (
     <AppSidebar
       brand={{
@@ -276,15 +270,6 @@ export const PageNav = () => {
       }}
       groups={groups}
       Link={Link}
-      user={{
-        name: displayName,
-        menu: (
-          <DropdownMenuItem onSelect={() => keycloak.logout()}>
-            <SignOutIcon />
-            {t("signOut")}
-          </DropdownMenuItem>
-        ),
-      }}
     />
   )
 }
