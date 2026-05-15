@@ -1,27 +1,12 @@
-import {
-  createHashHistory,
-  createRouter,
-  RouterProvider,
-} from "@tanstack/react-router"
 import { useEffect, useReducer } from "react"
+import { KeycloakProvider } from "../shared/keycloak-ui-shared"
+import { SessionExpirationWarningOverlay } from "../shared/SessionExpirationWarningOverlay"
+import { Root } from "./app/Root"
 import { startColorSchemeManagement } from "./colorScheme"
+import { environment } from "./environment"
 import { i18n } from "./i18n/i18n"
-import { routeTree } from "./routeTree.gen"
 
 document.title = "Keycloak Administration Console"
-
-const hashHistory = createHashHistory()
-const router = createRouter({
-  routeTree,
-  history: hashHistory,
-  defaultPreload: false,
-})
-
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router
-  }
-}
 
 const prI18nInitialized = i18n.init()
 startColorSchemeManagement()
@@ -37,5 +22,10 @@ export default function KcAdminUi() {
     return null
   }
 
-  return <RouterProvider router={router} />
+  return (
+    <KeycloakProvider environment={environment}>
+      <Root />
+      <SessionExpirationWarningOverlay warnUserSecondsBeforeAutoLogout={45} />
+    </KeycloakProvider>
+  )
 }

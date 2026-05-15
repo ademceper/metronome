@@ -9,7 +9,6 @@
 
 // @ts-nocheck
 
-import { SessionExpirationWarningOverlay } from "../../shared/SessionExpirationWarningOverlay";
 import KeycloakAdminClient from "@keycloak/keycloak-admin-client";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import {
@@ -89,7 +88,6 @@ export const App = () => {
             </ErrorBoundaryFallback>
           </SidebarInset>
         </SidebarProvider>
-        <SessionExpirationWarningOverlay warnUserSecondsBeforeAutoLogout={45} />
       </AppContexts>
     </AdminClientContext.Provider>
   );
