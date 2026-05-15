@@ -59,9 +59,10 @@ export function AppShell({
       <SidebarInset
         className={cn(
           // min-h-0 lets a flex child shrink past its content; overflow-y-auto
-          // scrolls inside the inset; overscroll-contain prevents the scroll
-          // from bubbling to the outer body once it bottoms out.
-          "min-h-0 overflow-y-auto overscroll-contain",
+          // gives the inset its own scroll surface when content overflows;
+          // overscroll-none stops the browser's rubber-band/bounce when the
+          // scroll bottoms out, so no phantom gap at the edges.
+          "min-h-0 overflow-y-auto overscroll-none",
           className
         )}
       >
