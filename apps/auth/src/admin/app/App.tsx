@@ -33,7 +33,7 @@ import { RealmContextProvider } from "../context/realm-context/RealmContext";
 import { ServerInfoProvider } from "../context/server-info/ServerInfoProvider";
 import { WhoAmIContextProvider } from "../context/whoami/WhoAmI";
 import type { Environment } from "../environment";
-import { SubGroups } from "../groups/SubGroupsContext";
+import { SubGroups } from "../components/groups/SubGroupsContext";
 import { AuthWall } from "../root/AuthWall";
 import { Banners } from "./Banners";
 

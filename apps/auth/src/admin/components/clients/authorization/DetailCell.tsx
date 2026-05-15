@@ -1,0 +1,95 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ *
+ * $ npx keycloakify own --path "admin/clients/authorization/DetailCell.tsx" --revert
+ */
+
+/* eslint-disable */
+
+// @ts-nocheck
+
+import type PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
+import { useFetch } from "../../../../shared/keycloak-ui-shared";
+import { cn } from "@metronome/ui/lib/utils";
+import { useState } from "react";
+import { useAdminClient } from "../../../admin-client";
+import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
+import { useRealm } from "../../../context/realm-context/RealmContext";
+import { toPermissionDetails } from "../../../lib/clients";
+import { toScopeDetails } from "../../../lib/clients";
+import { DetailDescription, DetailDescriptionLink } from "./DetailDescription";
+
+const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (
+  <dl className={cn("grid gap-y-2 text-sm",
+    isHorizontal && "grid-cols-[max-content_1fr] gap-x-4",
+    (props as any).className)} {...props}>
+    {children}
+  </dl>
+);
+
+type Scope = { id: string; name: string }[];
+
+type DetailCellProps = {
+  id: string;
+  clientId: string;
+  uris?: string[];
+};
+
+export const DetailCell = ({ id, clientId, uris }: DetailCellProps) => {
+  const { adminClient } = useAdminClient();
+
+  const { realm } = useRealm();
+  const [scope, setScope] = useState<Scope>();
+  const [permissions, setPermissions] = useState<PolicyRepresentation[]>();
+
+  useFetch(
+    () =>
+      Promise.all([
+        adminClient.clients.listScopesByResource({
+          id: clientId,
+          resourceName: id,
+        }),
+        adminClient.clients.listPermissionsByResource({
+          id: clientId,
+          resourceId: id,
+        }),
+      ]),
+    ([scopes, permissions]) => {
+      setScope(scopes);
+      setPermissions(permissions);
+    },
+    [],
+  );
+
+  if (!permissions || !scope) {
+    return <KeycloakSpinner />;
+  }
+
+  return (
+    <DescriptionList isHorizontal className="keycloak_resource_details">
+      <DetailDescription name="uris" array={uris} />
+      <DetailDescriptionLink
+        name="scopes"
+        array={scope}
+        convert={(s) => s.name}
+        link={(scope) =>
+          toScopeDetails({ id: clientId, realm, scopeId: scope.id! })
+        }
+      />
+      <DetailDescriptionLink
+        name="associatedPermissions"
+        array={permissions}
+        convert={(p) => p.name!}
+        link={(permission) =>
+          toPermissionDetails({
+            id: clientId,
+            realm,
+            permissionId: permission.id!,
+            permissionType: permission.type!,
+          })
+        }
+      />
+    </DescriptionList>
+  );
+};

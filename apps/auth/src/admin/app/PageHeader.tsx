@@ -25,7 +25,7 @@ import { HelpHeader } from "../components/help-enabler/HelpHeader";
 import { useAccess } from "../context/access/Access";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { toDashboard } from "../lib/dashboard";
-import { usePreviewLogo } from "../realm-settings/themes/LogoContext";
+import { usePreviewLogo } from "../components/realm-settings/themes/LogoContext";
 import { joinPath } from "../utils/joinPath";
 import useToggle from "../utils/useToggle";
 

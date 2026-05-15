@@ -27,8 +27,8 @@ import {
   useParams,
 } from "react-router-dom";
 import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
-import { PageHandler } from "../../page/PageHandler";
-import { TAB_PROVIDER } from "../../page/constants";
+import { PageHandler } from "../page/PageHandler";
+import { TAB_PROVIDER } from "../page/constants";
 import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
 import { useTranslation } from "react-i18next";
 import { Tabs, Tab } from "../../../shared/pf-compat"

@@ -31,7 +31,7 @@ import { useAdminClient } from "../../admin-client";
 import { fetchRealmInfo } from "../../context/auth/admin-ui-endpoint";
 import { UiRealmInfo } from "../../context/auth/uiRealmInfo";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { SearchType } from "../../user/details/SearchFilter";
+import { SearchType } from "../user/details/SearchFilter";
 import { toAddUser } from "../../lib/user";
 import { toUser } from "../../lib/user";
 import { emptyFormatter } from "../../util";

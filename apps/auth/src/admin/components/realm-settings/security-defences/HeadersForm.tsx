@@ -1,0 +1,123 @@
+/**
+ * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
+ * To relinquish ownership and restore this file to its original content, run the following command:
+ *
+ * $ npx keycloakify own --path "admin/realm-settings/security-defences/HeadersForm.tsx" --revert
+ */
+
+/* eslint-disable */
+
+// @ts-nocheck
+
+import type RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
+import { Button as UIButton } from "@metronome/ui/components/button";
+import { cn } from "@metronome/ui/lib/utils";
+import { useFormContext } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { FormAccess } from "../../form/FormAccess";
+import { HelpLinkTextInput } from "./HelpLinkTextInput";
+
+const ActionGroup = ({ children, className, ...props }: any) => (
+  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
+);
+const ButtonVariant = {
+  primary: "default",
+  secondary: "secondary",
+  tertiary: "outline",
+  danger: "destructive",
+  warning: "destructive",
+  link: "link",
+  plain: "ghost",
+  control: "outline",
+} as const;
+const Button = ({
+  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
+  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
+  icon, iconPosition, component, to, href, target, rel, children, ...props
+}: any) => {
+  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  if (href || to) {
+    return (
+      <a href={href || to} target={target} rel={rel}
+        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
+        {icon && iconPosition !== "right" ? icon : null}
+        {children}
+        {icon && iconPosition === "right" ? icon : null}
+      </a>
+    );
+  }
+  return (
+    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
+      {icon && iconPosition !== "right" ? icon : null}
+      {children}
+      {icon && iconPosition === "right" ? icon : null}
+    </UIButton>
+  );
+};
+
+type HeadersFormProps = {
+  realm: RealmRepresentation;
+  save: (realm: RealmRepresentation) => void;
+};
+
+export const HeadersForm = ({ realm, save }: HeadersFormProps) => {
+  const { t } = useTranslation();
+  const form = useFormContext<RealmRepresentation>();
+  const {
+    reset,
+    formState: { isDirty },
+    handleSubmit,
+  } = form;
+
+  return (
+    <FormAccess
+      isHorizontal
+      role="manage-realm"
+      className="keycloak__security-defences__form"
+      onSubmit={handleSubmit(save)}
+    >
+      <HelpLinkTextInput
+        fieldName="browserSecurityHeaders.xFrameOptions"
+        url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options"
+      />
+      <HelpLinkTextInput
+        fieldName="browserSecurityHeaders.contentSecurityPolicy"
+        url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+      />
+      <HelpLinkTextInput
+        fieldName="browserSecurityHeaders.contentSecurityPolicyReportOnly"
+        url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only"
+      />
+      <HelpLinkTextInput
+        fieldName="browserSecurityHeaders.xContentTypeOptions"
+        url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options"
+      />
+      <HelpLinkTextInput
+        fieldName="browserSecurityHeaders.xRobotsTag"
+        url="https://developers.google.com/search/docs/advanced/robots/robots_meta_tag"
+      />
+      <HelpLinkTextInput
+        fieldName="browserSecurityHeaders.strictTransportSecurity"
+        url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security"
+      />
+      <HelpLinkTextInput
+        fieldName="browserSecurityHeaders.referrerPolicy"
+        url="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy"
+      />
+
+      <ActionGroup>
+        <Button
+          variant="primary"
+          type="submit"
+          data-testid="headers-form-tab-save"
+          isDisabled={!isDirty}
+        >
+          {t("save")}
+        </Button>
+        <Button variant="link" onClick={() => reset(realm)}>
+          {t("revert")}
+        </Button>
+      </ActionGroup>
+    </FormAccess>
+  );
+};

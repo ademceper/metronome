@@ -20,7 +20,7 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
-import { KeySelect } from "../../realm-settings/user-profile/attribute/KeySelect";
+import { KeySelect } from "../realm-settings/user-profile/attribute/KeySelect";
 import type { ComponentProps } from "./components";
 
 

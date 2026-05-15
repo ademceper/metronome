@@ -15,8 +15,8 @@ import {
   useRequiredContext,
 } from "../../../shared/keycloak-ui-shared";
 import { PropsWithChildren } from "react";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useWhoAmI } from "../../context/whoami/WhoAmI";
+import { useRealm } from "../realm-context/RealmContext";
+import { useWhoAmI } from "../whoami/WhoAmI";
 
 type AccessContextProps = {
   hasAccess: (...types: AccessType[]) => boolean;

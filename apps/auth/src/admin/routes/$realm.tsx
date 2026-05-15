@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import Dashboard from "../dashboard/Dashboard"
+import Dashboard from "../components/dashboard/Dashboard"
 
 export const Route = createFileRoute("/$realm")({
   component: Dashboard,

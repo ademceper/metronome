@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import GroupsSection from "../../../../../groups/GroupsSection"
+import GroupsSection from "../../../../../components/groups/GroupsSection"
 
 export const Route = createFileRoute("/$realm/organizations/$orgId/groups/$id")({
   component: GroupsSection,

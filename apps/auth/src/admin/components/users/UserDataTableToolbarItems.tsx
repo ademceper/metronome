@@ -21,7 +21,7 @@ import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useAccess } from "../../context/access/Access";
-import { SearchDropdown, SearchType } from "../../user/details/SearchFilter";
+import { SearchDropdown, SearchType } from "../user/details/SearchFilter";
 import DropdownPanel from "../dropdown-panel/DropdownPanel";
 import { UserFilter } from "./UserDataTable";
 import { UserDataTableAttributeSearchForm } from "./UserDataTableAttributeSearchForm";
