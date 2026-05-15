@@ -22,6 +22,11 @@ import {
   DropdownMenuTrigger,
 } from "@metronome/ui/components/dropdown-menu";
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@metronome/ui/components/collapsible";
+import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -31,8 +36,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   useSidebar,
 } from "@metronome/ui/components/sidebar";
+import { CaretRightIcon } from "@phosphor-icons/react";
 import {
   BuildingsIcon,
   CaretUpDownIcon,
@@ -65,14 +74,25 @@ import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
 
 type Access = string | string[];
 
+type SubNavItem = {
+  title: string;
+  path: string;
+};
+
 type LeftNavProps = {
   title: string;
   path: string;
   icon: React.ReactNode;
   access: Access;
+  /** Sub-items rendered as a collapsible submenu under the main item.
+   *  The parent itself stays clickable (navigates to `path`); the chevron
+   *  trigger expands the children list. Each child's path is appended to
+   *  the parent path verbatim (e.g. parent "/clients" + child "list" →
+   *  "/clients/list"). */
+  items?: SubNavItem[];
 };
 
-const LeftNav = ({ title, path, icon, access }: LeftNavProps) => {
+const LeftNav = ({ title, path, icon, access, items }: LeftNavProps) => {
   const { t } = useTranslation();
   const { hasAccess } = useAccess();
   const { realm } = useRealm();
@@ -87,15 +107,54 @@ const LeftNav = ({ title, path, icon, access }: LeftNavProps) => {
   }
 
   const name = "nav-item" + path.replace("/", "-");
+  const basePath = `/${encodedRealm}${path}`;
+
+  if (!items || items.length === 0) {
+    return (
+      <SidebarMenuItem>
+        <SidebarMenuButton asChild tooltip={t(title)}>
+          <NavLink id={name} data-testid={name} to={basePath}>
+            {icon}
+            <span>{t(title)}</span>
+          </NavLink>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    );
+  }
+
   return (
-    <SidebarMenuItem>
-      <SidebarMenuButton asChild tooltip={t(title)}>
-        <NavLink id={name} data-testid={name} to={`/${encodedRealm}${path}`}>
-          {icon}
-          <span>{t(title)}</span>
-        </NavLink>
-      </SidebarMenuButton>
-    </SidebarMenuItem>
+    <Collapsible asChild defaultOpen={false} className="group/collapsible">
+      <SidebarMenuItem>
+        <SidebarMenuButton asChild tooltip={t(title)}>
+          <NavLink id={name} data-testid={name} to={basePath}>
+            {icon}
+            <span>{t(title)}</span>
+          </NavLink>
+        </SidebarMenuButton>
+        <CollapsibleTrigger asChild>
+          <button
+            type="button"
+            aria-label={t("expand", "Expand")}
+            className="absolute end-1 top-1/2 -translate-y-1/2 inline-flex size-6 items-center justify-center rounded-md text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-transform group-data-[state=open]/collapsible:rotate-90"
+          >
+            <CaretRightIcon className="size-3.5" />
+          </button>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <SidebarMenuSub>
+            {items.map((sub) => (
+              <SidebarMenuSubItem key={sub.path}>
+                <SidebarMenuSubButton asChild>
+                  <NavLink to={`${basePath}/${sub.path}`}>
+                    <span>{t(sub.title)}</span>
+                  </NavLink>
+                </SidebarMenuSubButton>
+              </SidebarMenuSubItem>
+            ))}
+          </SidebarMenuSub>
+        </CollapsibleContent>
+      </SidebarMenuItem>
+    </Collapsible>
   );
 };
 
@@ -237,6 +296,11 @@ export const PageNav = () => {
                 path="/clients"
                 icon={<CubeIcon />}
                 access="query-clients"
+                items={[
+                  { title: "clientList", path: "list" },
+                  { title: "initialAccessToken", path: "initial-access-token" },
+                  { title: "clientRegistration", path: "client-registration" },
+                ]}
               />
               <LeftNav
                 title="clientScopes"
@@ -273,6 +337,10 @@ export const PageNav = () => {
                 path="/events"
                 icon={<ListBulletsIcon />}
                 access="view-events"
+                items={[
+                  { title: "userEvents", path: "user-events" },
+                  { title: "adminEvents", path: "admin-events" },
+                ]}
               />
             </SidebarMenu>
           </SidebarGroup>
@@ -287,12 +355,31 @@ export const PageNav = () => {
                 path="/realm-settings"
                 icon={<GearIcon />}
                 access="view-realm"
+                items={[
+                  { title: "general", path: "general" },
+                  { title: "login", path: "login" },
+                  { title: "email", path: "email" },
+                  { title: "themes", path: "themes" },
+                  { title: "keys", path: "keys" },
+                  { title: "events", path: "events" },
+                  { title: "localization", path: "localization" },
+                  { title: "securityDefences", path: "security-defenses" },
+                  { title: "sessions", path: "sessions" },
+                  { title: "tokens", path: "tokens" },
+                  { title: "clientPolicies", path: "client-policies" },
+                  { title: "userProfile", path: "user-profile" },
+                ]}
               />
               <LeftNav
                 title="authentication"
                 path="/authentication"
                 icon={<KeyIcon />}
                 access={["view-realm", "view-identity-providers", "view-clients"]}
+                items={[
+                  { title: "flows", path: "flows" },
+                  { title: "requiredActions", path: "required-actions" },
+                  { title: "policies", path: "policies" },
+                ]}
               />
               {isFeatureEnabled(Feature.AdminFineGrainedAuthzV2) &&
                 realmRepresentation?.adminPermissionsEnabled && (
