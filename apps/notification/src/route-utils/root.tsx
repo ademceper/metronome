@@ -12,7 +12,7 @@ import { EscapeKeyManagerProvider } from '@/context/escape-key-manager/escape-ke
 import { IdentityProvider } from '@/context/identity-provider';
 import { RegionProvider } from '@/context/region';
 import { SegmentProvider } from '@/context/segment';
-import { RootRouteErrorFallback } from '@/routes/root-route-error-fallback';
+import { RootRouteErrorFallback } from '@/route-utils/root-route-error-fallback';
 
 const queryClient = new QueryClient({
   defaultOptions: {

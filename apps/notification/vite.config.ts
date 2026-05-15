@@ -1,4 +1,5 @@
 import { sentryVitePlugin } from '@sentry/vite-plugin';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import { oidcSpa } from 'oidc-spa/vite-plugin';
 import path from 'path';
@@ -39,6 +40,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      tanstackRouter({
+        routesDirectory: 'src/routes',
+        generatedRouteTree: 'src/routeTree.gen.ts',
+        autoCodeSplitting: true,
+      }),
       oidcSpa(),
       excludeCloudFilesPlugin(),
       ViteEjsPlugin((viteConfig) => ({
@@ -80,6 +86,11 @@ export default defineConfig(({ mode }) => {
           __dirname,
           './src/utils/self-hosted/organization-switcher.tsx'
         ),
+        // Compat shim: legacy react-router-dom v7 imports across the app are
+        // forwarded to our TanStack-backed wrapper at @/lib/router so the 234
+        // call sites that use useNavigate/useParams/Link/etc. keep their
+        // existing signatures while the router itself is TanStack.
+        'react-router-dom': path.resolve(__dirname, './src/lib/router/index.tsx'),
         '@': path.resolve(__dirname, './src'),
         // Explicitly map prettier imports to browser-compatible versions
         'prettier/standalone': path.resolve(__dirname, './node_modules/prettier/standalone.js'),

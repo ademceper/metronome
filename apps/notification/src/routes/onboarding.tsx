@@ -1,16 +1,6 @@
-import { SignedIn } from '@/utils/self-hosted';
-import { AnimatedOutlet } from '@/components/animated-outlet';
-import { AuthLayout } from '../components/auth-layout';
-import { EnvironmentProvider } from '../context/environment/environment-provider';
+import { createFileRoute } from '@tanstack/react-router';
+import { OnboardingParentRoute } from '@/route-utils/onboarding';
 
-export const OnboardingParentRoute = () => {
-  return (
-    <SignedIn>
-      <EnvironmentProvider>
-        <AuthLayout>
-          <AnimatedOutlet />
-        </AuthLayout>
-      </EnvironmentProvider>
-    </SignedIn>
-  );
-};
+export const Route = createFileRoute('/onboarding')({
+  component: OnboardingParentRoute,
+});
