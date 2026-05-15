@@ -13,8 +13,8 @@ import type { AccessType } from "@keycloak/keycloak-admin-client/lib/defs/whoAmI
 import type { TFunction } from "i18next";
 import type { ComponentType } from "react";
 import type { NonIndexRouteObject, RouteObject } from "react-router-dom";
-import { PageNotFoundSection } from "./PageNotFoundSection";
-import { Root } from "./Root";
+import { PageNotFoundSection } from "./app/PageNotFoundSection";
+import { Root } from "./app/Root";
 import authenticationRoutes from "./authentication/routes";
 import clientScopesRoutes from "./client-scopes/routes";
 import clientRoutes from "./clients/routes";

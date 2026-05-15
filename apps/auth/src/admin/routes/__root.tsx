@@ -1,6 +1,6 @@
 import { createRootRoute } from "@tanstack/react-router"
-import { PageNotFoundSection } from "../PageNotFoundSection"
-import { Root } from "../Root"
+import { PageNotFoundSection } from "../app/PageNotFoundSection"
+import { Root } from "../app/Root"
 
 export const Route = createRootRoute({
   component: Root,

@@ -9,25 +9,25 @@
 
 // @ts-nocheck
 
-import logoSvgUrl from "./assets/logo.svg";
+import logoSvgUrl from "../assets/logo.svg";
 import {
   KeycloakMasthead,
   useEnvironment,
   useHelp,
-} from "../shared/keycloak-ui-shared";
+} from "../../shared/keycloak-ui-shared";
 import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
 import { cn } from "@metronome/ui/lib/utils";
 import { Question as HelpIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { Link, useHref } from "react-router-dom";
 import { PageHeaderClearCachesModal } from "./PageHeaderClearCachesModal";
-import { HelpHeader } from "./components/help-enabler/HelpHeader";
-import { useAccess } from "./context/access/Access";
-import { useRealm } from "./context/realm-context/RealmContext";
-import { toDashboard } from "./dashboard/routes/Dashboard";
-import { usePreviewLogo } from "./realm-settings/themes/LogoContext";
-import { joinPath } from "./utils/joinPath";
-import useToggle from "./utils/useToggle";
+import { HelpHeader } from "../components/help-enabler/HelpHeader";
+import { useAccess } from "../context/access/Access";
+import { useRealm } from "../context/realm-context/RealmContext";
+import { toDashboard } from "../dashboard/routes/Dashboard";
+import { usePreviewLogo } from "../realm-settings/themes/LogoContext";
+import { joinPath } from "../utils/joinPath";
+import useToggle from "../utils/useToggle";
 
 
 const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (

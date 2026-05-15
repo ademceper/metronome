@@ -12,10 +12,10 @@
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { cn } from "@metronome/ui/lib/utils";
-import { useRealm } from "./context/realm-context/RealmContext";
-import { useAdminClient } from "./admin-client";
+import { useRealm } from "../context/realm-context/RealmContext";
+import { useAdminClient } from "../admin-client";
 import { useTranslation } from "react-i18next";
-import { HelpItem, useAlerts } from "../shared/keycloak-ui-shared";
+import { HelpItem, useAlerts } from "../../shared/keycloak-ui-shared";
 
 
 const AlertVariant = {

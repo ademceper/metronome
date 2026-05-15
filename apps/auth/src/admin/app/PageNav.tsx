@@ -52,17 +52,17 @@ import {
   UsersIcon,
   UsersThreeIcon,
 } from "@phosphor-icons/react";
-import { label, useEnvironment } from "../shared/keycloak-ui-shared";
+import { label, useEnvironment } from "../../shared/keycloak-ui-shared";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { useAccess } from "./context/access/Access";
-import { useRealm } from "./context/realm-context/RealmContext";
-import { useServerInfo } from "./context/server-info/ServerInfoProvider";
-import { useWhoAmI } from "./context/whoami/WhoAmI";
-import { Environment } from "./environment";
-import { toPage } from "./page/routes";
-import { routes } from "./route-utils";
-import useIsFeatureEnabled, { Feature } from "./utils/useIsFeatureEnabled";
+import { useAccess } from "../context/access/Access";
+import { useRealm } from "../context/realm-context/RealmContext";
+import { useServerInfo } from "../context/server-info/ServerInfoProvider";
+import { useWhoAmI } from "../context/whoami/WhoAmI";
+import { Environment } from "../environment";
+import { toPage } from "../page/routes";
+import { routes } from "../route-utils";
+import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
 
 type LeftNavProps = {
   title: string;

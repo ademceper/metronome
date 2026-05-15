@@ -14,7 +14,7 @@ import { Button as UIButton } from "@metronome/ui/components/button";
 import { Input as UIInput } from "@metronome/ui/components/input";
 import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { cn } from "@metronome/ui/lib/utils";
-import { Header } from "../../PageHeader";
+import { Header } from "../../app/PageHeader";
 import { Tabs, Tab, TabTitleText } from "../../../shared/pf-compat"
 
 

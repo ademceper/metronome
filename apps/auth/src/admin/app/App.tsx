@@ -9,9 +9,9 @@
 
 // @ts-nocheck
 
-import { SessionExpirationWarningOverlay } from "../shared/SessionExpirationWarningOverlay";
+import { SessionExpirationWarningOverlay } from "../../shared/SessionExpirationWarningOverlay";
 import KeycloakAdminClient from "@keycloak/keycloak-admin-client";
-import { useEnvironment } from "../shared/keycloak-ui-shared";
+import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import {
   SidebarInset,
   SidebarProvider,
@@ -24,18 +24,18 @@ import {
   ErrorBoundaryFallback,
   ErrorBoundaryProvider,
   KeycloakSpinner,
-} from "../shared/keycloak-ui-shared";
-import { AdminClientContext, initAdminClient } from "./admin-client";
-import { PageBreadCrumbs } from "./components/bread-crumb/PageBreadCrumbs";
-import { ErrorRenderer } from "./components/error/ErrorRenderer";
-import { RecentRealmsProvider } from "./context/RecentRealms";
-import { AccessContextProvider } from "./context/access/Access";
-import { RealmContextProvider } from "./context/realm-context/RealmContext";
-import { ServerInfoProvider } from "./context/server-info/ServerInfoProvider";
-import { WhoAmIContextProvider } from "./context/whoami/WhoAmI";
-import type { Environment } from "./environment";
-import { SubGroups } from "./groups/SubGroupsContext";
-import { AuthWall } from "./root/AuthWall";
+} from "../../shared/keycloak-ui-shared";
+import { AdminClientContext, initAdminClient } from "../admin-client";
+import { PageBreadCrumbs } from "../components/bread-crumb/PageBreadCrumbs";
+import { ErrorRenderer } from "../components/error/ErrorRenderer";
+import { RecentRealmsProvider } from "../context/RecentRealms";
+import { AccessContextProvider } from "../context/access/Access";
+import { RealmContextProvider } from "../context/realm-context/RealmContext";
+import { ServerInfoProvider } from "../context/server-info/ServerInfoProvider";
+import { WhoAmIContextProvider } from "../context/whoami/WhoAmI";
+import type { Environment } from "../environment";
+import { SubGroups } from "../groups/SubGroupsContext";
+import { AuthWall } from "../root/AuthWall";
 import { Banners } from "./Banners";
 
 export const AppContexts = ({ children }: PropsWithChildren) => (

@@ -31,7 +31,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { ForbiddenSection } from "../../ForbiddenSection";
+import { ForbiddenSection } from "../../app/ForbiddenSection";
 import { useAdminClient } from "../../admin-client";
 import { ClientSelect } from "../../components/client/ClientSelect";
 import { FormAccess } from "../../components/form/FormAccess";
