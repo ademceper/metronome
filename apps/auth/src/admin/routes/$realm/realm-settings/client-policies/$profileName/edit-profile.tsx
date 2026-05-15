@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import ClientProfileForm from "../../../../../components/realm-settings/ClientProfileForm"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/realm-settings/client-policies/$profileName/edit-profile")({
-  component: ClientProfileForm,
+  component: () => <Outlet />,
 })

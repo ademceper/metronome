@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import EventsSection from "../../components/events/EventsSection"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/events")({
-  component: EventsSection,
+  component: () => <Outlet />,
 })

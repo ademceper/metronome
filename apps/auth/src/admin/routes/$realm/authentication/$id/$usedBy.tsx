@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import FlowDetails from "../../../../components/authentication/FlowDetails"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/authentication/$id/$usedBy")({
-  component: FlowDetails,
+  component: () => <Outlet />,
 })

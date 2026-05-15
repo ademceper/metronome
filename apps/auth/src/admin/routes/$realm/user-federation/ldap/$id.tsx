@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import UserFederationLdapSettings from "../../../../components/user-federation/UserFederationLdapSettings"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/user-federation/ldap/$id")({
-  component: UserFederationLdapSettings,
+  component: () => <Outlet />,
 })

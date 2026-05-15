@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import ResourceDetails from "../../../../../components/clients/authorization/ResourceDetails"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/clients/$id/authorization/resource")({
-  component: ResourceDetails,
+  component: () => <Outlet />,
 })

@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import UserFederationSection from "../../components/user-federation/UserFederationSection"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/user-federation")({
-  component: UserFederationSection,
+  component: () => <Outlet />,
 })

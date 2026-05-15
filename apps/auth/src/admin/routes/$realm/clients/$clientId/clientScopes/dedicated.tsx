@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import DedicatedScopes from "../../../../../components/clients/scopes/DedicatedScopes"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/clients/$clientId/clientScopes/dedicated")({
-  component: DedicatedScopes,
+  component: () => <Outlet />,
 })

@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import PermissionsPoliciesSection from "../../../../components/permissions-configuration/PermissionsConfigurationSection"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/permissions/$permissionClientId/policies")({
-  component: PermissionsPoliciesSection,
+  component: () => <Outlet />,
 })

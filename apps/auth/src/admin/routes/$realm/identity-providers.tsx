@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import IdentityProvidersSection from "../../components/identity-providers/IdentityProvidersSection"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/identity-providers")({
-  component: IdentityProvidersSection,
+  component: () => <Outlet />,
 })

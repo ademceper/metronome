@@ -1,6 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router"
-import WorkflowsSection from "../../components/workflows/WorkflowsSection"
+import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/$realm/workflows")({
-  component: WorkflowsSection,
+  component: () => <Outlet />,
 })
