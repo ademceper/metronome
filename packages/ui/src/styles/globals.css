@@ -128,6 +128,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /* Pin the document to the viewport so app-shells can manage their own
+     scroll surfaces (SidebarInset, sheets, etc.) without an extra body
+     scroll layered on top. */
+  html,
+  body {
+    @apply h-full overflow-hidden;
+  }
   body {
     @apply bg-background text-foreground;
   }

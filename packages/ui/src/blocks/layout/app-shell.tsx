@@ -56,7 +56,15 @@ export function AppShell({
       className={cn("h-svh overflow-hidden", providerProps?.className)}
     >
       {sidebarNode}
-      <SidebarInset className={cn("min-h-0 overflow-y-auto", className)}>
+      <SidebarInset
+        className={cn(
+          // min-h-0 lets a flex child shrink past its content; overflow-y-auto
+          // scrolls inside the inset; overscroll-contain prevents the scroll
+          // from bubbling to the outer body once it bottoms out.
+          "min-h-0 overflow-y-auto overscroll-contain",
+          className
+        )}
+      >
         {children}
       </SidebarInset>
     </SidebarProvider>
