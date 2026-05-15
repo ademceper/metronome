@@ -1,6 +1,6 @@
 "use client"
 
-import type { LinkComponent } from "@metronome/ui/blocks/-link"
+import type { LinkComponent } from "@metronome/ui/blocks/layout/-link"
 import {
   Collapsible,
   CollapsibleContent,

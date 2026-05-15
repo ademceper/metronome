@@ -2,7 +2,7 @@ import { auth } from "@metronome/auth-next/action"
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "@metronome/ui/globals.css"
-import { AppSidebar } from "@metronome/ui/blocks/app-sidebar"
+import { AppSidebar } from "@metronome/ui/blocks/layout/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@metronome/ui/components/sidebar"
 import { TooltipProvider } from "@metronome/ui/components/tooltip"
 import { cn } from "@metronome/ui/lib/utils"

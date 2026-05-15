@@ -1,7 +1,7 @@
 "use client"
 
-import type { LinkComponent } from "@metronome/ui/blocks/-link"
-import { NavMain, type NavMainItem } from "@metronome/ui/blocks/nav-main"
+import type { LinkComponent } from "@metronome/ui/blocks/layout/-link"
+import { NavMain, type NavMainItem } from "@metronome/ui/blocks/layout/nav-main"
 import {
   Sidebar,
   SidebarContent,

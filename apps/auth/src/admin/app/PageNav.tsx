@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { AppSidebar, type SidebarNavGroup } from "@metronome/ui/blocks/app-sidebar"
+import { AppSidebar, type SidebarNavGroup } from "@metronome/ui/blocks/layout/app-sidebar"
 import {
   BuildingsIcon,
   ClockClockwiseIcon,

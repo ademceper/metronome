@@ -1,4 +1,4 @@
-import { AppSidebar } from "@metronome/ui/blocks/app-sidebar"
+import { AppSidebar } from "@metronome/ui/blocks/layout/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
