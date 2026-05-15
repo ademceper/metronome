@@ -11,10 +11,7 @@
 
 import KeycloakAdminClient from "@keycloak/keycloak-admin-client";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@metronome/ui/components/sidebar";
+import { AppShell } from "@metronome/ui/blocks/layout/app-shell";
 import { PageNav } from "./PageNav";
 import { PropsWithChildren, Suspense, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
@@ -75,19 +72,16 @@ export const App = () => {
   return (
     <AdminClientContext.Provider value={{ keycloak, adminClient }}>
       <AppContexts>
-        <SidebarProvider>
-          <PageNav />
-          <SidebarInset>
-            <Banners />
-            <ErrorBoundaryFallback fallback={ErrorRenderer}>
-              <Suspense fallback={<KeycloakSpinner />}>
-                <AuthWall>
-                  <Outlet />
-                </AuthWall>
-              </Suspense>
-            </ErrorBoundaryFallback>
-          </SidebarInset>
-        </SidebarProvider>
+        <AppShell sidebar={<PageNav />}>
+          <Banners />
+          <ErrorBoundaryFallback fallback={ErrorRenderer}>
+            <Suspense fallback={<KeycloakSpinner />}>
+              <AuthWall>
+                <Outlet />
+              </AuthWall>
+            </Suspense>
+          </ErrorBoundaryFallback>
+        </AppShell>
       </AppContexts>
     </AdminClientContext.Provider>
   );
