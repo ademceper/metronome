@@ -60,7 +60,7 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { useWhoAmI } from "../context/whoami/WhoAmI";
 import { Environment } from "../environment";
-import { toPage } from "../page/paths";
+import { toPage } from "../lib/page";
 import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
 
 type Access = string | string[];

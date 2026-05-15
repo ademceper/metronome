@@ -30,8 +30,8 @@ import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useLocale from "../../utils/useLocale";
 import useToggle from "../../utils/useToggle";
-import { toAddAttribute } from "../paths/AddAttribute";
-import { toAttribute } from "../paths/Attribute";
+import { toAddAttribute } from "../../lib/realm-settings";
+import { toAttribute } from "../../lib/realm-settings";
 import { useUserProfile } from "./UserProfileContext";
 import { SelectOption } from "../../../shared/pf-compat"
 

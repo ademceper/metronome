@@ -37,11 +37,11 @@ import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import helpUrls from "../help-urls";
-import { toEditOrganization } from "../organizations/paths/EditOrganization";
+import { toEditOrganization } from "../lib/organizations";
 import { upperCaseFormatter } from "../util";
 import { ManageOrderDialog } from "./ManageOrderDialog";
-import { toIdentityProvider } from "./paths/IdentityProvider";
-import { toIdentityProviderCreate } from "./paths/IdentityProviderCreate";
+import { toIdentityProvider } from "../lib/identity-providers";
+import { toIdentityProviderCreate } from "../lib/identity-providers";
 
 
 const AlertVariant = {

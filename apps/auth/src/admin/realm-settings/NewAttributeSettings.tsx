@@ -31,8 +31,8 @@ import { ViewHeader } from "../components/view-header/ViewHeader";
 import { convertToFormValues } from "../util";
 import { useParams } from "../utils/useParams";
 import { TranslationForm } from "./AddTranslationModal";
-import type { AttributeParams } from "./paths/Attribute";
-import { toUserProfile } from "./paths/UserProfile";
+import type { AttributeParams } from "../lib/realm-settings";
+import { toUserProfile } from "../lib/realm-settings";
 import { UserProfileProvider } from "./user-profile/UserProfileContext";
 import {
   saveTranslations,

@@ -33,7 +33,7 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { emptyFormatter } from "../../util";
 import useFormatDate from "../../utils/useFormatDate";
 import useToggle from "../../utils/useToggle";
-import { toKeysTab } from "../paths/KeysTab";
+import { toKeysTab } from "../../lib/realm-settings";
 import { SelectOption } from "../../../shared/pf-compat"
 
 const ButtonVariant = {

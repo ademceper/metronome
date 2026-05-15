@@ -27,7 +27,7 @@ import { useParams } from "../utils/useParams";
 import useToggle from "../utils/useToggle";
 import { InviteMemberModal } from "./InviteMemberModal";
 import { MemberModal } from "../groups/MembersModal";
-import { EditOrganizationParams } from "./paths/EditOrganization";
+import { EditOrganizationParams } from "../lib/organizations";
 import { SearchInputComponent } from "../components/dynamic/SearchInputComponent";
 import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
 import useFormatDate from "../utils/useFormatDate";

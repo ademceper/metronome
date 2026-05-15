@@ -43,9 +43,9 @@ import { RequiredActions } from "./RequiredActions";
 import { UsedBy } from "./components/UsedBy";
 import { AuthenticationType } from "./constants";
 import { Policies } from "./policies/Policies";
-import { AuthenticationTab, toAuthentication } from "./paths/Authentication";
-import { toCreateFlow } from "./paths/CreateFlow";
-import { toFlow } from "./paths/Flow";
+import { AuthenticationTab, toAuthentication } from "../lib/authentication";
+import { toCreateFlow } from "../lib/authentication";
+import { toFlow } from "../lib/authentication";
 import { Tab, TabTitleText } from "../../shared/pf-compat"
 
 

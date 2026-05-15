@@ -24,8 +24,8 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../components/form/FormAccess";
 import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { toAuthentication } from "../paths/Authentication";
-import { toFlow } from "../paths/Flow";
+import { toAuthentication } from "../../lib/authentication";
+import { toFlow } from "../../lib/authentication";
 import { NameDescription } from "./NameDescription";
 
 

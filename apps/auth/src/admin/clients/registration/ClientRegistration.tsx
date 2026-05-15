@@ -20,7 +20,7 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import {
   ClientRegistrationTab,
   toClientRegistration,
-} from "../paths/ClientRegistration";
+} from "../../lib/clients";
 import { ClientRegistrationList } from "./ClientRegistrationList";
 import { Tab, TabTitleText } from "../../../shared/pf-compat"
 

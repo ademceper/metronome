@@ -21,7 +21,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import type { ComponentProps } from "../dynamic/components";
-import { PermissionsConfigurationTabsParams } from "../../permissions-configuration/paths/PermissionsConfigurationTabs";
+import { PermissionsConfigurationTabsParams } from "../../lib/permissions-configuration";
 import { useParams } from "react-router-dom";
 import { useFormContext, useWatch } from "react-hook-form";
 

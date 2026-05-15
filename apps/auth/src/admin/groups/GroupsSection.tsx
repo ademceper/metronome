@@ -38,7 +38,7 @@ import { useSubGroups } from "./SubGroupsContext";
 import { DeleteGroup } from "./components/DeleteGroup";
 import { GroupTree } from "./components/GroupTree";
 import { getId, getLastId } from "./groupIdUtils";
-import { toGroups } from "./paths/Groups";
+import { toGroups } from "../lib/groups";
 import { GroupResourceContext } from "../context/group-resource/GroupResourceContext";
 import { Tabs, Tab, TabTitleText } from "../../shared/pf-compat"
 

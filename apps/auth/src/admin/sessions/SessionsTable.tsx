@@ -20,7 +20,7 @@ import { ReactNode, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../admin-client";
-import { toClient } from "../clients/paths/Client";
+import { toClient } from "../lib/clients";
 import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
 import { ListEmptyState } from "../../shared/keycloak-ui-shared";
@@ -32,8 +32,8 @@ import {
 } from "../../shared/keycloak-ui-shared";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { useWhoAmI } from "../context/whoami/WhoAmI";
-import { UserRoute, toUser } from "../user/paths/User";
-import { toUsers } from "../user/paths/Users";
+import { UserRoute, toUser } from "../lib/user";
+import { toUsers } from "../lib/user";
 import { isLightweightUser } from "../user/utils";
 import useFormatDate from "../utils/useFormatDate";
 

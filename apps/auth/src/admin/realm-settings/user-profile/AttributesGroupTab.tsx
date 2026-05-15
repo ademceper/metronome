@@ -19,8 +19,8 @@ import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog"
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { toEditAttributesGroup } from "../paths/EditAttributesGroup";
-import { toNewAttributesGroup } from "../paths/NewAttributesGroup";
+import { toEditAttributesGroup } from "../../lib/realm-settings";
+import { toNewAttributesGroup } from "../../lib/realm-settings";
 import { useUserProfile } from "./UserProfileContext";
 import useLocale from "../../utils/useLocale";
 import { useAdminClient } from "../../admin-client";

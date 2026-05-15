@@ -17,7 +17,7 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import helpUrls from "../help-urls";
 import { PermissionsTab } from "../components/permission-tab/PermissionTab";
 import { UserDataTable } from "../components/users/UserDataTable";
-import { toUsers, UserTab } from "./paths/Users";
+import { toUsers, UserTab } from "../lib/user";
 import {
   RoutableTabs,
   useRoutableTab,

@@ -38,7 +38,7 @@ import { FormAccess } from "../../../components/form/FormAccess";
 import { DefaultSwitchControl } from "../../../components/SwitchControl";
 import { useParams } from "../../../utils/useParams";
 import { USERNAME_EMAIL } from "../../NewAttributeSettings";
-import { AttributeParams } from "../../paths/Attribute";
+import { AttributeParams } from "../../../lib/realm-settings";
 import { TranslatableField } from "./TranslatableField";
 import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
 import { SelectOption } from "../../../../shared/pf-compat"

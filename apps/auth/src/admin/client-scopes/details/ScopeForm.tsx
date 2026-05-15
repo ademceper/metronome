@@ -40,7 +40,7 @@ import {
 } from "../../context/server-info/ServerInfoProvider";
 import { convertAttributeNameToForm, convertToFormValues } from "../../util";
 import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
-import { toClientScopes } from "../paths/ClientScopes";
+import { toClientScopes } from "../../lib/client-scopes";
 import { removeEmptyOid4vcAttributes } from "./oid4vciAttributes";
 
 

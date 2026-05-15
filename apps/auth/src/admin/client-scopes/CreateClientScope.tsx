@@ -22,7 +22,7 @@ import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { convertFormValuesToObject } from "../util";
 import { ScopeForm } from "./details/ScopeForm";
-import { toClientScope } from "./paths/ClientScope";
+import { toClientScope } from "../lib/client-scopes";
 
 
 const AlertVariant = {

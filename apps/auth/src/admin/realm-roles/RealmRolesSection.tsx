@@ -16,8 +16,8 @@ import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useAccess } from "../context/access/Access";
 import { useRealm } from "../context/realm-context/RealmContext";
 import helpUrls from "../help-urls";
-import { toAddRole } from "./paths/AddRole";
-import { toRealmRole } from "./paths/RealmRole";
+import { toAddRole } from "../lib/realm-roles";
+import { toRealmRole } from "../lib/realm-roles";
 
 
 const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (

@@ -29,7 +29,7 @@ import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { UserForm } from "./UserForm";
 import { UserFormFields, toUserRepresentation } from "./form-state";
-import { toUser } from "./paths/User";
+import { toUser } from "../lib/user";
 
 const AlertVariant = {
   default: "default",

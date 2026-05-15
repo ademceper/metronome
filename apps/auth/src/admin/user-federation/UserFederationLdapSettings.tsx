@@ -36,8 +36,8 @@ import { LdapMapperList } from "./ldap/mappers/LdapMapperList";
 import {
   UserFederationLdapParams,
   toUserFederationLdap,
-} from "./paths/UserFederationLdap";
-import { toUserFederationLdapMapper } from "./paths/UserFederationLdapMapper";
+} from "../lib/user-federation";
+import { toUserFederationLdapMapper } from "../lib/user-federation";
 import { ExtendedHeader } from "./shared/ExtendedHeader";
 import { Tab, TabTitleText } from "../../shared/pf-compat"
 

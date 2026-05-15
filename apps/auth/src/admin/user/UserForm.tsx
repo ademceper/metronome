@@ -45,7 +45,7 @@ import { emailRegexPattern } from "../util";
 import useFormatDate from "../utils/useFormatDate";
 import { FederatedUserLink } from "./FederatedUserLink";
 import { UserFormFields, toUserFormFields } from "./form-state";
-import { toUsers } from "./paths/Users";
+import { toUsers } from "../lib/user";
 import { FixedButtonsGroup } from "../components/form/FixedButtonGroup";
 import { RequiredActionMultiSelect } from "./user-credentials/RequiredActionMultiSelect";
 import { useNavigate } from "react-router-dom";

@@ -34,7 +34,7 @@ import { useAdminClient } from "../admin-client";
 import { KeycloakSpinner } from "../../shared/keycloak-ui-shared";
 import { useAccess } from "../context/access/Access";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toUser } from "../user/paths/User";
+import { toUser } from "../lib/user";
 import { emptyFormatter } from "../util";
 import { MemberModal } from "./MembersModal";
 import { useSubGroups } from "./SubGroupsContext";

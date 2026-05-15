@@ -27,7 +27,7 @@ import {
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useAccess } from "../context/access/Access";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toPermissionsConfigurationTabs } from "./paths/PermissionsConfigurationTabs";
+import { toPermissionsConfigurationTabs } from "../lib/permissions-configuration";
 import { convertFormValuesToObject, convertToFormValues } from "../util";
 import useToggle from "../utils/useToggle";
 import { PermissionsConfigurationTab } from "./permission-configuration/PermissionsConfigurationTab";

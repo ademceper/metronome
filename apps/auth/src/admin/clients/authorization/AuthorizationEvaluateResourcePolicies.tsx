@@ -26,9 +26,9 @@ import { Link } from "react-router-dom";
 
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { useParams } from "../../utils/useParams";
-import type { ClientParams } from "../paths/Client";
-import { toPermissionDetails } from "../paths/PermissionDetails";
-import { toPolicyDetails } from "../paths/PolicyDetails";
+import type { ClientParams } from "../../lib/clients";
+import { toPermissionDetails } from "../../lib/clients";
+import { toPolicyDetails } from "../../lib/clients";
 
 
 const capitalize = (s: string): string =>

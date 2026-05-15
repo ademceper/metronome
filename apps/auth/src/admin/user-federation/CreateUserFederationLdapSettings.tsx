@@ -21,7 +21,7 @@ import {
   UserFederationLdapForm,
   serializeFormData,
 } from "./UserFederationLdapForm";
-import { toUserFederation } from "./paths/UserFederation";
+import { toUserFederation } from "../lib/user-federation";
 import { ExtendedHeader } from "./shared/ExtendedHeader";
 
 

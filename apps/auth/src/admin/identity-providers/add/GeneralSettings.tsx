@@ -16,7 +16,7 @@ import { TextControl } from "../../../shared/keycloak-ui-shared";
 import { useTranslation } from "react-i18next";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import type { IdentityProviderParams } from "../paths/IdentityProvider";
+import type { IdentityProviderParams } from "../../lib/identity-providers";
 
 type GeneralSettingsProps = {
   id: string;

@@ -26,11 +26,11 @@ import { CheckboxFilterComponent } from "../components/dynamic/CheckboxFilterCom
 import { SearchInputComponent } from "../components/dynamic/SearchInputComponent";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { MemberModal } from "../groups/MembersModal";
-import { toUser } from "../user/paths/User";
+import { toUser } from "../lib/user";
 import { translationFormatter } from "../utils/translationFormatter";
 import { useParams } from "../utils/useParams";
 import useToggle from "../utils/useToggle";
-import { EditOrganizationParams } from "./paths/EditOrganization";
+import { EditOrganizationParams } from "../lib/organizations";
 import { MembershipsModal } from "../groups/MembershipsModal";
 import { GroupResourceContext } from "../context/group-resource/GroupResourceContext";
 

@@ -27,7 +27,7 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
 import { KEY_PROVIDER_TYPE } from "../../util";
 import useToggle from "../../utils/useToggle";
-import { ProviderType, toKeyProvider } from "../paths/KeyProvider";
+import { ProviderType, toKeyProvider } from "../../lib/realm-settings";
 import { KeyProviderModal } from "./key-providers/KeyProviderModal";
 import { KeyProvidersPicker } from "./key-providers/KeyProvidersPicker";
 

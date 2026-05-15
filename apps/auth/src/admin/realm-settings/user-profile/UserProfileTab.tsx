@@ -19,7 +19,7 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import {
   toUserProfile,
   UserProfileTab as IUserProfileTab,
-} from "../paths/UserProfile";
+} from "../../lib/realm-settings";
 import { AttributesGroupTab } from "./AttributesGroupTab";
 import { AttributesTab } from "./AttributesTab";
 import { JsonEditorTab } from "./JsonEditorTab";

@@ -31,8 +31,8 @@ import { useRecentRealms } from "../context/RecentRealms";
 import { useWhoAmI } from "../context/whoami/WhoAmI";
 import { translationFormatter } from "../utils/translationFormatter";
 import NewRealmForm from "./add/NewRealmForm";
-import { toRealm } from "./paths/Realms";
-import { toDashboard } from "../dashboard/paths/Dashboard";
+import { toRealm } from "../lib/realm";
+import { toDashboard } from "../lib/dashboard";
 
 
 const AlertVariant = {

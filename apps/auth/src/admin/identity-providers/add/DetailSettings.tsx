@@ -55,14 +55,14 @@ import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
 import { toUpperCase } from "../../util";
 import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
 import { useParams } from "../../utils/useParams";
-import { toIdentityProviderAddMapper } from "../paths/AddMapper";
-import { toIdentityProviderEditMapper } from "../paths/EditMapper";
+import { toIdentityProviderAddMapper } from "../../lib/identity-providers";
+import { toIdentityProviderEditMapper } from "../../lib/identity-providers";
 import {
   IdentityProviderParams,
   IdentityProviderTab,
   toIdentityProvider,
-} from "../paths/IdentityProvider";
-import { toIdentityProviders } from "../paths/IdentityProviders";
+} from "../../lib/identity-providers";
+import { toIdentityProviders } from "../../lib/identity-providers";
 import { AdvancedSettings } from "./AdvancedSettings";
 import { DescriptorSettings } from "./DescriptorSettings";
 import { DiscoverySettings } from "./DiscoverySettings";

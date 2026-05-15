@@ -19,8 +19,8 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog";
 import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { CustomUserFederationRouteParams } from "../paths/CustomUserFederation";
-import { toUserFederation } from "../paths/UserFederation";
+import { CustomUserFederationRouteParams } from "../../lib/user-federation";
+import { toUserFederation } from "../../lib/user-federation";
 
 
 const AlertVariant = {

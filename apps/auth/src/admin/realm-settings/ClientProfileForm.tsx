@@ -36,10 +36,10 @@ import { KeycloakSpinner } from "../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { useParams } from "../utils/useParams";
-import { toAddExecutor } from "./paths/AddExecutor";
-import { toClientPolicies } from "./paths/ClientPolicies";
-import { ClientProfileParams, toClientProfile } from "./paths/ClientProfile";
-import { toExecutor } from "./paths/Executor";
+import { toAddExecutor } from "../lib/realm-settings";
+import { toClientPolicies } from "../lib/realm-settings";
+import { ClientProfileParams, toClientProfile } from "../lib/realm-settings";
+import { toExecutor } from "../lib/realm-settings";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

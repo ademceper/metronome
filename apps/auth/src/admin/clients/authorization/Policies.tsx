@@ -38,16 +38,16 @@ import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { toUpperCase } from "../../util";
 import useToggle from "../../utils/useToggle";
-import { toCreatePolicy } from "../paths/NewPolicy";
-import { toPermissionDetails } from "../paths/PermissionDetails";
-import { toPolicyDetails } from "../paths/PolicyDetails";
+import { toCreatePolicy } from "../../lib/clients";
+import { toPermissionDetails } from "../../lib/clients";
+import { toPolicyDetails } from "../../lib/clients";
 import { DetailDescriptionLink } from "./DetailDescription";
 import { MoreLabel } from "./MoreLabel";
 import { NewPolicyDialog } from "./NewPolicyDialog";
 import { SearchDropdown, SearchForm } from "./SearchDropdown";
 import { useIsAdminPermissionsClient } from "../../utils/useIsAdminPermissionsClient";
-import { toCreatePermissionPolicy } from "../../permissions-configuration/paths/NewPermissionPolicy";
-import { toPermissionPolicyDetails } from "../../permissions-configuration/paths/PermissionPolicyDetails";
+import { toCreatePermissionPolicy } from "../../lib/permissions-configuration";
+import { toPermissionPolicyDetails } from "../../lib/permissions-configuration";
 
 
 const AlertVariant = {

@@ -15,7 +15,7 @@ import { useAdminClient } from "../admin-client";
 import { useRealm } from "../context/realm-context/RealmContext";
 import SessionsTable from "../sessions/SessionsTable";
 import { useParams } from "../utils/useParams";
-import type { UserParams } from "./paths/User";
+import type { UserParams } from "../lib/user";
 
 
 const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (

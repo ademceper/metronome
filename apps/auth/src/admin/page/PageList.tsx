@@ -29,7 +29,7 @@ import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { PAGE_PROVIDER } from "./constants";
-import { addDetailPage, PageListParams, toDetailPage } from "./paths";
+import { addDetailPage, PageListParams, toDetailPage } from "../lib/page";
 
 
 const ButtonVariant = {

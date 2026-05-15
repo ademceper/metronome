@@ -23,7 +23,7 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { PageHandler } from "./PageHandler";
 import { PAGE_PROVIDER } from "./constants";
-import { PageParams, toPage } from "./paths";
+import { PageParams, toPage } from "../lib/page";
 
 
 const ButtonVariant = {

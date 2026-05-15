@@ -23,7 +23,7 @@ import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { RoleMapping, Row } from "../../components/role-mapping/RoleMapping";
 import { useAccess } from "../../context/access/Access";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { toUser } from "../../user/paths/User";
+import { toUser } from "../../lib/user";
 
 const AlertVariant = {
   default: "default",

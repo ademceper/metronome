@@ -36,8 +36,8 @@ import { getAuthorizationHeaders } from "../../utils/getAuthorizationHeaders";
 import { ClientDescription } from "../ClientDescription";
 import { FormFields } from "../ClientDetails";
 import { CapabilityConfig } from "../add/CapabilityConfig";
-import { toClient } from "../paths/Client";
-import { toClients } from "../paths/Clients";
+import { toClient } from "../../lib/clients";
+import { toClients } from "../../lib/clients";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

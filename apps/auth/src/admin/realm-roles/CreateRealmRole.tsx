@@ -18,8 +18,8 @@ import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { AttributeForm } from "../components/key-value-form/AttributeForm";
 import { RoleForm } from "../components/role-form/RoleForm";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toRealmRole } from "./paths/RealmRole";
-import { toRealmRoles } from "./paths/RealmRoles";
+import { toRealmRole } from "../lib/realm-roles";
+import { toRealmRoles } from "../lib/realm-roles";
 
 
 const AlertVariant = {

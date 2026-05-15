@@ -33,8 +33,8 @@ import { FormAccess } from "../components/form/FormAccess";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
-import { toEditClientPolicy } from "./paths/EditClientPolicy";
-import type { EditClientPolicyConditionParams } from "./paths/EditCondition";
+import { toEditClientPolicy } from "../lib/realm-settings";
+import type { EditClientPolicyConditionParams } from "../lib/realm-settings";
 import { SelectOption } from "../../shared/pf-compat"
 
 

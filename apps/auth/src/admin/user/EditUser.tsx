@@ -61,8 +61,8 @@ import {
   toUserFormFields,
   toUserRepresentation,
 } from "./form-state";
-import { UserParams, UserTab, toUser } from "./paths/User";
-import { toUsers } from "./paths/Users";
+import { UserParams, UserTab, toUser } from "../lib/user";
+import { toUsers } from "../lib/user";
 import { isLightweightUser } from "./utils";
 import { extractUserProfileErrorMessages } from "./utils/user-profile";
 import { AdminEvents } from "../events/AdminEvents";

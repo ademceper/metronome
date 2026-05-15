@@ -67,12 +67,12 @@ import { SamlKeys } from "./keys/SamlKeys";
 import {
   AuthorizationTab,
   toAuthorizationTab,
-} from "./paths/AuthenticationTab";
-import { ClientParams, ClientTab, toClient } from "./paths/Client";
-import { toClientRole } from "./paths/ClientRole";
-import { ClientScopesTab, toClientScopesTab } from "./paths/ClientScopeTab";
-import { toClients } from "./paths/Clients";
-import { toCreateRole } from "./paths/NewRole";
+} from "../lib/clients";
+import { ClientParams, ClientTab, toClient } from "../lib/clients";
+import { toClientRole } from "../lib/clients";
+import { ClientScopesTab, toClientScopesTab } from "../lib/clients";
+import { toClients } from "../lib/clients";
+import { toCreateRole } from "../lib/clients";
 import { ClientScopes } from "./scopes/ClientScopes";
 import { EvaluateScopes } from "./scopes/EvaluateScopes";
 import { ServiceAccount } from "./service-account/ServiceAccount";

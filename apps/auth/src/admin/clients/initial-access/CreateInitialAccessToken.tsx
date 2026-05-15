@@ -23,7 +23,7 @@ import { FormAccess } from "../../components/form/FormAccess";
 import { TimeSelectorControl } from "../../components/time-selector/TimeSelectorControl";
 import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { toClients } from "../paths/Clients";
+import { toClients } from "../../lib/clients";
 import { AccessTokenDialog } from "./AccessTokenDialog";
 import { MultiLineInput } from "../../components/multi-line-input/MultiLineInput";
 import { HelpItem } from "../../../shared/keycloak-ui-shared";

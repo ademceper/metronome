@@ -16,8 +16,8 @@ import { useState } from "react";
 import { useAdminClient } from "../../admin-client";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { toPermissionDetails } from "../paths/PermissionDetails";
-import { toScopeDetails } from "../paths/Scope";
+import { toPermissionDetails } from "../../lib/clients";
+import { toScopeDetails } from "../../lib/clients";
 import { DetailDescription, DetailDescriptionLink } from "./DetailDescription";
 
 const DescriptionList = ({ isHorizontal, columnModifier, children, ...props }: any) => (

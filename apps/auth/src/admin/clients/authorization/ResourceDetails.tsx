@@ -38,8 +38,8 @@ import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { useAccess } from "../../context/access/Access";
 import { convertFormValuesToObject, convertToFormValues } from "../../util";
 import { useParams } from "../../utils/useParams";
-import { toAuthorizationTab } from "../paths/AuthenticationTab";
-import { ResourceDetailsParams, toResourceDetails } from "../paths/Resource";
+import { toAuthorizationTab } from "../../lib/clients";
+import { ResourceDetailsParams, toResourceDetails } from "../../lib/clients";
 import { ScopePicker } from "./ScopePicker";
 
 const ActionGroup = ({ children, className, ...props }: any) => (

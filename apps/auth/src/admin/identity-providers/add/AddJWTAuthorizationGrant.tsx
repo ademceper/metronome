@@ -20,8 +20,8 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../components/form/FormAccess";
 import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { toIdentityProvider } from "../paths/IdentityProvider";
-import { toIdentityProviders } from "../paths/IdentityProviders";
+import { toIdentityProvider } from "../../lib/identity-providers";
+import { toIdentityProviders } from "../../lib/identity-providers";
 import JWTAuthorizationGrantSettings from "./JWTAuthorizationGrantSettings";
 
 const ActionGroup = ({ children, className, ...props }: any) => (

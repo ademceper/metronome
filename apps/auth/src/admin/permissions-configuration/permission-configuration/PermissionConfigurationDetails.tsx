@@ -27,8 +27,8 @@ import { useParams } from "../../utils/useParams";
 import {
   PermissionConfigurationDetailsParams,
   toPermissionConfigurationDetails,
-} from "../paths/PermissionConfigurationDetails";
-import { toPermissionsConfigurationTabs } from "../paths/PermissionsConfigurationTabs";
+} from "../../lib/permissions-configuration";
+import { toPermissionsConfigurationTabs } from "../../lib/permissions-configuration";
 import PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import { AssignedPolicies } from "./AssignedPolicies";
 import { ScopePicker } from "../../clients/authorization/ScopePicker";

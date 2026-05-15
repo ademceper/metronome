@@ -44,7 +44,7 @@ import { useAccess } from "../../context/access/Access";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { translationFormatter } from "../../utils/translationFormatter";
 import useLocaleSort, { mapByKey } from "../../utils/useLocaleSort";
-import { toDedicatedScope } from "../paths/DedicatedScopeDetails";
+import { toDedicatedScope } from "../../lib/clients";
 import { AddScopeDialog } from "./AddScopeDialog";
 import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
 import { PROTOCOL_OIDC, PROTOCOL_OID4VC } from "../constants";
