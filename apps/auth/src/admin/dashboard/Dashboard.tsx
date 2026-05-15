@@ -36,7 +36,7 @@ import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import helpUrls from "../help-urls";
 import useLocaleSort, { mapByKey } from "../utils/useLocaleSort";
 import { ProviderInfo } from "./ProviderInfo";
-import { DashboardTab, toDashboard } from "./routes/Dashboard";
+import { DashboardTab, toDashboard } from "./paths/Dashboard";
 import { Tab, TabTitleText } from "../../shared/pf-compat"
 
 const ActionList = ({ children, className, ...props }: any) => (

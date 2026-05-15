@@ -15,7 +15,7 @@ import { useParams } from "react-router-dom";
 import { TextControl } from "../../../shared/keycloak-ui-shared";
 import { DisplayOrder } from "../component/DisplayOrder";
 import { RedirectUrl } from "../component/RedirectUrl";
-import type { IdentityProviderParams } from "../routes/IdentityProvider";
+import type { IdentityProviderParams } from "../paths/IdentityProvider";
 
 export const OIDCGeneralSettings = () => {
   const { t } = useTranslation();

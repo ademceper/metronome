@@ -13,10 +13,10 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { HelpItem } from "../../../../shared/keycloak-ui-shared";
 import { useParams } from "../../../utils/useParams";
-import type { PolicyDetailsParams } from "../../routes/PolicyDetails";
+import type { PolicyDetailsParams } from "../../paths/PolicyDetails";
 import { DecisionStrategySelect } from "../DecisionStrategySelect";
 import { ResourcesPolicySelect } from "../ResourcesPolicySelect";
-import { NewPermissionPolicyDetailsParams } from "../../../permissions-configuration/routes/NewPermissionPolicy";
+import { NewPermissionPolicyDetailsParams } from "../../../permissions-configuration/paths/NewPermissionPolicy";
 
 
 const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (

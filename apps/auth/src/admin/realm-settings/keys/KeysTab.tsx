@@ -23,7 +23,7 @@ import {
 } from "../../components/routable-tabs/RoutableTabs";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { KEY_PROVIDER_TYPE } from "../../util";
-import { KeySubTab, toKeysTab } from "../routes/KeysTab";
+import { KeySubTab, toKeysTab } from "../paths/KeysTab";
 import { KeysListTab } from "./KeysListTab";
 import { KeysProvidersTab } from "./KeysProvidersTab";
 import { Tab, TabTitleText } from "../../../shared/pf-compat"

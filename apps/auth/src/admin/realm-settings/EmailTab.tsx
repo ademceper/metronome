@@ -26,7 +26,7 @@ import {
 import { useAdminClient } from "../admin-client";
 import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { FormAccess } from "../components/form/FormAccess";
-import { toUser } from "../user/routes/User";
+import { toUser } from "../user/paths/User";
 import { emailRegexPattern } from "../util";
 import { useCurrentUser } from "../utils/useCurrentUser";
 import useToggle from "../utils/useToggle";

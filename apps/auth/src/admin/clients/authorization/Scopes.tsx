@@ -34,11 +34,11 @@ import { useAdminClient } from "../../admin-client";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useToggle from "../../utils/useToggle";
-import { toNewPermission } from "../routes/NewPermission";
-import { toNewScope } from "../routes/NewScope";
-import { toPermissionDetails } from "../routes/PermissionDetails";
-import { toResourceDetails } from "../routes/Resource";
-import { toScopeDetails } from "../routes/Scope";
+import { toNewPermission } from "../paths/NewPermission";
+import { toNewScope } from "../paths/NewScope";
+import { toPermissionDetails } from "../paths/PermissionDetails";
+import { toResourceDetails } from "../paths/Resource";
+import { toScopeDetails } from "../paths/Scope";
 import { DeleteScopeDialog } from "./DeleteScopeDialog";
 import { DetailDescriptionLink } from "./DetailDescription";
 

@@ -40,8 +40,8 @@ import useSortedResourceTypes from "../../utils/useSortedResourceTypes";
 import useToggle from "../../utils/useToggle";
 import { AuthorizationScopesDetails } from "../permission-configuration/AuthorizationScopesDetails";
 import { SearchDropdown, SearchForm } from "../resource-types/SearchDropdown";
-import { toCreatePermissionConfiguration } from "../routes/NewPermissionConfiguration";
-import { toPermissionConfigurationDetails } from "../routes/PermissionConfigurationDetails";
+import { toCreatePermissionConfiguration } from "../paths/NewPermissionConfiguration";
+import { toPermissionConfigurationDetails } from "../paths/PermissionConfigurationDetails";
 import { NewPermissionConfigurationDialog } from "./NewPermissionConfigurationDialog";
 
 

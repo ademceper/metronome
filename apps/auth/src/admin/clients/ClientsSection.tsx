@@ -43,10 +43,10 @@ import { convertClientToUrl } from "../utils/client-url";
 import { translationFormatter } from "../utils/translationFormatter";
 import { InitialAccessTokenList } from "./initial-access/InitialAccessTokenList";
 import { ClientRegistration } from "./registration/ClientRegistration";
-import { toAddClient } from "./routes/AddClient";
-import { toClient } from "./routes/Client";
-import { ClientsTab, toClients } from "./routes/Clients";
-import { toImportClient } from "./routes/ImportClient";
+import { toAddClient } from "./paths/AddClient";
+import { toClient } from "./paths/Client";
+import { ClientsTab, toClients } from "./paths/Clients";
+import { toImportClient } from "./paths/ImportClient";
 import { getProtocolName, isRealmClient } from "./utils";
 import { Tab, TabTitleText } from "../../shared/pf-compat"
 

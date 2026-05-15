@@ -20,10 +20,10 @@ import {
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import helpUrls from "../help-urls";
-import { toRealmSettings } from "../realm-settings/routes/RealmSettings";
+import { toRealmSettings } from "../realm-settings/paths/RealmSettings";
 import { AdminEvents } from "./AdminEvents";
 import { UserEvents } from "./UserEvents";
-import { toEvents } from "./routes/Events";
+import { toEvents } from "./paths/Events";
 import { Tab, TabTitleText } from "../../shared/pf-compat"
 
 const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (

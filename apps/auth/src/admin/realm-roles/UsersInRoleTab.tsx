@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useHelp } from "../../shared/keycloak-ui-shared";
 import { useAdminClient } from "../admin-client";
-import type { ClientRoleParams } from "../clients/routes/ClientRole";
+import type { ClientRoleParams } from "../clients/paths/ClientRole";
 import { ListEmptyState } from "../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../shared/keycloak-ui-shared";
 import { useRealm } from "../context/realm-context/RealmContext";

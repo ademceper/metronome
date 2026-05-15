@@ -29,10 +29,10 @@ import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import helpUrls from "../help-urls";
 import { toUpperCase } from "../util";
 import { ManagePriorityDialog } from "./ManagePriorityDialog";
-import { toCustomUserFederation } from "./routes/CustomUserFederation";
-import { toNewCustomUserFederation } from "./routes/NewCustomUserFederation";
-import { toUserFederationKerberos } from "./routes/UserFederationKerberos";
-import { toUserFederationLdap } from "./routes/UserFederationLdap";
+import { toCustomUserFederation } from "./paths/CustomUserFederation";
+import { toNewCustomUserFederation } from "./paths/NewCustomUserFederation";
+import { toUserFederationKerberos } from "./paths/UserFederationKerberos";
+import { toUserFederationLdap } from "./paths/UserFederationLdap";
 
 const AlertVariant = {
   default: "default",

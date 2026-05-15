@@ -26,7 +26,6 @@ import {
   KeycloakSpinner,
 } from "../../shared/keycloak-ui-shared";
 import { AdminClientContext, initAdminClient } from "../admin-client";
-import { PageBreadCrumbs } from "../components/bread-crumb/PageBreadCrumbs";
 import { ErrorRenderer } from "../components/error/ErrorRenderer";
 import { RecentRealmsProvider } from "../context/RecentRealms";
 import { AccessContextProvider } from "../context/access/Access";
@@ -81,7 +80,6 @@ export const App = () => {
           <PageNav />
           <SidebarInset>
             <Banners />
-            <PageBreadCrumbs />
             <ErrorBoundaryFallback fallback={ErrorRenderer}>
               <Suspense fallback={<KeycloakSpinner />}>
                 <AuthWall>

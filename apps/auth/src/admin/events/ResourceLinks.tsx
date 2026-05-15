@@ -13,13 +13,13 @@ import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import type AdminEventRepresentation from "@keycloak/keycloak-admin-client/lib/defs/adminEventRepresentation";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toClient } from "../clients/routes/Client";
-import { toGroups } from "../groups/routes/Groups";
-import { toClientScope } from "../client-scopes/routes/ClientScope";
-import { toUser } from "../user/routes/User";
-import { toRealmRole } from "../realm-roles/routes/RealmRole";
-import { toFlow } from "../authentication/routes/Flow";
-import { toEditOrganization } from "../organizations/routes/EditOrganization";
+import { toClient } from "../clients/paths/Client";
+import { toGroups } from "../groups/paths/Groups";
+import { toClientScope } from "../client-scopes/paths/ClientScope";
+import { toUser } from "../user/paths/User";
+import { toRealmRole } from "../realm-roles/paths/RealmRole";
+import { toFlow } from "../authentication/paths/Flow";
+import { toEditOrganization } from "../organizations/paths/EditOrganization";
 
 
 const Tooltip = ({ content, children, ...props }: any) => <>{children}</>;

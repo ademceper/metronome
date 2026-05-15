@@ -32,8 +32,8 @@ import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
 import CodeEditor from "../components/form/CodeEditor";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { prettyPrintJSON } from "../util";
-import { toAddClientProfile } from "./routes/AddClientProfile";
-import { toClientProfile } from "./routes/ClientProfile";
+import { toAddClientProfile } from "./paths/AddClientProfile";
+import { toClientProfile } from "./paths/ClientProfile";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

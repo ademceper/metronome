@@ -36,7 +36,7 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import useToggle from "../../utils/useToggle";
 import { GroupsModal } from "../GroupsModal";
 import { useSubGroups } from "../SubGroupsContext";
-import { toGroups } from "../routes/Groups";
+import { toGroups } from "../paths/Groups";
 import { DeleteGroup } from "./DeleteGroup";
 import { MoveDialog } from "./MoveDialog";
 

@@ -42,7 +42,7 @@ import {
   EditOrganizationParams,
   OrganizationTab,
   toEditOrganization,
-} from "./routes/EditOrganization";
+} from "./paths/EditOrganization";
 import { useAccess } from "../context/access/Access";
 import { AdminEvents } from "../events/AdminEvents";
 import { useState } from "react";

@@ -27,7 +27,7 @@ import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
 import helpUrls from "../help-urls";
 import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
-import { toWorkflowDetail } from "./routes/WorkflowDetail";
+import { toWorkflowDetail } from "./paths/WorkflowDetail";
 
 
 const AlertVariant = {

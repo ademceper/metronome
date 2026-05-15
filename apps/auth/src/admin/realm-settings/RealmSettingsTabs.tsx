@@ -31,7 +31,7 @@ import {
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useAccess } from "../context/access/Access";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toDashboard } from "../dashboard/routes/Dashboard";
+import { toDashboard } from "../dashboard/paths/Dashboard";
 import type { Environment } from "../environment";
 import helpUrls from "../help-urls";
 import { convertFormValuesToObject, convertToFormValues } from "../util";
@@ -53,8 +53,8 @@ import { UserRegistration } from "./UserRegistration";
 import { EventsTab } from "./event-config/EventsTab";
 import { KeysTab } from "./keys/KeysTab";
 import { LocalizationTab } from "./localization/LocalizationTab";
-import { ClientPoliciesTab, toClientPolicies } from "./routes/ClientPolicies";
-import { RealmSettingsTab, toRealmSettings } from "./routes/RealmSettings";
+import { ClientPoliciesTab, toClientPolicies } from "./paths/ClientPolicies";
+import { RealmSettingsTab, toRealmSettings } from "./paths/RealmSettings";
 import { SecurityDefenses } from "./security-defences/SecurityDefenses";
 import { UserProfileTab } from "./user-profile/UserProfileTab";
 import { Tab, TabTitleText } from "../../shared/pf-compat"

@@ -27,7 +27,7 @@ import { DynamicComponents } from "../components/dynamic/DynamicComponents";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { useParams } from "../utils/useParams";
 import { type PAGE_PROVIDER, TAB_PROVIDER } from "./constants";
-import { toPage } from "./routes";
+import { toPage } from "./paths";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

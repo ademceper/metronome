@@ -20,7 +20,7 @@ import { useAdminClient } from "../admin-client";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { useParams } from "../utils/useParams";
 import { KerberosSettingsRequired } from "./kerberos/KerberosSettingsRequired";
-import { toUserFederation } from "./routes/UserFederation";
+import { toUserFederation } from "./paths/UserFederation";
 import { Header } from "./shared/Header";
 import { SettingsCache } from "./shared/SettingsCache";
 

@@ -18,9 +18,9 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { AttributeForm } from "../../components/key-value-form/AttributeForm";
 import { RoleForm } from "../../components/role-form/RoleForm";
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { toClient } from "../routes/Client";
-import { toClientRole } from "../routes/ClientRole";
-import { NewRoleParams } from "../routes/NewRole";
+import { toClient } from "../paths/Client";
+import { toClientRole } from "../paths/ClientRole";
+import { NewRoleParams } from "../paths/NewRole";
 
 
 const AlertVariant = {

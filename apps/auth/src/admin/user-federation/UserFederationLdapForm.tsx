@@ -26,7 +26,7 @@ import { LdapSettingsGeneral } from "./ldap/LdapSettingsGeneral";
 import { LdapSettingsKerberosIntegration } from "./ldap/LdapSettingsKerberosIntegration";
 import { LdapSettingsSearching } from "./ldap/LdapSettingsSearching";
 import { LdapSettingsSynchronization } from "./ldap/LdapSettingsSynchronization";
-import { toUserFederation } from "./routes/UserFederation";
+import { toUserFederation } from "./paths/UserFederation";
 import { SettingsCache } from "./shared/SettingsCache";
 
 

@@ -28,13 +28,13 @@ import {
 import { useTranslation } from "react-i18next";
 import { useMatch, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../admin-client";
-import { toClient } from "../clients/routes/Client";
+import { toClient } from "../clients/paths/Client";
 import {
   ClientRoleParams,
   ClientRoleRoute,
   ClientRoleTab,
   toClientRole,
-} from "../clients/routes/ClientRole";
+} from "../clients/paths/ClientRole";
 import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
 import {
   AttributeForm,
@@ -59,8 +59,8 @@ import { AdminEvents } from "../events/AdminEvents";
 import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
 import { useParams } from "../utils/useParams";
 import { UsersInRoleTab } from "./UsersInRoleTab";
-import { RealmRoleRoute, RealmRoleTab, toRealmRole } from "./routes/RealmRole";
-import { toRealmRoles } from "./routes/RealmRoles";
+import { RealmRoleRoute, RealmRoleTab, toRealmRole } from "./paths/RealmRole";
+import { toRealmRoles } from "./paths/RealmRoles";
 import { Tab, TabTitleText } from "../../shared/pf-compat"
 
 

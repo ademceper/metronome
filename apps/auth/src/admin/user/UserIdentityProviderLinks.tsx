@@ -29,7 +29,7 @@ import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
 import { KeycloakDataTable } from "../../shared/keycloak-ui-shared";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
-import { toIdentityProvider } from "../identity-providers/routes/IdentityProvider";
+import { toIdentityProvider } from "../identity-providers/paths/IdentityProvider";
 import { emptyFormatter, upperCaseFormatter } from "../util";
 import { UserIdpModal } from "./UserIdPModal";
 import { useAccess } from "../context/access/Access";

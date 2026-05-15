@@ -31,8 +31,8 @@ import {
   DedicatedScopeDetailsParams,
   DedicatedScopeTab,
   toDedicatedScope,
-} from "../routes/DedicatedScopeDetails";
-import { toMapper } from "../routes/Mapper";
+} from "../paths/DedicatedScopeDetails";
+import { toMapper } from "../paths/Mapper";
 import { DedicatedScope } from "./DedicatedScope";
 import { Tab, TabTitleText } from "../../../shared/pf-compat"
 

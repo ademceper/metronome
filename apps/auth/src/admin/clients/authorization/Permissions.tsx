@@ -40,9 +40,9 @@ import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog"
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useToggle from "../../utils/useToggle";
-import { toNewPermission } from "../routes/NewPermission";
-import { toPermissionDetails } from "../routes/PermissionDetails";
-import { toPolicyDetails } from "../routes/PolicyDetails";
+import { toNewPermission } from "../paths/NewPermission";
+import { toPermissionDetails } from "../paths/PermissionDetails";
+import { toPolicyDetails } from "../paths/PolicyDetails";
 import { DetailDescriptionLink } from "./DetailDescription";
 import { EmptyPermissionsState } from "./EmptyPermissionsState";
 import { MoreLabel } from "./MoreLabel";

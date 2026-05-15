@@ -36,12 +36,12 @@ import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { useAccess } from "../../context/access/Access";
 import { toUpperCase } from "../../util";
 import { useParams } from "../../utils/useParams";
-import { toAuthorizationTab } from "../routes/AuthenticationTab";
-import type { NewPermissionParams } from "../routes/NewPermission";
+import { toAuthorizationTab } from "../paths/AuthenticationTab";
+import type { NewPermissionParams } from "../paths/NewPermission";
 import {
   PermissionDetailsParams,
   toPermissionDetails,
-} from "../routes/PermissionDetails";
+} from "../paths/PermissionDetails";
 import { ResourcesPolicySelect } from "./ResourcesPolicySelect";
 import { ScopeSelect } from "./ScopeSelect";
 

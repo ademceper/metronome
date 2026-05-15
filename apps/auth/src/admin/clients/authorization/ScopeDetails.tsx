@@ -27,8 +27,8 @@ import { FormAccess } from "../../components/form/FormAccess";
 import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { useParams } from "../../utils/useParams";
 import useToggle from "../../utils/useToggle";
-import { toAuthorizationTab } from "../routes/AuthenticationTab";
-import type { ScopeDetailsParams } from "../routes/Scope";
+import { toAuthorizationTab } from "../paths/AuthenticationTab";
+import type { ScopeDetailsParams } from "../paths/Scope";
 import { DeleteScopeDialog } from "./DeleteScopeDialog";
 
 

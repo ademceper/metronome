@@ -34,9 +34,9 @@ import CodeEditor from "../components/form/CodeEditor";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { prettyPrintJSON } from "../util";
 import { translationFormatter } from "../utils/translationFormatter";
-import { toAddClientPolicy } from "./routes/AddClientPolicy";
-import { toClientPolicies } from "./routes/ClientPolicies";
-import { toEditClientPolicy } from "./routes/EditClientPolicy";
+import { toAddClientPolicy } from "./paths/AddClientPolicy";
+import { toClientPolicies } from "./paths/ClientPolicies";
+import { toEditClientPolicy } from "./paths/EditClientPolicy";
 
 const AlertVariant = {
   default: "default",

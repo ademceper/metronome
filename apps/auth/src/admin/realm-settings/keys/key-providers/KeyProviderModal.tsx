@@ -12,7 +12,7 @@
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { useTranslation } from "react-i18next";
 import { KeyProviderForm } from "./KeyProviderForm";
-import type { ProviderType } from "../../routes/KeyProvider";
+import type { ProviderType } from "../../paths/KeyProvider";
 
 const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (
   <UIDialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose?.()}>

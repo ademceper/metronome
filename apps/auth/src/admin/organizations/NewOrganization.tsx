@@ -25,8 +25,8 @@ import {
   OrganizationFormType,
   convertToOrg,
 } from "./OrganizationForm";
-import { toEditOrganization } from "./routes/EditOrganization";
-import { toOrganizations } from "./routes/Organizations";
+import { toEditOrganization } from "./paths/EditOrganization";
+import { toOrganizations } from "./paths/Organizations";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

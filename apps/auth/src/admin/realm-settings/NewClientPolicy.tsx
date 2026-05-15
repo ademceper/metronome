@@ -38,14 +38,14 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { useParams } from "../utils/useParams";
 import { AddClientProfileModal } from "./AddClientProfileModal";
-import { toNewClientPolicyCondition } from "./routes/AddCondition";
-import { toClientPolicies } from "./routes/ClientPolicies";
-import { toClientProfile } from "./routes/ClientProfile";
+import { toNewClientPolicyCondition } from "./paths/AddCondition";
+import { toClientPolicies } from "./paths/ClientPolicies";
+import { toClientProfile } from "./paths/ClientProfile";
 import {
   EditClientPolicyParams,
   toEditClientPolicy,
-} from "./routes/EditClientPolicy";
-import { toEditClientPolicyCondition } from "./routes/EditCondition";
+} from "./paths/EditClientPolicy";
+import { toEditClientPolicyCondition } from "./paths/EditCondition";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

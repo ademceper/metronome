@@ -27,7 +27,7 @@ import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
-import { toPermissionDetails } from "../../clients/routes/PermissionDetails";
+import { toPermissionDetails } from "../../clients/paths/PermissionDetails";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useLocaleSort from "../../utils/useLocaleSort";

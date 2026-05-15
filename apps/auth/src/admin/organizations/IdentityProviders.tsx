@@ -27,11 +27,11 @@ import { Link, useParams } from "react-router-dom";
 import { useAdminClient } from "../admin-client";
 import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
 import { ManageOrderDialog } from "../identity-providers/ManageOrderDialog";
-import { toIdentityProvider } from "../identity-providers/routes/IdentityProvider";
+import { toIdentityProvider } from "../identity-providers/paths/IdentityProvider";
 import { useRealm } from "../context/realm-context/RealmContext";
 import useToggle from "../utils/useToggle";
 import { LinkIdentityProviderModal } from "./LinkIdentityProviderModal";
-import { EditOrganizationParams } from "./routes/EditOrganization";
+import { EditOrganizationParams } from "./paths/EditOrganization";
 
 
 const ButtonVariant = {

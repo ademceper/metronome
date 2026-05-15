@@ -34,8 +34,8 @@ import { useParams } from "../../utils/useParams";
 import {
   RegistrationProviderParams,
   toRegistrationProvider,
-} from "../routes/AddRegistrationProvider";
-import { toClientRegistration } from "../routes/ClientRegistration";
+} from "../paths/AddRegistrationProvider";
+import { toClientRegistration } from "../paths/ClientRegistration";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

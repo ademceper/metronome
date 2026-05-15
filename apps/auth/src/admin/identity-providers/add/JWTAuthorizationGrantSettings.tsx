@@ -15,7 +15,7 @@ import { JWTAuthorizationGrantAssertionSettings } from "./JWTAuthorizationGrantA
 import { Separator as UISeparator } from "@metronome/ui/components/separator";
 import { JwksSettings } from "./JwksSettings";
 import { useParams } from "react-router-dom";
-import type { IdentityProviderParams } from "../routes/IdentityProvider";
+import type { IdentityProviderParams } from "../paths/IdentityProvider";
 
 
 const Divider = (props: any) => <UISeparator {...props} />;

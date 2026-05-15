@@ -40,8 +40,8 @@ import { ViewHeader } from "../../../components/view-header/ViewHeader";
 import { useRealm } from "../../../context/realm-context/RealmContext";
 import { convertFormValuesToObject, convertToFormValues } from "../../../util";
 import { useParams } from "../../../utils/useParams";
-import { toUserFederationLdap } from "../../routes/UserFederationLdap";
-import { UserFederationLdapMapperParams } from "../../routes/UserFederationLdapMapper";
+import { toUserFederationLdap } from "../../paths/UserFederationLdap";
+import { UserFederationLdapMapperParams } from "../../paths/UserFederationLdapMapper";
 import { SelectOption } from "../../../../shared/pf-compat"
 
 

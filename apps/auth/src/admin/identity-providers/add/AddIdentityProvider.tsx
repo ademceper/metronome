@@ -25,9 +25,9 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
 import { toUpperCase } from "../../util";
 import { useParams } from "../../utils/useParams";
-import { toIdentityProvider } from "../routes/IdentityProvider";
-import type { IdentityProviderCreateParams } from "../routes/IdentityProviderCreate";
-import { toIdentityProviders } from "../routes/IdentityProviders";
+import { toIdentityProvider } from "../paths/IdentityProvider";
+import type { IdentityProviderCreateParams } from "../paths/IdentityProviderCreate";
+import { toIdentityProviders } from "../paths/IdentityProviders";
 import { GeneralSettings } from "./GeneralSettings";
 
 

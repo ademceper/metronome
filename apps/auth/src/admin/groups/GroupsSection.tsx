@@ -21,7 +21,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../admin-client";
-import { GroupBreadCrumbs } from "../components/bread-crumb/GroupBreadCrumbs";
 import { PermissionsTab } from "../components/permission-tab/PermissionTab";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useAccess } from "../context/access/Access";
@@ -39,7 +38,7 @@ import { useSubGroups } from "./SubGroupsContext";
 import { DeleteGroup } from "./components/DeleteGroup";
 import { GroupTree } from "./components/GroupTree";
 import { getId, getLastId } from "./groupIdUtils";
-import { toGroups } from "./routes/Groups";
+import { toGroups } from "./paths/Groups";
 import { GroupResourceContext } from "../context/group-resource/GroupResourceContext";
 import { Tabs, Tab, TabTitleText } from "../../shared/pf-compat"
 
@@ -233,7 +232,6 @@ export default function GroupsSection({ orgId }: { orgId?: string } = {}) {
                   onClick={toggle}
                 />
               </Tooltip>
-              <GroupBreadCrumbs />
               <ViewHeader
                 titleKey={!id ? "groups" : currentGroup()?.name!}
                 subKey={

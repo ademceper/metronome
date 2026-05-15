@@ -24,15 +24,15 @@ import { FormAccess } from "../../../components/form/FormAccess";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
 import { useParams } from "../../../utils/useParams";
-import { toAuthorizationTab } from "../../routes/AuthenticationTab";
+import { toAuthorizationTab } from "../../paths/AuthenticationTab";
 import {
   PolicyDetailsParams,
   toPolicyDetails,
-} from "../../routes/PolicyDetails";
+} from "../../paths/PolicyDetails";
 import { useIsAdminPermissionsClient } from "../../../utils/useIsAdminPermissionsClient";
-import { toPermissionsConfigurationTabs } from "../../../permissions-configuration/routes/PermissionsConfigurationTabs";
-import { NewPermissionPolicyDetailsParams } from "../../../permissions-configuration/routes/NewPermissionPolicy";
-import { toPermissionPolicyDetails } from "../../../permissions-configuration/routes/PermissionPolicyDetails";
+import { toPermissionsConfigurationTabs } from "../../../permissions-configuration/paths/PermissionsConfigurationTabs";
+import { NewPermissionPolicyDetailsParams } from "../../../permissions-configuration/paths/NewPermissionPolicy";
+import { toPermissionPolicyDetails } from "../../../permissions-configuration/paths/PermissionPolicyDetails";
 import { Aggregate } from "./Aggregate";
 import { Client } from "./Client";
 import { ClientScope, RequiredIdValue } from "./ClientScope";

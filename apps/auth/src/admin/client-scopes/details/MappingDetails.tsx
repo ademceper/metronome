@@ -25,7 +25,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
-import { toDedicatedScope } from "../../clients/routes/DedicatedScopeDetails";
+import { toDedicatedScope } from "../../clients/paths/DedicatedScopeDetails";
 import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog";
 import { DynamicComponents } from "../../components/dynamic/DynamicComponents";
 import { FormAccess } from "../../components/form/FormAccess";
@@ -34,8 +34,8 @@ import { useRealm } from "../../context/realm-context/RealmContext";
 import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
 import { convertFormValuesToObject, convertToFormValues } from "../../util";
 import { useParams } from "../../utils/useParams";
-import { toClientScope } from "../routes/ClientScope";
-import { MapperParams, MapperRoute } from "../routes/Mapper";
+import { toClientScope } from "../paths/ClientScope";
+import { MapperParams, MapperRoute } from "../paths/Mapper";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

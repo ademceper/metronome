@@ -48,8 +48,8 @@ import {
   protocolFilter,
   typeFilter,
 } from "./details/SearchFilter";
-import { toClientScope } from "./routes/ClientScope";
-import { toNewClientScope } from "./routes/NewClientScope";
+import { toClientScope } from "./paths/ClientScope";
+import { toNewClientScope } from "./paths/NewClientScope";
 
 
 const AlertVariant = {

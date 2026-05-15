@@ -28,7 +28,7 @@ import { JsonFileUpload } from "../../components/json-file-upload/JsonFileUpload
 import { DefaultSwitchControl } from "../../components/SwitchControl";
 import { useWhoAmI } from "../../context/whoami/WhoAmI";
 import { convertFormValuesToObject, convertToFormValues } from "../../util";
-import { toRealm } from "../RealmRoutes";
+import { toRealm } from "../paths/Realms";
 
 
 const ButtonVariant = {

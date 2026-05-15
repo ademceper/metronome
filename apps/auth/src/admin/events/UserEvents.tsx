@@ -35,7 +35,7 @@ import { useAdminClient } from "../admin-client";
 import { EventsBanners } from "../app/Banners";
 import DropdownPanel from "../components/dropdown-panel/DropdownPanel";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toUser } from "../user/routes/User";
+import { toUser } from "../user/paths/User";
 import useFormatDate, { FORMAT_DATE_AND_TIME } from "../utils/useFormatDate";
 import useLocaleSort from "../utils/useLocaleSort";
 import { SelectOption } from "../../shared/pf-compat"

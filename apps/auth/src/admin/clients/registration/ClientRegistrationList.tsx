@@ -25,8 +25,8 @@ import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog"
 import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useToggle from "../../utils/useToggle";
-import { toRegistrationProvider } from "../routes/AddRegistrationProvider";
-import { ClientRegistrationParams } from "../routes/ClientRegistration";
+import { toRegistrationProvider } from "../paths/AddRegistrationProvider";
+import { ClientRegistrationParams } from "../paths/ClientRegistration";
 import { AddProviderDialog } from "./AddProviderDialog";
 
 

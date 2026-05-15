@@ -39,9 +39,9 @@ import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useToggle from "../../utils/useToggle";
-import { toCreatePolicy } from "../routes/NewPolicy";
-import { toPolicyDetails } from "../routes/PolicyDetails";
-import { toResourceDetails } from "../routes/Resource";
+import { toCreatePolicy } from "../paths/NewPolicy";
+import { toPolicyDetails } from "../paths/PolicyDetails";
+import { toResourceDetails } from "../paths/Resource";
 import { NewPolicyDialog } from "./NewPolicyDialog";
 import { useIsAdminPermissionsClient } from "../../utils/useIsAdminPermissionsClient";
 import { SelectOption } from "../../../shared/pf-compat"

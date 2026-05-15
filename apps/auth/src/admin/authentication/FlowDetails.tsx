@@ -48,8 +48,8 @@ import {
   IndexChange,
   LevelChange,
 } from "./execution-model";
-import { toAuthentication } from "./routes/Authentication";
-import { toFlow, type FlowParams } from "./routes/Flow";
+import { toAuthentication } from "./paths/Authentication";
+import { toFlow, type FlowParams } from "./paths/Flow";
 
 
 const AlertVariant = {

@@ -29,13 +29,13 @@ import {
 } from "../../shared/keycloak-ui-shared";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { FormAccess } from "../components/form/FormAccess";
-import { toWorkflows } from "./routes/Workflows";
+import { toWorkflows } from "./paths/Workflows";
 import CodeEditor from "../components/form/CodeEditor";
 import { useParams } from "../utils/useParams";
 import {
   WorkflowDetailParams,
   toWorkflowDetail,
-} from "./routes/WorkflowDetail";
+} from "./paths/WorkflowDetail";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import WorkflowRepresentation from "libs/keycloak-admin-client/lib/defs/workflowRepresentation";
 

@@ -25,7 +25,7 @@ import { useAdminClient } from "../../admin-client";
 import { FormAccess } from "../../components/form/FormAccess";
 import { prettyPrintJSON } from "../../util";
 import { useParams } from "../../utils/useParams";
-import type { ClientParams } from "../routes/Client";
+import type { ClientParams } from "../paths/Client";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

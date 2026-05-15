@@ -23,7 +23,7 @@ import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../utils/useFormatDate";
-import { toCreateInitialAccessToken } from "../routes/CreateInitialAccessToken";
+import { toCreateInitialAccessToken } from "../paths/CreateInitialAccessToken";
 
 
 const AlertVariant = {

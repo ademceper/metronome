@@ -36,8 +36,8 @@ import { useParams } from "../../utils/useParams";
 import {
   IdentityProviderEditMapperParams,
   toIdentityProviderEditMapper,
-} from "../routes/EditMapper";
-import { toIdentityProvider } from "../routes/IdentityProvider";
+} from "../paths/EditMapper";
+import { toIdentityProvider } from "../paths/IdentityProvider";
 import { AddMapperForm } from "./AddMapperForm";
 import { GroupResourceContext } from "../../context/group-resource/GroupResourceContext";
 

@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import { useAdminClient } from "../admin-client";
 import { useAccess } from "../context/access/Access";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toCustomUserFederation } from "../user-federation/routes/CustomUserFederation";
+import { toCustomUserFederation } from "../user-federation/paths/CustomUserFederation";
 
 
 const ButtonVariant = {

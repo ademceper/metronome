@@ -16,7 +16,7 @@ import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import { PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 
-import { PermissionType, toNewPermission } from "../routes/NewPermission";
+import { PermissionType, toNewPermission } from "../paths/NewPermission";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { toUpperCase } from "../../util";
 

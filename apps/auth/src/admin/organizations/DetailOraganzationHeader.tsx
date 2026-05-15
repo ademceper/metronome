@@ -17,7 +17,7 @@ import { useAdminClient } from "../admin-client";
 import { useNavigate } from "react-router-dom";
 import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
-import { toOrganizations } from "./routes/Organizations";
+import { toOrganizations } from "./paths/Organizations";
 import { useRealm } from "../context/realm-context/RealmContext";
 
 

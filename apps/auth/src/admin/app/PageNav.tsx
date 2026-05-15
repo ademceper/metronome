@@ -60,32 +60,27 @@ import { useRealm } from "../context/realm-context/RealmContext";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { useWhoAmI } from "../context/whoami/WhoAmI";
 import { Environment } from "../environment";
-import { toPage } from "../page/routes";
-import { routes } from "../route-utils";
+import { toPage } from "../page/paths";
 import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled";
+
+type Access = string | string[];
 
 type LeftNavProps = {
   title: string;
   path: string;
   icon: React.ReactNode;
-  id?: string;
+  access: Access;
 };
 
-const LeftNav = ({ title, path, icon, id }: LeftNavProps) => {
+const LeftNav = ({ title, path, icon, access }: LeftNavProps) => {
   const { t } = useTranslation();
   const { hasAccess } = useAccess();
   const { realm } = useRealm();
   const encodedRealm = encodeURIComponent(realm);
-  const route = routes.find(
-    (route) =>
-      route.path.replace(/\/:.+?(\?|(?:(?!\/).)*|$)/g, "") === (id || path),
-  );
 
-  const accessAllowed =
-    route &&
-    (route.handle.access instanceof Array
-      ? hasAccess(...route.handle.access)
-      : hasAccess(route.handle.access));
+  const accessAllowed = Array.isArray(access)
+    ? hasAccess(...access)
+    : hasAccess(access);
 
   if (!accessAllowed) {
     return null;
@@ -218,6 +213,7 @@ export const PageNav = () => {
                 title={t("manageRealms")}
                 path="/realms"
                 icon={<DatabaseIcon />}
+                access="anyone"
               />
             </SidebarMenu>
           </SidebarGroup>
@@ -233,34 +229,50 @@ export const PageNav = () => {
                     title="organizations"
                     path="/organizations"
                     icon={<BuildingsIcon />}
+                    access="query-groups"
                   />
                 )}
-              <LeftNav title="clients" path="/clients" icon={<CubeIcon />} />
+              <LeftNav
+                title="clients"
+                path="/clients"
+                icon={<CubeIcon />}
+                access="query-clients"
+              />
               <LeftNav
                 title="clientScopes"
                 path="/client-scopes"
                 icon={<StackIcon />}
+                access="view-clients"
               />
               <LeftNav
                 title="realmRoles"
                 path="/roles"
                 icon={<IdentificationCardIcon />}
+                access="view-realm"
               />
-              <LeftNav title="users" path="/users" icon={<UsersIcon />} />
+              <LeftNav
+                title="users"
+                path="/users"
+                icon={<UsersIcon />}
+                access="query-users"
+              />
               <LeftNav
                 title="groups"
                 path="/groups"
                 icon={<UsersThreeIcon />}
+                access="query-groups"
               />
               <LeftNav
                 title="sessions"
                 path="/sessions"
                 icon={<ClockClockwiseIcon />}
+                access={["view-realm", "view-clients", "view-users"]}
               />
               <LeftNav
                 title="events"
                 path="/events"
                 icon={<ListBulletsIcon />}
+                access="view-events"
               />
             </SidebarMenu>
           </SidebarGroup>
@@ -274,11 +286,13 @@ export const PageNav = () => {
                 title="realmSettings"
                 path="/realm-settings"
                 icon={<GearIcon />}
+                access="view-realm"
               />
               <LeftNav
                 title="authentication"
                 path="/authentication"
                 icon={<KeyIcon />}
+                access={["view-realm", "view-identity-providers", "view-clients"]}
               />
               {isFeatureEnabled(Feature.AdminFineGrainedAuthzV2) &&
                 realmRepresentation?.adminPermissionsEnabled && (
@@ -286,23 +300,27 @@ export const PageNav = () => {
                     title="permissions"
                     path="/permissions"
                     icon={<ShieldCheckIcon />}
+                    access={["view-realm", "view-clients", "view-users"]}
                   />
                 )}
               <LeftNav
                 title="identityProviders"
                 path="/identity-providers"
                 icon={<SignInIcon />}
+                access="view-identity-providers"
               />
               <LeftNav
                 title="userFederation"
                 path="/user-federation"
                 icon={<UserGearIcon />}
+                access="view-realm"
               />
               {showWorkflows && (
                 <LeftNav
                   title="workflows"
                   path="/workflows"
                   icon={<FlowArrowIcon />}
+                  access="manage-realm"
                 />
               )}
               {isFeatureEnabled(Feature.DeclarativeUI) &&
@@ -311,8 +329,8 @@ export const PageNav = () => {
                     key={p.id}
                     title={p.id}
                     path={toPage({ providerId: p.id }).pathname!}
-                    id="/page-section"
                     icon={<ListBulletsIcon />}
+                    access="view-realm"
                   />
                 ))}
             </SidebarMenu>

@@ -20,7 +20,7 @@ import { useAdminClient } from "../admin-client";
 import { useAlerts } from "../../shared/keycloak-ui-shared";
 import { useRealm } from "../context/realm-context/RealmContext";
 import { NameDescription } from "./form/NameDescription";
-import { toFlow } from "./routes/Flow";
+import { toFlow } from "./paths/Flow";
 
 
 const AlertVariant = {

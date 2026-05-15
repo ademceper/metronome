@@ -34,7 +34,7 @@ import { GroupPickerDialog } from "../components/group/GroupPickerDialog";
 import { useAccess } from "../context/access/Access";
 import { GroupResourceContext } from "../context/group-resource/GroupResourceContext";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toUserFederation } from "../user-federation/routes/UserFederation";
+import { toUserFederation } from "../user-federation/paths/UserFederation";
 import useToggle from "../utils/useToggle";
 
 

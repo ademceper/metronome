@@ -27,8 +27,8 @@ import { ViewHeader } from "../../../components/view-header/ViewHeader";
 import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
 import { KEY_PROVIDER_TYPE } from "../../../util";
 import { useParams } from "../../../utils/useParams";
-import { KeyProviderParams, ProviderType } from "../../routes/KeyProvider";
-import { toKeysTab } from "../../routes/KeysTab";
+import { KeyProviderParams, ProviderType } from "../../paths/KeyProvider";
+import { toKeysTab } from "../../paths/KeysTab";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

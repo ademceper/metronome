@@ -32,8 +32,8 @@ import { FormAccess } from "../components/form/FormAccess";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useServerInfo } from "../context/server-info/ServerInfoProvider";
 import { useParams } from "../utils/useParams";
-import { ClientProfileParams, toClientProfile } from "./routes/ClientProfile";
-import type { ExecutorParams } from "./routes/Executor";
+import { ClientProfileParams, toClientProfile } from "./paths/ClientProfile";
+import type { ExecutorParams } from "./paths/Executor";
 import { SelectOption } from "../../shared/pf-compat"
 
 

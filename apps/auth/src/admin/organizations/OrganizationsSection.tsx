@@ -24,8 +24,8 @@ import { useAdminClient } from "../admin-client";
 import { useConfirmDialog } from "../components/confirm-dialog/ConfirmDialog";
 import { ViewHeader } from "../components/view-header/ViewHeader";
 import { useRealm } from "../context/realm-context/RealmContext";
-import { toEditOrganization } from "../organizations/routes/EditOrganization";
-import { toAddOrganization } from "./routes/AddOrganization";
+import { toEditOrganization } from "./paths/EditOrganization";
+import { toAddOrganization } from "./paths/AddOrganization";
 
 
 const ButtonVariant = {

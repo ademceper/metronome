@@ -45,9 +45,9 @@ import { convertFormValuesToObject } from "../util";
 import { useParams } from "../utils/useParams";
 import { MapperList } from "./details/MapperList";
 import { ScopeForm } from "./details/ScopeForm";
-import { ClientScopeParams, toClientScope } from "./routes/ClientScope";
-import { toClientScopes } from "./routes/ClientScopes";
-import { toMapper } from "./routes/Mapper";
+import { ClientScopeParams, toClientScope } from "./paths/ClientScope";
+import { toClientScopes } from "./paths/ClientScopes";
+import { toMapper } from "./paths/Mapper";
 import { useAccess } from "../context/access/Access";
 import { AdminEvents } from "../events/AdminEvents";
 import { Tab, TabTitleText } from "../../shared/pf-compat"
