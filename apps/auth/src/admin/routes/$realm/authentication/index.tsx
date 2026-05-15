@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import { fetchWithError } from "@keycloak/keycloak-admin-client";
 import {
   KeycloakDataTable,
@@ -126,6 +127,7 @@ const AliasRenderer = ({ id, alias, usedBy, builtIn }: AuthenticationType) => {
 function AuthenticationSection() {
   const { adminClient } = useAdminClient();
   const { t } = useTranslation();
+  usePageHeader({ title: t("authentication"), description: t("authenticationExplain") });
   const { realm: realmName, realmRepresentation: realm } = useRealm();
   const [key, setKey] = useState(0);
   const refresh = () => setKey(key + 1);

@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import * as React from "react";
 import type IdentityProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
 import type { IdentityProvidersQuery } from "@keycloak/keycloak-admin-client/lib/resources/identityProviders";
@@ -204,6 +205,7 @@ function IdentityProvidersSection() {
   const { adminClient } = useAdminClient();
 
   const { t } = useTranslation();
+  usePageHeader({ title: t("identityProviders"), description: t("identityProvidersExplain") });
   const identityProviders = groupBy(
     useServerInfo().identityProviders,
     "groupName",

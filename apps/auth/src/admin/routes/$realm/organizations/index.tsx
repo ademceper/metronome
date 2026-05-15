@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import OrganizationRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationRepresentation";
 import {
   ListEmptyState,
@@ -67,6 +68,7 @@ function OrganizationsSection() {
   const { adminClient } = useAdminClient();
   const { realm } = useRealm();
   const { t } = useTranslation();
+  usePageHeader({ title: t("organizations"), description: t("organizationsExplain") });
   const { addAlert, addError } = useAlerts();
   const navigate = useNavigate();
 

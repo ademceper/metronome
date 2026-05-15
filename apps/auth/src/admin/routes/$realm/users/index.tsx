@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import { useTranslation } from "react-i18next";
 import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { cn } from "@metronome/ui/lib/utils";
@@ -28,6 +29,7 @@ const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className,
 
 function UsersSection() {
   const { t } = useTranslation();
+  usePageHeader({ title: t("users"), description: t("usersExplain") });
   const { realm: realmName } = useRealm();
   const { hasAccess } = useAccess();
   const isFeatureEnabled = useIsFeatureEnabled();

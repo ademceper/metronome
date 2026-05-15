@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { cn } from "@metronome/ui/lib/utils";
 import { Trans, useTranslation } from "react-i18next";
@@ -27,6 +28,7 @@ const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className,
 
 function EventsSection() {
   const { t } = useTranslation();
+  usePageHeader({ title: t("events"), description: t("eventExplain") });
   const { realm } = useRealm();
 
   const userEventsTab = useRoutableTab(toEvents({ realm, tab: "user-events" }));

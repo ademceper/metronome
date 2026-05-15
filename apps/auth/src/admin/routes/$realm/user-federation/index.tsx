@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import * as React from "react";
 import type ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import { useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
@@ -88,6 +89,7 @@ function UserFederationSection() {
     useState<ComponentRepresentation[]>();
   const { addAlert, addError } = useAlerts();
   const { t } = useTranslation();
+  usePageHeader({ title: t("userFederation"), description: t("userFederationExplain") });
   const { realm, realmRepresentation } = useRealm();
   const [key, setKey] = useState(0);
   const refresh = () => setKey(new Date().getTime());

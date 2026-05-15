@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import * as React from "react";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
@@ -165,6 +166,7 @@ function ClientScopesSection() {
 
   const { realm } = useRealm();
   const { t } = useTranslation();
+  usePageHeader({ title: t("clientScopes"), description: t("clientScopesExplain") });
   const { addAlert, addError } = useAlerts();
 
   const [kebabOpen, setKebabOpen] = useState(false);
