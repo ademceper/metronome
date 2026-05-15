@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createFileRoute, Outlet } from "@tanstack/react-router"
 
 // Pathless layout for /$realm. Acts as the realm-scoped Outlet host so

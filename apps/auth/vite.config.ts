@@ -27,7 +27,7 @@ export default defineConfig({
     tanstackRouter({
       routesDirectory: "src/admin/routes",
       generatedRouteTree: "src/admin/routeTree.gen.ts",
-      autoCodeSplitting: true,
+      autoCodeSplitting: false,
     }),
     react(),
     keycloakify({
