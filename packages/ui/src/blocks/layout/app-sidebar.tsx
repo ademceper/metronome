@@ -3,6 +3,10 @@
 import type { LinkComponent } from "@metronome/ui/blocks/layout/-link"
 import { NavMain, type NavMainItem } from "@metronome/ui/blocks/layout/nav-main"
 import {
+  PageHeaderBar,
+  PageHeaderProvider,
+} from "@metronome/ui/blocks/layout/page-header"
+import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -99,16 +103,6 @@ const BrandHeader: ComponentType<{
   </SidebarMenu>
 )
 
-/**
- * Full app layout block: SidebarProvider + Sidebar (inset variant) +
- * SidebarInset, with sensible defaults so every consumer gets the same
- * rounded inset chrome and scroll behavior without having to compose the
- * pieces by hand.
- *
- *   <AppSidebar brand={…} groups={…} Link={…}>
- *     {pageOutlet}
- *   </AppSidebar>
- */
 export function AppSidebar({
   children,
   brand,
@@ -155,7 +149,10 @@ export function AppSidebar({
           insetClassName
         )}
       >
-        {children}
+        <PageHeaderProvider>
+          <PageHeaderBar />
+          {children}
+        </PageHeaderProvider>
       </SidebarInset>
     </SidebarProvider>
   )

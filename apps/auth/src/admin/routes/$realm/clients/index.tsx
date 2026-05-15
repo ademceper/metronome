@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import type { ClientQuery } from "@keycloak/keycloak-admin-client/lib/resources/clients";
 import { useAlerts, useEnvironment } from "../../../../shared/keycloak-ui-shared";
@@ -196,6 +197,7 @@ function ClientsSection() {
   const { t } = useTranslation();
   const { addAlert, addError } = useAlerts();
   const { realm } = useRealm();
+  usePageHeader({ title: t("clients"), description: t("clientsExplain") });
 
   const [key, setKey] = useState(0);
   const refresh = () => setKey(new Date().getTime());
