@@ -43,18 +43,20 @@ export function AppShell({
   const sidebarNode =
     sidebar ?? (sidebarProps ? <AppSidebar {...sidebarProps} /> : null)
   return (
-    // Pin the sidebar wrapper to the viewport so scroll happens INSIDE the
+    // Cap the sidebar wrapper at the viewport so scroll happens INSIDE the
     // inset (the main page) rather than the outer body. shadcn's default
-    // `min-h-svh` lets content push the page taller and the whole window
-    // ends up scrolling, which means the sidebar scrolls away with it.
-    // h-svh + overflow-hidden caps it; SidebarInset gets overflow-y-auto so
-    // long pages scroll within their own panel.
+    // `min-h-svh` lets long content push the page taller and the whole
+    // window scrolls — the sidebar drifts off with it. h-svh + overflow-
+    // hidden caps the wrapper; SidebarInset is already flex-1 with m-2 from
+    // the inset variant, so adding overflow-y-auto + min-h-0 lets the inset
+    // fill the available height (margins preserved on all four sides) and
+    // scroll internally when content overflows.
     <SidebarProvider
       {...providerProps}
       className={cn("h-svh overflow-hidden", providerProps?.className)}
     >
       {sidebarNode}
-      <SidebarInset className={cn("h-svh overflow-y-auto", className)}>
+      <SidebarInset className={cn("min-h-0 overflow-y-auto", className)}>
         {children}
       </SidebarInset>
     </SidebarProvider>
