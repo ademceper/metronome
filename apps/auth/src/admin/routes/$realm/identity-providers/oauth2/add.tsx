@@ -74,7 +74,7 @@ type DiscoveryIdentity = IdentityProviderRepresentation & {
   discoveryEndpoint?: string;
 };
 
-function AddOpenIdConnect() {
+function AddOAuth2() {
   const { adminClient } = useAdminClient();
 
   const { t } = useTranslation();

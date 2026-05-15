@@ -71,7 +71,7 @@ type DiscoveryIdentityProvider = IdentityProviderRepresentation & {
   discoveryEndpoint?: string;
 };
 
-function AddSamlConnect() {
+function AddSpiffeConnect() {
   const { adminClient } = useAdminClient();
 
   const { t } = useTranslation();

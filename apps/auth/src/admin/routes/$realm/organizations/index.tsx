@@ -63,7 +63,7 @@ const ToolbarItem = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center", className)} {...props}>{children}</div>
 );
 
-function OrganizationSection() {
+function OrganizationsSection() {
   const { adminClient } = useAdminClient();
   const { realm } = useRealm();
   const { t } = useTranslation();

@@ -116,7 +116,7 @@ const COMPONENTS: {
 
 export const isValidComponentType = (value: string) => value in COMPONENTS;
 
-function PolicyDetails() {
+function PermissionPolicyDetails() {
   const { adminClient } = useAdminClient();
   const { t } = useTranslation();
   const { id, realm, policyId, policyType } = useParams<PolicyDetailsParams>();

@@ -71,7 +71,7 @@ type DiscoveryIdentityProvider = IdentityProviderRepresentation & {
   discoveryEndpoint?: string;
 };
 
-function AddJWTAuthorizationGrantConnect() {
+function AddJWTAuthorizationGrant() {
   const { adminClient } = useAdminClient();
 
   const { t } = useTranslation();

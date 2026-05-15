@@ -207,5 +207,5 @@ function KeyProviderFormPage() {
 }
 
 export const Route = createFileRoute("/$realm/realm-settings/keys/providers/$id/$providerType/settings")({
-  component: KeyProviderForm,
+  component: KeyProviderFormPage,
 })

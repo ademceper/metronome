@@ -42,7 +42,7 @@ const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className,
     className)} {...props}>{children}</section>
 );
 
-function PermissionsConfigurationSection() {
+function PermissionsPoliciesSection() {
   const { adminClient } = useAdminClient();
   const { t } = useTranslation();
   const { realm } = useRealm();
