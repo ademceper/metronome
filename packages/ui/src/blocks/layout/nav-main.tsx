@@ -8,7 +8,6 @@ import {
 } from "@metronome/ui/components/collapsible"
 import {
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
@@ -26,10 +25,12 @@ export type NavMainSubItem = {
 
 export type NavMainItem = {
   title: ReactNode
-  href: string
+  /** Where a LEAF item navigates. Items with `items` ignore this — they're
+   *  pure submenu toggles, not links. */
+  href?: string
   icon?: ReactNode
-  /** When provided, the item renders a chevron action that toggles a
-   *  submenu beneath it. The main button still navigates to `href`. */
+  /** Renders the parent button as a Collapsible trigger and lists these
+   *  beneath it. Only the children are links; the parent just opens/closes. */
   items?: NavMainSubItem[]
   /** Pre-expand the submenu by default. */
   defaultOpen?: boolean
@@ -62,22 +63,26 @@ export function NavMain({
     <SidebarMenu>
       {items.map((item, i) => {
         const hasChildren = !!item.items?.length
-        const button = (
-          <SidebarMenuButton
-            asChild
-            tooltip={typeof item.title === "string" ? item.title : undefined}
-          >
-            <Link href={item.href} data-testid={item.testId}>
-              {item.icon}
-              <span>{item.title}</span>
-            </Link>
-          </SidebarMenuButton>
-        )
+        const titleText =
+          typeof item.title === "string" ? item.title : undefined
 
+        // Leaf item: the whole button is a link.
         if (!hasChildren) {
-          return <SidebarMenuItem key={i}>{button}</SidebarMenuItem>
+          return (
+            <SidebarMenuItem key={i}>
+              <SidebarMenuButton asChild tooltip={titleText}>
+                <Link href={item.href ?? "#"} data-testid={item.testId}>
+                  {item.icon}
+                  <span>{item.title}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          )
         }
 
+        // Parent of a submenu: the whole button is a toggle, NOT a link.
+        // Clicking anywhere on it opens/closes the children. The chevron
+        // lives at the trailing edge of the same button and rotates on open.
         return (
           <Collapsible
             key={i}
@@ -86,12 +91,15 @@ export function NavMain({
             className="group/collapsible"
           >
             <SidebarMenuItem>
-              {button}
               <CollapsibleTrigger asChild>
-                <SidebarMenuAction className="data-[state=open]:rotate-90">
-                  <CaretRightIcon />
-                  <span className="sr-only">Toggle</span>
-                </SidebarMenuAction>
+                <SidebarMenuButton
+                  tooltip={titleText}
+                  data-testid={item.testId}
+                >
+                  {item.icon}
+                  <span>{item.title}</span>
+                  <CaretRightIcon className="ms-auto size-4 transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
