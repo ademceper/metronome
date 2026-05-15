@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev --filter=!./lib/* --filter=!./apps/server/notification/socket --filter=!./apps/server/notification/scheduler --filter=!./apps/server/notification/step-resolver",
+    "dev": "turbo dev --filter=./apps/auth",
+    "dev:full": "turbo dev --filter=!./lib/* --filter=!./apps/server/notification/socket --filter=!./apps/server/notification/scheduler --filter=!./apps/server/notification/step-resolver",
     "dev:lite": "turbo dev --filter=!./apps/server/notification/* --filter=!./lib/*",
     "dev:notification": "turbo dev --filter=./apps/notification --filter=./apps/server/notification/api --filter=./apps/server/notification/worker --filter=./apps/server/notification/ws --filter=./apps/server/notification/webhook --filter=./apps/server/notification/inbound-mail --filter=./lib/*",
     "dev:cf-workers": "turbo dev --filter=./apps/server/notification/socket --filter=./apps/server/notification/scheduler --filter=./apps/server/notification/step-resolver",
