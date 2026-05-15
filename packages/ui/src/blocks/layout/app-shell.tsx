@@ -43,9 +43,20 @@ export function AppShell({
   const sidebarNode =
     sidebar ?? (sidebarProps ? <AppSidebar {...sidebarProps} /> : null)
   return (
-    <SidebarProvider {...providerProps}>
+    // Pin the sidebar wrapper to the viewport so scroll happens INSIDE the
+    // inset (the main page) rather than the outer body. shadcn's default
+    // `min-h-svh` lets content push the page taller and the whole window
+    // ends up scrolling, which means the sidebar scrolls away with it.
+    // h-svh + overflow-hidden caps it; SidebarInset gets overflow-y-auto so
+    // long pages scroll within their own panel.
+    <SidebarProvider
+      {...providerProps}
+      className={cn("h-svh overflow-hidden", providerProps?.className)}
+    >
       {sidebarNode}
-      <SidebarInset className={cn(className)}>{children}</SidebarInset>
+      <SidebarInset className={cn("h-svh overflow-y-auto", className)}>
+        {children}
+      </SidebarInset>
     </SidebarProvider>
   )
 }
