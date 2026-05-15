@@ -1,13 +1,12 @@
 "use client"
 
+import type { LinkComponent } from "@metronome/ui/blocks/-link"
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@metronome/ui/components/collapsible"
 import {
-  SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuAction,
   SidebarMenuButton,
@@ -17,61 +16,100 @@ import {
   SidebarMenuSubItem,
 } from "@metronome/ui/components/sidebar"
 import { CaretRightIcon } from "@phosphor-icons/react"
+import type { ReactNode } from "react"
+
+export type NavMainSubItem = {
+  title: ReactNode
+  href: string
+  testId?: string
+}
+
+export type NavMainItem = {
+  title: ReactNode
+  href: string
+  icon?: ReactNode
+  /** When provided, the item renders a chevron action that toggles a
+   *  submenu beneath it. The main button still navigates to `href`. */
+  items?: NavMainSubItem[]
+  /** Pre-expand the submenu by default. */
+  defaultOpen?: boolean
+  testId?: string
+}
+
+function DefaultLink({
+  href,
+  children,
+  ...rest
+}: {
+  href: string
+  children: ReactNode
+} & Record<string, unknown>) {
+  return (
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  )
+}
 
 export function NavMain({
   items,
+  Link = DefaultLink,
 }: {
-  items: {
-    title: string
-    url: string
-    icon: React.ReactNode
-    isActive?: boolean
-    items?: {
-      title: string
-      url: string
-    }[]
-  }[]
+  items: NavMainItem[]
+  Link?: LinkComponent
 }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
+    <SidebarMenu>
+      {items.map((item, i) => {
+        const hasChildren = !!item.items?.length
+        const button = (
+          <SidebarMenuButton
+            asChild
+            tooltip={typeof item.title === "string" ? item.title : undefined}
+          >
+            <Link href={item.href} data-testid={item.testId}>
+              {item.icon}
+              <span>{item.title}</span>
+            </Link>
+          </SidebarMenuButton>
+        )
+
+        if (!hasChildren) {
+          return <SidebarMenuItem key={i}>{button}</SidebarMenuItem>
+        }
+
+        return (
+          <Collapsible
+            key={i}
+            asChild
+            defaultOpen={item.defaultOpen}
+            className="group/collapsible"
+          >
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip={item.title}>
-                <a href={item.url}>
-                  {item.icon}
-                  <span>{item.title}</span>
-                </a>
-              </SidebarMenuButton>
-              {item.items?.length ? (
-                <>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuAction className="data-[state=open]:rotate-90">
-                      <CaretRightIcon />
-                      <span className="sr-only">Toggle</span>
-                    </SidebarMenuAction>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      {item.items?.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
-                            <a href={subItem.url}>
-                              <span>{subItem.title}</span>
-                            </a>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </>
-              ) : null}
+              {button}
+              <CollapsibleTrigger asChild>
+                <SidebarMenuAction className="data-[state=open]:rotate-90">
+                  <CaretRightIcon />
+                  <span className="sr-only">Toggle</span>
+                </SidebarMenuAction>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <SidebarMenuSub>
+                  {item.items?.map((sub, j) => (
+                    <SidebarMenuSubItem key={j}>
+                      <SidebarMenuSubButton asChild>
+                        <Link href={sub.href} data-testid={sub.testId}>
+                          <span>{sub.title}</span>
+                        </Link>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  ))}
+                </SidebarMenuSub>
+              </CollapsibleContent>
             </SidebarMenuItem>
           </Collapsible>
-        ))}
-      </SidebarMenu>
-    </SidebarGroup>
+        )
+      })}
+    </SidebarMenu>
   )
 }

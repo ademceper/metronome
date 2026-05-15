@@ -1,5 +1,6 @@
 "use client"
 
+import type { LinkComponent } from "@metronome/ui/blocks/-link"
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -7,29 +8,49 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@metronome/ui/components/sidebar"
-import type * as React from "react"
+import type { ComponentProps, ReactNode } from "react"
+
+export type NavSecondaryItem = {
+  title: ReactNode
+  href: string
+  icon?: ReactNode
+  testId?: string
+}
+
+function DefaultLink({
+  href,
+  children,
+  ...rest
+}: {
+  href: string
+  children: ReactNode
+} & Record<string, unknown>) {
+  return (
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  )
+}
 
 export function NavSecondary({
   items,
+  Link = DefaultLink,
   ...props
 }: {
-  items: {
-    title: string
-    url: string
-    icon: React.ReactNode
-  }[]
-} & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+  items: NavSecondaryItem[]
+  Link?: LinkComponent
+} & ComponentProps<typeof SidebarGroup>) {
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
         <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
+          {items.map((item, i) => (
+            <SidebarMenuItem key={i}>
               <SidebarMenuButton asChild size="sm">
-                <a href={item.url}>
+                <Link href={item.href} data-testid={item.testId}>
                   {item.icon}
                   <span>{item.title}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

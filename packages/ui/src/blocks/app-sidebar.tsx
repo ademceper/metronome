@@ -1,184 +1,124 @@
 "use client"
 
-import { NavMain } from "@metronome/ui/blocks/nav-main"
-import { NavProjects } from "@metronome/ui/blocks/nav-projects"
-import { NavSecondary } from "@metronome/ui/blocks/nav-secondary"
-import { NavUser } from "@metronome/ui/blocks/nav-user"
+import type { LinkComponent } from "@metronome/ui/blocks/-link"
+import { NavMain, type NavMainItem } from "@metronome/ui/blocks/nav-main"
+import { NavUser, type NavUserProps } from "@metronome/ui/blocks/nav-user"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@metronome/ui/components/sidebar"
-import {
-  BookOpenIcon,
-  ChartPieIcon,
-  CommandIcon,
-  CropIcon,
-  GearIcon,
-  LifebuoyIcon,
-  MapTrifoldIcon,
-  PaperPlaneTiltIcon,
-  RobotIcon,
-  TerminalIcon,
-} from "@phosphor-icons/react"
-import type * as React from "react"
+import type { ComponentProps, ComponentType, ReactNode } from "react"
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: <TerminalIcon />,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: <RobotIcon />,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: <BookOpenIcon />,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: <GearIcon />,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: <LifebuoyIcon />,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: <PaperPlaneTiltIcon />,
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: <CropIcon />,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: <ChartPieIcon />,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: <MapTrifoldIcon />,
-    },
-  ],
+export type SidebarNavGroup = {
+  /** Optional label shown above the items (e.g. "Manage", "Configure"). */
+  label?: ReactNode
+  items: NavMainItem[]
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export type AppSidebarBrand = {
+  name: ReactNode
+  description?: ReactNode
+  icon?: ReactNode
+  /** Where the brand header link points to. */
+  href?: string
+  /** Optional test id for the brand link. */
+  testId?: string
+}
+
+export type AppSidebarProps = {
+  /** Branding shown in the SidebarHeader. Provide either this OR `header`. */
+  brand?: AppSidebarBrand
+  /** Fully custom header content. Wins over `brand`. */
+  header?: ReactNode
+  /** Grouped nav items rendered in SidebarContent. Defaults to []. */
+  groups?: SidebarNavGroup[]
+  /** User card shown in SidebarFooter via NavUser. Provide either this
+   *  OR `footer` (or neither — the footer is then omitted). */
+  user?: NavUserProps
+  /** Fully custom footer content. Wins over `user`. */
+  footer?: ReactNode
+  /** Router-aware link component. Receives `{ href, children, …rest }` and
+   *  should render an anchor that triggers a client-side navigation. Defaults
+   *  to a plain `<a>`. */
+  Link?: LinkComponent
+} & ComponentProps<typeof Sidebar>
+
+function DefaultLink({
+  href,
+  children,
+  ...rest
+}: {
+  href: string
+  children: ReactNode
+} & Record<string, unknown>) {
   return (
-    <Sidebar variant="inset" {...props}>
+    <a href={href} {...rest}>
+      {children}
+    </a>
+  )
+}
+
+const BrandHeader: ComponentType<{
+  brand: AppSidebarBrand
+  Link: LinkComponent
+}> = ({ brand, Link }) => (
+  <SidebarMenu>
+    <SidebarMenuItem>
+      <SidebarMenuButton size="lg" asChild>
+        <Link href={brand.href ?? "/"} data-testid={brand.testId}>
+          {brand.icon ? (
+            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+              {brand.icon}
+            </div>
+          ) : null}
+          <div className="grid flex-1 text-start text-sm leading-tight">
+            <span className="truncate font-medium">{brand.name}</span>
+            {brand.description ? (
+              <span className="truncate text-xs">{brand.description}</span>
+            ) : null}
+          </div>
+        </Link>
+      </SidebarMenuButton>
+    </SidebarMenuItem>
+  </SidebarMenu>
+)
+
+export function AppSidebar({
+  brand,
+  header,
+  groups = [],
+  user,
+  footer,
+  Link = DefaultLink,
+  ...sidebarProps
+}: AppSidebarProps) {
+  return (
+    <Sidebar variant="inset" {...sidebarProps}>
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <CommandIcon className="size-4" />
-                </div>
-                <div className="grid flex-1 text-start text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
-                </div>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        {header ?? (brand ? <BrandHeader brand={brand} Link={Link} /> : null)}
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        {groups.map((group, i) => (
+          <SidebarGroup key={i}>
+            {group.label ? (
+              <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+            ) : null}
+            <NavMain items={group.items} Link={Link} />
+          </SidebarGroup>
+        ))}
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      {footer || user ? (
+        <SidebarFooter>
+          {footer ?? (user ? <NavUser {...user} /> : null)}
+        </SidebarFooter>
+      ) : null}
     </Sidebar>
   )
 }
