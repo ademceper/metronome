@@ -75,7 +75,7 @@ export function PageHeaderBar({
     >
       <div className="min-w-0 flex-1">
         {meta.title ? (
-          <h1 className="truncate font-semibold text-base leading-tight">
+          <h1 className="truncate font-bold text-2xl leading-tight tracking-tight">
             {meta.title}
           </h1>
         ) : null}
@@ -118,7 +118,7 @@ export function PageHeader({
     >
       <div className="min-w-0 flex-1">
         {title ? (
-          <h1 className="truncate font-semibold text-base leading-tight">
+          <h1 className="truncate font-bold text-2xl leading-tight tracking-tight">
             {title}
           </h1>
         ) : null}
