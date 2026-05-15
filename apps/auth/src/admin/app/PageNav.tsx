@@ -121,7 +121,7 @@ export const PageNav = ({ children }: { children?: React.ReactNode }) => {
           icon: <CubeIcon />,
           access: "query-clients",
           items: [
-            { title: "clientList", path: "list" },
+            { title: "clientsList", path: "list" },
             { title: "initialAccessToken", path: "initial-access-token" },
             { title: "clientRegistration", path: "client-registration" },
           ],
