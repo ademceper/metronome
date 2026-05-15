@@ -76,5 +76,9 @@ function EventsSection() {
 }
 
 export const Route = createFileRoute("/$realm/events/")({
-  component: EventsSection,
+  component: () => (
+    <div className="[&_[data-slot=tabs-list]]:hidden">
+      <EventsSection />
+    </div>
+  ),
 })

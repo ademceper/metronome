@@ -353,5 +353,9 @@ function ClientsSection() {
 }
 
 export const Route = createFileRoute("/$realm/clients/$tab")({
-  component: ClientsSection,
+  component: () => (
+    <div className="[&_[data-slot=tabs-list]]:hidden">
+      <ClientsSection />
+    </div>
+  ),
 })

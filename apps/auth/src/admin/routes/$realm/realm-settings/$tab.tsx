@@ -7,5 +7,9 @@ function RealmSettingsSection() {
 }
 
 export const Route = createFileRoute("/$realm/realm-settings/$tab")({
-  component: RealmSettingsSection,
+  component: () => (
+    <div className="[&_[data-slot=tabs-list]]:hidden">
+      <RealmSettingsSection />
+    </div>
+  ),
 })

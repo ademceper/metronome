@@ -323,5 +323,9 @@ function AuthenticationSection() {
 }
 
 export const Route = createFileRoute("/$realm/authentication/")({
-  component: AuthenticationSection,
+  component: () => (
+    <div className="[&_[data-slot=tabs-list]]:hidden">
+      <AuthenticationSection />
+    </div>
+  ),
 })
