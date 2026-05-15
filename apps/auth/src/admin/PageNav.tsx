@@ -61,7 +61,7 @@ import { useServerInfo } from "./context/server-info/ServerInfoProvider";
 import { useWhoAmI } from "./context/whoami/WhoAmI";
 import { Environment } from "./environment";
 import { toPage } from "./page/routes";
-import { routes } from "./routes";
+import { routes } from "./route-utils";
 import useIsFeatureEnabled, { Feature } from "./utils/useIsFeatureEnabled";
 
 type LeftNavProps = {

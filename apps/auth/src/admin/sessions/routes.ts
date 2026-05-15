@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { SessionsRoute } from "./routes/Sessions";
 
 const routes: AppRouteObject[] = [SessionsRoute];

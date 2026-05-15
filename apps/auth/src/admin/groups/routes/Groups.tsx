@@ -11,7 +11,7 @@
 
 import { lazy } from "react";
 import { generatePath, type Path } from "react-router-dom";
-import type { AppRouteObject } from "../../routes";
+import type { AppRouteObject } from "../../route-utils";
 
 export type GroupsParams = {
   realm: string;

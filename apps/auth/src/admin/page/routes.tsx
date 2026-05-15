@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import { Path, generatePath } from "react-router-dom";
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { lazy } from "react";
 
 export type PageListParams = { realm?: string; providerId: string };

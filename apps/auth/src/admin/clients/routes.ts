@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { AddClientRoute } from "./routes/AddClient";
 import {
   AddRegistrationProviderRoute,

@@ -12,7 +12,7 @@
 import { lazy } from "react";
 import { generateEncodedPath } from "../../utils/generateEncodedPath";
 import type { Path } from "react-router-dom";
-import type { AppRouteObject } from "../../routes";
+import type { AppRouteObject } from "../../route-utils";
 
 export type UserTab = "list" | "permissions";
 

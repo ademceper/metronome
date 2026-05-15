@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { CustomUserFederationRoute } from "./routes/CustomUserFederation";
 import { NewCustomUserFederationRoute } from "./routes/NewCustomUserFederation";
 import { NewKerberosUserFederationRoute } from "./routes/NewKerberosUserFederation";

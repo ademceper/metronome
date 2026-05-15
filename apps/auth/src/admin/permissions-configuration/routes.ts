@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { NewPermissionConfigurationRoute } from "./routes/NewPermissionConfiguration";
 import { NewPermissionPolicyRoute } from "./routes/NewPermissionPolicy";
 import { PermissionConfigurationDetailRoute } from "./routes/PermissionConfigurationDetails";

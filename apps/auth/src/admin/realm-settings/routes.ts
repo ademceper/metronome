@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { AddAttributeRoute } from "./routes/AddAttribute";
 import { AddClientPolicyRoute } from "./routes/AddClientPolicy";
 import { AddClientProfileRoute } from "./routes/AddClientProfile";

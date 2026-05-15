@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { AddRoleRoute } from "./routes/AddRole";
 import { RealmRoleRoute } from "./routes/RealmRole";
 import { RealmRolesRoute } from "./routes/RealmRoles";

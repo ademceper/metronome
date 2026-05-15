@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { WorkflowsRoute } from "./routes/Workflows";
 import { WorkflowDetailRoute } from "./routes/WorkflowDetail";
 

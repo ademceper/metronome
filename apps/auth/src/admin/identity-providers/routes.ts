@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { IdentityProviderRoute } from "./routes/IdentityProvider";
 import { IdentityProviderKeycloakOidcRoute } from "./routes/IdentityProviderKeycloakOidc";
 import { IdentityProviderOidcRoute } from "./routes/IdentityProviderOidc";

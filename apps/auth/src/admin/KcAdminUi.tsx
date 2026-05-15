@@ -1,30 +1,41 @@
-/**
- * This file has been claimed for ownership from @keycloakify/keycloak-admin-ui version 260601.0.0.
- * To relinquish ownership and restore this file to its original content, run the following command:
- *
- * $ npx keycloakify own --path "admin/KcAdminUi.tsx" --revert
- */
-import { useEffect, useReducer } from "react";
-import { startColorSchemeManagement } from "./colorScheme";
-import { createHashRouter, RouterProvider } from "react-router-dom";
-import { i18n } from "./i18n/i18n";
-import { RootRoute } from "./routes";
-document.title = "Keycloak Administration Console";
+import {
+  createHashHistory,
+  createRouter,
+  RouterProvider,
+} from "@tanstack/react-router"
+import { useEffect, useReducer } from "react"
+import { startColorSchemeManagement } from "./colorScheme"
+import { i18n } from "./i18n/i18n"
+import { routeTree } from "./routeTree.gen"
 
-const router = createHashRouter([RootRoute]);
-const prI18nInitialized = i18n.init();
-startColorSchemeManagement();
+document.title = "Keycloak Administration Console"
+
+const hashHistory = createHashHistory()
+const router = createRouter({
+  routeTree,
+  history: hashHistory,
+  defaultPreload: false,
+})
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router
+  }
+}
+
+const prI18nInitialized = i18n.init()
+startColorSchemeManagement()
 
 export default function KcAdminUi() {
-  const [isI18nInitialized, setI18nInitialized] = useReducer(() => true, false);
+  const [isI18nInitialized, setI18nInitialized] = useReducer(() => true, false)
 
   useEffect(() => {
-    prI18nInitialized.then(() => setI18nInitialized());
-  }, []);
+    prI18nInitialized.then(() => setI18nInitialized())
+  }, [])
 
   if (!isI18nInitialized) {
-    return null;
+    return null
   }
 
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }

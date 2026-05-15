@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { ClientScopeRoute } from "./routes/ClientScope";
 import { ClientScopesRoute } from "./routes/ClientScopes";
 import { MapperRoute } from "./routes/Mapper";

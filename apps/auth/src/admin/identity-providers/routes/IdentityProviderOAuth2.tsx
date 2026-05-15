@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import { lazy } from "react";
-import type { AppRouteObject } from "../../routes";
+import type { AppRouteObject } from "../../route-utils";
 
 const AddOAuth2 = lazy(() => import("../add/AddOAuth2"));
 

@@ -13,7 +13,7 @@ import { lazy } from "react";
 import type { Path } from "react-router-dom";
 import { generateEncodedPath } from "../../utils/generateEncodedPath";
 
-import type { AppRouteObject } from "../../routes";
+import type { AppRouteObject } from "../../route-utils";
 
 export type NewCustomUserFederationRouteParams = {
   realm: string;

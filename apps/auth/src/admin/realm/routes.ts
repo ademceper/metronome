@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { RealmRoute } from "./RealmRoutes";
 
 const routes: AppRouteObject[] = [RealmRoute];

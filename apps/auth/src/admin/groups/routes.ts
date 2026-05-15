@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { GroupsRoute, GroupsWithIdRoute } from "./routes/Groups";
 
 const routes: AppRouteObject[] = [GroupsRoute, GroupsWithIdRoute];

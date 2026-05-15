@@ -20,7 +20,7 @@ import useBreadcrumbs, {
 } from "use-react-router-breadcrumbs";
 
 import { useRealm } from "../../context/realm-context/RealmContext";
-import { routes } from "../../routes";
+import { routes } from "../../route-utils";
 
 
 const Breadcrumb = ({ children, ...props }: any) => (

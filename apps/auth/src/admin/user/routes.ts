@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import type { AppRouteObject } from "../routes";
+import type { AppRouteObject } from "../route-utils";
 import { AddUserRoute } from "./routes/AddUser";
 import { UserRoute } from "./routes/User";
 import { UsersRoute, UsersRouteWithTab } from "./routes/Users";
