@@ -1,4 +1,4 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
+import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
@@ -38,9 +38,7 @@ export default function LogoutConfirm(
         </form>
         {!logoutConfirm.skipLink && client.baseUrl && (
           <div className="flex justify-center">
-            <AnimatedLink href={client.baseUrl}>
-              {msg("backToApplication")}
-            </AnimatedLink>
+            <Link href={client.baseUrl}>{msg("backToApplication")}</Link>
           </div>
         )}
       </div>

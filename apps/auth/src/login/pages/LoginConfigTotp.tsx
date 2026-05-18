@@ -1,6 +1,6 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
+import { Link } from "@metronome/ui/components/link"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { KcField, KcSubmit, KcTextInput } from "../components/kc-form"
@@ -55,9 +55,9 @@ export default function LoginConfigTotp(
                 </span>
               </p>
               <p className="mt-2">
-                <AnimatedLink href={totp.qrUrl} id="mode-barcode">
+                <Link href={totp.qrUrl} id="mode-barcode">
                   {msg("loginTotpScanBarcode")}
-                </AnimatedLink>
+                </Link>
               </p>
             </li>
             <li>
@@ -94,9 +94,9 @@ export default function LoginConfigTotp(
               className="my-2"
             />
             <p>
-              <AnimatedLink href={totp.manualUrl} id="mode-manual">
+              <Link href={totp.manualUrl} id="mode-manual">
                 {msg("loginTotpUnableToScan")}
-              </AnimatedLink>
+              </Link>
             </p>
           </li>
         )}

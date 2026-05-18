@@ -1,7 +1,7 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
 import { Label } from "@metronome/ui/components/label"
+import { Link } from "@metronome/ui/components/link"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -130,7 +130,7 @@ export default function Register(props: RegisterProps) {
         )}
 
         <div className="flex justify-center">
-          <AnimatedLink href={url.loginUrl}>{msg("backToLogin")}</AnimatedLink>
+          <Link href={url.loginUrl}>{msg("backToLogin")}</Link>
         </div>
       </form>
     </Template>

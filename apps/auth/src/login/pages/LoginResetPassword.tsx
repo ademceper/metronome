@@ -1,4 +1,4 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
+import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { KcField, KcSubmit, KcTextInput } from "../components/kc-form"
 import type { I18n } from "../i18n"
@@ -64,7 +64,7 @@ export default function LoginResetPassword(
         <KcSubmit label={msgStr("doSubmit")} />
 
         <div className="text-center text-sm">
-          <AnimatedLink href={url.loginUrl}>{msg("backToLogin")}</AnimatedLink>
+          <Link href={url.loginUrl}>{msg("backToLogin")}</Link>
         </div>
       </form>
     </Template>

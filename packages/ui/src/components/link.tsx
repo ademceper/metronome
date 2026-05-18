@@ -1,15 +1,11 @@
 import { cn } from "@metronome/ui/lib/utils"
 import type { AnchorHTMLAttributes, ReactNode } from "react"
 
-type AnimatedLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode
 }
 
-export function AnimatedLink({
-  children,
-  className,
-  ...rest
-}: AnimatedLinkProps) {
+export function Link({ children, className, ...rest }: LinkProps) {
   return (
     <a
       className={cn(

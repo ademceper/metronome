@@ -1,5 +1,5 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
+import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
@@ -60,20 +60,17 @@ export default function LoginOauthGrant(
               {client.attributes.tosUri && (
                 <>
                   {msg("oauthGrantReview")}
-                  <AnimatedLink href={client.attributes.tosUri} target="_blank">
+                  <Link href={client.attributes.tosUri} target="_blank">
                     {msg("oauthGrantTos")}
-                  </AnimatedLink>
+                  </Link>
                 </>
               )}
               {client.attributes.policyUri && (
                 <>
                   {msg("oauthGrantReview")}
-                  <AnimatedLink
-                    href={client.attributes.policyUri}
-                    target="_blank"
-                  >
+                  <Link href={client.attributes.policyUri} target="_blank">
                     {msg("oauthGrantPolicy")}
-                  </AnimatedLink>
+                  </Link>
                 </>
               )}
             </h3>

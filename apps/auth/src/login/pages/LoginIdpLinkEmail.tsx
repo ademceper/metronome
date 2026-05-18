@@ -1,4 +1,4 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
+import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
@@ -32,16 +32,12 @@ export default function LoginIdpLinkEmail(
         </p>
         <p id="instruction2" className="text-muted-foreground text-sm">
           {msg("emailLinkIdp2")}{" "}
-          <AnimatedLink href={url.loginAction}>
-            {msg("doClickHere")}
-          </AnimatedLink>{" "}
+          <Link href={url.loginAction}>{msg("doClickHere")}</Link>{" "}
           {msg("emailLinkIdp3")}
         </p>
         <p id="instruction3" className="text-muted-foreground text-sm">
           {msg("emailLinkIdp4")}{" "}
-          <AnimatedLink href={url.loginAction}>
-            {msg("doClickHere")}
-          </AnimatedLink>{" "}
+          <Link href={url.loginAction}>{msg("doClickHere")}</Link>{" "}
           {msg("emailLinkIdp5")}
         </p>
       </div>

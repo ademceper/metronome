@@ -1,4 +1,4 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
+import { Link } from "@metronome/ui/components/link"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -26,9 +26,9 @@ export default function Error(
           dangerouslySetInnerHTML={{ __html: kcSanitize(message.summary) }}
         />
         {!skipLink && !!client?.baseUrl && (
-          <AnimatedLink id="backToApplication" href={client.baseUrl}>
+          <Link id="backToApplication" href={client.baseUrl}>
             {msg("backToApplication")}
-          </AnimatedLink>
+          </Link>
         )}
       </div>
     </Template>

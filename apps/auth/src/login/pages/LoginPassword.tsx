@@ -1,5 +1,5 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
+import { Link } from "@metronome/ui/components/link"
 import { useScript } from "keycloakify/login/pages/LoginPassword.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useState } from "react"
@@ -68,13 +68,13 @@ export default function LoginPassword(
 
         {realm.resetPasswordAllowed && (
           <div className="flex justify-end">
-            <AnimatedLink
+            <Link
               tabIndex={5}
               href={url.loginResetCredentialsUrl}
               className="text-sm"
             >
               {msg("doForgotPassword")}
-            </AnimatedLink>
+            </Link>
           </div>
         )}
 

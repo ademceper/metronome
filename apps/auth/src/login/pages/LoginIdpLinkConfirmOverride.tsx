@@ -1,5 +1,5 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
+import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
@@ -30,9 +30,9 @@ export default function LoginIdpLinkConfirmOverride(
       >
         <p className="text-muted-foreground text-sm">
           {msg("pageExpiredMsg1")}{" "}
-          <AnimatedLink id="loginRestartLink" href={url.loginRestartFlowUrl}>
+          <Link id="loginRestartLink" href={url.loginRestartFlowUrl}>
             {msg("doClickHere")}
-          </AnimatedLink>
+          </Link>
         </p>
         <Button
           size="xl"

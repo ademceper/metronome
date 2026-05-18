@@ -1,4 +1,4 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
+import { Link } from "@metronome/ui/components/link"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { I18n } from "../i18n"
@@ -61,7 +61,7 @@ export default function Info(
           className="text-muted-foreground text-sm"
           dangerouslySetInnerHTML={{ __html: kcSanitize(bodyHtml) }}
         />
-        {link && <AnimatedLink href={link.href}>{link.label}</AnimatedLink>}
+        {link && <Link href={link.href}>{link.label}</Link>}
       </div>
     </Template>
   )

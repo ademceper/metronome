@@ -1,5 +1,5 @@
-import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
+import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useScript } from "keycloakify/login/pages/WebauthnAuthenticate.useScript"
 import { Fragment } from "react"
@@ -40,9 +40,9 @@ export default function WebauthnAuthenticate(
       infoNode={
         <span>
           {msg("noAccount")}{" "}
-          <AnimatedLink tabIndex={6} href={url.registrationUrl}>
+          <Link tabIndex={6} href={url.registrationUrl}>
             {msg("doRegister")}
-          </AnimatedLink>
+          </Link>
         </span>
       }
       headerNode={msg("webauthn-login-title")}
