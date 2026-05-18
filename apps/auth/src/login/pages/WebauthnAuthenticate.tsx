@@ -1,8 +1,8 @@
+import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useScript } from "keycloakify/login/pages/WebauthnAuthenticate.useScript"
 import { Fragment } from "react"
-import { AnimatedLink } from "../components/animated-link"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 

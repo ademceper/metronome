@@ -1,5 +1,5 @@
+import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { AnimatedLink } from "../components/animated-link"
 import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"

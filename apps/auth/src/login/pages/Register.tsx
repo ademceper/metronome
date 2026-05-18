@@ -1,3 +1,4 @@
+import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
 import { Label } from "@metronome/ui/components/label"
@@ -8,7 +9,6 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { JSX } from "keycloakify/tools/JSX"
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot"
 import { useLayoutEffect, useState } from "react"
-import { AnimatedLink } from "../components/animated-link"
 import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"

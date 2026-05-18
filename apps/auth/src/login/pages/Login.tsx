@@ -1,10 +1,10 @@
+import { AnimatedLink } from "@metronome/ui/components/animated-link"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { useScript } from "keycloakify/login/pages/Login.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useState } from "react"
-import { AnimatedLink } from "../components/animated-link"
 import {
   KcField,
   KcPasswordInput,
