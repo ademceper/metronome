@@ -1,11 +1,22 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Link } from "@metronome/ui/components/link"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { useScript } from "keycloakify/login/pages/LoginUsername.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { useState } from "react"
-import { KcField, KcSubmit, KcTextInput } from "../components/kc-form"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import { SocialProviderIcon } from "../components/social-provider-icon"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
@@ -27,21 +38,48 @@ export default function LoginUsername(
   } = kcContext
   const { msg, msgStr } = i18n
 
-  const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
   const webAuthnButtonId = "authenticateWebAuthnButton"
 
   useScript({ webAuthnButtonId, kcContext, i18n })
 
-  const hasUsernameError = messagesPerField.existsError("username")
-  const usernameError = hasUsernameError
+  // Server-side error from messagesPerField (e.g. invalidUser, invalidEmail)
+  // gets surfaced as a synthetic zod issue so it renders through the same
+  // FormMessage slot as client-side validation.
+  const serverError = messagesPerField.existsError("username")
     ? messagesPerField.getFirstError("username")
     : undefined
 
   const usernameLabel = !realm.loginWithEmailAllowed
-    ? msg("username")
+    ? msgStr("username")
     : !realm.registrationEmailAsUsername
-      ? msg("usernameOrEmail")
-      : msg("email")
+      ? msgStr("usernameOrEmail")
+      : msgStr("email")
+
+  const schema = z.object({
+    username: z
+      .string()
+      .min(1, msgStr("missingUsernameMessage") || "Username is required"),
+    rememberMe: z.boolean().optional(),
+  })
+  type FormValues = z.infer<typeof schema>
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      username: login.username ?? "",
+      rememberMe: !!login.rememberMe,
+    },
+    errors: serverError
+      ? { username: { type: "server", message: serverError } }
+      : undefined,
+  })
+
+  // rhf's handleSubmit prevents default; once validation passes we re-fire the
+  // native POST so Keycloak's action URL still drives the actual login.
+  const onValid = () => {
+    formRef.current?.submit()
+  }
 
   return (
     <Template
@@ -49,7 +87,7 @@ export default function LoginUsername(
       i18n={i18n}
       doUseDefaultCss={doUseDefaultCss}
       classes={classes}
-      displayMessage={!hasUsernameError}
+      displayMessage={!serverError}
       displayInfo={
         realm.password && realm.registrationAllowed && !registrationDisabled
       }
@@ -100,53 +138,75 @@ export default function LoginUsername(
       }
     >
       {realm.password && (
-        <form
-          id="kc-form-login"
-          onSubmit={() => {
-            setIsLoginButtonDisabled(true)
-            return true
-          }}
-          action={url.loginAction}
-          method="post"
-          className="space-y-4"
-        >
-          {!usernameHidden && (
-            <KcField id="username" label={usernameLabel} error={usernameError}>
-              <KcTextInput
-                tabIndex={2}
-                id="username"
+        <Form {...form}>
+          <form
+            ref={formRef}
+            id="kc-form-login"
+            action={url.loginAction}
+            method="post"
+            className="space-y-4"
+            onSubmit={form.handleSubmit(onValid)}
+          >
+            {!usernameHidden && (
+              <FormField
+                control={form.control}
                 name="username"
-                defaultValue={login.username ?? ""}
-                type="text"
-                autoFocus
-                autoComplete={
-                  enableWebAuthnConditionalUI ? "username webauthn" : "username"
-                }
-                invalid={hasUsernameError}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{usernameLabel}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        tabIndex={2}
+                        type="text"
+                        autoFocus
+                        autoComplete={
+                          enableWebAuthnConditionalUI
+                            ? "username webauthn"
+                            : "username"
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </KcField>
-          )}
+            )}
 
-          {realm.rememberMe && !usernameHidden && (
-            <label className="flex items-center gap-2 text-sm">
-              <Checkbox
-                id="rememberMe"
+            {realm.rememberMe && !usernameHidden && (
+              <FormField
+                control={form.control}
                 name="rememberMe"
-                tabIndex={3}
-                defaultChecked={!!login.rememberMe}
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-center gap-2 space-y-0">
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        tabIndex={3}
+                      />
+                    </FormControl>
+                    <FormLabel className="cursor-pointer text-sm">
+                      {msg("rememberMe")}
+                    </FormLabel>
+                  </FormItem>
+                )}
               />
-              {msg("rememberMe")}
-            </label>
-          )}
+            )}
 
-          <KcSubmit
-            tabIndex={4}
-            name="login"
-            id="kc-login"
-            disabled={isLoginButtonDisabled}
-            label={msgStr("doLogIn")}
-          />
-        </form>
+            <Button
+              type="submit"
+              size="xl"
+              tabIndex={4}
+              name="login"
+              id="kc-login"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+            >
+              {msgStr("doLogIn")}
+            </Button>
+          </form>
+        </Form>
       )}
 
       {enableWebAuthnConditionalUI && (
