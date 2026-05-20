@@ -1,6 +1,6 @@
+import { Button } from "@metronome/ui/components/button"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { Fragment } from "react"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -60,7 +60,14 @@ export default function LoginResetOtp(
           )}
         </div>
 
-        <KcSubmit id="kc-otp-reset-form-submit" label={msgStr("doSubmit")} />
+        <Button
+          type="submit"
+          size="xl"
+          id="kc-otp-reset-form-submit"
+          className="w-full"
+        >
+          {msgStr("doSubmit")}
+        </Button>
       </form>
     </Template>
   )

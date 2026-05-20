@@ -1,10 +1,18 @@
 import { Button } from "@metronome/ui/components/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Link } from "@metronome/ui/components/link"
-import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { useScript } from "keycloakify/login/pages/LoginPasskeysConditionalAuthenticate.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { Fragment } from "react"
-import { KcField, KcTextInput } from "../components/kc-form"
+import { useForm } from "react-hook-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -34,10 +42,16 @@ export default function LoginPasskeysConditionalAuthenticate(
 
   useScript({ authButtonId, kcContext, i18n })
 
-  const hasUsernameError = messagesPerField.existsError("username")
-  const usernameErrorMessage = hasUsernameError
+  const serverError = messagesPerField.existsError("username")
     ? messagesPerField.get("username")
     : undefined
+
+  const form = useForm<{ username: string }>({
+    defaultValues: { username: login.username ?? "" },
+    errors: serverError
+      ? { username: { type: "server", message: serverError } }
+      : undefined,
+  })
 
   return (
     <Template
@@ -166,32 +180,30 @@ export default function LoginPasskeysConditionalAuthenticate(
                 }}
               >
                 {!usernameHidden && (
-                  <KcField
-                    id="username"
-                    label={msg("passkey-autofill-select")}
-                    error={usernameErrorMessage}
-                  >
-                    <KcTextInput
-                      tabIndex={1}
-                      id="username"
+                  <Form {...form}>
+                    <FormField
+                      control={form.control}
                       name="username"
-                      defaultValue={login.username ?? ""}
-                      autoComplete="username webauthn"
-                      type="text"
-                      autoFocus
-                      invalid={hasUsernameError}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            {msg("passkey-autofill-select")}
+                          </FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              tabIndex={1}
+                              id="username"
+                              type="text"
+                              autoComplete="username webauthn"
+                              autoFocus
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                    {hasUsernameError && usernameErrorMessage && (
-                      <p
-                        id="input-error-username"
-                        className="text-destructive text-sm"
-                        aria-live="polite"
-                        dangerouslySetInnerHTML={{
-                          __html: kcSanitize(usernameErrorMessage),
-                        }}
-                      />
-                    )}
-                  </KcField>
+                  </Form>
                 )}
               </form>
             )}

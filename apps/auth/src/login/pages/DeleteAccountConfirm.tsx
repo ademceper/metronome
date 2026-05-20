@@ -2,7 +2,6 @@ import { Alert, AlertDescription } from "@metronome/ui/components/alert"
 import { Button } from "@metronome/ui/components/button"
 import { Warning } from "@phosphor-icons/react"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -42,7 +41,9 @@ export default function DeleteAccountConfirm(
 
         {triggered_from_aia ? (
           <div className="grid grid-cols-2 gap-2">
-            <KcSubmit label={msgStr("doConfirmDelete")} />
+            <Button type="submit" size="xl" className="w-full">
+              {msgStr("doConfirmDelete")}
+            </Button>
             <Button
               size="xl"
               type="submit"
@@ -54,7 +55,9 @@ export default function DeleteAccountConfirm(
             </Button>
           </div>
         ) : (
-          <KcSubmit label={msgStr("doConfirmDelete")} />
+          <Button type="submit" size="xl" className="w-full">
+            {msgStr("doConfirmDelete")}
+          </Button>
         )}
       </form>
     </Template>

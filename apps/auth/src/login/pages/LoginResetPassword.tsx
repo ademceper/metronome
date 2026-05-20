@@ -1,6 +1,19 @@
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Button } from "@metronome/ui/components/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcField, KcSubmit, KcTextInput } from "../components/kc-form"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -14,16 +27,36 @@ export default function LoginResetPassword(
   const { url, realm, auth, messagesPerField } = kcContext
   const { msg, msgStr } = i18n
 
-  const hasUsernameError = messagesPerField.existsError("username")
-  const usernameErrorMessage = hasUsernameError
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const serverError = messagesPerField.existsError("username")
     ? messagesPerField.get("username")
     : undefined
 
   const usernameLabel = !realm.loginWithEmailAllowed
-    ? msg("username")
+    ? msgStr("username")
     : !realm.registrationEmailAsUsername
-      ? msg("usernameOrEmail")
-      : msg("email")
+      ? msgStr("usernameOrEmail")
+      : msgStr("email")
+
+  const schema = z.object({
+    username: z
+      .string()
+      .min(1, msgStr("missingUsernameMessage") || "Username is required"),
+  })
+  type FormValues = z.infer<typeof schema>
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { username: auth.attemptedUsername ?? "" },
+    errors: serverError
+      ? { username: { type: "server", message: serverError } }
+      : undefined,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
 
   return (
     <Template
@@ -32,7 +65,7 @@ export default function LoginResetPassword(
       doUseDefaultCss={doUseDefaultCss}
       classes={classes}
       displayInfo
-      displayMessage={!hasUsernameError}
+      displayMessage={!serverError}
       infoNode={
         realm.duplicateEmailsAllowed
           ? msg("emailInstructionUsername")
@@ -40,33 +73,43 @@ export default function LoginResetPassword(
       }
       headerNode={msg("emailForgotTitle")}
     >
-      <form
-        id="kc-reset-password-form"
-        action={url.loginAction}
-        method="post"
-        className="space-y-4"
-      >
-        <KcField
-          id="username"
-          label={usernameLabel}
-          error={usernameErrorMessage}
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-reset-password-form"
+          action={url.loginAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
         >
-          <KcTextInput
-            type="text"
-            id="username"
+          <FormField
+            control={form.control}
             name="username"
-            autoFocus
-            defaultValue={auth.attemptedUsername ?? ""}
-            invalid={hasUsernameError}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{usernameLabel}</FormLabel>
+                <FormControl>
+                  <Input {...field} id="username" type="text" autoFocus />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </KcField>
 
-        <KcSubmit label={msgStr("doSubmit")} />
+          <Button
+            type="submit"
+            size="xl"
+            className="w-full"
+            disabled={form.formState.isSubmitting}
+          >
+            {msgStr("doSubmit")}
+          </Button>
 
-        <div className="text-center text-sm">
-          <Link href={url.loginUrl}>{msg("backToLogin")}</Link>
-        </div>
-      </form>
+          <div className="text-center text-sm">
+            <Link href={url.loginUrl}>{msg("backToLogin")}</Link>
+          </div>
+        </form>
+      </Form>
     </Template>
   )
 }

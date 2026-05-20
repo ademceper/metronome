@@ -9,18 +9,18 @@
 
 // @ts-nocheck
 
-import { KcTextInput } from "../../kc-form";
+import { Input } from "@metronome/ui/components/input";
 import { UserProfileFieldProps } from "./UserProfileFields";
 import { UserProfileGroup } from "./UserProfileGroup";
 import { fieldName, isRequiredAttribute, label } from "./utils";
 
 
 const TextInput = ({ isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
-  <KcTextInput
+  <Input
     disabled={isDisabled}
     readOnly={isReadOnly}
     required={isRequired}
-    invalid={validated === "error"}
+    aria-invalid={validated === "error"}
     type={type || "text"}
     {...props}
   />

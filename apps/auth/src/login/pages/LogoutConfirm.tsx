@@ -1,6 +1,6 @@
+import { Button } from "@metronome/ui/components/button"
 import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -29,12 +29,16 @@ export default function LogoutConfirm(
           className="space-y-3"
         >
           <input type="hidden" name="session_code" value={logoutConfirm.code} />
-          <KcSubmit
+          <Button
+            type="submit"
+            size="xl"
             tabIndex={4}
             name="confirmLogout"
             id="kc-logout"
-            label={msgStr("doLogout")}
-          />
+            className="w-full"
+          >
+            {msgStr("doLogout")}
+          </Button>
         </form>
         {!logoutConfirm.skipLink && client.baseUrl && (
           <div className="flex justify-center">

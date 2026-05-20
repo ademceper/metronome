@@ -1,6 +1,5 @@
 import { Button } from "@metronome/ui/components/button"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -25,11 +24,15 @@ export default function LinkIdpAction(
       </div>
       <form action={url.loginAction} method="post" className="space-y-4">
         <div className="grid grid-cols-2 gap-2">
-          <KcSubmit
+          <Button
+            type="submit"
+            size="xl"
             name="continue"
             id="kc-continue"
-            label={msgStr("doContinue")}
-          />
+            className="w-full"
+          >
+            {msgStr("doContinue")}
+          </Button>
           <Button
             size="xl"
             type="submit"

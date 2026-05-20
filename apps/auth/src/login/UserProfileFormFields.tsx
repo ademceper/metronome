@@ -1,4 +1,5 @@
 import { Button } from "@metronome/ui/components/button"
+import { Input } from "@metronome/ui/components/input"
 import { Label } from "@metronome/ui/components/label"
 import { Textarea } from "@metronome/ui/components/textarea"
 import { cn } from "@metronome/ui/lib/utils"
@@ -15,7 +16,6 @@ import { assert } from "keycloakify/tools/assert"
 import type { JSX } from "keycloakify/tools/JSX"
 import { useIsPasswordRevealed } from "keycloakify/tools/useIsPasswordRevealed"
 import { Fragment, useEffect } from "react"
-import { KcTextInput } from "./components/kc-form"
 import type { I18n } from "./i18n"
 import type { KcContext } from "./KcContext"
 
@@ -363,7 +363,7 @@ function InputTag(
 
   return (
     <>
-      <KcTextInput
+      <Input
         type={(() => {
           const { inputType } = attribute.annotations
 
@@ -386,7 +386,7 @@ function InputTag(
           return valueOrValues
         })()}
         className={cn(isPassword && "pr-10")}
-        invalid={invalid}
+        aria-invalid={invalid}
         disabled={attribute.readOnly}
         autoComplete={attribute.autocomplete}
         placeholder={

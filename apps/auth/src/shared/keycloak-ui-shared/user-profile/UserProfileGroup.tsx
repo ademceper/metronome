@@ -10,13 +10,13 @@
 // @ts-nocheck
 
 import { UserProfileAttributeMetadata } from "@keycloak/keycloak-admin-client/lib/defs/userProfileMetadata";
+import { Label } from "@metronome/ui/components/label";
 import { cn } from "@metronome/ui/lib/utils";
 import { TFunction } from "i18next";
 import { get } from "lodash-es";
 import { PropsWithChildren, ReactNode } from "react";
 import { UseFormReturn, type FieldError } from "react-hook-form";
 
-import { KcField } from "../../kc-form";
 import { HelpItem } from "../controls/HelpItem";
 import {
   UserFormFields,
@@ -65,14 +65,15 @@ export const UserProfileGroup = ({
     </span>
   );
 
+  const required = isRequiredAttribute(attribute);
+  const errorMessage = error?.message as string | undefined;
+
   return (
-    <KcField
-      key={attribute.name}
-      id={attribute.name!}
-      label={labelNode}
-      required={isRequiredAttribute(attribute)}
-      error={error?.message as string | undefined}
-    >
+    <div key={attribute.name} className="space-y-2">
+      <Label htmlFor={attribute.name!}>
+        {labelNode}
+        {required && <span className="ml-0.5 text-destructive">*</span>}
+      </Label>
       {component ? (
         <InputGroup>
           {children}
@@ -81,6 +82,15 @@ export const UserProfileGroup = ({
       ) : (
         children
       )}
-    </KcField>
+      {errorMessage ? (
+        <p
+          id={`${attribute.name}-error`}
+          className="text-destructive text-sm"
+          aria-live="polite"
+        >
+          {errorMessage}
+        </p>
+      ) : null}
+    </div>
   );
 };

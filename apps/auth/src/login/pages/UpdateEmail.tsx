@@ -7,7 +7,6 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { JSX } from "keycloakify/tools/JSX"
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot"
 import { useState } from "react"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -67,7 +66,14 @@ export default function UpdateEmail(props: UpdateEmailProps) {
         <LogoutOtherSessions i18n={i18n} />
 
         <div className="flex flex-col gap-2">
-          <KcSubmit label={msgStr("doSubmit")} disabled={!isFormSubmittable} />
+          <Button
+            type="submit"
+            size="xl"
+            className="w-full"
+            disabled={!isFormSubmittable}
+          >
+            {msgStr("doSubmit")}
+          </Button>
           {isAppInitiatedAction && (
             <Button
               size="xl"

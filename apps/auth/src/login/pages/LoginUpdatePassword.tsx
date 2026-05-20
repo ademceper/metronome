@@ -1,7 +1,20 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Label } from "@metronome/ui/components/label"
+import { PasswordInput } from "@metronome/ui/components/password-input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcField, KcPasswordInput, KcSubmit } from "../components/kc-form"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -15,10 +28,8 @@ export default function LoginUpdatePassword(
   const { msg, msgStr } = i18n
   const { url, messagesPerField, isAppInitiatedAction } = kcContext
 
-  const hasAnyError = messagesPerField.existsError(
-    "password",
-    "password-confirm"
-  )
+  const formRef = useRef<HTMLFormElement>(null)
+
   const passwordError = messagesPerField.existsError("password")
     ? messagesPerField.get("password")
     : undefined
@@ -26,79 +37,160 @@ export default function LoginUpdatePassword(
     ? messagesPerField.get("password-confirm")
     : undefined
 
+  const schema = z
+    .object({
+      password: z
+        .string()
+        .min(1, msgStr("missingPasswordMessage") || "Password is required"),
+      passwordConfirm: z
+        .string()
+        .min(1, msgStr("missingPasswordMessage") || "Password is required"),
+      logoutSessions: z.boolean().optional(),
+    })
+    .refine((data) => data.password === data.passwordConfirm, {
+      path: ["passwordConfirm"],
+      message: msgStr("notMatchPasswordMessage") || "Passwords do not match",
+    })
+  type FormValues = z.infer<typeof schema>
+
+  const serverErrors: Partial<
+    Record<keyof FormValues, { type: string; message: string }>
+  > = {}
+  if (passwordError)
+    serverErrors.password = { type: "server", message: passwordError }
+  if (passwordConfirmError)
+    serverErrors.passwordConfirm = {
+      type: "server",
+      message: passwordConfirmError,
+    }
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { password: "", passwordConfirm: "", logoutSessions: true },
+    errors: Object.keys(serverErrors).length ? serverErrors : undefined,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
+
   return (
     <Template
       kcContext={kcContext}
       i18n={i18n}
       doUseDefaultCss={doUseDefaultCss}
       classes={classes}
-      displayMessage={!hasAnyError}
+      displayMessage={!passwordError && !passwordConfirmError}
       headerNode={msg("updatePasswordTitle")}
     >
-      <form
-        id="kc-passwd-update-form"
-        action={url.loginAction}
-        method="post"
-        className="space-y-4"
-      >
-        <KcField
-          id="password-new"
-          label={msg("passwordNew")}
-          error={passwordError}
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-passwd-update-form"
+          action={url.loginAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
         >
-          <KcPasswordInput
-            id="password-new"
-            name="password-new"
-            autoFocus
-            autoComplete="new-password"
-            invalid={hasAnyError}
-            showLabel={msgStr("showPassword")}
-            hideLabel={msgStr("hidePassword")}
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{msg("passwordNew")}</FormLabel>
+                <FormControl>
+                  <PasswordInput
+                    {...field}
+                    id="password-new"
+                    name="password-new"
+                    autoFocus
+                    autoComplete="new-password"
+                    showLabel={msgStr("showPassword")}
+                    hideLabel={msgStr("hidePassword")}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </KcField>
 
-        <KcField
-          id="password-confirm"
-          label={msg("passwordConfirm")}
-          error={passwordConfirmError}
-        >
-          <KcPasswordInput
-            id="password-confirm"
-            name="password-confirm"
-            autoComplete="new-password"
-            invalid={hasAnyError}
-            showLabel={msgStr("showPassword")}
-            hideLabel={msgStr("hidePassword")}
+          <FormField
+            control={form.control}
+            name="passwordConfirm"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{msg("passwordConfirm")}</FormLabel>
+                <FormControl>
+                  <PasswordInput
+                    {...field}
+                    id="password-confirm"
+                    name="password-confirm"
+                    autoComplete="new-password"
+                    showLabel={msgStr("showPassword")}
+                    hideLabel={msgStr("hidePassword")}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </KcField>
 
-        <label className="flex items-center gap-2 text-sm">
-          <Checkbox
-            id="logout-sessions"
-            name="logout-sessions"
-            value="on"
-            defaultChecked
+          <FormField
+            control={form.control}
+            name="logoutSessions"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-center gap-2 space-y-0">
+                <FormControl>
+                  <Checkbox
+                    id="logout-sessions"
+                    name="logout-sessions"
+                    value="on"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <Label
+                  htmlFor="logout-sessions"
+                  className="cursor-pointer text-sm"
+                >
+                  {msg("logoutOtherSessions")}
+                </Label>
+              </FormItem>
+            )}
           />
-          {msg("logoutOtherSessions")}
-        </label>
 
-        {isAppInitiatedAction ? (
-          <div className="grid grid-cols-2 gap-2">
-            <KcSubmit label={msgStr("doSubmit")} />
+          {isAppInitiatedAction ? (
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                type="submit"
+                size="xl"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {msgStr("doSubmit")}
+              </Button>
+              <Button
+                size="xl"
+                type="submit"
+                variant="outline"
+                name="cancel-aia"
+                value="true"
+              >
+                {msg("doCancel")}
+              </Button>
+            </div>
+          ) : (
             <Button
-              size="xl"
               type="submit"
-              variant="outline"
-              name="cancel-aia"
-              value="true"
+              size="xl"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
             >
-              {msg("doCancel")}
+              {msgStr("doSubmit")}
             </Button>
-          </div>
-        ) : (
-          <KcSubmit label={msgStr("doSubmit")} />
-        )}
-      </form>
+          )}
+        </form>
+      </Form>
     </Template>
   )
 }

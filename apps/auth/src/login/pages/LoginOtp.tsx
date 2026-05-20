@@ -1,12 +1,23 @@
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Button } from "@metronome/ui/components/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Label } from "@metronome/ui/components/label"
 import {
   RadioGroup,
   RadioGroupItem,
 } from "@metronome/ui/components/radio-group"
-import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { useState } from "react"
-import { KcField, KcSubmit, KcTextInput } from "../components/kc-form"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -17,10 +28,32 @@ export default function LoginOtp(
   const { otpLogin, url, messagesPerField } = kcContext
   const { msg, msgStr } = i18n
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
 
-  const hasOtpError = messagesPerField.existsError("totp")
-  const otpErrorMessage = hasOtpError ? messagesPerField.get("totp") : undefined
+  const serverError = messagesPerField.existsError("totp")
+    ? messagesPerField.get("totp")
+    : undefined
+
+  const schema = z.object({
+    otp: z.string().min(1, msgStr("missingTotpMessage") || "OTP is required"),
+    selectedCredentialId: z.string().optional(),
+  })
+  type FormValues = z.infer<typeof schema>
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      otp: "",
+      selectedCredentialId: otpLogin.selectedCredentialId ?? "",
+    },
+    errors: serverError
+      ? { otp: { type: "server", message: serverError } }
+      : undefined,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
 
   return (
     <Template
@@ -28,73 +61,87 @@ export default function LoginOtp(
       i18n={i18n}
       doUseDefaultCss={doUseDefaultCss}
       classes={classes}
-      displayMessage={!hasOtpError}
+      displayMessage={!serverError}
       headerNode={msg("doLogIn")}
     >
-      <form
-        id="kc-otp-login-form"
-        action={url.loginAction}
-        onSubmit={() => {
-          setIsSubmitting(true)
-          return true
-        }}
-        method="post"
-        className="space-y-4"
-      >
-        {otpLogin.userOtpCredentials.length > 1 && (
-          <RadioGroup
-            name="selectedCredentialId"
-            defaultValue={otpLogin.selectedCredentialId}
-            className="space-y-2"
-          >
-            {otpLogin.userOtpCredentials.map((otpCredential, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 rounded-md border p-3"
-              >
-                <RadioGroupItem
-                  id={`kc-otp-credential-${index}`}
-                  value={otpCredential.id}
-                />
-                <Label
-                  htmlFor={`kc-otp-credential-${index}`}
-                  className="cursor-pointer"
-                >
-                  {otpCredential.userLabel}
-                </Label>
-              </div>
-            ))}
-          </RadioGroup>
-        )}
-
-        <KcField id="otp" label={msg("loginOtpOneTime")}>
-          <KcTextInput
-            id="otp"
-            name="otp"
-            autoComplete="one-time-code"
-            type="text"
-            autoFocus
-            invalid={hasOtpError}
-          />
-          {hasOtpError && otpErrorMessage && (
-            <p
-              id="input-error-otp-code"
-              className="text-destructive text-sm"
-              aria-live="polite"
-              dangerouslySetInnerHTML={{
-                __html: kcSanitize(otpErrorMessage),
-              }}
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-otp-login-form"
+          action={url.loginAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
+        >
+          {otpLogin.userOtpCredentials.length > 1 && (
+            <FormField
+              control={form.control}
+              name="selectedCredentialId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <RadioGroup
+                      name={field.name}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      className="space-y-2"
+                    >
+                      {otpLogin.userOtpCredentials.map((otpCredential, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 rounded-md border p-3"
+                        >
+                          <RadioGroupItem
+                            id={`kc-otp-credential-${i}`}
+                            value={otpCredential.id}
+                          />
+                          <Label
+                            htmlFor={`kc-otp-credential-${i}`}
+                            className="cursor-pointer"
+                          >
+                            {otpCredential.userLabel}
+                          </Label>
+                        </div>
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                </FormItem>
+              )}
             />
           )}
-        </KcField>
 
-        <KcSubmit
-          name="login"
-          id="kc-login"
-          disabled={isSubmitting}
-          label={msgStr("doLogIn")}
-        />
-      </form>
+          <FormField
+            control={form.control}
+            name="otp"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{msg("loginOtpOneTime")}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    id="otp"
+                    type="text"
+                    autoComplete="one-time-code"
+                    autoFocus
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            type="submit"
+            size="xl"
+            name="login"
+            id="kc-login"
+            className="w-full"
+            disabled={form.formState.isSubmitting}
+          >
+            {msgStr("doLogIn")}
+          </Button>
+        </form>
+      </Form>
     </Template>
   )
 }

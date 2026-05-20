@@ -1,10 +1,10 @@
+import { Button } from "@metronome/ui/components/button"
 import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
 import type { JSX } from "keycloakify/tools/JSX"
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot"
 import { useState } from "react"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -59,7 +59,14 @@ export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
           kcClsx={kcClsx}
           doMakeUserConfirmPassword={doMakeUserConfirmPassword}
         />
-        <KcSubmit label={msgStr("doSubmit")} disabled={!isFomSubmittable} />
+        <Button
+          type="submit"
+          size="xl"
+          className="w-full"
+          disabled={!isFomSubmittable}
+        >
+          {msgStr("doSubmit")}
+        </Button>
       </form>
     </Template>
   )

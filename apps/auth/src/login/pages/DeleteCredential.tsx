@@ -1,6 +1,5 @@
 import { Button } from "@metronome/ui/components/button"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -28,11 +27,15 @@ export default function DeleteCredential(
       </div>
       <form action={url.loginAction} method="POST" className="space-y-4">
         <div className="grid grid-cols-2 gap-2">
-          <KcSubmit
+          <Button
+            type="submit"
+            size="xl"
             name="accept"
             id="kc-accept"
-            label={msgStr("doConfirmDelete")}
-          />
+            className="w-full"
+          >
+            {msgStr("doConfirmDelete")}
+          </Button>
           <Button
             size="xl"
             type="submit"

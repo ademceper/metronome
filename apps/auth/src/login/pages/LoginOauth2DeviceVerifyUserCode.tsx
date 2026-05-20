@@ -1,5 +1,18 @@
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Button } from "@metronome/ui/components/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcField, KcSubmit, KcTextInput } from "../components/kc-form"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -13,6 +26,22 @@ export default function LoginOauth2DeviceVerifyUserCode(
   const { url } = kcContext
   const { msg, msgStr } = i18n
 
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const schema = z.object({
+    device_user_code: z.string().min(1, "Code is required"),
+  })
+  type FormValues = z.infer<typeof schema>
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { device_user_code: "" },
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
+
   return (
     <Template
       kcContext={kcContext}
@@ -21,27 +50,46 @@ export default function LoginOauth2DeviceVerifyUserCode(
       classes={classes}
       headerNode={msg("oauth2DeviceVerificationTitle")}
     >
-      <form
-        id="kc-user-verify-device-user-code-form"
-        action={url.oauth2DeviceVerificationAction}
-        method="post"
-        className="space-y-4"
-      >
-        <KcField
-          id="device-user-code"
-          label={msg("verifyOAuth2DeviceUserCode")}
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-user-verify-device-user-code-form"
+          action={url.oauth2DeviceVerificationAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
         >
-          <KcTextInput
-            id="device-user-code"
+          <FormField
+            control={form.control}
             name="device_user_code"
-            autoComplete="off"
-            type="text"
-            autoFocus
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{msg("verifyOAuth2DeviceUserCode")}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    id="device-user-code"
+                    type="text"
+                    autoComplete="off"
+                    autoFocus
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </KcField>
 
-        <KcSubmit name="submit" label={msgStr("doSubmit")} />
-      </form>
+          <Button
+            type="submit"
+            size="xl"
+            name="submit"
+            className="w-full"
+            disabled={form.formState.isSubmitting}
+          >
+            {msgStr("doSubmit")}
+          </Button>
+        </form>
+      </Form>
     </Template>
   )
 }

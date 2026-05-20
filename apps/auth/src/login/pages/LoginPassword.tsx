@@ -1,9 +1,20 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
 import { Link } from "@metronome/ui/components/link"
+import { PasswordInput } from "@metronome/ui/components/password-input"
 import { useScript } from "keycloakify/login/pages/LoginPassword.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { useState } from "react"
-import { KcField, KcPasswordInput, KcSubmit } from "../components/kc-form"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -20,15 +31,33 @@ export default function LoginPassword(
   } = kcContext
   const { msg, msgStr } = i18n
 
-  const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
   const webAuthnButtonId = "authenticateWebAuthnButton"
 
   useScript({ webAuthnButtonId, kcContext, i18n })
 
-  const hasPasswordError = messagesPerField.existsError("password")
-  const passwordErrorMessage = hasPasswordError
+  const serverError = messagesPerField.existsError("password")
     ? messagesPerField.get("password")
     : undefined
+
+  const schema = z.object({
+    password: z
+      .string()
+      .min(1, msgStr("missingPasswordMessage") || "Password is required"),
+  })
+  type FormValues = z.infer<typeof schema>
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { password: "" },
+    errors: serverError
+      ? { password: { type: "server", message: serverError } }
+      : undefined,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
 
   return (
     <Template
@@ -37,55 +66,64 @@ export default function LoginPassword(
       doUseDefaultCss={doUseDefaultCss}
       classes={classes}
       headerNode={msg("doLogIn")}
-      displayMessage={!hasPasswordError}
+      displayMessage={!serverError}
     >
-      <form
-        id="kc-form-login"
-        onSubmit={() => {
-          setIsLoginButtonDisabled(true)
-          return true
-        }}
-        action={url.loginAction}
-        method="post"
-        className="space-y-4"
-      >
-        <KcField
-          id="password"
-          label={msg("password")}
-          error={passwordErrorMessage}
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-form-login"
+          action={url.loginAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
         >
-          <KcPasswordInput
-            tabIndex={2}
-            id="password"
+          <FormField
+            control={form.control}
             name="password"
-            autoFocus
-            autoComplete="on"
-            invalid={messagesPerField.existsError("username", "password")}
-            showLabel={msgStr("showPassword")}
-            hideLabel={msgStr("hidePassword")}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{msg("password")}</FormLabel>
+                <FormControl>
+                  <PasswordInput
+                    {...field}
+                    tabIndex={2}
+                    id="password"
+                    autoFocus
+                    autoComplete="on"
+                    showLabel={msgStr("showPassword")}
+                    hideLabel={msgStr("hidePassword")}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </KcField>
 
-        {realm.resetPasswordAllowed && (
-          <div className="flex justify-end">
-            <Link
-              tabIndex={5}
-              href={url.loginResetCredentialsUrl}
-              className="text-sm"
-            >
-              {msg("doForgotPassword")}
-            </Link>
-          </div>
-        )}
+          {realm.resetPasswordAllowed && (
+            <div className="flex justify-end">
+              <Link
+                tabIndex={5}
+                href={url.loginResetCredentialsUrl}
+                className="text-sm"
+              >
+                {msg("doForgotPassword")}
+              </Link>
+            </div>
+          )}
 
-        <KcSubmit
-          tabIndex={4}
-          name="login"
-          id="kc-login"
-          disabled={isLoginButtonDisabled}
-          label={msgStr("doLogIn")}
-        />
-      </form>
+          <Button
+            type="submit"
+            size="xl"
+            tabIndex={4}
+            name="login"
+            id="kc-login"
+            className="w-full"
+            disabled={form.formState.isSubmitting}
+          >
+            {msgStr("doLogIn")}
+          </Button>
+        </form>
+      </Form>
 
       {enableWebAuthnConditionalUI && (
         <div className="space-y-3">

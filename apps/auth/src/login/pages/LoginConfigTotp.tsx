@@ -1,9 +1,20 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Link } from "@metronome/ui/components/link"
-import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcField, KcSubmit, KcTextInput } from "../components/kc-form"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -17,8 +28,42 @@ export default function LoginConfigTotp(
   const { url, isAppInitiatedAction, totp, mode, messagesPerField } = kcContext
   const { msg, msgStr, advancedMsg } = i18n
 
+  const formRef = useRef<HTMLFormElement>(null)
+
   const totpError = messagesPerField.existsError("totp")
+    ? messagesPerField.get("totp")
+    : undefined
   const userLabelError = messagesPerField.existsError("userLabel")
+    ? messagesPerField.get("userLabel")
+    : undefined
+
+  const userLabelRequired = totp.otpCredentials.length >= 1
+
+  const schema = z.object({
+    totp: z.string().min(1, msgStr("missingTotpMessage") || "Code is required"),
+    userLabel: userLabelRequired
+      ? z.string().min(1, "Device name is required")
+      : z.string().optional(),
+    logoutSessions: z.boolean().optional(),
+  })
+  type FormValues = z.infer<typeof schema>
+
+  const serverErrors: Partial<
+    Record<keyof FormValues, { type: string; message: string }>
+  > = {}
+  if (totpError) serverErrors.totp = { type: "server", message: totpError }
+  if (userLabelError)
+    serverErrors.userLabel = { type: "server", message: userLabelError }
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { totp: "", userLabel: "", logoutSessions: true },
+    errors: Object.keys(serverErrors).length ? serverErrors : undefined,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
 
   return (
     <Template
@@ -27,7 +72,7 @@ export default function LoginConfigTotp(
       doUseDefaultCss={doUseDefaultCss}
       classes={classes}
       headerNode={msg("loginTotpTitle")}
-      displayMessage={!messagesPerField.existsError("totp", "userLabel")}
+      displayMessage={!totpError && !userLabelError}
     >
       <ol id="kc-totp-settings" className="list-decimal space-y-4 pl-5 text-sm">
         <li>
@@ -108,95 +153,112 @@ export default function LoginConfigTotp(
         </li>
       </ol>
 
-      <form
-        action={url.loginAction}
-        id="kc-totp-settings-form"
-        method="post"
-        className="mt-6 space-y-4"
-      >
-        <KcField
-          id="totp"
-          label={msg("authenticatorCode")}
-          required
-          error={
-            totpError ? kcSanitize(messagesPerField.get("totp")) : undefined
-          }
+      <Form {...form}>
+        <form
+          ref={formRef}
+          action={url.loginAction}
+          id="kc-totp-settings-form"
+          method="post"
+          className="mt-6 space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
         >
-          <KcTextInput
-            type="text"
-            id="totp"
+          <FormField
+            control={form.control}
             name="totp"
-            autoComplete="off"
-            invalid={totpError}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{msg("authenticatorCode")}</FormLabel>
+                <FormControl>
+                  <Input {...field} id="totp" type="text" autoComplete="off" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </KcField>
 
-        <KcField
-          id="userLabel"
-          label={msg("loginTotpDeviceName")}
-          required={totp.otpCredentials.length >= 1}
-          error={
-            userLabelError
-              ? kcSanitize(messagesPerField.get("userLabel"))
-              : undefined
-          }
-        >
-          <KcTextInput
-            type="text"
-            id="userLabel"
+          <FormField
+            control={form.control}
             name="userLabel"
-            autoComplete="off"
-            invalid={userLabelError}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{msg("loginTotpDeviceName")}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    id="userLabel"
+                    type="text"
+                    autoComplete="off"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </KcField>
 
-        <input
-          type="hidden"
-          id="totpSecret"
-          name="totpSecret"
-          value={totp.totpSecret}
-        />
-        {mode && <input type="hidden" id="mode" value={mode} />}
+          <input
+            type="hidden"
+            id="totpSecret"
+            name="totpSecret"
+            value={totp.totpSecret}
+          />
+          {mode && <input type="hidden" id="mode" value={mode} />}
 
-        <LogoutOtherSessions i18n={i18n} />
+          <FormField
+            control={form.control}
+            name="logoutSessions"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-center gap-2 space-y-0">
+                <FormControl>
+                  <Checkbox
+                    id="logout-sessions"
+                    name="logout-sessions"
+                    value="on"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </FormControl>
+                <FormLabel className="cursor-pointer text-sm">
+                  {msg("logoutOtherSessions")}
+                </FormLabel>
+              </FormItem>
+            )}
+          />
 
-        {isAppInitiatedAction ? (
-          <div className="grid grid-cols-2 gap-2">
-            <KcSubmit id="saveTOTPBtn" label={msgStr("doSubmit")} />
+          {isAppInitiatedAction ? (
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                type="submit"
+                size="xl"
+                id="saveTOTPBtn"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {msgStr("doSubmit")}
+              </Button>
+              <Button
+                size="xl"
+                type="submit"
+                variant="outline"
+                id="cancelTOTPBtn"
+                name="cancel-aia"
+                value="true"
+              >
+                {msg("doCancel")}
+              </Button>
+            </div>
+          ) : (
             <Button
-              size="xl"
               type="submit"
-              variant="outline"
-              id="cancelTOTPBtn"
-              name="cancel-aia"
-              value="true"
+              size="xl"
+              id="saveTOTPBtn"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
             >
-              {msg("doCancel")}
+              {msgStr("doSubmit")}
             </Button>
-          </div>
-        ) : (
-          <KcSubmit id="saveTOTPBtn" label={msgStr("doSubmit")} />
-        )}
-      </form>
+          )}
+        </form>
+      </Form>
     </Template>
-  )
-}
-
-function LogoutOtherSessions(props: { i18n: I18n }) {
-  const { i18n } = props
-  const { msg } = i18n
-
-  return (
-    <div id="kc-form-options">
-      <label className="flex items-center gap-2 text-sm">
-        <Checkbox
-          id="logout-sessions"
-          name="logout-sessions"
-          value="on"
-          defaultChecked
-        />
-        {msg("logoutOtherSessions")}
-      </label>
-    </div>
   )
 }

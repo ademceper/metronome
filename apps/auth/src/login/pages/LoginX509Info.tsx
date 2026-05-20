@@ -1,7 +1,6 @@
 import { Button } from "@metronome/ui/components/button"
 import { Label } from "@metronome/ui/components/label"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import { KcSubmit } from "../components/kc-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
 
@@ -54,7 +53,15 @@ export default function LoginX509Info(
 
         {x509.formData.isUserEnabled ? (
           <div className="grid grid-cols-2 gap-2">
-            <KcSubmit name="login" id="kc-login" label={msgStr("doContinue")} />
+            <Button
+              type="submit"
+              size="xl"
+              name="login"
+              id="kc-login"
+              className="w-full"
+            >
+              {msgStr("doContinue")}
+            </Button>
             <Button
               size="xl"
               type="submit"
@@ -66,7 +73,15 @@ export default function LoginX509Info(
             </Button>
           </div>
         ) : (
-          <KcSubmit name="login" id="kc-login" label={msgStr("doContinue")} />
+          <Button
+            type="submit"
+            size="xl"
+            name="login"
+            id="kc-login"
+            className="w-full"
+          >
+            {msgStr("doContinue")}
+          </Button>
         )}
       </form>
     </Template>
