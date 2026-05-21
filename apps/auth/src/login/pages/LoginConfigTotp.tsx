@@ -14,9 +14,12 @@ import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type LoginConfigTotpFormValues,
+  loginConfigTotpSchema,
+} from "../schemas/login-config-totp"
 
 export default function LoginConfigTotp(
   props: PageProps<
@@ -39,24 +42,15 @@ export default function LoginConfigTotp(
 
   const userLabelRequired = totp.otpCredentials.length >= 1
 
-  const schema = z.object({
-    totp: z.string().min(1, msgStr("missingTotpMessage") || "Code is required"),
-    userLabel: userLabelRequired
-      ? z.string().min(1, "Device name is required")
-      : z.string().optional(),
-    logoutSessions: z.boolean().optional(),
-  })
-  type FormValues = z.infer<typeof schema>
-
   const serverErrors: Partial<
-    Record<keyof FormValues, { type: string; message: string }>
+    Record<keyof LoginConfigTotpFormValues, { type: string; message: string }>
   > = {}
   if (totpError) serverErrors.totp = { type: "server", message: totpError }
   if (userLabelError)
     serverErrors.userLabel = { type: "server", message: userLabelError }
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginConfigTotpFormValues>({
+    resolver: zodResolver(loginConfigTotpSchema(msgStr, userLabelRequired)),
     defaultValues: { totp: "", userLabel: "", logoutSessions: true },
     errors: Object.keys(serverErrors).length ? serverErrors : undefined,
   })

@@ -14,9 +14,12 @@ import { PasswordInput } from "@metronome/ui/components/password-input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type LoginUpdatePasswordFormValues,
+  loginUpdatePasswordSchema,
+} from "../schemas/login-update-password"
 
 export default function LoginUpdatePassword(
   props: PageProps<
@@ -37,24 +40,11 @@ export default function LoginUpdatePassword(
     ? messagesPerField.get("password-confirm")
     : undefined
 
-  const schema = z
-    .object({
-      password: z
-        .string()
-        .min(1, msgStr("missingPasswordMessage") || "Password is required"),
-      passwordConfirm: z
-        .string()
-        .min(1, msgStr("missingPasswordMessage") || "Password is required"),
-      logoutSessions: z.boolean().optional(),
-    })
-    .refine((data) => data.password === data.passwordConfirm, {
-      path: ["passwordConfirm"],
-      message: msgStr("notMatchPasswordMessage") || "Passwords do not match",
-    })
-  type FormValues = z.infer<typeof schema>
-
   const serverErrors: Partial<
-    Record<keyof FormValues, { type: string; message: string }>
+    Record<
+      keyof LoginUpdatePasswordFormValues,
+      { type: string; message: string }
+    >
   > = {}
   if (passwordError)
     serverErrors.password = { type: "server", message: passwordError }
@@ -64,8 +54,8 @@ export default function LoginUpdatePassword(
       message: passwordConfirmError,
     }
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginUpdatePasswordFormValues>({
+    resolver: zodResolver(loginUpdatePasswordSchema(msgStr)),
     defaultValues: { password: "", passwordConfirm: "", logoutSessions: true },
     errors: Object.keys(serverErrors).length ? serverErrors : undefined,
   })

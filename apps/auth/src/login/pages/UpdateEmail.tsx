@@ -1,43 +1,55 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Label } from "@metronome/ui/components/label"
-import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
-import type { JSX } from "keycloakify/tools/JSX"
-import type { LazyOrNot } from "keycloakify/tools/LazyOrNot"
-import { useState } from "react"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type UpdateEmailFormValues,
+  updateEmailSchema,
+} from "../schemas/update-email"
 
 type UpdateEmailProps = PageProps<
   Extract<KcContext, { pageId: "update-email.ftl" }>,
   I18n
-> & {
-  UserProfileFormFields: LazyOrNot<
-    (props: UserProfileFormFieldsProps) => JSX.Element
-  >
-  doMakeUserConfirmPassword: boolean
-}
+>
 
 export default function UpdateEmail(props: UpdateEmailProps) {
-  const {
-    kcContext,
-    i18n,
-    doUseDefaultCss,
-    Template,
-    classes,
-    UserProfileFormFields,
-    doMakeUserConfirmPassword,
-  } = props
-
-  const { kcClsx } = getKcClsx({ doUseDefaultCss, classes })
-
+  const { kcContext, i18n, doUseDefaultCss, Template, classes } = props
   const { msg, msgStr } = i18n
 
-  const [isFormSubmittable, setIsFormSubmittable] = useState(false)
+  const { url, messagesPerField, profile, isAppInitiatedAction } = kcContext
 
-  const { url, messagesPerField, isAppInitiatedAction } = kcContext
+  const formRef = useRef<HTMLFormElement>(null)
+  const emailAttr = profile.attributesByName.email
+
+  const serverError = messagesPerField.existsError("email")
+    ? messagesPerField.get("email")
+    : undefined
+
+  const form = useForm<UpdateEmailFormValues>({
+    resolver: zodResolver(updateEmailSchema(msgStr)),
+    defaultValues: { email: emailAttr?.value ?? "" },
+    errors: serverError
+      ? { email: { type: "server", message: serverError } }
+      : undefined,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
 
   return (
     <Template
@@ -49,61 +61,78 @@ export default function UpdateEmail(props: UpdateEmailProps) {
       displayRequiredFields
       headerNode={msg("updateEmailTitle")}
     >
-      <form
-        id="kc-update-email-form"
-        action={url.loginAction}
-        method="post"
-        className="space-y-4"
-      >
-        <UserProfileFormFields
-          kcContext={kcContext}
-          i18n={i18n}
-          kcClsx={kcClsx}
-          onIsFormSubmittableValueChange={setIsFormSubmittable}
-          doMakeUserConfirmPassword={doMakeUserConfirmPassword}
-        />
-
-        <LogoutOtherSessions i18n={i18n} />
-
-        <div className="flex flex-col gap-2">
-          <Button
-            type="submit"
-            size="xl"
-            className="w-full"
-            disabled={!isFormSubmittable}
-          >
-            {msgStr("doSubmit")}
-          </Button>
-          {isAppInitiatedAction && (
-            <Button
-              size="xl"
-              type="submit"
-              variant="outline"
-              name="cancel-aia"
-              value="true"
-            >
-              {msg("doCancel")}
-            </Button>
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-update-email-form"
+          action={url.loginAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
+        >
+          {emailAttr && (
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("email")}
+                    {emailAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      autoFocus
+                      disabled={emailAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           )}
-        </div>
-      </form>
+
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="logout-sessions"
+              name="logout-sessions"
+              value="on"
+              defaultChecked
+            />
+            <Label htmlFor="logout-sessions">
+              {msg("logoutOtherSessions")}
+            </Label>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Button
+              type="submit"
+              size="xl"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+            >
+              {msgStr("doSubmit")}
+            </Button>
+            {isAppInitiatedAction && (
+              <Button
+                size="xl"
+                type="submit"
+                variant="outline"
+                name="cancel-aia"
+                value="true"
+              >
+                {msg("doCancel")}
+              </Button>
+            )}
+          </div>
+        </form>
+      </Form>
     </Template>
-  )
-}
-
-function LogoutOtherSessions(props: { i18n: I18n }) {
-  const { i18n } = props
-  const { msg } = i18n
-
-  return (
-    <div className="flex items-center gap-2">
-      <Checkbox
-        id="logout-sessions"
-        name="logout-sessions"
-        value="on"
-        defaultChecked
-      />
-      <Label htmlFor="logout-sessions">{msg("logoutOtherSessions")}</Label>
-    </div>
   )
 }

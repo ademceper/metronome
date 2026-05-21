@@ -12,9 +12,12 @@ import { Input } from "@metronome/ui/components/input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type LoginOauth2DeviceVerifyUserCodeFormValues,
+  loginOauth2DeviceVerifyUserCodeSchema,
+} from "../schemas/login-oauth2-device-verify-user-code"
 
 export default function LoginOauth2DeviceVerifyUserCode(
   props: PageProps<
@@ -28,13 +31,8 @@ export default function LoginOauth2DeviceVerifyUserCode(
 
   const formRef = useRef<HTMLFormElement>(null)
 
-  const schema = z.object({
-    device_user_code: z.string().min(1, "Code is required"),
-  })
-  type FormValues = z.infer<typeof schema>
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginOauth2DeviceVerifyUserCodeFormValues>({
+    resolver: zodResolver(loginOauth2DeviceVerifyUserCodeSchema()),
     defaultValues: { device_user_code: "" },
   })
 

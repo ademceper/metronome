@@ -1,24 +1,30 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
 import { Checkbox } from "@metronome/ui/components/checkbox"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Label } from "@metronome/ui/components/label"
 import { Link } from "@metronome/ui/components/link"
+import { PasswordInput } from "@metronome/ui/components/password-input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
-import { getKcClsx } from "keycloakify/login/lib/kcClsx"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
-import type { JSX } from "keycloakify/tools/JSX"
-import type { LazyOrNot } from "keycloakify/tools/LazyOrNot"
-import { useLayoutEffect, useState } from "react"
+import { useLayoutEffect, useRef, useState } from "react"
+import { useForm } from "react-hook-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import { type RegisterFormValues, registerSchema } from "../schemas/register"
 
 type RegisterProps = PageProps<
   Extract<KcContext, { pageId: "register.ftl" }>,
   I18n
 > & {
-  UserProfileFormFields: LazyOrNot<
-    (props: UserProfileFormFieldsProps) => JSX.Element
-  >
   doMakeUserConfirmPassword: boolean
 }
 
@@ -29,16 +35,16 @@ export default function Register(props: RegisterProps) {
     doUseDefaultCss,
     Template,
     classes,
-    UserProfileFormFields,
     doMakeUserConfirmPassword,
   } = props
-
-  const { kcClsx } = getKcClsx({ doUseDefaultCss, classes })
 
   const {
     messageHeader,
     url,
     messagesPerField,
+    realm,
+    profile,
+    passwordRequired,
     recaptchaRequired,
     recaptchaVisible,
     recaptchaSiteKey,
@@ -48,22 +54,71 @@ export default function Register(props: RegisterProps) {
 
   const { msg, msgStr, advancedMsg } = i18n
 
-  const [isFormSubmittable, setIsFormSubmittable] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
   const [areTermsAccepted, setAreTermsAccepted] = useState(false)
 
   useLayoutEffect(() => {
     ;(window as any).onSubmitRecaptcha = () => {
-      // @ts-ignore
-      document.getElementById("kc-register-form").requestSubmit()
+      formRef.current?.requestSubmit()
     }
-
     return () => {
       delete (window as any).onSubmitRecaptcha
     }
   }, [])
 
+  const attrs = profile.attributesByName
+  const showUsername = !realm.registrationEmailAsUsername
+  const usernameAttr = attrs.username
+  const emailAttr = attrs.email
+  const firstNameAttr = attrs.firstName
+  const lastNameAttr = attrs.lastName
+
+  const serverErrors: Partial<Record<keyof RegisterFormValues, string>> = {}
+  for (const name of [
+    "username",
+    "email",
+    "firstName",
+    "lastName",
+    "password",
+    "password-confirm",
+  ] as const) {
+    if (messagesPerField.existsError(name)) {
+      const message = messagesPerField.get(name)
+      if (message) serverErrors[name] = message
+    }
+  }
+
+  const form = useForm<RegisterFormValues>({
+    resolver: zodResolver(
+      registerSchema(msgStr, {
+        showUsername,
+        passwordRequired,
+        doMakeUserConfirmPassword,
+      })
+    ),
+    defaultValues: {
+      username: usernameAttr?.value ?? "",
+      email: emailAttr?.value ?? "",
+      firstName: firstNameAttr?.value ?? "",
+      lastName: lastNameAttr?.value ?? "",
+      password: "",
+      "password-confirm": "",
+    },
+    errors: Object.fromEntries(
+      Object.entries(serverErrors).map(([key, message]) => [
+        key,
+        { type: "server", message },
+      ])
+    ) as never,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
+
   const isSubmitDisabled =
-    !isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)
+    form.formState.isSubmitting ||
+    (termsAcceptanceRequired && !areTermsAccepted)
 
   return (
     <Template
@@ -78,119 +133,250 @@ export default function Register(props: RegisterProps) {
       }
       displayMessage={messagesPerField.exists("global")}
     >
-      <form
-        id="kc-register-form"
-        action={url.registrationAction}
-        method="post"
-        className="space-y-4"
-      >
-        <UserProfileFormFields
-          kcContext={kcContext}
-          i18n={i18n}
-          kcClsx={kcClsx}
-          onIsFormSubmittableValueChange={setIsFormSubmittable}
-          doMakeUserConfirmPassword={doMakeUserConfirmPassword}
-        />
-
-        {termsAcceptanceRequired && (
-          <TermsAcceptance
-            i18n={i18n}
-            messagesPerField={messagesPerField}
-            areTermsAccepted={areTermsAccepted}
-            onAreTermsAcceptedValueChange={setAreTermsAccepted}
-          />
-        )}
-
-        {recaptchaRequired &&
-          (recaptchaVisible || recaptchaAction === undefined) && (
-            <div
-              className="g-recaptcha"
-              data-size="compact"
-              data-sitekey={recaptchaSiteKey}
-              data-action={recaptchaAction}
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-register-form"
+          action={url.registrationAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
+        >
+          {showUsername && usernameAttr && (
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("username")}
+                    {usernameAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="username"
+                      type="text"
+                      autoComplete="username"
+                      disabled={usernameAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           )}
 
-        {recaptchaRequired &&
-        !recaptchaVisible &&
-        recaptchaAction !== undefined ? (
-          <Button
-            size="xl"
-            type="submit"
-            className="g-recaptcha w-full"
-            data-sitekey={recaptchaSiteKey}
-            data-callback="onSubmitRecaptcha"
-            data-action={recaptchaAction}
-          >
-            {msg("doRegister")}
-          </Button>
-        ) : (
-          <Button
-            type="submit"
-            size="xl"
-            className="w-full"
-            disabled={isSubmitDisabled}
-          >
-            {msgStr("doRegister")}
-          </Button>
-        )}
+          {firstNameAttr && (
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("firstName")}
+                    {firstNameAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="firstName"
+                      type="text"
+                      autoComplete="given-name"
+                      disabled={firstNameAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
-        <div className="flex justify-center">
-          <Link href={url.loginUrl}>{msg("backToLogin")}</Link>
-        </div>
-      </form>
+          {lastNameAttr && (
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("lastName")}
+                    {lastNameAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="lastName"
+                      type="text"
+                      autoComplete="family-name"
+                      disabled={lastNameAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
+          {emailAttr && (
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("email")}
+                    {emailAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      disabled={emailAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
+          {passwordRequired && (
+            <>
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {msg("password")}
+                      <span className="ml-0.5 text-destructive">*</span>
+                    </FormLabel>
+                    <FormControl>
+                      <PasswordInput
+                        {...field}
+                        id="password"
+                        autoComplete="new-password"
+                        showLabel={msgStr("showPassword")}
+                        hideLabel={msgStr("hidePassword")}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {doMakeUserConfirmPassword && (
+                <FormField
+                  control={form.control}
+                  name="password-confirm"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        {msg("passwordConfirm")}
+                        <span className="ml-0.5 text-destructive">*</span>
+                      </FormLabel>
+                      <FormControl>
+                        <PasswordInput
+                          {...field}
+                          id="password-confirm"
+                          autoComplete="new-password"
+                          showLabel={msgStr("showPassword")}
+                          hideLabel={msgStr("hidePassword")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+            </>
+          )}
+
+          {termsAcceptanceRequired && (
+            <div className="space-y-2">
+              <div>
+                <p className="font-medium text-sm">{msg("termsTitle")}</p>
+                <div
+                  id="kc-registration-terms-text"
+                  className="text-muted-foreground text-sm"
+                >
+                  {msg("termsText")}
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="termsAccepted"
+                  name="termsAccepted"
+                  checked={areTermsAccepted}
+                  onCheckedChange={(checked) =>
+                    setAreTermsAccepted(checked === true)
+                  }
+                  aria-invalid={messagesPerField.existsError("termsAccepted")}
+                />
+                <Label htmlFor="termsAccepted">{msg("acceptTerms")}</Label>
+              </div>
+              {messagesPerField.existsError("termsAccepted") && (
+                <p
+                  id="input-error-terms-accepted"
+                  className="text-destructive text-sm"
+                  aria-live="polite"
+                  dangerouslySetInnerHTML={{
+                    __html: kcSanitize(messagesPerField.get("termsAccepted")),
+                  }}
+                />
+              )}
+            </div>
+          )}
+
+          {recaptchaRequired &&
+            (recaptchaVisible || recaptchaAction === undefined) && (
+              <div
+                className="g-recaptcha"
+                data-size="compact"
+                data-sitekey={recaptchaSiteKey}
+                data-action={recaptchaAction}
+              />
+            )}
+
+          {recaptchaRequired &&
+          !recaptchaVisible &&
+          recaptchaAction !== undefined ? (
+            <Button
+              size="xl"
+              type="submit"
+              className="g-recaptcha w-full"
+              data-sitekey={recaptchaSiteKey}
+              data-callback="onSubmitRecaptcha"
+              data-action={recaptchaAction}
+            >
+              {msg("doRegister")}
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              size="xl"
+              className="w-full"
+              disabled={isSubmitDisabled}
+            >
+              {msgStr("doRegister")}
+            </Button>
+          )}
+
+          <div className="flex justify-center">
+            <Link href={url.loginUrl}>{msg("backToLogin")}</Link>
+          </div>
+        </form>
+      </Form>
     </Template>
-  )
-}
-
-function TermsAcceptance(props: {
-  i18n: I18n
-  messagesPerField: Pick<KcContext["messagesPerField"], "existsError" | "get">
-  areTermsAccepted: boolean
-  onAreTermsAcceptedValueChange: (areTermsAccepted: boolean) => void
-}) {
-  const {
-    i18n,
-    messagesPerField,
-    areTermsAccepted,
-    onAreTermsAcceptedValueChange,
-  } = props
-
-  const { msg } = i18n
-
-  return (
-    <div className="space-y-2">
-      <div>
-        <p className="font-medium text-sm">{msg("termsTitle")}</p>
-        <div
-          id="kc-registration-terms-text"
-          className="text-muted-foreground text-sm"
-        >
-          {msg("termsText")}
-        </div>
-      </div>
-      <div className="flex items-center gap-2">
-        <Checkbox
-          id="termsAccepted"
-          name="termsAccepted"
-          checked={areTermsAccepted}
-          onCheckedChange={(checked) =>
-            onAreTermsAcceptedValueChange(checked === true)
-          }
-          aria-invalid={messagesPerField.existsError("termsAccepted")}
-        />
-        <Label htmlFor="termsAccepted">{msg("acceptTerms")}</Label>
-      </div>
-      {messagesPerField.existsError("termsAccepted") && (
-        <p
-          id="input-error-terms-accepted"
-          className="text-destructive text-sm"
-          aria-live="polite"
-          dangerouslySetInnerHTML={{
-            __html: kcSanitize(messagesPerField.get("termsAccepted")),
-          }}
-        />
-      )}
-    </div>
   )
 }

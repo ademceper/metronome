@@ -17,10 +17,10 @@ import { useScript } from "keycloakify/login/pages/Login.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { SocialProviderIcon } from "../components/social-provider-icon"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import { type LoginFormValues, loginSchema } from "../schemas/login"
 
 export default function Login(
   props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>
@@ -55,19 +55,8 @@ export default function Login(
       ? msgStr("usernameOrEmail")
       : msgStr("email")
 
-  const schema = z.object({
-    username: z
-      .string()
-      .min(1, msgStr("missingUsernameMessage") || "Username is required"),
-    password: z
-      .string()
-      .min(1, msgStr("missingPasswordMessage") || "Password is required"),
-    rememberMe: z.boolean().optional(),
-  })
-  type FormValues = z.infer<typeof schema>
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginFormValues>({
+    resolver: zodResolver(loginSchema(msgStr)),
     defaultValues: {
       username: login.username ?? "",
       password: "",

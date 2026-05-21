@@ -1,41 +1,71 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
-import { getKcClsx } from "keycloakify/login/lib/kcClsx"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
-import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps"
-import type { JSX } from "keycloakify/tools/JSX"
-import type { LazyOrNot } from "keycloakify/tools/LazyOrNot"
-import { useState } from "react"
+import { useRef } from "react"
+import { useForm } from "react-hook-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type LoginUpdateProfileFormValues,
+  loginUpdateProfileSchema,
+} from "../schemas/login-update-profile"
 
 type LoginUpdateProfileProps = PageProps<
   Extract<KcContext, { pageId: "login-update-profile.ftl" }>,
   I18n
-> & {
-  UserProfileFormFields: LazyOrNot<
-    (props: UserProfileFormFieldsProps) => JSX.Element
-  >
-  doMakeUserConfirmPassword: boolean
-}
+>
 
 export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
-  const {
-    kcContext,
-    i18n,
-    doUseDefaultCss,
-    Template,
-    classes,
-    UserProfileFormFields,
-    doMakeUserConfirmPassword,
-  } = props
-
-  const { kcClsx } = getKcClsx({ doUseDefaultCss, classes })
-
-  const { messagesPerField, url, isAppInitiatedAction } = kcContext
-
+  const { kcContext, i18n, doUseDefaultCss, Template, classes } = props
+  const { messagesPerField, url, profile, isAppInitiatedAction } = kcContext
   const { msg, msgStr } = i18n
 
-  const [isFormSubmittable, setIsFormSubmittable] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const attrs = profile.attributesByName
+  const usernameAttr = attrs.username
+  const emailAttr = attrs.email
+  const firstNameAttr = attrs.firstName
+  const lastNameAttr = attrs.lastName
+
+  const serverErrors: Partial<
+    Record<keyof LoginUpdateProfileFormValues, string>
+  > = {}
+  for (const name of ["username", "email", "firstName", "lastName"] as const) {
+    if (messagesPerField.existsError(name)) {
+      const message = messagesPerField.get(name)
+      if (message) serverErrors[name] = message
+    }
+  }
+
+  const form = useForm<LoginUpdateProfileFormValues>({
+    resolver: zodResolver(loginUpdateProfileSchema(msgStr)),
+    defaultValues: {
+      username: usernameAttr?.value ?? "",
+      email: emailAttr?.value ?? "",
+      firstName: firstNameAttr?.value ?? "",
+      lastName: lastNameAttr?.value ?? "",
+    },
+    errors: Object.fromEntries(
+      Object.entries(serverErrors).map(([key, message]) => [
+        key,
+        { type: "server", message },
+      ])
+    ) as never,
+  })
+
+  const onValid = () => {
+    formRef.current?.submit()
+  }
 
   return (
     <Template
@@ -46,43 +76,147 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
       headerNode={msg("loginProfileTitle")}
       displayMessage={messagesPerField.exists("global")}
     >
-      <form
-        id="kc-update-profile-form"
-        action={url.loginAction}
-        method="post"
-        className="space-y-4"
-      >
-        <UserProfileFormFields
-          kcContext={kcContext}
-          i18n={i18n}
-          kcClsx={kcClsx}
-          onIsFormSubmittableValueChange={setIsFormSubmittable}
-          doMakeUserConfirmPassword={doMakeUserConfirmPassword}
-        />
-
-        <div className="flex flex-col gap-2">
-          <Button
-            type="submit"
-            size="xl"
-            className="w-full"
-            disabled={!isFormSubmittable}
-          >
-            {msgStr("doSubmit")}
-          </Button>
-          {isAppInitiatedAction && (
-            <Button
-              size="xl"
-              type="submit"
-              variant="outline"
-              name="cancel-aia"
-              value="true"
-              formNoValidate
-            >
-              {msg("doCancel")}
-            </Button>
+      <Form {...form}>
+        <form
+          ref={formRef}
+          id="kc-update-profile-form"
+          action={url.loginAction}
+          method="post"
+          className="space-y-4"
+          onSubmit={form.handleSubmit(onValid)}
+        >
+          {usernameAttr && (
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("username")}
+                    {usernameAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="username"
+                      type="text"
+                      autoComplete="username"
+                      disabled={usernameAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           )}
-        </div>
-      </form>
+
+          {firstNameAttr && (
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("firstName")}
+                    {firstNameAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="firstName"
+                      type="text"
+                      autoComplete="given-name"
+                      disabled={firstNameAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
+          {lastNameAttr && (
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("lastName")}
+                    {lastNameAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="lastName"
+                      type="text"
+                      autoComplete="family-name"
+                      disabled={lastNameAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
+          {emailAttr && (
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {msg("email")}
+                    {emailAttr.required && (
+                      <span className="ml-0.5 text-destructive">*</span>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      disabled={emailAttr.readOnly}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
+          <div className="flex flex-col gap-2">
+            <Button
+              type="submit"
+              size="xl"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+            >
+              {msgStr("doSubmit")}
+            </Button>
+            {isAppInitiatedAction && (
+              <Button
+                size="xl"
+                type="submit"
+                variant="outline"
+                name="cancel-aia"
+                value="true"
+                formNoValidate
+              >
+                {msg("doCancel")}
+              </Button>
+            )}
+          </div>
+        </form>
+      </Form>
     </Template>
   )
 }

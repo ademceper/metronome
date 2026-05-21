@@ -14,9 +14,12 @@ import { useScript } from "keycloakify/login/pages/LoginPassword.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type LoginPasswordFormValues,
+  loginPasswordSchema,
+} from "../schemas/login-password"
 
 export default function LoginPassword(
   props: PageProps<Extract<KcContext, { pageId: "login-password.ftl" }>, I18n>
@@ -40,15 +43,8 @@ export default function LoginPassword(
     ? messagesPerField.get("password")
     : undefined
 
-  const schema = z.object({
-    password: z
-      .string()
-      .min(1, msgStr("missingPasswordMessage") || "Password is required"),
-  })
-  type FormValues = z.infer<typeof schema>
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginPasswordFormValues>({
+    resolver: zodResolver(loginPasswordSchema(msgStr)),
     defaultValues: { password: "" },
     errors: serverError
       ? { password: { type: "server", message: serverError } }

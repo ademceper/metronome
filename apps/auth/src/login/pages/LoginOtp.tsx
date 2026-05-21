@@ -17,9 +17,9 @@ import {
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import { type LoginOtpFormValues, loginOtpSchema } from "../schemas/login-otp"
 
 export default function LoginOtp(
   props: PageProps<Extract<KcContext, { pageId: "login-otp.ftl" }>, I18n>
@@ -34,14 +34,8 @@ export default function LoginOtp(
     ? messagesPerField.get("totp")
     : undefined
 
-  const schema = z.object({
-    otp: z.string().min(1, msgStr("missingTotpMessage") || "OTP is required"),
-    selectedCredentialId: z.string().optional(),
-  })
-  type FormValues = z.infer<typeof schema>
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginOtpFormValues>({
+    resolver: zodResolver(loginOtpSchema(msgStr)),
     defaultValues: {
       otp: "",
       selectedCredentialId: otpLogin.selectedCredentialId ?? "",

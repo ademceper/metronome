@@ -13,9 +13,12 @@ import { Link } from "@metronome/ui/components/link"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type LoginResetPasswordFormValues,
+  loginResetPasswordSchema,
+} from "../schemas/login-reset-password"
 
 export default function LoginResetPassword(
   props: PageProps<
@@ -39,15 +42,8 @@ export default function LoginResetPassword(
       ? msgStr("usernameOrEmail")
       : msgStr("email")
 
-  const schema = z.object({
-    username: z
-      .string()
-      .min(1, msgStr("missingUsernameMessage") || "Username is required"),
-  })
-  type FormValues = z.infer<typeof schema>
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginResetPasswordFormValues>({
+    resolver: zodResolver(loginResetPasswordSchema(msgStr)),
     defaultValues: { username: auth.attemptedUsername ?? "" },
     errors: serverError
       ? { username: { type: "server", message: serverError } }

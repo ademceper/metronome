@@ -12,9 +12,12 @@ import { Input } from "@metronome/ui/components/input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
+import {
+  type LoginRecoveryAuthnCodeInputFormValues,
+  loginRecoveryAuthnCodeInputSchema,
+} from "../schemas/login-recovery-authn-code-input"
 
 export default function LoginRecoveryAuthnCodeInput(
   props: PageProps<
@@ -32,13 +35,8 @@ export default function LoginRecoveryAuthnCodeInput(
     ? messagesPerField.get("recoveryCodeInput")
     : undefined
 
-  const schema = z.object({
-    recoveryCodeInput: z.string().min(1, "Recovery code is required"),
-  })
-  type FormValues = z.infer<typeof schema>
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const form = useForm<LoginRecoveryAuthnCodeInputFormValues>({
+    resolver: zodResolver(loginRecoveryAuthnCodeInputSchema()),
     defaultValues: { recoveryCodeInput: "" },
     errors: serverError
       ? { recoveryCodeInput: { type: "server", message: serverError } }

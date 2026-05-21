@@ -3,7 +3,6 @@ import { lazy, Suspense } from "react"
 import { useI18n } from "./i18n"
 import type { KcContext } from "./KcContext"
 import Template from "./Template"
-import UserProfileFormFields from "./UserProfileFormFields"
 
 const Code = lazy(() => import("./pages/Code"))
 const DeleteAccountConfirm = lazy(() => import("./pages/DeleteAccountConfirm"))
@@ -110,8 +109,6 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 {...{ kcContext, i18n, classes }}
                 Template={Template}
                 doUseDefaultCss={false}
-                UserProfileFormFields={UserProfileFormFields}
-                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
               />
             )
           case "info.ftl":
@@ -264,8 +261,6 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 {...{ kcContext, i18n, classes }}
                 Template={Template}
                 doUseDefaultCss={false}
-                UserProfileFormFields={UserProfileFormFields}
-                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
               />
             )
           case "login-username.ftl":
@@ -306,7 +301,6 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 {...{ kcContext, i18n, classes }}
                 Template={Template}
                 doUseDefaultCss={false}
-                UserProfileFormFields={UserProfileFormFields}
                 doMakeUserConfirmPassword={doMakeUserConfirmPassword}
               />
             )
@@ -348,8 +342,6 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 {...{ kcContext, i18n, classes }}
                 Template={Template}
                 doUseDefaultCss={false}
-                UserProfileFormFields={UserProfileFormFields}
-                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
               />
             )
           case "webauthn-authenticate.ftl":
