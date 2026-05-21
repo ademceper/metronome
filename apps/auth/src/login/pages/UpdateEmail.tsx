@@ -6,7 +6,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -76,15 +75,18 @@ export default function UpdateEmail(props: UpdateEmailProps) {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("email")}
-                    {emailAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("email")}
+                          {emailAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="email"
                       type="email"
                       autoComplete="email"

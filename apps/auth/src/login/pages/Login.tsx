@@ -145,10 +145,11 @@ export default function Login(
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{usernameLabel}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
+                        variant="floating"
+                        label={usernameLabel}
                         tabIndex={2}
                         id="username"
                         type="text"
@@ -171,10 +172,11 @@ export default function Login(
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{msg("password")}</FormLabel>
                   <FormControl>
                     <PasswordInput
                       {...field}
+                      variant="floating"
+                      label={msgStr("password")}
                       tabIndex={3}
                       id="password"
                       autoComplete="current-password"

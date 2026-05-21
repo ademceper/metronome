@@ -5,7 +5,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Link } from "@metronome/ui/components/link"
@@ -78,10 +77,11 @@ export default function LoginPassword(
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{msg("password")}</FormLabel>
                 <FormControl>
                   <PasswordInput
                     {...field}
+                    variant="floating"
+                    label={msgStr("password")}
                     tabIndex={2}
                     id="password"
                     autoFocus

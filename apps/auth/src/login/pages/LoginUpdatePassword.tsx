@@ -6,7 +6,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Label } from "@metronome/ui/components/label"
@@ -87,10 +86,11 @@ export default function LoginUpdatePassword(
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{msg("passwordNew")}</FormLabel>
                 <FormControl>
                   <PasswordInput
                     {...field}
+                    variant="floating"
+                    label={msgStr("passwordNew")}
                     id="password-new"
                     name="password-new"
                     autoFocus
@@ -109,10 +109,11 @@ export default function LoginUpdatePassword(
             name="passwordConfirm"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{msg("passwordConfirm")}</FormLabel>
                 <FormControl>
                   <PasswordInput
                     {...field}
+                    variant="floating"
+                    label={msgStr("passwordConfirm")}
                     id="password-confirm"
                     name="password-confirm"
                     autoComplete="new-password"

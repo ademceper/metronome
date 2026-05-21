@@ -6,7 +6,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -148,15 +147,18 @@ export default function Register(props: RegisterProps) {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("username")}
-                    {usernameAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("username")}
+                          {usernameAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="username"
                       type="text"
                       autoComplete="username"
@@ -175,15 +177,18 @@ export default function Register(props: RegisterProps) {
               name="firstName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("firstName")}
-                    {firstNameAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("firstName")}
+                          {firstNameAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="firstName"
                       type="text"
                       autoComplete="given-name"
@@ -202,15 +207,18 @@ export default function Register(props: RegisterProps) {
               name="lastName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("lastName")}
-                    {lastNameAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("lastName")}
+                          {lastNameAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="lastName"
                       type="text"
                       autoComplete="family-name"
@@ -229,15 +237,18 @@ export default function Register(props: RegisterProps) {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("email")}
-                    {emailAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("email")}
+                          {emailAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="email"
                       type="email"
                       autoComplete="email"
@@ -257,13 +268,16 @@ export default function Register(props: RegisterProps) {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      {msg("password")}
-                      <span className="ml-0.5 text-destructive">*</span>
-                    </FormLabel>
                     <FormControl>
                       <PasswordInput
                         {...field}
+                        variant="floating"
+                        label={
+                          <>
+                            {msg("password")}
+                            <span className="ml-0.5 text-destructive">*</span>
+                          </>
+                        }
                         id="password"
                         autoComplete="new-password"
                         showLabel={msgStr("showPassword")}
@@ -281,13 +295,16 @@ export default function Register(props: RegisterProps) {
                   name="password-confirm"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>
-                        {msg("passwordConfirm")}
-                        <span className="ml-0.5 text-destructive">*</span>
-                      </FormLabel>
                       <FormControl>
                         <PasswordInput
                           {...field}
+                          variant="floating"
+                          label={
+                            <>
+                              {msg("passwordConfirm")}
+                              <span className="ml-0.5 text-destructive">*</span>
+                            </>
+                          }
                           id="password-confirm"
                           autoComplete="new-password"
                           showLabel={msgStr("showPassword")}

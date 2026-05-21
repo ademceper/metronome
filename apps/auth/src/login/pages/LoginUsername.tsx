@@ -148,10 +148,11 @@ export default function LoginUsername(
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{usernameLabel}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
+                        variant="floating"
+                        label={usernameLabel}
                         tabIndex={2}
                         type="text"
                         autoFocus

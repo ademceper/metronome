@@ -4,7 +4,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -186,12 +185,11 @@ export default function LoginPasskeysConditionalAuthenticate(
                       name="username"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            {msg("passkey-autofill-select")}
-                          </FormLabel>
                           <FormControl>
                             <Input
                               {...field}
+                              variant="floating"
+                              label={msgStr("passkey-autofill-select")}
                               tabIndex={1}
                               id="username"
                               type="text"

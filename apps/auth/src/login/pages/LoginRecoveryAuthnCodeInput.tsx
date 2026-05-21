@@ -5,7 +5,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -70,15 +69,14 @@ export default function LoginRecoveryAuthnCodeInput(
             name="recoveryCodeInput"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  {msg(
-                    "auth-recovery-code-prompt",
-                    `${recoveryAuthnCodesInputBean.codeNumber}`
-                  )}
-                </FormLabel>
                 <FormControl>
                   <Input
                     {...field}
+                    variant="floating"
+                    label={msgStr(
+                      "auth-recovery-code-prompt",
+                      `${recoveryAuthnCodesInputBean.codeNumber}`
+                    )}
                     tabIndex={1}
                     id="recoveryCodeInput"
                     type="text"

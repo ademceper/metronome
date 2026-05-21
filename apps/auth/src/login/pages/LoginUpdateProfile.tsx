@@ -5,7 +5,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -91,15 +90,18 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("username")}
-                    {usernameAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("username")}
+                          {usernameAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="username"
                       type="text"
                       autoComplete="username"
@@ -118,15 +120,18 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
               name="firstName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("firstName")}
-                    {firstNameAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("firstName")}
+                          {firstNameAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="firstName"
                       type="text"
                       autoComplete="given-name"
@@ -145,15 +150,18 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
               name="lastName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("lastName")}
-                    {lastNameAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("lastName")}
+                          {lastNameAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="lastName"
                       type="text"
                       autoComplete="family-name"
@@ -172,15 +180,18 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {msg("email")}
-                    {emailAttr.required && (
-                      <span className="ml-0.5 text-destructive">*</span>
-                    )}
-                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          {msg("email")}
+                          {emailAttr.required && (
+                            <span className="ml-0.5 text-destructive">*</span>
+                          )}
+                        </>
+                      }
                       id="email"
                       type="email"
                       autoComplete="email"

@@ -5,7 +5,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -109,10 +108,11 @@ export default function LoginOtp(
             name="otp"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{msg("loginOtpOneTime")}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
+                    variant="floating"
+                    label={msgStr("loginOtpOneTime")}
                     id="otp"
                     type="text"
                     autoComplete="one-time-code"

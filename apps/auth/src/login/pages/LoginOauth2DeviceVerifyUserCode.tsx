@@ -5,7 +5,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -62,10 +61,11 @@ export default function LoginOauth2DeviceVerifyUserCode(
             name="device_user_code"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{msg("verifyOAuth2DeviceUserCode")}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
+                    variant="floating"
+                    label={msgStr("verifyOAuth2DeviceUserCode")}
                     id="device-user-code"
                     type="text"
                     autoComplete="off"

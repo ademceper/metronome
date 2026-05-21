@@ -161,9 +161,15 @@ export default function LoginConfigTotp(
             name="totp"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{msg("authenticatorCode")}</FormLabel>
                 <FormControl>
-                  <Input {...field} id="totp" type="text" autoComplete="off" />
+                  <Input
+                    {...field}
+                    variant="floating"
+                    label={msgStr("authenticatorCode")}
+                    id="totp"
+                    type="text"
+                    autoComplete="off"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -175,10 +181,11 @@ export default function LoginConfigTotp(
             name="userLabel"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{msg("loginTotpDeviceName")}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
+                    variant="floating"
+                    label={msgStr("loginTotpDeviceName")}
                     id="userLabel"
                     type="text"
                     autoComplete="off"

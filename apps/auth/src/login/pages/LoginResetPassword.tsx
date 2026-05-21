@@ -5,7 +5,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -83,9 +82,15 @@ export default function LoginResetPassword(
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{usernameLabel}</FormLabel>
                 <FormControl>
-                  <Input {...field} id="username" type="text" autoFocus />
+                  <Input
+                    {...field}
+                    variant="floating"
+                    label={usernameLabel}
+                    id="username"
+                    type="text"
+                    autoFocus
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
