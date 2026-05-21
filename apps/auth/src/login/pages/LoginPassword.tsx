@@ -7,8 +7,8 @@ import {
   FormItem,
   FormMessage,
 } from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Link } from "@metronome/ui/components/link"
-import { PasswordInput } from "@metronome/ui/components/password-input"
 import { useScript } from "keycloakify/login/pages/LoginPassword.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
@@ -78,8 +78,9 @@ export default function LoginPassword(
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <PasswordInput
+                  <Input
                     {...field}
+                    type="password"
                     variant="floating"
                     label={msgStr("password")}
                     tabIndex={2}

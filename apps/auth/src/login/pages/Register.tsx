@@ -11,7 +11,6 @@ import {
 import { Input } from "@metronome/ui/components/input"
 import { Label } from "@metronome/ui/components/label"
 import { Link } from "@metronome/ui/components/link"
-import { PasswordInput } from "@metronome/ui/components/password-input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useLayoutEffect, useRef, useState } from "react"
@@ -269,8 +268,9 @@ export default function Register(props: RegisterProps) {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <PasswordInput
+                      <Input
                         {...field}
+                        type="password"
                         variant="floating"
                         label={
                           <>
@@ -296,8 +296,9 @@ export default function Register(props: RegisterProps) {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <PasswordInput
+                        <Input
                           {...field}
+                          type="password"
                           variant="floating"
                           label={
                             <>

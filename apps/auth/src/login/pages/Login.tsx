@@ -11,7 +11,6 @@ import {
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
 import { Link } from "@metronome/ui/components/link"
-import { PasswordInput } from "@metronome/ui/components/password-input"
 import { kcSanitize } from "keycloakify/lib/kcSanitize"
 import { useScript } from "keycloakify/login/pages/Login.useScript"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
@@ -173,8 +172,9 @@ export default function Login(
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <PasswordInput
+                    <Input
                       {...field}
+                      type="password"
                       variant="floating"
                       label={msgStr("password")}
                       tabIndex={3}

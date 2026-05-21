@@ -8,8 +8,8 @@ import {
   FormItem,
   FormMessage,
 } from "@metronome/ui/components/form"
+import { Input } from "@metronome/ui/components/input"
 import { Label } from "@metronome/ui/components/label"
-import { PasswordInput } from "@metronome/ui/components/password-input"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useRef } from "react"
 import { useForm } from "react-hook-form"
@@ -87,8 +87,9 @@ export default function LoginUpdatePassword(
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <PasswordInput
+                  <Input
                     {...field}
+                    type="password"
                     variant="floating"
                     label={msgStr("passwordNew")}
                     id="password-new"
@@ -110,8 +111,9 @@ export default function LoginUpdatePassword(
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <PasswordInput
+                  <Input
                     {...field}
+                    type="password"
                     variant="floating"
                     label={msgStr("passwordConfirm")}
                     id="password-confirm"

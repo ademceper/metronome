@@ -1,4 +1,7 @@
+"use client"
+
 import { cn } from "@metronome/ui/lib/utils"
+import { Eye, EyeSlash } from "@phosphor-icons/react"
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
 
@@ -16,60 +19,80 @@ const inputVariants = cva(
   }
 )
 
-type InputProps = React.ComponentProps<"input"> &
+type InputProps = Omit<React.ComponentProps<"input">, "type"> &
   VariantProps<typeof inputVariants> & {
+    type?: React.HTMLInputTypeAttribute
     label?: React.ReactNode
+    /** Aria label for the "show password" toggle (only when type="password"). */
+    showLabel?: React.ReactNode
+    /** Aria label for the "hide password" toggle (only when type="password"). */
+    hideLabel?: React.ReactNode
   }
 
-function FloatingInput({
+function Input({
   className,
-  type,
+  type = "text",
+  variant,
   label,
   id,
+  showLabel = "Show password",
+  hideLabel = "Hide password",
   ...props
-}: Omit<InputProps, "variant">) {
+}: InputProps) {
   const reactId = React.useId()
   const inputId = id ?? reactId
+  const isPassword = type === "password"
+  const isFloating = variant === "floating"
+  const [revealed, setRevealed] = React.useState(false)
+
+  const inputEl = (
+    <input
+      type={isPassword ? (revealed ? "text" : "password") : type}
+      id={inputId}
+      data-slot="input"
+      {...props}
+      placeholder={isFloating ? " " : props.placeholder}
+      className={cn(
+        inputVariants({ variant }),
+        isPassword && "pr-10",
+        className
+      )}
+    />
+  )
+
+  if (!isFloating && !isPassword) {
+    return inputEl
+  }
+
+  const toggleLabel = revealed ? hideLabel : showLabel
 
   return (
     <div className="relative">
-      <input
-        type={type}
-        id={inputId}
-        data-slot="input"
-        {...props}
-        placeholder=" "
-        className={cn(inputVariants({ variant: "floating" }), className)}
-      />
-      <label
-        htmlFor={inputId}
-        className="pointer-events-none absolute top-1.5 left-3 text-muted-foreground text-xs transition-all duration-150 ease-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-1.5 peer-focus:translate-y-0 peer-focus:text-foreground peer-focus:text-xs peer-disabled:opacity-50 peer-aria-invalid:text-destructive"
-      >
-        {label}
-      </label>
+      {inputEl}
+      {isFloating && label !== undefined && (
+        <label
+          htmlFor={inputId}
+          className="pointer-events-none absolute top-1.5 left-3 text-muted-foreground text-xs transition-all duration-150 ease-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-1.5 peer-focus:translate-y-0 peer-focus:text-foreground peer-focus:text-xs peer-disabled:opacity-50 peer-aria-invalid:text-destructive"
+        >
+          {label}
+        </label>
+      )}
+      {isPassword && (
+        <button
+          type="button"
+          aria-label={typeof toggleLabel === "string" ? toggleLabel : undefined}
+          aria-controls={inputId}
+          onClick={() => setRevealed((v) => !v)}
+          className="absolute inset-y-0 right-0 z-10 flex items-center px-3 text-muted-foreground hover:text-foreground"
+        >
+          {revealed ? (
+            <EyeSlash className="size-4" aria-hidden />
+          ) : (
+            <Eye className="size-4" aria-hidden />
+          )}
+        </button>
+      )}
     </div>
-  )
-}
-
-function Input({ className, type, variant, label, ...props }: InputProps) {
-  if (variant === "floating") {
-    return (
-      <FloatingInput
-        className={className}
-        type={type}
-        label={label}
-        {...props}
-      />
-    )
-  }
-
-  return (
-    <input
-      type={type}
-      data-slot="input"
-      {...props}
-      className={cn(inputVariants({ variant }), className)}
-    />
   )
 }
 
