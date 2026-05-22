@@ -1,59 +1,34 @@
-import * as React from "react";
-import { cn } from "@metronome/ui/lib/utils";
-import { PropsWithChildren } from "react";
-
-const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className, children, ...props }: any) => (
-  <section className={cn("px-4 py-3",
-    variant === "light" && "bg-card",
-    isFilled && "flex-1",
-    hasOverflowScroll && "overflow-auto",
-    className)} {...props}>{children}</section>
-);
-const Text = ({ component = "p", children, className, ...props }: any) =>
-  React.createElement(component, { className: cn("text-sm", className), ...props }, children);
-const TextContent = ({ children, className, ...props }: any) => (
-  <div className={cn("space-y-2 text-sm", className)} {...props}>{children}</div>
-);
-const TitleSizes = {
-  md: "text-base",
-  lg: "text-lg",
-  xl: "text-xl",
-  "2xl": "text-2xl",
-  "3xl": "text-3xl",
-  "4xl": "text-4xl",
-} as const;
-const Title = ({ headingLevel = "h1", size, children, className, ...props }: any) =>
-  React.createElement(headingLevel, {
-    className: cn("font-heading font-medium", (TitleSizes as any)[size as string] ?? "text-base", className),
-    ...props,
-  }, children);
+import type { PropsWithChildren, ReactNode } from "react"
 
 type PageProps = {
-  title: string;
-  description: string;
-  action?: React.ReactNode;
-};
+  title: string
+  description: string
+  action?: ReactNode
+}
 
-export const Page = ({
+export function Page({
   title,
   description,
   action,
   children,
-}: PropsWithChildren<PageProps>) => {
+}: PropsWithChildren<PageProps>) {
   return (
     <>
-      <PageSection variant="light">
-        <div className="flex items-center justify-between gap-4">
-          <TextContent>
-            <Title headingLevel="h1" data-testid="page-heading">
+      <section className="border-b bg-card px-6 py-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-1">
+            <h1
+              className="font-heading font-semibold text-xl"
+              data-testid="page-heading"
+            >
               {title}
-            </Title>
-            <Text component="p">{description}</Text>
-          </TextContent>
+            </h1>
+            <p className="text-muted-foreground text-sm">{description}</p>
+          </div>
           {action ? <div className="shrink-0">{action}</div> : null}
         </div>
-      </PageSection>
-      <PageSection variant="light">{children}</PageSection>
+      </section>
+      <section className="bg-card px-6 py-5">{children}</section>
     </>
-  );
-};
+  )
+}

@@ -4,125 +4,55 @@ import {
   debeerify,
   setUserProfileServerError,
   useEnvironment,
-} from "../../shared/keycloak-ui-shared";
-import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
-import { Button as UIButton } from "@metronome/ui/components/button";
-import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
-import { cn } from "@metronome/ui/lib/utils";
-import { ArrowSquareOut as ExternalLinkSquareAltIcon } from "@phosphor-icons/react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import { PersonalInfoLoading } from "./-loading/personal-info";
-import { TFunction } from "i18next";
-import { useEffect } from "react";
-import { ErrorOption, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-
+} from "../../shared/keycloak-ui-shared"
+import { Button } from "@metronome/ui/components/button"
+import { Form } from "@metronome/ui/components/form"
+import { ArrowSquareOut } from "@phosphor-icons/react"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
+import type { TFunction } from "i18next"
+import { useEffect } from "react"
+import { type ErrorOption, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { type AccountEnvironment } from ".."
+import { Page } from "../components/Page"
+import type { TFuncKey } from "../i18n/types"
 import {
   getPersonalInfo,
   getSupportedLocales,
   savePersonalInfo,
-} from "../lib/api/methods";
-import { UserRepresentation } from "../lib/api/representations";
-import { Page } from "../components/Page";
-import { type AccountEnvironment } from "..";
-import type { TFuncKey } from "../i18n/types";
-import { useAccountAlerts } from "../lib/useAccountAlerts";
-
-const ActionGroup = ({ children, className, ...props }: any) => (
-  <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
-);
-const AlertVariant = {
-  default: "default",
-  success: "default",
-  info: "default",
-  warning: "default",
-  danger: "destructive",
-} as const;
-const Alert = ({ variant, title, isInline, isPlain, isLiveRegion, customIcon, actionClose, actionLinks, component, children, ...props }: any) => {
-  const v = (AlertVariant as any)[variant] ?? "default";
-  return (
-    <UIAlert variant={v as any} {...props}>
-      {title ? <UIAlertTitle>{title}</UIAlertTitle> : null}
-      {children ? <UIAlertDescription>{children}</UIAlertDescription> : null}
-      {actionLinks}
-      {actionClose}
-    </UIAlert>
-  );
-};
-const ButtonVariant = {
-  primary: "default",
-  secondary: "secondary",
-  tertiary: "outline",
-  danger: "destructive",
-  warning: "destructive",
-  link: "link",
-  plain: "ghost",
-  control: "outline",
-} as const;
-const Button = ({
-  variant, isDisabled, isLoading, isInline, isBlock, isSmall, isLarge,
-  isAriaDisabled, isDanger, spinnerAriaValueText, countOptions,
-  icon, iconPosition, component, to, href, target, rel, children, ...props
-}: any) => {
-  const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
-  if (href || to) {
-    return (
-      <a href={href || to} target={target} rel={rel}
-        className={cn("inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-sm", (props as any).className)} {...props}>
-        {icon && iconPosition !== "right" ? icon : null}
-        {children}
-        {icon && iconPosition === "right" ? icon : null}
-      </a>
-    );
-  }
-  return (
-    <UIButton variant={v as any} disabled={isDisabled ?? (props as any).disabled} {...props}>
-      {icon && iconPosition !== "right" ? icon : null}
-      {children}
-      {icon && iconPosition === "right" ? icon : null}
-    </UIButton>
-  );
-};
-const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed, isExpanded, onToggle, isDetached, children, ...props }: any) => (
-  <UICollapsible open={isExpanded} onOpenChange={(open: boolean) => onToggle?.(undefined, open)} {...props}>
-    <UICollapsibleTrigger className="flex items-center gap-2 text-sm">
-      {isExpanded ? (toggleTextExpanded ?? toggleText) : (toggleTextCollapsed ?? toggleText)}
-    </UICollapsibleTrigger>
-    <UICollapsibleContent>{children}</UICollapsibleContent>
-  </UICollapsible>
-);
-const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
-  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
-);
+} from "../lib/api/methods"
+import { UserRepresentation } from "../lib/api/representations"
+import { useAccountAlerts } from "../lib/useAccountAlerts"
+import { PersonalInfoLoading } from "./-loading/personal-info"
 
 export const Route = createFileRoute("/")({
   component: PersonalInfo,
-});
+})
 
 function PersonalInfo() {
-  const { t } = useTranslation();
-  const context = useEnvironment<AccountEnvironment>();
-  const form = useForm<UserRepresentation>({ mode: "onChange" });
-  const { handleSubmit, reset, setValue, setError } = form;
-  const { addAlert } = useAccountAlerts();
+  const { t } = useTranslation()
+  const context = useEnvironment<AccountEnvironment>()
+  const form = useForm<UserRepresentation>({ mode: "onChange" })
+  const { handleSubmit, reset, setValue, setError } = form
+  const { addAlert } = useAccountAlerts()
 
   const personalInfo = useQuery({
     queryKey: ["account", "personalInfo"],
     queryFn: ({ signal }) => getPersonalInfo({ signal, context }),
-  });
+  })
   const supportedLocalesQuery = useQuery({
     queryKey: ["account", "supportedLocales"],
     queryFn: ({ signal }) => getSupportedLocales({ signal, context }),
-  });
+  })
 
   useEffect(() => {
-    if (!personalInfo.data) return;
-    reset(personalInfo.data);
+    if (!personalInfo.data) return
+    reset(personalInfo.data)
     Object.entries(personalInfo.data.attributes || {}).forEach(([k, v]) =>
-      setValue(`attributes[${beerify(k)}]`, v),
-    );
-  }, [personalInfo.data, reset, setValue]);
+      setValue(`attributes[${beerify(k)}]`, v)
+    )
+  }, [personalInfo.data, reset, setValue])
 
   const save = useMutation({
     mutationFn: async (user: UserRepresentation) => {
@@ -130,49 +60,50 @@ function PersonalInfo() {
         Object.entries(user.attributes || {}).map(([k, v]) => [
           debeerify(k),
           v,
-        ]),
-      );
-      await savePersonalInfo(context, { ...user, attributes });
-      const locale = attributes["locale"]?.toString();
+        ])
+      )
+      await savePersonalInfo(context, { ...user, attributes })
+      const locale = attributes["locale"]?.toString()
       if (locale) {
         window.dispatchEvent(
-          new CustomEvent("languageChanged", { detail: { language: locale } }),
-        );
+          new CustomEvent("languageChanged", { detail: { language: locale } })
+        )
       }
-      await context.keycloak.updateToken();
+      await context.keycloak.updateToken()
     },
     onSuccess: () => {
-      addAlert(t("accountUpdatedMessage"));
+      addAlert(t("accountUpdatedMessage"))
     },
     onError: (error) => {
-      addAlert(t("accountUpdatedError"), "danger");
+      addAlert(t("accountUpdatedError"), "danger")
       setUserProfileServerError(
         { responseData: { errors: error as any } },
         (name: string | number, err: unknown) =>
           setError(name as string, err as ErrorOption),
-        ((key: TFuncKey, param?: object) => t(key, param as any)) as TFunction,
-      );
+        ((key: TFuncKey, param?: object) => t(key, param as any)) as TFunction
+      )
     },
-  });
+  })
 
-  const userProfileMetadata = personalInfo.data?.userProfileMetadata;
-  const supportedLocales = supportedLocalesQuery.data ?? [];
+  const userProfileMetadata = personalInfo.data?.userProfileMetadata
+  const supportedLocales = supportedLocalesQuery.data ?? []
 
   if (!userProfileMetadata) {
-    return <PersonalInfoLoading />;
+    return <PersonalInfoLoading />
   }
 
   const allFieldsReadOnly = () =>
     userProfileMetadata?.attributes
       ?.map((a: any) => a.readOnly)
-      .reduce((p: boolean, c: boolean) => p && c, true);
+      .reduce((p: boolean, c: boolean) => p && c, true)
 
   const {
     updateEmailFeatureEnabled,
     updateEmailActionEnabled,
     isRegistrationEmailAsUsername,
     isEditUserNameAllowed,
-  } = context.environment.features;
+  } = context.environment.features
+
   return (
     <Page
       title={t("personalInfo")}
@@ -183,74 +114,76 @@ function PersonalInfo() {
             id="delete-account-btn"
             data-testid="delete-account"
             variant="destructive"
-            className="bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent"
-            onClick={() =>
-              context.keycloak.login({ action: "delete_account" })
-            }
+            onClick={() => context.keycloak.login({ action: "delete_account" })}
           >
             {t("deleteAccount")}
           </Button>
         ) : undefined
       }
     >
-      <Form isHorizontal onSubmit={handleSubmit((user) => save.mutate(user))}>
-        <UserProfileFields
-          form={form}
-          userProfileMetadata={userProfileMetadata}
-          supportedLocales={supportedLocales}
-          currentLocale={context.environment.locale}
-          t={
-            ((key: unknown, params) =>
-              t(key as TFuncKey, params as any)) as TFunction
-          }
-          renderer={(attribute) => {
-            const annotations = attribute.annotations
-              ? attribute.annotations
-              : {};
-            return attribute.name === "email" &&
-              updateEmailFeatureEnabled &&
-              updateEmailActionEnabled &&
-              annotations["kc.required.action.supported"] &&
-              (!isRegistrationEmailAsUsername || isEditUserNameAllowed) ? (
+      <Form {...form}>
+        <form
+          className="space-y-4"
+          onSubmit={handleSubmit((user) => save.mutate(user))}
+        >
+          <UserProfileFields
+            form={form}
+            userProfileMetadata={userProfileMetadata}
+            supportedLocales={supportedLocales}
+            currentLocale={context.environment.locale}
+            t={
+              ((key: unknown, params) =>
+                t(key as TFuncKey, params as any)) as TFunction
+            }
+            renderer={(attribute) => {
+              const annotations = attribute.annotations ?? {}
+              return attribute.name === "email" &&
+                updateEmailFeatureEnabled &&
+                updateEmailActionEnabled &&
+                annotations["kc.required.action.supported"] &&
+                (!isRegistrationEmailAsUsername || isEditUserNameAllowed) ? (
+                <Button
+                  id="update-email-btn"
+                  variant="link"
+                  size="sm"
+                  onClick={() =>
+                    context.keycloak.login({ action: "UPDATE_EMAIL" })
+                  }
+                >
+                  {t("updateEmail")}
+                  <ArrowSquareOut className="ml-1 size-4" aria-hidden />
+                </Button>
+              ) : undefined
+            }}
+          />
+
+          {!allFieldsReadOnly() && (
+            <div className="flex items-center gap-2 pt-2">
               <Button
-                id="update-email-btn"
-                variant="link"
-                onClick={() =>
-                  context.keycloak.login({ action: "UPDATE_EMAIL" })
-                }
-                icon={<ExternalLinkSquareAltIcon />}
-                iconPosition="right"
+                data-testid="save"
+                type="submit"
+                id="save-btn"
+                size="xl"
+                className="flex-1"
+                disabled={form.formState.isSubmitting}
               >
-                {t("updateEmail")}
+                {t("save")}
               </Button>
-            ) : undefined;
-          }}
-        />
-        {!allFieldsReadOnly() && (
-          <ActionGroup>
-            <Button
-              data-testid="save"
-              type="submit"
-              id="save-btn"
-              variant="primary"
-              size="xl"
-              className="flex-1"
-            >
-              {t("save")}
-            </Button>
-            <Button
-              data-testid="cancel"
-              id="cancel-btn"
-              variant="tertiary"
-              size="xl"
-              className="flex-1"
-              onClick={() => reset()}
-            >
-              {t("cancel")}
-            </Button>
-          </ActionGroup>
-        )}
+              <Button
+                data-testid="cancel"
+                id="cancel-btn"
+                type="button"
+                variant="outline"
+                size="xl"
+                className="flex-1"
+                onClick={() => reset()}
+              >
+                {t("cancel")}
+              </Button>
+            </div>
+          )}
+        </form>
       </Form>
     </Page>
-  );
+  )
 }
