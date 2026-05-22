@@ -22,8 +22,8 @@ import { useDeleteSession, useDevices } from "../../lib/api-client";
 import { accountKeys } from "../../lib/api-client";
 import { useAccountClient } from "../../lib/api-client";
 import {
-  ClientRepresentation,
-  DeviceRepresentation,
+  Application,
+  Device,
 } from "../../lib/api-client";
 import { formatDate } from "../../lib/format-date";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/account-security/device-activity")({
   component: DeviceActivity,
 });
 
-function moveCurrentToTop(devices: DeviceRepresentation[]) {
+function moveCurrentToTop(devices: Device[]) {
   if (devices.length === 0) return devices;
   const out = [...devices];
   const idx = out.findIndex((d) => d.current);
@@ -81,7 +81,7 @@ function DeviceActivity() {
     onError: (error) => addError("errorSignOutMessage", error),
   });
 
-  const makeClientsString = (clients: ClientRepresentation[]): string => {
+  const makeClientsString = (clients: Application[]): string => {
     let clientsString = "";
     clients.forEach((client, index) => {
       let clientName: string;

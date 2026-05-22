@@ -24,7 +24,7 @@ import {
 } from "../lib/api-client"
 import type {
   UserProfileMetadata,
-  UserRepresentation,
+  User,
 } from "../lib/api-client"
 import { useAccountAlerts } from "../lib/use-account-alerts"
 import {
@@ -55,7 +55,7 @@ function PersonalInfo() {
 }
 
 type PersonalInfoFormProps = {
-  initialData: UserRepresentation
+  initialData: User
   metadata: UserProfileMetadata
   supportedLocales: string[]
 }

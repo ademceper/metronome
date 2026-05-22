@@ -33,43 +33,43 @@ import type { AccountEnvironment } from ".."
 import { joinPath } from "./join-path"
 
 export type {
-  AccountLinkUriRepresentation,
+  AccountLinkUri,
   Client,
-  ClientRepresentation,
-  ConsentRepresentation,
-  ConsentScopeRepresentation,
+  Application,
+  Consent,
+  ConsentScope,
   CredentialContainer,
-  CredentialMetadataRepresentation,
-  CredentialMetadataRepresentationMessage,
-  CredentialRepresentation,
+  CredentialMetadata,
+  CredentialMetadataMessage,
+  Credential,
   CredentialTypeMetadata,
   CredentialsIssuer,
-  DeviceRepresentation,
+  Device,
   Group,
-  LinkedAccountRepresentation,
+  LinkedAccount,
   Permission,
   Permissions,
   Resource,
   Scope,
-  SessionRepresentation,
+  Session,
   SupportedCredentialConfiguration,
   UserProfileAttributeMetadata,
   UserProfileMetadata,
-  UserRepresentation,
+  User,
 } from "./types"
 
 import type {
-  ClientRepresentation,
+  Application,
   CredentialContainer,
   CredentialsIssuer,
-  DeviceRepresentation,
+  Device,
   Group,
-  LinkedAccountRepresentation,
+  LinkedAccount,
   Permission,
   Resource,
   Scope,
   SupportedCredentialConfiguration,
-  UserRepresentation,
+  User,
 } from "./types"
 
 /* ─── Response helpers ─────────────────────────────────────────────── */
@@ -248,10 +248,10 @@ export type LinkedAccountQueryParams = {
 
 const personalInfoEndpoints = (http: HttpClient) => ({
   get: (opts?: HttpRequestOptions) =>
-    http.get<UserRepresentation>("/?userProfileMetadata=true", opts),
+    http.get<User>("/?userProfileMetadata=true", opts),
   supportedLocales: (opts?: HttpRequestOptions) =>
     http.get<string[]>("/supportedLocales", opts),
-  update: async (info: UserRepresentation) => {
+  update: async (info: User) => {
     const response = await http.raw("/", { method: "POST", body: info })
     if (!response.ok) {
       const { errors } = await response.json()
@@ -262,7 +262,7 @@ const personalInfoEndpoints = (http: HttpClient) => ({
 
 const applicationsEndpoints = (http: HttpClient) => ({
   list: (opts?: HttpRequestOptions) =>
-    http.get<ClientRepresentation[]>("/applications", opts),
+    http.get<Application[]>("/applications", opts),
   deleteConsent: (id: string) =>
     http.delete(`/applications/${id}/consent`),
 })
@@ -274,7 +274,7 @@ const credentialsEndpoints = (http: HttpClient) => ({
 
 const devicesEndpoints = (http: HttpClient) => ({
   list: (opts?: HttpRequestOptions) =>
-    http.get<DeviceRepresentation[]>("/sessions/devices", opts),
+    http.get<Device[]>("/sessions/devices", opts),
   delete: (id?: string) => http.delete(`/sessions${id ? `/${id}` : ""}`),
 })
 
@@ -288,12 +288,12 @@ const linkedAccountsEndpoints = (http: HttpClient) => ({
       (acc, [key, value]) => ({ ...acc, [key]: value.toString() }),
       {} as Record<string, string>,
     )
-    return http.get<LinkedAccountRepresentation[]>("/linked-accounts", {
+    return http.get<LinkedAccount[]>("/linked-accounts", {
       ...opts,
       searchParams,
     })
   },
-  unlink: (account: LinkedAccountRepresentation) =>
+  unlink: (account: LinkedAccount) =>
     http.delete(`/linked-accounts/${account.providerName}`),
 })
 
@@ -551,7 +551,7 @@ type MutationOpts<TData, TVariables> = Omit<
 >
 
 export const useSavePersonalInfo = (
-  options?: MutationOpts<void, UserRepresentation>,
+  options?: MutationOpts<void, User>,
 ) => {
   const client = useAccountClient()
   return useMutation({
@@ -584,7 +584,7 @@ export const useDeleteSession = (
 }
 
 export const useUnLinkAccount = (
-  options?: MutationOpts<unknown, LinkedAccountRepresentation>,
+  options?: MutationOpts<unknown, LinkedAccount>,
 ) => {
   const client = useAccountClient()
   const qc = useQueryClient()

@@ -1,4 +1,4 @@
-import type { CredentialMetadataRepresentation } from "./credential-metadata-representation"
+import type { CredentialMetadata } from "./credential-metadata"
 import type { CredentialTypeMetadata } from "./credential-type-metadata"
 
 export interface CredentialContainer {
@@ -10,6 +10,6 @@ export interface CredentialContainer {
   createAction: string
   updateAction: string
   removeable: boolean
-  userCredentialMetadatas: CredentialMetadataRepresentation[]
+  userCredentialMetadatas: CredentialMetadata[]
   metadata: CredentialTypeMetadata
 }

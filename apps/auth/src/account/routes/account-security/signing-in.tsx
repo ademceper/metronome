@@ -15,7 +15,7 @@ import {
 import { Page } from "../../components/page";
 import type { TFuncKey } from "../../i18n/types";
 import { useCredentials } from "../../lib/api-client";
-import { CredentialMetadataRepresentation } from "../../lib/api-client";
+import { CredentialMetadata } from "../../lib/api-client";
 import { formatDate } from "../../lib/format-date";
 import { AccountEnvironment } from "../..";
 
@@ -37,7 +37,7 @@ function SigningIn() {
   const categories = [...new Set(credentials.map((c) => c.category))];
 
   const renderMetadata = (
-    credMetadata: CredentialMetadataRepresentation,
+    credMetadata: CredentialMetadata,
     context: KeycloakContext<AccountEnvironment>,
   ) => {
     const credential = credMetadata.credential;

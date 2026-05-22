@@ -1,6 +1,6 @@
-import type { SessionRepresentation } from "./session-representation"
+import type { Session } from "./session"
 
-export interface DeviceRepresentation {
+export interface Device {
   id: string
   ipAddress: string
   os: string
@@ -9,6 +9,6 @@ export interface DeviceRepresentation {
   device: string
   lastAccess: number
   current: boolean
-  sessions: SessionRepresentation[]
+  sessions: Session[]
   mobile: boolean
 }

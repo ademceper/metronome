@@ -1,6 +1,6 @@
-import type { ConsentRepresentation } from "./consent-representation"
+import type { Consent } from "./consent"
 
-export interface ClientRepresentation {
+export interface Application {
   clientId: string
   clientName: string
   description: string
@@ -10,7 +10,7 @@ export interface ClientRepresentation {
   rootUrl: string
   baseUrl: string
   effectiveUrl: string
-  consent?: ConsentRepresentation
+  consent?: Consent
   logoUri: string
   policyUri: string
   tosUri: string

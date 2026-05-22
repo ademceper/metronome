@@ -1,5 +1,5 @@
 import type { UserProfileMetadata } from "./user-profile-metadata"
 
-export type UserRepresentation = any & {
+export type User = any & {
   userProfileMetadata: UserProfileMetadata
 }

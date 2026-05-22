@@ -1,4 +1,4 @@
-export interface LinkedAccountRepresentation {
+export interface LinkedAccount {
   connected: boolean
   providerAlias: string
   providerName: string

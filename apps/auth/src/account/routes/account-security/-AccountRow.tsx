@@ -12,11 +12,11 @@ import {
   useEnvironment,
 } from "../../../shared/keycloak-ui-shared";
 import { useUnLinkAccount } from "../../lib/api-client";
-import { LinkedAccountRepresentation } from "../../lib/api-client";
+import { LinkedAccount } from "../../lib/api-client";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 
 type AccountRowProps = {
-  account: LinkedAccountRepresentation;
+  account: LinkedAccount;
   isLinked?: boolean;
 };
 

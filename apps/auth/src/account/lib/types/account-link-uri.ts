@@ -1,4 +1,4 @@
-export interface AccountLinkUriRepresentation {
+export interface AccountLinkUri {
   accountLinkUri: string
   nonce: string
   hash: string
