@@ -9,6 +9,13 @@
 
 // @ts-nocheck
 
+import {
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@metronome/ui/components/form";
 import { Input } from "@metronome/ui/components/input";
 import type { ReactNode } from "react";
 import {
@@ -16,7 +23,6 @@ import {
   FieldValues,
   PathValue,
   UseControllerProps,
-  useController,
 } from "react-hook-form";
 import { getRuleValue } from "../utils/getRuleValue";
 
@@ -29,8 +35,8 @@ export type TextControlProps<
   isDisabled?: boolean;
   helperText?: string;
   type?: string;
-  "data-testid"?: string;
   placeholder?: string;
+  "data-testid"?: string;
 };
 
 export const TextControl = <
@@ -42,11 +48,6 @@ export const TextControl = <
   const required = !!getRuleValue(props.rules?.required);
   const defaultValue = props.defaultValue ?? ("" as PathValue<T, P>);
 
-  const { field, fieldState } = useController({
-    ...props,
-    defaultValue,
-  });
-
   const floatingLabel: ReactNode = (
     <>
       {props.label}
@@ -54,40 +55,33 @@ export const TextControl = <
     </>
   );
 
-  const errorMessage = fieldState.error?.message as string | undefined;
-
   return (
-    <div className="space-y-1.5">
-      <Input
-        variant="floating"
-        label={floatingLabel}
-        id={props.name}
-        data-testid={props["data-testid"] || props.name}
-        type={props.type || "text"}
-        placeholder={props.placeholder}
-        disabled={props.isDisabled}
-        required={required}
-        aria-invalid={!!fieldState.error}
-        {...field}
-      />
-      {props.helperText && !errorMessage && (
-        <p className="text-muted-foreground text-xs">{props.helperText}</p>
+    <FormField
+      control={props.control}
+      name={props.name}
+      rules={props.rules}
+      defaultValue={defaultValue}
+      render={({ field, fieldState }) => (
+        <FormItem>
+          <FormControl>
+            <Input
+              variant="floating"
+              label={floatingLabel}
+              id={props.name}
+              data-testid={props["data-testid"] || props.name}
+              type={props.type || "text"}
+              placeholder={props.placeholder}
+              disabled={props.isDisabled}
+              required={required}
+              {...field}
+            />
+          </FormControl>
+          {props.helperText && !fieldState.error && (
+            <FormDescription>{props.helperText}</FormDescription>
+          )}
+          <FormMessage />
+        </FormItem>
       )}
-      <div
-        data-visible={!!errorMessage}
-        aria-hidden={!errorMessage}
-        className="-mt-1.5 grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity,margin-top] duration-200 ease-out data-[visible=true]:mt-0 data-[visible=true]:grid-rows-[1fr] data-[visible=true]:opacity-100"
-      >
-        <div className="overflow-hidden">
-          <p
-            data-testid={`${props.name}-helper`}
-            className="text-destructive text-sm"
-            aria-live="polite"
-          >
-            {errorMessage}
-          </p>
-        </div>
-      </div>
-    </div>
+    />
   );
 };

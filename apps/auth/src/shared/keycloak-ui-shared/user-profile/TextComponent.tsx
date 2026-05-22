@@ -9,10 +9,15 @@
 
 // @ts-nocheck
 
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@metronome/ui/components/form";
 import { Input } from "@metronome/ui/components/input";
 import type { ReactNode } from "react";
 import { UserProfileFieldProps } from "./UserProfileFields";
-import { UserProfileGroup } from "./UserProfileGroup";
 import {
   fieldName,
   isRequiredAttribute,
@@ -33,7 +38,7 @@ const TextInputTypes = {
 } as const;
 
 export const TextComponent = (props: UserProfileFieldProps) => {
-  const { form, inputType, attribute, t } = props;
+  const { form, inputType, attribute, t, renderer } = props;
   const isRequired = isRequiredAttribute(attribute);
   const type = inputType.startsWith("html")
     ? (inputType.substring("html".length + 2) as keyof typeof TextInputTypes)
@@ -47,6 +52,11 @@ export const TextComponent = (props: UserProfileFieldProps) => {
         "",
         attribute.annotations?.["inputOptionLabelsI18nPrefix"] as string,
       );
+  const helpText = label(
+    t,
+    attribute.annotations?.["inputHelperTextBefore"] as string,
+  );
+  const extra = renderer?.(attribute);
 
   const floatingLabel: ReactNode = (
     <>
@@ -56,19 +66,52 @@ export const TextComponent = (props: UserProfileFieldProps) => {
   );
 
   return (
-    <UserProfileGroup {...props}>
-      <Input
-        variant="floating"
-        label={floatingLabel}
-        id={attribute.name}
-        data-testid={attribute.name}
-        type={type}
-        placeholder={placeholder}
-        disabled={attribute.readOnly}
-        required={isRequired}
-        defaultValue={attribute.defaultValue}
-        {...form.register(fieldName(attribute.name))}
-      />
-    </UserProfileGroup>
+    <FormField
+      control={form.control}
+      name={fieldName(attribute.name)}
+      defaultValue={attribute.defaultValue ?? ""}
+      render={({ field }) => (
+        <FormItem>
+          {extra ? (
+            <div className="flex items-center gap-2">
+              <div className="flex-1">
+                <FormControl>
+                  <Input
+                    variant="floating"
+                    label={floatingLabel}
+                    id={attribute.name}
+                    data-testid={attribute.name}
+                    type={type}
+                    placeholder={placeholder}
+                    disabled={attribute.readOnly}
+                    required={isRequired}
+                    {...field}
+                  />
+                </FormControl>
+              </div>
+              {extra}
+            </div>
+          ) : (
+            <FormControl>
+              <Input
+                variant="floating"
+                label={floatingLabel}
+                id={attribute.name}
+                data-testid={attribute.name}
+                type={type}
+                placeholder={placeholder}
+                disabled={attribute.readOnly}
+                required={isRequired}
+                {...field}
+              />
+            </FormControl>
+          )}
+          {helpText && (
+            <p className="text-muted-foreground text-xs">{helpText}</p>
+          )}
+          <FormMessage />
+        </FormItem>
+      )}
+    />
   );
 };
