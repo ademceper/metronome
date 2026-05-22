@@ -12,7 +12,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
@@ -139,21 +138,26 @@ export const ShareTheResource = ({
               rules={{ validate: validateUser }}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {t("shareUser")}
-                    <span className="ml-0.5 text-destructive">*</span>
-                  </FormLabel>
                   <div className="flex items-stretch gap-2">
-                    <FormControl>
-                      <Input
-                        {...field}
-                        id="users"
-                        data-testid="users"
-                        placeholder={t("usernamePlaceholder")}
-                      />
-                    </FormControl>
+                    <div className="flex-1">
+                      <FormControl>
+                        <Input
+                          {...field}
+                          variant="floating"
+                          label={
+                            <>
+                              {t("shareUser")}
+                              <span className="ml-0.5 text-destructive">*</span>
+                            </>
+                          }
+                          id="users"
+                          data-testid="users"
+                        />
+                      </FormControl>
+                    </div>
                     <Button
                       type="button"
+                      size="xl"
                       data-testid="add"
                       onClick={() => append({ value: "" })}
                       disabled={isAddDisabled}

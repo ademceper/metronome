@@ -9,10 +9,8 @@
 
 // @ts-nocheck
 
-import * as React from "react";
-import { Input as UIInput } from "@metronome/ui/components/input";
-import { cn } from "@metronome/ui/lib/utils";
-import { ReactNode } from "react";
+import { Input } from "@metronome/ui/components/input";
+import type { ReactNode } from "react";
 import {
   FieldPath,
   FieldValues,
@@ -21,48 +19,19 @@ import {
   useController,
 } from "react-hook-form";
 import { getRuleValue } from "../utils/getRuleValue";
-import { FormLabel } from "./FormLabel";
-
-
-const FormHelperText = ({ children, className, ...props }: any) => (
-  <div className={cn("text-muted-foreground text-xs", className)} {...props}>{children}</div>
-);
-const HelperText = ({ children, className, ...props }: any) => (
-  <div className={cn("text-sm text-muted-foreground", className)} {...props}>{children}</div>
-);
-const HelperTextItem = ({ icon, variant, children, ...props }: any) => (
-  <p className={cn("text-sm",
-    variant === "error" ? "text-destructive" : variant === "warning" ? "text-amber-600" : "text-muted-foreground",
-    (props as any).className)} {...props}>
-    {icon}{children}
-  </p>
-);
-const TextInput = ({ value, onChange, isDisabled, isReadOnly, isRequired, validated, type, ...props }: any) => (
-  <UIInput value={value ?? ""}
-    onChange={(e: any) => onChange?.(e.target.value, e)}
-    disabled={isDisabled} readOnly={isReadOnly} required={isRequired}
-    type={type || "text"} {...props} />
-);
-const ValidatedOptions = {
-  default: "default",
-  success: "success",
-  warning: "warning",
-  error: "error",
-} as const;
-type TextInputProps = React.ComponentProps<typeof TextInput>;
 
 export type TextControlProps<
   T extends FieldValues,
   P extends FieldPath<T> = FieldPath<T>,
-> = UseControllerProps<T, P> &
-  Omit<TextInputProps, "name" | "isRequired" | "required"> & {
-    label: string;
-    labelIcon?: string | ReactNode;
-    isDisabled?: boolean;
-    helperText?: string;
-    "data-testid"?: string;
-    type?: string;
-  };
+> = UseControllerProps<T, P> & {
+  label: string;
+  labelIcon?: string | ReactNode;
+  isDisabled?: boolean;
+  helperText?: string;
+  type?: string;
+  "data-testid"?: string;
+  placeholder?: string;
+};
 
 export const TextControl = <
   T extends FieldValues,
@@ -70,7 +39,6 @@ export const TextControl = <
 >(
   props: TextControlProps<T, P>,
 ) => {
-  const { labelIcon, helperText, ...rest } = props;
   const required = !!getRuleValue(props.rules?.required);
   const defaultValue = props.defaultValue ?? ("" as PathValue<T, P>);
 
@@ -79,32 +47,47 @@ export const TextControl = <
     defaultValue,
   });
 
+  const floatingLabel: ReactNode = (
+    <>
+      {props.label}
+      {required && <span className="ml-0.5 text-destructive">*</span>}
+    </>
+  );
+
+  const errorMessage = fieldState.error?.message as string | undefined;
+
   return (
-    <FormLabel
-      name={props.name}
-      label={props.label}
-      labelIcon={labelIcon}
-      isRequired={required}
-      error={fieldState.error}
-    >
-      <TextInput
-        isRequired={required}
+    <div className="space-y-1.5">
+      <Input
+        variant="floating"
+        label={floatingLabel}
         id={props.name}
         data-testid={props["data-testid"] || props.name}
-        validated={
-          fieldState.error ? ValidatedOptions.error : ValidatedOptions.default
-        }
-        isDisabled={props.isDisabled}
-        {...rest}
+        type={props.type || "text"}
+        placeholder={props.placeholder}
+        disabled={props.isDisabled}
+        required={required}
+        aria-invalid={!!fieldState.error}
         {...field}
       />
-      {helperText && (
-        <FormHelperText>
-          <HelperText>
-            <HelperTextItem>{helperText}</HelperTextItem>
-          </HelperText>
-        </FormHelperText>
+      {props.helperText && !errorMessage && (
+        <p className="text-muted-foreground text-xs">{props.helperText}</p>
       )}
-    </FormLabel>
+      <div
+        data-visible={!!errorMessage}
+        aria-hidden={!errorMessage}
+        className="-mt-1.5 grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity,margin-top] duration-200 ease-out data-[visible=true]:mt-0 data-[visible=true]:grid-rows-[1fr] data-[visible=true]:opacity-100"
+      >
+        <div className="overflow-hidden">
+          <p
+            data-testid={`${props.name}-helper`}
+            className="text-destructive text-sm"
+            aria-live="polite"
+          >
+            {errorMessage}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
