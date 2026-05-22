@@ -3,7 +3,7 @@ import { startColorSchemeManagement } from "./colorScheme";
 import { KeycloakProvider } from "../shared/keycloak-ui-shared";
 import { environment } from "./environment";
 import { i18n } from "./i18n/i18n";
-import { Root } from "./app/Root";
+import { Root } from "./root";
 import { SessionExpirationWarningOverlay } from "../shared/SessionExpirationWarningOverlay";
 
 document.title = "Account Management";

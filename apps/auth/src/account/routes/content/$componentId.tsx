@@ -1,8 +1,8 @@
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import { Suspense, lazy, useMemo } from "react";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
-import { MenuItem, navItems } from "../../app/PageNav";
-import { joinPath } from "../../lib/joinPath";
+import { MenuItem, navItems } from "../../lib/nav-items";
+import { joinPath } from "../../lib/join-path";
 import { RouteFallback } from "../-loading/route-fallback";
 
 export const Route = createFileRoute("/content/$componentId")({

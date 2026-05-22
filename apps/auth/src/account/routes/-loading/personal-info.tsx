@@ -1,7 +1,7 @@
 import { Skeleton } from "@metronome/ui/components/skeleton";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
-import { Page } from "../../components/Page";
+import { Page } from "../../components/page";
 import { AccountEnvironment } from "../..";
 
 export function PersonalInfoLoading() {

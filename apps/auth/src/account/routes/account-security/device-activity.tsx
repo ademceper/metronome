@@ -22,9 +22,9 @@ import {
   DeviceRepresentation,
   SessionRepresentation,
 } from "../../lib/api/representations";
-import { Page } from "../../components/Page";
-import { formatDate } from "../../lib/formatDate";
-import { useAccountAlerts } from "../../lib/useAccountAlerts";
+import { Page } from "../../components/page";
+import { formatDate } from "../../lib/format-date";
+import { useAccountAlerts } from "../../lib/use-account-alerts";
 
 export const Route = createFileRoute("/account-security/device-activity")({
   component: DeviceActivity,

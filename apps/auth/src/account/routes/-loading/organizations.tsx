@@ -1,6 +1,6 @@
 import { Skeleton } from "@metronome/ui/components/skeleton";
 import { useTranslation } from "react-i18next";
-import { Page } from "../../components/Page";
+import { Page } from "../../components/page";
 
 export function OrganizationsLoading() {
   const { t } = useTranslation();

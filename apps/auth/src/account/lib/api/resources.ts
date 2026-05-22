@@ -14,7 +14,7 @@ import {
   SupportedCredentialConfiguration,
 } from "./representations";
 import { request } from "./request";
-import { joinPath } from "../joinPath";
+import { joinPath } from "../join-path";
 
 export const fetchResources = async (
   { signal, context }: CallOptions,

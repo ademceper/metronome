@@ -1,4 +1,3 @@
-import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import { Toaster } from "@metronome/ui/components/sonner";
 import {
   QueryClient,
@@ -6,8 +5,9 @@ import {
 } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { type AccountEnvironment } from "..";
-import { routeTree } from "../routeTree.gen";
+import { useEnvironment } from "../shared/keycloak-ui-shared";
+import { type AccountEnvironment } from ".";
+import { routeTree } from "./routeTree.gen";
 
 export const Root = () => {
   const context = useEnvironment<AccountEnvironment>();

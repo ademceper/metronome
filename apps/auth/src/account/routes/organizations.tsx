@@ -10,7 +10,7 @@ import { OrganizationsLoading } from "./-loading/organizations";
 import { useTranslation } from "react-i18next";
 import { AccountEnvironment } from "..";
 import { getUserOrganizations } from "../lib/api/methods";
-import { Page } from "../components/Page";
+import { Page } from "../components/page";
 
 export const Route = createFileRoute("/organizations")({
   component: Organizations,

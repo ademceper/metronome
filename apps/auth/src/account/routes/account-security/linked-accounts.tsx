@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../../shared/keycloak-ui-shared";
 import { getLinkedAccounts, LinkedAccountQueryParams } from "../../lib/api/methods";
-import { EmptyRow } from "../../components/EmptyRow";
-import { Page } from "../../components/Page";
+import { EmptyRow } from "../../components/empty-row";
+import { Page } from "../../components/page";
 import { AccountRow } from "./-AccountRow";
 import { LinkedAccountsToolbar } from "./-LinkedAccountsToolbar";
 

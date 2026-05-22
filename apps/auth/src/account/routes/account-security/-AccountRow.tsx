@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 import { unLinkAccount } from "../../lib/api/methods";
 import { LinkedAccountRepresentation } from "../../lib/api/representations";
-import { useAccountAlerts } from "../../lib/useAccountAlerts";
+import { useAccountAlerts } from "../../lib/use-account-alerts";
 
 type AccountRowProps = {
   account: LinkedAccountRepresentation;

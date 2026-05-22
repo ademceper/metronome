@@ -26,7 +26,7 @@ import { useTranslation } from "react-i18next";
 import { fetchPermission, fetchResources, updatePermissions } from "../../lib/api/resources";
 import { getPermissionRequests } from "../../lib/api/methods";
 import { Permission, Resource } from "../../lib/api/representations";
-import { useAccountAlerts } from "../../lib/useAccountAlerts";
+import { useAccountAlerts } from "../../lib/use-account-alerts";
 import { EditTheResource } from "./EditTheResource";
 import { PermissionRequest } from "./PermissionRequest";
 import { ResourceToolbar } from "./ResourceToolbar";

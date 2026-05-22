@@ -1,8 +1,8 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { ErrorPage } from "../../shared/keycloak-ui-shared";
-import { Header } from "../app/Header";
-import { PageNav } from "../app/PageNav";
+import { Header } from "../components/header";
+import { PageNav } from "../components/page-nav";
 import { RouteFallback } from "./-loading/route-fallback";
 
 const AccountLayout = () => (

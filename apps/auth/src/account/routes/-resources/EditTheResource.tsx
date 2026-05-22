@@ -18,7 +18,7 @@ import {
 } from "../../../shared/keycloak-ui-shared"
 import { updatePermissions } from "../../lib/api/resources"
 import type { Permission, Resource } from "../../lib/api/representations"
-import { useAccountAlerts } from "../../lib/useAccountAlerts"
+import { useAccountAlerts } from "../../lib/use-account-alerts"
 import {
   type EditTheResourceFormValues,
   editTheResourceSchema,

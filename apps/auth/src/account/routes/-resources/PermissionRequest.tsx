@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next"
 import { useEnvironment } from "../../../shared/keycloak-ui-shared"
 import { fetchPermission, updateRequest } from "../../lib/api/resources"
 import type { Permission, Resource } from "../../lib/api/representations"
-import { useAccountAlerts } from "../../lib/useAccountAlerts"
+import { useAccountAlerts } from "../../lib/use-account-alerts"
 
 type PermissionRequestProps = {
   resource: Resource

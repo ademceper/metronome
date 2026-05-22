@@ -14,9 +14,9 @@ import {
 } from "../../../shared/keycloak-ui-shared";
 import { getCredentials } from "../../lib/api/methods";
 import { CredentialMetadataRepresentation } from "../../lib/api/representations";
-import { Page } from "../../components/Page";
+import { Page } from "../../components/page";
 import type { TFuncKey } from "../../i18n/types";
-import { formatDate } from "../../lib/formatDate";
+import { formatDate } from "../../lib/format-date";
 import { AccountEnvironment } from "../..";
 
 export const Route = createFileRoute("/account-security/signing-in")({

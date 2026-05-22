@@ -16,7 +16,7 @@ import {
   setUserProfileServerError,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared"
-import { Page } from "../components/Page"
+import { Page } from "../components/page"
 import type { TFuncKey } from "../i18n/types"
 import {
   getPersonalInfo,
@@ -27,7 +27,7 @@ import type {
   UserProfileMetadata,
   UserRepresentation,
 } from "../lib/api/representations"
-import { useAccountAlerts } from "../lib/useAccountAlerts"
+import { useAccountAlerts } from "../lib/use-account-alerts"
 import {
   type PersonalInfoFormValues,
   personalInfoSchema,

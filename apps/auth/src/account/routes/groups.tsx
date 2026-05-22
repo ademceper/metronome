@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
 import { getGroups } from "../lib/api/methods";
 import { Group } from "../lib/api/representations";
-import { Page } from "../components/Page";
+import { Page } from "../components/page";
 
 export const Route = createFileRoute("/groups")({
   component: Groups,

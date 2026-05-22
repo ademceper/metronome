@@ -18,10 +18,10 @@ import { useTranslation } from "react-i18next";
 
 import { AccountEnvironment } from "..";
 import { deleteConsent, getApplications } from "../lib/api/methods";
-import { Page } from "../components/Page";
+import { Page } from "../components/page";
 import type { TFuncKey } from "../i18n/types";
-import { formatDate } from "../lib/formatDate";
-import { useAccountAlerts } from "../lib/useAccountAlerts";
+import { formatDate } from "../lib/format-date";
+import { useAccountAlerts } from "../lib/use-account-alerts";
 
 export const Route = createFileRoute("/applications")({
   component: Applications,

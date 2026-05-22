@@ -12,7 +12,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getIssuer, requestVCOffer } from "../lib/api/resources";
-import { Page } from "../components/Page";
+import { Page } from "../components/page";
 
 export const Route = createFileRoute("/oid4vci")({
   component: Oid4Vci,
