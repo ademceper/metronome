@@ -1,23 +1,41 @@
 /**
  * Public surface of the account API client.
  *
- * Routes import everything from `@/account/lib/api-client` — never from
- * individual endpoint/hook files. The barrel keeps the import paths
- * stable even when internal files move around.
+ * Architecture:
+ *
+ *   ┌────────────────────────────────────────────────────────┐
+ *   │ Routes / components                                    │
+ *   │   └─ usePersonalInfo, useApplications, useResources …  │  ← hooks.ts
+ *   └────────────────────────────────────────────────────────┘
+ *               │
+ *               ▼
+ *   ┌────────────────────────────────────────────────────────┐
+ *   │ useAccountClient()  →  AccountClient                   │
+ *   │   client.personalInfo.get()                            │  ← client.ts
+ *   │   client.applications.list()                           │     (SDK assembly)
+ *   │   client.devices.delete(id) …                          │
+ *   └────────────────────────────────────────────────────────┘
+ *               │
+ *               ▼
+ *   ┌────────────────────────────────────────────────────────┐
+ *   │ HttpClient (get/post/put/delete/raw)                   │  ← client.ts
+ *   │   auth, base URL, JSON parse, error surface            │     (transport)
+ *   └────────────────────────────────────────────────────────┘
+ *
+ * Endpoint factories live in endpoints/*.ts. They never touch fetch
+ * directly — they call the HttpClient passed in by `createClient`.
  */
 
-// Hooks — preferred entry point for components
+// React surface — preferred entry point
 export * from "./hooks"
 
-// Underlying factories — useful for prefetching, optimistic updates,
-// and custom orchestration outside the React tree.
+// SDK primitives (for prefetching, optimistic updates, custom orchestration)
+export { createClient } from "./client"
+export type { AccountClient, HttpClient, HttpRequestOptions } from "./client"
 export { accountKeys } from "./keys"
 export { accountQueries } from "./queries"
 
-// Endpoint-specific helpers / types that some routes still need directly
+// Domain types
 export type { LinkedAccountQueryParams } from "./endpoints/linked-accounts"
-export { deleteSession } from "./endpoints/devices"
-export { fetchPermission } from "./endpoints/resources"
-export { requestVCOffer } from "./endpoints/oid4vci"
 export { ApiError } from "./parse-response"
 export type * from "./types"

@@ -18,13 +18,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { ContinueCancelModal } from "../../../shared/keycloak-ui-shared";
 import {
-  ContinueCancelModal,
-  useEnvironment,
-} from "../../../shared/keycloak-ui-shared";
-import { useResources, useUnshareResource } from "../../lib/api-client";
+  useAccountClient,
+  useResources,
+  useUnshareResource,
+} from "../../lib/api-client";
 import { accountKeys } from "../../lib/api-client";
-import { fetchPermission } from "../../lib/api-client";
 import { Permission, Resource } from "../../lib/api-client";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 import { ResourcesTabLoading } from "../-loading/resources";
@@ -48,7 +48,7 @@ type ResourcesTabProps = {
 
 export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
   const { t } = useTranslation();
-  const context = useEnvironment();
+  const client = useAccountClient();
   const { addAlert, addError } = useAccountAlerts();
   const qc = useQueryClient();
 
@@ -86,7 +86,7 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
   const fetchPermissions = async (id: string) => {
     let permissions = details[id]?.permissions || [];
     if (!details[id]) {
-      permissions = await fetchPermission({ context }, id);
+      permissions = await client.resources.permissions(id);
     }
     return permissions;
   };

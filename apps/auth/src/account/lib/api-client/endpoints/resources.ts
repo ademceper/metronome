@@ -1,80 +1,43 @@
-import type {
-  BaseEnvironment,
-  KeycloakContext,
-} from "../../../../shared/keycloak-ui-shared"
-import { request } from "../client"
+import type { HttpClient, HttpRequestOptions } from "../client"
 import { type Links, parseLinks } from "../parse-links"
-import { parseResponse } from "../parse-response"
-import type {
-  Permission,
-  Resource,
-  Scope,
-} from "../types"
+import type { Permission, Resource, Scope } from "../types"
 
-type CallOptions = {
-  context: KeycloakContext<BaseEnvironment>
-  signal?: AbortSignal
-}
+export const resourcesEndpoints = (http: HttpClient) => ({
+  list: async (
+    query: Record<string, string>,
+    isShared = false,
+    opts?: HttpRequestOptions,
+  ): Promise<{ data: Resource[]; links: Links }> => {
+    const path = `/resources${isShared ? "/shared-with-me?" : "?"}`
+    const response = await http.raw(path, {
+      ...opts,
+      searchParams: isShared ? query : undefined,
+    })
+    const links = parseLinks(response)
+    const data = await response.json()
+    if (!data) throw new Error("Could not fetch resources")
+    return { data, links }
+  },
 
-export const fetchResources = async (
-  { signal, context }: CallOptions,
-  requestParams: Record<string, string>,
-  shared = false
-): Promise<{ data: Resource[]; links: Links }> => {
-  const response = await request(
-    `/resources${shared ? "/shared-with-me?" : "?"}`,
-    context,
-    { searchParams: shared ? requestParams : undefined, signal }
-  )
+  permissions: (resourceId: string, opts?: HttpRequestOptions) =>
+    http.get<Permission[]>(
+      `/resources/${resourceId}/permissions`,
+      opts,
+    ),
 
-  const links = parseLinks(response)
-  const data = await response.json()
-  if (!data) throw new Error("Could not fetch")
+  permissionRequests: (resourceId: string, opts?: HttpRequestOptions) =>
+    http.get<Permission[]>(
+      `/resources/${resourceId}/permissions/requests`,
+      opts,
+    ),
 
-  return { data, links }
-}
+  share: (
+    resourceId: string,
+    username: string,
+    scopes: Scope[] | string[],
+  ) =>
+    http.put(`/resources/${resourceId}/permissions`, [{ username, scopes }]),
 
-export const fetchPermission = async (
-  { signal, context }: CallOptions,
-  resourceId: string
-): Promise<Permission[]> => {
-  const response = await request(
-    `/resources/${resourceId}/permissions`,
-    context,
-    { signal }
-  )
-  return parseResponse<Permission[]>(response)
-}
-
-export async function getPermissionRequests(
-  resourceId: string,
-  { signal, context }: CallOptions
-): Promise<Permission[]> {
-  const response = await request(
-    `/resources/${resourceId}/permissions/requests`,
-    context,
-    { signal }
-  )
-  return parseResponse<Permission[]>(response)
-}
-
-export const updateRequest = (
-  context: KeycloakContext<BaseEnvironment>,
-  resourceId: string,
-  username: string,
-  scopes: Scope[] | string[]
-) =>
-  request(`/resources/${resourceId}/permissions`, context, {
-    method: "PUT",
-    body: [{ username, scopes }],
-  })
-
-export const updatePermissions = (
-  context: KeycloakContext<BaseEnvironment>,
-  resourceId: string,
-  permissions: Permission[]
-) =>
-  request(`/resources/${resourceId}/permissions`, context, {
-    method: "PUT",
-    body: permissions,
-  })
+  updatePermissions: (resourceId: string, permissions: Permission[]) =>
+    http.put(`/resources/${resourceId}/permissions`, permissions),
+})

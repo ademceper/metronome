@@ -4,90 +4,85 @@ import {
   useQueryClient,
   type UseMutationOptions,
 } from "@tanstack/react-query"
-import type { AccountEnvironment } from "../.."
+import { useMemo } from "react"
 import { useEnvironment } from "../../../shared/keycloak-ui-shared"
-import { deleteConsent } from "./endpoints/applications"
-import { deleteSession } from "./endpoints/devices"
-import {
-  type LinkedAccountQueryParams,
-  unLinkAccount,
-} from "./endpoints/linked-accounts"
-import { savePersonalInfo } from "./endpoints/personal-info"
-import {
-  fetchPermission,
-  updatePermissions,
-  updateRequest,
-} from "./endpoints/resources"
+import type { AccountEnvironment } from "../.."
+import { type AccountClient, createClient } from "./client"
+import type { LinkedAccountQueryParams } from "./endpoints/linked-accounts"
 import { accountKeys } from "./keys"
 import { accountQueries } from "./queries"
 import type {
   LinkedAccountRepresentation,
   Permission,
   Resource,
+  UserRepresentation,
 } from "./types"
 
 /**
- * Read hooks — each picks up KeycloakContext via `useEnvironment` so
- * routes don't need to thread it manually.
+ * Root SDK hook. Every domain hook below derives its work from here,
+ * never from raw `fetch` or endpoint modules.
  */
-export const usePersonalInfo = () => {
+export const useAccountClient = (): AccountClient => {
   const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.personalInfo(context))
+  return useMemo(() => createClient(context), [context])
+}
+
+/* Read hooks ------------------------------------------------------- */
+
+export const usePersonalInfo = () => {
+  const client = useAccountClient()
+  return useQuery(accountQueries.personalInfo(client))
 }
 
 export const useSupportedLocales = () => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.supportedLocales(context))
+  const client = useAccountClient()
+  return useQuery(accountQueries.supportedLocales(client))
 }
 
 export const useApplications = () => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.applications(context))
+  const client = useAccountClient()
+  return useQuery(accountQueries.applications(client))
 }
 
 export const useCredentials = () => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.credentials(context))
+  const client = useAccountClient()
+  return useQuery(accountQueries.credentials(client))
 }
 
 export const useDevices = () => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.devices(context))
+  const client = useAccountClient()
+  return useQuery(accountQueries.devices(client))
 }
 
 export const useGroups = () => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.groups(context))
+  const client = useAccountClient()
+  return useQuery(accountQueries.groups(client))
 }
 
 export const useUserOrganizations = () => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.organizations(context))
+  const client = useAccountClient()
+  return useQuery(accountQueries.organizations(client))
 }
 
 export const useLinkedAccounts = (params: LinkedAccountQueryParams) => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.linkedAccounts(context, params))
+  const client = useAccountClient()
+  return useQuery(accountQueries.linkedAccounts(client, params))
 }
 
 export const useResources = (
   params: { query: Record<string, string>; isShared: boolean },
-  options?: { withPermissionRequests?: boolean }
+  options?: { withPermissionRequests?: boolean },
 ) => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.resources(context, params, options))
+  const client = useAccountClient()
+  return useQuery(accountQueries.resources(client, params, options))
 }
 
 export const useOid4VciIssuer = () => {
-  const context = useEnvironment<AccountEnvironment>()
-  return useQuery(accountQueries.oid4vciIssuer(context))
+  const client = useAccountClient()
+  return useQuery(accountQueries.oid4vciIssuer(client))
 }
 
-/**
- * Mutation hooks — return `useMutation` results, so callers still get
- * the full mutation API (mutate, mutateAsync, isPending, …) and can pass
- * onSuccess/onError per call site.
- */
+/* Mutation hooks --------------------------------------------------- */
 
 type MutationOpts<TData, TVariables> = Omit<
   UseMutationOptions<TData, Error, TVariables>,
@@ -95,20 +90,20 @@ type MutationOpts<TData, TVariables> = Omit<
 >
 
 export const useSavePersonalInfo = (
-  options?: MutationOpts<void, Parameters<typeof savePersonalInfo>[1]>
+  options?: MutationOpts<void, UserRepresentation>,
 ) => {
-  const context = useEnvironment<AccountEnvironment>()
+  const client = useAccountClient()
   return useMutation({
-    mutationFn: (info) => savePersonalInfo(context, info),
+    mutationFn: (info) => client.personalInfo.update(info),
     ...options,
   })
 }
 
 export const useDeleteConsent = (options?: MutationOpts<unknown, string>) => {
-  const context = useEnvironment<AccountEnvironment>()
+  const client = useAccountClient()
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (id) => deleteConsent(context, id),
+    mutationFn: (id) => client.applications.deleteConsent(id),
     onSuccess: () =>
       qc.invalidateQueries({ queryKey: accountKeys.applications() }),
     ...options,
@@ -116,24 +111,24 @@ export const useDeleteConsent = (options?: MutationOpts<unknown, string>) => {
 }
 
 export const useDeleteSession = (
-  options?: MutationOpts<unknown, string | undefined>
+  options?: MutationOpts<unknown, string | undefined>,
 ) => {
-  const context = useEnvironment<AccountEnvironment>()
+  const client = useAccountClient()
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (id) => deleteSession(context, id),
+    mutationFn: (id) => client.devices.delete(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: accountKeys.devices() }),
     ...options,
   })
 }
 
 export const useUnLinkAccount = (
-  options?: MutationOpts<unknown, LinkedAccountRepresentation>
+  options?: MutationOpts<unknown, LinkedAccountRepresentation>,
 ) => {
-  const context = useEnvironment<AccountEnvironment>()
+  const client = useAccountClient()
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (account) => unLinkAccount(context, account),
+    mutationFn: (account) => client.linkedAccounts.unlink(account),
     onSuccess: () =>
       qc.invalidateQueries({ queryKey: accountKeys.linkedAccounts() }),
     ...options,
@@ -141,13 +136,16 @@ export const useUnLinkAccount = (
 }
 
 export const useUpdatePermissions = (
-  options?: MutationOpts<unknown, { resourceId: string; permissions: Permission[] }>
+  options?: MutationOpts<
+    unknown,
+    { resourceId: string; permissions: Permission[] }
+  >,
 ) => {
-  const context = useEnvironment<AccountEnvironment>()
+  const client = useAccountClient()
   const qc = useQueryClient()
   return useMutation({
     mutationFn: ({ resourceId, permissions }) =>
-      updatePermissions(context, resourceId, permissions),
+      client.resources.updatePermissions(resourceId, permissions),
     onSuccess: () => qc.invalidateQueries({ queryKey: accountKeys.resources() }),
     ...options,
   })
@@ -157,30 +155,30 @@ export const useUpdateRequest = (
   options?: MutationOpts<
     unknown,
     { resourceId: string; username: string; scopes: string[] }
-  >
+  >,
 ) => {
-  const context = useEnvironment<AccountEnvironment>()
+  const client = useAccountClient()
   const qc = useQueryClient()
   return useMutation({
     mutationFn: ({ resourceId, username, scopes }) =>
-      updateRequest(context, resourceId, username, scopes),
+      client.resources.share(resourceId, username, scopes),
     onSuccess: () => qc.invalidateQueries({ queryKey: accountKeys.resources() }),
     ...options,
   })
 }
 
 export const useUnshareResource = (
-  options?: MutationOpts<unknown, Resource>
+  options?: MutationOpts<unknown, Resource>,
 ) => {
-  const context = useEnvironment<AccountEnvironment>()
+  const client = useAccountClient()
   const qc = useQueryClient()
   return useMutation({
     mutationFn: async (resource) => {
-      const perms = await fetchPermission({ context }, resource._id)
+      const perms = await client.resources.permissions(resource._id)
       const cleared = perms.map(
-        ({ username }) => ({ username, scopes: [] }) as Permission
+        ({ username }) => ({ username, scopes: [] }) as Permission,
       )
-      await updatePermissions(context, resource._id, cleared)
+      await client.resources.updatePermissions(resource._id, cleared)
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: accountKeys.resources() }),
     ...options,

@@ -8,17 +8,15 @@ import {
 import { createFileRoute } from "@tanstack/react-router"
 import { useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useEnvironment } from "../../shared/keycloak-ui-shared"
 import { Page } from "../components/page"
-import { useOid4VciIssuer } from "../lib/api-client"
-import { requestVCOffer } from "../lib/api-client"
+import { useAccountClient, useOid4VciIssuer } from "../lib/api-client"
 
 export const Route = createFileRoute("/oid4vci")({
   component: Oid4Vci,
 })
 
 function Oid4Vci() {
-  const context = useEnvironment()
+  const client = useAccountClient()
   const { t } = useTranslation()
   const initialSelected = t("verifiableCredentialsSelectionDefault")
 
@@ -39,8 +37,9 @@ function Oid4Vci() {
 
   useEffect(() => {
     if (initialSelected !== selected && credentialsIssuer !== undefined) {
-      requestVCOffer(context, selectOptions[selected], credentialsIssuer).then(
-        (blob) => {
+      client.oid4vci
+        .createOffer(selectOptions[selected], credentialsIssuer)
+        .then((blob) => {
           const reader = new FileReader()
           reader.readAsDataURL(blob)
           reader.onloadend = function () {

@@ -1,123 +1,101 @@
 import { queryOptions } from "@tanstack/react-query"
-import type {
-  BaseEnvironment,
-  KeycloakContext,
-} from "../../../shared/keycloak-ui-shared"
-import { getApplications } from "./endpoints/applications"
-import { getCredentials } from "./endpoints/credentials"
-import { getDevices } from "./endpoints/devices"
-import { getGroups } from "./endpoints/groups"
-import {
-  type LinkedAccountQueryParams,
-  getLinkedAccounts,
-} from "./endpoints/linked-accounts"
-import { getIssuer } from "./endpoints/oid4vci"
-import { getUserOrganizations } from "./endpoints/organizations"
-import {
-  getPersonalInfo,
-  getSupportedLocales,
-} from "./endpoints/personal-info"
-import {
-  fetchPermission,
-  fetchResources,
-  getPermissionRequests,
-} from "./endpoints/resources"
+import type { AccountClient } from "./client"
+import type { LinkedAccountQueryParams } from "./endpoints/linked-accounts"
 import { accountKeys } from "./keys"
-
-type Ctx = KeycloakContext<BaseEnvironment>
 
 /**
  * `queryOptions` factories — TanStack Query v5 idiom.
  *
- * Each factory returns an object that can be spread into `useQuery`,
- * `useSuspenseQuery`, or `queryClient.fetchQuery` while keeping the
- * data type strongly inferred end-to-end.
+ * Each factory takes the `AccountClient` (passed in from a hook or
+ * a manual prefetch site) and returns an object spreadable into
+ * `useQuery`, `useSuspenseQuery`, or `queryClient.fetchQuery`.
  */
 export const accountQueries = {
-  personalInfo: (context: Ctx) =>
+  personalInfo: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.personalInfo(),
-      queryFn: ({ signal }) => getPersonalInfo({ signal, context }),
+      queryFn: ({ signal }) => client.personalInfo.get({ signal }),
     }),
 
-  supportedLocales: (context: Ctx) =>
+  supportedLocales: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.supportedLocales(),
-      queryFn: ({ signal }) => getSupportedLocales({ signal, context }),
+      queryFn: ({ signal }) => client.personalInfo.supportedLocales({ signal }),
     }),
 
-  applications: (context: Ctx) =>
+  applications: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.applications(),
-      queryFn: ({ signal }) => getApplications({ signal, context }),
+      queryFn: ({ signal }) => client.applications.list({ signal }),
     }),
 
-  credentials: (context: Ctx) =>
+  credentials: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.credentials(),
-      queryFn: ({ signal }) => getCredentials({ signal, context }),
+      queryFn: ({ signal }) => client.credentials.list({ signal }),
     }),
 
-  devices: (context: Ctx) =>
+  devices: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.devices(),
-      queryFn: ({ signal }) => getDevices({ signal, context }),
+      queryFn: ({ signal }) => client.devices.list({ signal }),
     }),
 
-  groups: (context: Ctx) =>
+  groups: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.groups(),
-      queryFn: ({ signal }) => getGroups({ signal, context }),
+      queryFn: ({ signal }) => client.groups.list({ signal }),
     }),
 
-  organizations: (context: Ctx) =>
+  organizations: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.organizations(),
-      queryFn: ({ signal }) => getUserOrganizations({ signal, context }),
+      queryFn: ({ signal }) => client.organizations.list({ signal }),
     }),
 
-  linkedAccounts: (context: Ctx, params: LinkedAccountQueryParams) =>
+  linkedAccounts: (client: AccountClient, params: LinkedAccountQueryParams) =>
     queryOptions({
       queryKey: accountKeys.linkedAccounts(params),
-      queryFn: ({ signal }) => getLinkedAccounts({ signal, context }, params),
+      queryFn: ({ signal }) => client.linkedAccounts.list(params, { signal }),
     }),
 
   resources: (
-    context: Ctx,
+    client: AccountClient,
     params: { query: Record<string, string>; isShared: boolean },
-    options?: { withPermissionRequests?: boolean }
+    options?: { withPermissionRequests?: boolean },
   ) =>
     queryOptions({
       queryKey: accountKeys.resources(params),
       queryFn: async ({ signal }) => {
-        const result = await fetchResources(
-          { signal, context },
+        const result = await client.resources.list(
           params.query,
-          params.isShared
+          params.isShared,
+          { signal },
         )
         if (options?.withPermissionRequests && !params.isShared) {
           await Promise.all(
             result.data.map(async (r) => {
-              r.shareRequests = await getPermissionRequests(r._id, {
-                signal,
-                context,
-              })
-            })
+              r.shareRequests = await client.resources.permissionRequests(
+                r._id,
+                { signal },
+              )
+            }),
           )
         }
         return result
       },
     }),
 
-  resourcePermissions: (context: Ctx, resourceId: string) =>
+  resourcePermissions: (client: AccountClient, resourceId: string) =>
     queryOptions({
       queryKey: accountKeys.resourcePermissions(resourceId),
-      queryFn: ({ signal }) => fetchPermission({ signal, context }, resourceId),
+      queryFn: ({ signal }) =>
+        client.resources.permissions(resourceId, { signal }),
     }),
 
-  oid4vciIssuer: (context: Ctx) =>
+  oid4vciIssuer: (client: AccountClient) =>
     queryOptions({
       queryKey: accountKeys.oid4vciIssuer(),
-      queryFn: () => getIssuer(context),
+      queryFn: () => client.oid4vci.issuer(),
     }),
 }

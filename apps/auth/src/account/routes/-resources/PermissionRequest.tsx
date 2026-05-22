@@ -18,9 +18,10 @@ import {
 import { UserCheck } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
-import { useEnvironment } from "../../../shared/keycloak-ui-shared"
-import { useUpdateRequest } from "../../lib/api-client"
-import { fetchPermission } from "../../lib/api-client"
+import {
+  useAccountClient,
+  useUpdateRequest,
+} from "../../lib/api-client"
 import type { Permission, Resource } from "../../lib/api-client"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 
@@ -34,7 +35,7 @@ export const PermissionRequest = ({
   refresh,
 }: PermissionRequestProps) => {
   const { t } = useTranslation()
-  const context = useEnvironment()
+  const client = useAccountClient()
   const { addAlert, addError } = useAccountAlerts()
   const [open, setOpen] = useState(false)
   const updateRequestMutation = useUpdateRequest()
@@ -44,9 +45,9 @@ export const PermissionRequest = ({
     approve: boolean = false
   ) => {
     try {
-      const permissions = await fetchPermission({ context }, resource._id)
+      const permissions = await client.resources.permissions(resource._id)
       const { scopes, username } = permissions.find(
-        (p) => p.username === shareRequest.username
+        (p: Permission) => p.username === shareRequest.username
       ) || { scopes: [], username: shareRequest.username }
 
       await updateRequestMutation.mutateAsync({

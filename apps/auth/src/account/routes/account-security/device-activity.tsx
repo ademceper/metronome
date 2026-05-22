@@ -20,7 +20,7 @@ import { AccountEnvironment } from "../..";
 import { Page } from "../../components/page";
 import { useDeleteSession, useDevices } from "../../lib/api-client";
 import { accountKeys } from "../../lib/api-client";
-import { deleteSession } from "../../lib/api-client";
+import { useAccountClient } from "../../lib/api-client";
 import {
   ClientRepresentation,
   DeviceRepresentation,
@@ -55,6 +55,7 @@ function moveCurrentToTop(devices: DeviceRepresentation[]) {
 function DeviceActivity() {
   const { t } = useTranslation();
   const context = useEnvironment<AccountEnvironment>();
+  const client = useAccountClient();
   const { addAlert, addError } = useAccountAlerts();
   const qc = useQueryClient();
 
@@ -68,7 +69,7 @@ function DeviceActivity() {
     qc.invalidateQueries({ queryKey: accountKeys.devices() });
 
   const signOutAll = async () => {
-    await deleteSession(context);
+    await client.devices.delete();
     await context.keycloak.logout();
   };
 
