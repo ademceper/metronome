@@ -97,7 +97,7 @@ export default function LoginUsername(
       headerNode={msg("doLogIn")}
       socialProvidersNode={
         realm.password && social?.providers && social.providers.length !== 0 ? (
-          <div className="space-y-4">
+          <div className="space-y-2">
             <div className="flex items-center gap-3">
               <div className="h-px flex-1 bg-border" />
               <span className="text-muted-foreground text-xs uppercase">
@@ -139,7 +139,7 @@ export default function LoginUsername(
             id="kc-form-login"
             action={url.loginAction}
             method="post"
-            className="space-y-4"
+            className="space-y-2"
             onSubmit={form.handleSubmit(onValid)}
           >
             {!usernameHidden && (
@@ -206,7 +206,7 @@ export default function LoginUsername(
       )}
 
       {enableWebAuthnConditionalUI && (
-        <div className="space-y-3">
+        <div className="space-y-2">
           <form id="webauth" action={url.loginAction} method="post">
             <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
             <input

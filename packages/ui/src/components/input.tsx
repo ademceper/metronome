@@ -12,7 +12,7 @@ const inputVariants = cva(
       variant: {
         default: "h-8 px-2.5 py-1 text-base md:text-sm",
         floating:
-          "peer h-14 px-3 pt-5 pb-1 text-base placeholder:text-transparent md:text-sm",
+          "peer h-12 px-3 pt-5 pb-1 text-base placeholder:text-transparent md:text-sm",
       },
     },
     defaultVariants: { variant: "default" },
@@ -72,7 +72,7 @@ function Input({
       {isFloating && label !== undefined && (
         <label
           htmlFor={inputId}
-          className="pointer-events-none absolute top-1.5 left-3 text-muted-foreground text-xs transition-all duration-150 ease-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-focus:top-1.5 peer-focus:translate-y-0 peer-focus:text-foreground peer-focus:text-xs peer-disabled:opacity-50 peer-aria-invalid:text-destructive"
+          className="pointer-events-none absolute top-0 left-3 origin-top-left translate-y-1.5 will-change-transform text-muted-foreground text-xs transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] peer-placeholder-shown:translate-y-3.5 peer-placeholder-shown:scale-[1.333] peer-focus:translate-y-1.5 peer-focus:scale-100 peer-focus:text-foreground peer-disabled:opacity-50 peer-aria-invalid:text-destructive"
         >
           {label}
         </label>

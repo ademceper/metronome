@@ -23,7 +23,7 @@ export default function LoginX509Info(
         id="kc-x509-login-info"
         action={url.loginAction}
         method="post"
-        className="space-y-4"
+        className="space-y-2"
       >
         <div className="space-y-2">
           <Label htmlFor="certificate_subjectDN">

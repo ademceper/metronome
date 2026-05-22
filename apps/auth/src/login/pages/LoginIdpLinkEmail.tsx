@@ -21,7 +21,7 @@ export default function LoginIdpLinkEmail(
       classes={classes}
       headerNode={msg("emailLinkIdpTitle", idpAlias)}
     >
-      <div className="space-y-3">
+      <div className="space-y-2">
         <p id="instruction1" className="text-muted-foreground text-sm">
           {msg(
             "emailLinkIdp1",

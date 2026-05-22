@@ -19,14 +19,14 @@ export default function LogoutConfirm(
       classes={classes}
       headerNode={msg("logoutConfirmTitle")}
     >
-      <div className="space-y-4">
+      <div className="space-y-2">
         <p className="text-muted-foreground text-sm">
           {msg("logoutConfirmHeader")}
         </p>
         <form
           action={url.logoutConfirmAction}
           method="POST"
-          className="space-y-3"
+          className="space-y-2"
         >
           <input type="hidden" name="session_code" value={logoutConfirm.code} />
           <Button

@@ -41,7 +41,7 @@ export default function FrontchannelLogout(
       documentTitle={msgStr("frontchannel-logout.title")}
       headerNode={msg("frontchannel-logout.title")}
     >
-      <div className="space-y-4">
+      <div className="space-y-2">
         <p className="text-muted-foreground text-sm">
           {msg("frontchannel-logout.message")}
         </p>

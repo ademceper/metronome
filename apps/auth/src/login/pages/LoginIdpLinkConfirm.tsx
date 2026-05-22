@@ -25,7 +25,7 @@ export default function LoginIdpLinkConfirm(
         id="kc-register-form"
         action={url.loginAction}
         method="post"
-        className="space-y-3"
+        className="space-y-2"
       >
         <Button
           size="xl"

@@ -47,7 +47,7 @@ export default function WebauthnAuthenticate(
       }
       headerNode={msg("webauthn-login-title")}
     >
-      <div id="kc-form-webauthn" className="space-y-4">
+      <div id="kc-form-webauthn" className="space-y-2">
         <form id="webauth" action={url.loginAction} method="POST">
           <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
           <input

@@ -63,7 +63,7 @@ export default function LoginOtp(
           id="kc-otp-login-form"
           action={url.loginAction}
           method="post"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           {otpLogin.userOtpCredentials.length > 1 && (

@@ -24,7 +24,7 @@ export default function LoginResetOtp(
         id="kc-otp-reset-form"
         action={url.loginAction}
         method="post"
-        className="space-y-4"
+        className="space-y-2"
       >
         <p
           id="kc-otp-reset-form-description"

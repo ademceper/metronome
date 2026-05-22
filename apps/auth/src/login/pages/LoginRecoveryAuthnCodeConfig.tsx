@@ -116,7 +116,7 @@ export default function LoginRecoveryAuthnCodeConfig(
         action={kcContext.url.loginAction}
         id="kc-recovery-codes-settings-form"
         method="post"
-        className="space-y-3"
+        className="space-y-2"
       >
         <input
           type="hidden"

@@ -34,7 +34,7 @@ export default function LoginOauthGrant(
         </>
       }
     >
-      <div id="kc-oauth" className="space-y-4">
+      <div id="kc-oauth" className="space-y-2">
         <h3 className="font-medium text-sm">{msg("oauthGrantRequest")}</h3>
         <ul className="space-y-2 text-sm">
           {oauth.clientScopesRequested.map((clientScope) => (
@@ -76,7 +76,7 @@ export default function LoginOauthGrant(
             </h3>
           ))}
 
-        <form action={url.oauthAction} method="POST" className="space-y-3">
+        <form action={url.oauthAction} method="POST" className="space-y-2">
           <input type="hidden" name="code" value={oauth.code} />
           <div className="grid grid-cols-2 gap-2">
             <Button size="xl" name="accept" id="kc-login" type="submit">

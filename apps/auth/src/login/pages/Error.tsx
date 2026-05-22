@@ -20,7 +20,7 @@ export default function Error(
       displayMessage={false}
       headerNode={msg("errorTitle")}
     >
-      <div className="space-y-4">
+      <div className="space-y-2">
         <p
           className="text-muted-foreground text-sm"
           dangerouslySetInnerHTML={{ __html: kcSanitize(message.summary) }}

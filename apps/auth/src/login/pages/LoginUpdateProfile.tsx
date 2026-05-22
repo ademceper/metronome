@@ -81,7 +81,7 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
           id="kc-update-profile-form"
           action={url.loginAction}
           method="post"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           {usernameAttr && (

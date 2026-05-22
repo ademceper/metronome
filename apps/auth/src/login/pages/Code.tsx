@@ -38,7 +38,7 @@ export default function Code(
           : msg("codeErrorTitle", code.error)
       }
     >
-      <div id="kc-code" className="space-y-3">
+      <div id="kc-code" className="space-y-2">
         {code.success ? (
           <>
             <p className="text-muted-foreground text-sm">

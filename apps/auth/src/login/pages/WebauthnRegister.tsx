@@ -35,7 +35,7 @@ export default function WebauthnRegister(
         id="register"
         action={url.loginAction}
         method="POST"
-        className="space-y-4"
+        className="space-y-2"
       >
         <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
         <input type="hidden" id="attestationObject" name="attestationObject" />

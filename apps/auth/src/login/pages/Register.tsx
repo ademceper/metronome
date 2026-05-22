@@ -137,7 +137,7 @@ export default function Register(props: RegisterProps) {
           id="kc-register-form"
           action={url.registrationAction}
           method="post"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           {showUsername && usernameAttr && (

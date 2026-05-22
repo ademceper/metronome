@@ -19,7 +19,7 @@ export default function Terms(
       displayMessage={false}
       headerNode={msg("termsTitle")}
     >
-      <div className="space-y-4">
+      <div className="space-y-2">
         <div className="max-h-80 overflow-y-auto rounded-md border bg-muted/30 p-4 text-sm">
           {msg("termsText")}
         </div>

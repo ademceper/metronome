@@ -52,9 +52,9 @@ export default function SelectOrganization(
         ref={formRef}
         action={url.loginAction}
         method="POST"
-        className="space-y-4"
+        className="space-y-2"
       >
-        <div id="kc-user-organizations" className="space-y-3">
+        <div id="kc-user-organizations" className="space-y-2">
           <h2 className="font-semibold text-lg">
             {msg("organization.select")}
           </h2>

@@ -81,7 +81,7 @@ export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
           id="kc-idp-review-profile-form"
           action={url.loginAction}
           method="post"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           {usernameAttr && (

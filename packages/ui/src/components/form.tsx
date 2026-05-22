@@ -79,7 +79,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("grid gap-2", className)}
+        className={cn("flex flex-col", className)}
         {...props}
       />
     </FormItemContext.Provider>
@@ -144,7 +144,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
     <div
       data-visible={visible}
       aria-hidden={!visible}
-      className="-mt-2 grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity,margin-top] duration-200 ease-out data-[visible=true]:mt-0 data-[visible=true]:grid-rows-[1fr] data-[visible=true]:opacity-100"
+      className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity,margin-top] duration-200 ease-out data-[visible=true]:mt-1.5 data-[visible=true]:grid-rows-[1fr] data-[visible=true]:opacity-100"
     >
       <div className="overflow-hidden">
         <p

@@ -23,7 +23,7 @@ export default function DeleteAccountConfirm(
       classes={classes}
       headerNode={msg("deleteAccountConfirm")}
     >
-      <form action={url.loginAction} method="post" className="space-y-4">
+      <form action={url.loginAction} method="post" className="space-y-2">
         <Alert
           variant="default"
           className="border-amber-500/40 bg-amber-500/10 text-amber-900 dark:text-amber-100"

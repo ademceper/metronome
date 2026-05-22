@@ -53,7 +53,7 @@ export default function LoginOauth2DeviceVerifyUserCode(
           id="kc-user-verify-device-user-code-form"
           action={url.oauth2DeviceVerificationAction}
           method="post"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           <FormField

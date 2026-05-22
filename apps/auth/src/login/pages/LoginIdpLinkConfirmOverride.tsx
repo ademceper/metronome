@@ -26,7 +26,7 @@ export default function LoginIdpLinkConfirmOverride(
         id="kc-register-form"
         action={url.loginAction}
         method="post"
-        className="space-y-4"
+        className="space-y-2"
       >
         <p className="text-muted-foreground text-sm">
           {msg("pageExpiredMsg1")}{" "}

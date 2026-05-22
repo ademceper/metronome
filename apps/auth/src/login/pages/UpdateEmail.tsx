@@ -66,7 +66,7 @@ export default function UpdateEmail(props: UpdateEmailProps) {
           id="kc-update-email-form"
           action={url.loginAction}
           method="post"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           {emailAttr && (

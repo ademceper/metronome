@@ -69,7 +69,7 @@ export default function LoginPassword(
           id="kc-form-login"
           action={url.loginAction}
           method="post"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           <FormField
@@ -123,7 +123,7 @@ export default function LoginPassword(
       </Form>
 
       {enableWebAuthnConditionalUI && (
-        <div className="space-y-3">
+        <div className="space-y-2">
           <form id="webauth" action={url.loginAction} method="post">
             <input type="hidden" id="clientDataJSON" name="clientDataJSON" />
             <input

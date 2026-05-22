@@ -61,7 +61,7 @@ export default function LoginRecoveryAuthnCodeInput(
           id="kc-recovery-code-login-form"
           action={url.loginAction}
           method="POST"
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
           <FormField

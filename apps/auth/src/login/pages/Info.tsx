@@ -56,7 +56,7 @@ export default function Info(
         />
       }
     >
-      <div className="space-y-4">
+      <div className="space-y-2">
         <p
           className="text-muted-foreground text-sm"
           dangerouslySetInnerHTML={{ __html: kcSanitize(bodyHtml) }}
