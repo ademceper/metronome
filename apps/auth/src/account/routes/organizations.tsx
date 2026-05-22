@@ -1,32 +1,24 @@
+import { createFileRoute } from "@tanstack/react-router"
+import { useTranslation } from "react-i18next"
 import {
   ErrorBoundaryProvider,
   ListEmptyState,
   OrganizationTable,
-  useEnvironment,
-} from "../../shared/keycloak-ui-shared";
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-import { OrganizationsLoading } from "./-loading/organizations";
-import { useTranslation } from "react-i18next";
-import { AccountEnvironment } from "..";
-import { getUserOrganizations } from "../lib/api/methods";
-import { Page } from "../components/page";
+} from "../../shared/keycloak-ui-shared"
+import { Page } from "../components/page"
+import { useUserOrganizations } from "../lib/api/hooks"
+import { OrganizationsLoading } from "./-loading/organizations"
 
 export const Route = createFileRoute("/organizations")({
   component: Organizations,
-});
+})
 
 function Organizations() {
-  const { t } = useTranslation();
-  const context = useEnvironment<AccountEnvironment>();
-
-  const { data: userOrgs, isPending } = useQuery({
-    queryKey: ["account", "userOrganizations"],
-    queryFn: ({ signal }) => getUserOrganizations({ signal, context }),
-  });
+  const { t } = useTranslation()
+  const { data: userOrgs, isPending } = useUserOrganizations()
 
   if (isPending || !userOrgs) {
-    return <OrganizationsLoading />;
+    return <OrganizationsLoading />
   }
 
   return (
@@ -43,5 +35,5 @@ function Organizations() {
         </OrganizationTable>
       </ErrorBoundaryProvider>
     </Page>
-  );
+  )
 }

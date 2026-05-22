@@ -1,7 +1,3 @@
-import {
-  ContinueCancelModal,
-  useEnvironment,
-} from "../../../shared/keycloak-ui-shared";
 import { Badge } from "@metronome/ui/components/badge";
 import { Button } from "@metronome/ui/components/button";
 import {
@@ -10,7 +6,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@metronome/ui/components/dropdown-menu";
-import { ResourcesTabLoading } from "../-loading/resources";
 import {
   PencilSimple as EditIcon,
   DotsThreeVertical as EllipsisIcon,
@@ -19,14 +14,20 @@ import {
   Share as ShareIcon,
   CaretRight as CaretIcon,
 } from "@phosphor-icons/react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { fetchPermission, fetchResources, updatePermissions } from "../../lib/api/resources";
-import { getPermissionRequests } from "../../lib/api/methods";
+import {
+  ContinueCancelModal,
+  useEnvironment,
+} from "../../../shared/keycloak-ui-shared";
+import { useResources, useUnshareResource } from "../../lib/api/hooks";
+import { accountKeys } from "../../lib/api/keys";
+import { fetchPermission } from "../../lib/api/resources";
 import { Permission, Resource } from "../../lib/api/representations";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
+import { ResourcesTabLoading } from "../-loading/resources";
 import { EditTheResource } from "./EditTheResource";
 import { PermissionRequest } from "./PermissionRequest";
 import { ResourceToolbar } from "./ResourceToolbar";
@@ -59,55 +60,24 @@ export const ResourcesTab = ({ isShared = false }: ResourcesTabProps) => {
     Record<string, PermissionDetail | undefined>
   >({});
 
-  const resourcesQueryKey = [
-    "account",
-    "resources",
-    { isShared, params },
-  ] as const;
-
-  const { data } = useQuery({
-    queryKey: resourcesQueryKey,
-    queryFn: async ({ signal }) => {
-      const result = await fetchResources(
-        { signal, context },
-        params,
-        isShared,
-      );
-      if (!isShared)
-        await Promise.all(
-          result.data.map(
-            async (r) =>
-              (r.shareRequests = await getPermissionRequests(r._id, {
-                signal,
-                context,
-              })),
-          ),
-        );
-      return result;
-    },
-  });
+  const { data } = useResources(
+    { query: params, isShared },
+    { withPermissionRequests: !isShared }
+  );
 
   const resources = data?.data;
   const links = data?.links;
 
-  const removeShare = useMutation({
-    mutationFn: async (resource: Resource) => {
-      const perms = await fetchPermission({ context }, resource._id);
-      const cleared = perms.map(
-        ({ username }) => ({ username, scopes: [] }) as Permission,
-      );
-      await updatePermissions(context, resource._id, cleared);
-    },
+  const removeShare = useUnshareResource({
     onSuccess: () => {
       setDetails({});
-      qc.invalidateQueries({ queryKey: ["account", "resources"] });
       addAlert(t("unShareSuccess"));
     },
     onError: (error) => addError("unShareError", error),
   });
 
   const refresh = () =>
-    qc.invalidateQueries({ queryKey: ["account", "resources"] });
+    qc.invalidateQueries({ queryKey: accountKeys.resources() });
 
   if (!resources) {
     return <ResourcesTabLoading />;

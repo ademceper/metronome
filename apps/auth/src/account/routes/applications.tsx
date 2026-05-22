@@ -1,24 +1,22 @@
-import {
-  ContinueCancelModal,
-  label,
-  useEnvironment,
-} from "../../shared/keycloak-ui-shared";
 import { Link } from "@metronome/ui/components/link";
 import {
   Check as CheckIcon,
   Info as InfoIcon,
   CaretRight as CaretIcon,
 } from "@phosphor-icons/react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { ApplicationsLoading } from "./-loading/applications";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
+import {
+  ContinueCancelModal,
+  label,
+  useEnvironment,
+} from "../../shared/keycloak-ui-shared";
 import { AccountEnvironment } from "..";
-import { deleteConsent, getApplications } from "../lib/api/methods";
 import { Page } from "../components/page";
 import type { TFuncKey } from "../i18n/types";
+import { useApplications, useDeleteConsent } from "../lib/api/hooks";
 import { formatDate } from "../lib/format-date";
 import { useAccountAlerts } from "../lib/use-account-alerts";
 
@@ -26,29 +24,19 @@ export const Route = createFileRoute("/applications")({
   component: Applications,
 });
 
-const queryKey = ["account", "applications"] as const;
-
 function Applications() {
   const { t } = useTranslation();
   const context = useEnvironment<AccountEnvironment>();
   const { addAlert, addError } = useAccountAlerts();
-  const qc = useQueryClient();
 
-  const { data: applications } = useQuery({
-    queryKey,
-    queryFn: ({ signal }) => getApplications({ signal, context }),
-  });
+  const { data: applications } = useApplications();
 
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const toggleOpen = (clientId: string) =>
     setOpen((prev) => ({ ...prev, [clientId]: !prev[clientId] }));
 
-  const remove = useMutation({
-    mutationFn: (id: string) => deleteConsent(context, id),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey });
-      addAlert(t("removeConsentSuccess"));
-    },
+  const remove = useDeleteConsent({
+    onSuccess: () => addAlert(t("removeConsentSuccess")),
     onError: (error) => addError("removeConsentError", error),
   });
 

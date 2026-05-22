@@ -1,13 +1,11 @@
 import { Checkbox } from "@metronome/ui/components/checkbox";
 import { Label } from "@metronome/ui/components/label";
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import { getGroups } from "../lib/api/methods";
-import { Group } from "../lib/api/representations";
 import { Page } from "../components/page";
+import { useGroups } from "../lib/api/hooks";
+import { Group } from "../lib/api/representations";
 
 export const Route = createFileRoute("/groups")({
   component: Groups,
@@ -33,16 +31,13 @@ function expandParents(groups: Group[]): Group[] {
 
 function Groups() {
   const { t } = useTranslation();
-  const context = useEnvironment();
   const [directMembership, setDirectMembership] = useState(false);
 
-  const { data: groups = [] } = useQuery({
-    queryKey: ["account", "groups", { directMembership }],
-    queryFn: async ({ signal }) => {
-      const fetched = await getGroups({ signal, context });
-      return directMembership ? fetched : expandParents(fetched);
-    },
-  });
+  const { data: fetched = [] } = useGroups();
+  const groups = useMemo(
+    () => (directMembership ? fetched : expandParents(fetched)),
+    [fetched, directMembership]
+  );
 
   return (
     <Page

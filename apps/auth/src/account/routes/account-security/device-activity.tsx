@@ -1,8 +1,3 @@
-import {
-  ContinueCancelModal,
-  label,
-  useEnvironment,
-} from "../../../shared/keycloak-ui-shared";
 import { Badge } from "@metronome/ui/components/badge";
 import { Button } from "@metronome/ui/components/button";
 import {
@@ -10,27 +5,32 @@ import {
   DeviceMobile as MobileIcon,
   ArrowsClockwise as RefreshIcon,
 } from "@phosphor-icons/react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { useMemo } from "react";
 import { DeviceActivityLoading } from "../-loading/account-security/device-activity";
 import { useTranslation } from "react-i18next";
 
+import {
+  ContinueCancelModal,
+  label,
+  useEnvironment,
+} from "../../../shared/keycloak-ui-shared";
 import { AccountEnvironment } from "../..";
-import { deleteSession, getDevices } from "../../lib/api/methods";
+import { Page } from "../../components/page";
+import { useDeleteSession, useDevices } from "../../lib/api/hooks";
+import { accountKeys } from "../../lib/api/keys";
+import { deleteSession } from "../../lib/api/methods";
 import {
   ClientRepresentation,
   DeviceRepresentation,
-  SessionRepresentation,
 } from "../../lib/api/representations";
-import { Page } from "../../components/page";
 import { formatDate } from "../../lib/format-date";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 
 export const Route = createFileRoute("/account-security/device-activity")({
   component: DeviceActivity,
 });
-
-const queryKey = ["account", "devices"] as const;
 
 function moveCurrentToTop(devices: DeviceRepresentation[]) {
   if (devices.length === 0) return devices;
@@ -58,32 +58,23 @@ function DeviceActivity() {
   const { addAlert, addError } = useAccountAlerts();
   const qc = useQueryClient();
 
-  const { data: devices } = useQuery({
-    queryKey,
-    queryFn: async ({ signal }) => {
-      const fetched = await getDevices({ signal, context });
-      return moveCurrentToTop(fetched);
-    },
-  });
+  const { data: rawDevices } = useDevices();
+  const devices = useMemo(
+    () => (rawDevices ? moveCurrentToTop(rawDevices) : undefined),
+    [rawDevices]
+  );
 
-  const refresh = () => qc.invalidateQueries({ queryKey });
+  const refresh = () =>
+    qc.invalidateQueries({ queryKey: accountKeys.devices() });
 
   const signOutAll = async () => {
     await deleteSession(context);
     await context.keycloak.logout();
   };
 
-  const signOutSession = useMutation({
-    mutationFn: ({
-      session,
-    }: {
-      session: SessionRepresentation;
-      device: DeviceRepresentation;
-    }) => deleteSession(context, session.id),
-    onSuccess: (_, { session, device }) => {
-      addAlert(
-        t("signedOutSession", { browser: session.browser, os: device.os }),
-      );
+  const signOutSession = useDeleteSession({
+    onSuccess: (_, _id) => {
+      addAlert(t("signedOutSession"));
       refresh();
     },
     onError: (error) => addError("errorSignOutMessage", error),
@@ -185,9 +176,7 @@ function DeviceActivity() {
                       continueLabel={t("confirm")}
                       cancelLabel={t("cancel")}
                       buttonVariant="secondary"
-                      onContinue={() =>
-                        signOutSession.mutate({ session, device })
-                      }
+                      onContinue={() => signOutSession.mutate(session.id)}
                     >
                       {t("signOutWarning")}
                     </ContinueCancelModal>

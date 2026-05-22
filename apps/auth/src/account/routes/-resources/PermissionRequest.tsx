@@ -19,7 +19,8 @@ import { UserCheck } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useEnvironment } from "../../../shared/keycloak-ui-shared"
-import { fetchPermission, updateRequest } from "../../lib/api/resources"
+import { useUpdateRequest } from "../../lib/api/hooks"
+import { fetchPermission } from "../../lib/api/resources"
 import type { Permission, Resource } from "../../lib/api/representations"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 
@@ -36,6 +37,7 @@ export const PermissionRequest = ({
   const context = useEnvironment()
   const { addAlert, addError } = useAccountAlerts()
   const [open, setOpen] = useState(false)
+  const updateRequestMutation = useUpdateRequest()
 
   const approveDeny = async (
     shareRequest: Permission,
@@ -47,14 +49,13 @@ export const PermissionRequest = ({
         (p) => p.username === shareRequest.username
       ) || { scopes: [], username: shareRequest.username }
 
-      await updateRequest(
-        context,
-        resource._id,
+      await updateRequestMutation.mutateAsync({
+        resourceId: resource._id,
         username,
-        approve
+        scopes: approve
           ? [...(scopes as string[]), ...(shareRequest.scopes as string[])]
-          : scopes
-      )
+          : (scopes as string[]),
+      })
       addAlert(t("shareSuccess"))
       setOpen(false)
       refresh()

@@ -14,9 +14,8 @@ import { useTranslation } from "react-i18next"
 import {
   SelectControl,
   TextControl,
-  useEnvironment,
 } from "../../../shared/keycloak-ui-shared"
-import { updatePermissions } from "../../lib/api/resources"
+import { useUpdatePermissions } from "../../lib/api/hooks"
 import type { Permission, Resource } from "../../lib/api/representations"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 import {
@@ -36,7 +35,6 @@ export const EditTheResource = ({
   onClose,
 }: EditTheResourceProps) => {
   const { t } = useTranslation()
-  const context = useEnvironment()
   const { addAlert, addError } = useAccountAlerts()
 
   const form = useForm<EditTheResourceFormValues>({
@@ -52,21 +50,30 @@ export const EditTheResource = ({
 
   useEffect(() => {
     if (permissions) {
-      reset({ permissions: permissions as EditTheResourceFormValues["permissions"] })
+      reset({
+        permissions: permissions as EditTheResourceFormValues["permissions"],
+      })
     }
   }, [permissions])
+
+  const update = useUpdatePermissions({
+    onError: (error) => addError("updateError", error),
+  })
 
   const editShares = async ({ permissions }: EditTheResourceFormValues) => {
     try {
       await Promise.all(
         permissions.map((permission) =>
-          updatePermissions(context, resource._id, [permission])
+          update.mutateAsync({
+            resourceId: resource._id,
+            permissions: [permission as Permission],
+          })
         )
       )
       addAlert(t("updateSuccess"))
       onClose()
-    } catch (error) {
-      addError("updateError", error)
+    } catch {
+      /* error already reported via onError */
     }
   }
 

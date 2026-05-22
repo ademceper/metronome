@@ -20,11 +20,8 @@ import { X } from "@phosphor-icons/react"
 import { useEffect, useMemo } from "react"
 import { useFieldArray, useForm, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
-import {
-  SelectControl,
-  useEnvironment,
-} from "../../../shared/keycloak-ui-shared"
-import { updateRequest } from "../../lib/api/resources"
+import { SelectControl } from "../../../shared/keycloak-ui-shared"
+import { useUpdateRequest } from "../../lib/api/hooks"
 import type { Permission, Resource } from "../../lib/api/representations"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 import {
@@ -47,8 +44,8 @@ export const ShareTheResource = ({
   onClose,
 }: ShareTheResourceProps) => {
   const { t } = useTranslation()
-  const context = useEnvironment()
   const { addAlert, addError } = useAccountAlerts()
+  const updateRequestMutation = useUpdateRequest()
 
   const alreadySharedWith = useMemo(
     () =>
@@ -101,7 +98,11 @@ export const ShareTheResource = ({
         usernames
           .filter(({ value }) => value !== "")
           .map(({ value: username }) =>
-            updateRequest(context, resource._id, username, permissions)
+            updateRequestMutation.mutateAsync({
+              resourceId: resource._id,
+              username,
+              scopes: permissions,
+            })
           )
       )
       addAlert(t("shareSuccess"))

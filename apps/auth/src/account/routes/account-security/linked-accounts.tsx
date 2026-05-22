@@ -1,11 +1,10 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useEnvironment } from "../../../shared/keycloak-ui-shared";
-import { getLinkedAccounts, LinkedAccountQueryParams } from "../../lib/api/methods";
 import { EmptyRow } from "../../components/empty-row";
 import { Page } from "../../components/page";
+import { useLinkedAccounts } from "../../lib/api/hooks";
+import { LinkedAccountQueryParams } from "../../lib/api/methods";
 import { AccountRow } from "./-AccountRow";
 import { LinkedAccountsToolbar } from "./-LinkedAccountsToolbar";
 
@@ -15,8 +14,6 @@ export const Route = createFileRoute("/account-security/linked-accounts")({
 
 function LinkedAccounts() {
   const { t } = useTranslation();
-  const context = useEnvironment();
-  const qc = useQueryClient();
 
   const [paramsUnlinked, setParamsUnlinked] =
     useState<LinkedAccountQueryParams>({
@@ -30,19 +27,8 @@ function LinkedAccounts() {
     linked: true,
   });
 
-  const { data: linkedAccounts = [] } = useQuery({
-    queryKey: ["account", "linkedAccounts", paramsLinked],
-    queryFn: ({ signal }) =>
-      getLinkedAccounts({ signal, context }, paramsLinked),
-  });
-  const { data: unlinkedAccounts = [] } = useQuery({
-    queryKey: ["account", "linkedAccounts", paramsUnlinked],
-    queryFn: ({ signal }) =>
-      getLinkedAccounts({ signal, context }, paramsUnlinked),
-  });
-
-  const refresh = () =>
-    qc.invalidateQueries({ queryKey: ["account", "linkedAccounts"] });
+  const { data: linkedAccounts = [] } = useLinkedAccounts(paramsLinked);
+  const { data: unlinkedAccounts = [] } = useLinkedAccounts(paramsUnlinked);
 
   return (
     <Page
@@ -95,7 +81,7 @@ function LinkedAccounts() {
                       key={account.providerName}
                       account={account}
                       isLinked
-                      refresh={refresh}
+                      
                     />
                   ),
               )
@@ -148,7 +134,7 @@ function LinkedAccounts() {
                     <AccountRow
                       key={account.providerName}
                       account={account}
-                      refresh={refresh}
+                      
                     />
                   ),
               )

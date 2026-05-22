@@ -1,8 +1,3 @@
-import {
-  IconMapper,
-  label,
-  useEnvironment,
-} from "../../../shared/keycloak-ui-shared";
 import { Badge } from "@metronome/ui/components/badge";
 import { Button } from "@metronome/ui/components/button";
 import {
@@ -11,35 +6,30 @@ import {
 } from "@phosphor-icons/react";
 import { useTranslation } from "react-i18next";
 
-import { unLinkAccount } from "../../lib/api/methods";
+import {
+  IconMapper,
+  label,
+  useEnvironment,
+} from "../../../shared/keycloak-ui-shared";
+import { useUnLinkAccount } from "../../lib/api/hooks";
 import { LinkedAccountRepresentation } from "../../lib/api/representations";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 
 type AccountRowProps = {
   account: LinkedAccountRepresentation;
   isLinked?: boolean;
-  refresh: () => void;
 };
 
-export const AccountRow = ({
-  account,
-  isLinked = false,
-  refresh,
-}: AccountRowProps) => {
+export const AccountRow = ({ account, isLinked = false }: AccountRowProps) => {
   const { t } = useTranslation();
   const context = useEnvironment();
   const { login } = context.keycloak;
   const { addAlert, addError } = useAccountAlerts();
 
-  const unLink = async (account: LinkedAccountRepresentation) => {
-    try {
-      await unLinkAccount(context, account);
-      addAlert(t("unLinkSuccess"));
-      refresh();
-    } catch (error) {
-      addError("unLinkError", error);
-    }
-  };
+  const unLink = useUnLinkAccount({
+    onSuccess: () => addAlert(t("unLinkSuccess")),
+    onError: (error) => addError("unLinkError", error),
+  });
 
   return (
     <div
@@ -80,7 +70,7 @@ export const AccountRow = ({
         }
         onClick={async () => {
           if (isLinked) {
-            await unLink(account);
+            await unLink.mutateAsync(account);
           } else {
             await login({ action: "idp_link:" + account.providerAlias });
           }

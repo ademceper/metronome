@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
 import { Form } from "@metronome/ui/components/form"
 import { ArrowSquareOut } from "@phosphor-icons/react"
-import { useMutation, useQuery } from "@tanstack/react-query"
 import { createFileRoute } from "@tanstack/react-router"
 import type { TFunction } from "i18next"
 import { useEffect, useMemo } from "react"
@@ -19,10 +18,10 @@ import {
 import { Page } from "../components/page"
 import type { TFuncKey } from "../i18n/types"
 import {
-  getPersonalInfo,
-  getSupportedLocales,
-  savePersonalInfo,
-} from "../lib/api/methods"
+  usePersonalInfo,
+  useSavePersonalInfo,
+  useSupportedLocales,
+} from "../lib/api/hooks"
 import type {
   UserProfileMetadata,
   UserRepresentation,
@@ -39,28 +38,18 @@ export const Route = createFileRoute("/")({
 })
 
 function PersonalInfo() {
-  const context = useEnvironment<AccountEnvironment>()
+  const { data, isPending } = usePersonalInfo()
+  const { data: supportedLocales = [] } = useSupportedLocales()
 
-  const personalInfo = useQuery({
-    queryKey: ["account", "personalInfo"],
-    queryFn: ({ signal }) => getPersonalInfo({ signal, context }),
-  })
-  const supportedLocalesQuery = useQuery({
-    queryKey: ["account", "supportedLocales"],
-    queryFn: ({ signal }) => getSupportedLocales({ signal, context }),
-  })
-
-  const userProfileMetadata = personalInfo.data?.userProfileMetadata
-
-  if (!personalInfo.data || !userProfileMetadata) {
+  if (isPending || !data?.userProfileMetadata) {
     return <PersonalInfoLoading />
   }
 
   return (
     <PersonalInfoForm
-      initialData={personalInfo.data}
-      metadata={userProfileMetadata}
-      supportedLocales={supportedLocalesQuery.data ?? []}
+      initialData={data}
+      metadata={data.userProfileMetadata}
+      supportedLocales={supportedLocales}
     />
   )
 }
@@ -95,24 +84,15 @@ function PersonalInfoForm({
     )
   }, [initialData, reset, setValue])
 
-  const save = useMutation({
-    mutationFn: async (user: PersonalInfoFormValues) => {
-      const attributes = Object.fromEntries(
-        Object.entries((user as any).attributes || {}).map(([k, v]) => [
-          debeerify(k),
-          v,
-        ])
-      )
-      await savePersonalInfo(context, { ...user, attributes })
-      const locale = attributes["locale"]?.toString()
+  const save = useSavePersonalInfo({
+    onSuccess: (_data, variables) => {
+      const locale = (variables as any).attributes?.locale?.toString()
       if (locale) {
         window.dispatchEvent(
           new CustomEvent("languageChanged", { detail: { language: locale } })
         )
       }
-      await context.keycloak.updateToken()
-    },
-    onSuccess: () => {
+      context.keycloak.updateToken()
       addAlert(t("accountUpdatedMessage"))
     },
     onError: (error) => {
@@ -125,6 +105,16 @@ function PersonalInfoForm({
       )
     },
   })
+
+  const onSubmit = (user: PersonalInfoFormValues) => {
+    const attributes = Object.fromEntries(
+      Object.entries((user as any).attributes || {}).map(([k, v]) => [
+        debeerify(k),
+        v,
+      ])
+    )
+    save.mutate({ ...user, attributes } as never)
+  }
 
   const allFieldsReadOnly = metadata.attributes?.every((a: any) => a.readOnly)
 
@@ -153,10 +143,7 @@ function PersonalInfoForm({
       }
     >
       <Form {...form}>
-        <form
-          className="space-y-2"
-          onSubmit={handleSubmit((user) => save.mutate(user))}
-        >
+        <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
           <UserProfileFields
             form={form as any}
             userProfileMetadata={metadata}
@@ -196,7 +183,7 @@ function PersonalInfoForm({
                 id="save-btn"
                 size="xl"
                 className="flex-1"
-                disabled={form.formState.isSubmitting}
+                disabled={save.isPending}
               >
                 {t("save")}
               </Button>

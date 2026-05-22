@@ -4,7 +4,6 @@ import {
   Info as InfoAltIcon,
   Warning as ExclamationTriangleIcon,
 } from "@phosphor-icons/react";
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { SigningInLoading } from "../-loading/account-security/signing-in";
 import { Fragment } from "react";
@@ -13,10 +12,10 @@ import {
   type KeycloakContext,
   useEnvironment,
 } from "../../../shared/keycloak-ui-shared";
-import { getCredentials } from "../../lib/api/methods";
-import { CredentialMetadataRepresentation } from "../../lib/api/representations";
 import { Page } from "../../components/page";
 import type { TFuncKey } from "../../i18n/types";
+import { useCredentials } from "../../lib/api/hooks";
+import { CredentialMetadataRepresentation } from "../../lib/api/representations";
 import { formatDate } from "../../lib/format-date";
 import { AccountEnvironment } from "../..";
 
@@ -29,10 +28,7 @@ function SigningIn() {
   const context = useEnvironment<AccountEnvironment>();
   const { login } = context.keycloak;
 
-  const { data: credentials } = useQuery({
-    queryKey: ["account", "credentials"],
-    queryFn: ({ signal }) => getCredentials({ signal, context }),
-  });
+  const { data: credentials } = useCredentials();
 
   if (!credentials) {
     return <SigningInLoading />;
