@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Badge } from "@metronome/ui/components/badge"
 import { Button } from "@metronome/ui/components/button"
 import {
@@ -16,7 +17,7 @@ import {
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
 import { X } from "@phosphor-icons/react"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { useFieldArray, useForm, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import {
@@ -26,6 +27,10 @@ import {
 import { updateRequest } from "../../lib/api/resources"
 import type { Permission, Resource } from "../../lib/api/representations"
 import { useAccountAlerts } from "../../lib/useAccountAlerts"
+import {
+  type ShareTheResourceFormValues,
+  shareTheResourceSchema,
+} from "../../schemas/share-the-resource"
 import { SharedWith } from "./SharedWith"
 
 type ShareTheResourceProps = {
@@ -33,11 +38,6 @@ type ShareTheResourceProps = {
   permissions?: Permission[]
   open: boolean
   onClose: () => void
-}
-
-type FormValues = {
-  permissions: string[]
-  usernames: { value: string }[]
 }
 
 export const ShareTheResource = ({
@@ -49,16 +49,29 @@ export const ShareTheResource = ({
   const { t } = useTranslation()
   const context = useEnvironment()
   const { addAlert, addError } = useAccountAlerts()
-  const form = useForm<FormValues>()
+
+  const alreadySharedWith = useMemo(
+    () =>
+      permissions?.flatMap((p) =>
+        [p.username, p.email].filter((v): v is string => !!v)
+      ) ?? [],
+    [permissions]
+  )
+
+  const form = useForm<ShareTheResourceFormValues>({
+    resolver: zodResolver(shareTheResourceSchema(t, alreadySharedWith)),
+    defaultValues: {
+      permissions: [],
+      usernames: [],
+    },
+  })
   const {
     control,
     reset,
     formState: { isValid },
-    setError,
-    clearErrors,
     handleSubmit,
   } = form
-  const { fields, append, remove } = useFieldArray<FormValues>({
+  const { fields, append, remove } = useFieldArray<ShareTheResourceFormValues>({
     control,
     name: "usernames",
   })
@@ -79,7 +92,10 @@ export const ShareTheResource = ({
     ({ value }) => value.trim().length === 0
   )
 
-  const addShare = async ({ usernames, permissions }: FormValues) => {
+  const addShare = async ({
+    usernames,
+    permissions,
+  }: ShareTheResourceFormValues) => {
     try {
       await Promise.all(
         usernames
@@ -96,27 +112,6 @@ export const ShareTheResource = ({
     reset({})
   }
 
-  const validateUser = async () => {
-    const userOrEmails = fields.map((f) => f.value).filter((f) => f !== "")
-    const userPermission = permissions
-      ?.map((p) => [p.username, p.email])
-      .flat()
-
-    const hasUsers = userOrEmails.length > 0
-    const alreadyShared =
-      userOrEmails.filter((u) => userPermission?.includes(u)).length !== 0
-
-    if (!hasUsers || alreadyShared) {
-      setError("usernames", {
-        message: !hasUsers ? t("required") : t("resourceAlreadyShared"),
-      })
-    } else {
-      clearErrors()
-    }
-
-    return hasUsers && !alreadyShared
-  }
-
   return (
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
       <DialogContent>
@@ -129,13 +124,12 @@ export const ShareTheResource = ({
         <Form {...form}>
           <form
             id="share-form"
-            className="space-y-4"
+            className="space-y-2"
             onSubmit={handleSubmit(addShare)}
           >
             <FormField
               control={control}
               name={`usernames.${fields.length - 1}.value`}
-              rules={{ validate: validateUser }}
               render={({ field }) => (
                 <FormItem>
                   <div className="flex items-stretch gap-2">
@@ -213,11 +207,7 @@ export const ShareTheResource = ({
         </Form>
 
         <DialogFooter>
-          <Button
-            type="button"
-            variant="link"
-            onClick={onClose}
-          >
+          <Button type="button" variant="link" onClick={onClose}>
             {t("cancel")}
           </Button>
           <Button

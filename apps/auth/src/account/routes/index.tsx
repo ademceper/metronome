@@ -1,3 +1,14 @@
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Button } from "@metronome/ui/components/button"
+import { Form } from "@metronome/ui/components/form"
+import { ArrowSquareOut } from "@phosphor-icons/react"
+import { useMutation, useQuery } from "@tanstack/react-query"
+import { createFileRoute } from "@tanstack/react-router"
+import type { TFunction } from "i18next"
+import { useEffect, useMemo } from "react"
+import { type ErrorOption, useForm } from "react-hook-form"
+import { useTranslation } from "react-i18next"
+import { type AccountEnvironment } from ".."
 import {
   UserProfileFields,
   beerify,
@@ -5,16 +16,6 @@ import {
   setUserProfileServerError,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared"
-import { Button } from "@metronome/ui/components/button"
-import { Form } from "@metronome/ui/components/form"
-import { ArrowSquareOut } from "@phosphor-icons/react"
-import { useMutation, useQuery } from "@tanstack/react-query"
-import { createFileRoute } from "@tanstack/react-router"
-import type { TFunction } from "i18next"
-import { useEffect } from "react"
-import { type ErrorOption, useForm } from "react-hook-form"
-import { useTranslation } from "react-i18next"
-import { type AccountEnvironment } from ".."
 import { Page } from "../components/Page"
 import type { TFuncKey } from "../i18n/types"
 import {
@@ -22,8 +23,15 @@ import {
   getSupportedLocales,
   savePersonalInfo,
 } from "../lib/api/methods"
-import { UserRepresentation } from "../lib/api/representations"
+import type {
+  UserProfileMetadata,
+  UserRepresentation,
+} from "../lib/api/representations"
 import { useAccountAlerts } from "../lib/useAccountAlerts"
+import {
+  type PersonalInfoFormValues,
+  personalInfoSchema,
+} from "../schemas/personal-info"
 import { PersonalInfoLoading } from "./-loading/personal-info"
 
 export const Route = createFileRoute("/")({
@@ -31,11 +39,7 @@ export const Route = createFileRoute("/")({
 })
 
 function PersonalInfo() {
-  const { t } = useTranslation()
   const context = useEnvironment<AccountEnvironment>()
-  const form = useForm<UserRepresentation>({ mode: "onChange" })
-  const { handleSubmit, reset, setValue, setError } = form
-  const { addAlert } = useAccountAlerts()
 
   const personalInfo = useQuery({
     queryKey: ["account", "personalInfo"],
@@ -46,18 +50,55 @@ function PersonalInfo() {
     queryFn: ({ signal }) => getSupportedLocales({ signal, context }),
   })
 
+  const userProfileMetadata = personalInfo.data?.userProfileMetadata
+
+  if (!personalInfo.data || !userProfileMetadata) {
+    return <PersonalInfoLoading />
+  }
+
+  return (
+    <PersonalInfoForm
+      initialData={personalInfo.data}
+      metadata={userProfileMetadata}
+      supportedLocales={supportedLocalesQuery.data ?? []}
+    />
+  )
+}
+
+type PersonalInfoFormProps = {
+  initialData: UserRepresentation
+  metadata: UserProfileMetadata
+  supportedLocales: string[]
+}
+
+function PersonalInfoForm({
+  initialData,
+  metadata,
+  supportedLocales,
+}: PersonalInfoFormProps) {
+  const { t } = useTranslation()
+  const context = useEnvironment<AccountEnvironment>()
+  const { addAlert } = useAccountAlerts()
+
+  const schema = useMemo(() => personalInfoSchema(t, metadata), [t, metadata])
+  const form = useForm<PersonalInfoFormValues>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+    defaultValues: initialData as PersonalInfoFormValues,
+  })
+  const { handleSubmit, reset, setValue, setError } = form
+
   useEffect(() => {
-    if (!personalInfo.data) return
-    reset(personalInfo.data)
-    Object.entries(personalInfo.data.attributes || {}).forEach(([k, v]) =>
-      setValue(`attributes[${beerify(k)}]`, v)
+    reset(initialData as PersonalInfoFormValues)
+    Object.entries(initialData.attributes || {}).forEach(([k, v]) =>
+      setValue(`attributes.${beerify(k)}` as never, v as never)
     )
-  }, [personalInfo.data, reset, setValue])
+  }, [initialData, reset, setValue])
 
   const save = useMutation({
-    mutationFn: async (user: UserRepresentation) => {
+    mutationFn: async (user: PersonalInfoFormValues) => {
       const attributes = Object.fromEntries(
-        Object.entries(user.attributes || {}).map(([k, v]) => [
+        Object.entries((user as any).attributes || {}).map(([k, v]) => [
           debeerify(k),
           v,
         ])
@@ -79,23 +120,13 @@ function PersonalInfo() {
       setUserProfileServerError(
         { responseData: { errors: error as any } },
         (name: string | number, err: unknown) =>
-          setError(name as string, err as ErrorOption),
+          setError(name as never, err as ErrorOption),
         ((key: TFuncKey, param?: object) => t(key, param as any)) as TFunction
       )
     },
   })
 
-  const userProfileMetadata = personalInfo.data?.userProfileMetadata
-  const supportedLocales = supportedLocalesQuery.data ?? []
-
-  if (!userProfileMetadata) {
-    return <PersonalInfoLoading />
-  }
-
-  const allFieldsReadOnly = () =>
-    userProfileMetadata?.attributes
-      ?.map((a: any) => a.readOnly)
-      .reduce((p: boolean, c: boolean) => p && c, true)
+  const allFieldsReadOnly = metadata.attributes?.every((a: any) => a.readOnly)
 
   const {
     updateEmailFeatureEnabled,
@@ -123,12 +154,12 @@ function PersonalInfo() {
     >
       <Form {...form}>
         <form
-          className="space-y-4"
+          className="space-y-2"
           onSubmit={handleSubmit((user) => save.mutate(user))}
         >
           <UserProfileFields
-            form={form}
-            userProfileMetadata={userProfileMetadata}
+            form={form as any}
+            userProfileMetadata={metadata}
             supportedLocales={supportedLocales}
             currentLocale={context.environment.locale}
             t={
@@ -157,7 +188,7 @@ function PersonalInfo() {
             }}
           />
 
-          {!allFieldsReadOnly() && (
+          {!allFieldsReadOnly && (
             <div className="flex items-center gap-2 pt-2">
               <Button
                 data-testid="save"
@@ -176,7 +207,7 @@ function PersonalInfo() {
                 variant="outline"
                 size="xl"
                 className="flex-1"
-                onClick={() => reset()}
+                onClick={() => reset(initialData as PersonalInfoFormValues)}
               >
                 {t("cancel")}
               </Button>

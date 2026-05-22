@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@metronome/ui/components/button"
 import {
   Dialog,
@@ -18,15 +19,15 @@ import {
 import { updatePermissions } from "../../lib/api/resources"
 import type { Permission, Resource } from "../../lib/api/representations"
 import { useAccountAlerts } from "../../lib/useAccountAlerts"
+import {
+  type EditTheResourceFormValues,
+  editTheResourceSchema,
+} from "../../schemas/edit-the-resource"
 
 type EditTheResourceProps = {
   resource: Resource
   permissions?: Permission[]
   onClose: () => void
-}
-
-type FormValues = {
-  permissions: Permission[]
 }
 
 export const EditTheResource = ({
@@ -38,17 +39,24 @@ export const EditTheResource = ({
   const context = useEnvironment()
   const { addAlert, addError } = useAccountAlerts()
 
-  const form = useForm<FormValues>()
+  const form = useForm<EditTheResourceFormValues>({
+    resolver: zodResolver(editTheResourceSchema()),
+    defaultValues: { permissions: [] },
+  })
   const { control, reset, handleSubmit } = form
 
-  const { fields } = useFieldArray<FormValues>({
+  const { fields } = useFieldArray<EditTheResourceFormValues>({
     control,
     name: "permissions",
   })
 
-  useEffect(() => reset({ permissions }), [])
+  useEffect(() => {
+    if (permissions) {
+      reset({ permissions: permissions as EditTheResourceFormValues["permissions"] })
+    }
+  }, [permissions])
 
-  const editShares = async ({ permissions }: FormValues) => {
+  const editShares = async ({ permissions }: EditTheResourceFormValues) => {
     try {
       await Promise.all(
         permissions.map((permission) =>
