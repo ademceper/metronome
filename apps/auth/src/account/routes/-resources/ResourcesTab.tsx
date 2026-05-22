@@ -22,10 +22,10 @@ import {
   ContinueCancelModal,
   useEnvironment,
 } from "../../../shared/keycloak-ui-shared";
-import { useResources, useUnshareResource } from "../../lib/api/hooks";
-import { accountKeys } from "../../lib/api/keys";
-import { fetchPermission } from "../../lib/api/resources";
-import { Permission, Resource } from "../../lib/api/representations";
+import { useResources, useUnshareResource } from "../../lib/api-client";
+import { accountKeys } from "../../lib/api-client";
+import { fetchPermission } from "../../lib/api-client";
+import { Permission, Resource } from "../../lib/api-client";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 import { ResourcesTabLoading } from "../-loading/resources";
 import { EditTheResource } from "./EditTheResource";

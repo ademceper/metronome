@@ -4,8 +4,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Page } from "../components/page";
-import { useGroups } from "../lib/api/hooks";
-import { Group } from "../lib/api/representations";
+import { useGroups } from "../lib/api-client";
+import { Group } from "../lib/api-client";
 
 export const Route = createFileRoute("/groups")({
   component: Groups,

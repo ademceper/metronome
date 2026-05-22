@@ -16,7 +16,7 @@ import {
 import { AccountEnvironment } from "..";
 import { Page } from "../components/page";
 import type { TFuncKey } from "../i18n/types";
-import { useApplications, useDeleteConsent } from "../lib/api/hooks";
+import { useApplications, useDeleteConsent } from "../lib/api-client";
 import { formatDate } from "../lib/format-date";
 import { useAccountAlerts } from "../lib/use-account-alerts";
 

@@ -21,11 +21,11 @@ import {
   usePersonalInfo,
   useSavePersonalInfo,
   useSupportedLocales,
-} from "../lib/api/hooks"
+} from "../lib/api-client"
 import type {
   UserProfileMetadata,
   UserRepresentation,
-} from "../lib/api/representations"
+} from "../lib/api-client"
 import { useAccountAlerts } from "../lib/use-account-alerts"
 import {
   type PersonalInfoFormValues,

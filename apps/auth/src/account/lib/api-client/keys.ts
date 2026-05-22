@@ -1,4 +1,4 @@
-import type { LinkedAccountQueryParams } from "./methods"
+import type { LinkedAccountQueryParams } from "./endpoints/linked-accounts"
 
 /**
  * Centralised TanStack Query keys. Routes never touch raw key arrays —

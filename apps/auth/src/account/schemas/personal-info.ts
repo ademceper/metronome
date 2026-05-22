@@ -1,6 +1,6 @@
 import type { TFunction } from "i18next"
 import { z } from "zod"
-import type { UserProfileMetadata } from "../lib/api/representations"
+import type { UserProfileMetadata } from "../lib/api-client"
 
 const ROOT_FIELDS = new Set(["username", "email", "firstName", "lastName"])
 

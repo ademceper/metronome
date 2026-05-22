@@ -6,25 +6,25 @@ import {
 } from "@tanstack/react-query"
 import type { AccountEnvironment } from "../.."
 import { useEnvironment } from "../../../shared/keycloak-ui-shared"
-import { accountKeys } from "./keys"
+import { deleteConsent } from "./endpoints/applications"
+import { deleteSession } from "./endpoints/devices"
 import {
-  deleteConsent,
-  deleteSession,
   type LinkedAccountQueryParams,
-  savePersonalInfo,
   unLinkAccount,
-} from "./methods"
+} from "./endpoints/linked-accounts"
+import { savePersonalInfo } from "./endpoints/personal-info"
+import {
+  fetchPermission,
+  updatePermissions,
+  updateRequest,
+} from "./endpoints/resources"
+import { accountKeys } from "./keys"
 import { accountQueries } from "./queries"
 import type {
   LinkedAccountRepresentation,
   Permission,
   Resource,
-} from "./representations"
-import {
-  fetchPermission,
-  updatePermissions,
-  updateRequest,
-} from "./resources"
+} from "./types"
 
 /**
  * Read hooks — each picks up KeycloakContext via `useEnvironment` so

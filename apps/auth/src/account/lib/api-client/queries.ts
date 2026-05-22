@@ -3,20 +3,26 @@ import type {
   BaseEnvironment,
   KeycloakContext,
 } from "../../../shared/keycloak-ui-shared"
-import { accountKeys } from "./keys"
+import { getApplications } from "./endpoints/applications"
+import { getCredentials } from "./endpoints/credentials"
+import { getDevices } from "./endpoints/devices"
+import { getGroups } from "./endpoints/groups"
 import {
-  getApplications,
-  getCredentials,
-  getDevices,
-  getGroups,
-  getLinkedAccounts,
   type LinkedAccountQueryParams,
-  getPermissionRequests,
+  getLinkedAccounts,
+} from "./endpoints/linked-accounts"
+import { getIssuer } from "./endpoints/oid4vci"
+import { getUserOrganizations } from "./endpoints/organizations"
+import {
   getPersonalInfo,
   getSupportedLocales,
-  getUserOrganizations,
-} from "./methods"
-import { fetchPermission, fetchResources, getIssuer } from "./resources"
+} from "./endpoints/personal-info"
+import {
+  fetchPermission,
+  fetchResources,
+  getPermissionRequests,
+} from "./endpoints/resources"
+import { accountKeys } from "./keys"
 
 type Ctx = KeycloakContext<BaseEnvironment>
 

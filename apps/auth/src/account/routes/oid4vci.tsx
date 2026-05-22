@@ -10,8 +10,8 @@ import { useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useEnvironment } from "../../shared/keycloak-ui-shared"
 import { Page } from "../components/page"
-import { useOid4VciIssuer } from "../lib/api/hooks"
-import { requestVCOffer } from "../lib/api/resources"
+import { useOid4VciIssuer } from "../lib/api-client"
+import { requestVCOffer } from "../lib/api-client"
 
 export const Route = createFileRoute("/oid4vci")({
   component: Oid4Vci,

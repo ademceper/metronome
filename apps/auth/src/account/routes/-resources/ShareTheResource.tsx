@@ -21,8 +21,8 @@ import { useEffect, useMemo } from "react"
 import { useFieldArray, useForm, useWatch } from "react-hook-form"
 import { useTranslation } from "react-i18next"
 import { SelectControl } from "../../../shared/keycloak-ui-shared"
-import { useUpdateRequest } from "../../lib/api/hooks"
-import type { Permission, Resource } from "../../lib/api/representations"
+import { useUpdateRequest } from "../../lib/api-client"
+import type { Permission, Resource } from "../../lib/api-client"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 import {
   type ShareTheResourceFormValues,

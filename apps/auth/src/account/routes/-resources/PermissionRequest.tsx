@@ -19,9 +19,9 @@ import { UserCheck } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useEnvironment } from "../../../shared/keycloak-ui-shared"
-import { useUpdateRequest } from "../../lib/api/hooks"
-import { fetchPermission } from "../../lib/api/resources"
-import type { Permission, Resource } from "../../lib/api/representations"
+import { useUpdateRequest } from "../../lib/api-client"
+import { fetchPermission } from "../../lib/api-client"
+import type { Permission, Resource } from "../../lib/api-client"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 
 type PermissionRequestProps = {

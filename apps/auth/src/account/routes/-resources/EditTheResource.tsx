@@ -15,8 +15,8 @@ import {
   SelectControl,
   TextControl,
 } from "../../../shared/keycloak-ui-shared"
-import { useUpdatePermissions } from "../../lib/api/hooks"
-import type { Permission, Resource } from "../../lib/api/representations"
+import { useUpdatePermissions } from "../../lib/api-client"
+import type { Permission, Resource } from "../../lib/api-client"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 import {
   type EditTheResourceFormValues,

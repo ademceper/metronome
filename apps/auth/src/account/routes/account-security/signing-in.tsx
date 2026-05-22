@@ -14,8 +14,8 @@ import {
 } from "../../../shared/keycloak-ui-shared";
 import { Page } from "../../components/page";
 import type { TFuncKey } from "../../i18n/types";
-import { useCredentials } from "../../lib/api/hooks";
-import { CredentialMetadataRepresentation } from "../../lib/api/representations";
+import { useCredentials } from "../../lib/api-client";
+import { CredentialMetadataRepresentation } from "../../lib/api-client";
 import { formatDate } from "../../lib/format-date";
 import { AccountEnvironment } from "../..";
 

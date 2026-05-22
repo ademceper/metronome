@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { EmptyRow } from "../../components/empty-row";
 import { Page } from "../../components/page";
-import { useLinkedAccounts } from "../../lib/api/hooks";
-import { LinkedAccountQueryParams } from "../../lib/api/methods";
+import { useLinkedAccounts } from "../../lib/api-client";
+import { LinkedAccountQueryParams } from "../../lib/api-client";
 import { AccountRow } from "./-AccountRow";
 import { LinkedAccountsToolbar } from "./-LinkedAccountsToolbar";
 
