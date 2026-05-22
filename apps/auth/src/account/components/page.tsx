@@ -15,7 +15,7 @@ export function Page({
   return (
     <>
       <section className="border-b bg-card px-6 py-5">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center justify-between gap-4">
           <div className="space-y-1">
             <h1
               className="font-heading font-semibold text-xl"

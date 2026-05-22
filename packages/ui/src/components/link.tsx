@@ -1,38 +1,67 @@
 import { cn } from "@metronome/ui/lib/utils"
-import type { AnchorHTMLAttributes, ReactNode } from "react"
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react"
 
-export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+type LinkBaseProps = {
+  className?: string
   children: ReactNode
 }
 
-export function Link({ children, className, ...rest }: LinkProps) {
-  return (
-    <a
-      className={cn(
-        "group relative inline-flex items-center",
-        "before:pointer-events-none before:absolute before:top-[1.5em] before:left-0 before:h-[0.05em] before:w-full before:bg-current before:content-['']",
-        "before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)]",
-        "hover:before:origin-left hover:before:scale-x-100",
-        className
-      )}
-      {...rest}
-    >
-      {children}
-      <svg
-        className="mt-0 ml-[0.3em] size-[0.55em] translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none"
-        fill="none"
-        viewBox="0 0 10 10"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
+type LinkAnchorProps = LinkBaseProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children"> & {
+    as?: "a"
+  }
+
+type LinkButtonProps = LinkBaseProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> & {
+    as: "button"
+  }
+
+export type LinkProps = LinkAnchorProps | LinkButtonProps
+
+const linkClass =
+  "group relative inline-flex items-center before:pointer-events-none before:absolute before:bottom-0 before:left-0 before:h-[0.075em] before:w-full before:bg-current before:content-[''] before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)] hover:before:origin-left hover:before:scale-x-100"
+
+const trailingArrow = (
+  <svg
+    className="mt-0 ml-[0.3em] size-[0.55em] translate-y-1 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none"
+    fill="none"
+    viewBox="0 0 10 10"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M1.004 9.166 9.337.833m0 0v8.333m0-8.333H1.004"
+      stroke="currentColor"
+      strokeWidth="1.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+export function Link(props: LinkProps) {
+  if (props.as === "button") {
+    const { as: _as, children, className, ...rest } = props
+    return (
+      <button
+        type="button"
+        className={cn(linkClass, "cursor-pointer bg-transparent", className)}
+        {...rest}
       >
-        <path
-          d="M1.004 9.166 9.337.833m0 0v8.333m0-8.333H1.004"
-          stroke="currentColor"
-          strokeWidth="1.25"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+        {children}
+        {trailingArrow}
+      </button>
+    )
+  }
+  const { as: _as, children, className, ...rest } = props
+  return (
+    <a className={cn(linkClass, className)} {...rest}>
+      {children}
+      {trailingArrow}
     </a>
   )
 }

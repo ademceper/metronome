@@ -3,10 +3,9 @@ import {
   label,
   useEnvironment,
 } from "../../shared/keycloak-ui-shared";
-import { Button } from "@metronome/ui/components/button";
+import { Link } from "@metronome/ui/components/link";
 import {
   Check as CheckIcon,
-  ArrowSquareOut as ExternalLinkIcon,
   Info as InfoIcon,
   CaretRight as CaretIcon,
 } from "@phosphor-icons/react";
@@ -90,20 +89,14 @@ function Applications() {
                 </button>
                 <div className="min-w-0 truncate">
                   {application.effectiveUrl ? (
-                    <Button
-                      type="button"
-                      variant="link"
-                      className="h-auto px-0"
-                      onClick={() => window.open(application.effectiveUrl)}
+                    <Link
+                      href={application.effectiveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="truncate"
                     >
-                      <span className="truncate">
-                        {label(
-                          t,
-                          application.clientName || application.clientId,
-                        )}
-                      </span>
-                      <ExternalLinkIcon className="ms-1 size-3.5" />
-                    </Button>
+                      {label(t, application.clientName || application.clientId)}
+                    </Link>
                   ) : (
                     <span className="truncate">
                       {label(

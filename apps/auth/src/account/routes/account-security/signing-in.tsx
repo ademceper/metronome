@@ -1,4 +1,5 @@
 import { Button } from "@metronome/ui/components/button";
+import { Link } from "@metronome/ui/components/link";
 import {
   Info as InfoAltIcon,
   Warning as ExclamationTriangleIcon,
@@ -145,10 +146,10 @@ function SigningIn() {
                       </p>
                     </div>
                     {container.createAction && (
-                      <Button
+                      <Link
+                        as="button"
                         type="button"
-                        variant="link"
-                        className="h-auto shrink-0 px-0"
+                        className="shrink-0"
                         data-testid={`${container.type}/create`}
                         onClick={() => login({ action: container.createAction })}
                       >
@@ -157,7 +158,7 @@ function SigningIn() {
                             `${container.type}-display-name` as TFuncKey,
                           ),
                         })}
-                      </Button>
+                      </Link>
                     )}
                   </div>
 
