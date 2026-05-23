@@ -6,7 +6,7 @@ import {
   OrganizationTable,
 } from "../../shared/keycloak-ui-shared"
 import { Page } from "../components/page"
-import { useUserOrganizations } from "../lib/api-client"
+import { useUserOrganizations } from "../lib/api"
 import { OrganizationsLoading } from "./-loading/organizations"
 
 export const Route = createFileRoute("/organizations")({

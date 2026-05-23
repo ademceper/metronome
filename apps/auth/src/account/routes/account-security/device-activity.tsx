@@ -18,13 +18,13 @@ import {
 } from "../../../shared/keycloak-ui-shared";
 import { AccountEnvironment } from "../..";
 import { Page } from "../../components/page";
-import { useDeleteSession, useDevices } from "../../lib/api-client";
-import { accountKeys } from "../../lib/api-client";
-import { useAccountClient } from "../../lib/api-client";
+import { useDeleteSession, useDevices } from "../../lib/api";
+import { accountKeys } from "../../lib/api";
+import { useAccountClient } from "../../lib/api";
 import {
   Application,
   Device,
-} from "../../lib/api-client";
+} from "../../lib/api";
 import { formatDate } from "../../lib/format-date";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 

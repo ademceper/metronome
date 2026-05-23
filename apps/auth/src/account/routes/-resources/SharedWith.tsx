@@ -1,6 +1,6 @@
 import { Trans } from "react-i18next";
 
-import { Permission } from "../../lib/api-client";
+import { Permission } from "../../lib/api";
 
 type SharedWithProps = {
   permissions?: Permission[];

@@ -6,7 +6,7 @@ import {
   getErrorDescription,
   getErrorMessage,
 } from "../../shared/keycloak-ui-shared/utils/errors";
-import { ApiError } from "./api-client";
+import { ApiError } from "./api";
 
 const ALERT_DURATION = 6000;
 

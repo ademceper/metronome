@@ -21,8 +21,8 @@ import { useTranslation } from "react-i18next"
 import {
   useAccountClient,
   useUpdateRequest,
-} from "../../lib/api-client"
-import type { Permission, Resource } from "../../lib/api-client"
+} from "../../lib/api"
+import type { Permission, Resource } from "../../lib/api"
 import { useAccountAlerts } from "../../lib/use-account-alerts"
 
 type PermissionRequestProps = {

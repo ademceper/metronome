@@ -9,7 +9,7 @@ import { createFileRoute } from "@tanstack/react-router"
 import { useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Page } from "../components/page"
-import { useAccountClient, useOid4VciIssuer } from "../lib/api-client"
+import { useAccountClient, useOid4VciIssuer } from "../lib/api"
 
 export const Route = createFileRoute("/oid4vci")({
   component: Oid4Vci,

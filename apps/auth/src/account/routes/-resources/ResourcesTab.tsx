@@ -23,9 +23,9 @@ import {
   useAccountClient,
   useResources,
   useUnshareResource,
-} from "../../lib/api-client";
-import { accountKeys } from "../../lib/api-client";
-import { Permission, Resource } from "../../lib/api-client";
+} from "../../lib/api";
+import { accountKeys } from "../../lib/api";
+import { Permission, Resource } from "../../lib/api";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 import { ResourcesTabLoading } from "../-loading/resources";
 import { EditTheResource } from "./EditTheResource";

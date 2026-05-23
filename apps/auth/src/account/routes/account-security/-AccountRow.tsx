@@ -11,8 +11,8 @@ import {
   label,
   useEnvironment,
 } from "../../../shared/keycloak-ui-shared";
-import { useUnLinkAccount } from "../../lib/api-client";
-import { LinkedAccount } from "../../lib/api-client";
+import { useUnLinkAccount } from "../../lib/api";
+import { LinkedAccount } from "../../lib/api";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 
 type AccountRowProps = {
