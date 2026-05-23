@@ -1,18 +1,13 @@
 /**
- * Base HTTP transport for the account REST surface.
+ * Account API client — the single SDK entry point.
  *
- * Nothing in this file knows about the account's domain concepts —
- * resources, permissions, devices, credentials, etc. live in
- * ./api/endpoints/*.ts and feed off the `HttpClient` returned here.
+ * Layered from the bottom up:
+ *   1. HttpClient        — bearer auth + realm-scoped base URL + JSON
+ *   2. Resource endpoints (./endpoints/*) — feed off HttpClient
+ *   3. AccountClient     — assembles endpoints onto one shared HttpClient
  *
- * Responsibilities:
- *   - bearer token + refresh on every request
- *   - realm-scoped base URL ( /realms/<realm>/account )
- *   - searchParams handling
- *   - JSON parse with ApiError surface for non-2xx responses
- *   - Link header parsing helper
- *   - `raw` escape hatch for endpoints that need Response.headers
- *     or that target external URLs (e.g. oid4vci issuer discovery)
+ * The React layer (api/hooks.ts, queries.ts, keys.ts) uses
+ * `createClient` to build an AccountClient on top of useEnvironment.
  */
 
 import type { Keycloak } from "oidc-spa/keycloak-js"
@@ -24,6 +19,17 @@ import {
   getNetworkErrorDescription,
   getNetworkErrorMessage,
 } from "../../shared/keycloak-ui-shared"
+import {
+  applicationsEndpoints,
+  credentialsEndpoints,
+  devicesEndpoints,
+  groupsEndpoints,
+  linkedAccountsEndpoints,
+  oid4vciEndpoints,
+  organizationsEndpoints,
+  personalInfoEndpoints,
+  resourcesEndpoints,
+} from "./endpoints"
 import { joinPath } from "./join-path"
 
 const CONTENT_TYPE_HEADER = "content-type"
@@ -192,5 +198,45 @@ export function createHttpClient(
       return r.json().catch(() => undefined as T)
     },
     raw: (path, init) => send(path, init ?? {}),
+  }
+}
+
+/* ─── Account client (SDK assembly) ────────────────────────────────── */
+
+/**
+ * The public account SDK. Built by `createClient` from a single
+ * HttpClient that every namespace shares. Routes consume via
+ * `useAccountClient` — they never reach into endpoint factories
+ * or the HttpClient directly.
+ */
+export type AccountClient = {
+  http: HttpClient
+  personalInfo: ReturnType<typeof personalInfoEndpoints>
+  applications: ReturnType<typeof applicationsEndpoints>
+  credentials: ReturnType<typeof credentialsEndpoints>
+  devices: ReturnType<typeof devicesEndpoints>
+  groups: ReturnType<typeof groupsEndpoints>
+  linkedAccounts: ReturnType<typeof linkedAccountsEndpoints>
+  organizations: ReturnType<typeof organizationsEndpoints>
+  resources: ReturnType<typeof resourcesEndpoints>
+  oid4vci: ReturnType<typeof oid4vciEndpoints>
+}
+
+export function createClient(
+  context: KeycloakContext<BaseEnvironment>,
+): AccountClient {
+  const { serverBaseUrl, realm } = context.environment
+  const http = createHttpClient(context)
+  return {
+    http,
+    personalInfo: personalInfoEndpoints(http),
+    applications: applicationsEndpoints(http),
+    credentials: credentialsEndpoints(http),
+    devices: devicesEndpoints(http),
+    groups: groupsEndpoints(http),
+    linkedAccounts: linkedAccountsEndpoints(http),
+    organizations: organizationsEndpoints(http),
+    resources: resourcesEndpoints(http),
+    oid4vci: oid4vciEndpoints(http, serverBaseUrl, realm),
   }
 }

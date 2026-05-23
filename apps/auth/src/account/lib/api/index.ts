@@ -11,8 +11,8 @@
  * — the barrel is the only public path.
  */
 
-export { type AccountClient, createClient } from "./client"
-export type { LinkedAccountQueryParams } from "./endpoints"
+export { type AccountClient, createClient } from "../api-client"
+export type { LinkedAccountQueryParams } from "../endpoints"
 export { accountKeys } from "./keys"
 export { accountQueries } from "./queries"
 export * from "./hooks"

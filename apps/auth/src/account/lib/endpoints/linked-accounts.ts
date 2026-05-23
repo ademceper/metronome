@@ -1,5 +1,5 @@
-import type { HttpClient, HttpRequestOptions } from "../../api-client"
-import type { LinkedAccount } from "../../types"
+import type { HttpClient, HttpRequestOptions } from "../api-client"
+import type { LinkedAccount } from "../types"
 
 export type LinkedAccountQueryParams = {
   first: number

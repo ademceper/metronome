@@ -1,5 +1,5 @@
-import type { HttpClient, HttpRequestOptions } from "../../api-client"
-import type { Device } from "../../types"
+import type { HttpClient, HttpRequestOptions } from "../api-client"
+import type { Device } from "../types"
 
 export const devicesEndpoints = (http: HttpClient) => ({
   list: (opts?: HttpRequestOptions) =>

@@ -1,5 +1,5 @@
-import type { HttpClient, HttpRequestOptions } from "../../api-client"
-import type { User } from "../../types"
+import type { HttpClient, HttpRequestOptions } from "../api-client"
+import type { User } from "../types"
 
 export const personalInfoEndpoints = (http: HttpClient) => ({
   get: (opts?: HttpRequestOptions) =>

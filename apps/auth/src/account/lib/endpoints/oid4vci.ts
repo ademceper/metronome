@@ -1,10 +1,10 @@
-import type { HttpClient } from "../../api-client"
-import { parseResponse } from "../../api-client"
-import { joinPath } from "../../join-path"
+import type { HttpClient } from "../api-client"
+import { parseResponse } from "../api-client"
+import { joinPath } from "../join-path"
 import type {
   CredentialsIssuer,
   SupportedCredentialConfiguration,
-} from "../../types"
+} from "../types"
 
 /**
  * oid4vci endpoints reach outside the account API base URL (the issuer

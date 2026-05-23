@@ -1,6 +1,6 @@
-import type { HttpClient, HttpRequestOptions, Links } from "../../api-client"
-import { parseLinks } from "../../api-client"
-import type { Permission, Resource, Scope } from "../../types"
+import type { HttpClient, HttpRequestOptions, Links } from "../api-client"
+import { parseLinks } from "../api-client"
+import type { Permission, Resource, Scope } from "../types"
 
 export const resourcesEndpoints = (http: HttpClient) => ({
   list: async (

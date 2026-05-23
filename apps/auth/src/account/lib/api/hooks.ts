@@ -13,8 +13,8 @@ import type {
   Resource,
   User,
 } from "../types"
-import { type AccountClient, createClient } from "./client"
-import type { LinkedAccountQueryParams } from "./endpoints"
+import { type AccountClient, createClient } from "../api-client"
+import type { LinkedAccountQueryParams } from "../endpoints"
 import { accountKeys } from "./keys"
 import { accountQueries } from "./queries"
 

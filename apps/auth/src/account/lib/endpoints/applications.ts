@@ -1,5 +1,5 @@
-import type { HttpClient, HttpRequestOptions } from "../../api-client"
-import type { Application } from "../../types"
+import type { HttpClient, HttpRequestOptions } from "../api-client"
+import type { Application } from "../types"
 
 export const applicationsEndpoints = (http: HttpClient) => ({
   list: (opts?: HttpRequestOptions) =>

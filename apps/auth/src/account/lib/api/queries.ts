@@ -1,6 +1,6 @@
 import { queryOptions } from "@tanstack/react-query"
-import type { AccountClient } from "./client"
-import type { LinkedAccountQueryParams } from "./endpoints"
+import type { AccountClient } from "../api-client"
+import type { LinkedAccountQueryParams } from "../endpoints"
 import { accountKeys } from "./keys"
 
 /**
