@@ -1,15 +1,44 @@
 import { queryOptions } from "@tanstack/react-query"
 import type { AccountClient } from "../api-client"
-import type { LinkedAccountQueryParams } from "../endpoints"
-import { accountKeys } from "./keys"
+import type { LinkedAccountQueryParams } from "../resources/linked-accounts"
 
 /**
- * `queryOptions` factories — TanStack Query v5 idiom.
+ * TanStack Query keys + `queryOptions()` factories — co-located per
+ * [tkdodo's recommendation](https://tkdodo.eu/blog/effective-react-query-keys).
  *
- * Each factory takes the `AccountClient` (passed in from a hook or
- * a manual prefetch site) and returns an object spreadable into
- * `useQuery`, `useSuspenseQuery`, or `queryClient.fetchQuery`.
+ * `accountKeys` are the canonical cache identifiers; `accountQueries`
+ * return `queryOptions` objects that can be spread into `useQuery`,
+ * `useSuspenseQuery`, or `queryClient.fetchQuery` while keeping the
+ * data type strongly inferred end-to-end.
  */
+
+export const accountKeys = {
+  all: ["account"] as const,
+
+  personalInfo: () => [...accountKeys.all, "personal-info"] as const,
+  supportedLocales: () => [...accountKeys.all, "supported-locales"] as const,
+
+  applications: () => [...accountKeys.all, "applications"] as const,
+  credentials: () => [...accountKeys.all, "credentials"] as const,
+  devices: () => [...accountKeys.all, "devices"] as const,
+  groups: () => [...accountKeys.all, "groups"] as const,
+  organizations: () => [...accountKeys.all, "organizations"] as const,
+
+  linkedAccounts: (params?: LinkedAccountQueryParams) =>
+    params
+      ? ([...accountKeys.all, "linked-accounts", params] as const)
+      : ([...accountKeys.all, "linked-accounts"] as const),
+
+  resources: (params?: { isShared: boolean; query: Record<string, string> }) =>
+    params
+      ? ([...accountKeys.all, "resources", params] as const)
+      : ([...accountKeys.all, "resources"] as const),
+  resourcePermissions: (resourceId: string) =>
+    [...accountKeys.all, "resources", resourceId, "permissions"] as const,
+
+  oid4vciIssuer: () => [...accountKeys.all, "oid4vci", "issuer"] as const,
+}
+
 export const accountQueries = {
   personalInfo: (client: AccountClient) =>
     queryOptions({

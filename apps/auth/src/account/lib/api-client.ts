@@ -19,17 +19,15 @@ import {
   getNetworkErrorDescription,
   getNetworkErrorMessage,
 } from "../../shared/keycloak-ui-shared"
-import {
-  applicationsEndpoints,
-  credentialsEndpoints,
-  devicesEndpoints,
-  groupsEndpoints,
-  linkedAccountsEndpoints,
-  oid4vciEndpoints,
-  organizationsEndpoints,
-  personalInfoEndpoints,
-  resourcesEndpoints,
-} from "./endpoints"
+import { applicationsEndpoints } from "./resources/applications"
+import { credentialsEndpoints } from "./resources/credentials"
+import { devicesEndpoints } from "./resources/devices"
+import { groupsEndpoints } from "./resources/groups"
+import { linkedAccountsEndpoints } from "./resources/linked-accounts"
+import { oid4vciEndpoints } from "./resources/oid4vci"
+import { organizationsEndpoints } from "./resources/organizations"
+import { personalInfoEndpoints } from "./resources/personal-info"
+import { resourcesEndpoints } from "./resources/shared-resources"
 import { joinPath } from "./join-path"
 
 const CONTENT_TYPE_HEADER = "content-type"

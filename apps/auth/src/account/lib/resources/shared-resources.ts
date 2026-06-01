@@ -1,6 +1,46 @@
 import type { HttpClient, HttpRequestOptions, Links } from "../api-client"
 import { parseLinks } from "../api-client"
-import type { Permission, Resource, Scope } from "../types"
+
+/* ─── DTOs ────────────────────────────────────────────────────────── */
+
+export interface Scope {
+  name: string
+  displayName?: string
+}
+
+/**
+ * Owning client of a `Resource` — distinct from the larger
+ * `Application` returned by /applications.
+ */
+export interface Client {
+  baseUrl: string
+  clientId: string
+  name?: string
+}
+
+export interface Permission {
+  email?: string
+  firstName?: string
+  lastName?: string
+  scopes: Scope[] | string[]
+  username: string
+}
+
+export interface Permissions {
+  permissions: Permission[]
+  row?: number
+}
+
+export interface Resource {
+  _id: string
+  name: string
+  client: Client
+  scopes: Scope[]
+  uris: string[]
+  shareRequests?: Permission[]
+}
+
+/* ─── Endpoints ───────────────────────────────────────────────────── */
 
 export const resourcesEndpoints = (http: HttpClient) => ({
   list: async (

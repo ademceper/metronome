@@ -1,5 +1,21 @@
 import type { HttpClient, HttpRequestOptions } from "../api-client"
-import type { LinkedAccount } from "../types"
+
+/* ─── DTOs ────────────────────────────────────────────────────────── */
+
+export interface LinkedAccount {
+  connected: boolean
+  providerAlias: string
+  providerName: string
+  displayName: string
+  linkedUsername: string
+  social: boolean
+}
+
+export interface AccountLinkUri {
+  accountLinkUri: string
+  nonce: string
+  hash: string
+}
 
 export type LinkedAccountQueryParams = {
   first: number
@@ -7,6 +23,8 @@ export type LinkedAccountQueryParams = {
   search?: string
   linked?: boolean
 }
+
+/* ─── Endpoints ───────────────────────────────────────────────────── */
 
 export const linkedAccountsEndpoints = (http: HttpClient) => ({
   list: (query: LinkedAccountQueryParams, opts?: HttpRequestOptions) => {

@@ -7,16 +7,14 @@ import {
 import { useMemo } from "react"
 import { useEnvironment } from "../../../shared/keycloak-ui-shared"
 import type { AccountEnvironment } from "../.."
+import { type AccountClient, createClient } from "../api-client"
 import type {
   LinkedAccount,
-  Permission,
-  Resource,
-  User,
-} from "../types"
-import { type AccountClient, createClient } from "../api-client"
-import type { LinkedAccountQueryParams } from "../endpoints"
-import { accountKeys } from "./keys"
-import { accountQueries } from "./queries"
+  LinkedAccountQueryParams,
+} from "../resources/linked-accounts"
+import type { User } from "../resources/personal-info"
+import type { Permission, Resource } from "../resources/shared-resources"
+import { accountKeys, accountQueries } from "./queries"
 
 /* ─── Root SDK hook ────────────────────────────────────────────────── */
 
