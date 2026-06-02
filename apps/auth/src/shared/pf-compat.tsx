@@ -24,6 +24,7 @@ import {
   TabsTrigger as UITabsTrigger,
 } from "@metronome/ui/components/tabs"
 import { Children, isValidElement, type ReactElement, type ReactNode } from "react"
+import { Link } from "react-router-dom"
 
 type AnyProps = Record<string, any>
 
@@ -42,9 +43,14 @@ export const Tabs = ({
   defaultActiveKey,
   onSelect,
   children,
+  // PF-only props — destructured so they don't leak onto the DOM.
   isBox,
   isFilled,
   component,
+  inset,
+  unmountOnExit,
+  mountOnEnter,
+  usePageInsets,
   ...props
 }: AnyProps) => {
   const tabs = collectTabs(children)
@@ -75,13 +81,20 @@ export const Tabs = ({
       <UITabsList>
         {tabs.map((tab) => {
           const p: AnyProps = tab.props
+          // RoutableTabs / useRoutableTab give each tab an `href` AND
+          // an `eventKey` (the pathname). We need an actual navigation
+          // on click, not just a Radix state change — wrap the trigger
+          // in a router Link so the URL updates and the parent
+          // `useLocation` re-derives `activeKey` on its own.
+          const navTo: string | undefined = p.href ?? p.eventKey
           return (
             <UITabsTrigger
               key={String(p.eventKey)}
               value={String(p.eventKey)}
               disabled={p.isDisabled || p.isAriaDisabled}
+              asChild={!!navTo}
             >
-              {p.title}
+              {navTo ? <Link to={navTo}>{p.title}</Link> : p.title}
             </UITabsTrigger>
           )
         })}
