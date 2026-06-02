@@ -17,8 +17,8 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
-import { useAccess } from "../../context/access/Access";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { toCustomUserFederation } from "../../lib/user-federation";
 
 

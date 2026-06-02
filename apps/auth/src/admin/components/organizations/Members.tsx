@@ -24,15 +24,15 @@ import { Link } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { CheckboxFilterComponent } from "../dynamic/CheckboxFilterComponent";
 import { SearchInputComponent } from "../dynamic/SearchInputComponent";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { MemberModal } from "../groups/MembersModal";
 import { toUser } from "../../lib/user";
-import { translationFormatter } from "../../utils/translationFormatter";
-import { useParams } from "../../utils/useParams";
-import useToggle from "../../utils/useToggle";
+import { translationFormatter } from "../../utils/translation-formatter";
+import { useParams } from "../../utils/use-params";
+import useToggle from "../../utils/use-toggle";
 import { EditOrganizationParams } from "../../lib/organizations";
 import { MembershipsModal } from "../groups/MembershipsModal";
-import { GroupResourceContext } from "../../context/group-resource/GroupResourceContext";
+import { GroupResourceContext } from "../../context/group-resource/group-resource-context";
 
 
 const ButtonVariant = {

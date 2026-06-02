@@ -27,7 +27,7 @@ import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../../admin-client";
-import useLocaleSort, { mapByKey } from "../../../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../../../utils/use-locale-sort";
 import { AddScopeDialog } from "../../scopes/AddScopeDialog";
 
 

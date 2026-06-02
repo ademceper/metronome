@@ -24,7 +24,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
-import { useIsAdminPermissionsClient } from "../../../utils/useIsAdminPermissionsClient";
+import { useIsAdminPermissionsClient } from "../../../utils/use-is-admin-permissions-client";
 import { SelectOption } from "../../../../shared/pf-compat"
 
 

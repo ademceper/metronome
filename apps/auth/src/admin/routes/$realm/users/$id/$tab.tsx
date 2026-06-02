@@ -29,11 +29,11 @@ import {
   useRoutableTab,
 } from "../../../../components/routable-tabs/RoutableTabs";
 import { ViewHeader } from "../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../context/access/Access";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../../context/access/access";
+import { useRealm } from "../../../../context/realm-context/realm-context";
 import { UserProfileProvider } from "../../../../components/realm-settings/user-profile/UserProfileContext";
-import useIsFeatureEnabled, { Feature } from "../../../../utils/useIsFeatureEnabled";
-import { useParams } from "../../../../utils/useParams";
+import useIsFeatureEnabled, { Feature } from "../../../../utils/use-is-feature-enabled";
+import { useParams } from "../../../../utils/use-params";
 import { Organizations } from "../../../../components/user/Organizations";
 import { UserAttributes } from "../../../../components/user/UserAttributes";
 import { UserConsents } from "../../../../components/user/UserConsents";

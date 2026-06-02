@@ -14,7 +14,7 @@ import {
   TextAreaControl,
   TextControl,
 } from "../../../../../shared/keycloak-ui-shared";
-import { useIsAdminPermissionsClient } from "../../../../utils/useIsAdminPermissionsClient";
+import { useIsAdminPermissionsClient } from "../../../../utils/use-is-admin-permissions-client";
 
 type NameDescriptionProps = {
   isDisabled?: boolean;

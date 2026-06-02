@@ -12,9 +12,9 @@
 import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import SessionsTable from "../sessions/SessionsTable";
-import { useParams } from "../../utils/useParams";
+import { useParams } from "../../utils/use-params";
 import type { UserParams } from "../../lib/user";
 
 

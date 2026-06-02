@@ -26,13 +26,13 @@ import {
 } from "../../../../../components/routable-tabs/RoutableTabs";
 import { Action, KeycloakDataTable } from "../../../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../../context/access/Access";
-import { useRealm } from "../../../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../../../context/access/access";
+import { useRealm } from "../../../../../context/realm-context/realm-context";
 import { Environment } from "../../../../../environment";
 import helpUrls from "../../../../../help-urls";
 import { emptyFormatter, exportClient } from "../../../../../util";
 import { convertClientToUrl } from "../../../../../utils/client-url";
-import { translationFormatter } from "../../../../../utils/translationFormatter";
+import { translationFormatter } from "../../../../../utils/translation-formatter";
 import { InitialAccessTokenList } from "../../../../../components/clients/initial-access/InitialAccessTokenList";
 import { ClientRegistration } from "../../../../../components/clients/registration/ClientRegistration";
 import { toAddClient } from "../../../../../lib/clients";

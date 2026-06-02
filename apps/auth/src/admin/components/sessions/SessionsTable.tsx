@@ -30,12 +30,12 @@ import {
   KeycloakDataTable,
   LoaderFunction,
 } from "../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useWhoAmI } from "../../context/whoami/WhoAmI";
+import { useRealm } from "../../context/realm-context/realm-context";
+import { useWhoAmI } from "../../context/whoami/who-am-i";
 import { UserRoute, toUser } from "../../lib/user";
 import { toUsers } from "../../lib/user";
 import { isLightweightUser } from "../user/utils";
-import useFormatDate from "../../utils/useFormatDate";
+import useFormatDate from "../../utils/use-format-date";
 
 
 const ButtonVariant = {

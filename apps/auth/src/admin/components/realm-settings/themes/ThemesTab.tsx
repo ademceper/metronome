@@ -16,8 +16,8 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../../routable-tabs/RoutableTabs";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { ThemesTabType, toThemesTab } from "../../../lib/realm-settings";
 import { QuickTheme } from "./QuickTheme";
 import { ThemeSettingsTab } from "./ThemeSettings";

@@ -15,7 +15,7 @@ import { Button as UIButton } from "@metronome/ui/components/button";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import useQueryPermission from "../../utils/useQueryPermission";
+import useQueryPermission from "../../utils/use-query-permission";
 
 
 const ClipboardCopyButton = ({ onClick, textId, children, ...props }: any) => (

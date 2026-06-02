@@ -25,9 +25,9 @@ import { useConfirmDialog } from "../../../../../../components/confirm-dialog/Co
 import { FormAccess } from "../../../../../../components/form/FormAccess";
 import { KeycloakSpinner } from "../../../../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../../../../context/server-info/ServerInfoProvider";
-import { useParams } from "../../../../../../utils/useParams";
+import { useRealm } from "../../../../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../../../../context/server-info/server-info-provider";
+import { useParams } from "../../../../../../utils/use-params";
 import { AddClientProfileModal } from "../../../../../../components/realm-settings/AddClientProfileModal";
 import { toNewClientPolicyCondition } from "../../../../../../lib/realm-settings";
 import { toClientPolicies } from "../../../../../../lib/realm-settings";

@@ -25,7 +25,7 @@ import {
   ConfirmDialogModal,
   useConfirmDialog,
 } from "../../confirm-dialog/ConfirmDialog";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 
 
 const AlertVariant = {

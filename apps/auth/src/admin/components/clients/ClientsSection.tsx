@@ -34,13 +34,13 @@ import {
 } from "../routable-tabs/RoutableTabs";
 import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useAccess } from "../../context/access/Access";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { Environment } from "../../environment";
 import helpUrls from "../../help-urls";
 import { emptyFormatter, exportClient } from "../../util";
 import { convertClientToUrl } from "../../utils/client-url";
-import { translationFormatter } from "../../utils/translationFormatter";
+import { translationFormatter } from "../../utils/translation-formatter";
 import { InitialAccessTokenList } from "./initial-access/InitialAccessTokenList";
 import { ClientRegistration } from "./registration/ClientRegistration";
 import { toAddClient } from "../../lib/clients";

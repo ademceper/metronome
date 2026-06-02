@@ -25,7 +25,7 @@ import {
 } from "react";
 import { Controller } from "react-hook-form";
 
-import { useAccess } from "../../context/access/Access";
+import { useAccess } from "../../context/access/access";
 import { FixedButtonsGroup } from "./FixedButtonGroup";
 
 

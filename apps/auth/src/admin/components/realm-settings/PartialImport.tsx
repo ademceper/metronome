@@ -32,7 +32,7 @@ import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { JsonFileUpload } from "../json-file-upload/JsonFileUpload";
 import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { SelectOption } from "../../../shared/pf-compat"
 
 

@@ -2,7 +2,7 @@
 
 // @ts-nocheck
 import type { Path } from "react-router-dom";
-import { generateEncodedPath } from "../utils/generateEncodedPath";
+import { generateEncodedPath } from "../utils/generate-encoded-path";
 
 // ─── from user-federation/paths/CustomUserFederation.ts ─────
 export type CustomUserFederationRouteParams = {

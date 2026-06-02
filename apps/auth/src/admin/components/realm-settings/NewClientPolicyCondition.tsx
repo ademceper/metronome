@@ -31,8 +31,8 @@ import { useAdminClient } from "../../admin-client";
 import { DynamicComponents } from "../dynamic/DynamicComponents";
 import { FormAccess } from "../form/FormAccess";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../context/realm-context/realm-context";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 import { toEditClientPolicy } from "../../lib/realm-settings";
 import type { EditClientPolicyConditionParams } from "../../lib/realm-settings";
 import { SelectOption } from "../../../shared/pf-compat"

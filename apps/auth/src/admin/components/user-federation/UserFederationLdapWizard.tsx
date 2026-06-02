@@ -16,7 +16,7 @@ import { Wizard, WizardFooter, WizardFooterWrapper, WizardStep, useWizardContext
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
 import { LdapSettingsAdvanced } from "./ldap/LdapSettingsAdvanced";
 import { LdapSettingsConnection } from "./ldap/LdapSettingsConnection";
 import { LdapSettingsGeneral } from "./ldap/LdapSettingsGeneral";

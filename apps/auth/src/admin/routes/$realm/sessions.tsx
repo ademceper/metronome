@@ -13,9 +13,9 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog";
 import { ViewHeader } from "../../components/view-header/ViewHeader";
 import { fetchAdminUI } from "../../context/auth/admin-ui-endpoint";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import helpUrls from "../../help-urls";
-import useToggle from "../../utils/useToggle";
+import useToggle from "../../utils/use-toggle";
 import { RevocationModal } from "../../components/sessions/RevocationModal";
 import SessionsTable from "../../components/sessions/SessionsTable";
 import { SelectOption } from "../../../shared/pf-compat"

@@ -31,17 +31,17 @@ import {
   ViewHeader,
   ViewHeaderBadge,
 } from "../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../context/access/Access";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../../context/access/access";
+import { useRealm } from "../../../../context/realm-context/realm-context";
 import {
   convertAttributeNameToForm,
   convertFormValuesToObject,
   convertToFormValues,
   exportClient,
 } from "../../../../util";
-import useIsFeatureEnabled, { Feature } from "../../../../utils/useIsFeatureEnabled";
-import { useParams } from "../../../../utils/useParams";
-import useToggle from "../../../../utils/useToggle";
+import useIsFeatureEnabled, { Feature } from "../../../../utils/use-is-feature-enabled";
+import { useParams } from "../../../../utils/use-params";
+import useToggle from "../../../../utils/use-toggle";
 import { AdvancedTab } from "../../../../components/clients/AdvancedTab";
 import { ClientSessions } from "../../../../components/clients/ClientSessions";
 import { ClientSettings } from "../../../../components/clients/ClientSettings";
@@ -69,7 +69,7 @@ import { EvaluateScopes } from "../../../../components/clients/scopes/EvaluateSc
 import { ServiceAccount } from "../../../../components/clients/service-account/ServiceAccount";
 import { getProtocolName, isRealmClient } from "../../../../components/clients/utils";
 import { UserEvents } from "../../../../components/events/UserEvents";
-import { useIsAdminPermissionsClient } from "../../../../utils/useIsAdminPermissionsClient";
+import { useIsAdminPermissionsClient } from "../../../../utils/use-is-admin-permissions-client";
 import { AdminEvents } from "../../../../components/events/AdminEvents";
 import { Tabs, Tab, TabTitleText } from "../../../../../shared/pf-compat"
 

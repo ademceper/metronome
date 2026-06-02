@@ -17,7 +17,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { PlusCircle as PlusCircleIcon } from "@phosphor-icons/react"
 
 import { PermissionType, toNewPermission } from "../../../lib/clients";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { toUpperCase } from "../../../util";
 
 

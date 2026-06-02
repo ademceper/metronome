@@ -19,7 +19,7 @@ import {
 import { PropsWithChildren, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 
 
 const AlertVariant = {

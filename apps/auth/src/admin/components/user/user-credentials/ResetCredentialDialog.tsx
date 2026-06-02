@@ -19,7 +19,7 @@ import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { ConfirmDialogModal } from "../../confirm-dialog/ConfirmDialog";
 import { LifespanField } from "./LifespanField";
 import { RequiredActionMultiSelect } from "./RequiredActionMultiSelect";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 
 
 const AlertVariant = {

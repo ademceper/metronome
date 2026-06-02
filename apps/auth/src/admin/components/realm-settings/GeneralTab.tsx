@@ -36,13 +36,13 @@ import { FormattedLink } from "../external-link/FormattedLink";
 import { FixedButtonsGroup } from "../form/FixedButtonGroup";
 import { FormAccess } from "../form/FormAccess";
 import { RealmLoAMapping } from "../realm-loa-mapping/RealmLoAMapping";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import {
   addTrailingSlash,
   convertAttributeNameToForm,
   convertToFormValues,
 } from "../../util";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
 import { UIRealmRepresentation } from "./RealmSettingsTabs";
 import { SIGNATURE_ALGORITHMS } from "../clients/add/SamlSignature";
 import type { RealmLoAMappingType } from "../realm-loa-mapping/RealmLoAMapping";

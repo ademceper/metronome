@@ -28,8 +28,8 @@ import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { ManageOrderDialog } from "../identity-providers/ManageOrderDialog";
 import { toIdentityProvider } from "../../lib/identity-providers";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import useToggle from "../../utils/useToggle";
+import { useRealm } from "../../context/realm-context/realm-context";
+import useToggle from "../../utils/use-toggle";
 import { LinkIdentityProviderModal } from "./LinkIdentityProviderModal";
 import { EditOrganizationParams } from "../../lib/organizations";
 

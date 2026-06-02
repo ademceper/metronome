@@ -2,7 +2,7 @@
 
 // @ts-nocheck
 import type { Path } from "react-router-dom";
-import { generateEncodedPath } from "../utils/generateEncodedPath";
+import { generateEncodedPath } from "../utils/generate-encoded-path";
 
 // ─── from client-scopes/paths/ClientScope.ts ─────
 export type ClientScopeTab = "settings" | "mappers" | "scope" | "events";

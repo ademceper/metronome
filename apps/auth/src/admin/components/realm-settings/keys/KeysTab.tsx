@@ -21,7 +21,7 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../../routable-tabs/RoutableTabs";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { KEY_PROVIDER_TYPE } from "../../../util";
 import { KeySubTab, toKeysTab } from "../../../lib/realm-settings";
 import { KeysListTab } from "./KeysListTab";

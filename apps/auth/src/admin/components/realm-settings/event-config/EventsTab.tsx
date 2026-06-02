@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { FormAccess } from "../../form/FormAccess";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertToFormValues } from "../../../util";
 import { AddEventTypesDialog } from "./AddEventTypesDialog";
 import { EventConfigForm, EventsType } from "./EventConfigForm";

@@ -14,7 +14,7 @@ import { useAdminClient } from "../../../../admin-client";
 import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../../../components/form/FormAccess";
 import { ViewHeader } from "../../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../../context/realm-context/realm-context";
 import { toAuthentication } from "../../../../lib/authentication";
 import { toFlow } from "../../../../lib/authentication";
 import { NameDescription } from "../../../../components/authentication/form/NameDescription";

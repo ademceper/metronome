@@ -2,7 +2,7 @@
 
 // @ts-nocheck
 import type { Path } from "react-router-dom";
-import { generateEncodedPath } from "../utils/generateEncodedPath";
+import { generateEncodedPath } from "../utils/generate-encoded-path";
 
 // ─── from authentication/paths/Authentication.ts ─────
 export type AuthenticationTab = "flows" | "required-actions" | "policies";

@@ -26,7 +26,7 @@ import {
 } from "../../../../shared/keycloak-ui-shared";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useAdminClient } from "../../../admin-client";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { Client } from "../../clients/authorization/policy/Client";
 import { User } from "../../clients/authorization/policy/User";
 import {

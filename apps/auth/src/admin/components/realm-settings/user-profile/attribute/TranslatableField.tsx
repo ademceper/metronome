@@ -21,9 +21,9 @@ import { TFunction } from "i18next";
 import { useEffect } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../../context/realm-context/realm-context";
 import { beerify, debeerify } from "../../../../util";
-import useToggle from "../../../../utils/useToggle";
+import useToggle from "../../../../utils/use-toggle";
 import { AddTranslationsDialog } from "./AddTranslationsDialog";
 
 

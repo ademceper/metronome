@@ -21,8 +21,8 @@ import { Link } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { RoleMapping, Row } from "../../role-mapping/RoleMapping";
-import { useAccess } from "../../../context/access/Access";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../context/access/access";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { toUser } from "../../../lib/user";
 
 const AlertVariant = {

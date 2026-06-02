@@ -18,7 +18,7 @@ import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { translationFormatter } from "../../../utils/translationFormatter";
+import { translationFormatter } from "../../../utils/translation-formatter";
 
 
 const ButtonVariant = {

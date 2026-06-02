@@ -15,7 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../../components/confirm-dialog/ConfirmDialog";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { toEditOrganization } from "../../../lib/organizations";
 import { toAddOrganization } from "../../../lib/organizations";
 

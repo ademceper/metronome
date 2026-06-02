@@ -12,7 +12,7 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import type AdminEventRepresentation from "@keycloak/keycloak-admin-client/lib/defs/adminEventRepresentation";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { toClient } from "../../lib/clients";
 import { toGroups } from "../../lib/groups";
 import { toClientScope } from "../../lib/client-scopes";

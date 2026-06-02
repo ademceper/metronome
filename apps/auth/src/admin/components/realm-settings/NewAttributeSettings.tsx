@@ -29,7 +29,7 @@ import { useAdminClient } from "../../admin-client";
 import { FixedButtonsGroup } from "../form/FixedButtonGroup";
 import { ViewHeader } from "../view-header/ViewHeader";
 import { convertToFormValues } from "../../util";
-import { useParams } from "../../utils/useParams";
+import { useParams } from "../../utils/use-params";
 import { TranslationForm } from "./AddTranslationModal";
 import type { AttributeParams } from "../../lib/realm-settings";
 import { toUserProfile } from "../../lib/realm-settings";

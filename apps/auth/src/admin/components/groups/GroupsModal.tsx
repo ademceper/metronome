@@ -20,12 +20,12 @@ import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { cn } from "@metronome/ui/lib/utils";
-import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../context/group-resource/group-resource-context";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
 
 
 const AlertVariant = {

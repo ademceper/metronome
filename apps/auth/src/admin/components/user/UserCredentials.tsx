@@ -41,7 +41,7 @@ import { CredentialRow } from "./user-credentials/CredentialRow";
 import { InlineLabelEdit } from "./user-credentials/InlineLabelEdit";
 import { ResetCredentialDialog } from "./user-credentials/ResetCredentialDialog";
 import { ResetPasswordDialog } from "./user-credentials/ResetPasswordDialog";
-import useFormatDate from "../../utils/useFormatDate";
+import useFormatDate from "../../utils/use-format-date";
 
 const AlertVariant = {
   default: "default",

@@ -23,7 +23,7 @@ import {
 import { arrayToKeyValue } from "../key-value-form/key-value-convert";
 import { convertFormValuesToObject } from "../../util";
 import { getLastId } from "./groupIdUtils";
-import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../context/group-resource/group-resource-context";
 
 
 const AlertVariant = {

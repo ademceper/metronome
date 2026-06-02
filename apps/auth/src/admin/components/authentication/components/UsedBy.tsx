@@ -19,8 +19,8 @@ import { CheckCircle as CheckCircleIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { fetchUsedBy } from "../../role-mapping/resource";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import useToggle from "../../../utils/useToggle";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import useToggle from "../../../utils/use-toggle";
 import { AuthenticationType, REALM_FLOWS } from "../constants";
 
 const ButtonVariant = {

@@ -13,7 +13,7 @@ import { Tabs as UITabs, TabsList as UITabsList, TabsTrigger as UITabsTrigger } 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { CibaPolicy } from "./CibaPolicy";
 import { OtpPolicy } from "./OtpPolicy";
 import { PasswordPolicy } from "./PasswordPolicy";

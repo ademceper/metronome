@@ -19,11 +19,11 @@ import { useTranslation } from "react-i18next";
 import { DefaultSwitchControl } from "../../SwitchControl";
 import { FormAccess } from "../../form/FormAccess";
 import { convertAttributeNameToForm } from "../../../util";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { FormFields } from "../ClientDetails";
 import { IdentityProviderSelect } from "../../identity-provider/IdentityProviderSelect";
 import { IdentityProviderType } from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
-import { useAccess } from "../../../context/access/Access";
+import { useAccess } from "../../../context/access/access";
 
 
 const Checkbox = ({ id, label, description, isChecked, isDisabled, onChange, name, ...props }: any) => (

@@ -21,15 +21,15 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
-import { useAccess } from "../../context/access/Access";
-import useToggle from "../../utils/useToggle";
+import { useAccess } from "../../context/access/access";
+import useToggle from "../../utils/use-toggle";
 import { GroupsModal } from "./GroupsModal";
 import { useSubGroups } from "./SubGroupsContext";
 import { DeleteGroup } from "./components/DeleteGroup";
 import { GroupToolbar } from "./components/GroupToolbar";
 import { MoveDialog } from "./components/MoveDialog";
 import { getLastId } from "./groupIdUtils";
-import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../context/group-resource/group-resource-context";
 
 
 const SearchInput = ({ value, onChange, onClear, onSearch, placeholder, ...props }: any) => (

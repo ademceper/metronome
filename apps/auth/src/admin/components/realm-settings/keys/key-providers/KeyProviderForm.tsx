@@ -24,9 +24,9 @@ import { useAdminClient } from "../../../../admin-client";
 import { DynamicComponents } from "../../../dynamic/DynamicComponents";
 import { FormAccess } from "../../../form/FormAccess";
 import { ViewHeader } from "../../../view-header/ViewHeader";
-import { useServerInfo } from "../../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../../context/server-info/server-info-provider";
 import { KEY_PROVIDER_TYPE } from "../../../../util";
-import { useParams } from "../../../../utils/useParams";
+import { useParams } from "../../../../utils/use-params";
 import { KeyProviderParams, ProviderType } from "../../../../lib/realm-settings";
 import { toKeysTab } from "../../../../lib/realm-settings";
 

@@ -26,7 +26,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { GroupPath } from "../group/GroupPath";
-import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../context/group-resource/group-resource-context";
 
 
 const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (

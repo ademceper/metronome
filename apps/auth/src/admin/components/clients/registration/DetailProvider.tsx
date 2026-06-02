@@ -29,8 +29,8 @@ import { DynamicComponents } from "../../dynamic/DynamicComponents";
 import { FormAccess } from "../../form/FormAccess";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import { useParams } from "../../../utils/useParams";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import { useParams } from "../../../utils/use-params";
 import {
   RegistrationProviderParams,
   toRegistrationProvider,

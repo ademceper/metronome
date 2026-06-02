@@ -2,7 +2,7 @@
 
 // @ts-nocheck
 import type { Path } from "react-router-dom";
-import { generateEncodedPath } from "../utils/generateEncodedPath";
+import { generateEncodedPath } from "../utils/generate-encoded-path";
 
 // ─── from organizations/paths/AddOrganization.ts ─────
 export type AddOrganizationParams = { realm: string };

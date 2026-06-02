@@ -30,7 +30,7 @@ import { Link } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import CodeEditor from "../form/CodeEditor";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { prettyPrintJSON } from "../../util";
 import { toAddClientProfile } from "../../lib/realm-settings";
 import { toClientProfile } from "../../lib/realm-settings";

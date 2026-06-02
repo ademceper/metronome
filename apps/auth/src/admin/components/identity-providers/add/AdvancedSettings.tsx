@@ -27,7 +27,7 @@ import { useState } from "react";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import type { FieldProps } from "../component/FormGroupField";
 import { FormGroupField } from "../component/FormGroupField";
 import { SwitchField } from "../component/SwitchField";

@@ -22,7 +22,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { emptyFormatter, upperCaseFormatter } from "../../util";
-import { translationFormatter } from "../../utils/translationFormatter";
+import { translationFormatter } from "../../utils/translation-formatter";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";

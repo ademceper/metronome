@@ -19,7 +19,7 @@ import { SelectControl, TextControl } from "../../../../shared/keycloak-ui-share
 import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormValuesToObject, convertToFormValues } from "../../../util";
 
 

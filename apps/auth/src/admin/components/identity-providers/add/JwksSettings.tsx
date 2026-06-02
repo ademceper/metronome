@@ -24,7 +24,7 @@ import {
   ImportFile,
   ImportKeyDialog,
 } from "../../clients/keys/ImportKeyDialog";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 import { useAdminClient } from "../../../admin-client";
 
 

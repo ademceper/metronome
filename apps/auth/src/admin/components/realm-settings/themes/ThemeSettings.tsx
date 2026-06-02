@@ -18,7 +18,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FormAccess } from "../../form/FormAccess";
 import { DefaultSwitchControl } from "../../SwitchControl";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { convertToFormValues } from "../../../util";
 
 

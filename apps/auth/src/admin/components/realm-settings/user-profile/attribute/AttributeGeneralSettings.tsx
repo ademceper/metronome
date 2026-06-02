@@ -36,11 +36,11 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../../admin-client";
 import { FormAccess } from "../../../form/FormAccess";
 import { DefaultSwitchControl } from "../../../SwitchControl";
-import { useParams } from "../../../../utils/useParams";
+import { useParams } from "../../../../utils/use-params";
 import { USERNAME_EMAIL } from "../../NewAttributeSettings";
 import { AttributeParams } from "../../../../lib/realm-settings";
 import { TranslatableField } from "./TranslatableField";
-import useLocaleSort, { mapByKey } from "../../../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../../../utils/use-locale-sort";
 import { SelectOption } from "../../../../../shared/pf-compat"
 
 

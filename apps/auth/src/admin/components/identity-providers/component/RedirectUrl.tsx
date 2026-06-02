@@ -15,7 +15,7 @@ import { Input as UIInput } from "@metronome/ui/components/input";
 import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { HelpItem, useEnvironment } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { addTrailingSlash } from "../../../util";
 
 

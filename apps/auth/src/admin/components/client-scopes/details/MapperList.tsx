@@ -19,7 +19,7 @@ import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/
 import type ClientScopeRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientScopeRepresentation";
 import type ProtocolMapperRepresentation from "@keycloak/keycloak-admin-client/lib/defs/protocolMapperRepresentation";
 import type { ProtocolMapperTypeRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/serverInfoRepesentation";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { AddMapperDialog } from "../add/MapperDialog";

@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { RoleMapping } from "../role-mapping/RoleMapping";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { DefaultsGroupsTab } from "./DefaultGroupsTab";
 import { Tabs, Tab, TabTitleText } from "../../../shared/pf-compat"
 

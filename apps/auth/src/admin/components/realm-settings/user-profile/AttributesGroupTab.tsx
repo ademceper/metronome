@@ -18,11 +18,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { toEditAttributesGroup } from "../../../lib/realm-settings";
 import { toNewAttributesGroup } from "../../../lib/realm-settings";
 import { useUserProfile } from "./UserProfileContext";
-import useLocale from "../../../utils/useLocale";
+import useLocale from "../../../utils/use-locale";
 import { useAdminClient } from "../../../admin-client";
 
 

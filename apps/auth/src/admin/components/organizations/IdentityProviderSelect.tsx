@@ -29,7 +29,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { ComponentProps } from "../dynamic/components";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
-import useToggle from "../../utils/useToggle";
+import useToggle from "../../utils/use-toggle";
 import { Select, SelectOption } from "../../../shared/pf-compat"
 
 

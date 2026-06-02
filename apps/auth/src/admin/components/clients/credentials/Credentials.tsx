@@ -31,7 +31,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { DynamicComponents } from "../../dynamic/DynamicComponents";
 import { FormAccess } from "../../form/FormAccess";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { FormFields } from "../ClientDetails";
 import { ClientSecret } from "./ClientSecret";
 import { SignedJWT } from "./SignedJWT";

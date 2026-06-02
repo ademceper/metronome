@@ -37,13 +37,13 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import useToggle from "../../../utils/useToggle";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import useToggle from "../../../utils/use-toggle";
 import { toCreatePolicy } from "../../../lib/clients";
 import { toPolicyDetails } from "../../../lib/clients";
 import { toResourceDetails } from "../../../lib/clients";
 import { NewPolicyDialog } from "./NewPolicyDialog";
-import { useIsAdminPermissionsClient } from "../../../utils/useIsAdminPermissionsClient";
+import { useIsAdminPermissionsClient } from "../../../utils/use-is-admin-permissions-client";
 import { SelectOption } from "../../../../shared/pf-compat"
 
 

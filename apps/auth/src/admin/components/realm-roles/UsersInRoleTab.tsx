@@ -20,9 +20,9 @@ import { useAdminClient } from "../../admin-client";
 import type { ClientRoleParams } from "../../lib/clients";
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { emptyFormatter, upperCaseFormatter } from "../../util";
-import { useParams } from "../../utils/useParams";
+import { useParams } from "../../utils/use-params";
 
 
 const ButtonVariant = {

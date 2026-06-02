@@ -24,7 +24,7 @@ import {
   clientScopeTypesSelectOptions,
 } from "../../client-scope/ClientScopeTypes";
 import type { Row } from "../../clients/scopes/ClientScopes";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { useMemo } from "react";
 import { Select, SelectOption } from "../../../../shared/pf-compat"
 

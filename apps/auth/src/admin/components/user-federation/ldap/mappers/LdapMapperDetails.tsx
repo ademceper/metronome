@@ -37,9 +37,9 @@ import {
 } from "../../../dynamic/DynamicComponents";
 import { FormAccess } from "../../../form/FormAccess";
 import { ViewHeader } from "../../../view-header/ViewHeader";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../../context/realm-context/realm-context";
 import { convertFormValuesToObject, convertToFormValues } from "../../../../util";
-import { useParams } from "../../../../utils/useParams";
+import { useParams } from "../../../../utils/use-params";
 import { toUserFederationLdap } from "../../../../lib/user-federation";
 import { UserFederationLdapMapperParams } from "../../../../lib/user-federation";
 import { SelectOption } from "../../../../../shared/pf-compat"

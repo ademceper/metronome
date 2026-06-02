@@ -26,17 +26,17 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { OrganizationModal } from "../organizations/OrganizationModal";
 import { toEditOrganization } from "../../lib/organizations";
-import useToggle from "../../utils/useToggle";
+import useToggle from "../../utils/use-toggle";
 import { UserParams } from "../../lib/user";
 import { toUsers } from "../../lib/user";
 import { CheckboxFilterComponent } from "../dynamic/CheckboxFilterComponent";
 import { capitalizeFirstLetterFormatter } from "../../util";
 import { SearchInputComponent } from "../dynamic/SearchInputComponent";
 import { MembershipsModal } from "../groups/MembershipsModal";
-import { GroupResourceContext } from "../../context/group-resource/GroupResourceContext";
+import { GroupResourceContext } from "../../context/group-resource/group-resource-context";
 import OrganizationMemberRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationMemberRepresentation";
 
 

@@ -27,7 +27,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { FormAccess } from "../../form/FormAccess";
 import { WizardSectionHeader } from "../../wizard-section-header/WizardSectionHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 
 
 const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (

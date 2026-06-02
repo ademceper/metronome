@@ -11,7 +11,7 @@
 
 import { cn } from "@metronome/ui/lib/utils";
 import { Warning as ExclamationTriangleIcon } from "@phosphor-icons/react"
-import { useWhoAmI } from "../context/whoami/WhoAmI";
+import { useWhoAmI } from "../context/whoami/who-am-i";
 import { useTranslation } from "react-i18next";
 
 const Banner = ({ variant, screenReaderText, children, ...props }: any) => (

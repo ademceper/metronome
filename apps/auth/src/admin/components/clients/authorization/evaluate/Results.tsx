@@ -29,7 +29,7 @@ import type EvaluationResultRepresentation from "@keycloak/keycloak-admin-client
 import type PolicyEvaluationResponse from "@keycloak/keycloak-admin-client/lib/defs/policyEvaluationResponse";
 import { FixedButtonsGroup } from "../../../form/FixedButtonGroup";
 import { ListEmptyState } from "../../../../../shared/keycloak-ui-shared";
-import useToggle from "../../../../utils/useToggle";
+import useToggle from "../../../../utils/use-toggle";
 import { AuthorizationDataModal } from "../AuthorizationDataModal";
 import { AuthorizationEvaluateResource } from "../AuthorizationEvaluateResource";
 import { Select, SelectOption } from "../../../../../shared/pf-compat"

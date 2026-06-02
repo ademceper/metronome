@@ -13,7 +13,7 @@ import type { RoleMappingPayload } from "@keycloak/keycloak-admin-client/lib/def
 import { useTranslation } from "react-i18next";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { RoleMapping, Row } from "../role-mapping/RoleMapping";
-import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../context/group-resource/group-resource-context";
 
 
 const AlertVariant = {

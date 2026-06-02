@@ -18,10 +18,10 @@ import { cn } from "@metronome/ui/lib/utils";
 import type ProtocolMapperRepresentation from "@keycloak/keycloak-admin-client/lib/defs/protocolMapperRepresentation";
 import type { ProtocolMapperTypeRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/serverInfoRepesentation";
 
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
-import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
 
 
 const ButtonVariant = {

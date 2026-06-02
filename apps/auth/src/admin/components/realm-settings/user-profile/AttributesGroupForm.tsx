@@ -27,7 +27,7 @@ import { FormAccess } from "../../form/FormAccess";
 import { KeyValueInput } from "../../key-value-form/KeyValueInput";
 import type { KeyValueType } from "../../key-value-form/key-value-convert";
 import { ViewHeader } from "../../view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import type { EditAttributesGroupParams } from "../../../lib/realm-settings";
 import { toUserProfile } from "../../../lib/realm-settings";
 import { useUserProfile } from "./UserProfileContext";

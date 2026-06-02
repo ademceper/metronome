@@ -30,8 +30,8 @@ import { useAdminClient } from "../../admin-client";
 import { DynamicComponents } from "../dynamic/DynamicComponents";
 import { FormAccess } from "../form/FormAccess";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
-import { useParams } from "../../utils/useParams";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
+import { useParams } from "../../utils/use-params";
 import { ClientProfileParams, toClientProfile } from "../../lib/realm-settings";
 import type { ExecutorParams } from "../../lib/realm-settings";
 import { SelectOption } from "../../../shared/pf-compat"

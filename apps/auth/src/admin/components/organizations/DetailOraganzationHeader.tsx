@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { toOrganizations } from "../../lib/organizations";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 
 
 const ButtonVariant = {

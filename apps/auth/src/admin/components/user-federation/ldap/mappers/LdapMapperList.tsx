@@ -24,7 +24,7 @@ import { useTranslation } from "react-i18next";
 import { Link, To, useNavigate, useParams } from "react-router-dom";
 import { useAdminClient } from "../../../../admin-client";
 import { useConfirmDialog } from "../../../confirm-dialog/ConfirmDialog";
-import useLocaleSort, { mapByKey } from "../../../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../../../utils/use-locale-sort";
 
 
 const AlertVariant = {

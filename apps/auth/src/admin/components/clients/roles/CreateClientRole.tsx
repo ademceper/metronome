@@ -17,7 +17,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { AttributeForm } from "../../key-value-form/AttributeForm";
 import { RoleForm } from "../../role-form/RoleForm";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { toClient } from "../../../lib/clients";
 import { toClientRole } from "../../../lib/clients";
 import { NewRoleParams } from "../../../lib/clients";

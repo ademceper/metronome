@@ -12,8 +12,8 @@
 import { useTranslation } from "react-i18next";
 import { SelectControl } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
-import { useLoginProviders } from "../../../context/server-info/ServerInfoProvider";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useLoginProviders } from "../../../context/server-info/server-info-provider";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { ClientDescription } from "../ClientDescription";
 import { getProtocolName } from "../utils";
 import { PROTOCOL_OID4VC } from "../constants";

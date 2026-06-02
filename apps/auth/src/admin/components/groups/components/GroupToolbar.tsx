@@ -15,8 +15,8 @@ import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuCo
 import { cn } from "@metronome/ui/lib/utils";
 import { DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
-import { useAccess } from "../../../context/access/Access";
-import useToggle from "../../../utils/useToggle";
+import { useAccess } from "../../../context/access/access";
+import useToggle from "../../../utils/use-toggle";
 import { useSubGroups } from "../SubGroupsContext";
 
 

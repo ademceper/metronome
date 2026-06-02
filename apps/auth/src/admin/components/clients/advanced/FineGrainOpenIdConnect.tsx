@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { HelpItem, SelectControl } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
 import { MultiLineInput } from "../../multi-line-input/MultiLineInput";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { convertAttributeNameToForm, sortProviders } from "../../../util";
 import { FormFields } from "../ClientDetails";
 import { ApplicationUrls } from "./ApplicationUrls";

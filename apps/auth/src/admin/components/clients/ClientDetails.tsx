@@ -40,17 +40,17 @@ import {
   ViewHeader,
   ViewHeaderBadge,
 } from "../view-header/ViewHeader";
-import { useAccess } from "../../context/access/Access";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { useRealm } from "../../context/realm-context/realm-context";
 import {
   convertAttributeNameToForm,
   convertFormValuesToObject,
   convertToFormValues,
   exportClient,
 } from "../../util";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
-import { useParams } from "../../utils/useParams";
-import useToggle from "../../utils/useToggle";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
+import { useParams } from "../../utils/use-params";
+import useToggle from "../../utils/use-toggle";
 import { AdvancedTab } from "./AdvancedTab";
 import { ClientSessions } from "./ClientSessions";
 import { ClientSettings } from "./ClientSettings";
@@ -78,7 +78,7 @@ import { EvaluateScopes } from "./scopes/EvaluateScopes";
 import { ServiceAccount } from "./service-account/ServiceAccount";
 import { getProtocolName, isRealmClient } from "./utils";
 import { UserEvents } from "../events/UserEvents";
-import { useIsAdminPermissionsClient } from "../../utils/useIsAdminPermissionsClient";
+import { useIsAdminPermissionsClient } from "../../utils/use-is-admin-permissions-client";
 import { AdminEvents } from "../events/AdminEvents";
 import { Tabs, Tab, TabTitleText } from "../../../shared/pf-compat"
 

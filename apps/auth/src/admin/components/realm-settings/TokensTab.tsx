@@ -37,10 +37,10 @@ import {
   toHumanFormat,
 } from "../time-selector/TimeSelector";
 import { TimeSelectorControl } from "../time-selector/TimeSelectorControl";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
-import { useWhoAmI } from "../../context/whoami/WhoAmI";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
+import { useWhoAmI } from "../../context/whoami/who-am-i";
 import { beerify, sortProviders } from "../../util";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
 import { SelectOption } from "../../../shared/pf-compat"
 
 const AlertVariant = {

@@ -23,8 +23,8 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { PolicyRow } from "./PolicyRow";
 import { SubmittedValues, parsePolicy, serializePolicy } from "./util";
 import { Select, SelectOption } from "../../../../shared/pf-compat"

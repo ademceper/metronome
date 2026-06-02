@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { ScrollForm } from "../../../shared/keycloak-ui-shared";
 import type { AddAlertFunction } from "../../../shared/keycloak-ui-shared";
 import { convertAttributeNameToForm, toUpperCase } from "../../util";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
 import type { FormFields, SaveOptions } from "./ClientDetails";
 import { AdvancedSettings } from "./advanced/AdvancedSettings";
 import { AuthenticationOverrides } from "./advanced/AuthenticationOverrides";
@@ -28,7 +28,7 @@ import { FineGrainOpenIdConnect } from "./advanced/FineGrainOpenIdConnect";
 import { FineGrainSamlEndpointConfig } from "./advanced/FineGrainSamlEndpointConfig";
 import { OpenIdConnectCompatibilityModes } from "./advanced/OpenIdConnectCompatibilityModes";
 import { OpenIdVerifiableCredentials } from "./advanced/OpenIdVerifiableCredentials";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { PROTOCOL_OIDC, PROTOCOL_OID4VC } from "./constants";
 
 

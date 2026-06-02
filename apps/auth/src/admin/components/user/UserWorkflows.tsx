@@ -31,7 +31,7 @@ import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
-import useFormatDate from "../../utils/useFormatDate";
+import useFormatDate from "../../utils/use-format-date";
 import WorkflowRepresentation from "libs/keycloak-admin-client/lib/defs/workflowRepresentation";
 import CodeEditor from "../form/CodeEditor";
 

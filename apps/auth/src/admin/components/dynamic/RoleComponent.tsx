@@ -15,7 +15,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import useToggle from "../../utils/useToggle";
+import useToggle from "../../utils/use-toggle";
 import {
   AddRoleButton,
   AddRoleMappingModal,

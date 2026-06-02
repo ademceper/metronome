@@ -24,7 +24,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { FormAccess } from "../../form/FormAccess";
 import { prettyPrintJSON } from "../../../util";
-import { useParams } from "../../../utils/useParams";
+import { useParams } from "../../../utils/use-params";
 import type { ClientParams } from "../../../lib/clients";
 
 

@@ -26,10 +26,10 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 import { PageHandler } from "../page/PageHandler";
 import { TAB_PROVIDER } from "../page/constants";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
 import { useTranslation } from "react-i18next";
 import { Tabs, Tab } from "../../../shared/pf-compat"
 

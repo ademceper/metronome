@@ -32,16 +32,16 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
-import { useAccess } from "../../context/access/Access";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { toUser } from "../../lib/user";
 import { emptyFormatter } from "../../util";
 import { MemberModal } from "./MembersModal";
 import { useSubGroups } from "./SubGroupsContext";
 import { getLastId } from "./groupIdUtils";
 import { MembershipsModal } from "./MembershipsModal";
-import useToggle from "../../utils/useToggle";
-import { useGroupResource } from "../../context/group-resource/GroupResourceContext";
+import useToggle from "../../utils/use-toggle";
+import { useGroupResource } from "../../context/group-resource/group-resource-context";
 
 
 const ButtonVariant = {

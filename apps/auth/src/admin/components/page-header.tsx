@@ -22,12 +22,12 @@ import { useTranslation } from "react-i18next";
 import { Link, useHref } from "react-router-dom";
 import { PageHeaderClearCachesModal } from "./page-header-clear-caches-modal";
 import { HelpHeader } from "../components/help-enabler/HelpHeader";
-import { useAccess } from "../context/access/Access";
-import { useRealm } from "../context/realm-context/RealmContext";
+import { useAccess } from "../context/access/access";
+import { useRealm } from "../context/realm-context/realm-context";
 import { toDashboard } from "../lib/dashboard";
 import { usePreviewLogo } from "../components/realm-settings/themes/LogoContext";
-import { joinPath } from "../utils/joinPath";
-import useToggle from "../utils/useToggle";
+import { joinPath } from "../utils/join-path";
+import useToggle from "../utils/use-toggle";
 
 
 const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (

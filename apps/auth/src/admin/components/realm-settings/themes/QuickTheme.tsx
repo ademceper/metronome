@@ -12,7 +12,7 @@
 import type RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
 import { useEnvironment } from "../../../../shared/keycloak-ui-shared";
 import JSZip from "jszip";
-import { joinPath } from "../../../utils/joinPath";
+import { joinPath } from "../../../utils/join-path";
 import { LogoContext } from "./LogoContext";
 import { ThemeColors } from "./ThemeColors";
 

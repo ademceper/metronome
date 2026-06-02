@@ -15,8 +15,8 @@ import { useConfirmDialog } from "../../../../components/confirm-dialog/ConfirmD
 import { ClickableCard } from "../../../../components/keycloak-card/ClickableCard";
 import { KeycloakCard } from "../../../../components/keycloak-card/KeycloakCard";
 import { ViewHeader } from "../../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../../context/server-info/server-info-provider";
 import helpUrls from "../../../../help-urls";
 import { toUpperCase } from "../../../../util";
 import { ManagePriorityDialog } from "../../../../components/user-federation/ManagePriorityDialog";

@@ -21,8 +21,8 @@ import { useAdminClient } from "../../../../../../admin-client";
 import { DynamicComponents } from "../../../../../../components/dynamic/DynamicComponents";
 import { FormAccess } from "../../../../../../components/form/FormAccess";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useServerInfo } from "../../../../../../context/server-info/ServerInfoProvider";
-import { useParams } from "../../../../../../utils/useParams";
+import { useServerInfo } from "../../../../../../context/server-info/server-info-provider";
+import { useParams } from "../../../../../../utils/use-params";
 import { ClientProfileParams, toClientProfile } from "../../../../../../lib/realm-settings";
 import type { ExecutorParams } from "../../../../../../lib/realm-settings";
 import { SelectOption } from "../../../../../../../shared/pf-compat"

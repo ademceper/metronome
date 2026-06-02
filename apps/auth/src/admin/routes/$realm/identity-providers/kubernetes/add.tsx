@@ -10,7 +10,7 @@ import { useAdminClient } from "../../../../admin-client";
 import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../../../components/form/FormAccess";
 import { ViewHeader } from "../../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../../context/realm-context/realm-context";
 import { toIdentityProvider } from "../../../../lib/identity-providers";
 import { toIdentityProviders } from "../../../../lib/identity-providers";
 import { KubernetesSettings } from "../../../../components/identity-providers/add/KubernetesSettings";

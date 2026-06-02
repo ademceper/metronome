@@ -18,7 +18,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
 import { ViewHeader } from "../../view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormValuesToObject } from "../../../util";
 import { FormFields } from "../ClientDetails";
 import { toClient } from "../../../lib/clients";

@@ -26,10 +26,10 @@ const TableText = ({ children }: any) => (
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
-import { useAccess } from "../../context/access/Access";
-import { translationFormatter } from "../../utils/translationFormatter";
-import useLocaleSort from "../../utils/useLocaleSort";
-import useToggle from "../../utils/useToggle";
+import { useAccess } from "../../context/access/access";
+import { translationFormatter } from "../../utils/translation-formatter";
+import useLocaleSort from "../../utils/use-locale-sort";
+import useToggle from "../../utils/use-toggle";
 import { ResourcesKey, Row } from "./RoleMapping";
 import { getAvailableRoles } from "./queries";
 import { getAvailableClientRoles } from "./resource";

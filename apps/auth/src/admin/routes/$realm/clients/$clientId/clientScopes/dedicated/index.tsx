@@ -17,7 +17,7 @@ import {
   useRoutableTab,
 } from "../../../../../../components/routable-tabs/RoutableTabs";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useParams } from "../../../../../../utils/useParams";
+import { useParams } from "../../../../../../utils/use-params";
 import {
   DedicatedScopeDetailsParams,
   DedicatedScopeTab,

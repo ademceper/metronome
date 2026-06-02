@@ -28,7 +28,7 @@ import { useAdminClient } from "../../../admin-client";
 import { FormAccess } from "../../form/FormAccess";
 import { DefaultSwitchControl } from "../../SwitchControl";
 import { convertAttributeNameToForm } from "../../../util";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 import { FormFields } from "../ClientDetails";
 import { KeyInfoArea } from "./Certificate";
 import { GenerateKeyDialog, getFileExtension } from "./GenerateKeyDialog";

@@ -12,9 +12,9 @@
 import KeycloakAdminClient, {
   fetchWithError,
 } from "@keycloak/keycloak-admin-client";
-import { getAuthorizationHeaders } from "../../utils/getAuthorizationHeaders";
-import { joinPath } from "../../utils/joinPath";
-import { UiRealmInfo } from "./uiRealmInfo";
+import { getAuthorizationHeaders } from "../../utils/get-authorization-headers";
+import { joinPath } from "../../utils/join-path";
+import { UiRealmInfo } from "./ui-realm-info";
 
 export async function fetchAdminUI<T>(
   adminClient: KeycloakAdminClient,

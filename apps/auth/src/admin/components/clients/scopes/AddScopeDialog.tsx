@@ -26,9 +26,9 @@ import {
 } from "../../client-scope/ClientScopeTypes";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 import { getProtocolName } from "../utils";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { SelectOption } from "../../../../shared/pf-compat"
 
 const ButtonVariant = {

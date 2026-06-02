@@ -27,12 +27,12 @@ import { useAdminClient } from "../../admin-client";
 import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../context/realm-context/realm-context";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 import { toIdentityProvider } from "../../lib/identity-providers";
 import { emptyFormatter, upperCaseFormatter } from "../../util";
 import { UserIdpModal } from "./UserIdPModal";
-import { useAccess } from "../../context/access/Access";
+import { useAccess } from "../../context/access/access";
 
 
 const AlertVariant = {

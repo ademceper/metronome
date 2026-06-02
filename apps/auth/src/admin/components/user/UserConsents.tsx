@@ -22,8 +22,8 @@ import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
 import { emptyFormatter } from "../../util";
-import useFormatDate from "../../utils/useFormatDate";
-import { useParams } from "../../utils/useParams";
+import useFormatDate from "../../utils/use-format-date";
+import { useParams } from "../../utils/use-params";
 
 
 const AlertVariant = {

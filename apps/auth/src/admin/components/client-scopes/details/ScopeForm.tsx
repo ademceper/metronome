@@ -33,13 +33,13 @@ import {
   ClientScopeDefaultOptionalType,
 } from "../../client-scope/ClientScopeTypes";
 import { FormAccess } from "../../form/FormAccess";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import {
   useLoginProviders,
   useServerInfo,
-} from "../../../context/server-info/ServerInfoProvider";
+} from "../../../context/server-info/server-info-provider";
 import { convertAttributeNameToForm, convertToFormValues } from "../../../util";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { toClientScopes } from "../../../lib/client-scopes";
 import { removeEmptyOid4vcAttributes } from "./oid4vciAttributes";
 

@@ -44,11 +44,11 @@ import {
   useRoutableTab,
 } from "../../../../../../components/routable-tabs/RoutableTabs";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../../../context/access/Access";
-import { useRealm } from "../../../../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../../../../context/access/access";
+import { useRealm } from "../../../../../../context/realm-context/realm-context";
 import { AdminEvents } from "../../../../../../components/events/AdminEvents";
-import useIsFeatureEnabled, { Feature } from "../../../../../../utils/useIsFeatureEnabled";
-import { useParams } from "../../../../../../utils/useParams";
+import useIsFeatureEnabled, { Feature } from "../../../../../../utils/use-is-feature-enabled";
+import { useParams } from "../../../../../../utils/use-params";
 import { UsersInRoleTab } from "../../../../../../components/realm-roles/UsersInRoleTab";
 import { RealmRoleRoute, RealmRoleTab, toRealmRole } from "../../../../../../lib/realm-roles";
 import { toRealmRoles } from "../../../../../../lib/realm-roles";

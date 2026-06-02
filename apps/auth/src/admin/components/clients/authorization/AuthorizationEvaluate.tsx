@@ -40,8 +40,8 @@ import {
   keyValueToArray,
 } from "../../key-value-form/key-value-convert";
 import { UserSelect } from "../../users/UserSelect";
-import { useAccess } from "../../../context/access/Access";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../context/access/access";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { FormFields } from "../ClientDetails";
 import { defaultContextAttributes } from "../utils";
 import { KeyBasedAttributeInput } from "./KeyBasedAttributeInput";

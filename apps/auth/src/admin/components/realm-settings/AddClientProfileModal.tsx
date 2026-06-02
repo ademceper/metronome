@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { translationFormatter } from "../../utils/translationFormatter";
+import { translationFormatter } from "../../utils/translation-formatter";
 
 
 const ButtonVariant = {

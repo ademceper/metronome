@@ -28,8 +28,8 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../form/FormAccess";
 import { toUser } from "../../lib/user";
 import { emailRegexPattern } from "../../util";
-import { useCurrentUser } from "../../utils/useCurrentUser";
-import useToggle from "../../utils/useToggle";
+import { useCurrentUser } from "../../utils/use-current-user";
+import useToggle from "../../utils/use-toggle";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

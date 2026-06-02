@@ -17,7 +17,7 @@ import {
 } from "../../../../shared/keycloak-ui-shared";
 import { DefaultSwitchControl } from "../../SwitchControl";
 import { FormAccess } from "../../form/FormAccess";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { convertAttributeNameToForm } from "../../../util";
 import { FormFields } from "../ClientDetails";
 

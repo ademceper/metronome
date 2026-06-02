@@ -34,9 +34,9 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { ClientSelect } from "../../client/ClientSelect";
 import { UserSelect } from "../../users/UserSelect";
-import { useAccess } from "../../../context/access/Access";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useAccess } from "../../../context/access/access";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { prettyPrintJSON } from "../../../util";
 import { GeneratedCodeTab } from "./GeneratedCodeTab";
 import { Tabs, Tab, TabContent, TabTitleText } from "../../../../shared/pf-compat"

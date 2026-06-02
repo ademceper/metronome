@@ -14,12 +14,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../../admin-client";
 import { PermissionsTab } from "../../../../../components/permission-tab/PermissionTab";
 import { ViewHeader } from "../../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../../context/access/Access";
-import { useRealm } from "../../../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../../../context/access/access";
+import { useRealm } from "../../../../../context/realm-context/realm-context";
 import { AdminEvents } from "../../../../../components/events/AdminEvents";
 import helpUrls from "../../../../../help-urls";
-import useIsFeatureEnabled, { Feature } from "../../../../../utils/useIsFeatureEnabled";
-import useToggle from "../../../../../utils/useToggle";
+import useIsFeatureEnabled, { Feature } from "../../../../../utils/use-is-feature-enabled";
+import useToggle from "../../../../../utils/use-toggle";
 import { GroupAttributes } from "../../../../../components/groups/GroupAttributes";
 import { GroupRoleMapping } from "../../../../../components/groups/GroupRoleMapping";
 import { GroupTable } from "../../../../../components/groups/GroupTable";
@@ -30,7 +30,7 @@ import { DeleteGroup } from "../../../../../components/groups/components/DeleteG
 import { GroupTree } from "../../../../../components/groups/components/GroupTree";
 import { getId, getLastId } from "../../../../../components/groups/groupIdUtils";
 import { toGroups } from "../../../../../lib/groups";
-import { GroupResourceContext } from "../../../../../context/group-resource/GroupResourceContext";
+import { GroupResourceContext } from "../../../../../context/group-resource/group-resource-context";
 import { Tabs, Tab, TabTitleText } from "../../../../../../shared/pf-compat"
 
 const ButtonVariant = {

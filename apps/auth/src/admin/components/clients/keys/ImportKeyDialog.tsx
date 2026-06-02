@@ -19,7 +19,7 @@ import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription
 import { cn } from "@metronome/ui/lib/utils";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { StoreSettings } from "./StoreSettings";
 
 

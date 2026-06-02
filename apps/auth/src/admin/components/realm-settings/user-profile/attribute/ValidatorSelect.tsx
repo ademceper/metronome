@@ -15,8 +15,8 @@ import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
 import { cn } from "@metronome/ui/lib/utils";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useServerInfo } from "../../../../context/server-info/ServerInfoProvider";
-import useToggle from "../../../../utils/useToggle";
+import { useServerInfo } from "../../../../context/server-info/server-info-provider";
+import useToggle from "../../../../utils/use-toggle";
 import { SelectOption } from "../../../../../shared/pf-compat"
 
 

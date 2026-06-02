@@ -23,14 +23,14 @@ import { CheckboxFilterComponent } from "../dynamic/CheckboxFilterComponent";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
-import { useParams } from "../../utils/useParams";
-import useToggle from "../../utils/useToggle";
+import { useParams } from "../../utils/use-params";
+import useToggle from "../../utils/use-toggle";
 import { InviteMemberModal } from "./InviteMemberModal";
 import { MemberModal } from "../groups/MembersModal";
 import { EditOrganizationParams } from "../../lib/organizations";
 import { SearchInputComponent } from "../dynamic/SearchInputComponent";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import useFormatDate from "../../utils/useFormatDate";
+import useFormatDate from "../../utils/use-format-date";
 
 
 const ButtonVariant = {

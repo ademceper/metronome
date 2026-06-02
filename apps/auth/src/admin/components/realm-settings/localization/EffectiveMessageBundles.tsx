@@ -28,12 +28,12 @@ import { useAdminClient } from "../../../admin-client";
 import DropdownPanel from "../../dropdown-panel/DropdownPanel";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
-import { useWhoAmI } from "../../../context/whoami/WhoAmI";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
+import { useWhoAmI } from "../../../context/whoami/who-am-i";
 import { DEFAULT_LOCALE } from "../../../i18n/constants";
 import { localeToDisplayName } from "../../../util";
-import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
 import { SelectOption } from "../../../../shared/pf-compat"
 
 

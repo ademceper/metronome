@@ -15,7 +15,7 @@ import { TextControl } from "../../../../shared/keycloak-ui-shared";
 
 import { FixedButtonsGroup } from "../../form/FixedButtonGroup";
 import { FormAccess } from "../../form/FormAccess";
-import { useAccess } from "../../../context/access/Access";
+import { useAccess } from "../../../context/access/access";
 import { FormFields } from "../ClientDetails";
 import type { ClientSettingsProps } from "../ClientSettings";
 import { LoginSettings } from "./LoginSettings";

@@ -13,7 +13,7 @@ import { AccessType } from "@keycloak/keycloak-admin-client/lib/defs/whoAmIRepre
 import { useMatches } from "react-router-dom";
 
 import { ForbiddenSection } from "../components/forbidden-section";
-import { useAccess } from "../context/access/Access";
+import { useAccess } from "../context/access/access";
 
 function hasProp<K extends PropertyKey>(
   data: object,

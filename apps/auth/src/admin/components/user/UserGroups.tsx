@@ -28,8 +28,8 @@ import { GroupPath } from "../group/GroupPath";
 import { GroupPickerDialog } from "../group/GroupPickerDialog";
 import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
 import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
-import { useAccess } from "../../context/access/Access";
-import { GroupResourceContext } from "../../context/group-resource/GroupResourceContext";
+import { useAccess } from "../../context/access/access";
+import { GroupResourceContext } from "../../context/group-resource/group-resource-context";
 
 
 const AlertVariant = {

@@ -24,9 +24,9 @@ import { useConfirmDialog } from "../../../../../../../../components/confirm-dia
 import { FormAccess } from "../../../../../../../../components/form/FormAccess";
 import { KeycloakSpinner } from "../../../../../../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../../../../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../../../../../context/access/Access";
+import { useAccess } from "../../../../../../../../context/access/access";
 import { toUpperCase } from "../../../../../../../../util";
-import { useParams } from "../../../../../../../../utils/useParams";
+import { useParams } from "../../../../../../../../utils/use-params";
 import { toAuthorizationTab } from "../../../../../../../../lib/clients";
 import type { NewPermissionParams } from "../../../../../../../../lib/clients";
 import {

@@ -31,10 +31,10 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../routable-tabs/RoutableTabs";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../context/realm-context/realm-context";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 import helpUrls from "../../help-urls";
-import useLocaleSort, { mapByKey } from "../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../utils/use-locale-sort";
 import { ProviderInfo } from "./ProviderInfo";
 import { DashboardTab, toDashboard } from "../../lib/dashboard";
 import { Tab, TabTitleText } from "../../../shared/pf-compat"

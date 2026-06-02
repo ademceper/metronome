@@ -18,8 +18,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAdminClient } from "../../../../admin-client";
 import { useConfirmDialog } from "../../../../components/confirm-dialog/ConfirmDialog";
 import { ViewHeader } from "../../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../../context/server-info/server-info-provider";
 import { PAGE_PROVIDER } from "../../../../components/page/constants";
 import { addDetailPage, PageListParams, toDetailPage } from "../../../../lib/page";
 

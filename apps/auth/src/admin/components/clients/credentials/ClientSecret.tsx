@@ -20,8 +20,8 @@ import { PasswordInput, HelpItem } from "../../../../shared/keycloak-ui-shared";
 import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
-import { useAccess } from "../../../context/access/Access";
-import useFormatDate from "../../../utils/useFormatDate";
+import { useAccess } from "../../../context/access/access";
+import useFormatDate from "../../../utils/use-format-date";
 import { CopyToClipboardButton } from "../../copy-to-clipboard-button/CopyToClipboardButton";
 
 

@@ -26,13 +26,13 @@ import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
 import { FileUploadForm } from "../../json-file-upload/FileUploadForm";
 import { ViewHeader } from "../../view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import {
   addTrailingSlash,
   convertFormValuesToObject,
   convertToFormValues,
 } from "../../../util";
-import { getAuthorizationHeaders } from "../../../utils/getAuthorizationHeaders";
+import { getAuthorizationHeaders } from "../../../utils/get-authorization-headers";
 import { ClientDescription } from "../ClientDescription";
 import { FormFields } from "../ClientDetails";
 import { CapabilityConfig } from "../add/CapabilityConfig";

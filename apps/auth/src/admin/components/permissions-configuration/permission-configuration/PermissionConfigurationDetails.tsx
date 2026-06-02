@@ -23,7 +23,7 @@ import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { FormAccess } from "../../form/FormAccess";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../view-header/ViewHeader";
-import { useParams } from "../../../utils/useParams";
+import { useParams } from "../../../utils/use-params";
 import {
   PermissionConfigurationDetailsParams,
   toPermissionConfigurationDetails,
@@ -35,7 +35,7 @@ import { ScopePicker } from "../../clients/authorization/ScopePicker";
 import { ResourceType } from "../resource-types/ResourceType";
 import { sortBy } from "lodash-es";
 import { NameDescription } from "../../clients/authorization/policy/NameDescription";
-import useSortedResourceTypes from "../../../utils/useSortedResourceTypes";
+import useSortedResourceTypes from "../../../utils/use-sorted-resource-types";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

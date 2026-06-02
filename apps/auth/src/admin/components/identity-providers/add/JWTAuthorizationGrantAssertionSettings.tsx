@@ -16,7 +16,7 @@ import { useFormContext, Controller } from "react-hook-form";
 import { TimeSelector } from "../../time-selector/TimeSelector";
 import { SelectControl, HelpItem } from "../../../../shared/keycloak-ui-shared";
 import { sortProviders } from "../../../util";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 
 
 const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (

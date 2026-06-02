@@ -29,7 +29,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { FormAccess } from "../../form/FormAccess";
 import { convertAttributeNameToForm } from "../../../util";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 import { FormFields } from "../ClientDetails";
 import { Certificate } from "./Certificate";
 import { ExportSamlKeyDialog } from "./ExportSamlKeyDialog";

@@ -19,7 +19,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { DynamicComponents } from "../../../dynamic/DynamicComponents";
-import { useServerInfo } from "../../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../../context/server-info/server-info-provider";
 import type { IndexedValidations } from "../../NewAttributeSettings";
 import { ValidatorSelect } from "./ValidatorSelect";
 

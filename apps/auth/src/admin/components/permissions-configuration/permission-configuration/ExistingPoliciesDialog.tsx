@@ -27,7 +27,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { capitalizeFirstLetterFormatter } from "../../../util";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 
 
 const ButtonVariant = {

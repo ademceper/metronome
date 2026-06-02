@@ -19,7 +19,7 @@ import { FormAccess } from "../../form/FormAccess";
 import { HelpItem, SelectControl } from "../../../../shared/keycloak-ui-shared";
 import { convertAttributeNameToForm } from "../../../util";
 import { FormFields } from "../ClientDetails";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { MapComponent } from "../../dynamic/MapComponent";
 
 

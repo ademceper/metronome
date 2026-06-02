@@ -23,13 +23,13 @@ import { useConfirmDialog } from "../../../confirm-dialog/ConfirmDialog";
 import { FormAccess } from "../../../form/FormAccess";
 import { KeycloakSpinner } from "../../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../../view-header/ViewHeader";
-import { useParams } from "../../../../utils/useParams";
+import { useParams } from "../../../../utils/use-params";
 import { toAuthorizationTab } from "../../../../lib/clients";
 import {
   PolicyDetailsParams,
   toPolicyDetails,
 } from "../../../../lib/clients";
-import { useIsAdminPermissionsClient } from "../../../../utils/useIsAdminPermissionsClient";
+import { useIsAdminPermissionsClient } from "../../../../utils/use-is-admin-permissions-client";
 import { toPermissionsConfigurationTabs } from "../../../../lib/permissions-configuration";
 import { NewPermissionPolicyDetailsParams } from "../../../../lib/permissions-configuration";
 import { toPermissionPolicyDetails } from "../../../../lib/permissions-configuration";

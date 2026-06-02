@@ -21,10 +21,10 @@ import { useConfirmDialog } from "../../../../../../components/confirm-dialog/Co
 import { DynamicComponents } from "../../../../../../components/dynamic/DynamicComponents";
 import { FormAccess } from "../../../../../../components/form/FormAccess";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../../../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../../../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../../../../context/server-info/server-info-provider";
 import { convertFormValuesToObject, convertToFormValues } from "../../../../../../util";
-import { useParams } from "../../../../../../utils/useParams";
+import { useParams } from "../../../../../../utils/use-params";
 import { toClientScope } from "../../../../../../lib/client-scopes";
 import { MapperParams, MapperRoute } from "../../../../../../lib/client-scopes";
 

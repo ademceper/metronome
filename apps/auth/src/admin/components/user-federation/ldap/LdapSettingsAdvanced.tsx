@@ -19,7 +19,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
 import { WizardSectionHeader } from "../../wizard-section-header/WizardSectionHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormToSettings } from "./LdapSettingsConnection";
 
 

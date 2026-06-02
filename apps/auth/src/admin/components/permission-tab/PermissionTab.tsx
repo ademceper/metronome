@@ -29,8 +29,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { toPermissionDetails } from "../../lib/clients";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import useLocaleSort from "../../utils/useLocaleSort";
+import { useRealm } from "../../context/realm-context/realm-context";
+import useLocaleSort from "../../utils/use-locale-sort";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 
 const Card = ({ isSelectable, isSelected, isFlat, isCompact, ...props }: any) => (

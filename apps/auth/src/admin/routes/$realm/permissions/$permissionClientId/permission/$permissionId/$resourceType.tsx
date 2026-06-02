@@ -14,7 +14,7 @@ import { useConfirmDialog } from "../../../../../../components/confirm-dialog/Co
 import { FormAccess } from "../../../../../../components/form/FormAccess";
 import { KeycloakSpinner } from "../../../../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useParams } from "../../../../../../utils/useParams";
+import { useParams } from "../../../../../../utils/use-params";
 import {
   PermissionConfigurationDetailsParams,
   toPermissionConfigurationDetails,
@@ -26,7 +26,7 @@ import { ScopePicker } from "../../../../../../components/clients/authorization/
 import { ResourceType } from "../../../../../../components/permissions-configuration/resource-types/ResourceType";
 import { sortBy } from "lodash-es";
 import { NameDescription } from "../../../../../../components/clients/authorization/policy/NameDescription";
-import useSortedResourceTypes from "../../../../../../utils/useSortedResourceTypes";
+import useSortedResourceTypes from "../../../../../../utils/use-sorted-resource-types";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

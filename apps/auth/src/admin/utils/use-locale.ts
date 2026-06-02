@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import { useMemo } from "react";
-import { useRealm } from "../context/realm-context/RealmContext";
+import { useRealm } from "../context/realm-context/realm-context";
 import { DEFAULT_LOCALE } from "../i18n/constants";
 
 export default function useLocale() {

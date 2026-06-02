@@ -11,7 +11,7 @@
 
 import ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientRepresentation";
 import type { Environment } from "../environment";
-import { joinPath } from "./joinPath";
+import { joinPath } from "./join-path";
 
 export const convertClientToUrl = (
   { rootUrl, baseUrl }: ClientRepresentation,

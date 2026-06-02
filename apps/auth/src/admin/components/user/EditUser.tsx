@@ -38,11 +38,11 @@ import {
   useRoutableTab,
 } from "../routable-tabs/RoutableTabs";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useAccess } from "../../context/access/Access";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { UserProfileProvider } from "../realm-settings/user-profile/UserProfileContext";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
-import { useParams } from "../../utils/useParams";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
+import { useParams } from "../../utils/use-params";
 import { Organizations } from "./Organizations";
 import { UserAttributes } from "./UserAttributes";
 import { UserConsents } from "./UserConsents";

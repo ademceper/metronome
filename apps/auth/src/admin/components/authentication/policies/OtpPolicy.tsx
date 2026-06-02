@@ -26,8 +26,8 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { FormAccess } from "../../form/FormAccess";
 import { TimeSelectorControl } from "../../time-selector/TimeSelectorControl";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import useLocaleSort from "../../../utils/useLocaleSort";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import useLocaleSort from "../../../utils/use-locale-sort";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

@@ -14,7 +14,7 @@ import type Groups from "@keycloak/keycloak-admin-client/lib/resources/groups";
 import { useTranslation } from "react-i18next";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { GroupPickerDialog } from "../../group/GroupPickerDialog";
-import { useGroupResource } from "../../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../../context/group-resource/group-resource-context";
 
 type MoveDialogProps = {
   source: GroupRepresentation;

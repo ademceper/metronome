@@ -23,17 +23,17 @@ import {
   useFetch,
 } from "../../../../shared/keycloak-ui-shared";
 import { CaretRight as AngleRightIcon, DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
-import { useGroupResource } from "../../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../../context/group-resource/group-resource-context";
 import { unionBy } from "lodash-es";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
-import { useAccess } from "../../../context/access/Access";
+import { useAccess } from "../../../context/access/access";
 import { fetchAdminUI } from "../../../context/auth/admin-ui-endpoint";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import useToggle from "../../../utils/useToggle";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import useToggle from "../../../utils/use-toggle";
 import { GroupsModal } from "../GroupsModal";
 import { useSubGroups } from "../SubGroupsContext";
 import { toGroups } from "../../../lib/groups";

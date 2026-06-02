@@ -26,7 +26,7 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../routable-tabs/RoutableTabs";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import {
   LdapComponentRepresentation,
   UserFederationLdapForm,

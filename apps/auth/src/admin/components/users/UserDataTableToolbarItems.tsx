@@ -20,7 +20,7 @@ import { ArrowRight as ArrowRightIcon, DotsThreeVertical as EllipsisVIcon } from
 import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAccess } from "../../context/access/Access";
+import { useAccess } from "../../context/access/access";
 import { SearchDropdown, SearchType } from "../user/details/SearchFilter";
 import DropdownPanel from "../dropdown-panel/DropdownPanel";
 import { UserFilter } from "./UserDataTable";

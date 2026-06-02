@@ -29,16 +29,16 @@ import {
   useRoutableTab,
 } from "../routable-tabs/RoutableTabs";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useAccess } from "../../context/access/Access";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { toDashboard } from "../../lib/dashboard";
 import type { Environment } from "../../environment";
 import helpUrls from "../../help-urls";
 import { convertFormValuesToObject, convertToFormValues } from "../../util";
-import { getAuthorizationHeaders } from "../../utils/getAuthorizationHeaders";
-import { joinPath } from "../../utils/joinPath";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
-import useLocale from "../../utils/useLocale";
+import { getAuthorizationHeaders } from "../../utils/get-authorization-headers";
+import { joinPath } from "../../utils/join-path";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
+import useLocale from "../../utils/use-locale";
 import { RealmSettingsEmailTab } from "./EmailTab";
 import { RealmSettingsGeneralTab } from "./GeneralTab";
 import { RealmSettingsLoginTab } from "./LoginTab";

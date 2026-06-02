@@ -40,13 +40,13 @@ import {
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
-import { useAccess } from "../../../context/access/Access";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import { translationFormatter } from "../../../utils/translationFormatter";
-import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
+import { useAccess } from "../../../context/access/access";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import { translationFormatter } from "../../../utils/translation-formatter";
+import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
 import { toDedicatedScope } from "../../../lib/clients";
 import { AddScopeDialog } from "./AddScopeDialog";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { PROTOCOL_OIDC, PROTOCOL_OID4VC } from "../constants";
 
 const AlertVariant = {

@@ -17,13 +17,13 @@ import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../../components/form/FormAccess";
 import { FileUploadForm } from "../../../components/json-file-upload/FileUploadForm";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import {
   addTrailingSlash,
   convertFormValuesToObject,
   convertToFormValues,
 } from "../../../util";
-import { getAuthorizationHeaders } from "../../../utils/getAuthorizationHeaders";
+import { getAuthorizationHeaders } from "../../../utils/get-authorization-headers";
 import { ClientDescription } from "../../../components/clients/ClientDescription";
 import { FormFields } from "../../../components/clients/ClientDetails";
 import { CapabilityConfig } from "../../../components/clients/add/CapabilityConfig";

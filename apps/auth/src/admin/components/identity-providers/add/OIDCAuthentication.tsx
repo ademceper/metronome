@@ -12,7 +12,7 @@
 import { SelectControl } from "../../../../shared/keycloak-ui-shared";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { sortProviders } from "../../../util";
 import { ClientIdSecret } from "../component/ClientIdSecret";
 import { SwitchField } from "../component/SwitchField";

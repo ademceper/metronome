@@ -22,7 +22,7 @@ import { FormAccess } from "../../form/FormAccess";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
 import { TimeSelectorForm } from "../../time-selector/TimeSelectorForm";
-import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../../utils/useFormatDate";
+import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../../utils/use-format-date";
 import { AddHostDialog } from "./AddHostDialog";
 import { AdvancedProps, parseResult } from "../AdvancedTab";
 

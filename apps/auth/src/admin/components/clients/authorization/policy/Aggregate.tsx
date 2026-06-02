@@ -12,7 +12,7 @@
 import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 import { HelpItem } from "../../../../../shared/keycloak-ui-shared";
-import { useParams } from "../../../../utils/useParams";
+import { useParams } from "../../../../utils/use-params";
 import type { PolicyDetailsParams } from "../../../../lib/clients";
 import { DecisionStrategySelect } from "../DecisionStrategySelect";
 import { ResourcesPolicySelect } from "../ResourcesPolicySelect";

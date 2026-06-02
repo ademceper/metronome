@@ -15,7 +15,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useAdminClient } from "../../../admin-client";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { toPermissionDetails } from "../../../lib/clients";
 import { toScopeDetails } from "../../../lib/clients";
 import { DetailDescription, DetailDescriptionLink } from "./DetailDescription";

@@ -23,12 +23,12 @@ import {
   useRoutableTab,
 } from "../../../components/routable-tabs/RoutableTabs";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";
 import { addTrailingSlash } from "../../../util";
-import { getAuthorizationHeaders } from "../../../utils/getAuthorizationHeaders";
-import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
-import useToggle from "../../../utils/useToggle";
+import { getAuthorizationHeaders } from "../../../utils/get-authorization-headers";
+import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
+import useToggle from "../../../utils/use-toggle";
 import { BindFlowDialog } from "../../../components/authentication/BindFlowDialog";
 import { DuplicateFlowModal } from "../../../components/authentication/DuplicateFlowModal";
 import { RequiredActions } from "../../../components/authentication/RequiredActions";

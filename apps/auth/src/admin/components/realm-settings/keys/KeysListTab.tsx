@@ -29,10 +29,10 @@ import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { emptyFormatter } from "../../../util";
-import useFormatDate from "../../../utils/useFormatDate";
-import useToggle from "../../../utils/useToggle";
+import useFormatDate from "../../../utils/use-format-date";
+import useToggle from "../../../utils/use-toggle";
 import { toKeysTab } from "../../../lib/realm-settings";
 import { SelectOption } from "../../../../shared/pf-compat"
 

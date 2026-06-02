@@ -24,10 +24,10 @@ import { saveAs } from "file-saver";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../context/realm-context/realm-context";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 import { addTrailingSlash, prettyPrintJSON } from "../../util";
-import { getAuthorizationHeaders } from "../../utils/getAuthorizationHeaders";
+import { getAuthorizationHeaders } from "../../utils/get-authorization-headers";
 import { ConfirmDialogModal } from "../confirm-dialog/ConfirmDialog";
 import { Select, SelectOption } from "../../../shared/pf-compat"
 

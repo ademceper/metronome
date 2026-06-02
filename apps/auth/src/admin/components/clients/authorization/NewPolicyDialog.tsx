@@ -25,7 +25,7 @@ import {
 import type PolicyProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyProviderRepresentation";
 import { isValidComponentType } from "./policy/PolicyDetails";
 import { useMemo } from "react";
-import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
 
 
 const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (

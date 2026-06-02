@@ -9,7 +9,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../../components/form/FormAccess";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormValuesToObject } from "../../../util";
 import { FormFields } from "../../../components/clients/ClientDetails";
 import { toClient } from "../../../lib/clients";

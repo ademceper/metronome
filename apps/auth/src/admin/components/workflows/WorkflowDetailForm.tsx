@@ -27,11 +27,11 @@ import {
   useAlerts,
   useFetch,
 } from "../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { FormAccess } from "../form/FormAccess";
 import { toWorkflows } from "../../lib/workflows";
 import CodeEditor from "../form/CodeEditor";
-import { useParams } from "../../utils/useParams";
+import { useParams } from "../../utils/use-params";
 import {
   WorkflowDetailParams,
   toWorkflowDetail,

@@ -28,7 +28,7 @@ import { useTranslation } from "react-i18next";
 
 import { useConfirmDialog } from "../../../confirm-dialog/ConfirmDialog";
 import { DefaultValue } from "../../../key-value-form/KeyValueInput";
-import useToggle from "../../../../utils/useToggle";
+import useToggle from "../../../../utils/use-toggle";
 import type { IndexedValidations } from "../../NewAttributeSettings";
 import { AddValidatorDialog } from "./AddValidatorDialog";
 

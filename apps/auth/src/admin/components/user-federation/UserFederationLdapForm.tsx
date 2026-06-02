@@ -18,8 +18,8 @@ import { useNavigate } from "react-router-dom";
 import { ScrollForm } from "../../../shared/keycloak-ui-shared";
 
 import { FixedButtonsGroup } from "../form/FixedButtonGroup";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import useIsFeatureEnabled, { Feature } from "../../utils/useIsFeatureEnabled";
+import { useRealm } from "../../context/realm-context/realm-context";
+import useIsFeatureEnabled, { Feature } from "../../utils/use-is-feature-enabled";
 import { LdapSettingsAdvanced } from "./ldap/LdapSettingsAdvanced";
 import { LdapSettingsConnection } from "./ldap/LdapSettingsConnection";
 import { LdapSettingsGeneral } from "./ldap/LdapSettingsGeneral";

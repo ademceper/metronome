@@ -25,8 +25,8 @@ import { useConfirmDialog } from "../../../../../../components/confirm-dialog/Co
 import { FormAccess } from "../../../../../../components/form/FormAccess";
 import { KeycloakSpinner } from "../../../../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useServerInfo } from "../../../../../../context/server-info/ServerInfoProvider";
-import { useParams } from "../../../../../../utils/useParams";
+import { useServerInfo } from "../../../../../../context/server-info/server-info-provider";
+import { useParams } from "../../../../../../utils/use-params";
 import { toAddExecutor } from "../../../../../../lib/realm-settings";
 import { toClientPolicies } from "../../../../../../lib/realm-settings";
 import { ClientProfileParams, toClientProfile } from "../../../../../../lib/realm-settings";

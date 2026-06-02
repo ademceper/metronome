@@ -2,7 +2,7 @@
 
 // @ts-nocheck
 import type { Path } from "react-router-dom";
-import { generateEncodedPath } from "../utils/generateEncodedPath";
+import { generateEncodedPath } from "../utils/generate-encoded-path";
 
 // ─── from permissions-configuration/paths/NewPermissionConfiguration.ts ─────
 export type NewPermissionConfigurationParams = {

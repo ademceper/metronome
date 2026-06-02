@@ -38,7 +38,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { toNewPermission } from "../../../lib/clients";
 import { toCreateResource } from "../../../lib/clients";
 import { toResourceDetails } from "../../../lib/clients";

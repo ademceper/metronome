@@ -18,7 +18,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { ViewHeader } from "../../view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { CustomUserFederationRouteParams } from "../../../lib/user-federation";
 import { toUserFederation } from "../../../lib/user-federation";
 

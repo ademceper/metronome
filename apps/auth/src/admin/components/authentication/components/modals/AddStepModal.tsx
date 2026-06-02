@@ -20,7 +20,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../../admin-client";
-import useLocaleSort, { mapByKey } from "../../../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../../../utils/use-locale-sort";
 import { providerConditionFilter } from "../../FlowDetails";
 
 

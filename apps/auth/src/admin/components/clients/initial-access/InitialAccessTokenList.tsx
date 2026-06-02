@@ -21,8 +21,8 @@ import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
 import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../../utils/useFormatDate";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../../utils/use-format-date";
 import { toCreateInitialAccessToken } from "../../../lib/clients";
 
 

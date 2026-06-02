@@ -29,9 +29,9 @@ import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
 import { MultiLineInput } from "../../multi-line-input/MultiLineInput";
 import { TimeSelectorControl } from "../../time-selector/TimeSelectorControl";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormValuesToObject, convertToFormValues } from "../../../util";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 
 import { useAdminClient } from "../../../admin-client";
 

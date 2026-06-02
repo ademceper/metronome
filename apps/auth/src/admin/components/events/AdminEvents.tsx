@@ -43,10 +43,10 @@ import { useAdminClient } from "../../admin-client";
 import { EventsBanners } from "../banners";
 import DropdownPanel from "../dropdown-panel/DropdownPanel";
 import CodeEditor from "../form/CodeEditor";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+import { useRealm } from "../../context/realm-context/realm-context";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 import { prettyPrintJSON } from "../../util";
-import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../utils/useFormatDate";
+import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../utils/use-format-date";
 import { CellResourceLinkRenderer } from "./ResourceLinks";
 import { SelectOption } from "../../../shared/pf-compat"
 

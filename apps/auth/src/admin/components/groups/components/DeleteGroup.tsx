@@ -11,7 +11,7 @@
 
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
 import { useTranslation } from "react-i18next";
-import { useGroupResource } from "../../../context/group-resource/GroupResourceContext";
+import { useGroupResource } from "../../../context/group-resource/group-resource-context";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { ConfirmDialogModal } from "../../confirm-dialog/ConfirmDialog";
 

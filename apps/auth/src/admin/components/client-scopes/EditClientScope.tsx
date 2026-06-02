@@ -40,15 +40,15 @@ import {
   useRoutableTab,
 } from "../routable-tabs/RoutableTabs";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { convertFormValuesToObject } from "../../util";
-import { useParams } from "../../utils/useParams";
+import { useParams } from "../../utils/use-params";
 import { MapperList } from "./details/MapperList";
 import { ScopeForm } from "./details/ScopeForm";
 import { ClientScopeParams, toClientScope } from "../../lib/client-scopes";
 import { toClientScopes } from "../../lib/client-scopes";
 import { toMapper } from "../../lib/client-scopes";
-import { useAccess } from "../../context/access/Access";
+import { useAccess } from "../../context/access/access";
 import { AdminEvents } from "../events/AdminEvents";
 import { Tab, TabTitleText } from "../../../shared/pf-compat"
 

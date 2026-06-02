@@ -39,10 +39,10 @@ import { DefaultSwitchControl } from "../SwitchControl";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../form/FormAccess";
 import { GroupPickerDialog } from "../group/GroupPickerDialog";
-import { useAccess } from "../../context/access/Access";
-import { useWhoAmI } from "../../context/whoami/WhoAmI";
+import { useAccess } from "../../context/access/access";
+import { useWhoAmI } from "../../context/whoami/who-am-i";
 import { emailRegexPattern } from "../../util";
-import useFormatDate from "../../utils/useFormatDate";
+import useFormatDate from "../../utils/use-format-date";
 import { FederatedUserLink } from "./FederatedUserLink";
 import { UserFormFields, toUserFormFields } from "./form-state";
 import { toUsers } from "../../lib/user";
@@ -50,7 +50,7 @@ import { FixedButtonsGroup } from "../form/FixedButtonGroup";
 import { RequiredActionMultiSelect } from "./user-credentials/RequiredActionMultiSelect";
 import { useNavigate } from "react-router-dom";
 import { CopyToClipboardButton } from "../copy-to-clipboard-button/CopyToClipboardButton";
-import { GroupResourceContext } from "../../context/group-resource/GroupResourceContext";
+import { GroupResourceContext } from "../../context/group-resource/group-resource-context";
 
 
 const AlertVariant = {

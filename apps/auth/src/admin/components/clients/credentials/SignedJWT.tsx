@@ -12,7 +12,7 @@
 import { useTranslation } from "react-i18next";
 import { Controller, useFormContext } from "react-hook-form";
 import { SelectControl } from "../../../../shared/keycloak-ui-shared";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { convertAttributeNameToForm } from "../../../util";
 import { FormFields } from "../ClientDetails";
 import { TimeSelector } from "../../time-selector/TimeSelector";

@@ -31,11 +31,11 @@ import { Link } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { GroupPickerDialog } from "../group/GroupPickerDialog";
-import { useAccess } from "../../context/access/Access";
-import { GroupResourceContext } from "../../context/group-resource/GroupResourceContext";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { GroupResourceContext } from "../../context/group-resource/group-resource-context";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { toUserFederation } from "../../lib/user-federation";
-import useToggle from "../../utils/useToggle";
+import useToggle from "../../utils/use-toggle";
 
 
 const AlertVariant = {

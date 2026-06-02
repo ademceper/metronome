@@ -22,8 +22,8 @@ import { useAdminClient } from "../../admin-client";
 import {
   useGroupResource,
   GroupResourceContext,
-} from "../../context/group-resource/GroupResourceContext";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+} from "../../context/group-resource/group-resource-context";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 import { GroupPickerDialog } from "../group/GroupPickerDialog";
 import type { ComponentProps } from "./components";
 

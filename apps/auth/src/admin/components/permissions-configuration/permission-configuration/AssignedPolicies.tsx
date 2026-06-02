@@ -31,7 +31,7 @@ import PolicyProviderRepresentation from "@keycloak/keycloak-admin-client/lib/de
 import { ExistingPoliciesDialog } from "./ExistingPoliciesDialog";
 import { CaretDown as CaretDownIcon, Funnel as FilterIcon } from "@phosphor-icons/react"
 import { capitalize, sortBy } from "lodash-es";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 
 const ButtonVariant = {
   primary: "default",

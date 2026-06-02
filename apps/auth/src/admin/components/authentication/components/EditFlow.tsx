@@ -20,7 +20,7 @@ import {
   TextAreaControl,
   TextControl,
 } from "../../../../shared/keycloak-ui-shared";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 import type { ExpandableExecution } from "../execution-model";
 
 

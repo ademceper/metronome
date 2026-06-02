@@ -21,7 +21,7 @@ import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../form/FormAccess";
 import { RoleMapping, Row } from "../../role-mapping/RoleMapping";
-import { useAccess } from "../../../context/access/Access";
+import { useAccess } from "../../../context/access/access";
 
 
 const AlertVariant = {

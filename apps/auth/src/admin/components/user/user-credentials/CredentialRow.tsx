@@ -19,10 +19,10 @@ import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
 import { cn } from "@metronome/ui/lib/utils";
 import type CredentialRepresentation from "@keycloak/keycloak-admin-client/lib/defs/credentialRepresentation";
-import useToggle from "../../../utils/useToggle";
-import useLocaleSort from "../../../utils/useLocaleSort";
+import useToggle from "../../../utils/use-toggle";
+import useLocaleSort from "../../../utils/use-locale-sort";
 import { CredentialDataDialog } from "./CredentialDataDialog";
-import useFormatDate from "../../../utils/useFormatDate";
+import useFormatDate from "../../../utils/use-format-date";
 import { DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 
 

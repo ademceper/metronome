@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { cn } from "@metronome/ui/lib/utils";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";
 import { PermissionsTab } from "../../../components/permission-tab/PermissionTab";
 import { UserDataTable } from "../../../components/users/UserDataTable";
@@ -13,8 +13,8 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../../../components/routable-tabs/RoutableTabs";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
-import { useAccess } from "../../../context/access/Access";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
+import { useAccess } from "../../../context/access/access";
 import { Tab, TabTitleText } from "../../../../shared/pf-compat"
 
 

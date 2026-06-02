@@ -24,8 +24,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import { useRealm } from "../../../context/realm-context/RealmContext";
-import { useParams } from "../../../utils/useParams";
+import { useRealm } from "../../../context/realm-context/realm-context";
+import { useParams } from "../../../utils/use-params";
 import type { ClientParams } from "../../../lib/clients";
 import { toPermissionDetails } from "../../../lib/clients";
 import { toPolicyDetails } from "../../../lib/clients";

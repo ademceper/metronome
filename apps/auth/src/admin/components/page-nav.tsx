@@ -21,12 +21,12 @@ import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { NavLink } from "react-router-dom"
 import { label, useEnvironment } from "../../shared/keycloak-ui-shared"
-import { useAccess } from "../context/access/Access"
-import { useRealm } from "../context/realm-context/RealmContext"
-import { useServerInfo } from "../context/server-info/ServerInfoProvider"
+import { useAccess } from "../context/access/access"
+import { useRealm } from "../context/realm-context/realm-context"
+import { useServerInfo } from "../context/server-info/server-info-provider"
 import { Environment } from "../environment"
 import { toPage } from "../lib/page"
-import useIsFeatureEnabled, { Feature } from "../utils/useIsFeatureEnabled"
+import useIsFeatureEnabled, { Feature } from "../utils/use-is-feature-enabled"
 
 // React-router-dom shim adapter: AppSidebar speaks `href`, NavLink expects `to`.
 const Link = ({ href, children, ...rest }: { href: string; children: React.ReactNode } & Record<string, unknown>) => (

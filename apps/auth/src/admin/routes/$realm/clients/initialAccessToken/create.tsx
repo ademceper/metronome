@@ -13,7 +13,7 @@ import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
 import { FormAccess } from "../../../../components/form/FormAccess";
 import { TimeSelectorControl } from "../../../../components/time-selector/TimeSelectorControl";
 import { ViewHeader } from "../../../../components/view-header/ViewHeader";
-import { useRealm } from "../../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../../context/realm-context/realm-context";
 import { toClients } from "../../../../lib/clients";
 import { AccessTokenDialog } from "../../../../components/clients/initial-access/AccessTokenDialog";
 import { MultiLineInput } from "../../../../components/multi-line-input/MultiLineInput";

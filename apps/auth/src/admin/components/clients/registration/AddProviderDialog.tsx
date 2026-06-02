@@ -13,8 +13,8 @@ import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription
 import { cn } from "@metronome/ui/lib/utils";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useServerInfo } from "../../../context/server-info/ServerInfoProvider";
-import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
+import { useServerInfo } from "../../../context/server-info/server-info-provider";
+import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
 
 
 const DataList = ({ children, className, ...props }: any) => (

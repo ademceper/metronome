@@ -29,17 +29,17 @@ import { FormAccess } from "../../form/FormAccess";
 import type { AttributeForm } from "../../key-value-form/AttributeForm";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../../view-header/ViewHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormValuesToObject, convertToFormValues } from "../../../util";
-import useLocaleSort, { mapByKey } from "../../../utils/useLocaleSort";
-import { useParams } from "../../../utils/useParams";
+import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
+import { useParams } from "../../../utils/use-params";
 import {
   IdentityProviderEditMapperParams,
   toIdentityProviderEditMapper,
 } from "../../../lib/identity-providers";
 import { toIdentityProvider } from "../../../lib/identity-providers";
 import { AddMapperForm } from "./AddMapperForm";
-import { GroupResourceContext } from "../../../context/group-resource/GroupResourceContext";
+import { GroupResourceContext } from "../../../context/group-resource/group-resource-context";
 
 
 const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (

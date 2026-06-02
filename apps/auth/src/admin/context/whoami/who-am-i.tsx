@@ -21,7 +21,7 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { DEFAULT_LOCALE } from "../../i18n/constants";
-import { useRealm } from "../realm-context/RealmContext";
+import { useRealm } from "../realm-context/realm-context";
 
 // can be replaced with https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getTextInfo
 const RTL_LOCALES = [

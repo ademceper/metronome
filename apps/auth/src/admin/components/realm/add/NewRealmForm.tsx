@@ -26,7 +26,7 @@ import { useAdminClient } from "../../../admin-client";
 import { FormAccess } from "../../form/FormAccess";
 import { JsonFileUpload } from "../../json-file-upload/JsonFileUpload";
 import { DefaultSwitchControl } from "../../SwitchControl";
-import { useWhoAmI } from "../../../context/whoami/WhoAmI";
+import { useWhoAmI } from "../../../context/whoami/who-am-i";
 import { convertFormValuesToObject, convertToFormValues } from "../../../util";
 import { toRealm } from "../../../lib/realm";
 

@@ -23,7 +23,7 @@ import { Controller, FormProvider, UseFormReturn } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FormAccess } from "../../form/FormAccess";
 import { WizardSectionHeader } from "../../wizard-section-header/WizardSectionHeader";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { SelectOption } from "../../../../shared/pf-compat"
 
 

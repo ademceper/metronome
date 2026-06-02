@@ -32,7 +32,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../../admin-client";
 import { GroupPickerDialog } from "../../../group/GroupPickerDialog";
-import { GroupResourceContext } from "../../../../context/group-resource/GroupResourceContext";
+import { GroupResourceContext } from "../../../../context/group-resource/group-resource-context";
 
 
 const ButtonVariant = {

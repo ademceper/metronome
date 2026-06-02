@@ -34,10 +34,10 @@ import {
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import helpUrls from "../../help-urls";
 import { emptyFormatter } from "../../util";
-import useLocaleSort, { mapByKey } from "../../utils/useLocaleSort";
+import useLocaleSort, { mapByKey } from "../../utils/use-locale-sort";
 import { ChangeTypeDropdown } from "./ChangeTypeDropdown";
 import {
   ProtocolType,

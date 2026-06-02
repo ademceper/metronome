@@ -29,10 +29,10 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import { FormAccess } from "../../form/FormAccess";
 import { UserSelect } from "../../users/UserSelect";
-import { useAccess } from "../../../context/access/Access";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useAccess } from "../../../context/access/access";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { ForbiddenSection } from "../../forbidden-section";
-import useSortedResourceTypes from "../../../utils/useSortedResourceTypes";
+import useSortedResourceTypes from "../../../utils/use-sorted-resource-types";
 import { PermissionEvaluationResult } from "./PermissionEvaluationResult";
 import { COMPONENTS } from "../resource-types/ResourceType";
 

@@ -18,7 +18,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useTranslation } from "react-i18next";
 
 import { prettyPrintJSON } from "../../../util";
-import useToggle from "../../../utils/useToggle";
+import useToggle from "../../../utils/use-toggle";
 
 
 const ButtonVariant = {

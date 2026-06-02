@@ -26,8 +26,8 @@ import { FixedButtonsGroup } from "../../form/FixedButtonGroup";
 import { FormAccess } from "../../form/FormAccess";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { DefaultSwitchControl } from "../../SwitchControl";
-import { useAccess } from "../../../context/access/Access";
-import useToggle from "../../../utils/useToggle";
+import { useAccess } from "../../../context/access/access";
+import useToggle from "../../../utils/use-toggle";
 import { DecisionStrategySelect } from "./DecisionStrategySelect";
 import { ImportDialog } from "./ImportDialog";
 

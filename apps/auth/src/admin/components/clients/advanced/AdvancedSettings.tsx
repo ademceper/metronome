@@ -24,11 +24,11 @@ import { FormAccess } from "../../form/FormAccess";
 import { KeyValueInput } from "../../key-value-form/KeyValueInput";
 import { MultiLineInput } from "../../multi-line-input/MultiLineInput";
 import { TimeSelector } from "../../time-selector/TimeSelector";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertAttributeNameToForm } from "../../../util";
 import { FormFields } from "../ClientDetails";
 import { TokenLifespan } from "./TokenLifespan";
-import useIsFeatureEnabled, { Feature } from "../../../utils/useIsFeatureEnabled";
+import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 
 
 const ActionGroup = ({ children, className, ...props }: any) => (

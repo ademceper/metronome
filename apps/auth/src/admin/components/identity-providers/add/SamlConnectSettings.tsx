@@ -24,10 +24,10 @@ import { useTranslation } from "react-i18next";
 
 import { useAdminClient } from "../../../admin-client";
 import { FileUploadForm } from "../../json-file-upload/FileUploadForm";
-import { useRealm } from "../../../context/realm-context/RealmContext";
+import { useRealm } from "../../../context/realm-context/realm-context";
 import type { Environment } from "../../../environment";
 import { addTrailingSlash } from "../../../util";
-import { getAuthorizationHeaders } from "../../../utils/getAuthorizationHeaders";
+import { getAuthorizationHeaders } from "../../../utils/get-authorization-headers";
 import { DiscoveryEndpointField } from "../component/DiscoveryEndpointField";
 import { DescriptorSettings } from "./DescriptorSettings";
 

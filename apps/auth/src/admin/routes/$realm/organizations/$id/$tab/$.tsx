@@ -18,8 +18,8 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../../../../../components/routable-tabs/RoutableTabs";
-import { useRealm } from "../../../../../context/realm-context/RealmContext";
-import { useParams } from "../../../../../utils/useParams";
+import { useRealm } from "../../../../../context/realm-context/realm-context";
+import { useParams } from "../../../../../utils/use-params";
 import { DetailOrganizationHeader } from "../../../../../components/organizations/DetailOraganzationHeader";
 import { IdentityProviders } from "../../../../../components/organizations/IdentityProviders";
 import { MembersSection } from "../../../../../components/organizations/MembersSection";
@@ -34,7 +34,7 @@ import {
   OrganizationTab,
   toEditOrganization,
 } from "../../../../../lib/organizations";
-import { useAccess } from "../../../../../context/access/Access";
+import { useAccess } from "../../../../../context/access/access";
 import { AdminEvents } from "../../../../../components/events/AdminEvents";
 import { useState } from "react";
 import { Tabs, Tab, TabTitleText } from "../../../../../../shared/pf-compat"

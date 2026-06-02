@@ -25,11 +25,11 @@ import {
   useRoutableTab,
 } from "../routable-tabs/RoutableTabs";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useAccess } from "../../context/access/Access";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useAccess } from "../../context/access/access";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { toPermissionsConfigurationTabs } from "../../lib/permissions-configuration";
 import { convertFormValuesToObject, convertToFormValues } from "../../util";
-import useToggle from "../../utils/useToggle";
+import useToggle from "../../utils/use-toggle";
 import { PermissionsConfigurationTab } from "./permission-configuration/PermissionsConfigurationTab";
 import { PermissionsEvaluationTab } from "./permission-evaluation/PermissionsEvaluationTab";
 import { Tab, TabTitleText } from "../../../shared/pf-compat"

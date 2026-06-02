@@ -22,7 +22,7 @@ import {
 } from "@metronome/ui/components/table";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useServerInfo } from "../../context/server-info/ServerInfoProvider";
+import { useServerInfo } from "../../context/server-info/server-info-provider";
 
 
 const ExpandableSection = ({ toggleText, toggleTextExpanded, toggleTextCollapsed, isExpanded, onToggle, isDetached, children, ...props }: any) => (

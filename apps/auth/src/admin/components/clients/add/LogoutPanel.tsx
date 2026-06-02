@@ -18,7 +18,7 @@ import { HelpItem, TextControl } from "../../../../shared/keycloak-ui-shared";
 import { DefaultSwitchControl } from "../../SwitchControl";
 import { FixedButtonsGroup } from "../../form/FixedButtonGroup";
 import { FormAccess } from "../../form/FormAccess";
-import { useAccess } from "../../../context/access/Access";
+import { useAccess } from "../../../context/access/access";
 import { convertAttributeNameToForm } from "../../../util";
 import { FormFields } from "../ClientDetails";
 import type { ClientSettingsProps } from "../ClientSettings";

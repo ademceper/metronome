@@ -34,10 +34,10 @@ import { Link } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { EventsBanners } from "../banners";
 import DropdownPanel from "../dropdown-panel/DropdownPanel";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { toUser } from "../../lib/user";
-import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../utils/useFormatDate";
-import useLocaleSort from "../../utils/useLocaleSort";
+import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../utils/use-format-date";
+import useLocaleSort from "../../utils/use-locale-sort";
 import { SelectOption } from "../../../shared/pf-compat"
 
 const ActionGroup = ({ children, className, ...props }: any) => (

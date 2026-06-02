@@ -26,9 +26,9 @@ import type { KeyValueType } from "../../../../../../components/key-value-form/k
 import { KeycloakSpinner } from "../../../../../../../shared/keycloak-ui-shared";
 import { MultiLineInput } from "../../../../../../components/multi-line-input/MultiLineInput";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../../../context/access/Access";
+import { useAccess } from "../../../../../../context/access/access";
 import { convertFormValuesToObject, convertToFormValues } from "../../../../../../util";
-import { useParams } from "../../../../../../utils/useParams";
+import { useParams } from "../../../../../../utils/use-params";
 import { toAuthorizationTab } from "../../../../../../lib/clients";
 import { ResourceDetailsParams, toResourceDetails } from "../../../../../../lib/clients";
 import { ScopePicker } from "../../../../../../components/clients/authorization/ScopePicker";

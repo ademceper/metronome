@@ -40,12 +40,12 @@ import {
   useRoutableTab,
 } from "../../../../../../components/routable-tabs/RoutableTabs";
 import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
-import { useAccess } from "../../../../../../context/access/Access";
-import { useRealm } from "../../../../../../context/realm-context/RealmContext";
-import { useServerInfo } from "../../../../../../context/server-info/ServerInfoProvider";
+import { useAccess } from "../../../../../../context/access/access";
+import { useRealm } from "../../../../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../../../../context/server-info/server-info-provider";
 import { toUpperCase } from "../../../../../../util";
-import useIsFeatureEnabled, { Feature } from "../../../../../../utils/useIsFeatureEnabled";
-import { useParams } from "../../../../../../utils/useParams";
+import useIsFeatureEnabled, { Feature } from "../../../../../../utils/use-is-feature-enabled";
+import { useParams } from "../../../../../../utils/use-params";
 import { toIdentityProviderAddMapper } from "../../../../../../lib/identity-providers";
 import { toIdentityProviderEditMapper } from "../../../../../../lib/identity-providers";
 import {
@@ -71,7 +71,7 @@ import { KubernetesSettings } from "../../../../../../components/identity-provid
 import { JWTAuthorizationGrantAssertionSettings } from "../../../../../../components/identity-providers/add/JWTAuthorizationGrantAssertionSettings";
 import JWTAuthorizationGrantSettings from "../../../../../../components/identity-providers/add/JWTAuthorizationGrantSettings";
 import { DefaultSwitchControl } from "../../../../../../components/SwitchControl";
-import { GroupResourceContext } from "../../../../../../context/group-resource/GroupResourceContext";
+import { GroupResourceContext } from "../../../../../../context/group-resource/group-resource-context";
 import { Tab, TabTitleText } from "../../../../../../../shared/pf-compat"
 
 

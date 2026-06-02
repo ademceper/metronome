@@ -19,7 +19,7 @@ import {
 } from "../../../shared/keycloak-ui-shared";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useAdminClient } from "../../admin-client";
-import { useHash } from "./useHash";
+import { useHash } from "./use-hash";
 import { useTranslation } from "react-i18next";
 
 type RealmContextType = {

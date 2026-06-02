@@ -24,8 +24,8 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
 import { DynamicComponents } from "../dynamic/DynamicComponents";
-import { useRealm } from "../../context/realm-context/RealmContext";
-import { useParams } from "../../utils/useParams";
+import { useRealm } from "../../context/realm-context/realm-context";
+import { useParams } from "../../utils/use-params";
 import { type PAGE_PROVIDER, TAB_PROVIDER } from "./constants";
 import { toPage } from "../../lib/page";
 

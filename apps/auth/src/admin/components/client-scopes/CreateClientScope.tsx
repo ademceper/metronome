@@ -19,7 +19,7 @@ import {
   changeScope,
 } from "../client-scope/ClientScopeTypes";
 import { ViewHeader } from "../view-header/ViewHeader";
-import { useRealm } from "../../context/realm-context/RealmContext";
+import { useRealm } from "../../context/realm-context/realm-context";
 import { convertFormValuesToObject } from "../../util";
 import { ScopeForm } from "./details/ScopeForm";
 import { toClientScope } from "../../lib/client-scopes";

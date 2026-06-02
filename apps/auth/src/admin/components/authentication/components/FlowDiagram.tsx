@@ -24,7 +24,7 @@ import {
   useEdgesState,
   useNodesState,
 } from "reactflow";
-import { useUpdateEffect } from "../../../utils/useUpdateEffect";
+import { useUpdateEffect } from "../../../utils/use-update-effect";
 
 import type { ExecutionList, ExpandableExecution } from "../execution-model";
 import { providerConditionFilter } from "../FlowDetails";
