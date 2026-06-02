@@ -11,7 +11,6 @@
 
 import * as React from "react";
 import { cn } from "@metronome/ui/lib/utils";
-import style from "./form-title.module.css";
 
 
 const TitleSizes = {
@@ -45,7 +44,6 @@ export const FormTitle = ({
   <Title
     headingLevel={headingLevel}
     size={size}
-    className={style.title}
     id={id}
     tabIndex={0} // so that jumpLink sends focus to the section for a11y
     {...rest}

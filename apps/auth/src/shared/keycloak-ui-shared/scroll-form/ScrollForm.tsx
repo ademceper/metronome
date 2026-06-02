@@ -15,8 +15,6 @@ import { Fragment, ReactNode, useMemo } from "react";
 import { FormPanel } from "./FormPanel";
 import { ScrollPanel } from "./ScrollPanel";
 
-import style from "./scroll-form.module.css";
-
 
 const Grid = ({ children, className, ...props }: any) => (
   <div className={cn("grid gap-2", className)} {...props}>{children}</div>
@@ -75,11 +73,7 @@ export const ScrollForm = ({
         return (
           <Fragment key={title}>
             {borders ? (
-              <FormPanel
-                scrollId={scrollId}
-                title={title}
-                className={style.panel}
-              >
+              <FormPanel scrollId={scrollId} title={title}>
                 {panel}
               </FormPanel>
             ) : (
