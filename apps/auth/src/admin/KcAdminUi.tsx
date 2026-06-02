@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from "react"
 import { KeycloakProvider } from "../shared/keycloak-ui-shared"
 import { SessionExpirationWarningOverlay } from "../shared/SessionExpirationWarningOverlay"
-import { Root } from "./app/Root"
+import { Root } from "./root"
 import { startColorSchemeManagement } from "./colorScheme"
 import { environment } from "./environment"
 import { i18n } from "./i18n/i18n"

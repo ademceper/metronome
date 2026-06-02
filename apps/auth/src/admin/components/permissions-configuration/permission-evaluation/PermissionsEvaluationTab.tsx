@@ -31,7 +31,7 @@ import { FormAccess } from "../../form/FormAccess";
 import { UserSelect } from "../../users/UserSelect";
 import { useAccess } from "../../../context/access/Access";
 import { useRealm } from "../../../context/realm-context/RealmContext";
-import { ForbiddenSection } from "../../../app/ForbiddenSection";
+import { ForbiddenSection } from "../../forbidden-section";
 import useSortedResourceTypes from "../../../utils/useSortedResourceTypes";
 import { PermissionEvaluationResult } from "./PermissionEvaluationResult";
 import { COMPONENTS } from "../resource-types/ResourceType";

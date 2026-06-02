@@ -32,7 +32,7 @@ import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../admin-client";
-import { EventsBanners } from "../../app/Banners";
+import { EventsBanners } from "../banners";
 import DropdownPanel from "../dropdown-panel/DropdownPanel";
 import { useRealm } from "../../context/realm-context/RealmContext";
 import { toUser } from "../../lib/user";

@@ -40,7 +40,7 @@ import { PropsWithChildren, useMemo, useState } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
-import { EventsBanners } from "../../app/Banners";
+import { EventsBanners } from "../banners";
 import DropdownPanel from "../dropdown-panel/DropdownPanel";
 import CodeEditor from "../form/CodeEditor";
 import { useRealm } from "../../context/realm-context/RealmContext";

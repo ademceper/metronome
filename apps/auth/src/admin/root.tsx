@@ -10,7 +10,7 @@ import {
   RouterProvider,
 } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { routeTree } from "../routeTree.gen";
+import { routeTree } from "./routeTree.gen";
 
 // Mirror account/app/Root.tsx: build a single QueryClient + TanStack router
 // at this layer so the rest of the theme can lean on useQuery / typed Link

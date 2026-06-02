@@ -11,7 +11,7 @@
 
 import KeycloakAdminClient from "@keycloak/keycloak-admin-client";
 import { useEnvironment } from "../../shared/keycloak-ui-shared";
-import { PageNav } from "./PageNav";
+import { PageNav } from "./page-nav";
 import { PropsWithChildren, Suspense, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -29,8 +29,8 @@ import { ServerInfoProvider } from "../context/server-info/ServerInfoProvider";
 import { WhoAmIContextProvider } from "../context/whoami/WhoAmI";
 import type { Environment } from "../environment";
 import { SubGroups } from "../components/groups/SubGroupsContext";
-import { AuthWall } from "../root/AuthWall";
-import { Banners } from "./Banners";
+import { AuthWall } from "./auth-wall";
+import { Banners } from "./banners";
 
 export const AppContexts = ({ children }: PropsWithChildren) => (
   <ErrorBoundaryProvider>

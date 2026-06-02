@@ -20,7 +20,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { Question as HelpIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { Link, useHref } from "react-router-dom";
-import { PageHeaderClearCachesModal } from "./PageHeaderClearCachesModal";
+import { PageHeaderClearCachesModal } from "./page-header-clear-caches-modal";
 import { HelpHeader } from "../components/help-enabler/HelpHeader";
 import { useAccess } from "../context/access/Access";
 import { useRealm } from "../context/realm-context/RealmContext";
