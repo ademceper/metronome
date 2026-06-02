@@ -36,12 +36,17 @@ export function usePageHeader({
   description,
   actions,
 }: PageHeaderMeta): void {
-  const ctx = useContext(PageHeaderContext)
+  // Pull the stable `setMeta` reference out of the context value. The
+  // context wrapper (`{ meta, setMeta }`) is re-memoised every time
+  // `meta` changes, so depending on `ctx` here would re-fire the
+  // effect on every `setMeta` call and infinite-loop. `setMeta` itself
+  // is the `useState` dispatcher and is referentially stable.
+  const setMeta = useContext(PageHeaderContext)?.setMeta
   useEffect(() => {
-    if (!ctx) return
-    ctx.setMeta({ title, description, actions })
-    return () => ctx.setMeta({})
-  }, [ctx, title, description, actions])
+    if (!setMeta) return
+    setMeta({ title, description, actions })
+    return () => setMeta({})
+  }, [setMeta, title, description, actions])
 }
 
 /**
