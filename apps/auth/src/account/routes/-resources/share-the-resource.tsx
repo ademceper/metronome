@@ -28,7 +28,7 @@ import {
   type ShareTheResourceFormValues,
   shareTheResourceSchema,
 } from "../../schemas/share-the-resource"
-import { SharedWith } from "./SharedWith"
+import { SharedWith } from "./shared-with"
 
 type ShareTheResourceProps = {
   resource: Resource

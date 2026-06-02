@@ -28,11 +28,11 @@ import { accountKeys } from "../../lib/api";
 import { Permission, Resource } from "../../lib/api";
 import { useAccountAlerts } from "../../lib/use-account-alerts";
 import { ResourcesTabLoading } from "../-loading/resources";
-import { EditTheResource } from "./EditTheResource";
-import { PermissionRequest } from "./PermissionRequest";
-import { ResourceToolbar } from "./ResourceToolbar";
-import { ShareTheResource } from "./ShareTheResource";
-import { SharedWith } from "./SharedWith";
+import { EditTheResource } from "./edit-the-resource";
+import { PermissionRequest } from "./permission-request";
+import { ResourceToolbar } from "./resource-toolbar";
+import { ShareTheResource } from "./share-the-resource";
+import { SharedWith } from "./shared-with";
 
 type PermissionDetail = {
   contextOpen?: boolean;

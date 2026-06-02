@@ -5,8 +5,8 @@ import { EmptyRow } from "../../components/empty-row";
 import { Page } from "../../components/page";
 import { useLinkedAccounts } from "../../lib/api";
 import { LinkedAccountQueryParams } from "../../lib/api";
-import { AccountRow } from "./-AccountRow";
-import { LinkedAccountsToolbar } from "./-LinkedAccountsToolbar";
+import { AccountRow } from "./-account-row";
+import { LinkedAccountsToolbar } from "./-linked-accounts-toolbar";
 
 export const Route = createFileRoute("/account-security/linked-accounts")({
   component: LinkedAccounts,

@@ -7,7 +7,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@metronome/ui/components/tabs";
-import { ResourcesTab } from "./-resources/ResourcesTab";
+import { ResourcesTab } from "./-resources/resources-tab";
 import { Page } from "../components/page";
 
 export const Route = createFileRoute("/resources")({
