@@ -19,8 +19,8 @@ import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { useAccess } from "../../context/access/access";
 import useToggle from "../../utils/use-toggle";
 import { GroupsModal } from "./GroupsModal";
@@ -140,7 +140,8 @@ export const GroupTable = ({ refresh: viewRefresh }: GroupTableProps) => {
           onClose={() => setMove(undefined)}
         />
       )}
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={`${id}${key}`}
         onSelect={(rows) => setSelectedRows([...rows])}
         canSelectAll

@@ -10,13 +10,9 @@
 // @ts-nocheck
 
 import type ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
-import {
-  Action,
-  KeycloakDataTable,
-  ListEmptyState,
-  useAlerts,
-  useFetch,
-} from "../../../../../shared/keycloak-ui-shared";
+import { useAlerts, useFetch } from "../../../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
@@ -145,7 +141,8 @@ export const LdapMapperList = ({ toCreate, toDetail }: LdapMapperListProps) => {
   return (
     <>
       <DeleteConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={mappers}
         ariaLabelKey="ldapMappersList"

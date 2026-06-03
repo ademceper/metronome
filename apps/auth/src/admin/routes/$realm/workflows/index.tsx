@@ -3,12 +3,9 @@ import { createFileRoute } from "@tanstack/react-router"
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Switch as UISwitch } from "@metronome/ui/components/switch";
 import { cn } from "@metronome/ui/lib/utils";
-import {
-  Action,
-  KeycloakDataTable,
-  ListEmptyState,
-  useAlerts,
-} from "../../../../shared/keycloak-ui-shared";
+import { useAlerts } from "../../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import WorkflowRepresentation from "@keycloak/keycloak-admin-client/lib/defs/workflowRepresentation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -151,7 +148,8 @@ function WorkflowsSection() {
       />
       <PageSection variant="light" padding={{ default: "noPadding" }}>
         <DeleteConfirm />
-        <KeycloakDataTable
+        <DataTable
+          t={t}
           key={key}
           toolbarItem={
             <Button

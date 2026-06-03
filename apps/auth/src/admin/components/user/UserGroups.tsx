@@ -26,8 +26,8 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { GroupPath } from "../group/GroupPath";
 import { GroupPickerDialog } from "../group/GroupPickerDialog";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { useAccess } from "../../context/access/access";
 import { GroupResourceContext } from "../../context/group-resource/group-resource-context";
 
@@ -249,7 +249,8 @@ export const UserGroups = ({ user }: UserGroupsProps) => {
           />
         </GroupResourceContext>
       )}
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={loader}
         className="keycloak_user-section_groups-table"

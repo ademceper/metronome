@@ -10,11 +10,9 @@
 // @ts-nocheck
 
 import * as React from "react";
-import {
-  ListEmptyState,
-  PaginatingTableToolbar,
-  useFetch,
-} from "../../../../../shared/keycloak-ui-shared";
+import { useFetch } from "../../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";

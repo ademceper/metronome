@@ -11,7 +11,8 @@
 
 import * as React from "react";
 import { NetworkError } from "@keycloak/keycloak-admin-client";
-import { KeycloakDataTable, useAlerts } from "../../../shared/keycloak-ui-shared";
+import { useAlerts } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
@@ -290,7 +291,8 @@ export default function RealmSection() {
       )}
       <ViewHeader titleKey="manageRealms" divider={false} />
       <PageSection variant="light" className="pf-v5-u-p-0">
-        <KeycloakDataTable
+        <DataTable
+          t={t}
           key={key}
           loader={loader}
           isPaginated

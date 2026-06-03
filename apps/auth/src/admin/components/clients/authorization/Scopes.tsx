@@ -11,11 +11,9 @@
 
 import type PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import type ScopeRepresentation from "@keycloak/keycloak-admin-client/lib/defs/scopeRepresentation";
-import {
-  ListEmptyState,
-  PaginatingTableToolbar,
-  useFetch,
-} from "../../../../shared/keycloak-ui-shared";
+import { useFetch } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import {

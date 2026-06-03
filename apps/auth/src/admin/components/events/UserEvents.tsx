@@ -11,14 +11,9 @@
 
 import type EventRepresentation from "@keycloak/keycloak-admin-client/lib/defs/eventRepresentation";
 import type EventType from "@keycloak/keycloak-admin-client/lib/defs/eventTypes";
-import {
-  KeycloakDataTable,
-  KeycloakSelect,
-  ListEmptyState,
-  SelectVariant,
-  TextControl,
-  useFetch,
-} from "../../../shared/keycloak-ui-shared";
+import { KeycloakSelect, SelectVariant, TextControl, useFetch } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Input as UIInput } from "@metronome/ui/components/input";
@@ -541,7 +536,8 @@ export const UserEvents = ({ user, client }: UserEventsProps) => {
   return (
     <>
       {!userEventsEnabled && <EventsBanners type="userEvents" />}
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={loader}
         detailColumns={[

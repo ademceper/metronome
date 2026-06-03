@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { TableToolbar } from "../../../shared/keycloak-ui-shared";
+import { TableToolbar } from "@metronome/ui/components/table-toolbar";
 import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
 import { cn } from "@metronome/ui/lib/utils";
 import {

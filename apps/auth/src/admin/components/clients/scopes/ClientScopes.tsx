@@ -38,8 +38,8 @@ import {
   removeClientScope,
 } from "../../client-scope/ClientScopeTypes";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
-import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import { useAccess } from "../../../context/access/access";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import { translationFormatter } from "../../../utils/translation-formatter";
@@ -339,7 +339,8 @@ export const ClientScopes = ({
         />
       )}
 
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={loader}
         ariaLabelKey="clientScopeList"

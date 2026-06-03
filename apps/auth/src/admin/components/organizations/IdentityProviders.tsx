@@ -10,12 +10,9 @@
 // @ts-nocheck
 
 import IdentityProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
-import {
-  KeycloakDataTable,
-  ListEmptyState,
-  useAlerts,
-  useFetch,
-} from "../../../shared/keycloak-ui-shared";
+import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Switch as UISwitch } from "@metronome/ui/components/switch";
 import { cn } from "@metronome/ui/lib/utils";
@@ -210,7 +207,8 @@ export const IdentityProviders = () => {
             instructions={t("noIdentityProviderInstructions")}
           />
         ) : (
-          <KeycloakDataTable
+          <DataTable
+            t={t}
             key={key}
             loader={loader}
             ariaLabelKey="identityProviders"

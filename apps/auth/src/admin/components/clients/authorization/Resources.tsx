@@ -11,12 +11,9 @@
 
 import type PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import type ResourceRepresentation from "@keycloak/keycloak-admin-client/lib/defs/resourceRepresentation";
-import {
-  ListEmptyState,
-  PaginatingTableToolbar,
-  useAlerts,
-  useFetch,
-} from "../../../../shared/keycloak-ui-shared";
+import { useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
 import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";

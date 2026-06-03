@@ -19,8 +19,8 @@ import type ProtocolMapperRepresentation from "@keycloak/keycloak-admin-client/l
 import type { ProtocolMapperTypeRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/serverInfoRepesentation";
 
 import { useServerInfo } from "../../../context/server-info/server-info-provider";
-import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
-import { KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/data-table";
 import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
 
 
@@ -269,7 +269,8 @@ export const AddMapperDialog = (props: AddMapperDialogProps) => {
         </DataList>
       )}
       {isBuiltIn && (
-        <KeycloakDataTable
+        <DataTable
+          t={t}
           loader={rows}
           onSelect={setSelectedRows}
           canSelectAll

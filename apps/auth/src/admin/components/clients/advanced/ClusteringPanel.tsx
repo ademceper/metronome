@@ -19,8 +19,8 @@ import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { FormAccess } from "../../form/FormAccess";
-import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
-import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import { TimeSelectorForm } from "../../time-selector/TimeSelectorForm";
 import useFormatDate, { FORMAT_DATE_AND_TIME } from "../../../utils/use-format-date";
 import { AddHostDialog } from "./AddHostDialog";
@@ -201,7 +201,8 @@ export const ClusteringPanel = ({
           onToggle={(_event, val) => setExpanded(val)}
           isExpanded={expanded}
         >
-          <KeycloakDataTable
+          <DataTable
+            t={t}
             key={key}
             ariaLabelKey="registeredClusterNodes"
             loader={() =>

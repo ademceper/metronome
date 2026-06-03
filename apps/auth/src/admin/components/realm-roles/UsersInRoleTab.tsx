@@ -18,8 +18,8 @@ import { useNavigate } from "react-router-dom";
 import { useHelp } from "../../../shared/keycloak-ui-shared";
 import { useAdminClient } from "../../admin-client";
 import type { ClientRoleParams } from "../../lib/clients";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { useRealm } from "../../context/realm-context/realm-context";
 import { emptyFormatter, upperCaseFormatter } from "../../util";
 import { useParams } from "../../utils/use-params";
@@ -120,7 +120,8 @@ export const UsersInRoleTab = () => {
 
   return (
     <PageSection data-testid="users-page" variant="light">
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         isPaginated
         loader={loader}
         ariaLabelKey="roleList"

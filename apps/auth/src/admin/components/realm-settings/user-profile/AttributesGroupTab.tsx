@@ -16,8 +16,8 @@ import { useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
-import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import { toEditAttributesGroup } from "../../../lib/realm-settings";
 import { toNewAttributesGroup } from "../../../lib/realm-settings";
@@ -180,7 +180,8 @@ export const AttributesGroupTab = ({
   return (
     <PageSection variant="light" className="pf-v5-u-p-0">
       <DeleteConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={loader}
         ariaLabelKey="tableTitle"

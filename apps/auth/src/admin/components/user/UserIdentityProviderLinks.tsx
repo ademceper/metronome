@@ -26,7 +26,7 @@ import { FormPanel } from "../../../shared/keycloak-ui-shared";
 import { useAdminClient } from "../../admin-client";
 import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { useRealm } from "../../context/realm-context/realm-context";
 import { useServerInfo } from "../../context/server-info/server-info-provider";
 import { toIdentityProvider } from "../../lib/identity-providers";
@@ -336,7 +336,8 @@ export const UserIdentityProviderLinks = ({
               {t("linkedIdPsText")}
             </Text>
           </TextContent>
-          <KeycloakDataTable
+          <DataTable
+            t={t}
             loader={linkedIdPsLoader}
             key={key}
             isPaginated={false}
@@ -360,7 +361,8 @@ export const UserIdentityProviderLinks = ({
             {isLoading ? (
               <Spinner />
             ) : (
-              <KeycloakDataTable
+              <DataTable
+                t={t}
                 loader={availableIdPsLoader}
                 key={key}
                 isPaginated

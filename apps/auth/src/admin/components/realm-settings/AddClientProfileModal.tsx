@@ -11,7 +11,8 @@
 
 import type ClientProfileRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientProfileRepresentation";
 import type RoleRepresentation from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
-import { KeycloakDataTable, useFetch } from "../../../shared/keycloak-ui-shared";
+import { useFetch } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
@@ -20,7 +21,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { translationFormatter } from "../../utils/translation-formatter";
 
 
@@ -185,7 +186,8 @@ export const AddClientProfileModal = (props: AddClientProfileModalProps) => {
         </Button>,
       ]}
     >
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         loader={loader}
         ariaLabelKey="profilesList"
         searchPlaceholderKey="searchProfile"

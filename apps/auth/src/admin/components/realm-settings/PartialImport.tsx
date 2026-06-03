@@ -31,7 +31,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { JsonFileUpload } from "../json-file-upload/JsonFileUpload";
-import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { useRealm } from "../../context/realm-context/realm-context";
 import { SelectOption } from "../../../shared/pf-compat"
 
@@ -597,7 +597,8 @@ export const PartialImportDialog = (props: PartialImportProps) => {
           isInline
           title={importCompleteMessage()}
         />
-        <KeycloakDataTable
+        <DataTable
+          t={t}
           loader={loader}
           isPaginated
           ariaLabelKey="partialImport"

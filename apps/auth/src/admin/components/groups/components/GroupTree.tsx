@@ -17,11 +17,8 @@ import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuCo
 import { Separator as UISeparator } from "@metronome/ui/components/separator";
 import { Spinner as UISpinner } from "@metronome/ui/components/spinner";
 import { cn } from "@metronome/ui/lib/utils";
-import {
-  PaginatingTableToolbar,
-  useAlerts,
-  useFetch,
-} from "../../../../shared/keycloak-ui-shared";
+import { useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
 import { CaretRight as AngleRightIcon, DotsThreeVertical as EllipsisVIcon } from "@phosphor-icons/react"
 import { useGroupResource } from "../../../context/group-resource/group-resource-context";
 import { unionBy } from "lodash-es";

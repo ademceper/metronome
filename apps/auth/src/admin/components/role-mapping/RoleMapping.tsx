@@ -24,8 +24,8 @@ import { useAdminClient } from "../../admin-client";
 import { emptyFormatter, upperCaseFormatter } from "../../util";
 import { translationFormatter } from "../../utils/translation-formatter";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import {
   AddRoleButton,
   AddRoleMappingModal,
@@ -100,7 +100,7 @@ export type CompositeRole = RoleRepresentation & {
 export type Row = {
   client?: ClientRepresentation;
   role: RoleRepresentation | CompositeRole;
-  id?: string; // KeycloakDataTable expects an id for the row
+  id?: string; // DataTable expects an id for the row
 };
 
 export const mapRoles = (
@@ -246,7 +246,8 @@ export const RoleMapping = ({
         />
       )}
       <DeleteConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         data-testid="assigned-roles"
         key={`${id}${key}`}
         loader={loader}

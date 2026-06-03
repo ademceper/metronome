@@ -32,7 +32,7 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../routable-tabs/RoutableTabs";
-import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import { ViewHeader } from "../view-header/ViewHeader";
 import { useAccess } from "../../context/access/access";
 import { useRealm } from "../../context/realm-context/realm-context";
@@ -272,7 +272,8 @@ export default function ClientsSection() {
             {...listTab}
           >
             <DeleteConfirm />
-            <KeycloakDataTable
+            <DataTable
+              t={t}
               key={key}
               loader={loader}
               isPaginated

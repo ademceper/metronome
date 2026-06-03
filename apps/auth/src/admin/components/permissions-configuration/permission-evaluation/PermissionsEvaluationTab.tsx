@@ -14,11 +14,8 @@ import type ClientRepresentation from "@keycloak/keycloak-admin-client/lib/defs/
 import type EvaluationResultRepresentation from "@keycloak/keycloak-admin-client/lib/defs/evaluationResultRepresentation";
 import PolicyEvaluationResponse from "@keycloak/keycloak-admin-client/lib/defs/policyEvaluationResponse";
 import type ResourceEvaluation from "@keycloak/keycloak-admin-client/lib/defs/resourceEvaluation";
-import {
-  ListEmptyState,
-  SelectControl,
-  useAlerts,
-} from "../../../../shared/keycloak-ui-shared";
+import { SelectControl, useAlerts } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";

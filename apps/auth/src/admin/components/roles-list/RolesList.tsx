@@ -23,8 +23,8 @@ import { toRealmSettings } from "../../lib/realm-settings";
 import { emptyFormatter, upperCaseFormatter } from "../../util";
 import { translationFormatter } from "../../utils/translation-formatter";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 
 const AlertVariant = {
   default: "default",
@@ -162,7 +162,8 @@ export const RolesList = ({
   return (
     <>
       <DeleteConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={selectedRole ? selectedRole.id : "roleList"}
         loader={loader!}
         ariaLabelKey="roleList"

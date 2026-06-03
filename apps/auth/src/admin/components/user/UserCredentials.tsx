@@ -34,7 +34,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { toUpperCase } from "../../util";
 import { FederatedUserLink } from "./FederatedUserLink";
 import { CredentialRow } from "./user-credentials/CredentialRow";

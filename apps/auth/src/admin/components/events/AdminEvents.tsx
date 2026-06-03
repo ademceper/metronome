@@ -10,15 +10,9 @@
 // @ts-nocheck
 
 import type AdminEventRepresentation from "@keycloak/keycloak-admin-client/lib/defs/adminEventRepresentation";
-import {
-  Action,
-  KeycloakDataTable,
-  KeycloakSelect,
-  ListEmptyState,
-  SelectVariant,
-  TextControl,
-  useFetch,
-} from "../../../shared/keycloak-ui-shared";
+import { KeycloakSelect, SelectVariant, TextControl, useFetch } from "../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
@@ -405,7 +399,8 @@ export const AdminEvents = ({ resourcePath }: AdminEventsProps) => {
         </DisplayDialog>
       )}
       {!adminEventsEnabled && <EventsBanners type="adminEvents" />}
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={loader}
         detailColumns={[

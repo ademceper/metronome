@@ -24,8 +24,8 @@ import {
   ClientScopeType,
   clientScopeTypesDropdown,
 } from "../../client-scope/ClientScopeTypes";
-import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
-import { KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/data-table";
 import useToggle from "../../../utils/use-toggle";
 import { getProtocolName } from "../utils";
 import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
@@ -317,7 +317,8 @@ export const AddScopeDialog = ({
             ]
       }
     >
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         loader={clientScopes}
         ariaLabelKey="chooseAMapperType"
         searchPlaceholderKey={

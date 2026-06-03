@@ -1,12 +1,9 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
 import { fetchWithError } from "@keycloak/keycloak-admin-client";
-import {
-  KeycloakDataTable,
-  KeycloakSpinner,
-  ListEmptyState,
-  useAlerts,
-} from "../../../../shared/keycloak-ui-shared";
+import { KeycloakSpinner, useAlerts } from "../../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
@@ -228,7 +225,8 @@ function AuthenticationSection() {
             title={<TabTitleText>{t("flows")}</TabTitleText>}
             {...flowsTab}
           >
-            <KeycloakDataTable
+            <DataTable
+              t={t}
               key={key}
               loader={loader}
               ariaLabelKey="titleAuthentication"

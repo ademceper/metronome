@@ -14,14 +14,8 @@ import type ClientScopeRepresentation from "@keycloak/keycloak-admin-client/lib/
 import type ProtocolMapperRepresentation from "@keycloak/keycloak-admin-client/lib/defs/protocolMapperRepresentation";
 import type RoleRepresentation from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
 import type { ProtocolMapperTypeRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/serverInfoRepesentation";
-import {
-  HelpItem,
-  KeycloakDataTable,
-  KeycloakSelect,
-  SelectVariant,
-  useFetch,
-  useHelp,
-} from "../../../../shared/keycloak-ui-shared";
+import { HelpItem, KeycloakSelect, SelectVariant, useFetch, useHelp } from "../../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Input as UIInput } from "@metronome/ui/components/input";
 import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
@@ -119,7 +113,8 @@ const ProtocolMappers = ({
     setKey(key + 1);
   }, [protocolMappers]);
   return (
-    <KeycloakDataTable
+    <DataTable
+      t={t}
       key={key}
       loader={() => Promise.resolve(protocolMappers)}
       ariaLabelKey="effectiveProtocolMappers"
@@ -158,7 +153,8 @@ const EffectiveRoles = ({
   }, [effectiveRoles]);
 
   return (
-    <KeycloakDataTable
+    <DataTable
+      t={t}
       key={key}
       loader={() => Promise.resolve(effectiveRoles)}
       ariaLabelKey="effectiveRoleScopeMappings"

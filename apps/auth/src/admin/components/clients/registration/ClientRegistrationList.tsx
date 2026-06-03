@@ -10,11 +10,8 @@
 // @ts-nocheck
 
 import ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
-import {
-  ListEmptyState,
-  useAlerts,
-  useFetch,
-} from "../../../../shared/keycloak-ui-shared";
+import { useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
@@ -22,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
-import { Action, KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import useToggle from "../../../utils/use-toggle";
 import { toRegistrationProvider } from "../../../lib/clients";
@@ -154,7 +151,8 @@ export const ClientRegistrationList = ({
         />
       )}
       <DeleteConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         ariaLabelKey="clientRegistration"
         searchPlaceholderKey={t("searchClientRegistration")}
         data-testid={`clientRegistration-${subType}`}

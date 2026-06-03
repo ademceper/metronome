@@ -11,11 +11,9 @@
 
 import ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import type { ComponentQuery } from "@keycloak/keycloak-admin-client/lib/resources/components";
-import {
-  KeycloakDataTable,
-  ListEmptyState,
-  useAlerts,
-} from "../../../shared/keycloak-ui-shared";
+import { useAlerts } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 type IRowData = any;
@@ -142,7 +140,8 @@ export default function PageList() {
     <PageSection variant="light" className="pf-v5-u-p-0">
       <DeleteConfirm />
       <ViewHeader titleKey={page.id} subKey={page.helpText} divider={false} />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         toolbarItem={
           <ToolbarItem>

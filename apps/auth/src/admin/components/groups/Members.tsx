@@ -13,13 +13,9 @@ import * as React from "react";
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
 import { SubGroupQuery } from "@keycloak/keycloak-admin-client/lib/resources/groups";
-import {
-  Action,
-  KeycloakDataTable,
-  ListEmptyState,
-  useAlerts,
-  useFetch,
-} from "../../../shared/keycloak-ui-shared";
+import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";
@@ -273,7 +269,8 @@ export const Members = () => {
           orgId={groups.getOrgId()}
         />
       )}
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         data-testid="members-table"
         key={`${id}${key}${includeSubGroup}`}
         loader={loader}

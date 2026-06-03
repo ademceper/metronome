@@ -26,8 +26,8 @@ import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../admin-client";
 import DropdownPanel from "../../dropdown-panel/DropdownPanel";
-import { ListEmptyState } from "../../../../shared/keycloak-ui-shared";
-import { KeycloakDataTable } from "../../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import { useServerInfo } from "../../../context/server-info/server-info-provider";
 import { useWhoAmI } from "../../../context/whoami/who-am-i";
@@ -644,7 +644,8 @@ export const EffectiveMessageBundles = ({
   }
 
   return (
-    <KeycloakDataTable
+    <DataTable
+      t={t}
       key={key}
       loader={loader}
       ariaLabelKey="effectiveMessageBundles"

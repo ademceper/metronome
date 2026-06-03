@@ -19,8 +19,8 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import { emptyFormatter } from "../../util";
 import useFormatDate from "../../utils/use-format-date";
 import { useParams } from "../../utils/use-params";
@@ -120,7 +120,8 @@ export const UserConsents = () => {
   return (
     <>
       <DeleteConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         loader={loader}
         key={key}
         ariaLabelKey="roleList"

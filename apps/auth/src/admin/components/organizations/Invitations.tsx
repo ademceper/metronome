@@ -21,8 +21,8 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { CheckboxFilterComponent } from "../dynamic/CheckboxFilterComponent";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { useParams } from "../../utils/use-params";
 import useToggle from "../../utils/use-toggle";
 import { InviteMemberModal } from "./InviteMemberModal";
@@ -289,7 +289,8 @@ export const Invitations = () => {
           }}
         />
       )}
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={loader}
         isPaginated

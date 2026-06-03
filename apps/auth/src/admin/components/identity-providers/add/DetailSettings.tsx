@@ -14,15 +14,9 @@ import type IdentityProviderMapperRepresentation from "@keycloak/keycloak-admin-
 import IdentityProviderRepresentation, {
   IdentityProviderType,
 } from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
-import {
-  Action,
-  KeycloakDataTable,
-  KeycloakSpinner,
-  ListEmptyState,
-  ScrollForm,
-  useAlerts,
-  useFetch,
-} from "../../../../shared/keycloak-ui-shared";
+import { KeycloakSpinner, ScrollForm, useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
 import { Separator as UISeparator } from "@metronome/ui/components/separator";
@@ -729,7 +723,8 @@ export default function DetailSettings() {
             {...mappersTab}
           >
             <GroupResourceContext value={groupResource}>
-              <KeycloakDataTable
+              <DataTable
+                t={t}
                 emptyState={
                   <ListEmptyState
                     message={t("noMappers")}

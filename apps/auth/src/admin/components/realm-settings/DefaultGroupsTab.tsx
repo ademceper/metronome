@@ -11,15 +11,9 @@
 
 import * as React from "react";
 import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/groupRepresentation";
-import {
-  Action,
-  KeycloakDataTable,
-  KeycloakSpinner,
-  ListEmptyState,
-  useAlerts,
-  useFetch,
-  useHelp,
-} from "../../../shared/keycloak-ui-shared";
+import { KeycloakSpinner, useAlerts, useFetch, useHelp } from "../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
 import { Popover as UIPopover, PopoverContent as UIPopoverContent, PopoverTrigger as UIPopoverTrigger } from "@metronome/ui/components/popover";
@@ -253,7 +247,8 @@ export const DefaultsGroupsTab = () => {
           </TextContent>
         </Popover>
       )}
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         canSelectAll
         onSelect={(rows) => setSelectedRows([...rows])}

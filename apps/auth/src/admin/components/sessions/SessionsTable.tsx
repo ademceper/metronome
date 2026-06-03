@@ -23,13 +23,8 @@ import { useAdminClient } from "../../admin-client";
 import { toClient } from "../../lib/clients";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "../../../shared/keycloak-ui-shared";
-import {
-  Action,
-  Field,
-  KeycloakDataTable,
-  LoaderFunction,
-} from "../../../shared/keycloak-ui-shared";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, Field, DataTable, LoaderFunction } from "@metronome/ui/components/data-table";
 import { useRealm } from "../../context/realm-context/realm-context";
 import { useWhoAmI } from "../../context/whoami/who-am-i";
 import { UserRoute, toUser } from "../../lib/user";
@@ -256,7 +251,8 @@ export default function SessionsTable({
   return (
     <>
       <LogoutConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={key}
         loader={loader}
         ariaLabelKey="titleSessions"

@@ -9,10 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  KeycloakDataTable,
-  ListEmptyState,
-} from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Accordion as UIAccordion, AccordionContent as UIAccordionContent, AccordionItem as UIAccordionItem, AccordionTrigger as UIAccordionTrigger } from "@metronome/ui/components/accordion";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
@@ -223,7 +221,8 @@ export const UserWorkflows = ({ user }: UserWorkflowProps) => {
   };
 
   return (
-    <KeycloakDataTable
+    <DataTable
+      t={t}
       key={key}
       loader={workflowsLoader}
       ariaLabelKey="titleWorkflows"

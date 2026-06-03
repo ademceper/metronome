@@ -9,11 +9,8 @@
 
 // @ts-nocheck
 
-import {
-  Action,
-  KeycloakDataTable,
-  ListEmptyState,
-} from "../../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
@@ -89,7 +86,8 @@ export function EventsTypeTable({
     description: t(`eventTypes.${type}.description`),
   }));
   return (
-    <KeycloakDataTable
+    <DataTable
+      t={t}
       ariaLabelKey={ariaLabelKey}
       searchPlaceholderKey="searchEventType"
       loader={data}

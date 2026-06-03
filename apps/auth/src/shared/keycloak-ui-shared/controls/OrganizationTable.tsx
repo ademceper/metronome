@@ -16,8 +16,11 @@ const TableText = ({ children }: any) => (
 );
 import { FunctionComponent, PropsWithChildren, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import type { Action, LoaderFunction } from "./table/KeycloakDataTable";
-import { KeycloakDataTable } from "./table/KeycloakDataTable";
+import {
+  DataTable,
+  type Action,
+  type LoaderFunction,
+} from "@metronome/ui/components/data-table";
 
 
 const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
@@ -116,7 +119,8 @@ export const OrganizationTable = ({
   const { t } = useTranslation();
 
   return (
-    <KeycloakDataTable
+    <DataTable
+      t={t}
       loader={loader}
       isPaginated={isPaginated}
       isSearching={isSearching}

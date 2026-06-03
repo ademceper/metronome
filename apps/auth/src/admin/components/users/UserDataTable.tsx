@@ -12,13 +12,9 @@
 import * as React from "react";
 import type { UserProfileConfig } from "@keycloak/keycloak-admin-client/lib/defs/userProfileMetadata";
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
-import {
-  KeycloakDataTable,
-  KeycloakSpinner,
-  ListEmptyState,
-  useAlerts,
-  useFetch,
-} from "../../../shared/keycloak-ui-shared";
+import { KeycloakSpinner, useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
@@ -433,7 +429,8 @@ export function UserDataTable() {
     <>
       <DeleteConfirm />
       <UnlockUsersConfirm />
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         isSearching={
           searchUser !== "" || activeFilters.userAttribute.length !== 0
         }

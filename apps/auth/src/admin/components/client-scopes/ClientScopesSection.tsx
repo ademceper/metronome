@@ -32,7 +32,7 @@ import {
   removeScope,
 } from "../client-scope/ClientScopeTypes";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { Action, KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
 import { ViewHeader } from "../view-header/ViewHeader";
 import { useRealm } from "../../context/realm-context/realm-context";
 import helpUrls from "../../help-urls";
@@ -277,7 +277,8 @@ export default function ClientScopesSection() {
         helpUrl={helpUrls.clientScopesUrl}
       />
       <PageSection variant="light" className="pf-v5-u-p-0">
-        <KeycloakDataTable
+        <DataTable
+          t={t}
           key={key}
           loader={loader}
           ariaLabelKey="clientScopeList"

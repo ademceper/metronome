@@ -4,14 +4,9 @@ import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import * as React from "react";
 import type IdentityProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
 import type { IdentityProvidersQuery } from "@keycloak/keycloak-admin-client/lib/resources/identityProviders";
-import {
-  Action,
-  IconMapper,
-  KeycloakDataTable,
-  ListEmptyState,
-  useAlerts,
-  useFetch,
-} from "../../../../shared/keycloak-ui-shared";
+import { IconMapper, useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
+import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { CardTitle as UICardTitle } from "@metronome/ui/components/card";
@@ -351,7 +346,8 @@ function IdentityProvidersSection() {
           </>
         )}
         {hasProviders && (
-          <KeycloakDataTable
+          <DataTable
+            t={t}
             key={key}
             loader={loader}
             isPaginated

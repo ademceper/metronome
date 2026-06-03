@@ -12,11 +12,9 @@
 import * as React from "react";
 import PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import { PolicyQuery } from "@keycloak/keycloak-admin-client/lib/resources/clients";
-import {
-  KeycloakDataTable,
-  ListEmptyState,
-  useFetch,
-} from "../../../../shared/keycloak-ui-shared";
+import { useFetch } from "../../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
@@ -209,7 +207,8 @@ export const ExistingPoliciesDialog = ({
         </>,
       ]}
     >
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         key={filterType}
         loader={loader}
         ariaLabelKey={t("chooseAPolicyType")}

@@ -11,7 +11,7 @@
 
 import OrganizationRepresentation from "@keycloak/keycloak-admin-client/lib/defs/organizationRepresentation";
 import UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
-import { KeycloakDataTable } from "../../../shared/keycloak-ui-shared";
+import { DataTable } from "@metronome/ui/components/data-table";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { cn } from "@metronome/ui/lib/utils";
@@ -142,7 +142,8 @@ export const OrganizationModal = ({
         </Button>,
       ]}
     >
-      <KeycloakDataTable
+      <DataTable
+        t={t}
         loader={loader}
         isPaginated
         ariaLabelKey="organizationsList"
