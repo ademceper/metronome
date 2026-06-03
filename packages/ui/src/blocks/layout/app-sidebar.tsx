@@ -18,6 +18,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarTrigger,
 } from "@metronome/ui/components/sidebar"
 import { cn } from "@metronome/ui/lib/utils"
 import type { ComponentProps, ComponentType, ReactNode } from "react"
@@ -115,10 +116,6 @@ export function AppSidebar({
   insetClassName,
 }: AppSidebarProps) {
   return (
-    // Pin the wrapper to the viewport so scroll happens INSIDE the inset
-    // rather than the body. shadcn's default `min-h-svh` lets long pages
-    // grow the document; that surfaces an outer scrollbar and the sidebar
-    // drifts off with it. h-svh + overflow-hidden caps the wrapper.
     <SidebarProvider
       {...providerProps}
       className={cn("h-svh overflow-hidden", providerProps?.className)}
@@ -141,16 +138,12 @@ export function AppSidebar({
       </Sidebar>
       <SidebarInset
         className={cn(
-          // min-h-0 lets the inset shrink past its content in the flex row;
-          // overflow-y-auto gives it its own scroll surface; overscroll-none
-          // kills the browser rubber-band so no phantom gap appears when
-          // the user scrolls past the edge.
           "min-h-0 overflow-y-auto overscroll-none",
           insetClassName
         )}
       >
         <PageHeaderProvider>
-          <PageHeaderBar />
+          <PageHeaderBar leading={<SidebarTrigger />} />
           {children}
         </PageHeaderProvider>
       </SidebarInset>

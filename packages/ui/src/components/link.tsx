@@ -13,11 +13,16 @@ type LinkBaseProps = {
 type LinkAnchorProps = LinkBaseProps &
   Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "className" | "children"> & {
     as?: "a"
+    /** Hide the animated trailing arrow. Useful when rendering long URLs in
+     *  tight contexts (table cells, badges) where the arrow visually clutters
+     *  the layout. */
+    hideArrow?: boolean
   }
 
 type LinkButtonProps = LinkBaseProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> & {
     as: "button"
+    hideArrow?: boolean
   }
 
 export type LinkProps = LinkAnchorProps | LinkButtonProps
@@ -45,7 +50,7 @@ const trailingArrow = (
 
 export function Link(props: LinkProps) {
   if (props.as === "button") {
-    const { as: _as, children, className, ...rest } = props
+    const { as: _as, children, className, hideArrow, ...rest } = props
     return (
       <button
         type="button"
@@ -53,15 +58,15 @@ export function Link(props: LinkProps) {
         {...rest}
       >
         {children}
-        {trailingArrow}
+        {hideArrow ? null : trailingArrow}
       </button>
     )
   }
-  const { as: _as, children, className, ...rest } = props
+  const { as: _as, children, className, hideArrow, ...rest } = props
   return (
     <a className={cn(linkClass, className)} {...rest}>
       {children}
-      {trailingArrow}
+      {hideArrow ? null : trailingArrow}
     </a>
   )
 }

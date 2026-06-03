@@ -63,34 +63,48 @@ export function PageHeaderProvider({ children }: { children: ReactNode }) {
   )
 }
 
+export type PageHeaderBarProps = HTMLAttributes<HTMLDivElement> & {
+  /** Optional left-aligned slot. Useful for the SidebarTrigger so the bar
+   *  always renders even when a page hasn't called `usePageHeader`. */
+  leading?: ReactNode
+}
+
 export function PageHeaderBar({
   className,
+  leading,
   ...rest
-}: HTMLAttributes<HTMLDivElement>) {
+}: PageHeaderBarProps) {
   const ctx = useContext(PageHeaderContext)
   const meta = ctx?.meta
-  if (!meta || (!meta.title && !meta.description && !meta.actions)) return null
+  const hasMeta = !!meta && (meta.title || meta.description || meta.actions)
+  if (!leading && !hasMeta) return null
   return (
     <div
       className={cn(
-        "sticky top-0 z-10 flex items-start justify-between gap-4 border-b bg-background/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-background/75",
+        "sticky top-0 z-20 flex h-11 shrink-0 items-center gap-2 border-b bg-background/95 px-3 backdrop-blur supports-[backdrop-filter]:bg-background/75",
         className
       )}
       {...rest}
     >
-      <div className="min-w-0 flex-1">
-        {meta.title ? (
-          <h1 className="truncate font-bold text-2xl leading-tight tracking-tight">
+      {leading ? (
+        <div className="flex shrink-0 items-center">{leading}</div>
+      ) : null}
+      <div className="flex min-w-0 flex-1 items-center gap-2">
+        {meta?.title ? (
+          <div aria-hidden="true" className="h-4 w-px shrink-0 bg-border" />
+        ) : null}
+        {meta?.title ? (
+          <h1 className="truncate font-medium text-base leading-tight">
             {meta.title}
           </h1>
         ) : null}
-        {meta.description ? (
-          <p className="mt-0.5 truncate text-muted-foreground text-sm">
+        {meta?.description ? (
+          <p className="truncate text-muted-foreground text-xs">
             {meta.description}
           </p>
         ) : null}
       </div>
-      {meta.actions ? (
+      {meta?.actions ? (
         <div className="flex shrink-0 items-center gap-2">{meta.actions}</div>
       ) : null}
     </div>

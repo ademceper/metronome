@@ -22,7 +22,6 @@ import {
 import { TablePaginationFooter } from "@metronome/ui/components/table/table-pagination-footer"
 import { cn } from "@metronome/ui/lib/utils"
 import {
-  ArrowsClockwiseIcon,
   CaretDownIcon,
   CaretRightIcon,
   DotsThreeIcon,
@@ -531,7 +530,9 @@ function DataTableToolbar({
             </div>
           </div>
         )}
-        <div className="flex flex-wrap items-center gap-2">{toolbarItem}</div>
+        <div className="ms-auto flex flex-wrap items-center gap-2">
+          {toolbarItem}
+        </div>
       </div>
       {subToolbar && (
         <div className="flex items-center gap-2">{subToolbar}</div>
@@ -761,73 +762,70 @@ export function DataTable<T>({
             }}
             searchPlaceholder={resolvedSearchPlaceholder}
             searchTypeComponent={searchTypeComponent}
-            toolbarItem={
-              <>
-                {toolbarItem}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={refresh}
-                  data-testid="refresh"
-                >
-                  <ArrowsClockwiseIcon aria-hidden="true" size={14} />{" "}
-                  {t("refresh")}
-                </Button>
-              </>
-            }
+            toolbarItem={toolbarItem}
             subToolbar={subToolbar}
             t={t}
           />
-          {!loading && !noData && (
-            <InnerTable<T>
-              ariaLabel={resolvedAriaLabel}
-              columns={columns}
-              rows={data.slice(0, maxRows)}
-              actions={convertAction()}
-              actionResolver={actionResolver}
-              selected={selected}
-              onSelect={(next) => {
-                setSelected(next)
-                onSelect?.(next)
-              }}
-              onCollapse={detailColumns ? onCollapse : undefined}
-              canSelect={!!onSelect}
-              canSelectAll={canSelectAll}
-              isNotCompact={isNotCompact}
-              isRadio={isRadio}
-              t={t}
-              footer={
-                rowLength > 0 ? (
-                  <TablePaginationFooter
-                    pageSize={max}
-                    currentPageItemsCount={visibleRowCount}
-                    totalCount={
-                      isPaginated || !unPaginatedData
-                        ? visibleRowCount
-                        : unPaginatedData.length
-                    }
-                    hasPreviousPage={hasPreviousPage}
-                    hasNextPage={hasNextPage}
-                    onPreviousPage={() =>
-                      setFirst(Math.max(0, (page - 1) * max))
-                    }
-                    onNextPage={() => setFirst((page + 1) * max)}
-                    onPageSizeChange={(size) => {
-                      setFirst(0)
-                      setMax(size)
-                      setDefaultPageSize(size)
-                    }}
-                    pageSizeOptions={[10, 20, 50]}
-                    className="bg-transparent shadow-none"
-                  />
-                ) : null
-              }
-            />
+          {!noData && (
+            <div
+              className={cn(
+                "transition-opacity",
+                loading && "pointer-events-none opacity-60"
+              )}
+              aria-busy={loading || undefined}
+            >
+              <InnerTable<T>
+                ariaLabel={resolvedAriaLabel}
+                columns={columns}
+                rows={data.slice(0, maxRows)}
+                actions={convertAction()}
+                actionResolver={actionResolver}
+                selected={selected}
+                onSelect={(next) => {
+                  setSelected(next)
+                  onSelect?.(next)
+                }}
+                onCollapse={detailColumns ? onCollapse : undefined}
+                canSelect={!!onSelect}
+                canSelectAll={canSelectAll}
+                isNotCompact={isNotCompact}
+                isRadio={isRadio}
+                t={t}
+                footer={
+                  rowLength > 0 ? (
+                    <TablePaginationFooter
+                      pageSize={max}
+                      currentPageItemsCount={visibleRowCount}
+                      totalCount={
+                        isPaginated || !unPaginatedData
+                          ? visibleRowCount
+                          : unPaginatedData.length
+                      }
+                      hasPreviousPage={hasPreviousPage}
+                      hasNextPage={hasNextPage}
+                      onPreviousPage={() =>
+                        setFirst(Math.max(0, (page - 1) * max))
+                      }
+                      onNextPage={() => setFirst((page + 1) * max)}
+                      onPageSizeChange={(size) => {
+                        setFirst(0)
+                        setMax(size)
+                        setDefaultPageSize(size)
+                      }}
+                      pageSizeOptions={[10, 20, 50]}
+                      className="bg-transparent shadow-none"
+                    />
+                  ) : null
+                }
+              />
+            </div>
           )}
           {!loading && noData && searching && (emptySearchState ?? null)}
         </div>
       )}
-      {loading && (
+      {/* Initial load — no rows yet. Subsequent refetches keep the table
+          visible with a faded overlay so the user doesn't see a flash. */}
+      {loading && !rows && (
         <div className="flex items-center justify-center p-8 text-muted-foreground text-sm">
           {t("loading")}
         </div>

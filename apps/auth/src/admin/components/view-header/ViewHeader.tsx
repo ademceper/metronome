@@ -10,7 +10,9 @@
 // @ts-nocheck
 
 import * as React from "react";
+import { usePageHeader } from "@metronome/ui/blocks/layout/page-header";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
+import { Link as UILink } from "@metronome/ui/components/link";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
 import { Separator as UISeparator } from "@metronome/ui/components/separator";
@@ -24,7 +26,6 @@ import {
   Fragment,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { FormattedLink } from "../external-link/FormattedLink";
 import { useHelp, HelpItem } from "../../../shared/keycloak-ui-shared";
 
 const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;
@@ -173,6 +174,12 @@ export const ViewHeader = ({
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isLowerDropdownOpen, setIsLowerDropdownOpen] = useState(false);
 
+  // Push only the title into the inset's top sticky bar (next to the
+  // sidebar trigger). The description / subKey stays inline below so the
+  // page itself keeps its explanation block.
+  const resolvedTitle = i18n.exists(titleKey) ? t(titleKey) : titleKey;
+  usePageHeader({ title: resolvedTitle });
+
   const onDropdownToggle = () => {
     setDropdownOpen(!isDropdownOpen);
   };
@@ -188,19 +195,8 @@ export const ViewHeader = ({
       <PageSection variant="light">
         <Level hasGutter>
           <LevelItem>
-            <Level>
-              <LevelItem>
-                <TextContent className="pf-v5-u-mr-sm">
-                  <Text
-                    className={className}
-                    component="h1"
-                    data-testid="view-header"
-                  >
-                    {i18n.exists(titleKey) ? t(titleKey) : titleKey}
-                  </Text>
-                </TextContent>
-              </LevelItem>
-              {badges && (
+            {badges ? (
+              <Level>
                 <LevelItem>
                   {badges.map((badge, index) => (
                     <Fragment key={index}>
@@ -215,8 +211,8 @@ export const ViewHeader = ({
                     </Fragment>
                   ))}
                 </LevelItem>
-              )}
-            </Level>
+              </Level>
+            ) : null}
           </LevelItem>
           <LevelItem>
             <Toolbar className="pf-v5-u-p-0">
@@ -272,7 +268,7 @@ export const ViewHeader = ({
             </Toolbar>
           </LevelItem>
         </Level>
-        {enabled && (
+        {enabled && (subKey || helpUrl) ? (
           <TextContent id="view-header-subkey">
             <Text>
               {isValidElement(subKey)
@@ -281,16 +277,18 @@ export const ViewHeader = ({
                   ? t(subKey as string)
                   : ""}
               {helpUrl && (
-                <FormattedLink
-                  title={t("learnMore")}
+                <UILink
                   href={helpUrl}
-                  isInline
-                  className="pf-v5-u-ml-md"
-                />
+                  target="_blank"
+                  rel="noreferrer"
+                  className="ml-3 text-sm"
+                >
+                  {t("learnMore")}
+                </UILink>
               )}
             </Text>
           </TextContent>
-        )}
+        ) : null}
         {lowerDropdownItems && (
           <Dropdown
             className="keycloak__user-federation__dropdown"
