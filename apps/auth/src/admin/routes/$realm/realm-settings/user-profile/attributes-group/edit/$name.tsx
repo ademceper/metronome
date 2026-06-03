@@ -9,6 +9,6 @@ const AttributesGroupDetails = () => (
   </UserProfileProvider>
 );
 
-export const Route = createFileRoute("/$realm/realm-settings/user-profile/attributesGroup/edit/$name")({
+export const Route = createFileRoute("/$realm/realm-settings/user-profile/attributes-group/edit/$name")({
   component: AttributesGroupDetails,
 })

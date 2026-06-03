@@ -22,7 +22,7 @@ import { TextControl } from "../../../../shared/keycloak-ui-shared";
 import { FixedButtonsGroup } from "../../form/FixedButtonGroup";
 import { FormAccess } from "../../form/FormAccess";
 import useToggle from "../../../utils/use-toggle";
-import { fileToDataUri } from "./fileUtils";
+import { fileToDataUri } from "./file-utils";
 import { FileNameDialog } from "./FileNameDialog";
 import { ImageUpload } from "./ImageUpload";
 import { LoginPreviewWindow } from "./LoginPreviewWindow";

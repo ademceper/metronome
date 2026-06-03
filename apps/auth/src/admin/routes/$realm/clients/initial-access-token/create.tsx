@@ -202,6 +202,6 @@ function CreateInitialAccessToken() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/initialAccessToken/create")({
+export const Route = createFileRoute("/$realm/clients/initial-access-token/create")({
   component: CreateInitialAccessToken,
 })

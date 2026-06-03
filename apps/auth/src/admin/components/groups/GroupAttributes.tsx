@@ -22,7 +22,7 @@ import {
 } from "../key-value-form/AttributeForm";
 import { arrayToKeyValue } from "../key-value-form/key-value-convert";
 import { convertFormValuesToObject } from "../../util";
-import { getLastId } from "./groupIdUtils";
+import { getLastId } from "./group-id-utils";
 import { useGroupResource } from "../../context/group-resource/group-resource-context";
 
 

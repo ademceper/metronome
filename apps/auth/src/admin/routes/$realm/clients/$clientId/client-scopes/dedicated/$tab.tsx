@@ -156,6 +156,6 @@ function DedicatedScopes() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/$clientId/clientScopes/dedicated/")({
+export const Route = createFileRoute("/$realm/clients/$clientId/client-scopes/dedicated/$tab")({
   component: DedicatedScopes,
 })

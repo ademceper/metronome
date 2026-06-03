@@ -34,7 +34,7 @@ import { toUser } from "../../lib/user";
 import { emptyFormatter } from "../../util";
 import { MemberModal } from "./MembersModal";
 import { useSubGroups } from "./SubGroupsContext";
-import { getLastId } from "./groupIdUtils";
+import { getLastId } from "./group-id-utils";
 import { MembershipsModal } from "./MembershipsModal";
 import useToggle from "../../utils/use-toggle";
 import { useGroupResource } from "../../context/group-resource/group-resource-context";

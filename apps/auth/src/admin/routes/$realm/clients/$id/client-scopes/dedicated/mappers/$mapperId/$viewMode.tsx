@@ -323,6 +323,6 @@ function MappingDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/$id/clientScopes/dedicated/mappers/$mapperId/$viewMode")({
+export const Route = createFileRoute("/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode")({
   component: MappingDetails,
 })

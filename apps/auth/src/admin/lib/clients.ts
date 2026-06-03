@@ -163,7 +163,7 @@ export type ClientScopesParams = {
   tab: ClientScopesTab;
 };
 export const ClientScopesRoute = {
-  path: "/:realm/clients/:clientId/clientScopes/:tab",
+  path: "/:realm/clients/:clientId/client-scopes/:tab",
   handle: {
     access: "view-clients",
   },
@@ -208,7 +208,7 @@ export const toClients = (params: ClientsParams): Partial<Path> => {
 // ─── from clients/paths/CreateInitialAccessToken.ts ─────
 export type CreateInitialAccessTokenParams = { realm: string };
 export const CreateInitialAccessTokenRoute = {
-  path: "/:realm/clients/initialAccessToken/create",
+  path: "/:realm/clients/initial-access-token/create",
   handle: {
     access: "manage-clients",
   },
@@ -229,7 +229,7 @@ export type DedicatedScopeDetailsParams = {
   tab?: DedicatedScopeTab;
 };
 export const DedicatedScopeDetailsRoute = {
-  path: "/:realm/clients/:clientId/clientScopes/dedicated",
+  path: "/:realm/clients/:clientId/client-scopes/dedicated",
   handle: {
     access: "view-clients",
   },
@@ -237,7 +237,7 @@ export const DedicatedScopeDetailsRoute = {
 
 export const DedicatedScopeDetailsWithTabRoute = {
   ...DedicatedScopeDetailsRoute,
-  path: "/:realm/clients/:clientId/clientScopes/dedicated/:tab",
+  path: "/:realm/clients/:clientId/client-scopes/dedicated/:tab",
 };
 
 export const toDedicatedScope = (
@@ -273,7 +273,7 @@ export type MapperParams = {
   viewMode: "edit" | "new";
 };
 export const MapperRoute = {
-  path: "/:realm/clients/:id/clientScopes/dedicated/mappers/:mapperId/:viewMode",
+  path: "/:realm/clients/:id/client-scopes/dedicated/mappers/:mapperId/:viewMode",
   handle: {
     access: "view-clients",
   },

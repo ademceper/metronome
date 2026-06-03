@@ -13,7 +13,7 @@ import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
 import { Input as UIInput } from "@metronome/ui/components/input";
 import { useEffect, useState } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { fileToDataUri } from "./fileUtils";
+import { fileToDataUri } from "./file-utils";
 
 
 const FileUpload = ({ id, value, onChange, filename, onFileInputChange, accept, isReadOnly, isDisabled, ...props }: any) => (

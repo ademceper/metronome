@@ -28,7 +28,7 @@ import { useSubGroups } from "./SubGroupsContext";
 import { DeleteGroup } from "./components/DeleteGroup";
 import { GroupToolbar } from "./components/GroupToolbar";
 import { MoveDialog } from "./components/MoveDialog";
-import { getLastId } from "./groupIdUtils";
+import { getLastId } from "./group-id-utils";
 import { useGroupResource } from "../../context/group-resource/group-resource-context";
 
 

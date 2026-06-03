@@ -759,6 +759,6 @@ function ClientDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/$clientId/clientScopes/$tab")({
+export const Route = createFileRoute("/$realm/clients/$clientId/client-scopes/$tab")({
   component: ClientDetails,
 })

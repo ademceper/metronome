@@ -146,7 +146,7 @@ export type EditAttributesGroupParams = {
   name: string;
 };
 export const EditAttributesGroupRoute = {
-  path: "/:realm/realm-settings/user-profile/attributesGroup/edit/:name",
+  path: "/:realm/realm-settings/user-profile/attributes-group/edit/:name",
   handle: {
     access: "view-realm",
   },
@@ -262,7 +262,7 @@ export type NewAttributesGroupParams = {
   realm: string;
 };
 export const NewAttributesGroupRoute = {
-  path: "/:realm/realm-settings/user-profile/attributesGroup/new",
+  path: "/:realm/realm-settings/user-profile/attributes-group/new",
   handle: {
     access: "view-realm",
   },
