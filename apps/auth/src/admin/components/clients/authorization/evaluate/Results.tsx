@@ -21,14 +21,14 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 import { KeyboardEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import type EvaluationResultRepresentation from "@keycloak/keycloak-admin-client/lib/defs/evaluationResultRepresentation";
 import type PolicyEvaluationResponse from "@keycloak/keycloak-admin-client/lib/defs/policyEvaluationResponse";
 import { FixedButtonsGroup } from "../../../form/FixedButtonGroup";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import useToggle from "../../../../utils/use-toggle";
 import { AuthorizationDataModal } from "../AuthorizationDataModal";
 import { AuthorizationEvaluateResource } from "../AuthorizationEvaluateResource";

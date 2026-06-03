@@ -14,7 +14,7 @@ import { ReactNode, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   TableCell as Td,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
 import { cn } from "@metronome/ui/lib/utils";

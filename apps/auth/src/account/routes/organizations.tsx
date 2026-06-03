@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { useTranslation } from "react-i18next"
 import { ErrorBoundaryProvider, OrganizationTable } from "../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";import { Page } from "../components/page"
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";import { Page } from "../components/page"
 import { useUserOrganizations } from "../lib/api"
 import { OrganizationsLoading } from "./-loading/organizations"
 

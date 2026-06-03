@@ -11,8 +11,8 @@
 
 import type AdminEventRepresentation from "@keycloak/keycloak-admin-client/lib/defs/adminEventRepresentation";
 import { KeycloakSelect, SelectVariant, TextControl, useFetch } from "../../../shared/keycloak-ui-shared";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
@@ -26,7 +26,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 const TableVariant = { compact: undefined, default: undefined } as any;
 const cellWidth = (_n: number) => () => ({ className: '' });
 import { pickBy } from "lodash-es";

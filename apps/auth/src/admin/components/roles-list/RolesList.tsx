@@ -23,8 +23,8 @@ import { toRealmSettings } from "../../lib/realm-settings";
 import { emptyFormatter, upperCaseFormatter } from "../../util";
 import { translationFormatter } from "../../utils/translation-formatter";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
 
 const AlertVariant = {
   default: "default",

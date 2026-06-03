@@ -24,7 +24,7 @@ import {
   removeScope,
 } from "../../../components/client-scope/ClientScopeTypes";
 import { useConfirmDialog } from "../../../components/confirm-dialog/ConfirmDialog";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";

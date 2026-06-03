@@ -6,8 +6,8 @@ import IdentityProviderRepresentation, {
   IdentityProviderType,
 } from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
 import { KeycloakSpinner, ScrollForm, useAlerts, useFetch } from "../../../../../../../shared/keycloak-ui-shared";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
 import { Separator as UISeparator } from "@metronome/ui/components/separator";

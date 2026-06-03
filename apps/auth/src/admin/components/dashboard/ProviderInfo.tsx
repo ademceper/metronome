@@ -9,7 +9,7 @@
 
 // @ts-nocheck
 
-import { TableToolbar } from "@metronome/ui/components/table-toolbar";
+import { TableToolbar } from "@metronome/ui/components/table/table-toolbar";
 import { Collapsible as UICollapsible, CollapsibleContent as UICollapsibleContent, CollapsibleTrigger as UICollapsibleTrigger } from "@metronome/ui/components/collapsible";
 import { cn } from "@metronome/ui/lib/utils";
 import {
@@ -19,7 +19,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useServerInfo } from "../../context/server-info/server-info-provider";

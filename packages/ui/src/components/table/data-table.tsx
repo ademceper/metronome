@@ -18,8 +18,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@metronome/ui/components/table"
-import { TablePaginationFooter } from "@metronome/ui/components/table-pagination-footer"
+} from "@metronome/ui/components/table/table"
+import { TablePaginationFooter } from "@metronome/ui/components/table/table-pagination-footer"
 import { cn } from "@metronome/ui/lib/utils"
 import {
   ArrowsClockwiseIcon,
@@ -745,6 +745,9 @@ export function DataTable<T>({
   const page = Math.round(first / max)
   const hasNextPage = rowLength > max
   const hasPreviousPage = page > 0
+  // Loader fetches max+1 to detect "has more" — clamp the displayed count
+  // back to the page size so the footer reports 10/20/50 and not 11/21/51.
+  const visibleRowCount = Math.min(rowLength, max)
 
   return (
     <>
@@ -797,7 +800,12 @@ export function DataTable<T>({
                 rowLength > 0 ? (
                   <TablePaginationFooter
                     pageSize={max}
-                    currentPageItemsCount={rowLength}
+                    currentPageItemsCount={visibleRowCount}
+                    totalCount={
+                      isPaginated || !unPaginatedData
+                        ? visibleRowCount
+                        : unPaginatedData.length
+                    }
                     hasPreviousPage={hasPreviousPage}
                     hasNextPage={hasNextPage}
                     onPreviousPage={() =>

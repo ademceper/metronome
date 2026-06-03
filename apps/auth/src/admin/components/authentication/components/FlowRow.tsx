@@ -15,7 +15,7 @@ import { cn } from "@metronome/ui/lib/utils";
 import { Trash as TrashIcon } from "@phosphor-icons/react"
 import {
   TableCell as Td,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 const TreeRowWrapper = (p: any) => <tr {...p} />;
 import { useTranslation } from "react-i18next";
 import type { ExpandableExecution } from "../execution-model";

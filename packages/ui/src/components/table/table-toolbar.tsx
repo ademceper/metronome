@@ -1,7 +1,7 @@
 "use client"
 
 import { Input } from "@metronome/ui/components/input"
-import { TablePaginationFooter } from "@metronome/ui/components/table-pagination-footer"
+import { TablePaginationFooter } from "@metronome/ui/components/table/table-pagination-footer"
 import { cn } from "@metronome/ui/lib/utils"
 import { MagnifyingGlassIcon, XCircleIcon } from "@phosphor-icons/react"
 import {

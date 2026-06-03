@@ -14,7 +14,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@metronome/ui/components/table"
+} from "@metronome/ui/components/table/table"
 import { UserCheck } from "@phosphor-icons/react"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"

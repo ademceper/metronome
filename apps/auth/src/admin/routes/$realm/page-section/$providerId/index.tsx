@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router"
 import ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import type { ComponentQuery } from "@keycloak/keycloak-admin-client/lib/resources/components";
 import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
-import { DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 

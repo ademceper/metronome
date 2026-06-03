@@ -12,8 +12,8 @@
 import * as React from "react";
 import type RealmRepresentation from "@keycloak/keycloak-admin-client/lib/defs/realmRepresentation";
 import { KeycloakSelect, SelectVariant, useAlerts } from "../../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table/table-toolbar";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
 import { Input as UIInput } from "@metronome/ui/components/input";
@@ -28,7 +28,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 const ActionsColumn = ({ items, extraData: _e }: any) => null;
 type IRow = any;
 type IRowCell = any;

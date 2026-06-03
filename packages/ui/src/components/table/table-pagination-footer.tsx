@@ -9,11 +9,7 @@ import {
   SelectValue,
 } from "@metronome/ui/components/select"
 import { cn } from "@metronome/ui/lib/utils"
-import {
-  CaretDownIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-} from "@phosphor-icons/react"
+import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react"
 import type * as React from "react"
 
 function PaginationGroup({ children }: { children: React.ReactNode }) {
@@ -42,7 +38,7 @@ function PaginationNavButton({
       disabled={disabled}
       onClick={onClick}
       aria-label={ariaLabel}
-      className="size-8 rounded-none border-0 border-r border-neutral-200 p-1.5 text-neutral-600 last:border-r-0 hover:text-neutral-950 disabled:text-neutral-300"
+      className="h-7 w-8 rounded-none border-0 border-r border-neutral-200 p-1.5 text-neutral-600 last:border-r-0 hover:text-neutral-950 disabled:text-neutral-300"
     >
       {children}
     </Button>
@@ -125,14 +121,13 @@ export function TablePaginationFooter({
           value={pageSize.toString()}
           onValueChange={(value) => onPageSizeChange(Number(value))}
         >
-          <SelectTrigger className="h-8 w-auto min-w-[80px] rounded-lg border border-neutral-200 bg-background px-2.5 py-1.5 shadow-xs">
+          <SelectTrigger className="h-7 w-auto min-w-[80px] rounded-lg border border-neutral-200 bg-background px-2 py-1 shadow-xs">
             <SelectValue>
               <span className="font-medium text-neutral-600 text-xs">
                 {pageSize}
               </span>
               <span className="ml-1 text-neutral-400 text-xs">/ page</span>
             </SelectValue>
-            <CaretDownIcon className="size-5 text-neutral-600" />
           </SelectTrigger>
           <SelectContent>
             {pageSizeOptions.map((size) => (

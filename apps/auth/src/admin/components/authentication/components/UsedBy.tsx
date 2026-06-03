@@ -10,7 +10,7 @@
 // @ts-nocheck
 
 import * as React from "react";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { Popover as UIPopover, PopoverContent as UIPopoverContent, PopoverTrigger as UIPopoverTrigger } from "@metronome/ui/components/popover";

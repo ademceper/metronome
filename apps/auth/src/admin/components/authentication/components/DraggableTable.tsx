@@ -16,7 +16,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 const ActionsColumn = ({ items, extraData: _e }: any) => null;
 type IAction = any;
 type TableProps = any;

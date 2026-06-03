@@ -19,8 +19,8 @@ import { cn } from "@metronome/ui/lib/utils";
 import { Question as QuestionCircleIcon } from "@phosphor-icons/react"
 const cellWidth = (_n: number) => () => ({ className: '' });
 import { useHelp } from "../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import { sortBy, uniqBy } from "lodash-es";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

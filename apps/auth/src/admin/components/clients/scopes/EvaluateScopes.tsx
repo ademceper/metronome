@@ -15,7 +15,7 @@ import type ProtocolMapperRepresentation from "@keycloak/keycloak-admin-client/l
 import type RoleRepresentation from "@keycloak/keycloak-admin-client/lib/defs/roleRepresentation";
 import type { ProtocolMapperTypeRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/serverInfoRepesentation";
 import { HelpItem, KeycloakSelect, SelectVariant, useFetch, useHelp } from "../../../../shared/keycloak-ui-shared";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Input as UIInput } from "@metronome/ui/components/input";
 import { SelectItem as UISelectItem } from "@metronome/ui/components/select";

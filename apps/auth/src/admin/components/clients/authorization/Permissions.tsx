@@ -13,8 +13,8 @@ import * as React from "react";
 import type PolicyProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyProviderRepresentation";
 import type PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import { useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table/table-toolbar";
 import { Alert as UIAlert, AlertDescription as UIAlertDescription, AlertTitle as UIAlertTitle } from "@metronome/ui/components/alert";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
@@ -27,7 +27,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 const ExpandableRowContent = ({ children }: any) => <>{children}</>;
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

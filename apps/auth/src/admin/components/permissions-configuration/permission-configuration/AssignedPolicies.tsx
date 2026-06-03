@@ -12,8 +12,8 @@
 import * as React from "react";
 import PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
 import { FormErrorText, HelpItem, useFetch } from "../../../../shared/keycloak-ui-shared";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";
 import { cn } from "@metronome/ui/lib/utils";

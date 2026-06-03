@@ -13,7 +13,7 @@ import { Globe as DomainIcon, Table as TableIcon } from "@phosphor-icons/react"
 import {
   Table,
   TableBody as Tbody,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";

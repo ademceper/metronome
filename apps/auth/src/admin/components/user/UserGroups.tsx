@@ -26,8 +26,8 @@ import { useAlerts } from "../../../shared/keycloak-ui-shared";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { GroupPath } from "../group/GroupPath";
 import { GroupPickerDialog } from "../group/GroupPickerDialog";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import { useAccess } from "../../context/access/access";
 import { GroupResourceContext } from "../../context/group-resource/group-resource-context";
 

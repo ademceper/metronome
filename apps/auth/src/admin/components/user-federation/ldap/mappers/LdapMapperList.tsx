@@ -11,8 +11,8 @@
 
 import type ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import { useAlerts, useFetch } from "../../../../../shared/keycloak-ui-shared";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";

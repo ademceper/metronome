@@ -12,7 +12,7 @@
 import * as React from "react";
 import { NetworkError } from "@keycloak/keycloak-admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenu as UIDropdownMenu, DropdownMenuContent as UIDropdownMenuContent, DropdownMenuItem as UIDropdownMenuItem, DropdownMenuTrigger as UIDropdownMenuTrigger } from "@metronome/ui/components/dropdown-menu";

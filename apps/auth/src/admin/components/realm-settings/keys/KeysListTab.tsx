@@ -12,7 +12,7 @@
 import type ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import type { KeyMetadataRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/keyMetadataRepresentation";
 import { KeycloakSelect, SelectVariant, useFetch } from "../../../../shared/keycloak-ui-shared";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { SelectItem as UISelectItem } from "@metronome/ui/components/select";
 import { cn } from "@metronome/ui/lib/utils";
@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
 import { KeycloakSpinner } from "../../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import { emptyFormatter } from "../../../util";
 import useFormatDate from "../../../utils/use-format-date";

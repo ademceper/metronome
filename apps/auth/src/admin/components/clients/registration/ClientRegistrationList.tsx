@@ -11,7 +11,7 @@
 
 import ComponentRepresentation from "@keycloak/keycloak-admin-client/lib/defs/componentRepresentation";
 import { useAlerts, useFetch } from "../../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { cn } from "@metronome/ui/lib/utils";
 import { useState } from "react";
@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import useToggle from "../../../utils/use-toggle";
 import { toRegistrationProvider } from "../../../lib/clients";

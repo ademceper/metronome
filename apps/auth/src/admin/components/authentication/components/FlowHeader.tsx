@@ -12,7 +12,7 @@
 import {
   TableHead as Th,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 import { useTranslation } from "react-i18next";
 
 const DataListDragButton = (props: any) => (

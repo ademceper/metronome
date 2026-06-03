@@ -22,7 +22,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 import {
   Fragment,
   DragEvent as ReactDragEvent,
@@ -34,7 +34,7 @@ import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
 import { KeycloakSpinner } from "../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { toUpperCase } from "../../util";
 import { FederatedUserLink } from "./FederatedUserLink";
 import { CredentialRow } from "./user-credentials/CredentialRow";

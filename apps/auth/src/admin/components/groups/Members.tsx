@@ -14,8 +14,8 @@ import type GroupRepresentation from "@keycloak/keycloak-admin-client/lib/defs/g
 import type UserRepresentation from "@keycloak/keycloak-admin-client/lib/defs/userRepresentation";
 import { SubGroupQuery } from "@keycloak/keycloak-admin-client/lib/resources/groups";
 import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";

@@ -22,7 +22,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 
 
 const Modal = ({ isOpen, onClose, title, description, variant, actions, header, footer, children, ...props }: any) => (

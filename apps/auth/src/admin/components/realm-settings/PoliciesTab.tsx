@@ -12,8 +12,8 @@
 import * as React from "react";
 import type ClientPolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/clientPolicyRepresentation";
 import { KeycloakSpinner, useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Separator as UISeparator } from "@metronome/ui/components/separator";
 import { Switch as UISwitch } from "@metronome/ui/components/switch";

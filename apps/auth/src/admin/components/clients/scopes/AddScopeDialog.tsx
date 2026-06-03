@@ -24,8 +24,8 @@ import {
   ClientScopeType,
   clientScopeTypesDropdown,
 } from "../../client-scope/ClientScopeTypes";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import useToggle from "../../../utils/use-toggle";
 import { getProtocolName } from "../utils";
 import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";

@@ -11,7 +11,7 @@
 
 import type { AuthenticationProviderRepresentation } from "@keycloak/keycloak-admin-client/lib/defs/authenticatorConfigRepresentation";
 import { useFetch } from "../../../../../shared/keycloak-ui-shared";
-import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table/table-toolbar";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
 import { cn } from "@metronome/ui/lib/utils";

@@ -25,7 +25,7 @@ import {
   RoutableTabs,
   useRoutableTab,
 } from "../../../components/routable-tabs/RoutableTabs";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
 import { ViewHeader } from "../../../components/view-header/ViewHeader";
 import { useAccess } from "../../../context/access/access";
 import { useRealm } from "../../../context/realm-context/realm-context";

@@ -20,7 +20,7 @@ import {
   DataTable,
   type Action,
   type LoaderFunction,
-} from "@metronome/ui/components/data-table";
+} from "@metronome/ui/components/table/data-table";
 
 
 const Badge = ({ isRead, ...props }: any) => <UIBadge {...props} />;

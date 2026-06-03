@@ -32,7 +32,7 @@ import {
   removeScope,
 } from "../client-scope/ClientScopeTypes";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
 import { ViewHeader } from "../view-header/ViewHeader";
 import { useRealm } from "../../context/realm-context/realm-context";
 import helpUrls from "../../help-urls";

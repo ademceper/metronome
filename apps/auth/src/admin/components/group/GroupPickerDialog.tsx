@@ -15,8 +15,8 @@ import {
   SubGroupQuery,
 } from "@keycloak/keycloak-admin-client/lib/resources/groups";
 import { useFetch } from "../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table/table-toolbar";
 import { Breadcrumb as UIBreadcrumb, BreadcrumbItem as UIBreadcrumbItem, BreadcrumbList as UIBreadcrumbList } from "@metronome/ui/components/breadcrumb";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Checkbox as UICheckbox } from "@metronome/ui/components/checkbox";

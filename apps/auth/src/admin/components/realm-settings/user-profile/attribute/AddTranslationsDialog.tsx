@@ -11,8 +11,8 @@
 
 import * as React from "react";
 import { useFetch } from "../../../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { PaginatingTableToolbar } from "@metronome/ui/components/table-toolbar";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { PaginatingTableToolbar } from "@metronome/ui/components/table/table-toolbar";
 import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Dialog as UIDialog, DialogContent as UIDialogContent, DialogDescription as UIDialogDescription, DialogFooter as UIDialogFooter, DialogHeader as UIDialogHeader, DialogTitle as UIDialogTitle } from "@metronome/ui/components/dialog";
@@ -26,7 +26,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";

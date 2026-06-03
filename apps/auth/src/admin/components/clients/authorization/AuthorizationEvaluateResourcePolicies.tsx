@@ -18,7 +18,7 @@ import {
   TableBody as Tbody,
   TableCell as Td,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 const ExpandableRowContent = ({ children }: any) => <>{children}</>;
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

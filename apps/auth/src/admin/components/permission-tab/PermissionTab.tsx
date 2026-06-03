@@ -21,7 +21,7 @@ import {
   TableHead as Th,
   TableHeader as Thead,
   TableRow as Tr,
-} from "@metronome/ui/components/table";
+} from "@metronome/ui/components/table/table";
 const ActionsColumn = ({ items, extraData: _e }: any) => null;
 import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";

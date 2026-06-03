@@ -20,8 +20,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { DataTable } from "@metronome/ui/components/table/data-table";
 import { emptyFormatter } from "../../util";
 
 

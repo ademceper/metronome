@@ -11,8 +11,8 @@
 
 import IdentityProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/identityProviderRepresentation";
 import { useAlerts, useFetch } from "../../../shared/keycloak-ui-shared";
-import { DataTable } from "@metronome/ui/components/data-table";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
+import { DataTable } from "@metronome/ui/components/table/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { Switch as UISwitch } from "@metronome/ui/components/switch";
 import { cn } from "@metronome/ui/lib/utils";

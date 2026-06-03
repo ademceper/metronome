@@ -55,7 +55,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@metronome/ui/components/table"
+} from "@metronome/ui/components/table/table"
 import { cn } from "@metronome/ui/lib/utils"
 import {
   CaretDoubleLeftIcon,

@@ -38,8 +38,8 @@ import {
   removeClientScope,
 } from "../../client-scope/ClientScopeTypes";
 import { useConfirmDialog } from "../../confirm-dialog/ConfirmDialog";
-import { ListEmptyState } from "@metronome/ui/components/list-empty-state";
-import { Action, DataTable } from "@metronome/ui/components/data-table";
+import { ListEmptyState } from "@metronome/ui/components/table/list-empty-state";
+import { Action, DataTable } from "@metronome/ui/components/table/data-table";
 import { useAccess } from "../../../context/access/access";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import { translationFormatter } from "../../../utils/translation-formatter";
