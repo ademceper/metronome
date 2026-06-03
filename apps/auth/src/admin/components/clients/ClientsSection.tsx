@@ -25,9 +25,9 @@ const cellWidth = (_n: number) => () => ({ className: "" });
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { Link as UILink } from "@metronome/ui/components/link";
 import { useAdminClient } from "../../admin-client";
 import { useConfirmDialog } from "../confirm-dialog/ConfirmDialog";
-import { FormattedLink } from "../external-link/FormattedLink";
 import {
   RoutableTabs,
   useRoutableTab,
@@ -157,10 +157,15 @@ const ClientHomeLink = (client: ClientRepresentation) => {
   }
 
   return (
-    <FormattedLink
+    <UILink
       href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-primary text-sm"
       data-testid={`client-home-url-${client.clientId}`}
-    />
+    >
+      {href}
+    </UILink>
   );
 };
 

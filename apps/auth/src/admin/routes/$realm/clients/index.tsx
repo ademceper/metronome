@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../../components/confirm-dialog/ConfirmDialog";
-import { FormattedLink } from "../../../components/external-link/FormattedLink";
+import { Link as UILink } from "@metronome/ui/components/link";
 import {
   RoutableTabs,
   useRoutableTab,
@@ -150,10 +150,15 @@ const ClientHomeLink = (client: ClientRepresentation) => {
   }
 
   return (
-    <FormattedLink
+    <UILink
       href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-primary text-sm"
       data-testid={`client-home-url-${client.clientId}`}
-    />
+    >
+      {href}
+    </UILink>
   );
 };
 

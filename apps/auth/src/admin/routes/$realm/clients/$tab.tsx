@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../../components/confirm-dialog/ConfirmDialog";
-import { FormattedLink } from "../../../components/external-link/FormattedLink";
+import { Link as UILink } from "@metronome/ui/components/link";
 import {
   RoutableTabs,
   useRoutableTab,
@@ -67,6 +67,30 @@ const Button = ({
   icon, iconPosition, component, to, href, target, rel, children, ...props
 }: any) => {
   const v = (ButtonVariant as any)[variant] ?? (typeof variant === "string" ? variant : "default");
+  // PF accepts a `component` render-prop to swap the underlying element
+  // (commonly a router Link). Without honouring it the click handlers /
+  // navigation that the consumer wired up never fire, so render through
+  // UIButton's asChild slot.
+  if (typeof component === "function") {
+    return (
+      <UIButton
+        asChild
+        variant={v as any}
+        disabled={isDisabled ?? (props as any).disabled}
+      >
+        {component({
+          children: (
+            <>
+              {icon && iconPosition !== "right" ? icon : null}
+              {children}
+              {icon && iconPosition === "right" ? icon : null}
+            </>
+          ),
+          ...props,
+        })}
+      </UIButton>
+    );
+  }
   if (href || to) {
     return (
       <a href={href || to} target={target} rel={rel}
@@ -149,10 +173,15 @@ const ClientHomeLink = (client: ClientRepresentation) => {
   }
 
   return (
-    <FormattedLink
+    <UILink
       href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-primary text-sm"
       data-testid={`client-home-url-${client.clientId}`}
-    />
+    >
+      {href}
+    </UILink>
   );
 };
 

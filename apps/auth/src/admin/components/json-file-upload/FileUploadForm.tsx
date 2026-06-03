@@ -58,13 +58,32 @@ const Button = ({
     </UIButton>
   );
 };
-const FileUpload = ({ id, value, onChange, filename, onFileInputChange, accept, isReadOnly, isDisabled, ...props }: any) => (
-  <UIInput id={id} type="file" accept={accept} disabled={isDisabled}
-    onChange={(e: any) => {
-      const file = e.target.files?.[0];
-      onChange?.(e, file?.name ?? "");
-      onFileInputChange?.(e, file);
-    }} {...props} />
+const FileUpload = ({
+  id, value, onChange, filename, onFileInputChange, accept, isReadOnly,
+  isDisabled, children,
+  // PF-only props that mustn't leak onto the DOM <input>.
+  type: _type, hideDefaultPreview: _hideDefaultPreview,
+  dropzoneProps: _dropzoneProps, isLoading: _isLoading,
+  onDataChange: _onDataChange, onTextChange: _onTextChange,
+  onClearClick: _onClearClick, onReadStarted: _onReadStarted,
+  onReadFinished: _onReadFinished, allowEditingUploadedText: _aut,
+  ...props
+}: any) => (
+  <div className="space-y-2">
+    <UIInput
+      id={id}
+      type="file"
+      accept={accept}
+      disabled={isDisabled || isReadOnly}
+      onChange={(e: any) => {
+        const file = e.target.files?.[0];
+        onChange?.(e, file?.name ?? "");
+        onFileInputChange?.(e, file);
+      }}
+      {...props}
+    />
+    {children}
+  </div>
 );
 const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
   <div className={cn("space-y-1.5", (props as any).className)}>
