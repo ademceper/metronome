@@ -12,12 +12,12 @@ import {
 } from "../../../../../shared/keycloak-ui-shared";
 import { useAdminClient } from "../../../../admin-client";
 import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
-import { FormAccess } from "../../../../components/form/FormAccess";
-import { ViewHeader } from "../../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../../components/form/form-access";
+import { ViewHeader } from "../../../../components/view-header/view-header";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import { toAuthentication } from "../../../../lib/authentication";
 import { toFlow } from "../../../../lib/authentication";
-import { NameDescription } from "../../../../components/authentication/form/NameDescription";
+import { NameDescription } from "../../../../components/authentication/form/name-description";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+} from "../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";
 import { toRealmSettings } from "../../../lib/realm-settings";
-import { AdminEvents } from "../../../components/events/AdminEvents";
-import { UserEvents } from "../../../components/events/UserEvents";
+import { AdminEvents } from "../../../components/events/admin-events";
+import { UserEvents } from "../../../components/events/user-events";
 import { toEvents } from "../../../lib/events";
 import { Tab, TabTitleText } from "../../../../shared/pf-compat"
 

@@ -21,30 +21,30 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../admin-client";
-import { useConfirmDialog } from "../../../../components/confirm-dialog/ConfirmDialog";
+import { useConfirmDialog } from "../../../../components/confirm-dialog/confirm-dialog";
 import { KeyValueType } from "../../../../components/key-value-form/key-value-convert";
 import { KeycloakSpinner } from "../../../../../shared/keycloak-ui-shared";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../../components/view-header/ViewHeader";
+} from "../../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../../components/view-header/view-header";
 import { useAccess } from "../../../../context/access/access";
 import { useRealm } from "../../../../context/realm-context/realm-context";
-import { UserProfileProvider } from "../../../../components/realm-settings/user-profile/UserProfileContext";
+import { UserProfileProvider } from "../../../../components/realm-settings/user-profile/user-profile-context";
 import useIsFeatureEnabled, { Feature } from "../../../../utils/use-is-feature-enabled";
 import { useParams } from "../../../../utils/use-params";
-import { Organizations } from "../../../../components/user/Organizations";
-import { UserAttributes } from "../../../../components/user/UserAttributes";
-import { UserConsents } from "../../../../components/user/UserConsents";
-import { UserCredentials } from "../../../../components/user/UserCredentials";
-import { BruteForced, UserForm } from "../../../../components/user/UserForm";
-import { UserGroups } from "../../../../components/user/UserGroups";
-import { UserIdentityProviderLinks } from "../../../../components/user/UserIdentityProviderLinks";
-import { UserRoleMapping } from "../../../../components/user/UserRoleMapping";
-import { UserSessions } from "../../../../components/user/UserSessions";
-import { UserEvents } from "../../../../components/events/UserEvents";
-import { UserWorkflows } from "../../../../components/user/UserWorkflows";
+import { Organizations } from "../../../../components/user/organizations";
+import { UserAttributes } from "../../../../components/user/user-attributes";
+import { UserConsents } from "../../../../components/user/user-consents";
+import { UserCredentials } from "../../../../components/user/user-credentials";
+import { BruteForced, UserForm } from "../../../../components/user/user-form";
+import { UserGroups } from "../../../../components/user/user-groups";
+import { UserIdentityProviderLinks } from "../../../../components/user/user-identity-provider-links";
+import { UserRoleMapping } from "../../../../components/user/user-role-mapping";
+import { UserSessions } from "../../../../components/user/user-sessions";
+import { UserEvents } from "../../../../components/events/user-events";
+import { UserWorkflows } from "../../../../components/user/user-workflows";
 import {
   UIUserRepresentation,
   UserFormFields,
@@ -56,7 +56,7 @@ import { UserParams, UserTab, toUser } from "../../../../lib/user";
 import { toUsers } from "../../../../lib/user";
 import { isLightweightUser } from "../../../../components/user/utils";
 import { extractUserProfileErrorMessages } from "../../../../components/user/utils/user-profile";
-import { AdminEvents } from "../../../../components/events/AdminEvents";
+import { AdminEvents } from "../../../../components/events/admin-events";
 import { Tabs, Tab, TabTitleText } from "../../../../../shared/pf-compat"
 
 

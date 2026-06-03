@@ -13,24 +13,24 @@ import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
-import { useConfirmDialog } from "../../../components/confirm-dialog/ConfirmDialog";
+import { useConfirmDialog } from "../../../components/confirm-dialog/confirm-dialog";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+} from "../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";
 import { addTrailingSlash } from "../../../util";
 import { getAuthorizationHeaders } from "../../../utils/get-authorization-headers";
 import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
 import useToggle from "../../../utils/use-toggle";
-import { BindFlowDialog } from "../../../components/authentication/BindFlowDialog";
-import { DuplicateFlowModal } from "../../../components/authentication/DuplicateFlowModal";
-import { RequiredActions } from "../../../components/authentication/RequiredActions";
-import { UsedBy } from "../../../components/authentication/components/UsedBy";
+import { BindFlowDialog } from "../../../components/authentication/bind-flow-dialog";
+import { DuplicateFlowModal } from "../../../components/authentication/duplicate-flow-modal";
+import { RequiredActions } from "../../../components/authentication/required-actions";
+import { UsedBy } from "../../../components/authentication/components/used-by";
 import { AuthenticationType } from "../../../components/authentication/constants";
-import { Policies } from "../../../components/authentication/policies/Policies";
+import { Policies } from "../../../components/authentication/policies/policies";
 import { AuthenticationTab, toAuthentication } from "../../../lib/authentication";
 import { toCreateFlow } from "../../../lib/authentication";
 import { toFlow } from "../../../lib/authentication";

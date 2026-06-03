@@ -11,31 +11,31 @@ import { cn } from "@metronome/ui/lib/utils";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../../../admin-client";
-import { FormAccess } from "../../../../../components/form/FormAccess";
-import { AttributesForm } from "../../../../../components/key-value-form/AttributeForm";
+import { FormAccess } from "../../../../../components/form/form-access";
+import { AttributesForm } from "../../../../../components/key-value-form/attribute-form";
 import { arrayToKeyValue } from "../../../../../components/key-value-form/key-value-convert";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../../components/routable-tabs/RoutableTabs";
+} from "../../../../../components/routable-tabs/routable-tabs";
 import { useRealm } from "../../../../../context/realm-context/realm-context";
 import { useParams } from "../../../../../utils/use-params";
-import { DetailOrganizationHeader } from "../../../../../components/organizations/DetailOraganzationHeader";
-import { IdentityProviders } from "../../../../../components/organizations/IdentityProviders";
-import { MembersSection } from "../../../../../components/organizations/MembersSection";
-import GroupsSection from "../../../../../components/groups/GroupsSection";
+import { DetailOrganizationHeader } from "../../../../../components/organizations/detail-oraganzation-header";
+import { IdentityProviders } from "../../../../../components/organizations/identity-providers";
+import { MembersSection } from "../../../../../components/organizations/members-section";
+import GroupsSection from "../../../../../components/groups/groups-section";
 import {
   OrganizationForm,
   OrganizationFormType,
   convertToOrg,
-} from "../../../../../components/organizations/OrganizationForm";
+} from "../../../../../components/organizations/organization-form";
 import {
   EditOrganizationParams,
   OrganizationTab,
   toEditOrganization,
 } from "../../../../../lib/organizations";
 import { useAccess } from "../../../../../context/access/access";
-import { AdminEvents } from "../../../../../components/events/AdminEvents";
+import { AdminEvents } from "../../../../../components/events/admin-events";
 import { useState } from "react";
 import { Tabs, Tab, TabTitleText } from "../../../../../../shared/pf-compat"
 

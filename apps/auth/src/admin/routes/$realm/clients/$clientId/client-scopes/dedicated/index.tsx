@@ -10,13 +10,13 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../../../admin-client";
-import { MapperList } from "../../../../../../components/client-scopes/details/MapperList";
+import { MapperList } from "../../../../../../components/client-scopes/details/mapper-list";
 import { KeycloakSpinner } from "../../../../../../../shared/keycloak-ui-shared";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
+} from "../../../../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../../../../components/view-header/view-header";
 import { useParams } from "../../../../../../utils/use-params";
 import {
   DedicatedScopeDetailsParams,
@@ -24,7 +24,7 @@ import {
   toDedicatedScope,
 } from "../../../../../../lib/clients";
 import { toMapper } from "../../../../../../lib/clients";
-import { DedicatedScope } from "../../../../../../components/clients/scopes/DedicatedScope";
+import { DedicatedScope } from "../../../../../../components/clients/scopes/dedicated-scope";
 import { Tab, TabTitleText } from "../../../../../../../shared/pf-compat"
 
 

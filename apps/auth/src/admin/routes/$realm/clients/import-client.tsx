@@ -14,9 +14,9 @@ import {
 } from "../../../../shared/keycloak-ui-shared";
 import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
-import { FormAccess } from "../../../components/form/FormAccess";
-import { FileUploadForm } from "../../../components/json-file-upload/FileUploadForm";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../components/form/form-access";
+import { FileUploadForm } from "../../../components/json-file-upload/file-upload-form";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import {
   addTrailingSlash,
@@ -24,9 +24,9 @@ import {
   convertToFormValues,
 } from "../../../util";
 import { getAuthorizationHeaders } from "../../../utils/get-authorization-headers";
-import { ClientDescription } from "../../../components/clients/ClientDescription";
-import { FormFields } from "../../../components/clients/ClientDetails";
-import { CapabilityConfig } from "../../../components/clients/add/CapabilityConfig";
+import { ClientDescription } from "../../../components/clients/client-description";
+import { FormFields } from "../../../components/clients/client-details";
+import { CapabilityConfig } from "../../../components/clients/add/capability-config";
 import { toClient } from "../../../lib/clients";
 import { toClients } from "../../../lib/clients";
 

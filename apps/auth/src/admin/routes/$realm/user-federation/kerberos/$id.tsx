@@ -10,10 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../admin-client";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import { useParams } from "../../../../utils/use-params";
-import { KerberosSettingsRequired } from "../../../../components/user-federation/kerberos/KerberosSettingsRequired";
+import { KerberosSettingsRequired } from "../../../../components/user-federation/kerberos/kerberos-settings-required";
 import { toUserFederation } from "../../../../lib/user-federation";
-import { Header } from "../../../../components/user-federation/shared/Header";
-import { SettingsCache } from "../../../../components/user-federation/shared/SettingsCache";
+import { Header } from "../../../../components/user-federation/shared/header";
+import { SettingsCache } from "../../../../components/user-federation/shared/settings-cache";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

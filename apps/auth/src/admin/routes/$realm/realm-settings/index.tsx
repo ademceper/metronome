@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
-import { RealmSettingsTabs } from "../../../components/realm-settings/RealmSettingsTabs";
+import { RealmSettingsTabs } from "../../../components/realm-settings/realm-settings-tabs";
 
 function RealmSettingsSection() {
   return <RealmSettingsTabs />;

@@ -16,20 +16,20 @@ import { useAdminClient } from "../../../../../admin-client";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../../components/routable-tabs/RoutableTabs";
+} from "../../../../../components/routable-tabs/routable-tabs";
 import { useRealm } from "../../../../../context/realm-context/realm-context";
 import {
   LdapComponentRepresentation,
   UserFederationLdapForm,
   serializeFormData,
-} from "../../../../../components/user-federation/UserFederationLdapForm";
-import { LdapMapperList } from "../../../../../components/user-federation/ldap/mappers/LdapMapperList";
+} from "../../../../../components/user-federation/user-federation-ldap-form";
+import { LdapMapperList } from "../../../../../components/user-federation/ldap/mappers/ldap-mapper-list";
 import {
   UserFederationLdapParams,
   toUserFederationLdap,
 } from "../../../../../lib/user-federation";
 import { toUserFederationLdapMapper } from "../../../../../lib/user-federation";
-import { ExtendedHeader } from "../../../../../components/user-federation/shared/ExtendedHeader";
+import { ExtendedHeader } from "../../../../../components/user-federation/shared/extended-header";
 import { Tab, TabTitleText } from "../../../../../../shared/pf-compat"
 
 

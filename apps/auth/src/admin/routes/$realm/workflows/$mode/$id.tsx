@@ -19,15 +19,15 @@ import {
   useFetch,
 } from "../../../../../shared/keycloak-ui-shared";
 import { useRealm } from "../../../../context/realm-context/realm-context";
-import { FormAccess } from "../../../../components/form/FormAccess";
+import { FormAccess } from "../../../../components/form/form-access";
 import { toWorkflows } from "../../../../lib/workflows";
-import CodeEditor from "../../../../components/form/CodeEditor";
+import CodeEditor from "../../../../components/form/code-editor";
 import { useParams } from "../../../../utils/use-params";
 import {
   WorkflowDetailParams,
   toWorkflowDetail,
 } from "../../../../lib/workflows";
-import { ViewHeader } from "../../../../components/view-header/ViewHeader";
+import { ViewHeader } from "../../../../components/view-header/view-header";
 import WorkflowRepresentation from "libs/keycloak-admin-client/lib/defs/workflowRepresentation";
 
 const ActionGroup = ({ children, className, ...props }: any) => (

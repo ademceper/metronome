@@ -18,21 +18,21 @@ import { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAdminClient } from "../../../../../admin-client";
-import { useConfirmDialog } from "../../../../../components/confirm-dialog/ConfirmDialog";
-import { ViewHeader } from "../../../../../components/view-header/ViewHeader";
+import { useConfirmDialog } from "../../../../../components/confirm-dialog/confirm-dialog";
+import { ViewHeader } from "../../../../../components/view-header/view-header";
 import { useRealm } from "../../../../../context/realm-context/realm-context";
 import useToggle from "../../../../../utils/use-toggle";
-import { BindFlowDialog } from "../../../../../components/authentication/BindFlowDialog";
-import { BuildInLabel } from "../../../../../components/authentication/BuildInLabel";
-import { DuplicateFlowModal } from "../../../../../components/authentication/DuplicateFlowModal";
-import { EditFlowModal } from "../../../../../components/authentication/EditFlowModal";
-import { EmptyExecutionState } from "../../../../../components/authentication/EmptyExecutionState";
-import { AuthenticationProviderContextProvider } from "../../../../../components/authentication/components/AuthenticationProviderContext";
-import { FlowDiagram } from "../../../../../components/authentication/components/FlowDiagram";
-import { FlowHeader } from "../../../../../components/authentication/components/FlowHeader";
-import { FlowRow } from "../../../../../components/authentication/components/FlowRow";
-import { AddStepModal } from "../../../../../components/authentication/components/modals/AddStepModal";
-import { AddSubFlowModal, Flow } from "../../../../../components/authentication/components/modals/AddSubFlowModal";
+import { BindFlowDialog } from "../../../../../components/authentication/bind-flow-dialog";
+import { BuildInLabel } from "../../../../../components/authentication/build-in-label";
+import { DuplicateFlowModal } from "../../../../../components/authentication/duplicate-flow-modal";
+import { EditFlowModal } from "../../../../../components/authentication/edit-flow-modal";
+import { EmptyExecutionState } from "../../../../../components/authentication/empty-execution-state";
+import { AuthenticationProviderContextProvider } from "../../../../../components/authentication/components/authentication-provider-context";
+import { FlowDiagram } from "../../../../../components/authentication/components/flow-diagram";
+import { FlowHeader } from "../../../../../components/authentication/components/flow-header";
+import { FlowRow } from "../../../../../components/authentication/components/flow-row";
+import { AddStepModal } from "../../../../../components/authentication/components/modals/add-step-modal";
+import { AddSubFlowModal, Flow } from "../../../../../components/authentication/components/modals/add-sub-flow-modal";
 import {
   ExecutionList,
   ExpandableExecution,

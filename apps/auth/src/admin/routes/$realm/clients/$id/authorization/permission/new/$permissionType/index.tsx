@@ -20,10 +20,10 @@ import { Controller, FormProvider, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../../../../../admin-client";
-import { useConfirmDialog } from "../../../../../../../../components/confirm-dialog/ConfirmDialog";
-import { FormAccess } from "../../../../../../../../components/form/FormAccess";
+import { useConfirmDialog } from "../../../../../../../../components/confirm-dialog/confirm-dialog";
+import { FormAccess } from "../../../../../../../../components/form/form-access";
 import { KeycloakSpinner } from "../../../../../../../../../shared/keycloak-ui-shared";
-import { ViewHeader } from "../../../../../../../../components/view-header/ViewHeader";
+import { ViewHeader } from "../../../../../../../../components/view-header/view-header";
 import { useAccess } from "../../../../../../../../context/access/access";
 import { toUpperCase } from "../../../../../../../../util";
 import { useParams } from "../../../../../../../../utils/use-params";
@@ -33,8 +33,8 @@ import {
   PermissionDetailsParams,
   toPermissionDetails,
 } from "../../../../../../../../lib/clients";
-import { ResourcesPolicySelect } from "../../../../../../../../components/clients/authorization/ResourcesPolicySelect";
-import { ScopeSelect } from "../../../../../../../../components/clients/authorization/ScopeSelect";
+import { ResourcesPolicySelect } from "../../../../../../../../components/clients/authorization/resources-policy-select";
+import { ScopeSelect } from "../../../../../../../../components/clients/authorization/scope-select";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

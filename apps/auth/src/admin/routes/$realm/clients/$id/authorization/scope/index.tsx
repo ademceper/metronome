@@ -14,13 +14,13 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../../../admin-client";
-import { FormAccess } from "../../../../../../components/form/FormAccess";
-import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../../../../components/form/form-access";
+import { ViewHeader } from "../../../../../../components/view-header/view-header";
 import { useParams } from "../../../../../../utils/use-params";
 import useToggle from "../../../../../../utils/use-toggle";
 import { toAuthorizationTab } from "../../../../../../lib/clients";
 import type { ScopeDetailsParams } from "../../../../../../lib/clients";
-import { DeleteScopeDialog } from "../../../../../../components/clients/authorization/DeleteScopeDialog";
+import { DeleteScopeDialog } from "../../../../../../components/clients/authorization/delete-scope-dialog";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

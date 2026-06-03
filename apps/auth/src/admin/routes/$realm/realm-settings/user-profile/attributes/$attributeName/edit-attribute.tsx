@@ -17,22 +17,22 @@ import { FormProvider, useForm, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../../../admin-client";
-import { FixedButtonsGroup } from "../../../../../../components/form/FixedButtonGroup";
-import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
+import { FixedButtonsGroup } from "../../../../../../components/form/fixed-button-group";
+import { ViewHeader } from "../../../../../../components/view-header/view-header";
 import { convertToFormValues } from "../../../../../../util";
 import { useParams } from "../../../../../../utils/use-params";
-import { TranslationForm } from "../../../../../../components/realm-settings/AddTranslationModal";
+import { TranslationForm } from "../../../../../../components/realm-settings/add-translation-modal";
 import type { AttributeParams } from "../../../../../../lib/realm-settings";
 import { toUserProfile } from "../../../../../../lib/realm-settings";
-import { UserProfileProvider } from "../../../../../../components/realm-settings/user-profile/UserProfileContext";
+import { UserProfileProvider } from "../../../../../../components/realm-settings/user-profile/user-profile-context";
 import {
   saveTranslations,
   Translations,
-} from "../../../../../../components/realm-settings/user-profile/attribute/TranslatableField";
-import { AttributeAnnotations } from "../../../../../../components/realm-settings/user-profile/attribute/AttributeAnnotations";
-import { AttributeGeneralSettings } from "../../../../../../components/realm-settings/user-profile/attribute/AttributeGeneralSettings";
-import { AttributePermission } from "../../../../../../components/realm-settings/user-profile/attribute/AttributePermission";
-import { AttributeValidations } from "../../../../../../components/realm-settings/user-profile/attribute/AttributeValidations";
+} from "../../../../../../components/realm-settings/user-profile/attribute/translatable-field";
+import { AttributeAnnotations } from "../../../../../../components/realm-settings/user-profile/attribute/attribute-annotations";
+import { AttributeGeneralSettings } from "../../../../../../components/realm-settings/user-profile/attribute/attribute-general-settings";
+import { AttributePermission } from "../../../../../../components/realm-settings/user-profile/attribute/attribute-permission";
+import { AttributeValidations } from "../../../../../../components/realm-settings/user-profile/attribute/attribute-validations";
 
 const AlertVariant = {
   default: "default",

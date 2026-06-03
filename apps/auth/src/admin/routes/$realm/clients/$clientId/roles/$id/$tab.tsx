@@ -26,30 +26,30 @@ import {
   ClientRoleTab,
   toClientRole,
 } from "../../../../../../lib/clients";
-import { useConfirmDialog } from "../../../../../../components/confirm-dialog/ConfirmDialog";
+import { useConfirmDialog } from "../../../../../../components/confirm-dialog/confirm-dialog";
 import {
   AttributeForm,
   AttributesForm,
-} from "../../../../../../components/key-value-form/AttributeForm";
+} from "../../../../../../components/key-value-form/attribute-form";
 import {
   KeyValueType,
   arrayToKeyValue,
   keyValueToArray,
 } from "../../../../../../components/key-value-form/key-value-convert";
-import { PermissionsTab } from "../../../../../../components/permission-tab/PermissionTab";
-import { RoleForm } from "../../../../../../components/role-form/RoleForm";
-import { RoleMapping } from "../../../../../../components/role-mapping/RoleMapping";
+import { PermissionsTab } from "../../../../../../components/permission-tab/permission-tab";
+import { RoleForm } from "../../../../../../components/role-form/role-form";
+import { RoleMapping } from "../../../../../../components/role-mapping/role-mapping";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
+} from "../../../../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../../../../components/view-header/view-header";
 import { useAccess } from "../../../../../../context/access/access";
 import { useRealm } from "../../../../../../context/realm-context/realm-context";
-import { AdminEvents } from "../../../../../../components/events/AdminEvents";
+import { AdminEvents } from "../../../../../../components/events/admin-events";
 import useIsFeatureEnabled, { Feature } from "../../../../../../utils/use-is-feature-enabled";
 import { useParams } from "../../../../../../utils/use-params";
-import { UsersInRoleTab } from "../../../../../../components/realm-roles/UsersInRoleTab";
+import { UsersInRoleTab } from "../../../../../../components/realm-roles/users-in-role-tab";
 import { RealmRoleRoute, RealmRoleTab, toRealmRole } from "../../../../../../lib/realm-roles";
 import { toRealmRoles } from "../../../../../../lib/realm-roles";
 import { Tab, TabTitleText } from "../../../../../../../shared/pf-compat"

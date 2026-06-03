@@ -10,13 +10,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { NumberControl } from "../../../../../shared/keycloak-ui-shared";
 import { useAdminClient } from "../../../../admin-client";
 import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
-import { FormAccess } from "../../../../components/form/FormAccess";
-import { TimeSelectorControl } from "../../../../components/time-selector/TimeSelectorControl";
-import { ViewHeader } from "../../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../../components/form/form-access";
+import { TimeSelectorControl } from "../../../../components/time-selector/time-selector-control";
+import { ViewHeader } from "../../../../components/view-header/view-header";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import { toClients } from "../../../../lib/clients";
-import { AccessTokenDialog } from "../../../../components/clients/initial-access/AccessTokenDialog";
-import { MultiLineInput } from "../../../../components/multi-line-input/MultiLineInput";
+import { AccessTokenDialog } from "../../../../components/clients/initial-access/access-token-dialog";
+import { MultiLineInput } from "../../../../components/multi-line-input/multi-line-input";
 import { HelpItem } from "../../../../../shared/keycloak-ui-shared";
 
 const ActionGroup = ({ children, className, ...props }: any) => (

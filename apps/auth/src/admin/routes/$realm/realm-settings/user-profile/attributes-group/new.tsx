@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
-import AttributesGroupForm from "../../../../../components/realm-settings/user-profile/AttributesGroupForm";
-import { UserProfileProvider } from "../../../../../components/realm-settings/user-profile/UserProfileContext";
+import AttributesGroupForm from "../../../../../components/realm-settings/user-profile/attributes-group-form";
+import { UserProfileProvider } from "../../../../../components/realm-settings/user-profile/user-profile-context";
 
 const AttributesGroupDetails = () => (
   <UserProfileProvider>

@@ -21,14 +21,14 @@ import {
   KeycloakSpinner,
 } from "../../shared/keycloak-ui-shared";
 import { AdminClientContext, initAdminClient } from "../admin-client";
-import { ErrorRenderer } from "../components/error/ErrorRenderer";
+import { ErrorRenderer } from "../components/error/error-renderer";
 import { RecentRealmsProvider } from "../context/recent-realms";
 import { AccessContextProvider } from "../context/access/access";
 import { RealmContextProvider } from "../context/realm-context/realm-context";
 import { ServerInfoProvider } from "../context/server-info/server-info-provider";
 import { WhoAmIContextProvider } from "../context/whoami/who-am-i";
 import type { Environment } from "../environment";
-import { SubGroups } from "../components/groups/SubGroupsContext";
+import { SubGroups } from "../components/groups/sub-groups-context";
 import { AuthWall } from "./auth-wall";
 import { Banners } from "./banners";
 

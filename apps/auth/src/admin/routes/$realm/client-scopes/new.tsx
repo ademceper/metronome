@@ -8,11 +8,11 @@ import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import {
   ClientScopeDefaultOptionalType,
   changeScope,
-} from "../../../components/client-scope/ClientScopeTypes";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+} from "../../../components/client-scope/client-scope-types";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormValuesToObject } from "../../../util";
-import { ScopeForm } from "../../../components/client-scopes/details/ScopeForm";
+import { ScopeForm } from "../../../components/client-scopes/details/scope-form";
 import { toClientScope } from "../../../lib/client-scopes";
 
 const AlertVariant = {

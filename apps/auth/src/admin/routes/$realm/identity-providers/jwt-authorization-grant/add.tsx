@@ -8,12 +8,12 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../admin-client";
 import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
-import { FormAccess } from "../../../../components/form/FormAccess";
-import { ViewHeader } from "../../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../../components/form/form-access";
+import { ViewHeader } from "../../../../components/view-header/view-header";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import { toIdentityProvider } from "../../../../lib/identity-providers";
 import { toIdentityProviders } from "../../../../lib/identity-providers";
-import JWTAuthorizationGrantSettings from "../../../../components/identity-providers/add/JWTAuthorizationGrantSettings";
+import JWTAuthorizationGrantSettings from "../../../../components/identity-providers/add/jwt-authorization-grant-settings";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

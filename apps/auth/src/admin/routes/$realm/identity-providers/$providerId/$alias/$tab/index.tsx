@@ -24,16 +24,16 @@ import {
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../../../admin-client";
-import { useConfirmDialog } from "../../../../../../components/confirm-dialog/ConfirmDialog";
-import { DynamicComponents } from "../../../../../../components/dynamic/DynamicComponents";
-import { FixedButtonsGroup } from "../../../../../../components/form/FixedButtonGroup";
-import { FormAccess } from "../../../../../../components/form/FormAccess";
-import { PermissionsTab } from "../../../../../../components/permission-tab/PermissionTab";
+import { useConfirmDialog } from "../../../../../../components/confirm-dialog/confirm-dialog";
+import { DynamicComponents } from "../../../../../../components/dynamic/dynamic-components";
+import { FixedButtonsGroup } from "../../../../../../components/form/fixed-button-group";
+import { FormAccess } from "../../../../../../components/form/form-access";
+import { PermissionsTab } from "../../../../../../components/permission-tab/permission-tab";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
+} from "../../../../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../../../../components/view-header/view-header";
 import { useAccess } from "../../../../../../context/access/access";
 import { useRealm } from "../../../../../../context/realm-context/realm-context";
 import { useServerInfo } from "../../../../../../context/server-info/server-info-provider";
@@ -48,23 +48,23 @@ import {
   toIdentityProvider,
 } from "../../../../../../lib/identity-providers";
 import { toIdentityProviders } from "../../../../../../lib/identity-providers";
-import { AdvancedSettings } from "../../../../../../components/identity-providers/add/AdvancedSettings";
-import { DescriptorSettings } from "../../../../../../components/identity-providers/add/DescriptorSettings";
-import { DiscoverySettings } from "../../../../../../components/identity-providers/add/DiscoverySettings";
-import { ExtendedNonDiscoverySettings } from "../../../../../../components/identity-providers/add/ExtendedNonDiscoverySettings";
-import { ExtendedOAuth2Settings } from "../../../../../../components/identity-providers/add/ExtendedOAuth2Settings";
-import { GeneralSettings } from "../../../../../../components/identity-providers/add/GeneralSettings";
-import { OIDCAuthentication } from "../../../../../../components/identity-providers/add/OIDCAuthentication";
-import { OIDCGeneralSettings } from "../../../../../../components/identity-providers/add/OIDCGeneralSettings";
-import { ReqAuthnConstraints } from "../../../../../../components/identity-providers/add/ReqAuthnConstraintsSettings";
-import { SamlGeneralSettings } from "../../../../../../components/identity-providers/add/SamlGeneralSettings";
-import { SpiffeSettings } from "../../../../../../components/identity-providers/add/SpiffeSettings";
-import { AdminEvents } from "../../../../../../components/events/AdminEvents";
-import { UserProfileClaimsSettings } from "../../../../../../components/identity-providers/add/OAuth2UserProfileClaimsSettings";
-import { KubernetesSettings } from "../../../../../../components/identity-providers/add/KubernetesSettings";
-import { JWTAuthorizationGrantAssertionSettings } from "../../../../../../components/identity-providers/add/JWTAuthorizationGrantAssertionSettings";
-import JWTAuthorizationGrantSettings from "../../../../../../components/identity-providers/add/JWTAuthorizationGrantSettings";
-import { DefaultSwitchControl } from "../../../../../../components/SwitchControl";
+import { AdvancedSettings } from "../../../../../../components/identity-providers/add/advanced-settings";
+import { DescriptorSettings } from "../../../../../../components/identity-providers/add/descriptor-settings";
+import { DiscoverySettings } from "../../../../../../components/identity-providers/add/discovery-settings";
+import { ExtendedNonDiscoverySettings } from "../../../../../../components/identity-providers/add/extended-non-discovery-settings";
+import { ExtendedOAuth2Settings } from "../../../../../../components/identity-providers/add/extended-o-auth2-settings";
+import { GeneralSettings } from "../../../../../../components/identity-providers/add/general-settings";
+import { OIDCAuthentication } from "../../../../../../components/identity-providers/add/oidc-authentication";
+import { OIDCGeneralSettings } from "../../../../../../components/identity-providers/add/oidc-general-settings";
+import { ReqAuthnConstraints } from "../../../../../../components/identity-providers/add/req-authn-constraints-settings";
+import { SamlGeneralSettings } from "../../../../../../components/identity-providers/add/saml-general-settings";
+import { SpiffeSettings } from "../../../../../../components/identity-providers/add/spiffe-settings";
+import { AdminEvents } from "../../../../../../components/events/admin-events";
+import { UserProfileClaimsSettings } from "../../../../../../components/identity-providers/add/o-auth2-user-profile-claims-settings";
+import { KubernetesSettings } from "../../../../../../components/identity-providers/add/kubernetes-settings";
+import { JWTAuthorizationGrantAssertionSettings } from "../../../../../../components/identity-providers/add/jwt-authorization-grant-assertion-settings";
+import JWTAuthorizationGrantSettings from "../../../../../../components/identity-providers/add/jwt-authorization-grant-settings";
+import { DefaultSwitchControl } from "../../../../../../components/switch-control";
 import { GroupResourceContext } from "../../../../../../context/group-resource/group-resource-context";
 import { Tab, TabTitleText } from "../../../../../../../shared/pf-compat"
 

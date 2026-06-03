@@ -18,20 +18,20 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../../../admin-client";
-import { DefaultSwitchControl } from "../../../../../../components/SwitchControl";
-import { useConfirmDialog } from "../../../../../../components/confirm-dialog/ConfirmDialog";
-import { FormAccess } from "../../../../../../components/form/FormAccess";
-import { KeyValueInput } from "../../../../../../components/key-value-form/KeyValueInput";
+import { DefaultSwitchControl } from "../../../../../../components/switch-control";
+import { useConfirmDialog } from "../../../../../../components/confirm-dialog/confirm-dialog";
+import { FormAccess } from "../../../../../../components/form/form-access";
+import { KeyValueInput } from "../../../../../../components/key-value-form/key-value-input";
 import type { KeyValueType } from "../../../../../../components/key-value-form/key-value-convert";
 import { KeycloakSpinner } from "../../../../../../../shared/keycloak-ui-shared";
-import { MultiLineInput } from "../../../../../../components/multi-line-input/MultiLineInput";
-import { ViewHeader } from "../../../../../../components/view-header/ViewHeader";
+import { MultiLineInput } from "../../../../../../components/multi-line-input/multi-line-input";
+import { ViewHeader } from "../../../../../../components/view-header/view-header";
 import { useAccess } from "../../../../../../context/access/access";
 import { convertFormValuesToObject, convertToFormValues } from "../../../../../../util";
 import { useParams } from "../../../../../../utils/use-params";
 import { toAuthorizationTab } from "../../../../../../lib/clients";
 import { ResourceDetailsParams, toResourceDetails } from "../../../../../../lib/clients";
-import { ScopePicker } from "../../../../../../components/clients/authorization/ScopePicker";
+import { ScopePicker } from "../../../../../../components/clients/authorization/scope-picker";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

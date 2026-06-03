@@ -23,24 +23,24 @@ import {
   ClientScope,
   ClientScopeDefaultOptionalType,
   changeScope,
-} from "../../../../components/client-scope/ClientScopeTypes";
-import { useConfirmDialog } from "../../../../components/confirm-dialog/ConfirmDialog";
-import { RoleMapping, Row } from "../../../../components/role-mapping/RoleMapping";
+} from "../../../../components/client-scope/client-scope-types";
+import { useConfirmDialog } from "../../../../components/confirm-dialog/confirm-dialog";
+import { RoleMapping, Row } from "../../../../components/role-mapping/role-mapping";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../../components/view-header/ViewHeader";
+} from "../../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../../components/view-header/view-header";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import { convertFormValuesToObject } from "../../../../util";
 import { useParams } from "../../../../utils/use-params";
-import { MapperList } from "../../../../components/client-scopes/details/MapperList";
-import { ScopeForm } from "../../../../components/client-scopes/details/ScopeForm";
+import { MapperList } from "../../../../components/client-scopes/details/mapper-list";
+import { ScopeForm } from "../../../../components/client-scopes/details/scope-form";
 import { ClientScopeParams, toClientScope } from "../../../../lib/client-scopes";
 import { toClientScopes } from "../../../../lib/client-scopes";
 import { toMapper } from "../../../../lib/client-scopes";
 import { useAccess } from "../../../../context/access/access";
-import { AdminEvents } from "../../../../components/events/AdminEvents";
+import { AdminEvents } from "../../../../components/events/admin-events";
 import { Tab, TabTitleText } from "../../../../../shared/pf-compat"
 
 

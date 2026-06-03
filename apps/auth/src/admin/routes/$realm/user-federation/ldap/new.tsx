@@ -11,9 +11,9 @@ import {
   LdapComponentRepresentation,
   UserFederationLdapForm,
   serializeFormData,
-} from "../../../../components/user-federation/UserFederationLdapForm";
+} from "../../../../components/user-federation/user-federation-ldap-form";
 import { toUserFederation } from "../../../../lib/user-federation";
-import { ExtendedHeader } from "../../../../components/user-federation/shared/ExtendedHeader";
+import { ExtendedHeader } from "../../../../components/user-federation/shared/extended-header";
 
 const AlertVariant = {
   default: "default",

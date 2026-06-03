@@ -17,20 +17,20 @@ import { useAdminClient } from "../../../../admin-client";
 import {
   ConfirmDialogModal,
   useConfirmDialog,
-} from "../../../../components/confirm-dialog/ConfirmDialog";
-import { DownloadDialog } from "../../../../components/download-dialog/DownloadDialog";
+} from "../../../../components/confirm-dialog/confirm-dialog";
+import { DownloadDialog } from "../../../../components/download-dialog/download-dialog";
 import type { KeyValueType } from "../../../../components/key-value-form/key-value-convert";
 import { KeycloakSpinner } from "../../../../../shared/keycloak-ui-shared";
-import { PermissionsTab } from "../../../../components/permission-tab/PermissionTab";
-import { RolesList } from "../../../../components/roles-list/RolesList";
+import { PermissionsTab } from "../../../../components/permission-tab/permission-tab";
+import { RolesList } from "../../../../components/roles-list/roles-list";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../components/routable-tabs/RoutableTabs";
+} from "../../../../components/routable-tabs/routable-tabs";
 import {
   ViewHeader,
   ViewHeaderBadge,
-} from "../../../../components/view-header/ViewHeader";
+} from "../../../../components/view-header/view-header";
 import { useAccess } from "../../../../context/access/access";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import {
@@ -42,19 +42,19 @@ import {
 import useIsFeatureEnabled, { Feature } from "../../../../utils/use-is-feature-enabled";
 import { useParams } from "../../../../utils/use-params";
 import useToggle from "../../../../utils/use-toggle";
-import { AdvancedTab } from "../../../../components/clients/AdvancedTab";
-import { ClientSessions } from "../../../../components/clients/ClientSessions";
-import { ClientSettings } from "../../../../components/clients/ClientSettings";
-import { AuthorizationEvaluate } from "../../../../components/clients/authorization/AuthorizationEvaluate";
-import { AuthorizationExport } from "../../../../components/clients/authorization/AuthorizationExport";
-import { AuthorizationPermissions } from "../../../../components/clients/authorization/Permissions";
-import { AuthorizationPolicies } from "../../../../components/clients/authorization/Policies";
-import { AuthorizationResources } from "../../../../components/clients/authorization/Resources";
-import { AuthorizationScopes } from "../../../../components/clients/authorization/Scopes";
-import { AuthorizationSettings } from "../../../../components/clients/authorization/Settings";
-import { Credentials } from "../../../../components/clients/credentials/Credentials";
-import { Keys } from "../../../../components/clients/keys/Keys";
-import { SamlKeys } from "../../../../components/clients/keys/SamlKeys";
+import { AdvancedTab } from "../../../../components/clients/advanced-tab";
+import { ClientSessions } from "../../../../components/clients/client-sessions";
+import { ClientSettings } from "../../../../components/clients/client-settings";
+import { AuthorizationEvaluate } from "../../../../components/clients/authorization/authorization-evaluate";
+import { AuthorizationExport } from "../../../../components/clients/authorization/authorization-export";
+import { AuthorizationPermissions } from "../../../../components/clients/authorization/permissions";
+import { AuthorizationPolicies } from "../../../../components/clients/authorization/policies";
+import { AuthorizationResources } from "../../../../components/clients/authorization/resources";
+import { AuthorizationScopes } from "../../../../components/clients/authorization/scopes";
+import { AuthorizationSettings } from "../../../../components/clients/authorization/settings";
+import { Credentials } from "../../../../components/clients/credentials/credentials";
+import { Keys } from "../../../../components/clients/keys/keys";
+import { SamlKeys } from "../../../../components/clients/keys/saml-keys";
 import {
   AuthorizationTab,
   toAuthorizationTab,
@@ -64,13 +64,13 @@ import { toClientRole } from "../../../../lib/clients";
 import { ClientScopesTab, toClientScopesTab } from "../../../../lib/clients";
 import { toClients } from "../../../../lib/clients";
 import { toCreateRole } from "../../../../lib/clients";
-import { ClientScopes } from "../../../../components/clients/scopes/ClientScopes";
-import { EvaluateScopes } from "../../../../components/clients/scopes/EvaluateScopes";
-import { ServiceAccount } from "../../../../components/clients/service-account/ServiceAccount";
+import { ClientScopes } from "../../../../components/clients/scopes/client-scopes";
+import { EvaluateScopes } from "../../../../components/clients/scopes/evaluate-scopes";
+import { ServiceAccount } from "../../../../components/clients/service-account/service-account";
 import { getProtocolName, isRealmClient } from "../../../../components/clients/utils";
-import { UserEvents } from "../../../../components/events/UserEvents";
+import { UserEvents } from "../../../../components/events/user-events";
 import { useIsAdminPermissionsClient } from "../../../../utils/use-is-admin-permissions-client";
-import { AdminEvents } from "../../../../components/events/AdminEvents";
+import { AdminEvents } from "../../../../components/events/admin-events";
 import { Tabs, Tab, TabTitleText } from "../../../../../shared/pf-compat"
 
 

@@ -7,16 +7,16 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
-import { FormAccess } from "../../../components/form/FormAccess";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../components/form/form-access";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import { convertFormValuesToObject } from "../../../util";
-import { FormFields } from "../../../components/clients/ClientDetails";
+import { FormFields } from "../../../components/clients/client-details";
 import { toClient } from "../../../lib/clients";
 import { toClients } from "../../../lib/clients";
-import { CapabilityConfig } from "../../../components/clients/add/CapabilityConfig";
-import { GeneralSettings } from "../../../components/clients/add/GeneralSettings";
-import { LoginSettings } from "../../../components/clients/add/LoginSettings";
+import { CapabilityConfig } from "../../../components/clients/add/capability-config";
+import { GeneralSettings } from "../../../components/clients/add/general-settings";
+import { LoginSettings } from "../../../components/clients/add/login-settings";
 import { useState } from "react";
 
 const AlertVariant = {

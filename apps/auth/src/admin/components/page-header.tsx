@@ -21,11 +21,11 @@ import { Question as HelpIcon } from "@phosphor-icons/react"
 import { useTranslation } from "react-i18next";
 import { Link, useHref } from "react-router-dom";
 import { PageHeaderClearCachesModal } from "./page-header-clear-caches-modal";
-import { HelpHeader } from "../components/help-enabler/HelpHeader";
+import { HelpHeader } from "../components/help-enabler/help-header";
 import { useAccess } from "../context/access/access";
 import { useRealm } from "../context/realm-context/realm-context";
 import { toDashboard } from "../lib/dashboard";
-import { usePreviewLogo } from "../components/realm-settings/themes/LogoContext";
+import { usePreviewLogo } from "../components/realm-settings/themes/logo-context";
 import { joinPath } from "../utils/join-path";
 import useToggle from "../utils/use-toggle";
 

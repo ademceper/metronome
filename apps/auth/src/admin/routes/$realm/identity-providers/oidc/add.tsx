@@ -8,14 +8,14 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../admin-client";
 import { useAlerts } from "../../../../../shared/keycloak-ui-shared";
-import { FormAccess } from "../../../../components/form/FormAccess";
-import { ViewHeader } from "../../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../../components/form/form-access";
+import { ViewHeader } from "../../../../components/view-header/view-header";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import { toIdentityProvider } from "../../../../lib/identity-providers";
 import { toIdentityProviders } from "../../../../lib/identity-providers";
-import { OIDCAuthentication } from "../../../../components/identity-providers/add/OIDCAuthentication";
-import { OIDCGeneralSettings } from "../../../../components/identity-providers/add/OIDCGeneralSettings";
-import { OpenIdConnectSettings } from "../../../../components/identity-providers/add/OpenIdConnectSettings";
+import { OIDCAuthentication } from "../../../../components/identity-providers/add/oidc-authentication";
+import { OIDCGeneralSettings } from "../../../../components/identity-providers/add/oidc-general-settings";
+import { OpenIdConnectSettings } from "../../../../components/identity-providers/add/open-id-connect-settings";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>

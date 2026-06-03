@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
-import type { Row } from "../../../components/clients/scopes/ClientScopes";
+import type { Row } from "../../../components/clients/scopes/client-scopes";
 import { getProtocolName } from "../../../components/clients/utils";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
 import {
@@ -22,15 +22,15 @@ import {
   ClientScopeDefaultOptionalType,
   changeScope,
   removeScope,
-} from "../../../components/client-scope/ClientScopeTypes";
-import { useConfirmDialog } from "../../../components/confirm-dialog/ConfirmDialog";
+} from "../../../components/client-scope/client-scope-types";
+import { useConfirmDialog } from "../../../components/confirm-dialog/confirm-dialog";
 import { Action, DataTable } from "@metronome/ui/components/table/data-table";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";
 import { emptyFormatter } from "../../../util";
 import useLocaleSort, { mapByKey } from "../../../utils/use-locale-sort";
-import { ChangeTypeDropdown } from "../../../components/client-scopes/ChangeTypeDropdown";
+import { ChangeTypeDropdown } from "../../../components/client-scopes/change-type-dropdown";
 import {
   ProtocolType,
   SearchDropdown,
@@ -39,7 +39,7 @@ import {
   nameFilter,
   protocolFilter,
   typeFilter,
-} from "../../../components/client-scopes/details/SearchFilter";
+} from "../../../components/client-scopes/details/search-filter";
 import { toClientScope } from "../../../lib/client-scopes";
 import { toNewClientScope } from "../../../lib/client-scopes";
 

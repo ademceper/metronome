@@ -18,14 +18,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useAdminClient } from "../../../../../admin-client";
-import { useConfirmDialog } from "../../../../../components/confirm-dialog/ConfirmDialog";
-import { FormattedLink } from "../../../../../components/external-link/FormattedLink";
+import { useConfirmDialog } from "../../../../../components/confirm-dialog/confirm-dialog";
+import { FormattedLink } from "../../../../../components/external-link/formatted-link";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../../components/routable-tabs/RoutableTabs";
+} from "../../../../../components/routable-tabs/routable-tabs";
 import { Action, DataTable } from "@metronome/ui/components/table/data-table";
-import { ViewHeader } from "../../../../../components/view-header/ViewHeader";
+import { ViewHeader } from "../../../../../components/view-header/view-header";
 import { useAccess } from "../../../../../context/access/access";
 import { useRealm } from "../../../../../context/realm-context/realm-context";
 import { Environment } from "../../../../../environment";
@@ -33,8 +33,8 @@ import helpUrls from "../../../../../help-urls";
 import { emptyFormatter, exportClient } from "../../../../../util";
 import { convertClientToUrl } from "../../../../../utils/client-url";
 import { translationFormatter } from "../../../../../utils/translation-formatter";
-import { InitialAccessTokenList } from "../../../../../components/clients/initial-access/InitialAccessTokenList";
-import { ClientRegistration } from "../../../../../components/clients/registration/ClientRegistration";
+import { InitialAccessTokenList } from "../../../../../components/clients/initial-access/initial-access-token-list";
+import { ClientRegistration } from "../../../../../components/clients/registration/client-registration";
 import { toAddClient } from "../../../../../lib/clients";
 import { toClient } from "../../../../../lib/clients";
 import { ClientsTab, toClients } from "../../../../../lib/clients";

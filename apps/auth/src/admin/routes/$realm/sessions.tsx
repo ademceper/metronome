@@ -10,14 +10,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../admin-client";
 import { useAlerts } from "../../../shared/keycloak-ui-shared";
-import { useConfirmDialog } from "../../components/confirm-dialog/ConfirmDialog";
-import { ViewHeader } from "../../components/view-header/ViewHeader";
+import { useConfirmDialog } from "../../components/confirm-dialog/confirm-dialog";
+import { ViewHeader } from "../../components/view-header/view-header";
 import { fetchAdminUI } from "../../context/auth/admin-ui-endpoint";
 import { useRealm } from "../../context/realm-context/realm-context";
 import helpUrls from "../../help-urls";
 import useToggle from "../../utils/use-toggle";
-import { RevocationModal } from "../../components/sessions/RevocationModal";
-import SessionsTable from "../../components/sessions/SessionsTable";
+import { RevocationModal } from "../../components/sessions/revocation-modal";
+import SessionsTable from "../../components/sessions/sessions-table";
 import { SelectOption } from "../../../shared/pf-compat"
 
 const DropdownItem = ({ onClick, isDisabled, isAriaDisabled, description, children, ...props }: any) => (

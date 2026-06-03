@@ -22,7 +22,7 @@ import {
   getAllEffectiveRoles,
   getRoleMappings,
 } from "./resource";
-import { Row } from "./RoleMapping";
+import { Row } from "./role-mapping";
 
 export type ResourcesKey = keyof KeycloakAdminClient;
 

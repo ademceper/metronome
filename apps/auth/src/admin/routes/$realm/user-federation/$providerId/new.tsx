@@ -13,17 +13,17 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../../admin-client";
-import { DynamicComponents } from "../../../../components/dynamic/DynamicComponents";
-import { FormAccess } from "../../../../components/form/FormAccess";
+import { DynamicComponents } from "../../../../components/dynamic/dynamic-components";
+import { FormAccess } from "../../../../components/form/form-access";
 import { useRealm } from "../../../../context/realm-context/realm-context";
 import { useServerInfo } from "../../../../context/server-info/server-info-provider";
 import { convertFormValuesToObject, convertToFormValues } from "../../../../util";
 import { useParams } from "../../../../utils/use-params";
 import type { CustomUserFederationRouteParams } from "../../../../lib/user-federation";
 import { toUserFederation } from "../../../../lib/user-federation";
-import { ExtendedHeader } from "../../../../components/user-federation/shared/ExtendedHeader";
-import { SettingsCache } from "../../../../components/user-federation/shared/SettingsCache";
-import { SyncSettings } from "../../../../components/user-federation/custom/SyncSettings";
+import { ExtendedHeader } from "../../../../components/user-federation/shared/extended-header";
+import { SettingsCache } from "../../../../components/user-federation/shared/settings-cache";
+import { SyncSettings } from "../../../../components/user-federation/custom/sync-settings";
 import { useState } from "react";
 
 const ActionGroup = ({ children, className, ...props }: any) => (

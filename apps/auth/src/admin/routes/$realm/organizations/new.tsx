@@ -8,14 +8,14 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useAlerts } from "../../../../shared/keycloak-ui-shared";
-import { FormAccess } from "../../../components/form/FormAccess";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+import { FormAccess } from "../../../components/form/form-access";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import {
   OrganizationForm,
   OrganizationFormType,
   convertToOrg,
-} from "../../../components/organizations/OrganizationForm";
+} from "../../../components/organizations/organization-form";
 import { toEditOrganization } from "../../../lib/organizations";
 import { toOrganizations } from "../../../lib/organizations";
 

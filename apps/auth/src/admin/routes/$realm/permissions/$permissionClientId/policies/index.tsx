@@ -8,21 +8,21 @@ import { useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useAdminClient } from "../../../../../admin-client";
-import { AuthorizationPolicies } from "../../../../../components/clients/authorization/Policies";
-import { FormFields, SaveOptions } from "../../../../../components/clients/ClientDetails";
-import { ConfirmDialogModal } from "../../../../../components/confirm-dialog/ConfirmDialog";
+import { AuthorizationPolicies } from "../../../../../components/clients/authorization/policies";
+import { FormFields, SaveOptions } from "../../../../../components/clients/client-details";
+import { ConfirmDialogModal } from "../../../../../components/confirm-dialog/confirm-dialog";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../../../components/routable-tabs/RoutableTabs";
-import { ViewHeader } from "../../../../../components/view-header/ViewHeader";
+} from "../../../../../components/routable-tabs/routable-tabs";
+import { ViewHeader } from "../../../../../components/view-header/view-header";
 import { useAccess } from "../../../../../context/access/access";
 import { useRealm } from "../../../../../context/realm-context/realm-context";
 import { toPermissionsConfigurationTabs } from "../../../../../lib/permissions-configuration";
 import { convertFormValuesToObject, convertToFormValues } from "../../../../../util";
 import useToggle from "../../../../../utils/use-toggle";
-import { PermissionsConfigurationTab } from "../../../../../components/permissions-configuration/permission-configuration/PermissionsConfigurationTab";
-import { PermissionsEvaluationTab } from "../../../../../components/permissions-configuration/permission-evaluation/PermissionsEvaluationTab";
+import { PermissionsConfigurationTab } from "../../../../../components/permissions-configuration/permission-configuration/permissions-configuration-tab";
+import { PermissionsEvaluationTab } from "../../../../../components/permissions-configuration/permission-evaluation/permissions-evaluation-tab";
 import { Tab, TabTitleText } from "../../../../../../shared/pf-compat"
 
 

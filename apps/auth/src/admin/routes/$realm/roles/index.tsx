@@ -2,8 +2,8 @@
 import { createFileRoute } from "@tanstack/react-router"
 import { cn } from "@metronome/ui/lib/utils";
 import { useAdminClient } from "../../../admin-client";
-import { RolesList } from "../../../components/roles-list/RolesList";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+import { RolesList } from "../../../components/roles-list/roles-list";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useAccess } from "../../../context/access/access";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";

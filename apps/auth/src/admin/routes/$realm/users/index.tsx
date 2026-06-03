@@ -4,16 +4,16 @@ import { usePageHeader } from "@metronome/ui/blocks/layout/page-header"
 import { useTranslation } from "react-i18next";
 import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { cn } from "@metronome/ui/lib/utils";
-import { ViewHeader } from "../../../components/view-header/ViewHeader";
+import { ViewHeader } from "../../../components/view-header/view-header";
 import { useRealm } from "../../../context/realm-context/realm-context";
 import helpUrls from "../../../help-urls";
-import { PermissionsTab } from "../../../components/permission-tab/PermissionTab";
-import { UserDataTable } from "../../../components/users/UserDataTable";
+import { PermissionsTab } from "../../../components/permission-tab/permission-tab";
+import { UserDataTable } from "../../../components/users/user-data-table";
 import { toUsers, UserTab } from "../../../lib/user";
 import {
   RoutableTabs,
   useRoutableTab,
-} from "../../../components/routable-tabs/RoutableTabs";
+} from "../../../components/routable-tabs/routable-tabs";
 import useIsFeatureEnabled, { Feature } from "../../../utils/use-is-feature-enabled";
 import { useAccess } from "../../../context/access/access";
 import { Tab, TabTitleText } from "../../../../shared/pf-compat"
