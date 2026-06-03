@@ -239,6 +239,6 @@ function ScopeDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/$id/authorization/scope/$scope-id")({
+export const Route = createFileRoute("/$realm/clients/$id/authorization/scope/$scopeId")({
   component: ScopeDetails,
 })

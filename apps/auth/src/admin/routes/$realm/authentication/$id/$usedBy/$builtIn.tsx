@@ -605,6 +605,6 @@ function FlowDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/authentication/$id/$usedBy/$built-in")({
+export const Route = createFileRoute("/$realm/authentication/$id/$usedBy/$builtIn")({
   component: FlowDetails,
 })

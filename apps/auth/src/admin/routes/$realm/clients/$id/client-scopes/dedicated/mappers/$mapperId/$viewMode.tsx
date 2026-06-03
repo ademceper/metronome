@@ -6,7 +6,7 @@ import {
   TextControl,
   useAlerts,
   useFetch,
-} from "../../../../../../../shared/keycloak-ui-shared";
+} from "../../../../../../../../../shared/keycloak-ui-shared";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
 import { Input as UIInput } from "@metronome/ui/components/input";
@@ -15,18 +15,18 @@ import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useMatch, useNavigate } from "react-router-dom";
-import { useAdminClient } from "../../../../../../admin-client";
-import { toDedicatedScope } from "../../../../../../lib/clients";
-import { useConfirmDialog } from "../../../../../../components/confirm-dialog/confirm-dialog";
-import { DynamicComponents } from "../../../../../../components/dynamic/dynamic-components";
-import { FormAccess } from "../../../../../../components/form/form-access";
-import { ViewHeader } from "../../../../../../components/view-header/view-header";
-import { useRealm } from "../../../../../../context/realm-context/realm-context";
-import { useServerInfo } from "../../../../../../context/server-info/server-info-provider";
-import { convertFormValuesToObject, convertToFormValues } from "../../../../../../util";
-import { useParams } from "../../../../../../utils/use-params";
-import { toClientScope } from "../../../../../../lib/client-scopes";
-import { MapperParams, MapperRoute } from "../../../../../../lib/client-scopes";
+import { useAdminClient } from "../../../../../../../../admin-client";
+import { toDedicatedScope } from "../../../../../../../../lib/clients";
+import { useConfirmDialog } from "../../../../../../../../components/confirm-dialog/confirm-dialog";
+import { DynamicComponents } from "../../../../../../../../components/dynamic/dynamic-components";
+import { FormAccess } from "../../../../../../../../components/form/form-access";
+import { ViewHeader } from "../../../../../../../../components/view-header/view-header";
+import { useRealm } from "../../../../../../../../context/realm-context/realm-context";
+import { useServerInfo } from "../../../../../../../../context/server-info/server-info-provider";
+import { convertFormValuesToObject, convertToFormValues } from "../../../../../../../../util";
+import { useParams } from "../../../../../../../../utils/use-params";
+import { toClientScope } from "../../../../../../../../lib/client-scopes";
+import { MapperParams, MapperRoute } from "../../../../../../../../lib/client-scopes";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
@@ -323,6 +323,6 @@ function MappingDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/client-scopes/$id/mappers/$mapperId/$view-mode")({
+export const Route = createFileRoute("/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode")({
   component: MappingDetails,
 })

@@ -491,6 +491,6 @@ function PermissionDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/$id/authorization/permission/$permissionType/$permission-id")({
+export const Route = createFileRoute("/$realm/clients/$id/authorization/permission/$permissionType/$permissionId")({
   component: PermissionDetails,
 })

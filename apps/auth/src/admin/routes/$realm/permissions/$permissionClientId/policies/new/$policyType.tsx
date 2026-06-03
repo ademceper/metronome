@@ -334,6 +334,6 @@ function NewPermissionPolicyDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/permissions/$permissionClientId/policies/new/$policy-type")({
+export const Route = createFileRoute("/$realm/permissions/$permissionClientId/policies/new/$policyType")({
   component: NewPermissionPolicyDetails,
 })

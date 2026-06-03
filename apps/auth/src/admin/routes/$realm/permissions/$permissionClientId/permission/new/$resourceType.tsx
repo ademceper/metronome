@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { createFileRoute } from "@tanstack/react-router"
 import PolicyProviderRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyProviderRepresentation";
-import { useAlerts, useFetch } from "../../../../../../../../shared/keycloak-ui-shared";
+import { useAlerts, useFetch } from "../../../../../../../shared/keycloak-ui-shared";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { DropdownMenuItem as UIDropdownMenuItem } from "@metronome/ui/components/dropdown-menu";
 import { cn } from "@metronome/ui/lib/utils";
@@ -9,24 +9,24 @@ import { useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { useAdminClient } from "../../../../../../../admin-client";
-import { useConfirmDialog } from "../../../../../../../components/confirm-dialog/confirm-dialog";
-import { FormAccess } from "../../../../../../../components/form/form-access";
-import { KeycloakSpinner } from "../../../../../../../../shared/keycloak-ui-shared";
-import { ViewHeader } from "../../../../../../../components/view-header/view-header";
-import { useParams } from "../../../../../../../utils/use-params";
+import { useAdminClient } from "../../../../../../admin-client";
+import { useConfirmDialog } from "../../../../../../components/confirm-dialog/confirm-dialog";
+import { FormAccess } from "../../../../../../components/form/form-access";
+import { KeycloakSpinner } from "../../../../../../../shared/keycloak-ui-shared";
+import { ViewHeader } from "../../../../../../components/view-header/view-header";
+import { useParams } from "../../../../../../utils/use-params";
 import {
   PermissionConfigurationDetailsParams,
   toPermissionConfigurationDetails,
-} from "../../../../../../../lib/permissions-configuration";
-import { toPermissionsConfigurationTabs } from "../../../../../../../lib/permissions-configuration";
+} from "../../../../../../lib/permissions-configuration";
+import { toPermissionsConfigurationTabs } from "../../../../../../lib/permissions-configuration";
 import PolicyRepresentation from "@keycloak/keycloak-admin-client/lib/defs/policyRepresentation";
-import { AssignedPolicies } from "../../../../../../../components/permissions-configuration/permission-configuration/assigned-policies";
-import { ScopePicker } from "../../../../../../../components/clients/authorization/scope-picker";
-import { ResourceType } from "../../../../../../../components/permissions-configuration/resource-types/resource-type";
+import { AssignedPolicies } from "../../../../../../components/permissions-configuration/permission-configuration/assigned-policies";
+import { ScopePicker } from "../../../../../../components/clients/authorization/scope-picker";
+import { ResourceType } from "../../../../../../components/permissions-configuration/resource-types/resource-type";
 import { sortBy } from "lodash-es";
-import { NameDescription } from "../../../../../../../components/clients/authorization/policy/name-description";
-import useSortedResourceTypes from "../../../../../../../utils/use-sorted-resource-types";
+import { NameDescription } from "../../../../../../components/clients/authorization/policy/name-description";
+import useSortedResourceTypes from "../../../../../../utils/use-sorted-resource-types";
 
 const ActionGroup = ({ children, className, ...props }: any) => (
   <div className={cn("flex items-center gap-2 pt-2", className)} {...props}>{children}</div>
@@ -346,6 +346,6 @@ function PermissionConfigurationDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/$id/permissions/permission/$permissionId/$permission-type")({
+export const Route = createFileRoute("/$realm/permissions/$permissionClientId/permission/new/$resourceType")({
   component: PermissionConfigurationDetails,
 })

@@ -192,6 +192,6 @@ function PageList() {
   );
 }
 
-export const Route = createFileRoute("/page-section/$provider-id")({
+export const Route = createFileRoute("/page-section/$providerId")({
   component: PageList,
 })

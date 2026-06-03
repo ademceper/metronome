@@ -338,6 +338,6 @@ function ExecutorForm() {
   );
 }
 
-export const Route = createFileRoute("/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name")({
+export const Route = createFileRoute("/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName")({
   component: ExecutorForm,
 })

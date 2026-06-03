@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RealmRouteImport } from './routes/$realm'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RealmIndexRouteImport } from './routes/$realm/index'
-import { Route as PageSectionProviderIdRouteImport } from './routes/page-section/$provider-id'
+import { Route as PageSectionProviderIdRouteImport } from './routes/page-section/$providerId'
 import { Route as RealmWorkflowsRouteImport } from './routes/$realm/workflows'
 import { Route as RealmUsersRouteImport } from './routes/$realm/users'
 import { Route as RealmUserFederationRouteImport } from './routes/$realm/user-federation'
@@ -44,7 +44,7 @@ import { Route as RealmUserFederationLdapRouteImport } from './routes/$realm/use
 import { Route as RealmUserFederationKerberosRouteImport } from './routes/$realm/user-federation/kerberos'
 import { Route as RealmRolesNewRouteImport } from './routes/$realm/roles/new'
 import { Route as RealmRealmSettingsTabRouteImport } from './routes/$realm/realm-settings/$tab'
-import { Route as RealmPageSectionProviderIdRouteImport } from './routes/$realm/page-section/$provider-id'
+import { Route as RealmPageSectionProviderIdRouteImport } from './routes/$realm/page-section/$providerId'
 import { Route as RealmOrganizationsNewRouteImport } from './routes/$realm/organizations/new'
 import { Route as RealmGroupsIdRouteImport } from './routes/$realm/groups/$id'
 import { Route as RealmGroupsSplatRouteImport } from './routes/$realm/groups/$'
@@ -83,11 +83,11 @@ import { Route as RealmIdentityProvidersKeycloakOidcAddRouteImport } from './rou
 import { Route as RealmIdentityProvidersJwtAuthorizationGrantAddRouteImport } from './routes/$realm/identity-providers/jwt-authorization-grant/add'
 import { Route as RealmIdentityProvidersProviderIdAddRouteImport } from './routes/$realm/identity-providers/$providerId/add'
 import { Route as RealmClientsInitialAccessTokenCreateRouteImport } from './routes/$realm/clients/initial-access-token/create'
-import { Route as RealmClientsClientRegistrationSubTabRouteImport } from './routes/$realm/clients/client-registration/$sub-tab'
+import { Route as RealmClientsClientRegistrationSubTabRouteImport } from './routes/$realm/clients/client-registration/$subTab'
 import { Route as RealmClientsClientIdTabRouteImport } from './routes/$realm/clients/$clientId/$tab'
 import { Route as RealmClientScopesIdTabRouteImport } from './routes/$realm/client-scopes/$id/$tab'
 import { Route as RealmAuthenticationFlowsCreateRouteImport } from './routes/$realm/authentication/flows/create'
-import { Route as RealmAuthenticationIdUsedByRouteImport } from './routes/$realm/authentication/$id/$used-by'
+import { Route as RealmAuthenticationIdUsedByRouteImport } from './routes/$realm/authentication/$id/$usedBy'
 import { Route as RealmUserFederationLdapIdIndexRouteImport } from './routes/$realm/user-federation/ldap/$id/index'
 import { Route as RealmRealmSettingsClientPoliciesTabIndexRouteImport } from './routes/$realm/realm-settings/client-policies/$tab/index'
 import { Route as RealmPermissionsPermissionClientIdPoliciesIndexRouteImport } from './routes/$realm/permissions/$permissionClientId/policies/index'
@@ -105,14 +105,14 @@ import { Route as RealmOrganizationsOrgIdGroupsIdRouteImport } from './routes/$r
 import { Route as RealmOrganizationsOrgIdGroupsSplatRouteImport } from './routes/$realm/organizations/$orgId/groups/$'
 import { Route as RealmOrganizationsIdTabSplatRouteImport } from './routes/$realm/organizations/$id/$tab/$'
 import { Route as RealmIdentityProvidersProviderIdAliasTabRouteImport } from './routes/$realm/identity-providers/$providerId/$alias/$tab'
-import { Route as RealmClientsClientRegistrationSubTabProviderIdRouteImport } from './routes/$realm/clients/client-registration/$subTab/$provider-id'
+import { Route as RealmClientsClientRegistrationSubTabProviderIdRouteImport } from './routes/$realm/clients/client-registration/$subTab/$providerId'
 import { Route as RealmClientsIdAuthorizationScopeRouteImport } from './routes/$realm/clients/$id/authorization/scope'
 import { Route as RealmClientsIdAuthorizationResourceRouteImport } from './routes/$realm/clients/$id/authorization/resource'
 import { Route as RealmClientsClientIdRolesNewRouteImport } from './routes/$realm/clients/$clientId/roles/new'
 import { Route as RealmClientsClientIdClientScopesDedicatedRouteImport } from './routes/$realm/clients/$clientId/client-scopes/dedicated'
 import { Route as RealmClientsClientIdClientScopesTabRouteImport } from './routes/$realm/clients/$clientId/client-scopes/$tab'
 import { Route as RealmClientsClientIdAuthorizationTabRouteImport } from './routes/$realm/clients/$clientId/authorization/$tab'
-import { Route as RealmAuthenticationIdUsedByBuiltInRouteImport } from './routes/$realm/authentication/$id/$usedBy/$built-in'
+import { Route as RealmAuthenticationIdUsedByBuiltInRouteImport } from './routes/$realm/authentication/$id/$usedBy/$builtIn'
 import { Route as RealmRealmSettingsClientPoliciesProfileNameEditProfileIndexRouteImport } from './routes/$realm/realm-settings/client-policies/$profileName/edit-profile/index'
 import { Route as RealmRealmSettingsClientPoliciesPolicyNameEditPolicyIndexRouteImport } from './routes/$realm/realm-settings/client-policies/$policyName/edit-policy/index'
 import { Route as RealmIdentityProvidersProviderIdAliasTabIndexRouteImport } from './routes/$realm/identity-providers/$providerId/$alias/$tab/index'
@@ -120,35 +120,35 @@ import { Route as RealmClientsClientRegistrationSubTabProviderIdIndexRouteImport
 import { Route as RealmClientsIdAuthorizationScopeIndexRouteImport } from './routes/$realm/clients/$id/authorization/scope/index'
 import { Route as RealmClientsIdAuthorizationResourceIndexRouteImport } from './routes/$realm/clients/$id/authorization/resource/index'
 import { Route as RealmClientsClientIdClientScopesDedicatedIndexRouteImport } from './routes/$realm/clients/$clientId/client-scopes/dedicated/index'
-import { Route as RealmUserFederationLdapIdMappersMapperIdRouteImport } from './routes/$realm/user-federation/ldap/$id/mappers/$mapper-id'
+import { Route as RealmUserFederationLdapIdMappersMapperIdRouteImport } from './routes/$realm/user-federation/ldap/$id/mappers/$mapperId'
 import { Route as RealmRealmSettingsUserProfileAttributesAttributeNameEditAttributeRouteImport } from './routes/$realm/realm-settings/user-profile/attributes/$attributeName/edit-attribute'
 import { Route as RealmRealmSettingsUserProfileAttributesGroupEditNameRouteImport } from './routes/$realm/realm-settings/user-profile/attributes-group/edit/$name'
-import { Route as RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRouteImport } from './routes/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name'
+import { Route as RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRouteImport } from './routes/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName'
 import { Route as RealmRealmSettingsClientPoliciesPolicyNameEditPolicyCreateConditionRouteImport } from './routes/$realm/realm-settings/client-policies/$policyName/edit-policy/create-condition'
-import { Route as RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/policies/new/$policy-type'
-import { Route as RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type'
-import { Route as RealmPermissionsPermissionClientIdPermissionNewResourceTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/permission/new/$resource-type'
-import { Route as RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type'
+import { Route as RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/policies/new/$policyType'
+import { Route as RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/policies/$policyId/$policyType'
+import { Route as RealmPermissionsPermissionClientIdPermissionNewResourceTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/permission/new/$resourceType'
+import { Route as RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRouteImport } from './routes/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType'
 import { Route as RealmIdentityProvidersProviderIdAliasMappersIdRouteImport } from './routes/$realm/identity-providers/$providerId/$alias/mappers/$id'
 import { Route as RealmIdentityProvidersProviderIdAliasTabCreateRouteImport } from './routes/$realm/identity-providers/$providerId/$alias/$tab/create'
 import { Route as RealmClientsClientRegistrationSubTabProviderIdIdRouteImport } from './routes/$realm/clients/client-registration/$subTab/$providerId/$id'
 import { Route as RealmClientsIdAuthorizationScopeNewRouteImport } from './routes/$realm/clients/$id/authorization/scope/new'
-import { Route as RealmClientsIdAuthorizationScopeScopeIdRouteImport } from './routes/$realm/clients/$id/authorization/scope/$scope-id'
+import { Route as RealmClientsIdAuthorizationScopeScopeIdRouteImport } from './routes/$realm/clients/$id/authorization/scope/$scopeId'
 import { Route as RealmClientsIdAuthorizationResourceNewRouteImport } from './routes/$realm/clients/$id/authorization/resource/new'
-import { Route as RealmClientsIdAuthorizationResourceResourceIdRouteImport } from './routes/$realm/clients/$id/authorization/resource/$resource-id'
+import { Route as RealmClientsIdAuthorizationResourceResourceIdRouteImport } from './routes/$realm/clients/$id/authorization/resource/$resourceId'
 import { Route as RealmClientsClientIdRolesIdTabRouteImport } from './routes/$realm/clients/$clientId/roles/$id/$tab'
 import { Route as RealmClientsClientIdClientScopesDedicatedTabRouteImport } from './routes/$realm/clients/$clientId/client-scopes/dedicated/$tab'
-import { Route as RealmClientScopesIdMappersMapperIdViewModeRouteImport } from './routes/$realm/client-scopes/$id/mappers/$mapperId/$view-mode'
+import { Route as RealmClientScopesIdMappersMapperIdViewModeRouteImport } from './routes/$realm/client-scopes/$id/mappers/$mapperId/$viewMode'
 import { Route as RealmRealmSettingsKeysProvidersIdProviderTypeSettingsRouteImport } from './routes/$realm/realm-settings/keys/providers/$id/$providerType/settings'
 import { Route as RealmRealmSettingsClientPoliciesPolicyNameEditPolicyConditionNameEditConditionRouteImport } from './routes/$realm/realm-settings/client-policies/$policyName/edit-policy/$conditionName/edit-condition'
-import { Route as RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRouteImport } from './routes/$realm/clients/$id/permissions/permission/$permissionId/$permission-type'
-import { Route as RealmClientsIdAuthorizationPolicyNewPolicyTypeRouteImport } from './routes/$realm/clients/$id/authorization/policy/new/$policy-type'
-import { Route as RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRouteImport } from './routes/$realm/clients/$id/authorization/policy/$policyId/$policy-type'
-import { Route as RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteImport } from './routes/$realm/clients/$id/authorization/permission/new/$permission-type'
-import { Route as RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRouteImport } from './routes/$realm/clients/$id/authorization/permission/$permissionType/$permission-id'
+import { Route as RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRouteImport } from './routes/$realm/clients/$id/permissions/permission/$permissionId/$permissionType'
+import { Route as RealmClientsIdAuthorizationPolicyNewPolicyTypeRouteImport } from './routes/$realm/clients/$id/authorization/policy/new/$policyType'
+import { Route as RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRouteImport } from './routes/$realm/clients/$id/authorization/policy/$policyId/$policyType'
+import { Route as RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteImport } from './routes/$realm/clients/$id/authorization/permission/new/$permissionType'
+import { Route as RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRouteImport } from './routes/$realm/clients/$id/authorization/permission/$permissionType/$permissionId'
 import { Route as RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRouteImport } from './routes/$realm/clients/$id/authorization/permission/new/$permissionType/index'
-import { Route as RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRouteImport } from './routes/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode'
-import { Route as RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRouteImport } from './routes/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id'
+import { Route as RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRouteImport } from './routes/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode'
+import { Route as RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRouteImport } from './routes/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId'
 
 const RealmRoute = RealmRouteImport.update({
   id: '/$realm',
@@ -166,8 +166,8 @@ const RealmIndexRoute = RealmIndexRouteImport.update({
   getParentRoute: () => RealmRoute,
 } as any)
 const PageSectionProviderIdRoute = PageSectionProviderIdRouteImport.update({
-  id: '/page-section/$provider-id',
-  path: '/page-section/$provider-id',
+  id: '/page-section/$providerId',
+  path: '/page-section/$providerId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RealmWorkflowsRoute = RealmWorkflowsRouteImport.update({
@@ -331,8 +331,8 @@ const RealmRealmSettingsTabRoute = RealmRealmSettingsTabRouteImport.update({
 } as any)
 const RealmPageSectionProviderIdRoute =
   RealmPageSectionProviderIdRouteImport.update({
-    id: '/page-section/$provider-id',
-    path: '/page-section/$provider-id',
+    id: '/page-section/$providerId',
+    path: '/page-section/$providerId',
     getParentRoute: () => RealmRoute,
   } as any)
 const RealmOrganizationsNewRoute = RealmOrganizationsNewRouteImport.update({
@@ -395,9 +395,9 @@ const RealmUserFederationKerberosIndexRoute =
   } as any)
 const RealmPageSectionProviderIdIndexRoute =
   RealmPageSectionProviderIdIndexRouteImport.update({
-    id: '/page-section/$providerId/',
-    path: '/page-section/$providerId/',
-    getParentRoute: () => RealmRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => RealmPageSectionProviderIdRoute,
   } as any)
 const RealmWorkflowsModeIdRoute = RealmWorkflowsModeIdRouteImport.update({
   id: '/$mode/$id',
@@ -488,15 +488,15 @@ const RealmPermissionsPermissionClientIdTabRoute =
   } as any)
 const RealmPageSectionProviderIdAddRoute =
   RealmPageSectionProviderIdAddRouteImport.update({
-    id: '/page-section/$providerId/add',
-    path: '/page-section/$providerId/add',
-    getParentRoute: () => RealmRoute,
+    id: '/add',
+    path: '/add',
+    getParentRoute: () => RealmPageSectionProviderIdRoute,
   } as any)
 const RealmPageSectionProviderIdIdRoute =
   RealmPageSectionProviderIdIdRouteImport.update({
-    id: '/page-section/$providerId/$id',
-    path: '/page-section/$providerId/$id',
-    getParentRoute: () => RealmRoute,
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => RealmPageSectionProviderIdRoute,
   } as any)
 const RealmIdentityProvidersSpiffeAddRoute =
   RealmIdentityProvidersSpiffeAddRouteImport.update({
@@ -554,8 +554,8 @@ const RealmClientsInitialAccessTokenCreateRoute =
   } as any)
 const RealmClientsClientRegistrationSubTabRoute =
   RealmClientsClientRegistrationSubTabRouteImport.update({
-    id: '/client-registration/$sub-tab',
-    path: '/client-registration/$sub-tab',
+    id: '/client-registration/$subTab',
+    path: '/client-registration/$subTab',
     getParentRoute: () => RealmClientsRoute,
   } as any)
 const RealmClientsClientIdTabRoute = RealmClientsClientIdTabRouteImport.update({
@@ -576,8 +576,8 @@ const RealmAuthenticationFlowsCreateRoute =
   } as any)
 const RealmAuthenticationIdUsedByRoute =
   RealmAuthenticationIdUsedByRouteImport.update({
-    id: '/$id/$used-by',
-    path: '/$id/$used-by',
+    id: '/$id/$usedBy',
+    path: '/$id/$usedBy',
     getParentRoute: () => RealmAuthenticationRoute,
   } as any)
 const RealmUserFederationLdapIdIndexRoute =
@@ -600,15 +600,15 @@ const RealmPermissionsPermissionClientIdPoliciesIndexRoute =
   } as any)
 const RealmClientsClientRegistrationSubTabIndexRoute =
   RealmClientsClientRegistrationSubTabIndexRouteImport.update({
-    id: '/client-registration/$subTab/',
-    path: '/client-registration/$subTab/',
-    getParentRoute: () => RealmClientsRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => RealmClientsClientRegistrationSubTabRoute,
   } as any)
 const RealmAuthenticationIdUsedByIndexRoute =
   RealmAuthenticationIdUsedByIndexRouteImport.update({
-    id: '/$id/$usedBy/',
-    path: '/$id/$usedBy/',
-    getParentRoute: () => RealmAuthenticationRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => RealmAuthenticationIdUsedByRoute,
   } as any)
 const RealmUserFederationLdapIdTabRoute =
   RealmUserFederationLdapIdTabRouteImport.update({
@@ -684,9 +684,9 @@ const RealmIdentityProvidersProviderIdAliasTabRoute =
   } as any)
 const RealmClientsClientRegistrationSubTabProviderIdRoute =
   RealmClientsClientRegistrationSubTabProviderIdRouteImport.update({
-    id: '/client-registration/$subTab/$provider-id',
-    path: '/client-registration/$subTab/$provider-id',
-    getParentRoute: () => RealmClientsRoute,
+    id: '/$providerId',
+    path: '/$providerId',
+    getParentRoute: () => RealmClientsClientRegistrationSubTabRoute,
   } as any)
 const RealmClientsIdAuthorizationScopeRoute =
   RealmClientsIdAuthorizationScopeRouteImport.update({
@@ -726,9 +726,9 @@ const RealmClientsClientIdAuthorizationTabRoute =
   } as any)
 const RealmAuthenticationIdUsedByBuiltInRoute =
   RealmAuthenticationIdUsedByBuiltInRouteImport.update({
-    id: '/$id/$usedBy/$built-in',
-    path: '/$id/$usedBy/$built-in',
-    getParentRoute: () => RealmAuthenticationRoute,
+    id: '/$builtIn',
+    path: '/$builtIn',
+    getParentRoute: () => RealmAuthenticationIdUsedByRoute,
   } as any)
 const RealmRealmSettingsClientPoliciesProfileNameEditProfileIndexRoute =
   RealmRealmSettingsClientPoliciesProfileNameEditProfileIndexRouteImport.update(
@@ -754,9 +754,9 @@ const RealmIdentityProvidersProviderIdAliasTabIndexRoute =
   } as any)
 const RealmClientsClientRegistrationSubTabProviderIdIndexRoute =
   RealmClientsClientRegistrationSubTabProviderIdIndexRouteImport.update({
-    id: '/client-registration/$subTab/$providerId/',
-    path: '/client-registration/$subTab/$providerId/',
-    getParentRoute: () => RealmClientsRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => RealmClientsClientRegistrationSubTabProviderIdRoute,
   } as any)
 const RealmClientsIdAuthorizationScopeIndexRoute =
   RealmClientsIdAuthorizationScopeIndexRouteImport.update({
@@ -778,8 +778,8 @@ const RealmClientsClientIdClientScopesDedicatedIndexRoute =
   } as any)
 const RealmUserFederationLdapIdMappersMapperIdRoute =
   RealmUserFederationLdapIdMappersMapperIdRouteImport.update({
-    id: '/mappers/$mapper-id',
-    path: '/mappers/$mapper-id',
+    id: '/mappers/$mapperId',
+    path: '/mappers/$mapperId',
     getParentRoute: () => RealmUserFederationLdapIdRoute,
   } as any)
 const RealmRealmSettingsUserProfileAttributesAttributeNameEditAttributeRoute =
@@ -799,8 +799,8 @@ const RealmRealmSettingsUserProfileAttributesGroupEditNameRoute =
 const RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRoute =
   RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRouteImport.update(
     {
-      id: '/$executor-name',
-      path: '/$executor-name',
+      id: '/$executorName',
+      path: '/$executorName',
       getParentRoute: () =>
         RealmRealmSettingsClientPoliciesProfileNameEditProfileRoute,
     } as any,
@@ -816,31 +816,31 @@ const RealmRealmSettingsClientPoliciesPolicyNameEditPolicyCreateConditionRoute =
   )
 const RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRoute =
   RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRouteImport.update({
-    id: '/new/$policy-type',
-    path: '/new/$policy-type',
+    id: '/new/$policyType',
+    path: '/new/$policyType',
     getParentRoute: () => RealmPermissionsPermissionClientIdPoliciesRoute,
   } as any)
 const RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRoute =
   RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRouteImport.update(
     {
-      id: '/$policyId/$policy-type',
-      path: '/$policyId/$policy-type',
+      id: '/$policyId/$policyType',
+      path: '/$policyId/$policyType',
       getParentRoute: () => RealmPermissionsPermissionClientIdPoliciesRoute,
     } as any,
   )
 const RealmPermissionsPermissionClientIdPermissionNewResourceTypeRoute =
   RealmPermissionsPermissionClientIdPermissionNewResourceTypeRouteImport.update(
     {
-      id: '/$permissionClientId/permission/new/$resource-type',
-      path: '/$permissionClientId/permission/new/$resource-type',
+      id: '/$permissionClientId/permission/new/$resourceType',
+      path: '/$permissionClientId/permission/new/$resourceType',
       getParentRoute: () => RealmPermissionsRoute,
     } as any,
   )
 const RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRoute =
   RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRouteImport.update(
     {
-      id: '/$permissionClientId/permission/$permissionId/$resource-type',
-      path: '/$permissionClientId/permission/$permissionId/$resource-type',
+      id: '/$permissionClientId/permission/$permissionId/$resourceType',
+      path: '/$permissionClientId/permission/$permissionId/$resourceType',
       getParentRoute: () => RealmPermissionsRoute,
     } as any,
   )
@@ -858,9 +858,9 @@ const RealmIdentityProvidersProviderIdAliasTabCreateRoute =
   } as any)
 const RealmClientsClientRegistrationSubTabProviderIdIdRoute =
   RealmClientsClientRegistrationSubTabProviderIdIdRouteImport.update({
-    id: '/client-registration/$subTab/$providerId/$id',
-    path: '/client-registration/$subTab/$providerId/$id',
-    getParentRoute: () => RealmClientsRoute,
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => RealmClientsClientRegistrationSubTabProviderIdRoute,
   } as any)
 const RealmClientsIdAuthorizationScopeNewRoute =
   RealmClientsIdAuthorizationScopeNewRouteImport.update({
@@ -870,8 +870,8 @@ const RealmClientsIdAuthorizationScopeNewRoute =
   } as any)
 const RealmClientsIdAuthorizationScopeScopeIdRoute =
   RealmClientsIdAuthorizationScopeScopeIdRouteImport.update({
-    id: '/$scope-id',
-    path: '/$scope-id',
+    id: '/$scopeId',
+    path: '/$scopeId',
     getParentRoute: () => RealmClientsIdAuthorizationScopeRoute,
   } as any)
 const RealmClientsIdAuthorizationResourceNewRoute =
@@ -882,8 +882,8 @@ const RealmClientsIdAuthorizationResourceNewRoute =
   } as any)
 const RealmClientsIdAuthorizationResourceResourceIdRoute =
   RealmClientsIdAuthorizationResourceResourceIdRouteImport.update({
-    id: '/$resource-id',
-    path: '/$resource-id',
+    id: '/$resourceId',
+    path: '/$resourceId',
     getParentRoute: () => RealmClientsIdAuthorizationResourceRoute,
   } as any)
 const RealmClientsClientIdRolesIdTabRoute =
@@ -900,8 +900,8 @@ const RealmClientsClientIdClientScopesDedicatedTabRoute =
   } as any)
 const RealmClientScopesIdMappersMapperIdViewModeRoute =
   RealmClientScopesIdMappersMapperIdViewModeRouteImport.update({
-    id: '/$id/mappers/$mapperId/$view-mode',
-    path: '/$id/mappers/$mapperId/$view-mode',
+    id: '/$id/mappers/$mapperId/$viewMode',
+    path: '/$id/mappers/$mapperId/$viewMode',
     getParentRoute: () => RealmClientScopesRoute,
   } as any)
 const RealmRealmSettingsKeysProvidersIdProviderTypeSettingsRoute =
@@ -922,57 +922,59 @@ const RealmRealmSettingsClientPoliciesPolicyNameEditPolicyConditionNameEditCondi
 const RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute =
   RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRouteImport.update(
     {
-      id: '/$id/permissions/permission/$permissionId/$permission-type',
-      path: '/$id/permissions/permission/$permissionId/$permission-type',
+      id: '/$id/permissions/permission/$permissionId/$permissionType',
+      path: '/$id/permissions/permission/$permissionId/$permissionType',
       getParentRoute: () => RealmClientsRoute,
     } as any,
   )
 const RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute =
   RealmClientsIdAuthorizationPolicyNewPolicyTypeRouteImport.update({
-    id: '/$id/authorization/policy/new/$policy-type',
-    path: '/$id/authorization/policy/new/$policy-type',
+    id: '/$id/authorization/policy/new/$policyType',
+    path: '/$id/authorization/policy/new/$policyType',
     getParentRoute: () => RealmClientsRoute,
   } as any)
 const RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute =
   RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRouteImport.update({
-    id: '/$id/authorization/policy/$policyId/$policy-type',
-    path: '/$id/authorization/policy/$policyId/$policy-type',
+    id: '/$id/authorization/policy/$policyId/$policyType',
+    path: '/$id/authorization/policy/$policyId/$policyType',
     getParentRoute: () => RealmClientsRoute,
   } as any)
 const RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute =
   RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteImport.update({
-    id: '/$id/authorization/permission/new/$permission-type',
-    path: '/$id/authorization/permission/new/$permission-type',
+    id: '/$id/authorization/permission/new/$permissionType',
+    path: '/$id/authorization/permission/new/$permissionType',
     getParentRoute: () => RealmClientsRoute,
   } as any)
 const RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute =
   RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRouteImport.update(
     {
-      id: '/$id/authorization/permission/$permissionType/$permission-id',
-      path: '/$id/authorization/permission/$permissionType/$permission-id',
+      id: '/$id/authorization/permission/$permissionType/$permissionId',
+      path: '/$id/authorization/permission/$permissionType/$permissionId',
       getParentRoute: () => RealmClientsRoute,
     } as any,
   )
 const RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute =
   RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRouteImport.update(
     {
-      id: '/$id/authorization/permission/new/$permissionType/',
-      path: '/$id/authorization/permission/new/$permissionType/',
-      getParentRoute: () => RealmClientsRoute,
+      id: '/',
+      path: '/',
+      getParentRoute: () =>
+        RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute,
     } as any,
   )
 const RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute =
   RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRouteImport.update({
-    id: '/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode',
-    path: '/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode',
+    id: '/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode',
+    path: '/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode',
     getParentRoute: () => RealmClientsRoute,
   } as any)
 const RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute =
   RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRouteImport.update(
     {
-      id: '/$id/authorization/permission/new/$permissionType/$selected-id',
-      path: '/$id/authorization/permission/new/$permissionType/$selected-id',
-      getParentRoute: () => RealmClientsRoute,
+      id: '/$selectedId',
+      path: '/$selectedId',
+      getParentRoute: () =>
+        RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute,
     } as any,
   )
 
@@ -992,7 +994,7 @@ export interface FileRoutesByFullPath {
   '/$realm/user-federation': typeof RealmUserFederationRouteWithChildren
   '/$realm/users': typeof RealmUsersRouteWithChildren
   '/$realm/workflows': typeof RealmWorkflowsRouteWithChildren
-  '/page-section/$provider-id': typeof PageSectionProviderIdRoute
+  '/page-section/$providerId': typeof PageSectionProviderIdRoute
   '/$realm/': typeof RealmIndexRoute
   '/$realm/authentication/$tab': typeof RealmAuthenticationTabRoute
   '/$realm/client-scopes/new': typeof RealmClientScopesNewRoute
@@ -1003,7 +1005,7 @@ export interface FileRoutesByFullPath {
   '/$realm/groups/$': typeof RealmGroupsSplatRoute
   '/$realm/groups/$id': typeof RealmGroupsIdRoute
   '/$realm/organizations/new': typeof RealmOrganizationsNewRoute
-  '/$realm/page-section/$provider-id': typeof RealmPageSectionProviderIdRoute
+  '/$realm/page-section/$providerId': typeof RealmPageSectionProviderIdRouteWithChildren
   '/$realm/realm-settings/$tab': typeof RealmRealmSettingsTabRoute
   '/$realm/roles/new': typeof RealmRolesNewRoute
   '/$realm/user-federation/kerberos': typeof RealmUserFederationKerberosRouteWithChildren
@@ -1022,11 +1024,11 @@ export interface FileRoutesByFullPath {
   '/$realm/user-federation/': typeof RealmUserFederationIndexRoute
   '/$realm/users/': typeof RealmUsersIndexRoute
   '/$realm/workflows/': typeof RealmWorkflowsIndexRoute
-  '/$realm/authentication/$id/$used-by': typeof RealmAuthenticationIdUsedByRoute
+  '/$realm/authentication/$id/$usedBy': typeof RealmAuthenticationIdUsedByRouteWithChildren
   '/$realm/authentication/flows/create': typeof RealmAuthenticationFlowsCreateRoute
   '/$realm/client-scopes/$id/$tab': typeof RealmClientScopesIdTabRoute
   '/$realm/clients/$clientId/$tab': typeof RealmClientsClientIdTabRoute
-  '/$realm/clients/client-registration/$sub-tab': typeof RealmClientsClientRegistrationSubTabRoute
+  '/$realm/clients/client-registration/$subTab': typeof RealmClientsClientRegistrationSubTabRouteWithChildren
   '/$realm/clients/initial-access-token/create': typeof RealmClientsInitialAccessTokenCreateRoute
   '/$realm/identity-providers/$providerId/add': typeof RealmIdentityProvidersProviderIdAddRoute
   '/$realm/identity-providers/jwt-authorization-grant/add': typeof RealmIdentityProvidersJwtAuthorizationGrantAddRoute
@@ -1056,14 +1058,14 @@ export interface FileRoutesByFullPath {
   '/$realm/page-section/$providerId/': typeof RealmPageSectionProviderIdIndexRoute
   '/$realm/user-federation/kerberos/': typeof RealmUserFederationKerberosIndexRoute
   '/$realm/user-federation/ldap/': typeof RealmUserFederationLdapIndexRoute
-  '/$realm/authentication/$id/$usedBy/$built-in': typeof RealmAuthenticationIdUsedByBuiltInRoute
+  '/$realm/authentication/$id/$usedBy/$builtIn': typeof RealmAuthenticationIdUsedByBuiltInRoute
   '/$realm/clients/$clientId/authorization/$tab': typeof RealmClientsClientIdAuthorizationTabRoute
   '/$realm/clients/$clientId/client-scopes/$tab': typeof RealmClientsClientIdClientScopesTabRoute
   '/$realm/clients/$clientId/client-scopes/dedicated': typeof RealmClientsClientIdClientScopesDedicatedRouteWithChildren
   '/$realm/clients/$clientId/roles/new': typeof RealmClientsClientIdRolesNewRoute
   '/$realm/clients/$id/authorization/resource': typeof RealmClientsIdAuthorizationResourceRouteWithChildren
   '/$realm/clients/$id/authorization/scope': typeof RealmClientsIdAuthorizationScopeRouteWithChildren
-  '/$realm/clients/client-registration/$subTab/$provider-id': typeof RealmClientsClientRegistrationSubTabProviderIdRoute
+  '/$realm/clients/client-registration/$subTab/$providerId': typeof RealmClientsClientRegistrationSubTabProviderIdRouteWithChildren
   '/$realm/identity-providers/$providerId/$alias/$tab': typeof RealmIdentityProvidersProviderIdAliasTabRouteWithChildren
   '/$realm/organizations/$id/$tab/$': typeof RealmOrganizationsIdTabSplatRoute
   '/$realm/organizations/$orgId/groups/$': typeof RealmOrganizationsOrgIdGroupsSplatRoute
@@ -1081,25 +1083,25 @@ export interface FileRoutesByFullPath {
   '/$realm/permissions/$permissionClientId/policies/': typeof RealmPermissionsPermissionClientIdPoliciesIndexRoute
   '/$realm/realm-settings/client-policies/$tab/': typeof RealmRealmSettingsClientPoliciesTabIndexRoute
   '/$realm/user-federation/ldap/$id/': typeof RealmUserFederationLdapIdIndexRoute
-  '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode': typeof RealmClientScopesIdMappersMapperIdViewModeRoute
+  '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode': typeof RealmClientScopesIdMappersMapperIdViewModeRoute
   '/$realm/clients/$clientId/client-scopes/dedicated/$tab': typeof RealmClientsClientIdClientScopesDedicatedTabRoute
   '/$realm/clients/$clientId/roles/$id/$tab': typeof RealmClientsClientIdRolesIdTabRoute
-  '/$realm/clients/$id/authorization/resource/$resource-id': typeof RealmClientsIdAuthorizationResourceResourceIdRoute
+  '/$realm/clients/$id/authorization/resource/$resourceId': typeof RealmClientsIdAuthorizationResourceResourceIdRoute
   '/$realm/clients/$id/authorization/resource/new': typeof RealmClientsIdAuthorizationResourceNewRoute
-  '/$realm/clients/$id/authorization/scope/$scope-id': typeof RealmClientsIdAuthorizationScopeScopeIdRoute
+  '/$realm/clients/$id/authorization/scope/$scopeId': typeof RealmClientsIdAuthorizationScopeScopeIdRoute
   '/$realm/clients/$id/authorization/scope/new': typeof RealmClientsIdAuthorizationScopeNewRoute
   '/$realm/clients/client-registration/$subTab/$providerId/$id': typeof RealmClientsClientRegistrationSubTabProviderIdIdRoute
   '/$realm/identity-providers/$providerId/$alias/$tab/create': typeof RealmIdentityProvidersProviderIdAliasTabCreateRoute
   '/$realm/identity-providers/$providerId/$alias/mappers/$id': typeof RealmIdentityProvidersProviderIdAliasMappersIdRoute
-  '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type': typeof RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRoute
-  '/$realm/permissions/$permissionClientId/permission/new/$resource-type': typeof RealmPermissionsPermissionClientIdPermissionNewResourceTypeRoute
-  '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type': typeof RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRoute
-  '/$realm/permissions/$permissionClientId/policies/new/$policy-type': typeof RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRoute
+  '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType': typeof RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRoute
+  '/$realm/permissions/$permissionClientId/permission/new/$resourceType': typeof RealmPermissionsPermissionClientIdPermissionNewResourceTypeRoute
+  '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType': typeof RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRoute
+  '/$realm/permissions/$permissionClientId/policies/new/$policyType': typeof RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/create-condition': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyCreateConditionRoute
-  '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRoute
+  '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRoute
   '/$realm/realm-settings/user-profile/attributes-group/edit/$name': typeof RealmRealmSettingsUserProfileAttributesGroupEditNameRoute
   '/$realm/realm-settings/user-profile/attributes/$attributeName/edit-attribute': typeof RealmRealmSettingsUserProfileAttributesAttributeNameEditAttributeRoute
-  '/$realm/user-federation/ldap/$id/mappers/$mapper-id': typeof RealmUserFederationLdapIdMappersMapperIdRoute
+  '/$realm/user-federation/ldap/$id/mappers/$mapperId': typeof RealmUserFederationLdapIdMappersMapperIdRoute
   '/$realm/clients/$clientId/client-scopes/dedicated/': typeof RealmClientsClientIdClientScopesDedicatedIndexRoute
   '/$realm/clients/$id/authorization/resource/': typeof RealmClientsIdAuthorizationResourceIndexRoute
   '/$realm/clients/$id/authorization/scope/': typeof RealmClientsIdAuthorizationScopeIndexRoute
@@ -1107,21 +1109,21 @@ export interface FileRoutesByFullPath {
   '/$realm/identity-providers/$providerId/$alias/$tab/': typeof RealmIdentityProvidersProviderIdAliasTabIndexRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyIndexRoute
   '/$realm/realm-settings/client-policies/$profileName/edit-profile/': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileIndexRoute
-  '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id': typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute
-  '/$realm/clients/$id/authorization/permission/new/$permission-type': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute
-  '/$realm/clients/$id/authorization/policy/$policyId/$policy-type': typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute
-  '/$realm/clients/$id/authorization/policy/new/$policy-type': typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute
-  '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type': typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute
+  '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId': typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute
+  '/$realm/clients/$id/authorization/permission/new/$permissionType': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteWithChildren
+  '/$realm/clients/$id/authorization/policy/$policyId/$policyType': typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute
+  '/$realm/clients/$id/authorization/policy/new/$policyType': typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute
+  '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType': typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/$conditionName/edit-condition': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyConditionNameEditConditionRoute
   '/$realm/realm-settings/keys/providers/$id/$providerType/settings': typeof RealmRealmSettingsKeysProvidersIdProviderTypeSettingsRoute
-  '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
-  '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode': typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute
+  '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
+  '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode': typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute
   '/$realm/clients/$id/authorization/permission/new/$permissionType/': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$realm/sessions': typeof RealmSessionsRoute
-  '/page-section/$provider-id': typeof PageSectionProviderIdRoute
+  '/page-section/$providerId': typeof PageSectionProviderIdRoute
   '/$realm': typeof RealmIndexRoute
   '/$realm/authentication/$tab': typeof RealmAuthenticationTabRoute
   '/$realm/client-scopes/new': typeof RealmClientScopesNewRoute
@@ -1132,7 +1134,6 @@ export interface FileRoutesByTo {
   '/$realm/groups/$': typeof RealmGroupsSplatRoute
   '/$realm/groups/$id': typeof RealmGroupsIdRoute
   '/$realm/organizations/new': typeof RealmOrganizationsNewRoute
-  '/$realm/page-section/$provider-id': typeof RealmPageSectionProviderIdRoute
   '/$realm/realm-settings/$tab': typeof RealmRealmSettingsTabRoute
   '/$realm/roles/new': typeof RealmRolesNewRoute
   '/$realm/users/$tab': typeof RealmUsersTabRoute
@@ -1149,11 +1150,9 @@ export interface FileRoutesByTo {
   '/$realm/user-federation': typeof RealmUserFederationIndexRoute
   '/$realm/users': typeof RealmUsersIndexRoute
   '/$realm/workflows': typeof RealmWorkflowsIndexRoute
-  '/$realm/authentication/$id/$used-by': typeof RealmAuthenticationIdUsedByRoute
   '/$realm/authentication/flows/create': typeof RealmAuthenticationFlowsCreateRoute
   '/$realm/client-scopes/$id/$tab': typeof RealmClientScopesIdTabRoute
   '/$realm/clients/$clientId/$tab': typeof RealmClientsClientIdTabRoute
-  '/$realm/clients/client-registration/$sub-tab': typeof RealmClientsClientRegistrationSubTabRoute
   '/$realm/clients/initial-access-token/create': typeof RealmClientsInitialAccessTokenCreateRoute
   '/$realm/identity-providers/$providerId/add': typeof RealmIdentityProvidersProviderIdAddRoute
   '/$realm/identity-providers/jwt-authorization-grant/add': typeof RealmIdentityProvidersJwtAuthorizationGrantAddRoute
@@ -1180,11 +1179,10 @@ export interface FileRoutesByTo {
   '/$realm/page-section/$providerId': typeof RealmPageSectionProviderIdIndexRoute
   '/$realm/user-federation/kerberos': typeof RealmUserFederationKerberosIndexRoute
   '/$realm/user-federation/ldap': typeof RealmUserFederationLdapIndexRoute
-  '/$realm/authentication/$id/$usedBy/$built-in': typeof RealmAuthenticationIdUsedByBuiltInRoute
+  '/$realm/authentication/$id/$usedBy/$builtIn': typeof RealmAuthenticationIdUsedByBuiltInRoute
   '/$realm/clients/$clientId/authorization/$tab': typeof RealmClientsClientIdAuthorizationTabRoute
   '/$realm/clients/$clientId/client-scopes/$tab': typeof RealmClientsClientIdClientScopesTabRoute
   '/$realm/clients/$clientId/roles/new': typeof RealmClientsClientIdRolesNewRoute
-  '/$realm/clients/client-registration/$subTab/$provider-id': typeof RealmClientsClientRegistrationSubTabProviderIdRoute
   '/$realm/organizations/$id/$tab/$': typeof RealmOrganizationsIdTabSplatRoute
   '/$realm/organizations/$orgId/groups/$': typeof RealmOrganizationsOrgIdGroupsSplatRoute
   '/$realm/organizations/$orgId/groups/$id': typeof RealmOrganizationsOrgIdGroupsIdRoute
@@ -1199,25 +1197,25 @@ export interface FileRoutesByTo {
   '/$realm/permissions/$permissionClientId/policies': typeof RealmPermissionsPermissionClientIdPoliciesIndexRoute
   '/$realm/realm-settings/client-policies/$tab': typeof RealmRealmSettingsClientPoliciesTabIndexRoute
   '/$realm/user-federation/ldap/$id': typeof RealmUserFederationLdapIdIndexRoute
-  '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode': typeof RealmClientScopesIdMappersMapperIdViewModeRoute
+  '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode': typeof RealmClientScopesIdMappersMapperIdViewModeRoute
   '/$realm/clients/$clientId/client-scopes/dedicated/$tab': typeof RealmClientsClientIdClientScopesDedicatedTabRoute
   '/$realm/clients/$clientId/roles/$id/$tab': typeof RealmClientsClientIdRolesIdTabRoute
-  '/$realm/clients/$id/authorization/resource/$resource-id': typeof RealmClientsIdAuthorizationResourceResourceIdRoute
+  '/$realm/clients/$id/authorization/resource/$resourceId': typeof RealmClientsIdAuthorizationResourceResourceIdRoute
   '/$realm/clients/$id/authorization/resource/new': typeof RealmClientsIdAuthorizationResourceNewRoute
-  '/$realm/clients/$id/authorization/scope/$scope-id': typeof RealmClientsIdAuthorizationScopeScopeIdRoute
+  '/$realm/clients/$id/authorization/scope/$scopeId': typeof RealmClientsIdAuthorizationScopeScopeIdRoute
   '/$realm/clients/$id/authorization/scope/new': typeof RealmClientsIdAuthorizationScopeNewRoute
   '/$realm/clients/client-registration/$subTab/$providerId/$id': typeof RealmClientsClientRegistrationSubTabProviderIdIdRoute
   '/$realm/identity-providers/$providerId/$alias/$tab/create': typeof RealmIdentityProvidersProviderIdAliasTabCreateRoute
   '/$realm/identity-providers/$providerId/$alias/mappers/$id': typeof RealmIdentityProvidersProviderIdAliasMappersIdRoute
-  '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type': typeof RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRoute
-  '/$realm/permissions/$permissionClientId/permission/new/$resource-type': typeof RealmPermissionsPermissionClientIdPermissionNewResourceTypeRoute
-  '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type': typeof RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRoute
-  '/$realm/permissions/$permissionClientId/policies/new/$policy-type': typeof RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRoute
+  '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType': typeof RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRoute
+  '/$realm/permissions/$permissionClientId/permission/new/$resourceType': typeof RealmPermissionsPermissionClientIdPermissionNewResourceTypeRoute
+  '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType': typeof RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRoute
+  '/$realm/permissions/$permissionClientId/policies/new/$policyType': typeof RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/create-condition': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyCreateConditionRoute
-  '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRoute
+  '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRoute
   '/$realm/realm-settings/user-profile/attributes-group/edit/$name': typeof RealmRealmSettingsUserProfileAttributesGroupEditNameRoute
   '/$realm/realm-settings/user-profile/attributes/$attributeName/edit-attribute': typeof RealmRealmSettingsUserProfileAttributesAttributeNameEditAttributeRoute
-  '/$realm/user-federation/ldap/$id/mappers/$mapper-id': typeof RealmUserFederationLdapIdMappersMapperIdRoute
+  '/$realm/user-federation/ldap/$id/mappers/$mapperId': typeof RealmUserFederationLdapIdMappersMapperIdRoute
   '/$realm/clients/$clientId/client-scopes/dedicated': typeof RealmClientsClientIdClientScopesDedicatedIndexRoute
   '/$realm/clients/$id/authorization/resource': typeof RealmClientsIdAuthorizationResourceIndexRoute
   '/$realm/clients/$id/authorization/scope': typeof RealmClientsIdAuthorizationScopeIndexRoute
@@ -1225,15 +1223,14 @@ export interface FileRoutesByTo {
   '/$realm/identity-providers/$providerId/$alias/$tab': typeof RealmIdentityProvidersProviderIdAliasTabIndexRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyIndexRoute
   '/$realm/realm-settings/client-policies/$profileName/edit-profile': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileIndexRoute
-  '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id': typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute
-  '/$realm/clients/$id/authorization/permission/new/$permission-type': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute
-  '/$realm/clients/$id/authorization/policy/$policyId/$policy-type': typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute
-  '/$realm/clients/$id/authorization/policy/new/$policy-type': typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute
-  '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type': typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute
+  '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId': typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute
+  '/$realm/clients/$id/authorization/policy/$policyId/$policyType': typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute
+  '/$realm/clients/$id/authorization/policy/new/$policyType': typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute
+  '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType': typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/$conditionName/edit-condition': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyConditionNameEditConditionRoute
   '/$realm/realm-settings/keys/providers/$id/$providerType/settings': typeof RealmRealmSettingsKeysProvidersIdProviderTypeSettingsRoute
-  '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
-  '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode': typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute
+  '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
+  '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode': typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute
   '/$realm/clients/$id/authorization/permission/new/$permissionType': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute
 }
 export interface FileRoutesById {
@@ -1253,7 +1250,7 @@ export interface FileRoutesById {
   '/$realm/user-federation': typeof RealmUserFederationRouteWithChildren
   '/$realm/users': typeof RealmUsersRouteWithChildren
   '/$realm/workflows': typeof RealmWorkflowsRouteWithChildren
-  '/page-section/$provider-id': typeof PageSectionProviderIdRoute
+  '/page-section/$providerId': typeof PageSectionProviderIdRoute
   '/$realm/': typeof RealmIndexRoute
   '/$realm/authentication/$tab': typeof RealmAuthenticationTabRoute
   '/$realm/client-scopes/new': typeof RealmClientScopesNewRoute
@@ -1264,7 +1261,7 @@ export interface FileRoutesById {
   '/$realm/groups/$': typeof RealmGroupsSplatRoute
   '/$realm/groups/$id': typeof RealmGroupsIdRoute
   '/$realm/organizations/new': typeof RealmOrganizationsNewRoute
-  '/$realm/page-section/$provider-id': typeof RealmPageSectionProviderIdRoute
+  '/$realm/page-section/$providerId': typeof RealmPageSectionProviderIdRouteWithChildren
   '/$realm/realm-settings/$tab': typeof RealmRealmSettingsTabRoute
   '/$realm/roles/new': typeof RealmRolesNewRoute
   '/$realm/user-federation/kerberos': typeof RealmUserFederationKerberosRouteWithChildren
@@ -1283,11 +1280,11 @@ export interface FileRoutesById {
   '/$realm/user-federation/': typeof RealmUserFederationIndexRoute
   '/$realm/users/': typeof RealmUsersIndexRoute
   '/$realm/workflows/': typeof RealmWorkflowsIndexRoute
-  '/$realm/authentication/$id/$used-by': typeof RealmAuthenticationIdUsedByRoute
+  '/$realm/authentication/$id/$usedBy': typeof RealmAuthenticationIdUsedByRouteWithChildren
   '/$realm/authentication/flows/create': typeof RealmAuthenticationFlowsCreateRoute
   '/$realm/client-scopes/$id/$tab': typeof RealmClientScopesIdTabRoute
   '/$realm/clients/$clientId/$tab': typeof RealmClientsClientIdTabRoute
-  '/$realm/clients/client-registration/$sub-tab': typeof RealmClientsClientRegistrationSubTabRoute
+  '/$realm/clients/client-registration/$subTab': typeof RealmClientsClientRegistrationSubTabRouteWithChildren
   '/$realm/clients/initial-access-token/create': typeof RealmClientsInitialAccessTokenCreateRoute
   '/$realm/identity-providers/$providerId/add': typeof RealmIdentityProvidersProviderIdAddRoute
   '/$realm/identity-providers/jwt-authorization-grant/add': typeof RealmIdentityProvidersJwtAuthorizationGrantAddRoute
@@ -1317,14 +1314,14 @@ export interface FileRoutesById {
   '/$realm/page-section/$providerId/': typeof RealmPageSectionProviderIdIndexRoute
   '/$realm/user-federation/kerberos/': typeof RealmUserFederationKerberosIndexRoute
   '/$realm/user-federation/ldap/': typeof RealmUserFederationLdapIndexRoute
-  '/$realm/authentication/$id/$usedBy/$built-in': typeof RealmAuthenticationIdUsedByBuiltInRoute
+  '/$realm/authentication/$id/$usedBy/$builtIn': typeof RealmAuthenticationIdUsedByBuiltInRoute
   '/$realm/clients/$clientId/authorization/$tab': typeof RealmClientsClientIdAuthorizationTabRoute
   '/$realm/clients/$clientId/client-scopes/$tab': typeof RealmClientsClientIdClientScopesTabRoute
   '/$realm/clients/$clientId/client-scopes/dedicated': typeof RealmClientsClientIdClientScopesDedicatedRouteWithChildren
   '/$realm/clients/$clientId/roles/new': typeof RealmClientsClientIdRolesNewRoute
   '/$realm/clients/$id/authorization/resource': typeof RealmClientsIdAuthorizationResourceRouteWithChildren
   '/$realm/clients/$id/authorization/scope': typeof RealmClientsIdAuthorizationScopeRouteWithChildren
-  '/$realm/clients/client-registration/$subTab/$provider-id': typeof RealmClientsClientRegistrationSubTabProviderIdRoute
+  '/$realm/clients/client-registration/$subTab/$providerId': typeof RealmClientsClientRegistrationSubTabProviderIdRouteWithChildren
   '/$realm/identity-providers/$providerId/$alias/$tab': typeof RealmIdentityProvidersProviderIdAliasTabRouteWithChildren
   '/$realm/organizations/$id/$tab/$': typeof RealmOrganizationsIdTabSplatRoute
   '/$realm/organizations/$orgId/groups/$': typeof RealmOrganizationsOrgIdGroupsSplatRoute
@@ -1342,25 +1339,25 @@ export interface FileRoutesById {
   '/$realm/permissions/$permissionClientId/policies/': typeof RealmPermissionsPermissionClientIdPoliciesIndexRoute
   '/$realm/realm-settings/client-policies/$tab/': typeof RealmRealmSettingsClientPoliciesTabIndexRoute
   '/$realm/user-federation/ldap/$id/': typeof RealmUserFederationLdapIdIndexRoute
-  '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode': typeof RealmClientScopesIdMappersMapperIdViewModeRoute
+  '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode': typeof RealmClientScopesIdMappersMapperIdViewModeRoute
   '/$realm/clients/$clientId/client-scopes/dedicated/$tab': typeof RealmClientsClientIdClientScopesDedicatedTabRoute
   '/$realm/clients/$clientId/roles/$id/$tab': typeof RealmClientsClientIdRolesIdTabRoute
-  '/$realm/clients/$id/authorization/resource/$resource-id': typeof RealmClientsIdAuthorizationResourceResourceIdRoute
+  '/$realm/clients/$id/authorization/resource/$resourceId': typeof RealmClientsIdAuthorizationResourceResourceIdRoute
   '/$realm/clients/$id/authorization/resource/new': typeof RealmClientsIdAuthorizationResourceNewRoute
-  '/$realm/clients/$id/authorization/scope/$scope-id': typeof RealmClientsIdAuthorizationScopeScopeIdRoute
+  '/$realm/clients/$id/authorization/scope/$scopeId': typeof RealmClientsIdAuthorizationScopeScopeIdRoute
   '/$realm/clients/$id/authorization/scope/new': typeof RealmClientsIdAuthorizationScopeNewRoute
   '/$realm/clients/client-registration/$subTab/$providerId/$id': typeof RealmClientsClientRegistrationSubTabProviderIdIdRoute
   '/$realm/identity-providers/$providerId/$alias/$tab/create': typeof RealmIdentityProvidersProviderIdAliasTabCreateRoute
   '/$realm/identity-providers/$providerId/$alias/mappers/$id': typeof RealmIdentityProvidersProviderIdAliasMappersIdRoute
-  '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type': typeof RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRoute
-  '/$realm/permissions/$permissionClientId/permission/new/$resource-type': typeof RealmPermissionsPermissionClientIdPermissionNewResourceTypeRoute
-  '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type': typeof RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRoute
-  '/$realm/permissions/$permissionClientId/policies/new/$policy-type': typeof RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRoute
+  '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType': typeof RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRoute
+  '/$realm/permissions/$permissionClientId/permission/new/$resourceType': typeof RealmPermissionsPermissionClientIdPermissionNewResourceTypeRoute
+  '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType': typeof RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRoute
+  '/$realm/permissions/$permissionClientId/policies/new/$policyType': typeof RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/create-condition': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyCreateConditionRoute
-  '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRoute
+  '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRoute
   '/$realm/realm-settings/user-profile/attributes-group/edit/$name': typeof RealmRealmSettingsUserProfileAttributesGroupEditNameRoute
   '/$realm/realm-settings/user-profile/attributes/$attributeName/edit-attribute': typeof RealmRealmSettingsUserProfileAttributesAttributeNameEditAttributeRoute
-  '/$realm/user-federation/ldap/$id/mappers/$mapper-id': typeof RealmUserFederationLdapIdMappersMapperIdRoute
+  '/$realm/user-federation/ldap/$id/mappers/$mapperId': typeof RealmUserFederationLdapIdMappersMapperIdRoute
   '/$realm/clients/$clientId/client-scopes/dedicated/': typeof RealmClientsClientIdClientScopesDedicatedIndexRoute
   '/$realm/clients/$id/authorization/resource/': typeof RealmClientsIdAuthorizationResourceIndexRoute
   '/$realm/clients/$id/authorization/scope/': typeof RealmClientsIdAuthorizationScopeIndexRoute
@@ -1368,15 +1365,15 @@ export interface FileRoutesById {
   '/$realm/identity-providers/$providerId/$alias/$tab/': typeof RealmIdentityProvidersProviderIdAliasTabIndexRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyIndexRoute
   '/$realm/realm-settings/client-policies/$profileName/edit-profile/': typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileIndexRoute
-  '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id': typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute
-  '/$realm/clients/$id/authorization/permission/new/$permission-type': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute
-  '/$realm/clients/$id/authorization/policy/$policyId/$policy-type': typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute
-  '/$realm/clients/$id/authorization/policy/new/$policy-type': typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute
-  '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type': typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute
+  '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId': typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute
+  '/$realm/clients/$id/authorization/permission/new/$permissionType': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteWithChildren
+  '/$realm/clients/$id/authorization/policy/$policyId/$policyType': typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute
+  '/$realm/clients/$id/authorization/policy/new/$policyType': typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute
+  '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType': typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute
   '/$realm/realm-settings/client-policies/$policyName/edit-policy/$conditionName/edit-condition': typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyConditionNameEditConditionRoute
   '/$realm/realm-settings/keys/providers/$id/$providerType/settings': typeof RealmRealmSettingsKeysProvidersIdProviderTypeSettingsRoute
-  '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
-  '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode': typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute
+  '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
+  '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode': typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute
   '/$realm/clients/$id/authorization/permission/new/$permissionType/': typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute
 }
 export interface FileRouteTypes {
@@ -1397,7 +1394,7 @@ export interface FileRouteTypes {
     | '/$realm/user-federation'
     | '/$realm/users'
     | '/$realm/workflows'
-    | '/page-section/$provider-id'
+    | '/page-section/$providerId'
     | '/$realm/'
     | '/$realm/authentication/$tab'
     | '/$realm/client-scopes/new'
@@ -1408,7 +1405,7 @@ export interface FileRouteTypes {
     | '/$realm/groups/$'
     | '/$realm/groups/$id'
     | '/$realm/organizations/new'
-    | '/$realm/page-section/$provider-id'
+    | '/$realm/page-section/$providerId'
     | '/$realm/realm-settings/$tab'
     | '/$realm/roles/new'
     | '/$realm/user-federation/kerberos'
@@ -1427,11 +1424,11 @@ export interface FileRouteTypes {
     | '/$realm/user-federation/'
     | '/$realm/users/'
     | '/$realm/workflows/'
-    | '/$realm/authentication/$id/$used-by'
+    | '/$realm/authentication/$id/$usedBy'
     | '/$realm/authentication/flows/create'
     | '/$realm/client-scopes/$id/$tab'
     | '/$realm/clients/$clientId/$tab'
-    | '/$realm/clients/client-registration/$sub-tab'
+    | '/$realm/clients/client-registration/$subTab'
     | '/$realm/clients/initial-access-token/create'
     | '/$realm/identity-providers/$providerId/add'
     | '/$realm/identity-providers/jwt-authorization-grant/add'
@@ -1461,14 +1458,14 @@ export interface FileRouteTypes {
     | '/$realm/page-section/$providerId/'
     | '/$realm/user-federation/kerberos/'
     | '/$realm/user-federation/ldap/'
-    | '/$realm/authentication/$id/$usedBy/$built-in'
+    | '/$realm/authentication/$id/$usedBy/$builtIn'
     | '/$realm/clients/$clientId/authorization/$tab'
     | '/$realm/clients/$clientId/client-scopes/$tab'
     | '/$realm/clients/$clientId/client-scopes/dedicated'
     | '/$realm/clients/$clientId/roles/new'
     | '/$realm/clients/$id/authorization/resource'
     | '/$realm/clients/$id/authorization/scope'
-    | '/$realm/clients/client-registration/$subTab/$provider-id'
+    | '/$realm/clients/client-registration/$subTab/$providerId'
     | '/$realm/identity-providers/$providerId/$alias/$tab'
     | '/$realm/organizations/$id/$tab/$'
     | '/$realm/organizations/$orgId/groups/$'
@@ -1486,25 +1483,25 @@ export interface FileRouteTypes {
     | '/$realm/permissions/$permissionClientId/policies/'
     | '/$realm/realm-settings/client-policies/$tab/'
     | '/$realm/user-federation/ldap/$id/'
-    | '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode'
+    | '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode'
     | '/$realm/clients/$clientId/client-scopes/dedicated/$tab'
     | '/$realm/clients/$clientId/roles/$id/$tab'
-    | '/$realm/clients/$id/authorization/resource/$resource-id'
+    | '/$realm/clients/$id/authorization/resource/$resourceId'
     | '/$realm/clients/$id/authorization/resource/new'
-    | '/$realm/clients/$id/authorization/scope/$scope-id'
+    | '/$realm/clients/$id/authorization/scope/$scopeId'
     | '/$realm/clients/$id/authorization/scope/new'
     | '/$realm/clients/client-registration/$subTab/$providerId/$id'
     | '/$realm/identity-providers/$providerId/$alias/$tab/create'
     | '/$realm/identity-providers/$providerId/$alias/mappers/$id'
-    | '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type'
-    | '/$realm/permissions/$permissionClientId/permission/new/$resource-type'
-    | '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type'
-    | '/$realm/permissions/$permissionClientId/policies/new/$policy-type'
+    | '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType'
+    | '/$realm/permissions/$permissionClientId/permission/new/$resourceType'
+    | '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType'
+    | '/$realm/permissions/$permissionClientId/policies/new/$policyType'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/create-condition'
-    | '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name'
+    | '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName'
     | '/$realm/realm-settings/user-profile/attributes-group/edit/$name'
     | '/$realm/realm-settings/user-profile/attributes/$attributeName/edit-attribute'
-    | '/$realm/user-federation/ldap/$id/mappers/$mapper-id'
+    | '/$realm/user-federation/ldap/$id/mappers/$mapperId'
     | '/$realm/clients/$clientId/client-scopes/dedicated/'
     | '/$realm/clients/$id/authorization/resource/'
     | '/$realm/clients/$id/authorization/scope/'
@@ -1512,21 +1509,21 @@ export interface FileRouteTypes {
     | '/$realm/identity-providers/$providerId/$alias/$tab/'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/'
     | '/$realm/realm-settings/client-policies/$profileName/edit-profile/'
-    | '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id'
-    | '/$realm/clients/$id/authorization/permission/new/$permission-type'
-    | '/$realm/clients/$id/authorization/policy/$policyId/$policy-type'
-    | '/$realm/clients/$id/authorization/policy/new/$policy-type'
-    | '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type'
+    | '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId'
+    | '/$realm/clients/$id/authorization/permission/new/$permissionType'
+    | '/$realm/clients/$id/authorization/policy/$policyId/$policyType'
+    | '/$realm/clients/$id/authorization/policy/new/$policyType'
+    | '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/$conditionName/edit-condition'
     | '/$realm/realm-settings/keys/providers/$id/$providerType/settings'
-    | '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id'
-    | '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode'
+    | '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId'
+    | '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode'
     | '/$realm/clients/$id/authorization/permission/new/$permissionType/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/$realm/sessions'
-    | '/page-section/$provider-id'
+    | '/page-section/$providerId'
     | '/$realm'
     | '/$realm/authentication/$tab'
     | '/$realm/client-scopes/new'
@@ -1537,7 +1534,6 @@ export interface FileRouteTypes {
     | '/$realm/groups/$'
     | '/$realm/groups/$id'
     | '/$realm/organizations/new'
-    | '/$realm/page-section/$provider-id'
     | '/$realm/realm-settings/$tab'
     | '/$realm/roles/new'
     | '/$realm/users/$tab'
@@ -1554,11 +1550,9 @@ export interface FileRouteTypes {
     | '/$realm/user-federation'
     | '/$realm/users'
     | '/$realm/workflows'
-    | '/$realm/authentication/$id/$used-by'
     | '/$realm/authentication/flows/create'
     | '/$realm/client-scopes/$id/$tab'
     | '/$realm/clients/$clientId/$tab'
-    | '/$realm/clients/client-registration/$sub-tab'
     | '/$realm/clients/initial-access-token/create'
     | '/$realm/identity-providers/$providerId/add'
     | '/$realm/identity-providers/jwt-authorization-grant/add'
@@ -1585,11 +1579,10 @@ export interface FileRouteTypes {
     | '/$realm/page-section/$providerId'
     | '/$realm/user-federation/kerberos'
     | '/$realm/user-federation/ldap'
-    | '/$realm/authentication/$id/$usedBy/$built-in'
+    | '/$realm/authentication/$id/$usedBy/$builtIn'
     | '/$realm/clients/$clientId/authorization/$tab'
     | '/$realm/clients/$clientId/client-scopes/$tab'
     | '/$realm/clients/$clientId/roles/new'
-    | '/$realm/clients/client-registration/$subTab/$provider-id'
     | '/$realm/organizations/$id/$tab/$'
     | '/$realm/organizations/$orgId/groups/$'
     | '/$realm/organizations/$orgId/groups/$id'
@@ -1604,25 +1597,25 @@ export interface FileRouteTypes {
     | '/$realm/permissions/$permissionClientId/policies'
     | '/$realm/realm-settings/client-policies/$tab'
     | '/$realm/user-federation/ldap/$id'
-    | '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode'
+    | '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode'
     | '/$realm/clients/$clientId/client-scopes/dedicated/$tab'
     | '/$realm/clients/$clientId/roles/$id/$tab'
-    | '/$realm/clients/$id/authorization/resource/$resource-id'
+    | '/$realm/clients/$id/authorization/resource/$resourceId'
     | '/$realm/clients/$id/authorization/resource/new'
-    | '/$realm/clients/$id/authorization/scope/$scope-id'
+    | '/$realm/clients/$id/authorization/scope/$scopeId'
     | '/$realm/clients/$id/authorization/scope/new'
     | '/$realm/clients/client-registration/$subTab/$providerId/$id'
     | '/$realm/identity-providers/$providerId/$alias/$tab/create'
     | '/$realm/identity-providers/$providerId/$alias/mappers/$id'
-    | '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type'
-    | '/$realm/permissions/$permissionClientId/permission/new/$resource-type'
-    | '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type'
-    | '/$realm/permissions/$permissionClientId/policies/new/$policy-type'
+    | '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType'
+    | '/$realm/permissions/$permissionClientId/permission/new/$resourceType'
+    | '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType'
+    | '/$realm/permissions/$permissionClientId/policies/new/$policyType'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/create-condition'
-    | '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name'
+    | '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName'
     | '/$realm/realm-settings/user-profile/attributes-group/edit/$name'
     | '/$realm/realm-settings/user-profile/attributes/$attributeName/edit-attribute'
-    | '/$realm/user-federation/ldap/$id/mappers/$mapper-id'
+    | '/$realm/user-federation/ldap/$id/mappers/$mapperId'
     | '/$realm/clients/$clientId/client-scopes/dedicated'
     | '/$realm/clients/$id/authorization/resource'
     | '/$realm/clients/$id/authorization/scope'
@@ -1630,15 +1623,14 @@ export interface FileRouteTypes {
     | '/$realm/identity-providers/$providerId/$alias/$tab'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy'
     | '/$realm/realm-settings/client-policies/$profileName/edit-profile'
-    | '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id'
-    | '/$realm/clients/$id/authorization/permission/new/$permission-type'
-    | '/$realm/clients/$id/authorization/policy/$policyId/$policy-type'
-    | '/$realm/clients/$id/authorization/policy/new/$policy-type'
-    | '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type'
+    | '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId'
+    | '/$realm/clients/$id/authorization/policy/$policyId/$policyType'
+    | '/$realm/clients/$id/authorization/policy/new/$policyType'
+    | '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/$conditionName/edit-condition'
     | '/$realm/realm-settings/keys/providers/$id/$providerType/settings'
-    | '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id'
-    | '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode'
+    | '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId'
+    | '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode'
     | '/$realm/clients/$id/authorization/permission/new/$permissionType'
   id:
     | '__root__'
@@ -1657,7 +1649,7 @@ export interface FileRouteTypes {
     | '/$realm/user-federation'
     | '/$realm/users'
     | '/$realm/workflows'
-    | '/page-section/$provider-id'
+    | '/page-section/$providerId'
     | '/$realm/'
     | '/$realm/authentication/$tab'
     | '/$realm/client-scopes/new'
@@ -1668,7 +1660,7 @@ export interface FileRouteTypes {
     | '/$realm/groups/$'
     | '/$realm/groups/$id'
     | '/$realm/organizations/new'
-    | '/$realm/page-section/$provider-id'
+    | '/$realm/page-section/$providerId'
     | '/$realm/realm-settings/$tab'
     | '/$realm/roles/new'
     | '/$realm/user-federation/kerberos'
@@ -1687,11 +1679,11 @@ export interface FileRouteTypes {
     | '/$realm/user-federation/'
     | '/$realm/users/'
     | '/$realm/workflows/'
-    | '/$realm/authentication/$id/$used-by'
+    | '/$realm/authentication/$id/$usedBy'
     | '/$realm/authentication/flows/create'
     | '/$realm/client-scopes/$id/$tab'
     | '/$realm/clients/$clientId/$tab'
-    | '/$realm/clients/client-registration/$sub-tab'
+    | '/$realm/clients/client-registration/$subTab'
     | '/$realm/clients/initial-access-token/create'
     | '/$realm/identity-providers/$providerId/add'
     | '/$realm/identity-providers/jwt-authorization-grant/add'
@@ -1721,14 +1713,14 @@ export interface FileRouteTypes {
     | '/$realm/page-section/$providerId/'
     | '/$realm/user-federation/kerberos/'
     | '/$realm/user-federation/ldap/'
-    | '/$realm/authentication/$id/$usedBy/$built-in'
+    | '/$realm/authentication/$id/$usedBy/$builtIn'
     | '/$realm/clients/$clientId/authorization/$tab'
     | '/$realm/clients/$clientId/client-scopes/$tab'
     | '/$realm/clients/$clientId/client-scopes/dedicated'
     | '/$realm/clients/$clientId/roles/new'
     | '/$realm/clients/$id/authorization/resource'
     | '/$realm/clients/$id/authorization/scope'
-    | '/$realm/clients/client-registration/$subTab/$provider-id'
+    | '/$realm/clients/client-registration/$subTab/$providerId'
     | '/$realm/identity-providers/$providerId/$alias/$tab'
     | '/$realm/organizations/$id/$tab/$'
     | '/$realm/organizations/$orgId/groups/$'
@@ -1746,25 +1738,25 @@ export interface FileRouteTypes {
     | '/$realm/permissions/$permissionClientId/policies/'
     | '/$realm/realm-settings/client-policies/$tab/'
     | '/$realm/user-federation/ldap/$id/'
-    | '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode'
+    | '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode'
     | '/$realm/clients/$clientId/client-scopes/dedicated/$tab'
     | '/$realm/clients/$clientId/roles/$id/$tab'
-    | '/$realm/clients/$id/authorization/resource/$resource-id'
+    | '/$realm/clients/$id/authorization/resource/$resourceId'
     | '/$realm/clients/$id/authorization/resource/new'
-    | '/$realm/clients/$id/authorization/scope/$scope-id'
+    | '/$realm/clients/$id/authorization/scope/$scopeId'
     | '/$realm/clients/$id/authorization/scope/new'
     | '/$realm/clients/client-registration/$subTab/$providerId/$id'
     | '/$realm/identity-providers/$providerId/$alias/$tab/create'
     | '/$realm/identity-providers/$providerId/$alias/mappers/$id'
-    | '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type'
-    | '/$realm/permissions/$permissionClientId/permission/new/$resource-type'
-    | '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type'
-    | '/$realm/permissions/$permissionClientId/policies/new/$policy-type'
+    | '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType'
+    | '/$realm/permissions/$permissionClientId/permission/new/$resourceType'
+    | '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType'
+    | '/$realm/permissions/$permissionClientId/policies/new/$policyType'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/create-condition'
-    | '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name'
+    | '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName'
     | '/$realm/realm-settings/user-profile/attributes-group/edit/$name'
     | '/$realm/realm-settings/user-profile/attributes/$attributeName/edit-attribute'
-    | '/$realm/user-federation/ldap/$id/mappers/$mapper-id'
+    | '/$realm/user-federation/ldap/$id/mappers/$mapperId'
     | '/$realm/clients/$clientId/client-scopes/dedicated/'
     | '/$realm/clients/$id/authorization/resource/'
     | '/$realm/clients/$id/authorization/scope/'
@@ -1772,15 +1764,15 @@ export interface FileRouteTypes {
     | '/$realm/identity-providers/$providerId/$alias/$tab/'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/'
     | '/$realm/realm-settings/client-policies/$profileName/edit-profile/'
-    | '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id'
-    | '/$realm/clients/$id/authorization/permission/new/$permission-type'
-    | '/$realm/clients/$id/authorization/policy/$policyId/$policy-type'
-    | '/$realm/clients/$id/authorization/policy/new/$policy-type'
-    | '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type'
+    | '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId'
+    | '/$realm/clients/$id/authorization/permission/new/$permissionType'
+    | '/$realm/clients/$id/authorization/policy/$policyId/$policyType'
+    | '/$realm/clients/$id/authorization/policy/new/$policyType'
+    | '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType'
     | '/$realm/realm-settings/client-policies/$policyName/edit-policy/$conditionName/edit-condition'
     | '/$realm/realm-settings/keys/providers/$id/$providerType/settings'
-    | '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id'
-    | '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode'
+    | '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId'
+    | '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode'
     | '/$realm/clients/$id/authorization/permission/new/$permissionType/'
   fileRoutesById: FileRoutesById
 }
@@ -1813,10 +1805,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmIndexRouteImport
       parentRoute: typeof RealmRoute
     }
-    '/page-section/$provider-id': {
-      id: '/page-section/$provider-id'
-      path: '/page-section/$provider-id'
-      fullPath: '/page-section/$provider-id'
+    '/page-section/$providerId': {
+      id: '/page-section/$providerId'
+      path: '/page-section/$providerId'
+      fullPath: '/page-section/$providerId'
       preLoaderRoute: typeof PageSectionProviderIdRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -2037,10 +2029,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmRealmSettingsTabRouteImport
       parentRoute: typeof RealmRealmSettingsRoute
     }
-    '/$realm/page-section/$provider-id': {
-      id: '/$realm/page-section/$provider-id'
-      path: '/page-section/$provider-id'
-      fullPath: '/$realm/page-section/$provider-id'
+    '/$realm/page-section/$providerId': {
+      id: '/$realm/page-section/$providerId'
+      path: '/page-section/$providerId'
+      fullPath: '/$realm/page-section/$providerId'
       preLoaderRoute: typeof RealmPageSectionProviderIdRouteImport
       parentRoute: typeof RealmRoute
     }
@@ -2123,10 +2115,10 @@ declare module '@tanstack/react-router' {
     }
     '/$realm/page-section/$providerId/': {
       id: '/$realm/page-section/$providerId/'
-      path: '/page-section/$providerId'
+      path: '/'
       fullPath: '/$realm/page-section/$providerId/'
       preLoaderRoute: typeof RealmPageSectionProviderIdIndexRouteImport
-      parentRoute: typeof RealmRoute
+      parentRoute: typeof RealmPageSectionProviderIdRoute
     }
     '/$realm/workflows/$mode/$id': {
       id: '/$realm/workflows/$mode/$id'
@@ -2235,17 +2227,17 @@ declare module '@tanstack/react-router' {
     }
     '/$realm/page-section/$providerId/add': {
       id: '/$realm/page-section/$providerId/add'
-      path: '/page-section/$providerId/add'
+      path: '/add'
       fullPath: '/$realm/page-section/$providerId/add'
       preLoaderRoute: typeof RealmPageSectionProviderIdAddRouteImport
-      parentRoute: typeof RealmRoute
+      parentRoute: typeof RealmPageSectionProviderIdRoute
     }
     '/$realm/page-section/$providerId/$id': {
       id: '/$realm/page-section/$providerId/$id'
-      path: '/page-section/$providerId/$id'
+      path: '/$id'
       fullPath: '/$realm/page-section/$providerId/$id'
       preLoaderRoute: typeof RealmPageSectionProviderIdIdRouteImport
-      parentRoute: typeof RealmRoute
+      parentRoute: typeof RealmPageSectionProviderIdRoute
     }
     '/$realm/identity-providers/spiffe/add': {
       id: '/$realm/identity-providers/spiffe/add'
@@ -2310,10 +2302,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmClientsInitialAccessTokenCreateRouteImport
       parentRoute: typeof RealmClientsRoute
     }
-    '/$realm/clients/client-registration/$sub-tab': {
-      id: '/$realm/clients/client-registration/$sub-tab'
-      path: '/client-registration/$sub-tab'
-      fullPath: '/$realm/clients/client-registration/$sub-tab'
+    '/$realm/clients/client-registration/$subTab': {
+      id: '/$realm/clients/client-registration/$subTab'
+      path: '/client-registration/$subTab'
+      fullPath: '/$realm/clients/client-registration/$subTab'
       preLoaderRoute: typeof RealmClientsClientRegistrationSubTabRouteImport
       parentRoute: typeof RealmClientsRoute
     }
@@ -2338,10 +2330,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmAuthenticationFlowsCreateRouteImport
       parentRoute: typeof RealmAuthenticationRoute
     }
-    '/$realm/authentication/$id/$used-by': {
-      id: '/$realm/authentication/$id/$used-by'
-      path: '/$id/$used-by'
-      fullPath: '/$realm/authentication/$id/$used-by'
+    '/$realm/authentication/$id/$usedBy': {
+      id: '/$realm/authentication/$id/$usedBy'
+      path: '/$id/$usedBy'
+      fullPath: '/$realm/authentication/$id/$usedBy'
       preLoaderRoute: typeof RealmAuthenticationIdUsedByRouteImport
       parentRoute: typeof RealmAuthenticationRoute
     }
@@ -2368,17 +2360,17 @@ declare module '@tanstack/react-router' {
     }
     '/$realm/clients/client-registration/$subTab/': {
       id: '/$realm/clients/client-registration/$subTab/'
-      path: '/client-registration/$subTab'
+      path: '/'
       fullPath: '/$realm/clients/client-registration/$subTab/'
       preLoaderRoute: typeof RealmClientsClientRegistrationSubTabIndexRouteImport
-      parentRoute: typeof RealmClientsRoute
+      parentRoute: typeof RealmClientsClientRegistrationSubTabRoute
     }
     '/$realm/authentication/$id/$usedBy/': {
       id: '/$realm/authentication/$id/$usedBy/'
-      path: '/$id/$usedBy'
+      path: '/'
       fullPath: '/$realm/authentication/$id/$usedBy/'
       preLoaderRoute: typeof RealmAuthenticationIdUsedByIndexRouteImport
-      parentRoute: typeof RealmAuthenticationRoute
+      parentRoute: typeof RealmAuthenticationIdUsedByRoute
     }
     '/$realm/user-federation/ldap/$id/$tab': {
       id: '/$realm/user-federation/ldap/$id/$tab'
@@ -2464,12 +2456,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmIdentityProvidersProviderIdAliasTabRouteImport
       parentRoute: typeof RealmIdentityProvidersRoute
     }
-    '/$realm/clients/client-registration/$subTab/$provider-id': {
-      id: '/$realm/clients/client-registration/$subTab/$provider-id'
-      path: '/client-registration/$subTab/$provider-id'
-      fullPath: '/$realm/clients/client-registration/$subTab/$provider-id'
+    '/$realm/clients/client-registration/$subTab/$providerId': {
+      id: '/$realm/clients/client-registration/$subTab/$providerId'
+      path: '/$providerId'
+      fullPath: '/$realm/clients/client-registration/$subTab/$providerId'
       preLoaderRoute: typeof RealmClientsClientRegistrationSubTabProviderIdRouteImport
-      parentRoute: typeof RealmClientsRoute
+      parentRoute: typeof RealmClientsClientRegistrationSubTabRoute
     }
     '/$realm/clients/$id/authorization/scope': {
       id: '/$realm/clients/$id/authorization/scope'
@@ -2513,12 +2505,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmClientsClientIdAuthorizationTabRouteImport
       parentRoute: typeof RealmClientsRoute
     }
-    '/$realm/authentication/$id/$usedBy/$built-in': {
-      id: '/$realm/authentication/$id/$usedBy/$built-in'
-      path: '/$id/$usedBy/$built-in'
-      fullPath: '/$realm/authentication/$id/$usedBy/$built-in'
+    '/$realm/authentication/$id/$usedBy/$builtIn': {
+      id: '/$realm/authentication/$id/$usedBy/$builtIn'
+      path: '/$builtIn'
+      fullPath: '/$realm/authentication/$id/$usedBy/$builtIn'
       preLoaderRoute: typeof RealmAuthenticationIdUsedByBuiltInRouteImport
-      parentRoute: typeof RealmAuthenticationRoute
+      parentRoute: typeof RealmAuthenticationIdUsedByRoute
     }
     '/$realm/realm-settings/client-policies/$profileName/edit-profile/': {
       id: '/$realm/realm-settings/client-policies/$profileName/edit-profile/'
@@ -2543,10 +2535,10 @@ declare module '@tanstack/react-router' {
     }
     '/$realm/clients/client-registration/$subTab/$providerId/': {
       id: '/$realm/clients/client-registration/$subTab/$providerId/'
-      path: '/client-registration/$subTab/$providerId'
+      path: '/'
       fullPath: '/$realm/clients/client-registration/$subTab/$providerId/'
       preLoaderRoute: typeof RealmClientsClientRegistrationSubTabProviderIdIndexRouteImport
-      parentRoute: typeof RealmClientsRoute
+      parentRoute: typeof RealmClientsClientRegistrationSubTabProviderIdRoute
     }
     '/$realm/clients/$id/authorization/scope/': {
       id: '/$realm/clients/$id/authorization/scope/'
@@ -2569,10 +2561,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmClientsClientIdClientScopesDedicatedIndexRouteImport
       parentRoute: typeof RealmClientsClientIdClientScopesDedicatedRoute
     }
-    '/$realm/user-federation/ldap/$id/mappers/$mapper-id': {
-      id: '/$realm/user-federation/ldap/$id/mappers/$mapper-id'
-      path: '/mappers/$mapper-id'
-      fullPath: '/$realm/user-federation/ldap/$id/mappers/$mapper-id'
+    '/$realm/user-federation/ldap/$id/mappers/$mapperId': {
+      id: '/$realm/user-federation/ldap/$id/mappers/$mapperId'
+      path: '/mappers/$mapperId'
+      fullPath: '/$realm/user-federation/ldap/$id/mappers/$mapperId'
       preLoaderRoute: typeof RealmUserFederationLdapIdMappersMapperIdRouteImport
       parentRoute: typeof RealmUserFederationLdapIdRoute
     }
@@ -2590,10 +2582,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmRealmSettingsUserProfileAttributesGroupEditNameRouteImport
       parentRoute: typeof RealmRealmSettingsRoute
     }
-    '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name': {
-      id: '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name'
-      path: '/$executor-name'
-      fullPath: '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executor-name'
+    '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName': {
+      id: '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName'
+      path: '/$executorName'
+      fullPath: '/$realm/realm-settings/client-policies/$profileName/edit-profile/$executorName'
       preLoaderRoute: typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileExecutorNameRouteImport
       parentRoute: typeof RealmRealmSettingsClientPoliciesProfileNameEditProfileRoute
     }
@@ -2604,31 +2596,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyCreateConditionRouteImport
       parentRoute: typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyRoute
     }
-    '/$realm/permissions/$permissionClientId/policies/new/$policy-type': {
-      id: '/$realm/permissions/$permissionClientId/policies/new/$policy-type'
-      path: '/new/$policy-type'
-      fullPath: '/$realm/permissions/$permissionClientId/policies/new/$policy-type'
+    '/$realm/permissions/$permissionClientId/policies/new/$policyType': {
+      id: '/$realm/permissions/$permissionClientId/policies/new/$policyType'
+      path: '/new/$policyType'
+      fullPath: '/$realm/permissions/$permissionClientId/policies/new/$policyType'
       preLoaderRoute: typeof RealmPermissionsPermissionClientIdPoliciesNewPolicyTypeRouteImport
       parentRoute: typeof RealmPermissionsPermissionClientIdPoliciesRoute
     }
-    '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type': {
-      id: '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type'
-      path: '/$policyId/$policy-type'
-      fullPath: '/$realm/permissions/$permissionClientId/policies/$policyId/$policy-type'
+    '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType': {
+      id: '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType'
+      path: '/$policyId/$policyType'
+      fullPath: '/$realm/permissions/$permissionClientId/policies/$policyId/$policyType'
       preLoaderRoute: typeof RealmPermissionsPermissionClientIdPoliciesPolicyIdPolicyTypeRouteImport
       parentRoute: typeof RealmPermissionsPermissionClientIdPoliciesRoute
     }
-    '/$realm/permissions/$permissionClientId/permission/new/$resource-type': {
-      id: '/$realm/permissions/$permissionClientId/permission/new/$resource-type'
-      path: '/$permissionClientId/permission/new/$resource-type'
-      fullPath: '/$realm/permissions/$permissionClientId/permission/new/$resource-type'
+    '/$realm/permissions/$permissionClientId/permission/new/$resourceType': {
+      id: '/$realm/permissions/$permissionClientId/permission/new/$resourceType'
+      path: '/$permissionClientId/permission/new/$resourceType'
+      fullPath: '/$realm/permissions/$permissionClientId/permission/new/$resourceType'
       preLoaderRoute: typeof RealmPermissionsPermissionClientIdPermissionNewResourceTypeRouteImport
       parentRoute: typeof RealmPermissionsRoute
     }
-    '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type': {
-      id: '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type'
-      path: '/$permissionClientId/permission/$permissionId/$resource-type'
-      fullPath: '/$realm/permissions/$permissionClientId/permission/$permissionId/$resource-type'
+    '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType': {
+      id: '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType'
+      path: '/$permissionClientId/permission/$permissionId/$resourceType'
+      fullPath: '/$realm/permissions/$permissionClientId/permission/$permissionId/$resourceType'
       preLoaderRoute: typeof RealmPermissionsPermissionClientIdPermissionPermissionIdResourceTypeRouteImport
       parentRoute: typeof RealmPermissionsRoute
     }
@@ -2648,10 +2640,10 @@ declare module '@tanstack/react-router' {
     }
     '/$realm/clients/client-registration/$subTab/$providerId/$id': {
       id: '/$realm/clients/client-registration/$subTab/$providerId/$id'
-      path: '/client-registration/$subTab/$providerId/$id'
+      path: '/$id'
       fullPath: '/$realm/clients/client-registration/$subTab/$providerId/$id'
       preLoaderRoute: typeof RealmClientsClientRegistrationSubTabProviderIdIdRouteImport
-      parentRoute: typeof RealmClientsRoute
+      parentRoute: typeof RealmClientsClientRegistrationSubTabProviderIdRoute
     }
     '/$realm/clients/$id/authorization/scope/new': {
       id: '/$realm/clients/$id/authorization/scope/new'
@@ -2660,10 +2652,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmClientsIdAuthorizationScopeNewRouteImport
       parentRoute: typeof RealmClientsIdAuthorizationScopeRoute
     }
-    '/$realm/clients/$id/authorization/scope/$scope-id': {
-      id: '/$realm/clients/$id/authorization/scope/$scope-id'
-      path: '/$scope-id'
-      fullPath: '/$realm/clients/$id/authorization/scope/$scope-id'
+    '/$realm/clients/$id/authorization/scope/$scopeId': {
+      id: '/$realm/clients/$id/authorization/scope/$scopeId'
+      path: '/$scopeId'
+      fullPath: '/$realm/clients/$id/authorization/scope/$scopeId'
       preLoaderRoute: typeof RealmClientsIdAuthorizationScopeScopeIdRouteImport
       parentRoute: typeof RealmClientsIdAuthorizationScopeRoute
     }
@@ -2674,10 +2666,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmClientsIdAuthorizationResourceNewRouteImport
       parentRoute: typeof RealmClientsIdAuthorizationResourceRoute
     }
-    '/$realm/clients/$id/authorization/resource/$resource-id': {
-      id: '/$realm/clients/$id/authorization/resource/$resource-id'
-      path: '/$resource-id'
-      fullPath: '/$realm/clients/$id/authorization/resource/$resource-id'
+    '/$realm/clients/$id/authorization/resource/$resourceId': {
+      id: '/$realm/clients/$id/authorization/resource/$resourceId'
+      path: '/$resourceId'
+      fullPath: '/$realm/clients/$id/authorization/resource/$resourceId'
       preLoaderRoute: typeof RealmClientsIdAuthorizationResourceResourceIdRouteImport
       parentRoute: typeof RealmClientsIdAuthorizationResourceRoute
     }
@@ -2695,10 +2687,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmClientsClientIdClientScopesDedicatedTabRouteImport
       parentRoute: typeof RealmClientsClientIdClientScopesDedicatedRoute
     }
-    '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode': {
-      id: '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode'
-      path: '/$id/mappers/$mapperId/$view-mode'
-      fullPath: '/$realm/client-scopes/$id/mappers/$mapperId/$view-mode'
+    '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode': {
+      id: '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode'
+      path: '/$id/mappers/$mapperId/$viewMode'
+      fullPath: '/$realm/client-scopes/$id/mappers/$mapperId/$viewMode'
       preLoaderRoute: typeof RealmClientScopesIdMappersMapperIdViewModeRouteImport
       parentRoute: typeof RealmClientScopesRoute
     }
@@ -2716,82 +2708,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyConditionNameEditConditionRouteImport
       parentRoute: typeof RealmRealmSettingsClientPoliciesPolicyNameEditPolicyRoute
     }
-    '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type': {
-      id: '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type'
-      path: '/$id/permissions/permission/$permissionId/$permission-type'
-      fullPath: '/$realm/clients/$id/permissions/permission/$permissionId/$permission-type'
+    '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType': {
+      id: '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType'
+      path: '/$id/permissions/permission/$permissionId/$permissionType'
+      fullPath: '/$realm/clients/$id/permissions/permission/$permissionId/$permissionType'
       preLoaderRoute: typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRouteImport
       parentRoute: typeof RealmClientsRoute
     }
-    '/$realm/clients/$id/authorization/policy/new/$policy-type': {
-      id: '/$realm/clients/$id/authorization/policy/new/$policy-type'
-      path: '/$id/authorization/policy/new/$policy-type'
-      fullPath: '/$realm/clients/$id/authorization/policy/new/$policy-type'
+    '/$realm/clients/$id/authorization/policy/new/$policyType': {
+      id: '/$realm/clients/$id/authorization/policy/new/$policyType'
+      path: '/$id/authorization/policy/new/$policyType'
+      fullPath: '/$realm/clients/$id/authorization/policy/new/$policyType'
       preLoaderRoute: typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRouteImport
       parentRoute: typeof RealmClientsRoute
     }
-    '/$realm/clients/$id/authorization/policy/$policyId/$policy-type': {
-      id: '/$realm/clients/$id/authorization/policy/$policyId/$policy-type'
-      path: '/$id/authorization/policy/$policyId/$policy-type'
-      fullPath: '/$realm/clients/$id/authorization/policy/$policyId/$policy-type'
+    '/$realm/clients/$id/authorization/policy/$policyId/$policyType': {
+      id: '/$realm/clients/$id/authorization/policy/$policyId/$policyType'
+      path: '/$id/authorization/policy/$policyId/$policyType'
+      fullPath: '/$realm/clients/$id/authorization/policy/$policyId/$policyType'
       preLoaderRoute: typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRouteImport
       parentRoute: typeof RealmClientsRoute
     }
-    '/$realm/clients/$id/authorization/permission/new/$permission-type': {
-      id: '/$realm/clients/$id/authorization/permission/new/$permission-type'
-      path: '/$id/authorization/permission/new/$permission-type'
-      fullPath: '/$realm/clients/$id/authorization/permission/new/$permission-type'
+    '/$realm/clients/$id/authorization/permission/new/$permissionType': {
+      id: '/$realm/clients/$id/authorization/permission/new/$permissionType'
+      path: '/$id/authorization/permission/new/$permissionType'
+      fullPath: '/$realm/clients/$id/authorization/permission/new/$permissionType'
       preLoaderRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteImport
       parentRoute: typeof RealmClientsRoute
     }
-    '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id': {
-      id: '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id'
-      path: '/$id/authorization/permission/$permissionType/$permission-id'
-      fullPath: '/$realm/clients/$id/authorization/permission/$permissionType/$permission-id'
+    '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId': {
+      id: '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId'
+      path: '/$id/authorization/permission/$permissionType/$permissionId'
+      fullPath: '/$realm/clients/$id/authorization/permission/$permissionType/$permissionId'
       preLoaderRoute: typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRouteImport
       parentRoute: typeof RealmClientsRoute
     }
     '/$realm/clients/$id/authorization/permission/new/$permissionType/': {
       id: '/$realm/clients/$id/authorization/permission/new/$permissionType/'
-      path: '/$id/authorization/permission/new/$permissionType'
+      path: '/'
       fullPath: '/$realm/clients/$id/authorization/permission/new/$permissionType/'
       preLoaderRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRouteImport
-      parentRoute: typeof RealmClientsRoute
+      parentRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute
     }
-    '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode': {
-      id: '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode'
-      path: '/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode'
-      fullPath: '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$view-mode'
+    '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode': {
+      id: '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode'
+      path: '/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode'
+      fullPath: '/$realm/clients/$id/client-scopes/dedicated/mappers/$mapperId/$viewMode'
       preLoaderRoute: typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRouteImport
       parentRoute: typeof RealmClientsRoute
     }
-    '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id': {
-      id: '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id'
-      path: '/$id/authorization/permission/new/$permissionType/$selected-id'
-      fullPath: '/$realm/clients/$id/authorization/permission/new/$permissionType/$selected-id'
+    '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId': {
+      id: '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId'
+      path: '/$selectedId'
+      fullPath: '/$realm/clients/$id/authorization/permission/new/$permissionType/$selectedId'
       preLoaderRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRouteImport
-      parentRoute: typeof RealmClientsRoute
+      parentRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute
     }
   }
 }
 
+interface RealmAuthenticationIdUsedByRouteChildren {
+  RealmAuthenticationIdUsedByBuiltInRoute: typeof RealmAuthenticationIdUsedByBuiltInRoute
+  RealmAuthenticationIdUsedByIndexRoute: typeof RealmAuthenticationIdUsedByIndexRoute
+}
+
+const RealmAuthenticationIdUsedByRouteChildren: RealmAuthenticationIdUsedByRouteChildren =
+  {
+    RealmAuthenticationIdUsedByBuiltInRoute:
+      RealmAuthenticationIdUsedByBuiltInRoute,
+    RealmAuthenticationIdUsedByIndexRoute:
+      RealmAuthenticationIdUsedByIndexRoute,
+  }
+
+const RealmAuthenticationIdUsedByRouteWithChildren =
+  RealmAuthenticationIdUsedByRoute._addFileChildren(
+    RealmAuthenticationIdUsedByRouteChildren,
+  )
+
 interface RealmAuthenticationRouteChildren {
   RealmAuthenticationTabRoute: typeof RealmAuthenticationTabRoute
   RealmAuthenticationIndexRoute: typeof RealmAuthenticationIndexRoute
-  RealmAuthenticationIdUsedByRoute: typeof RealmAuthenticationIdUsedByRoute
+  RealmAuthenticationIdUsedByRoute: typeof RealmAuthenticationIdUsedByRouteWithChildren
   RealmAuthenticationFlowsCreateRoute: typeof RealmAuthenticationFlowsCreateRoute
-  RealmAuthenticationIdUsedByBuiltInRoute: typeof RealmAuthenticationIdUsedByBuiltInRoute
-  RealmAuthenticationIdUsedByIndexRoute: typeof RealmAuthenticationIdUsedByIndexRoute
 }
 
 const RealmAuthenticationRouteChildren: RealmAuthenticationRouteChildren = {
   RealmAuthenticationTabRoute: RealmAuthenticationTabRoute,
   RealmAuthenticationIndexRoute: RealmAuthenticationIndexRoute,
-  RealmAuthenticationIdUsedByRoute: RealmAuthenticationIdUsedByRoute,
+  RealmAuthenticationIdUsedByRoute:
+    RealmAuthenticationIdUsedByRouteWithChildren,
   RealmAuthenticationFlowsCreateRoute: RealmAuthenticationFlowsCreateRoute,
-  RealmAuthenticationIdUsedByBuiltInRoute:
-    RealmAuthenticationIdUsedByBuiltInRoute,
-  RealmAuthenticationIdUsedByIndexRoute: RealmAuthenticationIdUsedByIndexRoute,
 }
 
 const RealmAuthenticationRouteWithChildren =
@@ -2814,6 +2820,42 @@ const RealmClientScopesRouteChildren: RealmClientScopesRouteChildren = {
 
 const RealmClientScopesRouteWithChildren =
   RealmClientScopesRoute._addFileChildren(RealmClientScopesRouteChildren)
+
+interface RealmClientsClientRegistrationSubTabProviderIdRouteChildren {
+  RealmClientsClientRegistrationSubTabProviderIdIdRoute: typeof RealmClientsClientRegistrationSubTabProviderIdIdRoute
+  RealmClientsClientRegistrationSubTabProviderIdIndexRoute: typeof RealmClientsClientRegistrationSubTabProviderIdIndexRoute
+}
+
+const RealmClientsClientRegistrationSubTabProviderIdRouteChildren: RealmClientsClientRegistrationSubTabProviderIdRouteChildren =
+  {
+    RealmClientsClientRegistrationSubTabProviderIdIdRoute:
+      RealmClientsClientRegistrationSubTabProviderIdIdRoute,
+    RealmClientsClientRegistrationSubTabProviderIdIndexRoute:
+      RealmClientsClientRegistrationSubTabProviderIdIndexRoute,
+  }
+
+const RealmClientsClientRegistrationSubTabProviderIdRouteWithChildren =
+  RealmClientsClientRegistrationSubTabProviderIdRoute._addFileChildren(
+    RealmClientsClientRegistrationSubTabProviderIdRouteChildren,
+  )
+
+interface RealmClientsClientRegistrationSubTabRouteChildren {
+  RealmClientsClientRegistrationSubTabProviderIdRoute: typeof RealmClientsClientRegistrationSubTabProviderIdRouteWithChildren
+  RealmClientsClientRegistrationSubTabIndexRoute: typeof RealmClientsClientRegistrationSubTabIndexRoute
+}
+
+const RealmClientsClientRegistrationSubTabRouteChildren: RealmClientsClientRegistrationSubTabRouteChildren =
+  {
+    RealmClientsClientRegistrationSubTabProviderIdRoute:
+      RealmClientsClientRegistrationSubTabProviderIdRouteWithChildren,
+    RealmClientsClientRegistrationSubTabIndexRoute:
+      RealmClientsClientRegistrationSubTabIndexRoute,
+  }
+
+const RealmClientsClientRegistrationSubTabRouteWithChildren =
+  RealmClientsClientRegistrationSubTabRoute._addFileChildren(
+    RealmClientsClientRegistrationSubTabRouteChildren,
+  )
 
 interface RealmClientsClientIdClientScopesDedicatedRouteChildren {
   RealmClientsClientIdClientScopesDedicatedTabRoute: typeof RealmClientsClientIdClientScopesDedicatedTabRoute
@@ -2875,13 +2917,31 @@ const RealmClientsIdAuthorizationScopeRouteWithChildren =
     RealmClientsIdAuthorizationScopeRouteChildren,
   )
 
+interface RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteChildren {
+  RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
+  RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute
+}
+
+const RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteChildren: RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteChildren =
+  {
+    RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute:
+      RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute,
+    RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute:
+      RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute,
+  }
+
+const RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteWithChildren =
+  RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute._addFileChildren(
+    RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteChildren,
+  )
+
 interface RealmClientsRouteChildren {
   RealmClientsTabRoute: typeof RealmClientsTabRoute
   RealmClientsAddClientRoute: typeof RealmClientsAddClientRoute
   RealmClientsImportClientRoute: typeof RealmClientsImportClientRoute
   RealmClientsIndexRoute: typeof RealmClientsIndexRoute
   RealmClientsClientIdTabRoute: typeof RealmClientsClientIdTabRoute
-  RealmClientsClientRegistrationSubTabRoute: typeof RealmClientsClientRegistrationSubTabRoute
+  RealmClientsClientRegistrationSubTabRoute: typeof RealmClientsClientRegistrationSubTabRouteWithChildren
   RealmClientsInitialAccessTokenCreateRoute: typeof RealmClientsInitialAccessTokenCreateRoute
   RealmClientsClientIdAuthorizationTabRoute: typeof RealmClientsClientIdAuthorizationTabRoute
   RealmClientsClientIdClientScopesTabRoute: typeof RealmClientsClientIdClientScopesTabRoute
@@ -2889,19 +2949,13 @@ interface RealmClientsRouteChildren {
   RealmClientsClientIdRolesNewRoute: typeof RealmClientsClientIdRolesNewRoute
   RealmClientsIdAuthorizationResourceRoute: typeof RealmClientsIdAuthorizationResourceRouteWithChildren
   RealmClientsIdAuthorizationScopeRoute: typeof RealmClientsIdAuthorizationScopeRouteWithChildren
-  RealmClientsClientRegistrationSubTabProviderIdRoute: typeof RealmClientsClientRegistrationSubTabProviderIdRoute
-  RealmClientsClientRegistrationSubTabIndexRoute: typeof RealmClientsClientRegistrationSubTabIndexRoute
   RealmClientsClientIdRolesIdTabRoute: typeof RealmClientsClientIdRolesIdTabRoute
-  RealmClientsClientRegistrationSubTabProviderIdIdRoute: typeof RealmClientsClientRegistrationSubTabProviderIdIdRoute
-  RealmClientsClientRegistrationSubTabProviderIdIndexRoute: typeof RealmClientsClientRegistrationSubTabProviderIdIndexRoute
   RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute: typeof RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute
-  RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute
+  RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteWithChildren
   RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute: typeof RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute
   RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute: typeof RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute
   RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute: typeof RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute
-  RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute
   RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute: typeof RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute
-  RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute: typeof RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute
 }
 
 const RealmClientsRouteChildren: RealmClientsRouteChildren = {
@@ -2911,7 +2965,7 @@ const RealmClientsRouteChildren: RealmClientsRouteChildren = {
   RealmClientsIndexRoute: RealmClientsIndexRoute,
   RealmClientsClientIdTabRoute: RealmClientsClientIdTabRoute,
   RealmClientsClientRegistrationSubTabRoute:
-    RealmClientsClientRegistrationSubTabRoute,
+    RealmClientsClientRegistrationSubTabRouteWithChildren,
   RealmClientsInitialAccessTokenCreateRoute:
     RealmClientsInitialAccessTokenCreateRoute,
   RealmClientsClientIdAuthorizationTabRoute:
@@ -2925,31 +2979,19 @@ const RealmClientsRouteChildren: RealmClientsRouteChildren = {
     RealmClientsIdAuthorizationResourceRouteWithChildren,
   RealmClientsIdAuthorizationScopeRoute:
     RealmClientsIdAuthorizationScopeRouteWithChildren,
-  RealmClientsClientRegistrationSubTabProviderIdRoute:
-    RealmClientsClientRegistrationSubTabProviderIdRoute,
-  RealmClientsClientRegistrationSubTabIndexRoute:
-    RealmClientsClientRegistrationSubTabIndexRoute,
   RealmClientsClientIdRolesIdTabRoute: RealmClientsClientIdRolesIdTabRoute,
-  RealmClientsClientRegistrationSubTabProviderIdIdRoute:
-    RealmClientsClientRegistrationSubTabProviderIdIdRoute,
-  RealmClientsClientRegistrationSubTabProviderIdIndexRoute:
-    RealmClientsClientRegistrationSubTabProviderIdIndexRoute,
   RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute:
     RealmClientsIdAuthorizationPermissionPermissionTypePermissionIdRoute,
   RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute:
-    RealmClientsIdAuthorizationPermissionNewPermissionTypeRoute,
+    RealmClientsIdAuthorizationPermissionNewPermissionTypeRouteWithChildren,
   RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute:
     RealmClientsIdAuthorizationPolicyPolicyIdPolicyTypeRoute,
   RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute:
     RealmClientsIdAuthorizationPolicyNewPolicyTypeRoute,
   RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute:
     RealmClientsIdPermissionsPermissionPermissionIdPermissionTypeRoute,
-  RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute:
-    RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute,
   RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute:
     RealmClientsIdClientScopesDedicatedMappersMapperIdViewModeRoute,
-  RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute:
-    RealmClientsIdAuthorizationPermissionNewPermissionTypeIndexRoute,
 }
 
 const RealmClientsRouteWithChildren = RealmClientsRoute._addFileChildren(
@@ -3322,6 +3364,24 @@ const RealmWorkflowsRouteWithChildren = RealmWorkflowsRoute._addFileChildren(
   RealmWorkflowsRouteChildren,
 )
 
+interface RealmPageSectionProviderIdRouteChildren {
+  RealmPageSectionProviderIdIdRoute: typeof RealmPageSectionProviderIdIdRoute
+  RealmPageSectionProviderIdAddRoute: typeof RealmPageSectionProviderIdAddRoute
+  RealmPageSectionProviderIdIndexRoute: typeof RealmPageSectionProviderIdIndexRoute
+}
+
+const RealmPageSectionProviderIdRouteChildren: RealmPageSectionProviderIdRouteChildren =
+  {
+    RealmPageSectionProviderIdIdRoute: RealmPageSectionProviderIdIdRoute,
+    RealmPageSectionProviderIdAddRoute: RealmPageSectionProviderIdAddRoute,
+    RealmPageSectionProviderIdIndexRoute: RealmPageSectionProviderIdIndexRoute,
+  }
+
+const RealmPageSectionProviderIdRouteWithChildren =
+  RealmPageSectionProviderIdRoute._addFileChildren(
+    RealmPageSectionProviderIdRouteChildren,
+  )
+
 interface RealmRouteChildren {
   RealmAuthenticationRoute: typeof RealmAuthenticationRouteWithChildren
   RealmClientScopesRoute: typeof RealmClientScopesRouteWithChildren
@@ -3339,10 +3399,7 @@ interface RealmRouteChildren {
   RealmIndexRoute: typeof RealmIndexRoute
   RealmGroupsSplatRoute: typeof RealmGroupsSplatRoute
   RealmGroupsIdRoute: typeof RealmGroupsIdRoute
-  RealmPageSectionProviderIdRoute: typeof RealmPageSectionProviderIdRoute
-  RealmPageSectionProviderIdIdRoute: typeof RealmPageSectionProviderIdIdRoute
-  RealmPageSectionProviderIdAddRoute: typeof RealmPageSectionProviderIdAddRoute
-  RealmPageSectionProviderIdIndexRoute: typeof RealmPageSectionProviderIdIndexRoute
+  RealmPageSectionProviderIdRoute: typeof RealmPageSectionProviderIdRouteWithChildren
 }
 
 const RealmRouteChildren: RealmRouteChildren = {
@@ -3362,10 +3419,7 @@ const RealmRouteChildren: RealmRouteChildren = {
   RealmIndexRoute: RealmIndexRoute,
   RealmGroupsSplatRoute: RealmGroupsSplatRoute,
   RealmGroupsIdRoute: RealmGroupsIdRoute,
-  RealmPageSectionProviderIdRoute: RealmPageSectionProviderIdRoute,
-  RealmPageSectionProviderIdIdRoute: RealmPageSectionProviderIdIdRoute,
-  RealmPageSectionProviderIdAddRoute: RealmPageSectionProviderIdAddRoute,
-  RealmPageSectionProviderIdIndexRoute: RealmPageSectionProviderIdIndexRoute,
+  RealmPageSectionProviderIdRoute: RealmPageSectionProviderIdRouteWithChildren,
 }
 
 const RealmRouteWithChildren = RealmRoute._addFileChildren(RealmRouteChildren)

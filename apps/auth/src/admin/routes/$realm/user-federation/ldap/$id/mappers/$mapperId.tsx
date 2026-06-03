@@ -416,6 +416,6 @@ function LdapMapperDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/user-federation/ldap/$id/mappers/$mapper-id")({
+export const Route = createFileRoute("/$realm/user-federation/ldap/$id/mappers/$mapperId")({
   component: LdapMapperDetails,
 })

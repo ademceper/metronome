@@ -367,6 +367,6 @@ function ResourceDetails() {
   );
 }
 
-export const Route = createFileRoute("/$realm/clients/$id/authorization/resource/$resource-id")({
+export const Route = createFileRoute("/$realm/clients/$id/authorization/resource/$resourceId")({
   component: ResourceDetails,
 })
