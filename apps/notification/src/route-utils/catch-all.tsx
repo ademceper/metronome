@@ -22,7 +22,19 @@ export const CatchAllRoute = () => {
   }
 
   if (!currentEnvironment?.slug) {
-    return <Navigate to={ROUTES.ROOT} />;
+    // Navigating to ROOT (`/`) would mount this same component again and
+    // bounce back into this branch — Transitioner would loop forever and
+    // throw "Maximum update depth exceeded". Show a loader instead.
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <RiLoader4Line className="text-primary-base size-8 animate-spin" />
+          <div className="text-text-sub text-label-sm">
+            Waiting for an environment...
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const routeEntries = Object.entries(ROUTES);

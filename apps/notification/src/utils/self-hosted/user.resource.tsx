@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useOidc } from '@/auth-client';
 import { createContextHook } from '../context';
 import { SelfHostedUser } from './user.types';
@@ -37,14 +37,19 @@ export const UserContext = React.createContext<{
 
 export function UserContextProvider({ children }: any) {
   const oidc = useOidc();
-  const user = oidc.isUserLoggedIn
-    ? claimsToUser(oidc.decodedIdToken as KeycloakClaims)
-    : null;
+  // Memoise the derived user + context value. Re-creating these every
+  // render cascades through every consumer (AuthProvider, EnvironmentProvider,
+  // etc.) and ultimately triggers Transitioner setState loops that surface as
+  // "Maximum update depth exceeded".
+  const value = useMemo(() => {
+    const user = oidc.isUserLoggedIn
+      ? claimsToUser(oidc.decodedIdToken as KeycloakClaims)
+      : null;
+    return { user, isLoaded: !!user };
+  }, [oidc.isUserLoggedIn, oidc.decodedIdToken]);
 
   return (
-    <UserContext.Provider value={{ user, isLoaded: !!user }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={value}>{children}</UserContext.Provider>
   );
 }
 
