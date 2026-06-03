@@ -26,7 +26,6 @@ import { Route as RealmEventsRouteImport } from './routes/$realm/events'
 import { Route as RealmClientsRouteImport } from './routes/$realm/clients'
 import { Route as RealmClientScopesRouteImport } from './routes/$realm/client-scopes'
 import { Route as RealmAuthenticationRouteImport } from './routes/$realm/authentication'
-import { Route as RealmTabRouteImport } from './routes/$realm/$tab'
 import { Route as RealmWorkflowsIndexRouteImport } from './routes/$realm/workflows/index'
 import { Route as RealmUsersIndexRouteImport } from './routes/$realm/users/index'
 import { Route as RealmUserFederationIndexRouteImport } from './routes/$realm/user-federation/index'
@@ -234,11 +233,6 @@ const RealmClientScopesRoute = RealmClientScopesRouteImport.update({
 const RealmAuthenticationRoute = RealmAuthenticationRouteImport.update({
   id: '/authentication',
   path: '/authentication',
-  getParentRoute: () => RealmRoute,
-} as any)
-const RealmTabRoute = RealmTabRouteImport.update({
-  id: '/$tab',
-  path: '/$tab',
   getParentRoute: () => RealmRoute,
 } as any)
 const RealmWorkflowsIndexRoute = RealmWorkflowsIndexRouteImport.update({
@@ -987,7 +981,6 @@ const RealmClientsIdAuthorizationPermissionNewPermissionTypeSelectedIdRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$realm': typeof RealmRouteWithChildren
-  '/$realm/$tab': typeof RealmTabRoute
   '/$realm/authentication': typeof RealmAuthenticationRouteWithChildren
   '/$realm/client-scopes': typeof RealmClientScopesRouteWithChildren
   '/$realm/clients': typeof RealmClientsRouteWithChildren
@@ -1129,7 +1122,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$realm/$tab': typeof RealmTabRoute
   '/$realm/sessions': typeof RealmSessionsRoute
   '/page-section/$providerId': typeof PageSectionProviderIdRoute
   '/$realm': typeof RealmIndexRoute
@@ -1245,7 +1237,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$realm': typeof RealmRouteWithChildren
-  '/$realm/$tab': typeof RealmTabRoute
   '/$realm/authentication': typeof RealmAuthenticationRouteWithChildren
   '/$realm/client-scopes': typeof RealmClientScopesRouteWithChildren
   '/$realm/clients': typeof RealmClientsRouteWithChildren
@@ -1390,7 +1381,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$realm'
-    | '/$realm/$tab'
     | '/$realm/authentication'
     | '/$realm/client-scopes'
     | '/$realm/clients'
@@ -1532,7 +1522,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/$realm/$tab'
     | '/$realm/sessions'
     | '/page-section/$providerId'
     | '/$realm'
@@ -1647,7 +1636,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$realm'
-    | '/$realm/$tab'
     | '/$realm/authentication'
     | '/$realm/client-scopes'
     | '/$realm/clients'
@@ -1913,13 +1901,6 @@ declare module '@tanstack/react-router' {
       path: '/authentication'
       fullPath: '/$realm/authentication'
       preLoaderRoute: typeof RealmAuthenticationRouteImport
-      parentRoute: typeof RealmRoute
-    }
-    '/$realm/$tab': {
-      id: '/$realm/$tab'
-      path: '/$tab'
-      fullPath: '/$realm/$tab'
-      preLoaderRoute: typeof RealmTabRouteImport
       parentRoute: typeof RealmRoute
     }
     '/$realm/workflows/': {
@@ -3402,7 +3383,6 @@ const RealmPageSectionProviderIdRouteWithChildren =
   )
 
 interface RealmRouteChildren {
-  RealmTabRoute: typeof RealmTabRoute
   RealmAuthenticationRoute: typeof RealmAuthenticationRouteWithChildren
   RealmClientScopesRoute: typeof RealmClientScopesRouteWithChildren
   RealmClientsRoute: typeof RealmClientsRouteWithChildren
@@ -3423,7 +3403,6 @@ interface RealmRouteChildren {
 }
 
 const RealmRouteChildren: RealmRouteChildren = {
-  RealmTabRoute: RealmTabRoute,
   RealmAuthenticationRoute: RealmAuthenticationRouteWithChildren,
   RealmClientScopesRoute: RealmClientScopesRouteWithChildren,
   RealmClientsRoute: RealmClientsRouteWithChildren,
