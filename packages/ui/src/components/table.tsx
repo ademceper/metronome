@@ -1,107 +1,219 @@
 "use client"
 
 import { cn } from "@metronome/ui/lib/utils"
-import type * as React from "react"
+import {
+  CaretDownIcon,
+  CaretUpDownIcon,
+  CaretUpIcon,
+} from "@phosphor-icons/react"
+import { cva } from "class-variance-authority"
+import * as React from "react"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
-  return (
+export type TableSortDirection = "asc" | "desc" | false
+
+interface TableProps
+  extends Omit<React.HTMLAttributes<HTMLTableElement>, "children"> {
+  containerClassName?: string
+  isLoading?: boolean
+  loadingRowsCount?: number
+  loadingRow?: React.ReactNode
+  children?: React.ReactNode
+}
+
+const LoadingRow = () => (
+  <TableRow>
+    <TableCell className="animate-pulse" colSpan={100}>
+      <div className="h-8 w-full rounded-md bg-neutral-100" />
+    </TableCell>
+  </TableRow>
+)
+
+const Table = React.forwardRef<HTMLTableElement, TableProps>(
+  (
+    {
+      className,
+      containerClassName,
+      isLoading,
+      loadingRowsCount = 5,
+      loadingRow,
+      children,
+      ...props
+    },
+    ref
+  ) => (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto"
+      className={cn(
+        "relative w-full overflow-x-auto rounded-lg border border-neutral-200 shadow-xs",
+        containerClassName
+      )}
     >
       <table
+        ref={ref}
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn(
+          "relative w-full caption-bottom border-separate border-spacing-0 text-sm",
+          className
+        )}
         {...props}
-      />
+      >
+        {children}
+        {isLoading && (
+          <TableBody>
+            {Array.from({ length: loadingRowsCount }).map((_, index) => (
+              <React.Fragment key={index}>
+                {loadingRow ?? <LoadingRow />}
+              </React.Fragment>
+            ))}
+          </TableBody>
+        )}
+      </table>
     </div>
   )
+)
+Table.displayName = "Table"
+
+const TableHeader = React.forwardRef<
+  HTMLTableSectionElement,
+  React.HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <thead
+    ref={ref}
+    data-slot="table-header"
+    className={cn(
+      "sticky top-0 z-10 bg-neutral-50 shadow-[0_0_0_1px_var(--color-neutral-200)]",
+      className
+    )}
+    {...props}
+  />
+))
+TableHeader.displayName = "TableHeader"
+
+interface TableHeadProps
+  extends Omit<React.ThHTMLAttributes<HTMLTableCellElement>, "children"> {
+  sortable?: boolean
+  sortDirection?: TableSortDirection
+  onSort?: () => void
+  children?: React.ReactNode
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
-  return (
-    <thead
-      data-slot="table-header"
-      className={cn("[&_tr]:border-b", className)}
-      {...props}
-    />
-  )
-}
+const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
+  ({ className, children, sortable, sortDirection, onSort, ...props }, ref) => {
+    const content = (
+      <div
+        className={cn(
+          "flex items-center gap-1",
+          sortable && "cursor-pointer hover:text-neutral-900"
+        )}
+      >
+        {children}
+        {sortable ? (
+          sortDirection === "asc" ? (
+            <CaretUpIcon className="size-4 text-neutral-600" />
+          ) : sortDirection === "desc" ? (
+            <CaretDownIcon className="size-4 text-neutral-600" />
+          ) : (
+            <CaretUpDownIcon className="size-4 text-neutral-600" />
+          )
+        ) : null}
+      </div>
+    )
 
-function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
-  return (
-    <tbody
-      data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
-  )
-}
+    return (
+      <th
+        ref={ref}
+        data-slot="table-head"
+        className={cn(
+          "h-10 whitespace-nowrap px-6 py-2 text-left align-middle font-medium text-neutral-600 [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+          className
+        )}
+        {...props}
+      >
+        {sortable ? (
+          <div role="button" tabIndex={0} onClick={onSort}>
+            {content}
+          </div>
+        ) : (
+          content
+        )}
+      </th>
+    )
+  }
+)
+TableHead.displayName = "TableHead"
 
-function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
-  return (
-    <tfoot
-      data-slot="table-footer"
-      className={cn(
-        "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
-        className
-      )}
-      {...props}
-    />
-  )
-}
+const TableBody = React.forwardRef<
+  HTMLTableSectionElement,
+  React.HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <tbody
+    ref={ref}
+    data-slot="table-body"
+    className={cn("", className)}
+    {...props}
+  />
+))
+TableBody.displayName = "TableBody"
 
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
-  return (
-    <tr
-      data-slot="table-row"
-      className={cn(
-        "border-b transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted",
-        className
-      )}
-      {...props}
-    />
-  )
-}
+const TableFooter = React.forwardRef<
+  HTMLTableSectionElement,
+  React.HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+  <tfoot
+    ref={ref}
+    data-slot="table-footer"
+    className={cn(
+      "sticky bottom-0 bg-background shadow-[0_0_0_1px_var(--color-neutral-200)]",
+      className
+    )}
+    {...props}
+  />
+))
+TableFooter.displayName = "TableFooter"
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
-  return (
-    <th
-      data-slot="table-head"
-      className={cn(
-        "h-10 whitespace-nowrap px-2 text-start align-middle font-medium text-foreground [&:has([role=checkbox])]:pe-0",
-        className
-      )}
-      {...props}
-    />
-  )
-}
+const TableRow = React.forwardRef<
+  HTMLTableRowElement,
+  React.HTMLAttributes<HTMLTableRowElement>
+>(({ className, ...props }, ref) => (
+  <tr
+    ref={ref}
+    data-slot="table-row"
+    className={cn(
+      "[&>td]:border-neutral-100 [&>td]:border-b last-of-type:[&>td]:border-0",
+      className
+    )}
+    {...props}
+  />
+))
+TableRow.displayName = "TableRow"
 
-function TableCell({ className, ...props }: React.ComponentProps<"td">) {
-  return (
-    <td
-      data-slot="table-cell"
-      className={cn(
-        "whitespace-nowrap p-2 align-middle [&:has([role=checkbox])]:pe-0",
-        className
-      )}
-      {...props}
-    />
-  )
-}
+export const tableCellVariants = cva("px-6 py-2 align-middle")
 
-function TableCaption({
-  className,
-  ...props
-}: React.ComponentProps<"caption">) {
-  return (
-    <caption
-      data-slot="table-caption"
-      className={cn("mt-4 text-muted-foreground text-sm", className)}
-      {...props}
-    />
-  )
-}
+const TableCell = React.forwardRef<
+  HTMLTableCellElement,
+  React.TdHTMLAttributes<HTMLTableCellElement>
+>(({ className, ...props }, ref) => (
+  <td
+    ref={ref}
+    data-slot="table-cell"
+    className={cn(tableCellVariants(), className)}
+    {...props}
+  />
+))
+TableCell.displayName = "TableCell"
+
+const TableCaption = React.forwardRef<
+  HTMLTableCaptionElement,
+  React.HTMLAttributes<HTMLTableCaptionElement>
+>(({ className, ...props }, ref) => (
+  <caption
+    ref={ref}
+    data-slot="table-caption"
+    className={cn("mt-4 text-muted-foreground text-sm", className)}
+    {...props}
+  />
+))
+TableCaption.displayName = "TableCaption"
 
 export {
   Table,
