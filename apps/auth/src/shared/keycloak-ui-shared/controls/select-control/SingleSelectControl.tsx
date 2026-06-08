@@ -32,8 +32,24 @@ import { Select, SelectOption } from "../../../pf-compat"
 
 
 const MenuToggle = React.forwardRef<HTMLButtonElement, any>(
-  ({ children, isExpanded, onClick, isDisabled, variant, ...props }, ref) => (
-    <UIButton ref={ref} variant="outline" onClick={onClick} disabled={isDisabled} aria-expanded={isExpanded} {...props}>
+  (
+    { children, isExpanded, onClick, isDisabled, variant, isFullWidth, status, className, ...props },
+    ref,
+  ) => (
+    <UIButton
+      ref={ref}
+      variant="outline"
+      size="lg"
+      onClick={onClick}
+      disabled={isDisabled}
+      aria-expanded={isExpanded}
+      // Match the form Input height (h-9, px-3) and stretch when requested,
+      // otherwise the trigger renders as a tiny chip next to the label.
+      className={`h-9 px-3 font-normal text-sm ${
+        isFullWidth ? "flex w-full justify-between" : "justify-between"
+      } ${className ?? ""}`}
+      {...props}
+    >
       {children}
     </UIButton>
   ),

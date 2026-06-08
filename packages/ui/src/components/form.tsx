@@ -79,7 +79,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("flex flex-col", className)}
+        className={cn("flex flex-col gap-2", className)}
         {...props}
       />
     </FormItemContext.Provider>

@@ -150,7 +150,9 @@ export const Select = ({
   toggleIcon: _toggleIcon,
   hasInlineFilter: _hasInlineFilter,
   onClear: _onClear,
+  toggle: _toggle,
   children,
+  className,
   ...props
 }: AnyProps) => {
   const raw = Array.isArray(selections) ? selections[0] : selections
@@ -161,7 +163,10 @@ export const Select = ({
       onValueChange={(v: string) => onSelect?.(undefined, fromRadixValue(v))}
       {...props}
     >
-      <UISelectTrigger>
+      {/* Form selects should fill the column they sit in (PKCE Method,
+          Login Theme, …) — without `w-full` the Radix trigger hugs its
+          label. */}
+      <UISelectTrigger className={`w-full ${className ?? ""}`}>
         <UISelectValue placeholder={placeholderText} />
       </UISelectTrigger>
       <UISelectContent>{children}</UISelectContent>

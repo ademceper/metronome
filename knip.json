@@ -29,8 +29,8 @@
         "src/kc.gen.tsx",
         "src/account/KcPage.tsx",
         "src/account/KcContext.ts",
-        "src/admin/KcPage.tsx",
-        "src/admin/KcContext.ts",
+        "src/admin/kc-page.tsx",
+        "src/admin/kc-context.ts",
         "src/login/KcPageStory.tsx",
         "src/login/i18n.ts",
         "src/login/KcContext.ts"

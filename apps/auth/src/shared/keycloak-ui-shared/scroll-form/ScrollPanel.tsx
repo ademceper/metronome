@@ -22,11 +22,9 @@ type ScrollPanelProps = HTMLProps<HTMLFormElement> & {
 export const ScrollPanel = (props: ScrollPanelProps) => {
   const { title, children, scrollId, ...rest } = props;
   return (
-    <section {...rest} style={{ marginTop: "var(--pf-v5-global--spacer--lg)" }}>
-      <>
-        {title ? <FormTitle id={scrollId} title={title} /> : null}
-        {children}
-      </>
+    <section {...rest} className="space-y-4">
+      {title ? <FormTitle id={scrollId} title={title} /> : null}
+      {children}
     </section>
   );
 };

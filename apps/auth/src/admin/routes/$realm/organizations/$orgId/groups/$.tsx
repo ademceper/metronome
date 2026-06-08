@@ -28,7 +28,7 @@ import { Members } from "../../../../../components/groups/members";
 import { useSubGroups } from "../../../../../components/groups/sub-groups-context";
 import { DeleteGroup } from "../../../../../components/groups/components/delete-group";
 import { GroupTree } from "../../../../../components/groups/components/group-tree";
-import { getId, getLastId } from "../../../../../components/groups/groupIdUtils";
+import { getId, getLastId } from "../../../../../components/groups/group-id-utils";
 import { toGroups } from "../../../../../lib/groups";
 import { GroupResourceContext } from "../../../../../context/group-resource/group-resource-context";
 import { Tabs, Tab, TabTitleText } from "../../../../../../shared/pf-compat"

@@ -7,7 +7,16 @@ import { Badge as UIBadge } from "@metronome/ui/components/badge";
 import { Button as UIButton } from "@metronome/ui/components/button";
 import { TabsTrigger as UITabsTrigger } from "@metronome/ui/components/tabs";
 import { cn } from "@metronome/ui/lib/utils";
-import { Warning as WarningTriangleIcon } from "@phosphor-icons/react"
+import {
+  CaretDownIcon,
+  Warning as WarningTriangleIcon,
+} from "@phosphor-icons/react"
+import {
+  DropdownMenu as UIDropdownMenu,
+  DropdownMenuContent as UIDropdownMenuContent,
+  DropdownMenuItem as UIDropdownMenuItem,
+  DropdownMenuTrigger as UIDropdownMenuTrigger,
+} from "@metronome/ui/components/dropdown-menu";
 type IRowData = any;
 
 const TableText = ({ children }: any) => (
@@ -195,27 +204,34 @@ const ToolbarItems = () => {
   if (!isManager) return <span />;
 
   return (
-    <>
-      <ToolbarItem>
-        <Button
+    <ToolbarItem>
+      <div className="inline-flex items-stretch overflow-hidden rounded-lg">
+        <UIButton
+          asChild
           data-testid="createClient"
-          component={(props) => <Link {...props} to={toAddClient({ realm })} />}
+          className="rounded-r-none"
         >
-          {t("createClient")}
-        </Button>
-      </ToolbarItem>
-      <ToolbarItem>
-        <Button
-          component={(props) => (
-            <Link {...props} to={toImportClient({ realm })} />
-          )}
-          variant="link"
-          data-testid="importClient"
-        >
-          {t("importClient")}
-        </Button>
-      </ToolbarItem>
-    </>
+          <Link to={toAddClient({ realm })}>{t("createClient")}</Link>
+        </UIButton>
+        <UIDropdownMenu>
+          <UIDropdownMenuTrigger asChild>
+            <UIButton
+              size="icon"
+              aria-label={t("importClient")}
+              className="ms-px rounded-l-none px-2"
+              data-testid="createClient-toggle"
+            >
+              <CaretDownIcon aria-hidden="true" size={14} />
+            </UIButton>
+          </UIDropdownMenuTrigger>
+          <UIDropdownMenuContent align="end">
+            <UIDropdownMenuItem asChild data-testid="importClient">
+              <Link to={toImportClient({ realm })}>{t("importClient")}</Link>
+            </UIDropdownMenuItem>
+          </UIDropdownMenuContent>
+        </UIDropdownMenu>
+      </div>
+    </ToolbarItem>
   );
 };
 

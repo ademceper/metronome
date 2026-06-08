@@ -67,7 +67,7 @@ export const ScrollForm = ({
   );
 
   return (
-    <div {...rest}>
+    <div {...rest} className={cn("space-y-8 px-4 py-6", (rest as any).className)}>
       {shownSections.map(({ title, panel }) => {
         const scrollId = spacesToHyphens(title.toLowerCase());
         return (

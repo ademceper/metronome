@@ -53,7 +53,27 @@ const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTe
   </div>
 );
 const Grid = ({ children, className, ...props }: any) => (
-  <div className={cn("grid gap-2", className)} {...props}>{children}</div>
+  <div className={cn("grid gap-3 sm:grid-cols-2", className)} {...props}>{children}</div>
+);
+
+// Horizontal label-left / switch-right row, matching SwitchControl's layout
+// for visual consistency across the settings forms.
+const SwitchRow = ({
+  label,
+  labelIcon,
+  htmlFor,
+  children,
+}: any) => (
+  <div className="flex items-center justify-between gap-4 border-b border-border/60 py-2 last:border-b-0">
+    <label
+      htmlFor={htmlFor}
+      className="flex min-w-0 cursor-pointer items-center gap-1.5 text-sm font-medium"
+    >
+      <span className="truncate">{label}</span>
+      {labelIcon}
+    </label>
+    {children}
+  </div>
 );
 const GridItem = ({ children, className, ...props }: any) => (
   <div className={className} {...props}>{children}</div>
@@ -116,10 +136,9 @@ export const CapabilityConfig = ({
     >
       {protocol === "openid-connect" && (
         <>
-          <FormGroup
-            hasNoPaddingTop
+          <SwitchRow
+            htmlFor="kc-authentication"
             label={t("clientAuthentication")}
-            fieldId="kc-authentication"
             labelIcon={
               <HelpItem
                 helpText={t("authenticationHelp")}
@@ -132,13 +151,11 @@ export const CapabilityConfig = ({
               defaultValue={false}
               control={control}
               render={({ field }) => (
-                <Switch
+                <UISwitch
                   data-testid="authentication"
                   id="kc-authentication"
-                  label={t("on")}
-                  labelOff={t("off")}
-                  isChecked={!field.value}
-                  onChange={(_event, value) => {
+                  checked={!field.value}
+                  onCheckedChange={(value) => {
                     field.onChange(!value);
                     if (!value) {
                       setValue("authorizationServicesEnabled", false);
@@ -167,11 +184,10 @@ export const CapabilityConfig = ({
                 />
               )}
             />
-          </FormGroup>
-          <FormGroup
-            hasNoPaddingTop
+          </SwitchRow>
+          <SwitchRow
+            htmlFor="kc-authorization-switch"
             label={t("clientAuthorization")}
-            fieldId="kc-authorization"
             labelIcon={
               <HelpItem
                 helpText={t("authorizationHelp")}
@@ -184,24 +200,22 @@ export const CapabilityConfig = ({
               defaultValue={false}
               control={control}
               render={({ field }) => (
-                <Switch
+                <UISwitch
                   data-testid="authorization"
                   id="kc-authorization-switch"
-                  label={t("on")}
-                  labelOff={t("off")}
-                  isChecked={field.value && !clientAuthentication}
-                  onChange={(_event, value) => {
+                  checked={field.value && !clientAuthentication}
+                  onCheckedChange={(value) => {
                     field.onChange(value);
                     if (value) {
                       setValue("serviceAccountsEnabled", true);
                     }
                   }}
-                  isDisabled={clientAuthentication}
+                  disabled={clientAuthentication}
                   aria-label={t("clientAuthorization")}
                 />
               )}
             />
-          </FormGroup>
+          </SwitchRow>
           <FormGroup
             hasNoPaddingTop
             label={t("authenticationFlow")}
@@ -452,10 +466,9 @@ export const CapabilityConfig = ({
               </GridItem>
             </Grid>
           </FormGroup>
-          <FormGroup
-            hasNoPaddingTop
+          <SwitchRow
+            htmlFor="kc-pkce-required-switch"
             label={t("pkceRequired")}
-            fieldId="kc-pkce-enabled"
             labelIcon={
               <HelpItem
                 helpText={t("clientPkceRequiredHelp")}
@@ -470,20 +483,18 @@ export const CapabilityConfig = ({
               name={pkceCodeChallengeMethodField}
               control={control}
               render={({ field }) => (
-                <Switch
+                <UISwitch
                   data-testid="pkce-required"
                   id="kc-pkce-required-switch"
-                  label={t("on")}
-                  labelOff={t("off")}
-                  isChecked={field.value !== "" && field.value !== undefined}
-                  onChange={(_event, checked) =>
+                  checked={field.value !== "" && field.value !== undefined}
+                  onCheckedChange={(checked) =>
                     field.onChange(checked ? "S256" : "")
                   }
                   aria-label={t("pkceRequired")}
                 />
               )}
             />
-          </FormGroup>
+          </SwitchRow>
           {pkceEnabled && pkceEnabled !== "" && (
             <SelectControl
               id="keyForCodeExchange"
@@ -495,7 +506,6 @@ export const CapabilityConfig = ({
                 { key: "S256", value: "S256" },
                 { key: "plain", value: "plain" },
               ]}
-              isFullWidth={false}
             />
           )}
           {isFeatureEnabled(Feature.JWTAuthorizationGrant) &&

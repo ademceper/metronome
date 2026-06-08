@@ -53,7 +53,7 @@ const ClipboardCopy = ({ value, onChange, isReadOnly, isCode, hoverTip, clickTip
   );
 };
 const Form = ({ onSubmit, isHorizontal, children, ...props }: any) => (
-  <form onSubmit={onSubmit} className={cn("space-y-4", (props as any).className)} {...props}>{children}</form>
+  <form onSubmit={onSubmit} className={cn("space-y-5", (props as any).className)} {...props}>{children}</form>
 );
 const FormGroup = ({ label, fieldId, isRequired, labelIcon, helperText, helperTextInvalid, validated, children, ...props }: any) => (
   <div className={cn("space-y-1.5", (props as any).className)}>
@@ -193,8 +193,11 @@ export const FormAccess = ({
           {recursiveCloneChildren(children, isDisabled ? { isDisabled } : {})}
         </Form>
       )}
-      {unWrap &&
-        recursiveCloneChildren(children, isDisabled ? { isDisabled } : {})}
+      {unWrap && (
+        <div className="space-y-5">
+          {recursiveCloneChildren(children, isDisabled ? { isDisabled } : {})}
+        </div>
+      )}
     </>
   );
 };

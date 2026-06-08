@@ -19,21 +19,18 @@ import {
   useFormContext,
 } from "react-hook-form";
 import { Switch as UISwitch } from "@metronome/ui/components/switch";
-import { FormLabel } from "./FormLabel";
+import { cn } from "@metronome/ui/lib/utils";
+import { HelpItem } from "./HelpItem";
 import { debeerify } from "../user-profile/utils";
 
-
-const Switch = ({ id, label, labelOff, isChecked, onChange, isDisabled, ...props }: any) => (
-  <span className="inline-flex items-center gap-2">
-    <UISwitch id={id} checked={isChecked}
-      onCheckedChange={(checked: boolean) => onChange?.(checked, undefined)}
-      disabled={isDisabled} {...props} />
-    {(isChecked ? label : (labelOff ?? label)) ? (
-      <label htmlFor={id} className="text-sm">{isChecked ? label : (labelOff ?? label)}</label>
-    ) : null}
-  </span>
-);
-type SwitchProps = React.ComponentProps<typeof Switch>;
+type SwitchProps = React.ComponentProps<"input"> & {
+  label?: React.ReactNode;
+  labelOn?: React.ReactNode;
+  labelOff?: React.ReactNode;
+  isChecked?: boolean;
+  onChange?: (event: unknown, checked: boolean) => void;
+  isDisabled?: boolean;
+};
 
 export type SwitchControlProps<
   T extends FieldValues,
@@ -41,54 +38,70 @@ export type SwitchControlProps<
 > = Omit<SwitchProps, "name" | "defaultValue" | "ref"> &
   UseControllerProps<any, P> & {
     name: string;
-    label?: string;
+    label?: React.ReactNode;
     labelIcon?: string;
-    labelOn: string;
-    labelOff: string;
+    labelOn?: React.ReactNode;
+    labelOff?: React.ReactNode;
     stringify?: boolean;
+    /** Set true to drop the bottom divider; otherwise rows separate naturally. */
+    hideSeparator?: boolean;
   };
 
 export const SwitchControl = <
   T extends FieldValues,
   P extends FieldPath<T> = FieldPath<T>,
 >({
-  labelOn,
   stringify,
   defaultValue,
   labelIcon,
+  hideSeparator,
   ...props
 }: SwitchControlProps<T, P>) => {
   const fallbackValue = stringify ? "false" : false;
   const defValue = defaultValue ?? (fallbackValue as PathValue<T, P>);
-  const { control } = useFormContext();
+  const { control, formState } = useFormContext();
+  const error = formState.errors?.[props.name];
   return (
-    <FormLabel
-      hasNoPaddingTop
-      name={props.name}
-      isRequired={props.rules?.required === true}
-      label={props.label}
-      labelIcon={labelIcon}
+    <div
+      className={cn(
+        "flex items-center justify-between gap-4 py-2",
+        !hideSeparator && "border-b border-border/60 last:border-b-0"
+      )}
     >
+      <label
+        htmlFor={props.name}
+        className="flex min-w-0 cursor-pointer items-center gap-1.5 text-sm font-medium"
+      >
+        <span className="truncate">{props.label}</span>
+        {props.rules?.required === true && (
+          <span className="text-destructive">*</span>
+        )}
+        {labelIcon ? (
+          <HelpItem helpText={labelIcon} fieldLabelId={props.name} />
+        ) : null}
+      </label>
       <Controller
         control={control}
         name={props.name}
         defaultValue={defValue}
         render={({ field: { onChange, value } }) => (
-          <Switch
-            {...props}
+          <UISwitch
             id={props.name}
             data-testid={debeerify(props.name)}
-            label={labelOn}
-            aria-label={props.label}
-            isChecked={stringify ? value === "true" : value}
-            onChange={(e, checked) => {
-              const value = stringify ? checked.toString() : checked;
-              props.onChange?.(e, checked);
-              onChange(value);
+            aria-label={typeof props.label === "string" ? props.label : props.name}
+            checked={stringify ? value === "true" : value}
+            disabled={props.isDisabled}
+            onCheckedChange={(checked) => {
+              const next = stringify ? checked.toString() : checked;
+              props.onChange?.(undefined, checked);
+              onChange(next);
             }}
           />
         )}
       />
-    </FormLabel>
+      {error?.message ? (
+        <p className="text-destructive text-xs">{String(error.message)}</p>
+      ) : null}
+    </div>
   );
 };

@@ -166,7 +166,7 @@ export const MultiLineInput = ({
   };
 
   return (
-    <div id={id}>
+    <div id={id} className="space-y-2">
       {fields.map((value, index) => (
         <Fragment key={index}>
           <InputGroup>

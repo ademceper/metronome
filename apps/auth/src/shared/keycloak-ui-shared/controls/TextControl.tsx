@@ -14,6 +14,7 @@ import {
   FormDescription,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@metronome/ui/components/form";
 import { Input } from "@metronome/ui/components/input";
@@ -48,13 +49,6 @@ export const TextControl = <
   const required = !!getRuleValue(props.rules?.required);
   const defaultValue = props.defaultValue ?? ("" as PathValue<T, P>);
 
-  const floatingLabel: ReactNode = (
-    <>
-      {props.label}
-      {required && <span className="ml-0.5 text-destructive">*</span>}
-    </>
-  );
-
   return (
     <FormField
       control={props.control}
@@ -63,10 +57,12 @@ export const TextControl = <
       defaultValue={defaultValue}
       render={({ field, fieldState }) => (
         <FormItem>
+          <FormLabel>
+            {props.label}
+            {required && <span className="ml-0.5 text-destructive">*</span>}
+          </FormLabel>
           <FormControl>
             <Input
-              variant="floating"
-              label={floatingLabel}
               id={props.name}
               data-testid={props["data-testid"] || props.name}
               type={props.type || "text"}
