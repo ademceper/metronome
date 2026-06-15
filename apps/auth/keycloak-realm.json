@@ -2469,8 +2469,12 @@
   "accountTheme": "metronome",
   "adminTheme": "metronome",
   "emailTheme": "",
-  "eventsEnabled": false,
-  "eventsListeners": ["keycloakify-logging", "jboss-logging"],
+  "eventsEnabled": true,
+  "eventsListeners": [
+    "keycloakify-logging",
+    "jboss-logging",
+    "metronome-consent-audit"
+  ],
   "enabledEventTypes": [],
   "adminEventsEnabled": false,
   "adminEventsDetailsEnabled": false,
@@ -3365,7 +3369,8 @@
     "cibaExpiresIn": "120",
     "oauth2DeviceCodeLifespan": "600",
     "parRequestUriLifespan": "60",
-    "clientSessionMaxLifespan": "0"
+    "clientSessionMaxLifespan": "0",
+    "kc.user.profile.config": "{\"unmanagedAttributePolicy\":\"ADMIN_EDIT\",\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]}},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"contact\"},{\"name\":\"firstName\",\"displayName\":\"${firstName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"personal\"},{\"name\":\"lastName\",\"displayName\":\"${lastName}\",\"validations\":{\"length\":{\"max\":255},\"person-name-prohibited-characters\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"personal\"},{\"name\":\"tcKimlikNo\",\"displayName\":\"TC Kimlik No\",\"validations\":{\"length\":{\"min\":11,\"max\":11},\"tc-kimlik\":{}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"personal\"},{\"name\":\"birthDate\",\"displayName\":\"Doğum Tarihi\",\"annotations\":{\"inputType\":\"html5-date\"},\"validations\":{\"local-date\":{},\"min-age\":{\"minAge\":\"18\"}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"personal\"},{\"name\":\"phone\",\"displayName\":\"Telefon\",\"annotations\":{\"inputType\":\"html5-tel\"},\"validations\":{\"pattern\":{\"pattern\":\"^\\\\+?[0-9]{10,15}$\",\"error-message\":\"error-phone-invalid\"}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"contact\"},{\"name\":\"kvkkAccepted\",\"displayName\":\"KVKK Aydınlatma Metni'ni okudum, kabul ediyorum\",\"annotations\":{\"inputType\":\"checkbox\"},\"validations\":{\"options\":{\"options\":[\"true\"]}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"consents\"},{\"name\":\"userAgreementAccepted\",\"displayName\":\"Kullanıcı Sözleşmesi'ni kabul ediyorum\",\"annotations\":{\"inputType\":\"checkbox\"},\"validations\":{\"options\":{\"options\":[\"true\"]}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"consents\"},{\"name\":\"marketingConsent\",\"displayName\":\"Ticari elektronik ileti gönderilmesini onaylıyorum (opsiyonel)\",\"annotations\":{\"inputType\":\"checkbox\"},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"group\":\"consents\"}],\"groups\":[{\"name\":\"personal\",\"displayHeader\":\"Kişisel Bilgiler\",\"displayDescription\":\"Ad, soyad ve kimlik bilgileri\"},{\"name\":\"contact\",\"displayHeader\":\"İletişim ve Güvenlik\",\"displayDescription\":\"E-posta, telefon ve şifre\"},{\"name\":\"consents\",\"displayHeader\":\"Onaylar ve Sözleşmeler\",\"displayDescription\":\"KVKK aydınlatma metni ve kullanıcı sözleşmesi\"}]}"
   },
   "keycloakVersion": "26.6.1",
   "userManagedAccessAllowed": false,

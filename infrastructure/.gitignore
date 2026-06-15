@@ -1,3 +1,6 @@
 # Local Keycloak distribution (downloaded binary, not tracked)
 keycloak/
 keycloak-*/
+
+# …except our SPI source tree which lives next to the distribution.
+!keycloak-providers/

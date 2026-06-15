@@ -9,15 +9,19 @@ import {
   FormMessage,
 } from "@metronome/ui/components/form"
 import { Input } from "@metronome/ui/components/input"
-import { Label } from "@metronome/ui/components/label"
 import { Link } from "@metronome/ui/components/link"
-import { kcSanitize } from "keycloakify/lib/kcSanitize"
+import { cn } from "@metronome/ui/lib/utils"
 import type { PageProps } from "keycloakify/login/pages/PageProps"
 import { useLayoutEffect, useRef, useState } from "react"
+import type { FieldPath } from "react-hook-form"
 import { useForm } from "react-hook-form"
 import type { I18n } from "../i18n"
 import type { KcContext } from "../KcContext"
-import { type RegisterFormValues, registerSchema } from "../schemas/register"
+import {
+  REGISTER_STEPS,
+  type RegisterFormValues,
+  registerSchema,
+} from "../schemas/register"
 
 type RegisterProps = PageProps<
   Extract<KcContext, { pageId: "register.ftl" }>,
@@ -47,13 +51,14 @@ export default function Register(props: RegisterProps) {
     recaptchaVisible,
     recaptchaSiteKey,
     recaptchaAction,
-    termsAcceptanceRequired,
   } = kcContext
 
   const { msg, msgStr, advancedMsg } = i18n
 
   const formRef = useRef<HTMLFormElement>(null)
-  const [areTermsAccepted, setAreTermsAccepted] = useState(false)
+  const [stepIndex, setStepIndex] = useState(0)
+  const step = REGISTER_STEPS[stepIndex]!
+  const isLastStep = stepIndex === REGISTER_STEPS.length - 1
 
   useLayoutEffect(() => {
     ;(window as any).onSubmitRecaptcha = () => {
@@ -71,22 +76,8 @@ export default function Register(props: RegisterProps) {
   const firstNameAttr = attrs.firstName
   const lastNameAttr = attrs.lastName
 
-  const serverErrors: Partial<Record<keyof RegisterFormValues, string>> = {}
-  for (const name of [
-    "username",
-    "email",
-    "firstName",
-    "lastName",
-    "password",
-    "password-confirm",
-  ] as const) {
-    if (messagesPerField.existsError(name)) {
-      const message = messagesPerField.get(name)
-      if (message) serverErrors[name] = message
-    }
-  }
-
   const form = useForm<RegisterFormValues>({
+    mode: "onTouched",
     resolver: zodResolver(
       registerSchema(msgStr, {
         showUsername,
@@ -95,28 +86,31 @@ export default function Register(props: RegisterProps) {
       })
     ),
     defaultValues: {
-      username: usernameAttr?.value ?? "",
-      email: emailAttr?.value ?? "",
       firstName: firstNameAttr?.value ?? "",
       lastName: lastNameAttr?.value ?? "",
+      "user.attributes.tcKimlikNo": attrs.tcKimlikNo?.value ?? "",
+      "user.attributes.birthDate": attrs.birthDate?.value ?? "",
+      username: usernameAttr?.value ?? "",
+      email: emailAttr?.value ?? "",
+      "user.attributes.phone": attrs.phone?.value ?? "",
       password: "",
       "password-confirm": "",
-    },
-    errors: Object.fromEntries(
-      Object.entries(serverErrors).map(([key, message]) => [
-        key,
-        { type: "server", message },
-      ])
-    ) as never,
+      "user.attributes.kvkkAccepted": "false",
+      "user.attributes.userAgreementAccepted": "false",
+      "user.attributes.marketingConsent": "false",
+    } as unknown as RegisterFormValues,
   })
+
+  const goNext = async () => {
+    const ok = await form.trigger(
+      step.fields as readonly FieldPath<RegisterFormValues>[]
+    )
+    if (ok) setStepIndex((i) => Math.min(i + 1, REGISTER_STEPS.length - 1))
+  }
 
   const onValid = () => {
     formRef.current?.submit()
   }
-
-  const isSubmitDisabled =
-    form.formState.isSubmitting ||
-    (termsAcceptanceRequired && !areTermsAccepted)
 
   return (
     <Template
@@ -140,37 +134,8 @@ export default function Register(props: RegisterProps) {
           className="space-y-2"
           onSubmit={form.handleSubmit(onValid)}
         >
-          {showUsername && usernameAttr && (
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      variant="floating"
-                      label={
-                        <>
-                          {msg("username")}
-                          {usernameAttr.required && (
-                            <span className="ml-0.5 text-destructive">*</span>
-                          )}
-                        </>
-                      }
-                      id="username"
-                      type="text"
-                      autoComplete="username"
-                      disabled={usernameAttr.readOnly}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
-
-          {firstNameAttr && (
+          {/* Step 1: personal */}
+          <div className={cn("space-y-2", step.id !== "personal" && "hidden")}>
             <FormField
               control={form.control}
               name="firstName"
@@ -183,7 +148,7 @@ export default function Register(props: RegisterProps) {
                       label={
                         <>
                           {msg("firstName")}
-                          {firstNameAttr.required && (
+                          {firstNameAttr?.required && (
                             <span className="ml-0.5 text-destructive">*</span>
                           )}
                         </>
@@ -191,16 +156,14 @@ export default function Register(props: RegisterProps) {
                       id="firstName"
                       type="text"
                       autoComplete="given-name"
-                      disabled={firstNameAttr.readOnly}
+                      disabled={firstNameAttr?.readOnly}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          )}
 
-          {lastNameAttr && (
             <FormField
               control={form.control}
               name="lastName"
@@ -213,7 +176,7 @@ export default function Register(props: RegisterProps) {
                       label={
                         <>
                           {msg("lastName")}
-                          {lastNameAttr.required && (
+                          {lastNameAttr?.required && (
                             <span className="ml-0.5 text-destructive">*</span>
                           )}
                         </>
@@ -221,19 +184,17 @@ export default function Register(props: RegisterProps) {
                       id="lastName"
                       type="text"
                       autoComplete="family-name"
-                      disabled={lastNameAttr.readOnly}
+                      disabled={lastNameAttr?.readOnly}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          )}
 
-          {emailAttr && (
             <FormField
               control={form.control}
-              name="email"
+              name="user.attributes.tcKimlikNo"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -242,57 +203,143 @@ export default function Register(props: RegisterProps) {
                       variant="floating"
                       label={
                         <>
-                          {msg("email")}
-                          {emailAttr.required && (
-                            <span className="ml-0.5 text-destructive">*</span>
-                          )}
+                          TC Kimlik No
+                          <span className="ml-0.5 text-destructive">*</span>
                         </>
                       }
-                      id="email"
-                      type="email"
-                      autoComplete="email"
-                      disabled={emailAttr.readOnly}
+                      id="tcKimlikNo"
+                      name="user.attributes.tcKimlikNo"
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={11}
+                      autoComplete="off"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          )}
 
-          {passwordRequired && (
-            <>
+            <FormField
+              control={form.control}
+              name="user.attributes.birthDate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          Doğum Tarihi
+                          <span className="ml-0.5 text-destructive">*</span>
+                        </>
+                      }
+                      id="birthDate"
+                      name="user.attributes.birthDate"
+                      type="date"
+                      autoComplete="bday"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          {/* Step 2: contact + auth */}
+          <div className={cn("space-y-2", step.id !== "contact" && "hidden")}>
+            {showUsername && usernameAttr && (
               <FormField
                 control={form.control}
-                name="password"
+                name="username"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
                         {...field}
-                        type="password"
                         variant="floating"
                         label={
                           <>
-                            {msg("password")}
-                            <span className="ml-0.5 text-destructive">*</span>
+                            {msg("username")}
+                            {usernameAttr.required && (
+                              <span className="ml-0.5 text-destructive">*</span>
+                            )}
                           </>
                         }
-                        id="password"
-                        autoComplete="new-password"
-                        showLabel={msgStr("showPassword")}
-                        hideLabel={msgStr("hidePassword")}
+                        id="username"
+                        type="text"
+                        autoComplete="username"
+                        disabled={usernameAttr.readOnly}
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+            )}
 
-              {doMakeUserConfirmPassword && (
+            {emailAttr && (
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        variant="floating"
+                        label={
+                          <>
+                            {msg("email")}
+                            {emailAttr.required && (
+                              <span className="ml-0.5 text-destructive">*</span>
+                            )}
+                          </>
+                        }
+                        id="email"
+                        type="email"
+                        autoComplete="email"
+                        disabled={emailAttr.readOnly}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+
+            <FormField
+              control={form.control}
+              name="user.attributes.phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      variant="floating"
+                      label={
+                        <>
+                          Telefon
+                          <span className="ml-0.5 text-destructive">*</span>
+                        </>
+                      }
+                      id="phone"
+                      name="user.attributes.phone"
+                      type="tel"
+                      autoComplete="tel"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {passwordRequired && (
+              <>
                 <FormField
                   control={form.control}
-                  name="password-confirm"
+                  name="password"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
@@ -302,11 +349,11 @@ export default function Register(props: RegisterProps) {
                           variant="floating"
                           label={
                             <>
-                              {msg("passwordConfirm")}
+                              {msg("password")}
                               <span className="ml-0.5 text-destructive">*</span>
                             </>
                           }
-                          id="password-confirm"
+                          id="password"
                           autoComplete="new-password"
                           showLabel={msgStr("showPassword")}
                           hideLabel={msgStr("hidePassword")}
@@ -316,47 +363,91 @@ export default function Register(props: RegisterProps) {
                     </FormItem>
                   )}
                 />
-              )}
-            </>
-          )}
 
-          {termsAcceptanceRequired && (
-            <div className="space-y-2">
-              <div>
-                <p className="font-medium text-sm">{msg("termsTitle")}</p>
-                <div
-                  id="kc-registration-terms-text"
-                  className="text-muted-foreground text-sm"
-                >
-                  {msg("termsText")}
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  id="termsAccepted"
-                  name="termsAccepted"
-                  checked={areTermsAccepted}
-                  onCheckedChange={(checked) =>
-                    setAreTermsAccepted(checked === true)
-                  }
-                  aria-invalid={messagesPerField.existsError("termsAccepted")}
-                />
-                <Label htmlFor="termsAccepted">{msg("acceptTerms")}</Label>
-              </div>
-              {messagesPerField.existsError("termsAccepted") && (
-                <p
-                  id="input-error-terms-accepted"
-                  className="text-destructive text-sm"
-                  aria-live="polite"
-                  dangerouslySetInnerHTML={{
-                    __html: kcSanitize(messagesPerField.get("termsAccepted")),
-                  }}
-                />
-              )}
-            </div>
-          )}
+                {doMakeUserConfirmPassword && (
+                  <FormField
+                    control={form.control}
+                    name="password-confirm"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="password"
+                            variant="floating"
+                            label={
+                              <>
+                                {msg("passwordConfirm")}
+                                <span className="ml-0.5 text-destructive">
+                                  *
+                                </span>
+                              </>
+                            }
+                            id="password-confirm"
+                            autoComplete="new-password"
+                            showLabel={msgStr("showPassword")}
+                            hideLabel={msgStr("hidePassword")}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Step 3: consents */}
+          <div className={cn("space-y-2", step.id !== "consents" && "hidden")}>
+            <ConsentCheckbox
+              form={form}
+              name="user.attributes.kvkkAccepted"
+              title="KVKK Aydınlatma Metni"
+              description={
+                <>
+                  6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında{" "}
+                  <a
+                    href="/terms/kvkk"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    aydınlatma metnini
+                  </a>{" "}
+                  okudum ve kabul ediyorum.
+                </>
+              }
+            />
+            <ConsentCheckbox
+              form={form}
+              name="user.attributes.userAgreementAccepted"
+              title="Kullanıcı Sözleşmesi"
+              description={
+                <>
+                  <a
+                    href="/terms/user-agreement"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    Kullanıcı sözleşmesini
+                  </a>{" "}
+                  okudum ve kabul ediyorum.
+                </>
+              }
+            />
+            <ConsentCheckbox
+              form={form}
+              optional
+              name="user.attributes.marketingConsent"
+              title="Ticari elektronik ileti onayı"
+              description="Tarafıma kampanya ve duyuruların e-posta / SMS yoluyla gönderilmesini onaylıyorum."
+            />
+          </div>
 
           {recaptchaRequired &&
+            isLastStep &&
             (recaptchaVisible || recaptchaAction === undefined) && (
               <div
                 className="g-recaptcha"
@@ -366,9 +457,13 @@ export default function Register(props: RegisterProps) {
               />
             )}
 
-          {recaptchaRequired &&
-          !recaptchaVisible &&
-          recaptchaAction !== undefined ? (
+          {!isLastStep ? (
+            <Button type="button" size="xl" className="w-full" onClick={goNext}>
+              Devam
+            </Button>
+          ) : recaptchaRequired &&
+            !recaptchaVisible &&
+            recaptchaAction !== undefined ? (
             <Button
               size="xl"
               type="submit"
@@ -384,7 +479,7 @@ export default function Register(props: RegisterProps) {
               type="submit"
               size="xl"
               className="w-full"
-              disabled={isSubmitDisabled}
+              disabled={form.formState.isSubmitting}
             >
               {msgStr("doRegister")}
             </Button>
@@ -396,5 +491,58 @@ export default function Register(props: RegisterProps) {
         </form>
       </Form>
     </Template>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+
+function ConsentCheckbox({
+  form,
+  name,
+  title,
+  description,
+  optional,
+}: {
+  form: ReturnType<typeof useForm<RegisterFormValues>>
+  name: FieldPath<RegisterFormValues>
+  title: string
+  description: React.ReactNode
+  optional?: boolean
+}) {
+  return (
+    <FormField
+      control={form.control}
+      name={name}
+      render={({ field }) => {
+        const checked = field.value === "true"
+        return (
+          <FormItem className="rounded-lg border bg-card p-4">
+            <div className="flex items-start gap-3">
+              <FormControl>
+                <Checkbox
+                  id={name}
+                  checked={checked}
+                  onCheckedChange={(v) => field.onChange(v ? "true" : "false")}
+                />
+              </FormControl>
+              <input type="hidden" name={name} value={field.value ?? "false"} />
+              <div className="space-y-1">
+                <label
+                  htmlFor={name}
+                  className="cursor-pointer font-medium text-sm leading-none"
+                >
+                  {title}
+                  {!optional && (
+                    <span className="ml-0.5 text-destructive">*</span>
+                  )}
+                </label>
+                <p className="text-muted-foreground text-sm">{description}</p>
+              </div>
+            </div>
+            <FormMessage />
+          </FormItem>
+        )
+      }}
+    />
   )
 }
