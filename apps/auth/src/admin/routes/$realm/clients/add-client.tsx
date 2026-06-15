@@ -60,7 +60,24 @@ const NewClientFooter = (newClientForm: any) => {
   );
 };
 
-function NewClientForm() {
+export type NewClientFormProps = {
+  /** Called with the created client id once the wizard saves. Use to close
+   *  a host drawer / sheet. When omitted, the wizard navigates to the new
+   *  client's settings page (legacy route behaviour). */
+  onSuccess?: (clientId: string) => void;
+  /** Called when the user cancels the wizard. When omitted, the wizard
+   *  navigates back to the clients list. */
+  onCancel?: () => void;
+  /** Hide the inline ViewHeader. Useful when rendered inside a drawer that
+   *  already supplies its own title. */
+  hideHeader?: boolean;
+};
+
+export function NewClientForm({
+  onSuccess,
+  onCancel,
+  hideHeader,
+}: NewClientFormProps = {}) {
   const { adminClient } = useAdminClient();
 
   const { t } = useTranslation();
@@ -100,7 +117,11 @@ function NewClientForm() {
         clientId: client.clientId?.trim(),
       });
       addAlert(t("createClientSuccess"), AlertVariant.success);
-      navigate(toClient({ realm, clientId: newClient.id, tab: "settings" }));
+      if (onSuccess) {
+        onSuccess(newClient.id);
+      } else {
+        navigate(toClient({ realm, clientId: newClient.id, tab: "settings" }));
+      }
     } catch (error) {
       addError("createClientError", error);
     } finally {
@@ -109,13 +130,22 @@ function NewClientForm() {
   };
 
   const title = t("createClient");
+  const close = () => {
+    if (onCancel) {
+      onCancel();
+    } else {
+      navigate(toClients({ realm }));
+    }
+  };
   return (
     <>
-      <ViewHeader titleKey="createClient" subKey="clientsExplain" />
+      {!hideHeader && (
+        <ViewHeader titleKey="createClient" subKey="clientsExplain" />
+      )}
       <PageSection variant="light">
         <FormProvider {...form}>
           <Wizard
-            onClose={() => navigate(toClients({ realm }))}
+            onClose={close}
             navAriaLabel={`${title} steps`}
             onSave={save}
             isProgressive

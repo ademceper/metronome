@@ -84,7 +84,17 @@ const PageSection = ({ variant, isFilled, hasOverflowScroll, padding, className,
 
 const isXml = (text: string) => text.match(/(<.[^(><.)]+>)/g);
 
-function ImportForm() {
+export type ImportFormProps = {
+  onSuccess?: (clientId: string) => void;
+  hideHeader?: boolean;
+  onCancel?: () => void;
+};
+
+export function ImportForm({
+  onSuccess,
+  hideHeader,
+  onCancel,
+}: ImportFormProps = {}) {
   const { adminClient } = useAdminClient();
 
   const { t } = useTranslation();
@@ -144,7 +154,11 @@ function ImportForm() {
         }),
       });
       addAlert(t("clientImportSuccess"), AlertVariant.success);
-      navigate(toClient({ realm, clientId: newClient.id, tab: "settings" }));
+      if (onSuccess) {
+        onSuccess(newClient.id!);
+      } else {
+        navigate(toClient({ realm, clientId: newClient.id, tab: "settings" }));
+      }
     } catch (error) {
       addError("clientImportError", error);
     }
@@ -152,7 +166,9 @@ function ImportForm() {
 
   return (
     <>
-      <ViewHeader titleKey="importClient" subKey="clientsExplain" />
+      {!hideHeader && (
+        <ViewHeader titleKey="importClient" subKey="clientsExplain" />
+      )}
       <PageSection variant="light">
         <FormAccess
           isHorizontal
@@ -178,14 +194,20 @@ function ImportForm() {
               >
                 {t("save")}
               </FormSubmitButton>
-              <Button
-                variant="link"
-                component={(props) => (
-                  <Link {...props} to={toClients({ realm })} />
-                )}
-              >
-                {t("cancel")}
-              </Button>
+              {onCancel ? (
+                <Button variant="link" onClick={onCancel}>
+                  {t("cancel")}
+                </Button>
+              ) : (
+                <Button
+                  variant="link"
+                  component={(props) => (
+                    <Link {...props} to={toClients({ realm })} />
+                  )}
+                >
+                  {t("cancel")}
+                </Button>
+              )}
             </ActionGroup>
           </FormProvider>
         </FormAccess>

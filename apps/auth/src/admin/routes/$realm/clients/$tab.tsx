@@ -17,6 +17,14 @@ import {
   DropdownMenuItem as UIDropdownMenuItem,
   DropdownMenuTrigger as UIDropdownMenuTrigger,
 } from "@metronome/ui/components/dropdown-menu";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@metronome/ui/components/drawer";
+import { NewClientForm } from "./add-client";
+import { ImportForm } from "./import-client";
 type IRowData = any;
 
 const TableText = ({ children }: any) => (
@@ -25,7 +33,7 @@ const TableText = ({ children }: any) => (
 const cellWidth = (_n: number) => () => ({ className: "" });
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAdminClient } from "../../../admin-client";
 import { useConfirmDialog } from "../../../components/confirm-dialog/confirm-dialog";
 import { Link as UILink } from "@metronome/ui/components/link";
@@ -44,10 +52,8 @@ import { convertClientToUrl } from "../../../utils/client-url";
 import { translationFormatter } from "../../../utils/translation-formatter";
 import { InitialAccessTokenList } from "../../../components/clients/initial-access/initial-access-token-list";
 import { ClientRegistration } from "../../../components/clients/registration/client-registration";
-import { toAddClient } from "../../../lib/clients";
 import { toClient } from "../../../lib/clients";
 import { ClientsTab, toClients } from "../../../lib/clients";
-import { toImportClient } from "../../../lib/clients";
 import { getProtocolName, isRealmClient } from "../../../components/clients/utils";
 import { Tab, TabTitleText } from "../../../../shared/pf-compat"
 
@@ -194,24 +200,34 @@ const ClientHomeLink = (client: ClientRepresentation) => {
   );
 };
 
+type DrawerMode = null | "create" | "import";
+
 const ToolbarItems = () => {
   const { t } = useTranslation();
   const { realm } = useRealm();
+  const navigate = useNavigate();
 
   const { hasAccess } = useAccess();
   const isManager = hasAccess("manage-clients");
+  const [mode, setMode] = useState<DrawerMode>(null);
 
   if (!isManager) return <span />;
+
+  const close = () => setMode(null);
+  const handleCreated = (clientId: string) => {
+    setMode(null);
+    navigate(toClient({ realm, clientId, tab: "settings" }));
+  };
 
   return (
     <ToolbarItem>
       <div className="inline-flex items-stretch overflow-hidden rounded-lg">
         <UIButton
-          asChild
           data-testid="createClient"
           className="rounded-r-none"
+          onClick={() => setMode("create")}
         >
-          <Link to={toAddClient({ realm })}>{t("createClient")}</Link>
+          {t("createClient")}
         </UIButton>
         <UIDropdownMenu>
           <UIDropdownMenuTrigger asChild>
@@ -225,12 +241,43 @@ const ToolbarItems = () => {
             </UIButton>
           </UIDropdownMenuTrigger>
           <UIDropdownMenuContent align="end">
-            <UIDropdownMenuItem asChild data-testid="importClient">
-              <Link to={toImportClient({ realm })}>{t("importClient")}</Link>
+            <UIDropdownMenuItem
+              data-testid="importClient"
+              onSelect={() => setMode("import")}
+            >
+              {t("importClient")}
             </UIDropdownMenuItem>
           </UIDropdownMenuContent>
         </UIDropdownMenu>
       </div>
+      <Drawer
+        open={mode !== null}
+        onOpenChange={(open) => !open && close()}
+      >
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>
+              {mode === "import" ? t("importClient") : t("createClient")}
+            </DrawerTitle>
+          </DrawerHeader>
+          <div className="min-h-0 flex-1 overflow-y-auto">
+            {mode === "create" && (
+              <NewClientForm
+                hideHeader
+                onSuccess={handleCreated}
+                onCancel={close}
+              />
+            )}
+            {mode === "import" && (
+              <ImportForm
+                hideHeader
+                onSuccess={handleCreated}
+                onCancel={close}
+              />
+            )}
+          </div>
+        </DrawerContent>
+      </Drawer>
     </ToolbarItem>
   );
 };
