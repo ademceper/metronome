@@ -1,30 +1,42 @@
 "use client"
 
+import { useIsMobile } from "@metronome/ui/hooks/use-mobile"
 import { cn } from "@metronome/ui/lib/utils"
+import { XIcon } from "@phosphor-icons/react"
 import type * as React from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 
 function Drawer({
+  direction,
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />
+  // Responsive default: bottom-sheet on touch / narrow viewports, side
+  // drawer on desktop. Consumers can override by passing `direction`.
+  const isMobile = useIsMobile()
+  return (
+    <DrawerPrimitive.Root
+      data-slot="drawer"
+      direction={direction ?? (isMobile ? "bottom" : "right")}
+      {...props}
+    />
+  )
 }
 
-function DrawerTrigger({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
+function DrawerTrigger(
+  props: React.ComponentProps<typeof DrawerPrimitive.Trigger>
+) {
   return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
 }
 
-function DrawerPortal({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
+function DrawerPortal(
+  props: React.ComponentProps<typeof DrawerPrimitive.Portal>
+) {
   return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />
 }
 
-function DrawerClose({
-  ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Close>) {
+function DrawerClose(
+  props: React.ComponentProps<typeof DrawerPrimitive.Close>
+) {
   return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
 }
 
@@ -36,7 +48,7 @@ function DrawerOverlay({
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
       className={cn(
-        "data-open:fade-in-0 data-closed:fade-out-0 fixed inset-0 z-50 bg-black/10 data-closed:animate-out data-open:animate-in supports-backdrop-filter:backdrop-blur-xs",
+        "fixed inset-0 z-50 bg-black/40 data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0",
         className
       )}
       {...props}
@@ -47,20 +59,62 @@ function DrawerOverlay({
 function DrawerContent({
   className,
   children,
+  style,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+}: Omit<React.ComponentProps<typeof DrawerPrimitive.Content>, "children"> & {
+  children?: React.ReactNode
+}) {
+  const isMobile = useIsMobile()
+
+  if (!isMobile) {
+    // Side drawer — floats 0.5rem inside the viewport edges. The enlarged
+    // `--initial-transform` slides the panel fully off-screen past that
+    // gap so the close animation completes cleanly (vaul side-drawer
+    // example).
+    return (
+      <DrawerPortal>
+        <DrawerOverlay />
+        <DrawerPrimitive.Content
+          data-slot="drawer-content"
+          style={
+            {
+              "--initial-transform": "calc(100% + 0.5rem)",
+              ...style,
+            } as React.CSSProperties
+          }
+          className={cn(
+            "fixed end-2 top-2 bottom-2 z-50 flex w-[calc(100%-1rem)] outline-none sm:max-w-md",
+            className
+          )}
+          {...props}
+        >
+          <div className="relative flex h-full w-full flex-col overflow-hidden rounded-xl border bg-popover text-popover-foreground text-sm shadow-xl">
+            <DrawerPrimitive.Close
+              aria-label="Close"
+              className="absolute end-3 top-3 z-10 inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+            >
+              <XIcon size={16} aria-hidden="true" />
+            </DrawerPrimitive.Close>
+            {children}
+          </div>
+        </DrawerPrimitive.Content>
+      </DrawerPortal>
+    )
+  }
+
   return (
-    <DrawerPortal data-slot="drawer-portal">
+    <DrawerPortal>
       <DrawerOverlay />
       <DrawerPrimitive.Content
         data-slot="drawer-content"
+        style={style}
         className={cn(
-          "group/drawer-content fixed z-50 flex h-auto flex-col bg-popover text-popover-foreground text-sm data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=left]:start-0 data-[vaul-drawer-direction=right]:end-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:rounded-s-xl data-[vaul-drawer-direction=left]:rounded-e-xl data-[vaul-drawer-direction=bottom]:rounded-t-xl data-[vaul-drawer-direction=top]:rounded-b-xl data-[vaul-drawer-direction=right]:border-s data-[vaul-drawer-direction=left]:border-e data-[vaul-drawer-direction=bottom]:border-t data-[vaul-drawer-direction=top]:border-b data-[vaul-drawer-direction=left]:sm:max-w-sm data-[vaul-drawer-direction=right]:sm:max-w-sm",
+          "fixed inset-x-0 bottom-0 z-50 flex max-h-[80vh] flex-col rounded-t-xl border bg-popover text-popover-foreground text-sm shadow-xl outline-none",
           className
         )}
         {...props}
       >
-        <div className="mx-auto mt-4 hidden h-1 w-[100px] shrink-0 rounded-full bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
+        <DrawerPrimitive.Handle className="mx-auto mt-4 h-1 w-[100px] shrink-0 rounded-full bg-muted" />
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
@@ -71,10 +125,7 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="drawer-header"
-      className={cn(
-        "flex flex-col gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-0.5 md:text-start",
-        className
-      )}
+      className={cn("flex flex-col gap-0.5 p-4", className)}
       {...props}
     />
   )

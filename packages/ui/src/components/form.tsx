@@ -79,7 +79,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("flex flex-col gap-2", className)}
+        className={cn("flex flex-col", className)}
         {...props}
       />
     </FormItemContext.Provider>
@@ -96,7 +96,13 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-destructive", className)}
+      className={cn(
+        // Default bottom margin so the input below sits 8px lower; floating
+        // inputs that don't use FormLabel keep their FormMessage flush to
+        // the bottom of the input.
+        "mb-2 data-[error=true]:text-destructive",
+        className
+      )}
       htmlFor={formItemId}
       {...props}
     />
@@ -138,25 +144,24 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField()
   const errorMessage = error ? String(error?.message ?? "") : undefined
   const body = errorMessage ?? props.children
-  const visible = body !== undefined && body !== "" && body !== null
+  if (body === undefined || body === null || body === "") return null
 
   return (
-    <div
-      data-visible={visible}
-      aria-hidden={!visible}
-      className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity,margin-top] duration-200 ease-out data-[visible=true]:mt-1.5 data-[visible=true]:grid-rows-[1fr] data-[visible=true]:opacity-100"
+    <p
+      data-slot="form-message"
+      id={formMessageId}
+      className={cn(
+        // Pin the message close to the input (small 4px gap), pin its own
+        // margins to 0 so the browser's default `<p>` margin can't leak in,
+        // and fade + slide it in for a softer appearance than the previous
+        // hard pop.
+        "m-0 mt-1 fade-in-0 slide-in-from-top-1 animate-in text-destructive text-sm leading-tight duration-200",
+        className
+      )}
+      {...props}
     >
-      <div className="overflow-hidden">
-        <p
-          data-slot="form-message"
-          id={formMessageId}
-          className={cn("text-destructive text-sm", className)}
-          {...props}
-        >
-          {body}
-        </p>
-      </div>
-    </div>
+      {body}
+    </p>
   )
 }
 
